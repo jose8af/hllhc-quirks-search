@@ -1,0 +1,49 @@
+\section{Known limitations}\label{sec:limits}
+
+This section lists the limitations that most affect the conclusions: what each is, whether it was addressed, its
+quantitative impact where known, and what would fix it. The full registry is Appendix~\ref{app:limits}, and the complete
+caveat list of the detector-level study is \rep{acts/stage4/STAGE4_RESULTS.md} \S8.
+
+\paragraph{P1 (truth level).}
+\begin{enumerate}
+\item \textbf{The population $c$ and the region above $\approx5\keV$.} On the full simulation the population median of $c$
+  lies $+2$--$3\%$ above the prediction at $1\keV$ (a failed pre-set gate, read as an estimator effect, \EST{}); the
+  $3$--$5\keV$ excess is attributed to $\Bstar$ only by a $\Bstar$-off comparison (\EST{}); above $5\keV$ an unattributed
+  $\pm5\%$ is carried. The decisive floor tests (under one CPU-hour each) were not run. No P2 impact, since multiple
+  scattering dominates there.
+\item \textbf{One failed prediction}: the straight-string/NG thickness ratio at $\gst=2$ (0.50 against $0.75\pm0.08$).
+\item \textbf{Material and kinematics.} The per-layer material is \UNV{} ($\times0.5/\times2$; it sets the floor,
+  $\DsMS\propto(x/X_0)^{0.36\ldots0.62}$); the signal is LO-merged (recoil tail $\pm11$--15\%), with transcribed $K$-factors.
+\end{enumerate}
+
+\paragraph{P2 (detector level).}
+\begin{enumerate}[resume]
+\item \textbf{Simulation-statistics limited background.} Beyond R07 every leading background term is a zero-count bound;
+  $10^8$--$3\times10^9$ events per sample would be needed against 500--2000 (Section~\ref{sec:bkg:ladder}). The limits are
+  therefore statements about this set-up, conservative with respect to simulation statistics (item 5 can bias them either
+  way), not the physics reach of a real search.
+\item \textbf{Untested factorisation and trend dominance.} Beyond the $\rho=2$ reach (R06) the background rests on
+  conditionals measured on substitute populations; the factorisation closure test is degenerate (not informative), so the
+  deep-rung background could be off in either direction by an unknown factor. The pre-registered conservative trend term
+  (2--6.3) and model spread (4.76) dominate $\sigma_{\ln}$ from R11 on, and the closure factor $\times2.41$ is applied.
+\item \textbf{Proxies and estimates in the background sum.} Eight SM processes ($W(e\nu)$, $W(\mu\nu)$, $t\bar t$ dileptonic, $t$-channel top, $tW$, $WW$, $WZ$, $ZZ$) enter through flagged proxies (15--45\% of the
+  SM term); the 5\% veto inefficiency, $K_{t\bar t}=1.9$, the nuclear-interaction PV-line factor 0.22 and $\Ntrig$ as physics
+  are \EST{}; $Z(\tau\tau)$, lost-lepton $Z(\ell\ell)$ and multijets are not included; Fatras has no hadronic interactions or
+  decays in flight (toys replace them), out-of-time pile-up is replaced by the TDR density top-up, and the trigger, PV and
+  MET models are parametrised (\UNV{}).
+\item \textbf{Signal efficiency.} V4-3 is partial with a post-hoc match definition; the detector upper $\Lam$ edge misses
+  its pre-declared comparator; deep-rung and fallback efficiencies have few passing events (e.g.\ 9/200 at the best point);
+  31 of 40 points use the fast signal path, which may overestimate $\Eff$ by up to $\approx1/0.87$ (\EST{}); the independent
+  finder cross-check (V4-5) was not run and the seed-threshold regression check (V4-4) is partial;
+  $\Eff_{\rm tot}=f_{200}A\,\Eff_{\rm sel}$ assumes independence. The Stage-2 tail-rate uncertainty of $f_{200}$,
+  $+12$--15\%/$-11$--13\% from varying the matrix-element $\alpha_s$ in MadGraph (\EST{}; \rep{sim/VALIDATION.md}), is not
+  propagated into the limit ratios.
+\item \textbf{Scope.} Barrel only ($|\eta(\hat n_3)|<1$; the barrel fraction without pile-up is 0.19--0.28); no endcap
+  finder, no merged-pair regime, no detector-level P1 (the out-of-plane resolution, 23--30$\um$, equals the MS floor);
+  efficiencies and limits at 40 of the 307 points of the admissibility grid. The campaigns C2-C (more SM statistics), C4$'$
+  (rest of the grid with the full chain) and a $\rho=3$ pile-up sample were deferred (user decisions).
+\item \textbf{Bookkeeping.} Three G3 pilot jobs were excluded (ACTS navigation assertion; they affect only the pilot
+  verdict); 11 events in admitted jobs were replaced by deterministic re-seeding after the same assertion; one full-chain job
+  was admitted despite three unmeasured pile-up hits out of 145\,007 (decision D13; negligible effect); a cosmetic bug in the
+  frozen product code leaves the MET azimuth of the event-display fake undefined (no number uses it).
+\end{enumerate}

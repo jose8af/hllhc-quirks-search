@@ -1,0 +1,21 @@
+[workspace]
+name = "acts-source-build-probe"
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[dependencies]
+python = "3.12.*"
+numpy = "*"
+cxx-compiler = "*"
+cmake = "*"
+ninja = "*"
+libboost-devel = "*"
+eigen = "*"
+pybind11 = "*"
+tbb-devel = "*"
+nlohmann_json = "*"
+hepmc3 = "*"
+pythia8 = "*"
+root = "*"
+geant4 = "*"
+dd4hep = "*"

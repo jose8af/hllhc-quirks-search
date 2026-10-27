@@ -1,0 +1,27 @@
+{
+  "cand_id": "C019",
+  "xsec_sources": [
+    "arXiv:2608.27251 Table 1 (LO MG5, NNPDF23LO, 14 TeV DY H++H--): 470.95 fb (120 GeV), 14.79 fb (300 GeV), 1.60 fb (500 GeV), 0.15 fb (800 GeV)",
+    "arXiv:1812.07831 Sec 5.1, Fig 5.1.5 (H++H-- and H++H- vs mass at 14 TeV; plot only)",
+    "arXiv:1912.08975 (NLO DY + subleading channels; used as reference for K-factors, not read for numbers)",
+    "arXiv:2603.15882 Table 3: sigma(pp->triplet pair + jet, pT>100 GeV) = 25.55 fb (M=200, dM=10) and 20 fb (dM=30)"
+  ],
+  "yield_estimate": "(i) Fermiophobic DV: 3000 fb-1 x 1.60 fb = 4800 produced at 500 GeV, 3150 after all cuts (2608.27251 Tab 4), 302-324 at 800 GeV, assuming an idealised displaced-object trigger. (ii) Compressed ISR: S = 0.204 fb, B = 6.93 fb after all cuts (2603.15882 Tab 3), i.e. S ~ 610, B ~ 20800 at 3 ab-1, S/B ~ 3% (ESTIMATE from that table). (iii) tau_h: pheno 5 sigma reach 655/695 GeV (NH/IH) at 3 ab-1 (1812.07831 Sec 5.1, from 1802.00945).",
+  "backgrounds": "(i) Instrumental: fake or merged high-mass DVs from random track crossings, material interactions and pileup combinatorics. The pheno MC (2e8 QCD events against 2.15e15 expected, weight ~1e7 per event, ESTIMATE) cannot establish the claimed zero background. (ii) tautau+jets, ttbar, WW and tW, plus nonprompt/fake soft leptons and charge-flip, which are not simulated. (iii) Jet->tau_h fakes, WZ/ZZ, ttV.",
+  "trigger": "(i) The Run-2/3 HT trigger is inefficient at low mass (2608.27251 Fig 6a). The study ASSUMES a displaced-object trigger. CMS Phase-2 L1 extended (displaced) track trigger plus a DV-finding BDT was studied for 0.02-20 cm (PoS LHCP2024 274, simulation only). Displaced-lepton triggers exist in Run 3 (2410.16835). (ii) MET>120 GeV + ISR jet, which is plausible. (iii) Lepton triggers from the accompanying e/mu; Phase-2 L1 tau objects (CMS-TDR-021).",
+  "pileup": "(i) A DV does not need PV association, but the fake-vertex rate grows with track density at PU 200. This is the main unknown. (ii) Soft-lepton isolation and MET resolution degrade with PU. (iii) tau_h isolation degrades with PU, partly recovered by timing (MTD/HGTD).",
+  "detector_upgrades": "Helps: CMS L1 tracking incl. extended displaced tracking (CMS-TDR-021), CMS MTD/ATLAS HGTD timing (time-of-flight for slow charge-2 parents), ITk/Phase-2 tracker with finer granularity and less material. Hurts or uncertain: dE/dx precision of the Phase-2 pixel readout (UNVERIFIED), and the DV acceptance window shifts with the new layer radii.",
+  "systematics": "(i) Background extrapolation from data control regions in the high-mDV tail, plus DV reconstruction efficiency for 2-6-track charged-parent vertices. (ii) Decisive: with B at 3 ab-1 ~ 20800, a 2% (5%) uncertainty on B reduces Z from ~4.2 to ~1.4 (~0.6) (ESTIMATE from 2603.15882 Tab 3). (iii) Fake-tau rate at ~15% (as in 1812.07831 Sec 2.3.2).",
+  "projection_docs": [
+    "CMS-PAS-FTR-22-006 (INSPIRE 2084511): prompt ee/mumu, expected exclusion 1400 GeV",
+    "arXiv:1812.07831 Sec 5.1 (tau_h pheno)",
+    "arXiv:2608.27251 (DV pheno, 3 ab-1)",
+    "arXiv:2603.15882 (compressed ISR pheno, 3 ab-1)",
+    "arXiv:2305.06889 (compressed same-sign low-mll pheno, Run 2 + HL)"
+  ],
+  "hl_specific_advantage": "(i) The CMS Phase-2 L1 track trigger with displaced-track extension is the enabling element for a low-HT DV trigger. Because the search is background-free if the instrumental tail is controlled, the reach scales roughly linearly with L, which matters for the 0.15-1.6 fb cross sections at 500-800 GeV. (ii) No real HL advantage: the search is systematics-limited.",
+  "main_obstacle": "(i) Triggering on low-HT displaced W W decays plus the data-driven estimate of the fake high-mass DV tail at PU 200. Neither is demonstrated: the pheno assumes an ideal trigger and has inadequate background MC. (ii) An irreducible S/B of ~3% with unsimulated fakes.",
+  "feasibility_rating": 3,
+  "confidence": "medium",
+  "caveats": "Rating 3 applies to sub-target (i), which is the realistic one. Sub-target (ii) rates ~1 and (iii) ~3 but only incremental (ATLAS already excludes 1080 GeV for equal BRs including tau). Pheno cross sections are LO. No CMS/ATLAS same-sign or charged-parent DV result was found, but this was not exhaustively verified."
+}

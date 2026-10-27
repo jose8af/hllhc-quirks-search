@@ -1,0 +1,17 @@
+# Experiment log
+- 2026-10-05 Env audit, RESEARCH_PLAN.md, tools (inspire.py, arxiv_pdf.py), methodology.md.
+- Phase 1 scouting: 10 sonnet scouts -> 199 raw seeds, 986 unique papers (literature/papers.json, candidates/raw_seeds.json).
+- Merge: 74 candidate directions (tools/merge_seeds.py -> candidates/merged_candidates.json).
+- Gate 2 triage: 6 sonnet agents -> 27 PASS / 37 HOLD / 10 REJECT (candidates/gate2_verdicts.json, reviews/triage/).
+- Observed: scouts' top-ranked gaps were overturned in several cases by proper coverage checks (e.g. C028 1cm blind spot -> CMS 2409.10806; C035 RPV displaced -> ATLAS 2603.15007). Scout 'no search found' claims are unreliable; triage claims also abstract-level for HOLD items.
+- Gate 3 list (40): 27 PASS + 13 promoted HOLD (candidates/gate3_list.json). 24 HOLD parked.
+- PAUSED at cost cap: Gate 3 (lineage + adversarial) and Gate 4 (T/E/F x ~20) with opus exceeds ~40 strong-model runs; awaiting user budget decision.
+- Budget decision (user): LEAN ~25 strong runs. Gate 3 = adversarial opus on 27 PASS only (7 batched agents); Gate 4 = top ~10 with independent T/E/F + arbiter.
+- Gate 3 attempt 1 failed (session rate limit 429, no outputs saved; batch agents had also spawned per-candidate subagents). Relaunched 7 opus batches with incremental saving and no-subagent rule.
+- Gate 3 done (27 adversarial opus reviews): 1 DIES (C026), 26 NARROWED, none intact. Gate 4 shortlist (10): C005 C003 C015 C019 C001 C044 C008 C066 C051 C040; alternates C017 C061 C009 C047 C048. Targets in candidates/gate4_targets.json. Mixed with scouts' picks: many top scout gaps died (C026 MTD timing, C028, C035).
+- 2026-10-06 Gate 4 wave 1 hit session rate limit (429). Incremental saves preserved 14/20 reviews (E: C001 C005 C015 C044 C051; F: C001 C005 C015 C051 C066). Relaunched the 6 missing: E C003 C008 C019 C040 C066; F C003 C008 C019 C040 C044 (6 agents). Theory reviews (5) still pending, then arbiter.
+- Gate 4 E and F reviews complete (10 + 10). Theory wave (5 opus, 2 cands each) launched 2026-10-06. Next: arbiter, then TOP_CANDIDATES.md + ranking, then human checkpoint.
+- Wrote REJECTED_CANDIDATES.md (root), research/README.md, search_strategy.md while arbiter runs.
+- 2026-10-06 Gate 5 arbiter done: rankings/ranking.{md,json}; TOP_CANDIDATES.md (+reports/top_candidates.md); reports/literature_review.md; reports/citation_audit.json (204 IDs, 0 unresolved). Tier A: C001, C005; B: C019 C044 C015 C051 C003; C: C008 C040 C066. Awaiting human checkpoint.
+- 2026-10-06 Arbiter (fable) done: ranking, TOP_CANDIDATES.md, literature_review.md, citation_audit (204 IDs, 0 unresolved). HUMAN CHECKPOINT reached: awaiting user choice of direction for stage 2. Stage 2 not started.
+- 2026-10-06 Generated literature/seminal_papers.md, literature/citation_graph.md (tools/gen_lit_docs.py) and report/hllhc_report.pdf (tools/gen_report.py, 17 pp).

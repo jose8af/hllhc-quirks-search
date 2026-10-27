@@ -1,0 +1,2902 @@
+{
+ "label": "limits: signal Stage-4 analysis on C1a+C1b+C2B+A2FC (T_seed = 4) | background Stage-4 analysis on C1a+C1b+C2B+A2FC (T_seed = 4)",
+ "flags": [
+  "SR-T signal eps from signal_srt.json (PC-19); SR-G eps = eps(selection) - eps_SR-T",
+  "B per bin as one log-normal (median, sigma_eff = ln(B84/B_median)); the cross-category correlation of shared sources is not carried into the workspace"
+ ],
+ "points": {
+  "A2|F|200|0.45|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.01
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 126419998.29223633,
+    "band_1s": [
+     2855037.3150378494,
+     5879372553.630104
+    ],
+    "band_2s": [
+     56711.060348494255,
+     271992069910.38013
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 135332523.885665,
+    "band_1s": [
+     134786662.19381297,
+     135525271.34926975
+    ],
+    "band_2s": [
+     133030202.71175884,
+     135676023.8286693
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 126419998.29223633,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|0.6|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.01
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 126419998.29223633,
+    "band_1s": [
+     2855037.3150378494,
+     5879372553.630104
+    ],
+    "band_2s": [
+     56711.060348494255,
+     271992069910.38013
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 135332523.885665,
+    "band_1s": [
+     134786662.19381297,
+     135525271.34926975
+    ],
+    "band_2s": [
+     133030202.71175884,
+     135676023.8286693
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 126419998.29223633,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|0.85|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.02
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 63209999.146416545,
+    "band_1s": [
+     1427190.9099419964,
+     2939686276.815054
+    ],
+    "band_2s": [
+     27171.73684839034,
+     135996034955.19019
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 67666259.77990982,
+    "band_1s": [
+     67393327.53178458,
+     67762631.00393593
+    ],
+    "band_2s": [
+     66515101.939626515,
+     67837999.90473232
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 63209999.146416545,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|1|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.0,
+    0.02127659574468085
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 35872423.81434463,
+    "band_1s": [
+     1221417.349847287,
+     1102755250.7257328
+    ],
+    "band_2s": [
+     35440.188220975906,
+     33719972053.23378
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 38133793.27367616,
+    "band_1s": [
+     37874351.76173999,
+     38217177.67322648
+    ],
+    "band_2s": [
+     37148064.96738423,
+     38275428.032972954
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 35872423.81434463,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|1.5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 2,
+     "k_adm_table": 2,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB2",
+     "r_fb": "FB2&h>5&o>5",
+     "width_cut_mm": 18.75
+    }
+   },
+   "s": [
+    0.0,
+    0.045
+   ],
+   "b": [
+    451026.8793655472,
+    591129.3053623956
+   ],
+   "sigma_ln": [
+    1.7480907218333332,
+    2.7089076315261225
+   ],
+   "selections": [
+    "FB2&h>5&o>5&SR-T",
+    "FB2&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 12458208.17378198,
+    "band_1s": [
+     860391.8779553045,
+     185121863.72758633
+    ],
+    "band_2s": [
+     52857.780382514655,
+     2730033711.7277136
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 13072848.58567515,
+    "band_1s": [
+     12849849.517091965,
+     13139795.928792655
+    ],
+    "band_2s": [
+     12375764.673906786,
+     13169777.95224908
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 12458208.17378198,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|2|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 3,
+     "k_adm_table": 3,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB3",
+     "r_fb": "FB3&h>5&o>5",
+     "width_cut_mm": 9.4
+    }
+   },
+   "s": [
+    0.005,
+    0.045000000000000005
+   ],
+   "b": [
+    428668.4084391684,
+    430373.030423338
+   ],
+   "sigma_ln": [
+    1.5553399579764244,
+    1.5271841062124039
+   ],
+   "selections": [
+    "FB3&h>5&o>5&SR-T",
+    "FB3&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 12672532.35501181,
+    "band_1s": [
+     3171125.927248015,
+     50875359.89857982
+    ],
+    "band_2s": [
+     822861.5404787827,
+     230775826.37536407
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 9083766.681698326,
+    "band_1s": [
+     8454305.020126954,
+     9416344.111262532
+    ],
+    "band_2s": [
+     7639952.844375086,
+     9534297.242625559
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 12672532.35501181,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 293992038.5948487,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|3|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB4",
+     "r_fb": "FB4&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.010256410256410256,
+    0.041025641025641026
+   ],
+   "b": [
+    887751.2656942098,
+    775691.291871952
+   ],
+   "sigma_ln": [
+    2.475348176784403,
+    1.931504402790687
+   ],
+   "selections": [
+    "FB4&h>5&o>5&SR-T",
+    "FB4&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 43200572.9424935,
+    "band_1s": [
+     7442081.038682457,
+     285141537.06623435
+    ],
+    "band_2s": [
+     1241148.029077161,
+     1906556750.1931925
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 18476945.42799671,
+    "band_1s": [
+     17663891.895829223,
+     18812907.7623221
+    ],
+    "band_2s": [
+     16411484.198489996,
+     18909704.624804687
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 43200572.9424935,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 866796961.0980089,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|200|5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB4",
+     "r_fb": "FB4&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.015,
+    0.04
+   ],
+   "b": [
+    887751.2656942098,
+    775691.291871952
+   ],
+   "sigma_ln": [
+    2.475348176784403,
+    1.931504402790687
+   ],
+   "selections": [
+    "FB4&h>5&o>5&SR-T",
+    "FB4&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 46023806.69284712,
+    "band_1s": [
+     8230076.542200547,
+     299154151.21605945
+    ],
+    "band_2s": [
+     1333407.5206893217,
+     1940380269.8884315
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 18947444.48368355,
+    "band_1s": [
+     18105144.44957151,
+     19294712.258815605
+    ],
+    "band_2s": [
+     16806159.934516042,
+     19394441.94348584
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 46023806.69284712,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 842065525.3833067,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|0.45|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|F|500|0.6|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.005,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 135238674.48048007,
+    "band_1s": [
+     26159201.00849937,
+     695160188.791039
+    ],
+    "band_2s": [
+     4981759.912383918,
+     2941050624.8457165
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 138509543.59502092,
+    "band_1s": [
+     129311125.94588786,
+     143260351.8077176
+    ],
+    "band_2s": [
+     117225346.5993788,
+     144880664.58834746
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 135238674.48048007,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|0.85|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.01,
+    0.015000000000000001
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 159216693.56470895,
+    "band_1s": [
+     22651170.112000436,
+     2456488050.4408474
+    ],
+    "band_2s": [
+     3483342.5023221886,
+     107669061389.06586
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 69056654.15134323,
+    "band_1s": [
+     64177904.426615946,
+     71579500.297606
+    ],
+    "band_2s": [
+     49513986.94155769,
+     72429795.83946444
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 159216693.56470895,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|1|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.02,
+    0.02
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 97173962.10802984,
+    "band_1s": [
+     14133749.116743904,
+     1446966523.4657087
+    ],
+    "band_2s": [
+     2347822.5373352244,
+     65174231269.34854
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 34603890.782196455,
+    "band_1s": [
+     32264820.55826654,
+     35809432.34962013
+    ],
+    "band_2s": [
+     29193413.7985725,
+     36219005.23951296
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 97173962.10802984,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|1.5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.045,
+    0.02500000000000001
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 29811913.145805463,
+    "band_1s": [
+     5338459.37610117,
+     304566451.4138799
+    ],
+    "band_2s": [
+     1033377.7588458823,
+     9227034574.60109
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 11010594.637210108,
+    "band_1s": [
+     10147770.897563484,
+     11497916.084338946
+    ],
+    "band_2s": [
+     9083553.317839464,
+     11682603.131316544
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 29811913.145805463,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 319401593.2821857,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|2|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 2,
+     "k_adm_table": 2,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB2",
+     "r_fb": "FB2&h>5&o>5",
+     "width_cut_mm": 18.75
+    }
+   },
+   "s": [
+    0.055,
+    0.025
+   ],
+   "b": [
+    451026.8793655472,
+    591129.3053623956
+   ],
+   "sigma_ln": [
+    1.7480907218333332,
+    2.7089076315261225
+   ],
+   "selections": [
+    "FB2&h>5&o>5&SR-T",
+    "FB2&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 19925576.8548858,
+    "band_1s": [
+     3546511.7149753403,
+     129363193.40901846
+    ],
+    "band_2s": [
+     615423.0610349544,
+     1438997937.6563053
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 7931473.494261896,
+    "band_1s": [
+     7497154.141823231,
+     8131848.813226111
+    ],
+    "band_2s": [
+     6878650.813764298,
+     8195438.590078736
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 19925576.8548858,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 307752986.49736124,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|3|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 3,
+     "k_adm_table": 3,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB3",
+     "r_fb": "FB3&h>5&o>5",
+     "width_cut_mm": 9.4
+    }
+   },
+   "s": [
+    0.045,
+    0.010000000000000002
+   ],
+   "b": [
+    428668.4084391684,
+    430373.030423338
+   ],
+   "sigma_ln": [
+    1.5553399579764244,
+    1.5271841062124039
+   ],
+   "selections": [
+    "FB3&h>5&o>5&SR-T",
+    "FB3&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 14458902.432854895,
+    "band_1s": [
+     3720257.416909951,
+     59380327.689763665
+    ],
+    "band_2s": [
+     843381.5740920815,
+     209932798.58251375
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 9070065.559610864,
+    "band_1s": [
+     8454387.657375198,
+     9389266.5796225
+    ],
+    "band_2s": [
+     7647730.405643957,
+     9500358.161247943
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 14458902.432854895,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 276748071.8316717,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|500|5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB4",
+     "r_fb": "FB4&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.045,
+    0.035
+   ],
+   "b": [
+    887751.2656942098,
+    775691.291871952
+   ],
+   "sigma_ln": [
+    2.475348176784403,
+    1.931504402790687
+   ],
+   "selections": [
+    "FB4&h>5&o>5&SR-T",
+    "FB4&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 38038532.89787124,
+    "band_1s": [
+     6608537.258964326,
+     243320700.83035493
+    ],
+    "band_2s": [
+     1162246.9988918528,
+     1524386651.34834
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 19386547.09135722,
+    "band_1s": [
+     18358290.59766419,
+     19690053.670760565
+    ],
+    "band_2s": [
+     16721170.06615117,
+     19752825.64348515
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 38038532.89787124,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 688048707.8973303,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|0.45|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|F|1000|0.6|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.011111111111111112
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 113777913.953125,
+    "band_1s": [
+     2569004.3961391114,
+     5291435298.267097
+    ],
+    "band_2s": [
+     49099.23295859095,
+     244792862919.3421
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 121799274.00520329,
+    "band_1s": [
+     121307991.32331844,
+     121972743.38370745
+    ],
+    "band_2s": [
+     119727183.43673292,
+     122108411.77597019
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 113777913.953125,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|0.85|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.01,
+    0.01
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 194313826.13506728,
+    "band_1s": [
+     28270386.388199836,
+     2893840153.3781843
+    ],
+    "band_2s": [
+     4689628.5328886695,
+     130348462538.6972
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 69207780.7962091,
+    "band_1s": [
+     64529640.78658378,
+     71618862.48908763
+    ],
+    "band_2s": [
+     58386827.43004032,
+     72438015.57983379
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 194313826.13506728,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|1|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.005555555555555556,
+    0.016666666666666666
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 160349054.71801764,
+    "band_1s": [
+     20073461.094532922,
+     2860808225.4125357
+    ],
+    "band_2s": [
+     3077136.439320544,
+     124610386151.79974
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 81172653.04124102,
+    "band_1s": [
+     80620737.44182199,
+     81307033.27602851
+    ],
+    "band_2s": [
+     78431335.60408574,
+     81400857.85572612
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 160349054.71801764,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|1.5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.01,
+    0.019999999999999997
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 73855490.74955773,
+    "band_1s": [
+     11966532.190931868,
+     864654558.3199348
+    ],
+    "band_2s": [
+     2163874.999542442,
+     24329639759.863647
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 40479579.10447779,
+    "band_1s": [
+     39430210.17001687,
+     40639584.98867668
+    ],
+    "band_2s": [
+     36366250.73046767,
+     40709485.129484855
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 73855490.74955773,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|2|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.02631578947368421,
+    0.031578947368421054
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 39984833.70036316,
+    "band_1s": [
+     6929161.6142950095,
+     429310336.7974386
+    ],
+    "band_2s": [
+     1267464.8986883108,
+     12215731346.63765
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 18767088.09983841,
+    "band_1s": [
+     17222202.99007854,
+     19643347.486443285
+    ],
+    "band_2s": [
+     15340329.522925865,
+     19973076.957785934
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 39984833.70036316,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 512796705.0455309,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|3|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 3,
+     "k_adm_table": 3,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB3",
+     "r_fb": "FB3&h>5&o>5",
+     "width_cut_mm": 9.4
+    }
+   },
+   "s": [
+    0.031578947368421054,
+    0.021052631578947364
+   ],
+   "b": [
+    428668.4084391684,
+    430373.030423338
+   ],
+   "sigma_ln": [
+    1.5553399579764244,
+    1.5271841062124039
+   ],
+   "selections": [
+    "FB3&h>5&o>5&SR-T",
+    "FB3&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 20919858.65647456,
+    "band_1s": [
+     5711487.908073287,
+     74779647.7078284
+    ],
+    "band_2s": [
+     1449375.9086268619,
+     251507103.35455483
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 12811675.986223819,
+    "band_1s": [
+     11765358.486711008,
+     13351678.518137686
+    ],
+    "band_2s": [
+     10437961.12990198,
+     13532036.295536242
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 20919858.65647456,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 290765160.5780759,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1000|5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4e>1.3&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4e>1.3&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": 1.3,
+     "fb_column": "FB4e>1.3",
+     "r_fb": "FB4e>1.3&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.035897435897435895,
+    0.025641025641025647
+   ],
+   "b": [
+    1118463.9741498907,
+    962320.068276897
+   ],
+   "sigma_ln": [
+    2.4854389700501525,
+    2.0447263076453868
+   ],
+   "selections": [
+    "FB4e>1.3&h>5&o>5&SR-T",
+    "FB4e>1.3&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 63664057.088133544,
+    "band_1s": [
+     10539603.892840564,
+     426166346.70837903
+    ],
+    "band_2s": [
+     1794873.8053399269,
+     2772185705.560891
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 30776550.73539092,
+    "band_1s": [
+     29546880.46131801,
+     31115200.28657111
+    ],
+    "band_2s": [
+     27281437.30651528,
+     31195221.84999349
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 63664057.088133544,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|0.45|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|F|1500|0.6|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|F|1500|0.85|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.005
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 252839996.58566618,
+    "band_1s": [
+     5708763.639767986,
+     11758745107.260216
+    ],
+    "band_2s": [
+     108686.94739356136,
+     543984139820.76074
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 270665039.1196393,
+    "band_1s": [
+     269573310.1271383,
+     271050524.01574373
+    ],
+    "band_2s": [
+     266060407.75850606,
+     271351999.61892927
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 252839996.58566618,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|1|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.010638297872340425
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 118834797.8066163,
+    "band_1s": [
+     2683182.369300849,
+     5526610200.4123
+    ],
+    "band_2s": [
+     51659.85493281267,
+     255672545715.7574
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 127212564.36604853,
+    "band_1s": [
+     126699461.73594967,
+     127393751.42356128
+    ],
+    "band_2s": [
+     125048391.1834479,
+     127535462.414463
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 118834797.8066163,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|1.5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.015,
+    0.015
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 77116104.42737466,
+    "band_1s": [
+     13468686.600778714,
+     817583306.1432726
+    ],
+    "band_2s": [
+     2486830.5954471854,
+     23185876271.039352
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 32983200.09008449,
+    "band_1s": [
+     30332694.515387755,
+     34479943.32790692
+    ],
+    "band_2s": [
+     27018363.55930582,
+     35044668.36389117
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 77116104.42737466,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 917279115.1096243,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|2|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.015,
+    0.020000000000000004
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 66532110.91748054,
+    "band_1s": [
+     11431963.633090455,
+     719486408.6106329
+    ],
+    "band_2s": [
+     2041261.7809661394,
+     20374016411.46599
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 32849258.42448336,
+    "band_1s": [
+     30081707.51235744,
+     34436217.53355595
+    ],
+    "band_2s": [
+     26747950.802231833,
+     35034213.44865812
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 66532110.91748054,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 888190664.7453015,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|3|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB3&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 3,
+     "k_adm_table": 3,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB3",
+     "r_fb": "FB3&h>5&o>5",
+     "width_cut_mm": 9.4
+    }
+   },
+   "s": [
+    0.035,
+    0.035
+   ],
+   "b": [
+    428668.4084391684,
+    430373.030423338
+   ],
+   "sigma_ln": [
+    1.5553399579764244,
+    1.5271841062124039
+   ],
+   "selections": [
+    "FB3&h>5&o>5&SR-T",
+    "FB3&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 16127644.17238544,
+    "band_1s": [
+     4479414.998847198,
+     56516994.26749234
+    ],
+    "band_2s": [
+     1234287.899936052,
+     193106022.17697436
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 10822267.650359405,
+    "band_1s": [
+     9637819.563503599,
+     11643724.780287657
+    ],
+    "band_2s": [
+     8371317.106878649,
+     12043744.617341012
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 16127644.17238544,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 218150265.2087497,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|F|1500|5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4e>1.6&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4e>1.6&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": 1.6,
+     "fb_column": "FB4e>1.6",
+     "r_fb": "FB4e>1.6&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.03,
+    0.03
+   ],
+   "b": [
+    1020209.8609762082,
+    895917.288852815
+   ],
+   "sigma_ln": [
+    2.3746467313315405,
+    1.9948057361141533
+   ],
+   "selections": [
+    "FB4e>1.6&h>5&o>5&SR-T",
+    "FB4e>1.6&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 58663727.85983667,
+    "band_1s": [
+     10414436.949239131,
+     353004946.2398052
+    ],
+    "band_2s": [
+     1801874.751247852,
+     2085481717.023838
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 29016764.947037645,
+    "band_1s": [
+     27320455.104042314,
+     29695479.21746875
+    ],
+    "band_2s": [
+     24853176.249203783,
+     29863627.686585132
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 58663727.85983667,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 1027654263.439209,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|S|500|0.45|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|S|500|0.6|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|S|500|0.85|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.0,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ]
+  },
+  "A2|S|500|1|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.010638297872340425,
+    0.0
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 63570798.820347786,
+    "band_1s": [
+     12296045.170190852,
+     326725288.7317889
+    ],
+    "band_2s": [
+     2338142.796897541,
+     1382320863.1179523
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 65099485.87501197,
+    "band_1s": [
+     60776228.00256401,
+     67332364.16662483
+    ],
+    "band_2s": [
+     55095912.99001874,
+     68093906.5255109
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 63570798.820347786,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|S|500|1.5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB0&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 0,
+     "k_adm_table": 0,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB0",
+     "r_fb": "FB0&h>5&o>5",
+     "width_cut_mm": null
+    }
+   },
+   "s": [
+    0.015,
+    0.010000000000000002
+   ],
+   "b": [
+    726467.5372237803,
+    1353633.3461313606
+   ],
+   "sigma_ln": [
+    1.5631914502669841,
+    3.8605766666751973
+   ],
+   "selections": [
+    "FB0&h>5&o>5&SR-T",
+    "FB0&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 144424652.99010092,
+    "band_1s": [
+     21362491.119384766,
+     2115111144.407957
+    ],
+    "band_2s": [
+     3607566.99011523,
+     99706109101.15198
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 46159282.9470127,
+    "band_1s": [
+     43074559.12797897,
+     47750945.14585177
+    ],
+    "band_2s": [
+     39020917.936296545,
+     48293043.300019234
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 144424652.99010092,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": null,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|S|500|2|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB1&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 1,
+     "k_adm_table": 1,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB1",
+     "r_fb": "FB1&h>5&o>5",
+     "width_cut_mm": 37.5
+    }
+   },
+   "s": [
+    0.025,
+    0.03
+   ],
+   "b": [
+    528472.903443116,
+    812091.4628755501
+   ],
+   "sigma_ln": [
+    1.4176265413850464,
+    3.4434648648174155
+   ],
+   "selections": [
+    "FB1&h>5&o>5&SR-T",
+    "FB1&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 42088818.816539764,
+    "band_1s": [
+     7291850.750977516,
+     451920539.1512556
+    ],
+    "band_2s": [
+     1334127.298576923,
+     12858664575.408054
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 19754829.538013697,
+    "band_1s": [
+     18128634.80440546,
+     20677207.836856574
+    ],
+    "band_2s": [
+     16117718.448988691,
+     21024291.50885267
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 42088818.816539764,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 539786005.3110851,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|S|500|3|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB2&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 2,
+     "k_adm_table": 2,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB2",
+     "r_fb": "FB2&h>5&o>5",
+     "width_cut_mm": 18.75
+    }
+   },
+   "s": [
+    0.041237113402061855,
+    0.03608247422680413
+   ],
+   "b": [
+    451026.8793655472,
+    591129.3053623956
+   ],
+   "sigma_ln": [
+    1.7480907218333332,
+    2.7089076315261225
+   ],
+   "selections": [
+    "FB2&h>5&o>5&SR-T",
+    "FB2&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 23791928.700520426,
+    "band_1s": [
+     4266100.351434547,
+     149872784.91396338
+    ],
+    "band_2s": [
+     762018.355446913,
+     1664490369.3733873
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 10558091.069348471,
+    "band_1s": [
+     9939033.99865943,
+     10841543.548422411
+    ],
+    "band_2s": [
+     9062398.238192998,
+     10929712.883319635
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 23791928.700520426,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 368502635.5687371,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  },
+  "A2|S|500|5|BM": {
+   "primary": {
+    "T": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5&SR-T",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "G": {
+     "kind": "r_fb",
+     "rung": null,
+     "name": "FB4&h>5&o>5",
+     "background_free_claim": false,
+     "why": "no WP"
+    },
+    "branch": "fallback both",
+    "admissibility": {
+     "k_adm": 4,
+     "k_adm_table": 4,
+     "k_consistent": true,
+     "e_adm": null,
+     "fb_column": "FB4",
+     "r_fb": "FB4&h>5&o>5",
+     "width_cut_mm": 4.7
+    }
+   },
+   "s": [
+    0.055,
+    0.025
+   ],
+   "b": [
+    887751.2656942098,
+    775691.291871952
+   ],
+   "sigma_ln": [
+    2.475348176784403,
+    1.931504402790687
+   ],
+   "selections": [
+    "FB4&h>5&o>5&SR-T",
+    "FB4&h>5&o>5"
+   ],
+   "expected_toys": {
+    "median": 34836877.25426483,
+    "band_1s": [
+     5713519.675947752,
+     240797091.78547478
+    ],
+    "band_2s": [
+     901118.7103500913,
+     1533120667.5385275
+    ],
+    "calculator": "toys (hybrid CLs, 5000 toys, seed 20261014, common random numbers)",
+    "primary": true,
+    "band_note": "quantiles of the b-only test statistic (same toys); discrete at small B"
+   },
+   "expected_asymptotic": {
+    "median": 16003737.921315264,
+    "band_1s": [
+     15590821.688560067,
+     16127581.941177268
+    ],
+    "band_2s": [
+     14773131.77336891,
+     16166549.932972152
+    ],
+    "calculator": "asymptotic q~_mu",
+    "primary": false,
+    "role": "cross-check (D4)"
+   },
+   "expected_primary": 34836877.25426483,
+   "discovery": {
+    "mu_3events": null,
+    "mu_5sigma": 746266761.704783,
+    "note": "Z_A per bin (Cowan, b uncertainty sigma_b = b sigma_ln), bins combined in quadrature (approximate)"
+   }
+  }
+ },
+ "dev": false,
+ "upstream_issues": [],
+ "provenance": {
+  "dev": false,
+  "freeze_match": true,
+  "freeze_sha256": "b42aef4d7b8df2b863c945af29ea9abd3b9fefe708049019de02aa90ff58f29b",
+  "t_seed": null,
+  "campaigns": null,
+  "created": "2026-10-16 12:29:41"
+ },
+ "n_points": 40
+}

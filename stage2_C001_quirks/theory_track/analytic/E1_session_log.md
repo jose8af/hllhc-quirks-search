@@ -1,0 +1,28 @@
+# E1 session log (one line per milestone; resume from here)
+
+- 2026-10-10 E1: read BRIEF, synthesis S-1/S-3/X-2/X-3/X-13/§5, T2 §2/§5-6, T3 §3, T4 §3; wrote plan.md (after network drop, restart).
+- 2026-10-10 E1: read code (T3_causal, R1 header, T2_crossing_missdist, S_Bnonlin/S_Bscan/R1_Blinearity + outputs) and Li 1911.02223 Eq.III.6-12, 2002.07503 §V, App.A-C (Li already has a per-period axis rotation eta, taken from numerics, A.6-A.17).
+- 2026-10-10 E1: WORKING PICTURE (to be checked): problem = pair at rest in uniform E* (B* gives no torque on relative motion for equal masses, opposite charges). Torque q r x E* makes J oscillate 0 -> J_odd -> 0; b_odd = J_odd/p* = 2(qE*perp m/sigma^2)[gamma* - asinh(rho)/rho] (exact 1st order, rho = gamma*beta*). Near-miss at odd crossing: NG self-similar wedge solution y=(b/2)artanh(x/t)/artanh(v) gives force sigma b/(2 t artanh v) -> relative impulse (sigma b/artanh beta*) ln -> axis rotation per period eta = (qE*perp/sigma) G(gamma*) [ln(lmax/b_odd)+K], G = 2[gamma*-asinh(rho)/rho]/(rho artanh beta*) (->4/3 nonrel). Coherent (same sense each period, toward E*perp) -> Theta ~ N_osc eta ~ qBR/p*, Ds ~ Theta*l ~ eps_B R: m-indep, Lambda^-2 x log. c = 1/(ln(lmax/b_odd)+K) ~ 0.10 if K~0.
+- 2026-10-10 E1: next: sympy checks c01 (yoyo, J_odd, b_odd), c02 (wedge solution, BC), then targeted causal-string run with uniform E* in CM (T2 CausalNullString supports Efield) to test b_odd, slope G, and get K.
+- 2026-10-10 E1: c01 (sympy yo-yo, b_odd), c02 (wedge NG solution, force sigma b/(2t artanh v)) PASS; c03 causal-E at gamma*=1.28: b_odd formula exact to 3e-4; eta = eps_perp G [ln(lmax/b_odd)+K] with K=-0.04 constant over eps=1e-6..1e-3 (slope = G confirmed). b_even/b_odd ~ 3e-4 scales with max_boost -> numerical artefact (T2's b_even may be artefact).
+- 2026-10-10 E1: c03 gamma scan (mb=1e-3): b_odd exact (<=6e-4) all gamma*; slope = G exact; K(gamma*) = +0.07/-0.04/-0.17/-0.30/-0.57 at 1.05/1.28/1.6/2/3; alpha=45 same K at small eps (E_par 2nd order, b_even ~ 7 eps b_odd); alpha=0 no rotation. Estimated c ~ 0.10 at 1 keV 3.8T, m=500 (matches fitted 0.10).
+- 2026-10-10 E1: c04 straight-string models in CM with E*: QS (central force, rel. kinematics): b_odd exact, log coeff sigma b/beta*; NR limit K_NR = 0.079447 = 3 ln2 - 2 -> eta_NR = (4/3) eps [ln(6/eps) - 2]; DERIVED analytically (outer int J/x^2 + inner first-order action, matched at radius R) -> matches numerics to 1e-6. KL (= Li in CM frame): log present (no curvature/retardation needed) but b_KL = (1.04/1.21/1.68) x b_NG at gamma*=1.05/1.28/2 (KL force non-central: quirk J not conserved), A_KL = (1-beta^2)/beta; predicted eta_KL/eta_NG = 0.97/0.84/0.50 vs measured Li/causal thickness 0.97/0.85/0.69 (R2).
+- 2026-10-10 E1: coordinator input: NOVELTY_AUDIT.md read (§0, §3, §4): frame as analytic theory of Li's eta (2002.07503 A.6, A.17, V.5-6, B.9); cite KL Eq.5.64 (b scale), Knapen Eq.8-9 (non-log torque rotation ~B/Lambda^2, m-indep), apsidal L ln(1/L) standard (E3 check), say whether Li integrator has the log (yes, with different coefficient).
+- 2026-10-10 E1: c06 rotating-yoyo accumulation model (exact vacuum yoyo + rigid rotation by eta at each odd crossing, no fit) vs T3_causal B-only Ds, m=500, 12 ev: 1 keV ratio median 0.995 (0.98-1.01 for gamma*<1.2; 1.10-1.25 for gamma*>2), 3 keV 0.973 (0.96-0.99 low gamma*, 1.14-1.34 high gamma*). median c_event 0.104 (1 keV), 0.084 (3 keV).
+- 2026-10-10 E1: c06 m=1000: ratio 0.991 (1 keV), 0.967 (3 keV); K(mb=1e-4): 1.05 +0.056, 1.28 -0.049, 1.6 -0.175. Writing NEAR_MISS_IMPULSE.md §1-4 now; c07_predictions.py written (population predictions from model).
+- 2026-10-10 E1: K converged (mb 1e-4): +0.056/-0.049/-0.175/-0.309/-0.569 at gamma*=1.05/1.28/1.6/2/3; fit K = (3ln2-2) - 0.506 ln g - 0.077 ln^2 g (c08, resid <=0.002). c06 m=200: ratio 1.001/0.996 (1/3 keV); 10 keV 0.98 (outliers when eps_perp tiny); 0.6 keV 0.99 (high gamma* 0.65-0.75). NEAR_MISS §1-4 written. c07 running.
+- 2026-10-10 E1: NEAR_MISS §5-7 appended (accumulation, c, response, exponents, even crossings, angle, NG validity).
+- 2026-10-10 E1: NEAR_MISS §8-11 appended; next: §0 summary + predictions.json.
+- 2026-10-10 E1: predictions.json written; LOG.md finish line appended. v1 done; §9 pending E2.
+- 2026-10-10 E1: v2 done: §9 filled, §0/§3.4/§5.3/§6/§8/§10 updated, predictions.json v2 changelog, checks c09-c11 added.
+- 2026-10-10 E1: v3 done (§9.3, §1.3 B* correction, P-22, §10.11-14, predictions v3, c12 check). For review.
+- 2026-10-10 E1: fix pass S1-R1 started; v3 kept as NEAR_MISS_IMPULSE_v3.md; c14 (B* effect on c_k vs eps, A1/B1) running.
+- 2026-10-10 E1: v4 §0-§4 written (clean rewrite; notation table; Δs definition; reduction restated). c13 population done (kB fractions, γ* bins, angles, q=2, scalar).
+- 2026-10-10 E1: v4 §5-§7 written.
+- 2026-10-10 E1: v4 §8-§13 written (predictions table re-tagged, §9 with 3 keV OPEN, §10, §11 scope options, §12 response table, §13 credit). c12 docstring fixed (C6).
+- 2026-10-10 E1: PROPOSED_CHANGES.md written; predictions.json v4 changelog. Waiting: c14 (rest), E2 split for A1.
+- 2026-10-10 E1: interim reply sent; c14 still running (γ*=1.3 B*||E, α=60, then 1 keV-like).
+- 2026-10-10 E1: v4 final; all review items addressed (§12).
+- 2026-10-11 E1: v5 interim done; awaiting E2 B*-off/scale-equivalence runs for §9.3/§5.5 final merge.
+- 2026-10-11 E1: v5 final done.
+- 2026-10-11 E1: v5.1 done.

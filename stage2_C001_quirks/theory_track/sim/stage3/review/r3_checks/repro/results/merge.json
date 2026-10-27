@@ -1,0 +1,230 @@
+{
+ "meta": {
+  "created_by": "sim/stage3/scripts/merge_index.py (E8, 2026-10-13)",
+  "note": "Canonical Stage-3 production: every job of jobs/all.json exactly once (paths relative to data/sim_stage3/), plus the 3 cross-machine overlap clones per machine under xover/<machine>/. Campaign mv = the plan's \"matvar\". canon/ holds relative symlinks with the same layout. Units in the files: mm, ns, GeV; thickness in um. Truth level.",
+  "units": {
+   "length": "mm",
+   "time": "ns",
+   "momentum": "GeV",
+   "thickness": "um"
+  },
+  "machines": {
+   "mac": "data/sim_stage3/out (Apple M3, macOS, 7 workers)",
+   "pc": "data/sim_stage3/out_pc (AMD 7800X3D, Windows 11, 10 then 15 workers)"
+  }
+ },
+ "checks": {
+  "partition": {
+   "n_all": 4576,
+   "n_mac": 3986,
+   "n_pc": 590,
+   "n_overlap": 3,
+   "mac_pc_disjoint": true,
+   "mac_pc_cover_all": true
+  },
+  "n_expected_files": 4582,
+  "n_found": 4582,
+  "missing": [],
+  "invalid": [],
+  "job_definition_differs": [],
+  "code_md5_differs": [],
+  "input_md5_differs": [],
+  "canonical_jobs_not_exactly_once": [],
+  "duplicate_events_in_canonical": 0,
+  "extra_files": {
+   "mac": [],
+   "pc": [
+    "_smoke/smoke/p1__F_m500__L3_B_c00.npz",
+    "_smoke/smoke/p2__F_m500__L1_BM_c00.npz"
+   ]
+  },
+  "current_code_md5": {
+   "T3_causal_s3.py": "62d0f76f265302091a385e2f45e60f36",
+   "s3_physics.py": "ad364ec09555c9fea33cf038e4253dbb",
+   "run_stage3.py": "ab0a68cd44c20df32eb3f7a6b72c2a15",
+   "surfaces_s3.json": "df914b36086508d3d1746c9aea870d83"
+  },
+  "n_canon_symlinks": 4582,
+  "PASS": true
+ },
+ "environments": [
+  {
+   "machine": "mac",
+   "kernel_version": "s3.2",
+   "runner_version": "r1.0",
+   "code_md5": {
+    "T3_causal_s3.py": "62d0f76f265302091a385e2f45e60f36",
+    "run_stage3.py": "ab0a68cd44c20df32eb3f7a6b72c2a15",
+    "s3_physics.py": "ad364ec09555c9fea33cf038e4253dbb",
+    "surfaces_s3.json": "df914b36086508d3d1746c9aea870d83"
+   },
+   "orig_md5": {
+    "code/T2_propagator.py": "fdacaeba505d28be593d54b291a4946d",
+    "code/T3_causal.py": "c09c84a441b5195c27c7172acb8aac68",
+    "code/T3_propagator.py": "2328bb685c1dbae8cc3c5122011c16f2"
+   },
+   "platform": "macOS-26.6.2-arm64-arm-64bit",
+   "arch": "arm64",
+   "hostname": "Joses-MacBook-Air-4.local",
+   "python": "3.12.15",
+   "numpy": "2.5.3",
+   "numba": "0.68.0",
+   "n_files": 3989
+  },
+  {
+   "machine": "pc",
+   "kernel_version": "s3.2",
+   "runner_version": "r1.0",
+   "code_md5": {
+    "T3_causal_s3.py": "62d0f76f265302091a385e2f45e60f36",
+    "run_stage3.py": "ab0a68cd44c20df32eb3f7a6b72c2a15",
+    "s3_physics.py": "ad364ec09555c9fea33cf038e4253dbb",
+    "surfaces_s3.json": "df914b36086508d3d1746c9aea870d83"
+   },
+   "orig_md5": {
+    "code/T2_propagator.py": "fdacaeba505d28be593d54b291a4946d",
+    "code/T3_causal.py": "c09c84a441b5195c27c7172acb8aac68",
+    "code/T3_propagator.py": "2328bb685c1dbae8cc3c5122011c16f2"
+   },
+   "platform": "Windows-11-10.0.26200-SP0",
+   "arch": "AMD64",
+   "hostname": "DESKTOP-9P56QDC",
+   "python": "3.12.15",
+   "numpy": "2.5.4",
+   "numba": "0.68.0",
+   "n_files": 593
+  }
+ ],
+ "totals": {
+  "mac": {
+   "files": 3986,
+   "events": 204345,
+   "hits": 11996235,
+   "cpu_h_events": 207.5130447111118,
+   "cpu_h_jobs": 207.54092400250002,
+   "wall_h_events": 208.7970236350529,
+   "est_cpu_h_M3": 208.36756666666668,
+   "bytes": 1020482460,
+   "status_counts": [
+    85,
+    204192,
+    0,
+    0,
+    68,
+    0
+   ],
+   "n_rerun": 0,
+   "n_swapped": 10593,
+   "n_floor_flag": 6986,
+   "steps": 4641057288798,
+   "max_queue": 165058
+  },
+  "pc": {
+   "files": 590,
+   "events": 14226,
+   "hits": 743099,
+   "cpu_h_events": 375.4547178819444,
+   "cpu_h_jobs": 375.5393532986111,
+   "wall_h_events": 376.0970528960551,
+   "est_cpu_h_M3": 290.09456944444446,
+   "bytes": 69841598,
+   "status_counts": [
+    0,
+    14186,
+    0,
+    0,
+    40,
+    0
+   ],
+   "n_rerun": 0,
+   "n_swapped": 844,
+   "n_floor_flag": 9884,
+   "steps": 7799550616095,
+   "max_queue": 36245
+  },
+  "xover_mac": {
+   "files": 3,
+   "events": 225,
+   "hits": 12814,
+   "cpu_h_events": 0.057895775000013396,
+   "cpu_h_jobs": 0.057923633055555306,
+   "wall_h_events": 0.058347924077720055,
+   "est_cpu_h_M3": 0.06347777777777777,
+   "bytes": 1070482,
+   "status_counts": [
+    0,
+    225,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_rerun": 0,
+   "n_swapped": 17,
+   "n_floor_flag": 1,
+   "steps": 1287320419,
+   "max_queue": 38231
+  },
+  "xover_pc": {
+   "files": 3,
+   "events": 225,
+   "hits": 12814,
+   "cpu_h_events": 0.07257378472222223,
+   "cpu_h_jobs": 0.07579861111111111,
+   "wall_h_events": 0.06275536902771112,
+   "est_cpu_h_M3": 0.06347777777777777,
+   "bytes": 1069627,
+   "status_counts": [
+    0,
+    225,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_rerun": 0,
+   "n_swapped": 17,
+   "n_floor_flag": 1,
+   "steps": 1287320415,
+   "max_queue": 38231
+  }
+ },
+ "by_campaign": {
+  "p1@mac": {
+   "files": 987,
+   "events": 55800,
+   "hits": 4060990,
+   "cpu_h": 38.51343274555558,
+   "est_cpu_h_M3": 40.99915555555554
+  },
+  "p2@mac": {
+   "files": 2740,
+   "events": 137120,
+   "hits": 7334852,
+   "cpu_h": 157.16155102388961,
+   "est_cpu_h_M3": 154.14675277777744
+  },
+  "mv@mac": {
+   "files": 259,
+   "events": 11425,
+   "hits": 600393,
+   "cpu_h": 11.838060941666637,
+   "est_cpu_h_M3": 13.221658333333359
+  },
+  "p2_hi@pc": {
+   "files": 453,
+   "events": 10891,
+   "hits": 573559,
+   "cpu_h": 323.0466623263889,
+   "est_cpu_h_M3": 230.5399500000004
+  },
+  "mv@pc": {
+   "files": 137,
+   "events": 3335,
+   "hits": 169540,
+   "cpu_h": 52.40805555555557,
+   "est_cpu_h_M3": 59.554619444444555
+  }
+ },
+ "n_points": 567
+}

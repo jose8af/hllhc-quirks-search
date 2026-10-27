@@ -1,0 +1,55 @@
+
+--- A: sigma and l_max coefficient
+[PASS] sigma(1 keV) [GeV/cm]: 50.68 vs quoted 50.68 (tolerance 0.01)
+[PASS] l_max coefficient 2*100 GeV/sigma [cm]: 3.947 vs quoted 3.947 (tolerance 0.002)
+[PASS] ExactPair max separation / closed form (rest frame, gamma*=1.28): 1 vs quoted 1 (tolerance 0.0001)
+
+--- B: N_osc in the barrel (R = 110 cm), Lambda = 1 keV, LO DY+ISR pT > 200 GeV
+[PASS] N_osc median m=200 (T2 Tab.3.1: 12): 12.12 vs quoted 12 (tolerance 2)
+[PASS] N_osc median m=500 (T2 Tab.3.1: 12): 11.58 vs quoted 12 (tolerance 2)
+[PASS] N_osc median m=1000 (T2 Tab.3.1: 12): 11.88 vs quoted 12 (tolerance 2)
+
+--- C: BTL pair-CM delay (r = 114.8 cm), |eta| < 1.5, pT > 200 GeV
+[PASS] BTL delay median m=200 [ns]: 3.484 vs quoted 3.5 (tolerance 0.35)
+      84th percentile 6.2 ns (strategy median 6/16/33 ns)
+[PASS] BTL delay median m=500 [ns]: 9.524 vs quoted 9.6 (tolerance 0.96)
+      84th percentile 16.5 ns (strategy median 6/16/33 ns)
+[PASS] BTL delay median m=1000 [ns]: 18.71 vs quoted 18.7 (tolerance 1.87)
+      84th percentile 32.8 ns (strategy median 6/16/33 ns)
+
+--- D: Delta N_eff at BBN for a dark glue sector decoupled at T ~ 10-60 GeV (g*s = 86.25)
+[PASS] Delta N_eff SU(2): 0.2135 vs quoted 0.21 (tolerance 0.01)
+[PASS] Delta N_eff SU(3): 0.5692 vs quoted 0.57 (tolerance 0.01)
+[PASS] xi after e+e- annihilation: 0.3565 vs quoted 0.36 (tolerance 0.005)
+
+--- E: Lambda conventions
+[PASS] Tc/sqrt(sigma) SU(2) from 0.597 + 0.45/N^2: 0.7095 vs quoted 0.7091 (tolerance 0.005)
+[PASS] Tc/sqrt(sigma) SU(3) from 0.597 + 0.45/N^2: 0.647 vs quoted 0.6462 (tolerance 0.005)
+[PASS] sqrt(sigma) of "Tc = 1 keV" for SU(2) [keV]: 1.41 vs quoted 1.41 (tolerance 0.01)
+[PASS] ratio of the 1/0.6 convention to the SU(2) lattice value: 1.182 vs quoted 1.18 (tolerance 0.01)
+
+--- F: T6 gamma-gamma fraction and doublet ctau
+[PASS] gamma-gamma(LO)/DY(LO) for E at m=200 [%]: 4.538 vs quoted 4.5 (tolerance 0.3)
+      relative to the K-corrected DY (the sigma actually used): 4.09 %
+[PASS] gamma-gamma(LO)/DY(LO) for E at m=500 [%]: 4.61 vs quoted 4.6 (tolerance 0.3)
+      relative to the K-corrected DY (the sigma actually used): 3.98 %
+[PASS] gamma-gamma(LO)/DY(LO) for E at m=1000 [%]: 5.248 vs quoted 5.2 (tolerance 0.3)
+      relative to the K-corrected DY (the sigma actually used): 4.19 %
+[PASS] ctau(Q+- -> Q0 pi+-) dM = 341 MeV, c^2 = 1 [mm]: 7.836 vs quoted 7.9 (tolerance 1.185)
+[PASS] ctau(Q+- -> Q0 pi+-) dM = 166 MeV, c^2 = 2 [mm]: 57.24 vs quoted 60 (tolerance 9)
+
+--- G: strategy Lambda_low from the 1.16 um formula at 3.8 T
+[PASS] Lambda_low(formula) m=200 [keV]: 0.5449 vs quoted 0.54 (tolerance 0.01)
+[PASS] Lambda_low(formula) m=500 [keV]: 0.6852 vs quoted 0.69 (tolerance 0.01)
+[PASS] Lambda_low(formula) m=1000 [keV]: 0.8148 vs quoted 0.81 (tolerance 0.01)
+
+--- H: MS floor, causal string, Phase-2 material, new seed (rng 2026), 30 events per point
+[PASS] Delta_s median m=500, Lambda=3 keV, M [um] (16-84: 4.0-55.0): 17.58 vs quoted 17 (tolerance 5.95)
+[PASS] Delta_s median m=500, Lambda=3 keV, B+M [um] (16-84: 6.1-27.6): 14.41 vs quoted 15 (tolerance 5.25)
+[PASS] Delta_s median m=500, Lambda=3 keV, B [um] (16-84: 2.3-7.5): 4.391 vs quoted 4.9 (tolerance 2)
+[PASS] Delta_s median m=1000, Lambda=3 keV, M [um] (16-84: 6.2-55.4): 18.23 vs quoted 24 (tolerance 8.4)
+[PASS] Delta_s median m=1000, Lambda=3 keV, B+M [um] (16-84: 7.9-55.3): 23.78 vs quoted 25 (tolerance 8.75)
+[PASS] Delta_s median m=1000, Lambda=3 keV, B [um] (16-84: 1.4-6.1): 3.332 vs quoted 3.9 (tolerance 2)
+      x2 material, M config, m=500: median ratio Delta_s(x2)/Delta_s(x1) = 0.83 (sqrt(2) = 1.41 expected for pure Highland scaling)
+
+SUMMARY: 30/30 PASS

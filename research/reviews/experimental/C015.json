@@ -1,0 +1,103 @@
+{
+ "cand_id": "C015",
+ "coverage_table": [
+  {
+   "id": "arXiv:2403.15332",
+   "collab": "ATLAS",
+   "final_state": "1-lepton + hadronic ID DV (also 2L, VBF)",
+   "covered_region": "t->aq (q=u,c), a->cc/gg, m_a=40,55 GeV; BR>0.1% excluded for 1.6<ctau<130 mm; H->ss 5-55 GeV",
+   "location": "Fig.2 bottom; Summary"
+  },
+  {
+   "id": "arXiv:2407.09183",
+   "collab": "ATLAS",
+   "final_state": "CalRatio displaced jet + W(lnu)/Z(ll) or 2J",
+   "covered_region": "photophobic ALP from W/Z, m_a 0.1-40 GeV, ctau 0.1 mm-10 m (sigma>0.1 pb); H->ss; ttbar treated as background, no top-decay signal",
+   "location": "Abstract; l.278-282, 395-403; Fig.8"
+  },
+  {
+   "id": "arXiv:2402.01898",
+   "collab": "CMS",
+   "final_state": "muon-detector shower, MET trigger",
+   "covered_region": "H->ss m 0.4-55 GeV, ctau 10 mm-100 m; no top-decay signal",
+   "location": "Sec.3, Sec.6"
+  },
+  {
+   "id": "arXiv:2112.13769; arXiv:2606.25840; arXiv:2205.08582; INSPIRE 2866412",
+   "collab": "CMS",
+   "final_state": "displaced mu+mu- (scouting and standard)",
+   "covered_region": "H->Z_D Z_D, heavy scalar, RPV; no t->qa interpretation",
+   "location": "Abstracts"
+  },
+  {
+   "id": "arXiv:2301.03902",
+   "collab": "ATLAS",
+   "final_state": "prompt t->qX, X->bb, 1l+>=4j",
+   "covered_region": "m_X 20-160 GeV, BR(t->uX)<0.019-0.062%, BR(t->cX)<0.018-0.078%",
+   "location": "Abstract"
+  },
+  {
+   "id": "arXiv:2402.11098",
+   "collab": "CMS",
+   "final_state": "ttbar+phi, phi->ee/mumu/tautau, 3-4 leptons",
+   "covered_region": "production ttphi (not t->q phi), m_phi 15-350 GeV",
+   "location": "Abstract; l.850"
+  },
+  {
+   "id": "INSPIRE 2903120 (ATLAS PUB)",
+   "collab": "ATLAS",
+   "final_state": "H->Za(gg), H->aa->4gamma reinterpretation",
+   "covered_region": "long-lived ALPs from Higgs, 2-33 GeV",
+   "location": "Abstract"
+  },
+  {
+   "id": "arXiv:2409.10806",
+   "collab": "CMS",
+   "final_state": "displaced jets, Run-3 HCAL trigger",
+   "covered_region": "H->LLP m<60 GeV, ctau<1 m",
+   "location": "Abstract"
+  },
+  {
+   "id": "arXiv:2404.06126 (recast, pheno)",
+   "collab": "none",
+   "final_state": "recast ATLAS DV+jets 2301.13866",
+   "covered_region": "t->aq m_a=25,40,65,90 GeV; Run-2 and 3 ab-1 projections; LLP mass>10 GeV required",
+   "location": "Fig.1; Sec.1, 3.1"
+  }
+ ],
+ "open_region": "t->q a with m_a ~1-35 GeV decaying in HCAL or muon system (ctau ~0.01-10 m) in lepton-triggered ttbar: no experimental interpretation exists (ATLAS t->aq only at 40,55 GeV ID-DV). Displaced and prompt a->mumu/gammagamma from top decay: no search found (but these are loop-suppressed in the quark-coupled benchmark). Higgs-portal part is well covered and should be dropped.",
+ "status_label": "searched-limited-regime (t->aq only m_a=40,55 GeV ID); constrained-but-region-open for light HCAL/MS; LHC-not-projected-to-HL (experiment side)",
+ "hl_projection_docs": [
+  "No ATLAS/CMS projection for t->q+LLP found",
+  "arXiv:2202.09371 (pheno HL-LHC, HCAL/MS, m_a=2,10 GeV)",
+  "arXiv:2404.06126 (recast + 3 ab-1)",
+  "arXiv:2306.08686 (ttbar a displaced dimuon pheno, production)",
+  "arXiv:2307.11154 (pheno)",
+  "arXiv:1812.07831 (YR WG3: no match by grep)"
+ ],
+ "queries_run": [
+  "collaboration:ATLAS and t top and t long-lived",
+  "collaboration:CMS and t top and (t long-lived or t displaced)",
+  "ATLAS abstracts top quark + displaced vertex",
+  "ATLAS t flavour-changing t top date>2021",
+  "CMS t flavor changing t top date>2021",
+  "CMS/ATLAS abstracts top quark + long-lived",
+  "CMS/ATLAS abstracts top quark + axion-like/axionlike",
+  "CMS/ATLAS abstracts exotic top; top-quark decays + light scalar",
+  "CMS/ATLAS t top t resonance date>2019",
+  "CMS/ATLAS abstracts ttbar + displaced; t displaced t muon",
+  "CMS displaced dimuons / muon detector shower; ATLAS calorimeter long-lived; ATLAS displaced dilepton",
+  "CMS/ATLAS t long-lived date>2024",
+  "forward cites of 2202.09371, 1611.09355, 2306.08686, 2404.06126, 2307.11154, 2110.10698",
+  "CMS/ATLAS HL-LHC/Phase-2 long-lived; Report on Physics at HL-LHC; grep 1812.07831",
+  "CMS light pseudoscalar date>2024; CMS displaced jets; LHCb t axion"
+ ],
+ "confidence_open": "medium",
+ "key_caveats": [
+  "Gap is mostly a missing signal interpretation of existing ATLAS CalRatio+W / 1L-DV and CMS MDS selections, not necessarily a new analysis",
+  "Acceptance of existing selections to few-GeV ALPs from top decays UNVERIFIED; no recast below 10 GeV found",
+  "a->mumu/gammagamma loop-suppressed in quark-coupled benchmark of 2202.09371",
+  "Run-3 papers checked at abstract level only; internal/ongoing analyses unknown",
+  "Meson-decay bounds on flavour-violating couplings may constrain parameter space model-dependently (not checked)"
+ ]
+}

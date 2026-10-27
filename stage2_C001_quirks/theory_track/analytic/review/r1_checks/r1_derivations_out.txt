@@ -1,0 +1,46 @@
+=== (a) field transformation (E = 0 in the lab) ===
+E* = gamma beta x B : True
+B* = gamma B - (gamma-1)(B.bhat)bhat : True
+force bookkeeping in the rest frame, x2=-x1, v2=-v1, q2=-q1:
+  F1 + F2 (CM force)      = Matrix([[2*q*(-Bsy*V1z + Bsz*V1y), 2*q*(Bsx*V1z - Bsz*V1x), 2*q*(-Bsx*V1y + Bsy*V1x)]])  -> E* cancels, B* adds (CM shake)
+  F1 - F2 (relative force) = Matrix([[2*Ex*q, 2*Ey*q, 2*Ez*q]])  -> only E* acts on the relative motion
+  torque about CM          = Matrix([[2*q*(-Ey*X1z + Ez*X1y), 2*q*(Ex*X1z - Ez*X1x), 2*q*(-Ex*X1y + Ey*X1x)]])  -> = q (x1-x2) x E*, no B* torque (linear order)
+
+=== (b) b_odd ===
+I = int_0^{T_h} x dt = 2*ell_0**2*(rho*sqrt(rho**2 + 1) - asinh(rho)) ; target 2 l0^2 (gamma rho - asinh rho): True
+b_odd = eps sigma I/p* equals 2 eps l0 [gamma - asinh(rho)/rho]: True
+gamma - asinh(rho)/rho series: -rho**4/5 + 2*rho**2/3  -> NR b_odd = (4/3) eps l0 beta^2 = (4/3) qE m beta^2/sigma^2
+  gamma*=1.05: d_E/(b_odd/2) = 3.040; 2[g - asinh rho/rho] = 0.133
+  gamma*=1.28: d_E/(b_odd/2) = 3.213; 2[g - asinh rho/rho] = 0.728
+  gamma*=2.0: d_E/(b_odd/2) = 3.680; 2[g - asinh rho/rho] = 2.479
+  gamma*=3.0: d_E/(b_odd/2) = 4.195; 2[g - asinh rho/rho] = 4.754
+  NR limit of d_E/(b_odd/2): 3
+  Li A.13 (parsed) at g=0: 0 , at g=1: 2*rho*asinh(rho) (= 2 rho asinh rho -> Eq.V.8)
+  KL Eq.5.64 scale: Delta r ~ (v_cm B/m)(m/Lambda^2)^2 = q v_cm B m/sigma^2 = b_odd/(2[g-asinh rho/rho] sin(alpha) gamma_cm-factors)
+
+=== (c) G(gamma*) ===
+G NR series: 4/3 - 8*beta**2/45 + O(beta**4)
+  G(1.05) = 1.3159;  ln[(g-1)/(g-asinh rho/rho)] = -0.2828;  b_odd/(eps l0) = 0.1327
+  G(1.28) = 1.2449;  ln[(g-1)/(g-asinh rho/rho)] = -0.2624;  b_odd/(eps l0) = 0.7280
+  G(1.3) = 1.2393;  ln[(g-1)/(g-asinh rho/rho)] = -0.2607;  b_odd/(eps l0) = 0.7787
+  G(1.6) = 1.1651;  ln[(g-1)/(g-asinh rho/rho)] = -0.2387;  b_odd/(eps l0) = 1.5235
+  G(2.0) = 1.0869;  ln[(g-1)/(g-asinh rho/rho)] = -0.2148;  b_odd/(eps l0) = 2.4793
+  G(3.0) = 0.9534;  ln[(g-1)/(g-asinh rho/rho)] = -0.1726;  b_odd/(eps l0) = 4.7535
+sigma b_odd /(p* artanh beta*) / (eps G) = 1
+
+--- independent NR two-body integration (straight string, NR ends) ---
+ eps      b_1/((2/3)eps)   eta/eps (per period)  K = eta/((4/3)eps) - ln(3/(4 eps))   psi_even/eps (ap1->ap2)  psi_odd/eps (ap2->ap3)
+   1e-06   1.000001          18.14303  (spread 1.1e-09)   +0.07944       1.5909    16.5522
+   3e-06   1.000002          16.67821  (spread 4.8e-07)   +0.07944       1.5909    15.0873
+   1e-05   1.000007          15.07292  (spread 3.9e-06)   +0.07944       1.5909    13.4821
+   3e-05   1.000020          13.60811  (spread 2.6e-05)   +0.07945       1.5909    12.0172
+   1e-04   1.000067          12.00293  (spread 1.9e-04)   +0.07954       1.5909    10.4119
+ 3 ln2 - 2 = +0.07944;  psi_even NR (E1 c09) = 2/3 + (4/3) ln 2 = 1.5909;  sign: eta > 0 means rotation toward +E (end of charge +q toward E)
+
+=== (d) c and exponents; convention of the literal form ===
+d ln Ds/d ln B = (C + log(Lambda**2/B) - 1)/(C + log(Lambda**2/B))   = 1 - c with c = 1/(ln(sigma/qB) + C) = 1/(L + K)
+d ln Ds/d ln Lambda = 2*(-C - log(Lambda**2/B) + 1)/(C + log(Lambda**2/B))   = -2 + 2c
+  Lambda= 0.6 keV: c_E1 = 0.116 -> L+K =   8.62, ln(sigma/qB) =  7.375, C = L+K-ln(sigma/qB) =  1.25; literal-form constant c' = 1/C = 0.80; B exponent implied by literal form with c=c_E1: 0.937 (vs 1-c = 0.884)
+  Lambda= 1.0 keV: c_E1 = 0.104 -> L+K =   9.62, ln(sigma/qB) =  8.397, C = L+K-ln(sigma/qB) =  1.22; literal-form constant c' = 1/C = 0.82; B exponent implied by literal form with c=c_E1: 0.944 (vs 1-c = 0.896)
+  Lambda= 3.0 keV: c_E1 = 0.085 -> L+K =  11.76, ln(sigma/qB) = 10.594, C = L+K-ln(sigma/qB) =  1.17; literal-form constant c' = 1/C = 0.85; B exponent implied by literal form with c=c_E1: 0.955 (vs 1-c = 0.915)
+  Lambda=10.0 keV: c_E1 = 0.070 -> L+K =  14.29, ln(sigma/qB) = 13.002, C = L+K-ln(sigma/qB) =  1.28; literal-form constant c' = 1/C = 0.78; B exponent implied by literal form with c=c_E1: 0.963 (vs 1-c = 0.930)

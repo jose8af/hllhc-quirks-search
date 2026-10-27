@@ -1,0 +1,60 @@
+FIX_ANALYSIS_R6 -- fixer round 6 (INV_STATS_BKG items 1, 2, §5 side findings; INV_SIGNAL_EFF items 3, 4), 2026-10-16
+Constraints kept: <= 1 core, nice 15, analysis package only (theory_track/acts/stage4/analysis/), no WP_RULE*, frozen_inputs,
+production code or prod/ data touched; full analysis NOT run (orchestrator runs it once A2FC is complete).
+CPU this round: ~15 CPU-min (background-only --dev run on C12 inputs 5 min / 8.4 GB peak RSS, before/after toys 2 min,
+selftest 1 min, small checks). Before/after outputs: data/acts_stage4/investigation/fixR6_*.json (ESTIMATES: the WP
+ladder is re-assembled with the unchanged C12_v1 srt.json; signal s of C12_v1; not a result).
+
+1 RESOLVED  stats.py:159-166 _model.nll subtracts the saturated offset n - n ln n (q~ unchanged).
+  C12_v1 inputs (fixR6_asym_C12_v1.json): asymptotic/toys at the 20 FB0/FB1 points 2.2e-4..1.02 -> 0.73-1.02;
+  all 33 points 0.24-1.05 (FB2-FB4 0.24-0.71 = genuine asymptotic vs hybrid-toy difference). Toys unchanged.
+  Test R6_1_asym_converges_FB0_FB1: E200 0.45 keV FB0 1.018, E1500 1.5 keV FB1 0.809 (frozen code: 2.7e-4).
+2 RESOLVED  background.py:350-371 chain_factors: the A28 merged joint tail is searched only in pops[:first[v]] (no added
+  cut of the merged variable). One function -> PU, SR-T, SM and C' rows alike.
+  C12_v1 (fixR6_before_after_C12_v1.json): PU SR-T FB2/FB2e column x0.00854 (p(R11 | R06&BTL) 0/16 -> 0/1874);
+  88 SM rows change (FB0/FB1 and e variants, incl. proxies), e.g. Z(nunu) FB0 3.6e7 -> 1.1e4, FB1 2.6e7 -> 1.2e4,
+  W(tau_h) FB0 7.4e6 -> 2.9e3, tt 1l FB0 2.4e6 -> 1.1e3. B84 T/G: FB0 1.7e8/2.7e8 -> 3.5e6/6.4e7, FB1 1.4e8/1.9e8 ->
+  2.2e6/2.5e7, FB2-T 9.3e7 -> 2.6e6. No ladder rung or FB3/FB4 column carries the defect.
+  Tests: R6_2_srt_fb2_merge_on_R06 (C12 R06 & BTL & R09 case: merged p(R11 | R06) 0/1874; frozen 0/16),
+  R6_2_sm_fb0_fb1_merge_on_start (Z(nunu) FB0 0/29, W(tau_h) FB0 1/30, tt 1l FB0 1/57, Z(nunu) FB1 0/10 -> start M).
+3 RESOLVED  background.py:887-916 WP_RULE §7 'Low gun counts': a gun topology with < 10 C'_PU events at R01 takes its
+  depth from the C'0 attributed candidates (row 'low_gun_count'). Applies to the looper only (0/500): P(R01..R14)
+  2.3-2.7e-3 -> 1.1-1.4e-5; ladder B84 R08 1.59e6 -> 1.36e6, R09 1.57e6 -> 1.23e6 (both categories; = INV estimate).
+  Test R6_3_looper_low_gun_from_C0 (P(R08) = 1.14/1e5, frozen 1.14/500).
+4 RESOLVED (orchestrator decision -> ambiguities D11, DECIDED)  C' dE/dx and h/o: BOTH readings computed, the LARGER B
+  used (tie: larger sigma_ln), both recorded. dE/dx: background.py:895-958 (row 'dedx_readings': C'_PU chain vs depth
+  of the non-e column x C'0 p(e>x | tightest attributed-C'0 population >= 10, else 1 / sigma 1)). h/o: wp.py:159-172
+  (B1-PU F1 vs the C'0 factor; the C'0 outputs have no S4 hit records -> factor 1, recorded in cprime 'ho_c0').
+  SIZE (fixR6_D11_size_C12_v1.json): 126 C' dE/dx rows, P(used)/P(C'_PU) 1-173 (median 3.0; the C'0 reading is used
+  almost everywhere because the attributed-C'0 populations are <= 23 -> no dE/dx credit); ladder B84 R21-R23 x1.2-1.6
+  (G R23 3.9e6 -> 6.3e6, T 6.4e6 -> 8.8e6); FB-e B84 x1.01-2.6, B_median x1.2-5.1; mu95 toys E1000 5 keV (FB4e>1.3)
+  3.7e7 -> 5.1e7, E1500 5 keV (FB4e>1.6) 2.4e7 -> 4.6e7. h/o: no change at C12 (B1 FB1 46/46 = 1).
+  Tests R6_4_dedx_both_readings_larger_used, R6_4_ho_c0_factor1_larger_used.
+5 RESOLVED  hitrec.py:209-221 sep_it(g, c, cm) core hits only (signal.py:144 passes cm); products.py:150-171 every
+  PU-200 point carries measurable = false and flag 'NOT MEASURABLE AT PU 200' (number kept); A1 measurable.
+  E500 A2 matched R04 candidates (fixR6_sepit_E500.json): median 41-46 mm -> 19-24 mm (truth 1-29 mm, Lambda 5..0.6).
+  Tests R6_5_sepit_core_only, R6_5_sepit_pu200_flagged.
+6 RESOLVED (code; awaiting A2FC outputs)  signal.py:335-392 a2fc_revert_set / apply_a2fc; run_all.py:29, 314-318,
+  347-370: campaign 'A2FC' -> ('A2FC', ('a5',)), taken ONLY for the revert (never in the A5 sample); for every revert
+  point of investigation/V46_REVERT_SET.json (9: F200/F500/F1000/F1500 at 3 and 5 keV, S500 at 5 keV) the A2 entry is
+  replaced by the A2FC entry iff the rows (and probe-excluded / status != 1 counts) are identical; provenance in
+  signal_eff.json a2.a2fc_revert (jobs, eps R04/R14 numpy vs full chain) and points[k].replaced_by_a2fc; a missing or
+  partial revert point is REFUSED unless --dev. V46_REVERT_SET.json and jobs/A2FC.json are now frozen inputs
+  (common.py:117-118). A2FC admission checked on a produced file (a5 kind, T_seed 4, ok). Status at 10:50: 38/180
+  A2FC files, A2FC_REPORT.md not yet written.
+  Tests R6_6_a2fc_replaces / _missing_refused / _partial_rows_refused / _dev_records_missing, and on real files
+  R6_6_run_all_without_A2FC_refused (non-dev C1a signal stage: 'REFUSED (V4-6 ...') and R6_6_run_all_a2fc_ok
+  (C1a,A2FC --dev --max-jobs 2: A2|F|200|3|BM replaced, no A2FC key in A5).
+  RUN COMMAND (orchestrator, after A2FC 180/180): run_all --campaigns C1a,C1b,C2B,A2FC --out .../C12_v2
+
+Cascade estimate (C12_v1 inputs, items 1-4; ESTIMATE): still no WP in either category; minimum ladder B84 1.6e6 ->
+1.2e6 (R09); FB0/FB1 limits x30-120 lower (e.g. E200 0.45 keV 7.6e9 -> 1.3e8 events); best point E200 1.5 keV (FB2)
+mu95 1.74e7 -> 1.25e7 (G bin lower via the looper and SM fixes), E500 2 keV FB2 8.3e7 -> 2.0e7. A2FC (item 6) will
+lower eps at the 3/5 keV points by ~7-12 % (INV_SIGNAL_EFF §4). STAGE4_RESULTS.md (§2.4, §4, §6, §9, §10) and
+STAGE4_SUMMARY.json are now STALE and must be regenerated from the C12_v2 run, not patched from these estimates.
+Neighbourhood: chain_factors is the only merge implementation (bpu_columns, depth_term -> SM / C'); the C'0 fallback in
+depth_term, the A-2 one-bound guard and the zero rule are unchanged; the C'0 bootstrap uses its own RNG stream so the
+other topologies' draws are unchanged; SM dE/dx rows have no C'0 analogue (not touched).
+
+RE-FREEZE: inputs/analysis_freeze.json, 32 files (+V46_REVERT_SET.json, jobs/A2FC.json), sha256 b42aef4d7b8df2b8...
+(previous bce02b6f...); selftest PASS incl. all R6 tests and the R4 e2e (freeze true).

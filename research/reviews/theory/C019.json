@@ -1,0 +1,55 @@
+{
+ "cand_id": "C019",
+ "claim": "Triplet-scalar H++ can evade prompt same-sign dilepton / W+W+ searches in three regimes: (i) long-lived H++ (c tau ~ 0.1-100 mm) - in type-II seesaw only for m ~ 100-150 GeV near the ll/WW crossover, but up to ~TeV if the triplet is fermiophobic (y_ll = 0, v_t <~ 1e-4 GeV) (arXiv:2608.27251 abstract, Sec. 2, Fig. 1; arXiv:1808.00943 Sec. 2.1, Fig. 1; arXiv:2410.19561 for GM H5++); (ii) compressed positive hierarchy (1 <~ dM <~ 30 GeV, v_t ~ 1e-7-1e-3 GeV) where cascades H++ -> H+ W* -> H0/A0 W* W* dominate and H0/A0 -> nu nu, giving soft same-sign leptons + MET (+ISR) (arXiv:2305.06889, arXiv:2603.15882); (iii) tau-rich ll final states fixed by neutrino data.",
+ "framework": "Type-II seesaw: Y=1 SU(2)_L triplet Delta with Yukawa (f_L)_ab L^T C i sigma2 Delta L, m_nu = sqrt2 f_L v_L (1808.00943 Eq. 2.7-2.8); trilinear mu H^T Delta H induces v_t; masses split by one quartic (lambda_4/lambda_5 depending on convention) giving equal-spacing M_H++^2 - M_H+^2 = M_H+^2 - M_H0^2 (1808.00943 Eq. 2.5-2.6; 2603.15882 Sec. 2). Georgi-Machacek variant: custodial fiveplet H5 (fermiophobic at tree level, couplings to VV ~ s_H). Left-right models: H_R++ with heavy-neutrino Yukawas.",
+ "assumptions": [
+  "Drell-Yan (plus photon-initiated, W*-mediated H++H-) production fixed by gauge quantum numbers; no model freedom in sigma(m) up to PDF/QCD uncertainties.",
+  "(i) type-II: Yukawas fixed by oscillation data -> f_L v_L = 0.027 eV (NH, m1=0) or 0.048 eV (IH, m3=0) (1808.00943 Eq. 2.14); cascades negligible, i.e. |M_H++ - M_H+| <~ 1 GeV or H++ lightest (1808.00943 Sec. 2.1).",
+  "(i) fermiophobic: y_ll = 0 so the triplet plays no role in neutrino masses; H++ -> W(*)W(*) only, Gamma ~ G_F^2 v_t^2 M^3 (1808.00943 Eq. 2.11); other triplet states heavier or degenerate.",
+  "(ii) compressed: H++ heaviest (Delta M > 0), v_t <= ~1e-4 GeV so H0/A0 -> nu nu (2305.06889 Sec. I; 2603.15882 Sec. 3).",
+  "(iii) BR pattern requires the same triplet to generate all neutrino masses (pure type-II)."
+ ],
+ "controlling_parameters": ["M_H++", "v_t (triplet vev)", "Delta M = M_H++ - M_H+ (sign and size)", "Yukawa matrix f_L (= m_nu/(sqrt2 v_t); depends on hierarchy, lightest mass m0, Majorana phases)", "in GM: s_H, m5 and H5^0 -> gamma gamma loop parameters", "Width ratios ll : WW : H+W* ~ (m_nu/v_t)^2 : (v_t/v_d)^2 (M/v_d)^2 : max(dM,0)^5/(v_d^2 M^3) (2603.15882 Eq. 16)"],
+ "robust_predictions": [
+  "Same-sign charge-2 parent: Drell-Yan pair production with known cross section; a doubly charged displaced vertex has net charge +-2 and the incoming track (if long enough) has ~4x MIP dE/dx.",
+  "In type-II with neutrino-mass Yukawas, Gamma_ll x Gamma_WW is fixed by m_nu, so the lifetime has a maximum at v_t ~ O(0.1-1 MeV); long-lived (mm-m) H++ only for M <~ 150-160 GeV (below on-shell WW) (1808.00943 Fig. 1; 2608.27251 Fig. 1a).",
+  "Fermiophobic case: c tau grows monotonically as v_t -> 0; long-lived for v_t <~ 1e-4 GeV above WW threshold, up to TeV masses (2608.27251 Sec. 2, Fig. 1b). Small v_t is technically natural (mu -> 0 restores a U(1) acting on Delta) and with y_ll = 0 and no other L-violation, lepton number with L_Delta = 0 is exact, so y_ll is not regenerated (reviewer argument; 2608.27251 asserts higher-order effects induce y_ll - this depends on the UV, UNVERIFIED).",
+  "Compressed regime: cascade dominance for dM >~ 10 GeV and 1e-5 <~ v_t <~ 1e-2 GeV (2603.15882 Sec. 3, Fig. 1); EWPD (T parameter) caps |dM| <~ 40 GeV (2603.15882 Sec. 3), so W in cascades is always off-shell -> soft leptons.",
+  "Flavour pattern: BR(H++ -> l_a l_b) proportional to |(m_nu)_ab|^2/(1+delta_ab); for NH with m1 ~ 0, (m_nu)_ee is small so mu mu, tau tau, mu tau dominate -> tau-containing channels carry a large fraction (qualitative; numbers UNVERIFIED)."
+ ],
+ "model_dependent_predictions": [
+  "Fermiophobic H++ at TeV masses (no neutrino-mass link; motivation reduced to GM/composite/custodial models).",
+  "Presence and size of cascades (depends on a free quartic); GM fiveplet degenerate at tree level, radiative/custodial-breaking splittings could open H5++ -> H5+ pi+ (soft) modes competing with v_t-suppressed WW decays (reviewer concern, UNVERIFIED).",
+  "In GM, H5^0 -> gamma gamma is not s_H-suppressed and excludes 70 <~ m5 <~ 108 GeV in the low-m5 benchmark independent of H5++ lifetime (2410.19561 Sec. II), but can be cancelled between W and H3 loops.",
+  "Exact tau fraction (hierarchy, m0, Majorana phases); LR-model H_R++ flavour pattern unrelated to light-neutrino data.",
+  "H0/A0 -> nu nu (invisible) only for v_t <~ 1e-4 GeV; otherwise bb, ZZ, hh, etc."
+ ],
+ "constraints_checked": [
+  {"constraint": "rho parameter / EWPD on v_t", "source_id": "arXiv:1105.2209 Sec. II (v_t <~ 8 GeV, older fit)", "verdict": "irrelevant for v_t <~ 1e-3 GeV regimes targeted; pass"},
+  {"constraint": "T parameter on mass splitting", "source_id": "arXiv:2603.15882 Sec. 3 (|dM| <~ 40 GeV); arXiv:1808.00943 Sec. 2.1 (>60 GeV disfavoured)", "verdict": "compressed window dM = 1-30 GeV allowed"},
+  {"constraint": "Charged LFV (mu->e gamma, mu->3e) on f_L", "source_id": "arXiv:1808.00943 Sec. 2.2.1, Fig. 2; arXiv:hep-ph/0506176 Sec. 4 (v_t > 10 eV for NH/IH)", "verdict": "long-lived type-II region has f_L ~ 1e-10-1e-6, far below LFV reach; compressed region v_t >= 1e-7 GeV also safe; pass"},
+  {"constraint": "Neutrino-mass relation", "source_id": "arXiv:1808.00943 Eq. 2.8, 2.14", "verdict": "fixes f_L v_t; enforces the 100-150 GeV upper bound for long-lived type-II H++; fermiophobic case abandons it"},
+  {"constraint": "LEP Z width / DELPHI displaced H++ -> tau tau", "source_id": "arXiv:2608.27251 Sec. 2-3.2.2 (M > 45.6 GeV; < ~100 GeV excluded for decay lengths up to O(10 cm) in tau tau)", "verdict": "leaves 100-150 GeV long-lived type-II window and heavier fermiophobic region"},
+  {"constraint": "Prompt LHC ll and W+W+ searches", "source_id": "arXiv:2608.27251 Sec. 3.1, Fig. 2a", "verdict": "lose efficiency once c tau >~ mm (impact-parameter cuts); target region not covered"},
+  {"constraint": "HSCP / multi-charge searches", "source_id": "arXiv:2608.27251 Sec. 3.2.1; arXiv:2410.19561 Sec. III", "verdict": "cover c tau >~ m; the 0.1-100 mm window is not covered"},
+  {"constraint": "Unitarity / vacuum stability / h->gamma gamma", "source_id": "arXiv:2603.15882 Sec. 3; arXiv:2608.27251 Sec. 2", "verdict": "satisfiable in benchmarks (scanned by authors); h->gamma gamma requires |sin alpha| <~ 0.3"},
+  {"constraint": "BBN / cosmology", "source_id": "reviewer estimate", "verdict": "c tau <= 100 m means tau << 1 s; irrelevant. Only extremely small v_t (H++ quasi-stable charged relic) would be cosmologically excluded; not the target region"}
+ ],
+ "motivation_strength": 4,
+ "robustness": 3,
+ "theory_uncertainties": [
+  "Production cross section: QCD K-factors and the photon-initiated component (charge^4 enhanced for H++) depend on photon PDF; size UNVERIFIED (~10-20%?).",
+  "Off-shell four-body W*W* and cascade widths near thresholds (1808.00943 App. A) - affects c tau mapping at M < 160 GeV.",
+  "Radiative mass splittings among nearly degenerate triplet/fiveplet components (O(100 MeV-1 GeV), UNVERIFIED) can open soft-pion transitions that change the long-lived signature.",
+  "Flavour BRs for (iii) uncertain through m0, hierarchy and Majorana phases.",
+  "Hadronic W* fragmentation in a displaced charged vertex - vertex charge and track multiplicity modelling for a charged parent is not standard in existing DV tools (2608.27251 Sec. 3.2.2)."
+ ],
+ "distinctiveness": "(i) A charged-2 track terminating in a displaced vertex of same-sign leptons/W* products (net vertex charge +-2), pair-produced: distinct from neutral-LLP DV, from singly-charged disappearing tracks (winos) and from opposite-charge displaced dileptons. (ii) Same-sign soft dileptons with low m_ll + MET + ISR from a single parent's two same-sign W*, versus compressed higgsinos which give opposite-sign soft dileptons. (iii) Lepton-flavour pattern in H++ decays tied to neutrino oscillation parameters - a unique consistency test of type-II seesaw.",
+ "confidence": "medium",
+ "caveats": [
+  "Target (i) in its broad mass range (up to ~TeV) relies on the fermiophobic assumption; for the neutrino-mass-motivated type-II only 100-150 GeV is long-lived, a narrow window.",
+  "Target (ii) is well motivated within type-II and consistent with EWPD; sensitivity is driven by soft-lepton reconstruction rather than theory.",
+  "Target (iii) is theoretically robust in pure type-II; LR or GM variants change or remove the pattern.",
+  "2608.27251 (Aug 2026) and 2603.15882 (2026) are recent phenomenology papers; experimental coverage not assessed here (theory gate only)."
+ ]
+}

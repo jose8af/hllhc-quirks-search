@@ -1,0 +1,43 @@
+{
+  "cand_id": "C008",
+  "claim": "In QCD-like hidden valleys reached through a leptophobic Z' (s-channel) or bifundamental (t-channel) mediator, dark showers give semi-visible jets (SVJ): visible dark-meson decays plus stable dark mesons, with MET aligned to a jet (r_inv = <N_stable/N_total>). Two proposed extensions: (i) SVJ enriched in non-isolated photons, where dark pions decay to gamma gamma through an ALP/VLL portal; these fail standard jet ID (NEMF) and photon isolation (2407.08276). (ii) SVJ pairs recoiling against an ISR photon or jet, to reach Z' masses of about 0.2-1 TeV below dijet/HT trigger thresholds and to reconstruct m_Z' and r_inv by MET decomposition (2409.04741).",
+  "framework": "L_Z' = -Z'_mu qbar gamma^mu (g^R P_R + g^L P_L) q - Z'_mu psibar gamma^mu (y^R P_R + y^L P_L) psi. Photon variant adds L_a = -i lambda_L a Lbar gamma5 L - i lambda_psi a psibar gamma5 psi, giving pi_v -> gamma gamma via L_eff ~ (alpha/4pi)(lambda_L lambda_psi Lambda_v F_pi / m_a^2 M_L) pi_v F Ftilde (2407.08276 Eqs.1-3). Dark SU(N_c) with N_f flavours; Pythia8 Hidden Valley showering and hadronisation.",
+  "assumptions": [
+    "QCD-like dark sector with prompt unstable dark mesons and some stable dark mesons (r_inv set by the flavour structure and mass splittings, not by first principles)",
+    "Leptophobic Z' with g_q = 0.25, and g_chi = 0.4 (2407.08276) or 0.5 with N_c = N_f = 2, giving B(Z'->chi chi) = 47% (2409.04741)",
+    "Photon variant: an extra ALP plus a vector-like lepton portal, so that BR_gamma(pi_v) is a free parameter (scanned 0.3-1); m_pi_v = Lambda_v = 20 GeV, rho_v -> pi_v pi_v at 100%",
+    "Pythia HV hadronisation is representative of the dark shower (known to be uncertain for substructure: 2301.07732)"
+  ],
+  "controlling_parameters": ["M_Z'", "g_q, g_chi (hence B(Z'->chi chi))", "r_inv", "alpha_dark / Lambda_v", "m_pi_v, m_rho_v/m_pi_v", "BR_gamma (from Xi_gamma = lambda_L lambda_psi/(m_a^2 M_L) vs Xi_q = Delta_q Delta_psi / M_Z'^2)", "ISR pT threshold"],
+  "robust_predictions": [
+    "MET aligned with one of the jets (Delta phi small); the transverse mass M_T tracks M_Z'",
+    "Under ISR, MET decomposition (MAOS/mT2) reconstructs m_Z' with little degradation as r_inv grows (2409.04741 Sec.3, Outlook)",
+    "Photon variant: photons come in pairs from pi_v -> gamma gamma, so the in-jet diphoton invariant mass equals m_pi_v (kinematic, independent of hadronisation details; own inference, not exploited in 2407.08276)",
+    "The visible Z' -> q qbar branch is unavoidable in the s-channel model (the same g_q gives production)"
+  ],
+  "model_dependent_predictions": [
+    "r_inv value and its event-by-event distribution (exponentially sensitive to dark-quark mass splittings and N_f: 1503.00009)",
+    "BR_gamma, set by an independent ALP/VLL sector with no fixed relation to the Z' portal",
+    "Jet substructure (pT D, tau_4, NEMF) used by the DNN tagger: sensitive to incalculable dark hadronisation (2301.07732)",
+    "Prompt vs displaced dark-meson decays (lighter mesons or a smaller portal give emerging jets instead)"
+  ],
+  "constraints_checked": [
+    {"constraint": "CMS s-channel SVJ search 138 fb^-1: excludes M_Z' 1.5-4.0 TeV for g_q = 0.25 (depends on r_inv, m_dark, alpha_dark)", "source_id": "arXiv:2112.11125 (abstract)", "verdict": "hadronic SVJ covered at high mass; photon-enriched SVJ claimed to evade it because of NEMF JetID (2407.08276 Fig.5)"},
+    {"constraint": "ATLAS low-mass dijet + photon/jet ISR (140 fb^-1): g_q excluded down to 0.06-0.1 for M_Z' = 200-650 GeV assuming B(Z'->qq) = 1", "source_id": "arXiv:2403.08547 (Sec.7-8, Fig.7-8)", "verdict": "the 2409.04741 benchmark (g_q = 0.25, B(qq) ~ 53%) at 0.5 TeV is EXCLUDED by visible decays. The surviving low-mass photon-ISR SVJ region needs g_q <~ 0.1-0.14 (own rescaling by sqrt(1/B_qq)) and B(Z'->chi chi) close to 1"},
+    {"constraint": "High-mass inclusive dijet limits on the visible Z'->qq branch for g_q = 0.25 at 1.5-5 TeV", "source_id": "UNVERIFIED (not read)", "verdict": "UNVERIFIED; must be checked, since the visible branch does not depend on r_inv or BR_gamma"},
+    {"constraint": "Dark-matter relic/direct/indirect viability of HV with stable + unstable mesons", "source_id": "arXiv:1809.10152 (abstract)", "verdict": "viable parameter space exists for Z' and bifundamental mediators; generic, not checked for the photon-ALP benchmark"},
+    {"constraint": "ALP/VLL portal consistency (VLL direct searches, ALP-photon bounds) for the Xi_gamma needed for BR_gamma ~ 0.3", "source_id": "not addressed in arXiv:2407.08276", "verdict": "UNVERIFIED; the paper gives no consistency check"}
+  ],
+  "motivation_strength": 3,
+  "robustness": 2,
+  "theory_uncertainties": [
+    "Dark hadronisation (Pythia HV) and substructure observables: large, partly irreducible modelling uncertainty (2301.07732)",
+    "r_inv is an effective parameter; its distribution and correlation with jet properties are model dependent",
+    "BR_gamma depends on an ad hoc second portal; photon-enriched SVJ is a two-portal construction",
+    "Z' couplings: low-mass benchmarks must respect dijet+ISR bounds on the visible branch",
+    "Delphes-level studies: jets faking photons and spurious MET are not realistically modelled (2409.04741 Sec.5)"
+  ],
+  "distinctiveness": "Moderate to high. MET aligned with jets is a rare topology in the SM (mis-measured QCD jets are the main background). Photon variant: high-NEMF, multi-prong jets with non-isolated photon pairs at a fixed m_gamma gamma = m_pi_v are distinct from SM pi0/eta and from prompt photons, but the closest neighbours are photon-jets (ALP -> gamma gamma) and emerging jets. ISR variant: MAOS mass plus reconstructed r_inv gives a 2D localised feature (2409.04741 Fig.16).",
+  "confidence": "medium",
+  "caveats": "(i) Photon-enriched SVJ: phenomenologically proposed-not-searched, but rests on an extra ALP/VLL portal whose consistency is unchecked; the high-mass benchmark is claimed discoverable already with Run 2 (2407.08276 Fig.5), so the HL-LHC gain is in coupling/BR_gamma reach. (ii) Photon-ISR low-mass SVJ: the published benchmark coupling is excluded by ATLAS dijet+ISR; the viable region needs invisible-dominated Z' decays and smaller g_q. Photon ISR is also rate-suppressed relative to jet ISR (2409.04741 gives limits only for jet ISR). The CMS jet-ISR thesis claim was not checked here."
+}

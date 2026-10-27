@@ -1,0 +1,45 @@
+{
+  "cand_id": "C001",
+  "claim": "Heavy fermions/scalars Q charged under the SM and a new confining SU(N)_IC with no light IC flavours (m_Q >> Lambda) cannot break their IC flux tube; the pair oscillates as a classical string system. For colour-neutral, EW-charged quirks in the mesoscopic/intermediate regime (oscillation amplitude ~0.1-10 cm, roughly 100 eV <~ Lambda <~ 10-30 keV for m_Q ~ 0.1-1 TeV) standard helix tracking fails, leaving a gap between HSCP/OoT reinterpretations (low Lambda) and monojet/single-track (high Lambda). The target: an ATLAS/CMS central-tracker coplanar/non-helical hit search above the FASER reach (179 GeV at Lambda=10 keV).",
+  "framework": "Vector-like Q in (1,1,-1,N_IC) (or other SM reps) x SU(N_IC); Nambu-Goto string with massive endpoints, S = -m_Q sum int d tau_i - Lambda^2 int dA + S_ext (1708.02243 Eq.2); production via Drell-Yan; IC glueballs (m ~ 6 Lambda) the only IC hadrons.",
+  "assumptions": [
+    "No IC-charged state lighter than Lambda (else strings break: hadronisation instead of quirks)",
+    "Lambda^2 >> external forces (Lorentz force, ionisation ~ (100 eV)^2) so that the pair's motion is planar (central force, angular momentum conserved)",
+    "Quirk is stable on detector timescales (lightest IC-charged state; no SM decay)",
+    "IC glueball emission per crossing is small/parameterised (eps = 0.1 used by FASER and Evans-Luty; Knapen et al. argue irrelevantly small at large separation)",
+    "Low cosmological reheat temperature T_RH <~ O(100 GeV) (required by 2512.20696 for the whole collider-accessible quirky region)"
+  ],
+  "controlling_parameters": ["m_Q", "Lambda (string tension sigma = Lambda^2)", "SM quantum numbers (charge, colour, SU(2) rep), spin", "N_IC", "glueball emission probability eps (nuisance)", "boost distribution / ISR (sets lab oscillation length d ~ 2 cm (gamma-1)(m_Q/100 GeV)(keV/Lambda)^2)"],
+  "robust_predictions": [
+    "Drell-Yan EW production cross section (FASER quotes 2-4% scale+PDF uncertainty)",
+    "Coplanarity of all hits of the pair (kinematic consequence of central force; holds for any central force much stronger than external ones)",
+    "Characteristic oscillation scale d_cm ~ 2 cm (gamma-1)(m_Q/100 GeV)(1 keV/Lambda)^2 setting which regime (two tracks / non-helical / single straight HIP-like track)",
+    "Slow (beta < 1) pairs with ~2x MIP charge; no annihilation for macroscopic strings (Kang-Luty Sec.4)"
+  ],
+  "model_dependent_predictions": [
+    "Annihilation location/timing and stopped-quirk rates (depend on unknown eps and stopped-bound-state energy loss; Evans-Luty call this highly uncertain)",
+    "Trigger efficiency (MET from ISR; eps_trig ~0.10 for DY at m_Q=800 GeV in 1708.02243 Tab.I)",
+    "Soft pion/glueball emission and SUEP-like patterns (microscopic, colored, Lambda >~ 10 GeV regime only; E_frac 0.2-1 ad hoc in 2506.11192)",
+    "W gamma/WZ quirkonium resonances + displaced glueball decay (GeV-scale Lambda natural squirks, 2504.02940)"
+  ],
+  "constraints_checked": [
+    {"constraint": "FASER direct search 186 fb^-1, (1,1,-1,N_IC=2): m_Q > 179 GeV at Lambda=10 keV; covers 300 eV < Lambda < 100 keV", "source_id": "arXiv:2607.26195 (Fig.4, Fig.5)", "verdict": "excludes only m_Q <~ 180 GeV; region above survives"},
+    {"constraint": "HSCP/monojet reinterpretation (12.9 fb^-1): uncoloured (1,1)_-1 fermion N_c=2 limits 650 GeV (Lambda=1 eV), 150 GeV (100 eV), none at 1 keV", "source_id": "arXiv:1703.00912 (Tab.II)", "verdict": "intermediate Lambda ~ keV essentially unconstrained for EW quirks at that luminosity; full Run-2 reinterpretation UNVERIFIED"},
+    {"constraint": "D0 quirk search m_Q >~ 120 GeV for 10 nm <~ l <~ 100 um", "source_id": "arXiv:1703.00912 (intro, citing D0)", "verdict": "low mass only"},
+    {"constraint": "CMS out-of-time stopped-particle recast", "source_id": "arXiv:1811.08903 (Fig.5)", "verdict": "covers part of parameter space; depends on eps; does not close target region (per FASER Fig.5 grey areas)"},
+    {"constraint": "Cosmology: glueball freeze-in -> BBN/CMB/gamma-ray/SIDM/Delta N_eff bounds require T_RH <~ O(100 GeV) throughout quirky collider region", "source_id": "arXiv:2512.20696 (abstract, Sec.4)", "verdict": "does not exclude collider region; imposes low-reheat cosmology (tension with standard baryogenesis)"},
+    {"constraint": "EW precision (rho/T) for split SU(2) doublet squirks: Delta < 43 GeV at 95% CL", "source_id": "arXiv:2504.02940 (Sec.3.1)", "verdict": "irrelevant for SU(2)-singlet benchmark; mild for doublets"},
+    {"constraint": "Magnetic/ionisation forces vs string tension (planarity)", "source_id": "arXiv:1708.02243 Sec.II; arXiv:0805.4642 Sec.4.3; own estimate e v B(2T) ~ (11 eV)^2", "verdict": "planarity holds for Lambda >~ 100 eV; degrades near 100 eV (ionisation ~ (100 eV)^2)"}
+  ],
+  "motivation_strength": 3,
+  "robustness": 3,
+  "theory_uncertainties": [
+    "eps (glueball emission per crossing) is not computable; affects stopping/annihilation, FASER survival and timing, minor for central tracks",
+    "Lab oscillation length depends on ISR/pT of the pair and opening angle (event-by-event); acceptance depends on Pythia ISR modelling (FASER 25% from shower-scale variation)",
+    "keV-scale Lambda is not predicted by neutral naturalness (folded SUSY/twin-type models give GeV-scale Lambda); it is 'natural' only in the log-flat sense of Kang-Luty Eq.1.2",
+    "For 30-100 keV the pair is a single straight HIP-like track with event-by-event variable invariant mass: coplanar-hit method does not apply there (1708.02243 Sec.I), so the target's quoted 0.1-100 keV range mixes two signatures"
+  ],
+  "distinctiveness": "Very high: no SM object produces two coplanar, non-helical, mutually-attracting slow tracks with ~2x ionisation; backgrounds are pile-up hit coincidences and conversions, argued removable (1708.02243 Sec.III). Neighbouring BSM (HSCP, R-hadrons, monopoles, multi-charged) give helical or straight tracks.",
+  "confidence": "medium",
+  "caveats": "Target is not new as a proposal: coplanar-hit method (1708.02243, 300 fb^-1, <mu>=50, background assumed negligible, EW quirks to ~650 GeV) and GNN quirk tracking (2410.00269, m_Q <~ 700 GeV for 100 eV < Lambda < 5 keV, pile-up not studied) exist; status proposed-not-searched / theory-explored-untested at ATLAS/CMS. HL-LHC 200-PU performance and trigger path are the real open questions. Secondary targets (2506.11192, 2504.02940) belong to different (GeV-scale Lambda) regimes. Newer ATLAS/CMS HSCP recasts not checked (UNVERIFIED)."
+}

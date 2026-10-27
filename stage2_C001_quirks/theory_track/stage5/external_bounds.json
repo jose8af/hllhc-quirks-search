@@ -1,0 +1,1023 @@
+{
+ "schema": "external_bounds v1",
+ "created": "2026-10-16",
+ "generated_by": "stage5/build_external_bounds.py (python3 -I, stdlib only)",
+ "units": {
+  "m": "GeV",
+  "lam": "keV"
+ },
+ "point_order": "[m_GeV, lam_keV]",
+ "lambda_convention": "string tension sigma = Lambda^2 (TT, FASER, Farina-Low T = Lambda^2; D0 L ~ m/Lambda^2): no conversion applied",
+ "tags": {
+  "VERIFIED": "numbers from a tabulated source (HEPData, or a table/quoted value in the paper text)",
+  "ESTIMATE": "digitised from a figure (here: vector paths of FASER Fig. 5); precision of the drawing, and the drawing itself is FASER's rendering of other papers' limits"
+ },
+ "inputs": [
+  {
+   "what": "HEPData t2 csv",
+   "path_at_build": "/private/tmp/claude-501/-Users-jochoafl-FISICA-USFQ-hllhc-search/7f810a7c-c57a-466a-a527-f5f2b4abee26/scratchpad/extbounds/hepdata/t2.csv",
+   "sha256": "38ab82d63c33fe53c7b3d5bc0ea1a0a900b8d2348694d2ec5a2af4b0d2edc5b1",
+   "url": "https://www.hepdata.net/download/table/ins3184325/Exclusion%20Contours/1/csv"
+  },
+  {
+   "what": "FASER Fig. 5 PDF (arXiv e-print 2607.26195)",
+   "path_at_build": "/private/tmp/claude-501/-Users-jochoafl-FISICA-USFQ-hllhc-search/7f810a7c-c57a-466a-a527-f5f2b4abee26/scratchpad/extbounds/faser/src/figs/summary_limits_gray.pdf",
+   "sha256": "6c9f9d2a3b8ff64253d6d3e802b17d3636482f6352506f96abdd591144118a17",
+   "url": "https://arxiv.org/e-print/2607.26195"
+  }
+ ],
+ "faser_fig5_calibration": {
+  "GeV_per_pt": 0.19979786164911442,
+  "decades_per_pt": 0.0074282615639461895,
+  "x_major_pt": [
+   118.225,
+   218.3261,
+   318.4273,
+   418.5285,
+   518.6297,
+   618.7308,
+   718.832,
+   818.9332
+  ],
+  "y_major_pt": [
+   81.3992,
+   216.0202,
+   350.6412,
+   485.2622,
+   619.8832
+  ]
+ },
+ "curves": {
+  "FASER_obs": {
+   "label": "FASER 2026 (obs.)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "exact (same SM rep, fermion, N_IC = 2, sigma = Lambda^2)",
+    "Etilde": "not directly comparable (fermion limit; FASER gives no scalar result)"
+   },
+   "source": {
+    "record": "HEPData ins3184325 (FASER, arXiv:2607.26195)",
+    "doi": "10.17182/hepdata.181308.v1/t2",
+    "table": "Exclusion Contours (t2)",
+    "url": "https://www.hepdata.net/record/ins3184325"
+   },
+   "method": "HEPData",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     57.32,
+     0.3
+    ],
+    [
+     72.5,
+     0.5
+    ],
+    [
+     106.0,
+     0.75
+    ],
+    [
+     113.0,
+     1.0
+    ],
+    [
+     149.1,
+     1.7
+    ],
+    [
+     162.58,
+     3.0
+    ],
+    [
+     172.0,
+     5.0
+    ],
+    [
+     175.0,
+     7.5
+    ],
+    [
+     179.0,
+     10.0
+    ],
+    [
+     175.0,
+     17.0
+    ],
+    [
+     173.0,
+     30.0
+    ],
+    [
+     157.8,
+     50.0
+    ],
+    [
+     139.7,
+     65.0
+    ],
+    [
+     117.04,
+     75.0
+    ],
+    [
+     104.17,
+     85.0
+    ],
+    [
+     95.98,
+     90.0
+    ],
+    [
+     77.0,
+     95.0
+    ],
+    [
+     71.0,
+     100.0
+    ],
+    [
+     66.0,
+     105.0
+    ]
+   ],
+   "draw": true,
+   "notes": "Contour sampled at 19 Lambda values 0.3-105 keV. The figure draws the region left of the curve as excluded down to the left frame (m = 50 GeV); no lower mass edge is given in t2."
+  },
+  "FASER_exp": {
+   "label": "FASER 2026 (exp.)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "exact (same SM rep, fermion, N_IC = 2, sigma = Lambda^2)",
+    "Etilde": "not directly comparable (fermion limit; FASER gives no scalar result)"
+   },
+   "source": {
+    "record": "HEPData ins3184325 (FASER, arXiv:2607.26195)",
+    "doi": "10.17182/hepdata.181308.v1/t2",
+    "table": "Exclusion Contours (t2)",
+    "url": "https://www.hepdata.net/record/ins3184325"
+   },
+   "method": "HEPData",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     56.33,
+     0.3
+    ],
+    [
+     71.5,
+     0.5
+    ],
+    [
+     103.67,
+     0.75
+    ],
+    [
+     109.71,
+     1.0
+    ],
+    [
+     146.75,
+     1.7
+    ],
+    [
+     160.46,
+     3.0
+    ],
+    [
+     170.0,
+     5.0
+    ],
+    [
+     173.0,
+     7.5
+    ],
+    [
+     177.0,
+     10.0
+    ],
+    [
+     173.0,
+     17.0
+    ],
+    [
+     170.0,
+     30.0
+    ],
+    [
+     155.29,
+     50.0
+    ],
+    [
+     137.03,
+     65.0
+    ],
+    [
+     118.51,
+     75.0
+    ],
+    [
+     102.39,
+     85.0
+    ],
+    [
+     91.98,
+     90.0
+    ],
+    [
+     72.5,
+     95.0
+    ],
+    [
+     68.0,
+     100.0
+    ],
+    [
+     65.0,
+     105.0
+    ]
+   ],
+   "draw": false,
+   "notes": "Contour sampled at 19 Lambda values 0.3-105 keV. The figure draws the region left of the curve as excluded down to the left frame (m = 50 GeV); no lower mass edge is given in t2."
+  },
+  "FASER_exp_p1s": {
+   "label": "FASER 2026 (exp. +1 sigma)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "exact (same SM rep, fermion, N_IC = 2, sigma = Lambda^2)",
+    "Etilde": "not directly comparable (fermion limit; FASER gives no scalar result)"
+   },
+   "source": {
+    "record": "HEPData ins3184325 (FASER, arXiv:2607.26195)",
+    "doi": "10.17182/hepdata.181308.v1/t2",
+    "table": "Exclusion Contours (t2)",
+    "url": "https://www.hepdata.net/record/ins3184325"
+   },
+   "method": "HEPData",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     60.0,
+     0.3
+    ],
+    [
+     78.0,
+     0.5
+    ],
+    [
+     113.91,
+     0.75
+    ],
+    [
+     127.78,
+     1.0
+    ],
+    [
+     155.67,
+     1.7
+    ],
+    [
+     173.32,
+     3.0
+    ],
+    [
+     180.0,
+     5.0
+    ],
+    [
+     187.0,
+     7.5
+    ],
+    [
+     192.0,
+     10.0
+    ],
+    [
+     190.0,
+     17.0
+    ],
+    [
+     185.0,
+     30.0
+    ],
+    [
+     168.03,
+     50.0
+    ],
+    [
+     151.38,
+     65.0
+    ],
+    [
+     136.3,
+     75.0
+    ],
+    [
+     119.72,
+     85.0
+    ],
+    [
+     112.51,
+     90.0
+    ],
+    [
+     103.76,
+     95.0
+    ],
+    [
+     82.0,
+     100.0
+    ],
+    [
+     74.0,
+     105.0
+    ]
+   ],
+   "draw": false,
+   "notes": "Contour sampled at 19 Lambda values 0.3-105 keV. The figure draws the region left of the curve as excluded down to the left frame (m = 50 GeV); no lower mass edge is given in t2."
+  },
+  "FASER_exp_m1s": {
+   "label": "FASER 2026 (exp. -1 sigma)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "exact (same SM rep, fermion, N_IC = 2, sigma = Lambda^2)",
+    "Etilde": "not directly comparable (fermion limit; FASER gives no scalar result)"
+   },
+   "source": {
+    "record": "HEPData ins3184325 (FASER, arXiv:2607.26195)",
+    "doi": "10.17182/hepdata.181308.v1/t2",
+    "table": "Exclusion Contours (t2)",
+    "url": "https://www.hepdata.net/record/ins3184325"
+   },
+   "method": "HEPData",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     52.49,
+     0.3
+    ],
+    [
+     60.0,
+     0.5
+    ],
+    [
+     81.05,
+     0.75
+    ],
+    [
+     90.0,
+     1.0
+    ],
+    [
+     133.42,
+     1.7
+    ],
+    [
+     146.33,
+     3.0
+    ],
+    [
+     153.0,
+     5.0
+    ],
+    [
+     159.0,
+     7.5
+    ],
+    [
+     162.0,
+     10.0
+    ],
+    [
+     160.0,
+     17.0
+    ],
+    [
+     158.0,
+     30.0
+    ],
+    [
+     138.9,
+     50.0
+    ],
+    [
+     118.05,
+     65.0
+    ],
+    [
+     101.0,
+     75.0
+    ],
+    [
+     67.88,
+     85.0
+    ],
+    [
+     67.5,
+     90.0
+    ],
+    [
+     49.0,
+     95.0
+    ],
+    [
+     45.0,
+     100.0
+    ],
+    [
+     40.0,
+     105.0
+    ]
+   ],
+   "draw": false,
+   "notes": "Contour sampled at 19 Lambda values 0.3-105 keV. The figure draws the region left of the curve as excluded down to the left frame (m = 50 GeV); no lower mass edge is given in t2."
+  },
+  "D0_2010": {
+   "label": "D0 2010",
+   "applies_to": [
+    "E"
+   ],
+   "model": "charged (|Q| = 1) colourless fermion, SU(N) infracolour N = 2 (also 3, 5), p pbar 1.96 TeV, 2.4 fb^-1; pair seen as one straight highly-ionising track [1008.3547 abstract, p.1-2]",
+   "model_match": {
+    "E": "probable: charge, colour and spin match and N = 2 is quoted; the SU(2)_L representation / hypercharge is not stated in the Letter (Kang-Luty modified MadGraph). FASER overlays it on its (1,1,-1) plane.",
+    "Etilde": "not directly comparable (fermion cross section)"
+   },
+   "source": {
+    "arxiv": "1008.3547",
+    "journal": "PRL 105 (2010) 211803",
+    "where": "abstract; Table I (sigma_N=2 and limits)"
+   },
+   "method": "paper text (abstract) + Table I; region shape (Lambda = 10 keV - 1 MeV, m = 60-107 GeV) from the text",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "polygon",
+   "points": [
+    [
+     60.0,
+     10.0
+    ],
+    [
+     107.0,
+     10.0
+    ],
+    [
+     107.0,
+     1000.0
+    ],
+    [
+     60.0,
+     1000.0
+    ]
+   ],
+   "draw": true,
+   "artefact_edges": [
+    "m = 60 GeV is the lowest simulated mass (Table I), not a limit"
+   ],
+   "notes": "Lambda-independent within the quoted range; the Lambda edges are the scenario range of the Letter, not computed limits. Lambda via L ~ m_Q/Lambda^2 (Eq. 1), i.e. tension ~ Lambda^2 up to O(1)."
+  },
+  "FarinaLow_E_TabII": {
+   "label": "Farina-Low 2017 (Tab. II)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "fermion (1,1)_{-1}, N_c = 2, 13 TeV recasts of CMS HSCP (12.9 fb^-1) and ATLAS monojet (3.2 fb^-1, also scaled to 12.9 fb^-1); straight-string EoM, T = Lambda^2",
+   "model_match": {
+    "E": "exact (fermion (1,1)_{-1}, N_c = 2, T = Lambda^2)",
+    "Etilde": "see FarinaLow_Etilde_TabII"
+   },
+   "source": {
+    "arxiv": "1703.00912",
+    "where": "Table II (benchmarks Lambda = 1 eV, 100 eV, 1 keV)"
+   },
+   "method": "paper table",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "benchmarks",
+   "points": [
+    [
+     650.0,
+     0.001
+    ],
+    [
+     150.0,
+     0.1
+    ]
+   ],
+   "no_limit_at_lam_keV": [
+    1.0
+   ],
+   "draw": true,
+   "notes": "Tab. II lists '-' (no limit) at Lambda = 1 keV. No curve between benchmarks is given for E (Fig. 3 is for the colour triplet (3,1)_{2/3} only and is not used)."
+  },
+  "FarinaLow_Etilde_TabII": {
+   "label": "Farina-Low 2017 (Tab. II, scalar)",
+   "applies_to": [
+    "Etilde"
+   ],
+   "model": "scalar (1,1)_{-1}, N_c = 2, 13 TeV recasts of CMS HSCP (12.9 fb^-1) and ATLAS monojet (3.2 fb^-1, also scaled to 12.9 fb^-1); straight-string EoM, T = Lambda^2",
+   "model_match": {
+    "E": "no (scalar)",
+    "Etilde": "exact (scalar (1,1)_{-1}, N_c = 2)"
+   },
+   "source": {
+    "arxiv": "1703.00912",
+    "where": "Table II (benchmarks Lambda = 1 eV, 100 eV, 1 keV)"
+   },
+   "method": "paper table",
+   "uncertainty_tag": "VERIFIED",
+   "kind": "benchmarks",
+   "points": [
+    [
+     350.0,
+     0.001
+    ],
+    [
+     60.0,
+     0.1
+    ]
+   ],
+   "no_limit_at_lam_keV": [
+    1.0
+   ],
+   "draw": true,
+   "notes": "'-' at 1 keV."
+  },
+  "FarinaLow_HSCP_viaFASER": {
+   "label": "CMS HSCP recast (Farina-Low, as drawn by FASER)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "as FASER applies it (E, N_IC = 2); FASER cites [Farina-Low] for it",
+    "Etilde": "not directly comparable"
+   },
+   "source": {
+    "arxiv": "2607.26195",
+    "figure": "Fig. 5 (figs/summary_limits_gray.pdf in the e-print source)",
+    "note": "gray \"existing limits\" as drawn by FASER for its (1,1,-1), N_IC = 2 benchmark"
+   },
+   "method": "vector digitisation: path coordinates read from the matplotlib PDF content stream, calibrated on the figure's own tick marks (closure: FASER's own observed/expected curves in the same PDF reproduce HEPData t2)",
+   "uncertainty_tag": "ESTIMATE",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     2.65,
+     0.224949
+    ],
+    [
+     21.16,
+     0.198205
+    ],
+    [
+     54.23,
+     0.163923
+    ],
+    [
+     89.95,
+     0.137727
+    ],
+    [
+     121.69,
+     0.115721
+    ],
+    [
+     158.73,
+     0.097227
+    ],
+    [
+     202.38,
+     0.081685
+    ],
+    [
+     231.48,
+     0.071967
+    ],
+    [
+     258.6,
+     0.064927
+    ],
+    [
+     304.23,
+     0.05327
+    ],
+    [
+     347.88,
+     0.045467
+    ],
+    [
+     388.89,
+     0.037011
+    ],
+    [
+     425.93,
+     0.031591
+    ],
+    [
+     464.29,
+     0.026965
+    ],
+    [
+     500.0,
+     0.023756
+    ],
+    [
+     534.39,
+     0.020278
+    ],
+    [
+     563.49,
+     0.016771
+    ],
+    [
+     589.95,
+     0.013871
+    ],
+    [
+     615.08,
+     0.011473
+    ],
+    [
+     636.24,
+     0.009489
+    ],
+    [
+     650.79,
+     0.007974
+    ],
+    [
+     664.02,
+     0.00629
+    ],
+    [
+     674.6,
+     0.005203
+    ],
+    [
+     681.22,
+     0.003734
+    ],
+    [
+     683.86,
+     0.002854
+    ],
+    [
+     685.19,
+     0.002361
+    ]
+   ],
+   "draw": true,
+   "notes": "Upper/right edge of the region; the lower edge at Lambda = 60 eV is the figure frame. The edge runs past m = 200 GeV and below Lambda = 60 eV outside the visible axes (present in the PDF path but clipped), to m = 685 GeV at Lambda = 2.4 eV; that part is not visible in the published figure."
+  },
+  "FarinaLow_monojet_viaFASER": {
+   "label": "ATLAS/CMS monojet recast (as drawn by FASER)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "as FASER applies it; does NOT agree with Farina-Low Tab. II (no E limit at 1 keV)",
+    "Etilde": "not directly comparable"
+   },
+   "source": {
+    "arxiv": "2607.26195",
+    "figure": "Fig. 5 (figs/summary_limits_gray.pdf in the e-print source)",
+    "note": "gray \"existing limits\" as drawn by FASER for its (1,1,-1), N_IC = 2 benchmark"
+   },
+   "method": "vector digitisation: path coordinates read from the matplotlib PDF content stream, calibrated on the figure's own tick marks (closure: FASER's own observed/expected curves in the same PDF reproduce HEPData t2)",
+   "uncertainty_tag": "ESTIMATE",
+   "kind": "upper_mass_edge",
+   "points": [
+    [
+     55.56,
+     0.156331
+    ],
+    [
+     56.88,
+     0.298841
+    ],
+    [
+     56.88,
+     0.480112
+    ],
+    [
+     55.56,
+     1.341125
+    ],
+    [
+     56.88,
+     6.938412
+    ],
+    [
+     56.88,
+     32.649386
+    ],
+    [
+     56.88,
+     258.81099
+    ],
+    [
+     55.56,
+     1495.638383
+    ],
+    [
+     55.56,
+     1724.238581
+    ]
+   ],
+   "draw": true,
+   "notes": "Right edge; the left edge at m = 50 GeV is the figure frame. Extends to Lambda ~ 5 MeV."
+  },
+  "CMS_OoT_EvansLuty_viaFASER": {
+   "label": "CMS out-of-time recast (as drawn by FASER)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "(1,1,-1) fermion under SU(3)c x SU(2)L x U(1)Y, SU(N_IC = 2) fundamental, single flavour; Drell-Yan gamma/Z; pp 13.6 TeV, 186.3 fb^-1 [2607.26195 p.1-2]",
+   "model_match": {
+    "E": "as FASER applies it (cited as CMS 1801.00359; recast by Evans-Luty 1811.08903; the recast model was not re-checked here)",
+    "Etilde": "not directly comparable"
+   },
+   "source": {
+    "arxiv": "2607.26195",
+    "figure": "Fig. 5 (figs/summary_limits_gray.pdf in the e-print source)",
+    "note": "gray \"existing limits\" as drawn by FASER for its (1,1,-1), N_IC = 2 benchmark"
+   },
+   "method": "vector digitisation: path coordinates read from the matplotlib PDF content stream, calibrated on the figure's own tick marks (closure: FASER's own observed/expected curves in the same PDF reproduce HEPData t2)",
+   "uncertainty_tag": "ESTIMATE",
+   "kind": "polygon",
+   "points": [
+    [
+     88.62,
+     0.002527
+    ],
+    [
+     105.82,
+     0.002567
+    ],
+    [
+     116.4,
+     0.002649
+    ],
+    [
+     125.66,
+     0.003054
+    ],
+    [
+     136.24,
+     0.003809
+    ],
+    [
+     144.18,
+     0.004905
+    ],
+    [
+     150.79,
+     0.006217
+    ],
+    [
+     156.08,
+     0.007756
+    ],
+    [
+     164.02,
+     0.012073
+    ],
+    [
+     170.63,
+     0.017363
+    ],
+    [
+     175.93,
+     0.028339
+    ],
+    [
+     202.38,
+     0.047729
+    ],
+    [
+     202.38,
+     0.056791
+    ],
+    [
+     199.74,
+     0.077904
+    ],
+    [
+     195.77,
+     0.088406
+    ],
+    [
+     171.96,
+     0.098766
+    ],
+    [
+     170.63,
+     0.112077
+    ],
+    [
+     149.47,
+     0.133379
+    ],
+    [
+     121.69,
+     0.149014
+    ],
+    [
+     104.5,
+     0.151408
+    ]
+   ],
+   "draw": true,
+   "artefact_edges": [
+    "the m = 202 GeV vertical segment is where the drawn polygon ends (axes clip at 200 GeV)"
+   ],
+   "notes": "Not requested in FIGURE_PLAN item 6; kept because FASER shows it as an existing limit. Lambda < 0.16 keV."
+  },
+  "D0_viaFASER": {
+   "label": "D0 (as drawn by FASER)",
+   "applies_to": [
+    "E"
+   ],
+   "model": "charged (|Q| = 1) colourless fermion, SU(N) infracolour N = 2 (also 3, 5), p pbar 1.96 TeV, 2.4 fb^-1; pair seen as one straight highly-ionising track [1008.3547 abstract, p.1-2]",
+   "model_match": {
+    "E": "probable: charge, colour and spin match and N = 2 is quoted; the SU(2)_L representation / hypercharge is not stated in the Letter (Kang-Luty modified MadGraph). FASER overlays it on its (1,1,-1) plane.",
+    "Etilde": "not directly comparable (fermion cross section)"
+   },
+   "source": {
+    "arxiv": "2607.26195",
+    "figure": "Fig. 5 (figs/summary_limits_gray.pdf in the e-print source)",
+    "note": "gray \"existing limits\" as drawn by FASER for its (1,1,-1), N_IC = 2 benchmark"
+   },
+   "method": "vector digitisation: path coordinates read from the matplotlib PDF content stream, calibrated on the figure's own tick marks (closure: FASER's own observed/expected curves in the same PDF reproduce HEPData t2)",
+   "uncertainty_tag": "ESTIMATE",
+   "kind": "polygon",
+   "points": [
+    [
+     107.14,
+     10.135
+    ],
+    [
+     107.14,
+     14.348
+    ],
+    [
+     107.14,
+     21.301
+    ],
+    [
+     107.14,
+     33.684
+    ],
+    [
+     107.14,
+     56.744
+    ],
+    [
+     107.14,
+     100.232
+    ],
+    [
+     107.14,
+     191.604
+    ],
+    [
+     107.14,
+     384.057
+    ],
+    [
+     107.14,
+     657.282
+    ],
+    [
+     107.14,
+     991.29
+    ],
+    [
+     50.0,
+     991.29
+    ],
+    [
+     50.0,
+     657.282
+    ],
+    [
+     50.0,
+     384.057
+    ],
+    [
+     50.0,
+     191.604
+    ],
+    [
+     50.0,
+     100.232
+    ],
+    [
+     50.0,
+     56.744
+    ],
+    [
+     50.0,
+     33.684
+    ],
+    [
+     50.0,
+     21.301
+    ],
+    [
+     50.0,
+     14.348
+    ],
+    [
+     50.0,
+     10.135
+    ]
+   ],
+   "draw": false,
+   "artefact_edges": [
+    "m = 50 GeV edge is the figure frame"
+   ],
+   "notes": "Cross-check of D0_2010 only."
+  }
+ },
+ "cross_checks": [
+  {
+   "check": "Fig. 5 vector closure: FASER observed curve (PDF path) vs HEPData t2",
+   "expected": "identical",
+   "found": "max |dm| = 0.000 GeV, max |d ln Lambda| = 7.6e-07 (expected curve: 0.000 GeV)",
+   "verdict": "PASS"
+  },
+  {
+   "check": "FASER text: \"Masses up to 179 GeV are excluded for Lambda = 10 keV\" [2607.26195, text on Fig. 4]",
+   "expected": 179.0,
+   "found": 179.0,
+   "verdict": "PASS"
+  },
+  {
+   "check": "FASER abstract: exclusion \"above the weak scale\" for 300 eV < Lambda < 100 keV",
+   "expected": "t2 range 0.3-100 keV",
+   "found": "0.3-105 keV",
+   "verdict": "PASS (t2 extends to 105 keV)"
+  },
+  {
+   "check": "TT prior use (research/theory_signal_model.md l.103/483, code/T1_figure.py): 8 rounded t2 values",
+   "expected": {
+    "0.3": 57,
+    "0.5": 72,
+    "1": 113,
+    "1.7": 149,
+    "3": 163,
+    "10": 179,
+    "30": 173,
+    "100": 71
+   },
+   "found": "max |d| = 0.50 GeV (rounding)",
+   "verdict": "PASS"
+  },
+  {
+   "check": "D0 abstract 107 GeV (N = 2) vs crossing sigma_N=2 = sigma_95 from Table I (log-linear, 100-120 GeV)",
+   "expected": 107.0,
+   "found": 106.7,
+   "verdict": "PASS"
+  },
+  {
+   "check": "D0 region as drawn in FASER Fig. 5 vs D0 text (m < 107 GeV, 10 keV < Lambda < 1 MeV)",
+   "expected": "107 GeV; 10-1000 keV",
+   "found": "107.14 GeV; 10.13-991 keV",
+   "verdict": "PASS"
+  },
+  {
+   "check": "Farina-Low Tab. II E, N = 2: 150 GeV at Lambda = 100 eV vs FASER-drawn HSCP edge at 100 eV",
+   "expected": 150.0,
+   "found": 152.7,
+   "verdict": "PASS (within 5 %)"
+  },
+  {
+   "check": "Farina-Low Tab. II E, N = 2: 650 GeV at Lambda = 1 eV vs FASER-drawn HSCP edge (lowest Lambda)",
+   "expected": "650 GeV at 1 eV (Tab. II)",
+   "found": "685 GeV at 2.4 eV",
+   "verdict": "DISCREPANT (FASER edge reaches higher m at larger Lambda than Tab. II); tension documented, not resolved"
+  },
+  {
+   "check": "Farina-Low Tab. II E, N = 2: no limit ('-') at 1 keV vs FASER-drawn monojet region at 1 keV",
+   "expected": "no limit",
+   "found": "m < 55.9 GeV excluded in FASER Fig. 5",
+   "verdict": "DISCREPANT (Tab. II gives only 30 GeV even for N = 5); likely a different source/rescaling by FASER; region lies at m < 57 GeV, far below D7"
+  }
+ ]
+}

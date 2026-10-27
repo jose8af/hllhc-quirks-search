@@ -1,0 +1,168 @@
+\section{Analysis strategy and the pre-registered working-point rule (P2)}\label{sec:strategy}
+
+The finder must select quirk planes at a pile-up fake rate of order $10^{-9}$ per triggered event, far below what can be
+measured directly. The strategy therefore separates three steps that are fixed in this order: (i) a finder and an ordered
+ladder of selections defined on background samples only; (ii) a rule, frozen before any signal efficiency was computed,
+that picks the working point (WP) from the background estimates; (iii) a pre-defined fallback deliverable if no rung
+satisfies the rule. This section defines all three; the frozen text is \rep{acts/stage4/WP_RULE.md} (sha256
+\texttt{1b2ea9bd\ldots}) with the amendment \rep{WP_RULE_PC19.md}, and every later change is logged in
+\rep{acts/stage4/HASH_ADDENDUM.md}.
+
+\subsection{Trigger and offline preselection}\label{sec:strategy:trig}
+The quirks are nearly invisible to the calorimeters, so the event is triggered by the missing transverse momentum (MET)
+from initial-state radiation, as in previous proposals~\cite{Knapen:2017kly,Li:2019wce}; the Level-1 track trigger is
+not used, because quirk hits form few stubs and no helices. The trigger is modelled as an efficiency on the smeared
+MET: $\Eff_{\rm trig}=0.98\cdot\frac12\{1+\operatorname{erf}[(\mathrm{MET}-200\GeV)/(\sqrt2\cdot20\GeV)]\}$ (\EST{};
+the Phase-2 L1 PUPPI-MET thresholds~\cite{Zabi:2020gjd} are carried as $\pm25\GeV$ on the turn-on point). The offline
+preselection requires MET$\,>250\GeV$, at least one jet with $p_T>100\GeV$ and $|\eta|<2.4$, $\min\Delta\phi(\text{jet}_{1-4},
+\text{MET})>0.5$, and vetoes isolated electrons and muons ($p_T>10\GeV$), hadronic $\tau$ ($p_T>20\GeV$) and photons
+($p_T>15\GeV$); the vetoes cost the signal nothing and act only on the SM backgrounds. The Stage-3 signal samples
+contain only pairs with $p_T(Q\bar Q)>200\GeV$ (and $|\eta_{\rm pair}|<4$), the recoil tail that the trigger selects, so
+the yield carries the tail fraction $f_{200}$ of the inclusive cross section (Table~\ref{tab:xsec} for $E$: 0.048, 0.104, 0.146
+and 0.169 at 200, 500, 1000 and $1500\GeV$; 0.114 for $\Etil$ at $500\GeV$). The signal efficiency factorises into
+$f_{200}$, a truth-level acceptance $A$ of the tail sample and a detector-level selection efficiency $\Eff_{\rm sel}$:
+\begin{equation}
+  N_{\rm exp}=\sigma_{\rm norm}\,f_{200}\,L\,A,\quad A=\Eff_{\rm fid}\,\Eff_{\rm trig}\,\Eff_{\rm presel|trig}\,\Eff_{\rm PV},
+  \quad S=N_{\rm exp}\,\Eff_{\rm sel},\quad \Eff_{\rm tot}=f_{200}\,A\,\Eff_{\rm sel},
+  \label{eq:effchain}
+\end{equation}
+with $L=3\abinv$ and the inclusive $\sigma_{\rm norm}$ of Eq.~\eqref{eq:signorm}. $\Eff_{\rm fid}$ is the fraction of tail
+pairs with $|\eta_{\rm pair}|<2.5$, $\Eff_{\rm presel|trig}$ the preselection efficiency after the trigger and
+$\Eff_{\rm PV}=1$ (PV identification not modelled); $A_{\rm incl}=f_{200}A$ is the acceptance relative to the inclusive
+cross section (Table~\ref{tab:acc}). $N_{\rm exp}$ is the predicted signal yield in the acceptance, $\Eff_{\rm sel}$ the
+fraction of these events with a signal-matched candidate that passes the selection at pile-up 200 and has
+$f_{\rm CKF}<0.2$ (events whose quirks did not both leave the tracker in the truth simulation count as failures), and $S$
+the expected number of selected signal events; the factorisation assumes $\Eff_{\rm sel}$ independent of the
+preselection. From Section~\ref{sec:results} on, $\Eff$ without subscript means $\Eff_{\rm sel}$. A candidate counts as signal-matched only if at least three of its core hits on at least three layers
+are quirk hits and quirk hits are at least half of its core hits (declared before any signal efficiency was looked at).
+
+\subsection{The plane finder}\label{sec:strategy:finder}
+The baseline finder (F0) looks for a plane through the primary vertex (PV) that contains repeated crossings of the same
+layers, in the azimuthal road of the MET. In PV coordinates $\mathbf u=\mathbf x-\mathbf x_{\rm PV}$:
+\begin{enumerate}
+\item \textbf{Road and window.} Hits must satisfy $|\Delta\phi(\mathbf u,\phi_{\rm MET})|<\dninetyfive+\arcsin\min(1,W_c/r)$,
+  lie forward of the PV along the plane axis and within $|\mathbf u\cdot\hat n_2|<W_c$ of it, with $W_c=75\mm$ (half the
+  outer IT radius, rounded up, from $\lmax\le\RIT$). The road half-width $\dninetyfive=0.15$\,rad is the 95\% quantile
+  of $|\Delta\phi(\mathrm{MET},p_T(Q\bar Q))|$ at generator level after trigger and preselection, maximised over the 17
+  (species, mass) points (no detector response; 0.130--0.149\,rad per mass).
+\item \textbf{Seeds.} Pairs of hits on the outer two IT barrel layers with $|\Delta\phi|<0.3$, $|\Delta\eta|<0.2$, confirmed
+  by a third hit on the second layer, define a plane normal $\hat n$; a seed is refitted if at least $\Tseed$ layers have
+  $\ge2$ crossings in its band. $\Tseed=6$ was frozen and changed to $\Tseed=4$ by the action pre-declared for the G3 pilot
+  (Section~\ref{sec:bkg:closure}).
+\item \textbf{Collection and refit.} Hits with $|\hat n\cdot\mathbf u|<3\sigma_{\rm tot}$, where
+  $\sigma_{\rm tot}^2=\sigma_n^2+t_{\rm tol}^2$, $\sigma_n$ is the hit resolution projected on $\hat n$ and
+  $t_{\rm tol}=30\um$ is the plane-thickness tolerance (the truth-level B+MS thickness is 10--30$\um$ above
+  $\Lcross\approx1.2$--$1.9\keV$, Section~\ref{sec:p1:ms}). Three iterations of a PV-constrained weighted plane fit follow; duplicate
+  candidates within 2\,mrad are merged.
+\item \textbf{Variables.} Per-layer crossing counts (on stacked OT modules the minimum of the two sensors): $N_{\rm IT2}$, $N_{\rm
+  IP2}$ and $N_{\rm 2S2}$ count IT, IT+PS and 2S barrel layers with at least two crossings. The robust core width
+  $\wcore=1.4826\,\mathrm{MAD}(\mathbf u\cdot\hat n_2)$ over the in-band IT and PS hits measures the ribbon width (a proxy of
+  $\lmax$), and $\chicore$ is the plane-fit $\chi^2$ of the core hits with its $p$-value. $f_{\rm CKF}$ is the fraction of
+  band hits that sit on CKF tracks.
+\item \textbf{Fixed cuts at every rung.} $N_{\rm IT2}\ge3$, $|\Delta\phi(\hat n_3,\mathrm{MET})|<\dninetyfive$,
+  $|\eta(\hat n_3)|<1.0$ and $f_{\rm CKF}<0.2$ (the last not credited for the pile-up background). The pseudorapidity cut on
+  the plane axis $\hat n_3$ restricts the analysis to the barrel (user decision, Appendix~\ref{app:limits}); 1.0 is the edge of the third 2S
+  layer (0.94) rounded up, a geometry-only number.
+\end{enumerate}
+The improved variant (F1) adds three quirk-hypothesis variables computed from the stored hits: a helix test $h$ (with the
+PV and with a free origin), the linearity $o$ of the opening of the two arms, and a truncated-mean $dE/dx$ in MIP units, the pooled truncated mean of all
+muon-gun TBPX hits ($3.558\times10^{-4}\GeV$). Candidates are split into two categories: \textbf{SR-T},
+in which the earliest in-band BTL hit is late by $\Delta t=t_{\rm BTL}-t_{\rm PV}-|\mathbf u|\in[t_{\min},t_{\max}]$
+(natural units), where $t_{\min}$ is set where the per-hit rate of in-time pile-up falls to $10^{-4}$ and
+$t_{\max}$ where that of the next bunch crossing rises to $10^{-4}$, both from pile-up-only events (logged amendment, Appendix~\ref{app:limits}; $\sigma_{t,\rm PV}=190\ps$, varied to 150 and 230\,ps), and \textbf{SR-G}, all others.
+The binding window, from the production pile-up-only sample, is $[5.955,\,24.035]\ns$, and the
+pre-registered time-independence test passes.
+
+\subsection{The ladder}\label{sec:strategy:ladder}
+Each category walks its own copy of a ladder of 23 cumulative rungs (Table~\ref{tab:ladder}); each rung tightens one
+threshold of the previous one. The order is fixed by background considerations only: counting rungs first (the base of
+the pile-up extrapolation), then width, core $\chi^2$, 2S layers and the F1 variables. There is no fixed cut on the plane
+width; the width thresholds are rungs.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{The frozen ladder (\rep{WP_RULE.md} \S3), applied with the fixed cuts of Section~\ref{sec:strategy:finder}.
+Each rung adds the stated requirement to all previous ones. R04 ($N_{\rm IP2}\ge7$) means a double crossing on every
+IT and PS barrel layer.}
+\label{tab:ladder}
+\begin{tabular}{lll}
+\toprule
+rungs & family & requirement added\\
+\midrule
+R01--R04 & F0 counting & $N_{\rm IT2}\ge3$ and $N_{\rm IP2}\ge4,5,6,7$\\
+R05--R08 & F0 width & $\wcore<37.5,\,18.75,\,9.4,\,4.7\mm$ ($W_c/2^k$, $k=1\ldots4$)\\
+R09--R11 & F0 core $\chi^2$ & $p(\chicore)>10^{-3},\,0.01,\,0.05$\\
+R12--R14 & F0 2S & $N_{\rm 2S2}\ge1,2,3$ (R14 = full F0)\\
+R15--R17 & F1 helix & $h>2,3,5$\\
+R18--R20 & F1 opening & $o>2,3,5$\\
+R21--R23 & F1 $dE/dx$ & $dE/dx>1.3,\,1.6,\,2.0$ MIP\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Background budget and the working-point rule}\label{sec:strategy:rule}
+For each category $\kappa\in\{\text{T},\text{G}\}$ (SR-T, SR-G) and rung $r$ the expected background in $3\abinv$ is the sum
+\begin{equation}
+  \Nbkg = \Ntrig\Big[P_{\rm PU}+P_{\rm SM,HS}+\sum_t \text{rate}_t\,P(\text{pass}\mid t)\Big]+N_{\rm cosmic}+N_{\rm halo},
+  \label{eq:bsum}
+\end{equation}
+where $\Ntrig$ is the number of SM events after trigger and preselection, $P_{\rm PU}$ the pile-up-only fake probability
+per event, $P_{\rm SM,HS}$ that of candidates involving hard-scatter hits, and $t$ runs over single-interaction
+topologies (conversions, $V^0$, PV pairs, loopers, nuclear interactions, decays in flight) with generator-level rates
+(Section~\ref{sec:bkg}). Each term is a product of measured factors with a log-normal uncertainty,
+$\sigma_{\ln}^2=\text{stat}^2+(\text{extrapolation model})^2+(\text{density})^2+(\text{normalisation})^2$, and
+$\Nbkgeightyfour$ is the 84th percentile of the Monte-Carlo sum. A factor with zero observed counts enters once per term,
+at $1.14/M$ (the one-sided 68\% Poisson bound for a population of size $M$) with $\sigma_{\ln}=1$, never as zero.
+
+\paragraph{Rule.} The per-category WP is the loosest rung $r^*_\kappa$ with $\Nbkgeightyfour\le0.11$ events for it and every
+tighter rung. The value 0.11 follows from log-normal algebra alone: two independent categories at $\sigma_{\ln}=2.3$
+combine at 2.71 times the per-category $\Nbkgeightyfour$, and $0.3/2.71=0.11$. If both categories have a WP, the pair is
+accepted only if the combined $\Nbkgeightyfour\le0.3$ for it and for every tighter pair, with a deterministic continuation
+otherwise. If no rung qualifies, the category has no WP: the user is told, and the pre-defined fallback applies. No
+re-ordering of the ladder and no new rung are allowed after the freeze, and further production is decided on cost and
+background reach, never on signal yields.
+
+\subsection{The fallback deliverable}\label{sec:strategy:fallback}
+The fallback (WP\_RULE \S8, approved by the user before production) defines one admissible selection per
+hypothesis from truth-level quantities published in Stage~3, so that a selection never cuts away the hypothesis it tests:
+\begin{itemize}
+\item a width rung is admissible only if $\Lam\ge\Lam_R(\mQ)\,2^{(k+1)/2}$, where $\Lam_R(\mQ)$ is the smoothed $\Lam$
+  at which the median $\lmax$ equals $\RIT$ (Fig.~\ref{fig:edges}); $k_{\rm adm}\in\{0,\ldots,4\}$ is the largest such $k$;
+\item a $dE/dx$ rung is admissible only if its threshold is below $R_{\rm eff}/1.25$, where $R_{\rm eff}$ is the expected
+  truncated-mean ionisation of the quirk at its IT velocity, diluted by pile-up hits in the core (a frozen mixture model
+  using the PDG restricted-loss formula for silicon~\cite{ParticleDataGroup:2024cfk}); this happens only at the tightest
+  width rung for heavy masses;
+\item the fallback selection is $r_{\rm fb}={\rm FB}_{k_{\rm adm}}\wedge h>5\wedge o>5\,(\wedge\,dE/dx>e_{\rm adm})$, plus
+  the time tag in SR-T, where ${\rm FB}_k\equiv N_{\rm IT2}\ge3\wedge N_{\rm IP2}\ge7\wedge p(\chicore)>0.05\wedge
+  N_{\rm 2S2}\ge3\wedge\wcore<W_c/2^k$ is the non-width part of R14 with a single width cut (FB0: no width cut);
+  $e_{\rm adm}$ is the largest admissible $dE/dx$ threshold.
+\end{itemize}
+The primary result at each $(\mQ,\Lam,\kappa)$ is the admissible WP if it exists, otherwise the fallback selection with its
+non-zero log-normal background. Choosing the best selection per point is forbidden. Efficiencies and backgrounds are also
+reported at five fixed reporting selections R$_A$ (end of counting) to R$_E$ (full F1), without limits.
+
+\paragraph{Statistical treatment.} The signal strength is the yield $\mu$ in the acceptance, with
+$\mu\,\Eff_{{\rm sel},\kappa}$ expected selected events in category $\kappa$ ($\mu=N_{\rm exp}$ for the prediction).
+Its expected 95\% CL upper limit $\mu_{95}$ per $(\mQ,\Lam)$ uses a two-bin
+(SR-T, SR-G) counting likelihood with each background as a log-normal nuisance and the CL$_s$
+method~\cite{Junk:1999kv,Read:2002hq}, evaluated with hybrid toys (5000 per point; primary) and the asymptotic
+formulae~\cite{Cowan:2010js} as a cross-check, in an in-house implementation. After the last analysis fix (a
+saturated-likelihood offset in the asymptotic mode) the asymptotic/toy ratio of the limits is 0.32--1.07 on the final
+run: 1.02--1.07 where one category carries all the signal, 0.32--0.72 where both do and $\sigma_{\ln}$ is large, a
+genuine difference between the two methods. Toys are therefore primary, and the asymptotic $\pm1\sigma$ bands are not
+used. A comparison with pyhf~\cite{Heinrich:2021gyp} exists only for the dry run before that fix and is not claimed for the final
+code. The limit on the inclusive cross section is $\sigma_{95}=\mu_{95}/(L\,f_{200}\,A)$, so that
+$\sigma_{95}/\sigma_{\rm norm}=\mu_{95}/N_{\rm exp}$ (the figures label $\sigma_{\rm norm}$ as $\sigma_{\rm th}$); a ratio
+below one would be an exclusion. Because $\mu_{95}$ is a limit on the yield, the signal-normalisation uncertainties
+(the $\pm5\%$ on $\sigma_{\rm norm}$ and the tail rate of Section~\ref{sec:model:syst}) do not enter it.
+
+\subsection{Blinding, freeze and logged changes}\label{sec:strategy:freeze}
+The rule, the finder code and its configuration were hash-frozen before the first signal efficiency (the only
+signal-derived inputs are generator- or truth-level quantities that the plan pre-declares: $\dninetyfive$, the IT
+velocities and $\Lam_R$). Every later change is logged in \rep{acts/stage4/HASH_ADDENDUM.md} and was pre-declared or
+regression-tested: runner hooks and a recovery for an ACTS navigation assertion (bit-identical on the existing job kinds);
+analysis-level fixes from the analysis reviews, which changed background estimates but no selection; $\Tseed=6\to4$
+(G3 pilot, Section~\ref{sec:bkg:closure}); the SR-T window, because the frozen window $[t_{\min},25\ns]$ was empty once
+next-crossing hits were included; and the full-chain re-run (A2FC) of nine signal points under the pre-registered revert
+rule.

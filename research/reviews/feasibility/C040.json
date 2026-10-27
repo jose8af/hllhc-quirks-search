@@ -1,0 +1,24 @@
+{
+  "cand_id": "C040",
+  "xsec_sources": [
+    "LHC SUSY XS WG twiki SUSYCrossSections13x6TeVslepslep (aNNLO+NNLL, Resummino, PDF4LHC21; read via WebFetch, re-verify): stau1 (maximal-mixing-type 'stau') 124 / 30.85 / 10.92 / 2.296 fb at 100/150/200/300 GeV; L-handed selectron 300.2/70.77/24.51/5.053 fb; R-handed 106.9/26.02/9.145/1.915 fb (13.6 TeV)",
+    "arXiv:2403.18991 Sec 3: 14 TeV right-stau pair sigma > 1 fb for m < ~400 GeV (Prospino NLO, Fig 2)",
+    "No 14 TeV slepton page on the twiki; 14 TeV is a few % to ~10% above 13.6 TeV (ESTIMATE, not verified)"
+  ],
+  "yield_estimate": "ESTIMATE: L+R-degenerate stau at 150 GeV, sigma ~ 70.77+26.02 ~ 97 fb (13.6 TeV selectron proxy), giving ~2.9e5 pairs at 3 ab-1 before ISR (pT,j > ~100-200 GeV), MET-trigger, tau_h ID (~60-75% per 1-prong tau, ATLAS 2609.37215 Sec 4) and the 15-40 GeV tau_pT window acceptances. The ISR-tagged fraction is UNVERIFIED and is likely O(1-10%). The luminosity gain over the latest ATLAS dataset (140+53 fb-1) is ~15x.",
+  "backgrounds": "Dominant: jet->tau_h fakes (W+jets, multijet with fake MET), estimated data-driven (2609.37215 Sec 4, 9; 1910.01185). Irreducible: Z->tautau+jet, W->tau nu+jet, ttbar, diboson.",
+  "trigger": "Run 2/3: MET triggers with thresholds 70->115 GeV online and offline MET > 200 GeV (ATLAS ISR channel, 2609.37215 Sec 3, 5); CMS offline MET > 230 GeV (1910.01185). Single-lepton triggers 20-26 GeV for the NoISR tau_lep channel. Phase-2: CMS L1 with tracks/PUPPI MET and PF/NN taus (CMS-TDR-021); actual Phase-2 MET and di-tau thresholds UNVERIFIED. Low-pT di-tau_h at L1 alone is unlikely to be affordable (UNVERIFIED); ISR+MET remains the realistic path.",
+  "pileup": "This hurts most. Soft tau_h (15-40 GeV) isolation and ID degrade, and so do MET resolution, fake rate and VBF forward-jet tagging. ATLAS already notes a larger fake-tau contribution in Run 3 due to higher pile-up (2609.37215 Sec 8). Partial mitigation from PUPPI, track-based vertexing and timing (MTD/HGTD).",
+  "detector_upgrades": "Helps: CMS L1 tracking and PF/PUPPI at L1 (better MET and tau seeds); HGCAL/HGTD/ITk forward tracking for VBF tags and pileup-jet rejection; MTD for track isolation. Neutral or hurts: higher pileup increases fakes; trigger thresholds at L1 for MET may rise (UNVERIFIED).",
+  "systematics": "The fake-tau closure uncertainty is 4-29% vs tau pT (CMS, 1910.01185) and the YR assumed 15% jet->tau fake uncertainty (1812.07831 Sec 2.3.2). Current searches are statistics-dominated in most SR bins (2609.37215 Sec 10; 1910.01185). They are expected to become fake-systematics-limited at 3 ab-1 for small dm.",
+  "projection_docs": [
+    "arXiv:1812.07831 Sec 2.3 (ATLAS ATL-PHYS-PUB-2018-048 and CMS-PAS-FTR-18-010): sensitive only for dm > ~100 GeV; Sec 2.3.3 explicitly says compressed sensitivity 'might be partially recovered' with ISR, so not done",
+    "arXiv:2403.18991 (natSUSY right staus, pheno, no compressed ISR channel)",
+    "arXiv:1606.08878 (pheno soft tau + ISR, electroweakino production with intermediate stau, 13 TeV)"
+  ],
+  "hl_specific_advantage": "The present compressed-stau searches are statistically limited, and direct-stau limits are weak (115 GeV at dm=30 GeV in the ISR channel only; no combined exclusion; 2609.37215). The ~15x luminosity gain is therefore real for dm ~ 20-60 GeV. Phase-2 L1 PF/track-based MET and taus could keep the ISR+MET trigger efficient under PU 200.",
+  "main_obstacle": "Jet->tau_h fake background at low tau pT under PU 140-200, with its systematic uncertainty. This saturates the gain from luminosity for dm < ~20 GeV, where taus fall below ~15-20 GeV ID thresholds. Second obstacle: the ISR/VBF requirement costs most of the small direct-stau cross section.",
+  "feasibility_rating": 3,
+  "confidence": "medium",
+  "caveats": "The mass-reach gain is an ESTIMATE (sigma falls ~3-4x per 50 GeV near 100-200 GeV); no full projection was found for the compressed corridor. Cross sections were read via WebFetch from the twiki (lossy; re-verify). For dm < m_tau the long-lived/disappearing regime is covered by separate searches (e.g. 2601.17576) and is out of scope. This is novelty as an experimental projection only."
+}

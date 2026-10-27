@@ -1,0 +1,24 @@
+{
+  "cand_id": "C008",
+  "xsec_sources": [
+    "(i) s-channel Z'->qv qv, gq=0.25, gchi=0.4 (arXiv:2407.08276 sec 3, Fig 5 theory curve; numeric values not extractable from text: UNVERIFIED)",
+    "(ii) Z'+ISR photon, pT(gamma)>150 GeV, MG5 3.5.1, B(Z'->chi chi)=47% (arXiv:2409.04741 sec 2.1); absolute sigma not extracted: UNVERIFIED"
+  ],
+  "yield_estimate": "(i) Pheno claims 5 sigma discovery up to mZ'=5 TeV already with 138 fb-1 at 13 TeV for BRgamma=0.3, rinv=0.3 (2407.08276 abstract, sec 6) -> testable now; HL extends mass/coupling reach. Signal efficiency after cut-based selection ~0.4-0.6% (Table 2). (ii) No limit computed for photon-ISR channel; only S/sqrt(B) with perfect background modelling and Delphes (2409.04741 sec 5). No yield number available: UNVERIFIED.",
+  "backgrounds": "(i) QCD multijet, gamma+jets (single-photon 'jets'), ttbar, Z(nunu)/W+jets (2407.08276 sec 4); instrumental high-NEMF jets (ECAL noise/spikes, beam-induced) which JetID NEMF cut normally removes - not simulated. (ii) gamma+jets irreducible plus jet->photon fakes and fake MET from mismeasured jets (2409.04741 sec 5, explicitly not modelled).",
+  "trigger": "(i) High mT selection makes Run-2 HT/jet triggers fully efficient (2407.08276 sec 5) - unproblematic at HL. (ii) Single-photon trigger ~140 GeV in Run 2 (2409.04741 sec 4.2; ATLAS gamma-jj uses pT>150 GeV, 2403.08547 sec 4); Phase-2 L1/HLT photon thresholds UNVERIFIED but single-photon triggers are retained in Phase-2 menus (UNVERIFIED).",
+  "pileup": "Neither pheno includes pileup. At <PU>~200 neutral energy (photons, pi0) inside jets is not removable by charged-hadron subtraction; NEMF and photon-isolation observables and MET-jet alignment will be degraded; photon-ISR selection uses jets with pT>25 GeV and |eta|<4.5 (2409.04741 Table 2) - very PU-sensitive at HL.",
+  "detector_upgrades": "CMS HGCAL (endcap) high-granularity EM/had separation could improve photon-in-jet ID but changes NEMF/JetID definitions; signal kept central (|Delta eta|<1.5). MTD/HGTD timing helps PU jet rejection for (ii). Barrel ECAL Phase-2 electronics (spike rejection) UNVERIFIED.",
+  "systematics": "No calibration sample for photon-rich jets (tagger/NEMF modelling, pi0/photon content of jets); jet energy scale of EM-rich jets; for (ii) the smooth-fit background (spurious-signal) systematic at low mass with huge gamma+jets statistics - likely limiting at HL.",
+  "projection_docs": "None found: no HL-LHC projection of any SVJ search (1812.07831 has none; INSPIRE 'semivisible/semi-visible' + 'High-Luminosity' 0 hits).",
+  "hl_specific_advantage": "(i) Mass/coupling reach beyond Run-2 for a background-limited mT bump hunt (gain ~sqrt(L)); nothing intrinsically HL-specific. (ii) Higher L helps the ISR-suppressed low-mass channel statistically but background is systematics-limited; HGCAL/timing may help photon-jet ID.",
+  "main_obstacle": "(i) Instrumental high-NEMF fakes and calibration of photon-rich jets once the JetID NEMF cut is removed. (ii) Background modelling (gamma+jets and fake-photon multijet with fake MET) at low mass under PU200, with no worked limit even at Run-2 level.",
+  "feasibility_rating": 3,
+  "confidence": "medium",
+  "caveats": [
+    "(i) rated ~3-4: realistic and already doable with Run-2/3 data; HL-LHC is not required for first test.",
+    "(ii) rated ~2: low-mass leptophobic Z' also constrained by ATLAS gamma-jj (2403.08547, 200-650 GeV) for low rinv; recast needed to define open region.",
+    "All sensitivity claims are Delphes-level pheno without pileup or systematics.",
+    "Cross-section numbers not extracted from figures."
+  ]
+}

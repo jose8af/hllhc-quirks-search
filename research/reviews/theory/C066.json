@@ -1,0 +1,50 @@
+{
+  "cand_id": "C066",
+  "claim": "QED-generated lepton PDFs (LUXlep) make s-channel lepton-quark fusion l q -> LQ -> l q a viable single-LQ production mode whose rate scales as |lambda_lq|^2 x L_{lq}(M). It gives a narrow l+jet resonance in m(lj). Proposed remaining target: resonant e/mu + charm-tagged jet (lambda_ce, lambda_cmu), plus vector-LQ / e-mu-LFV interpretations and a collaboration-level HL-LHC projection; third-generation sub-ideas (b tau, mono-top, mono-jet, beta_R/kappa scans, joint pair+single+nonresonant fit) judged dead or reinterpretation-level.",
+  "framework": "Minimal scalar LQ coupling to one lepton and one quark flavour: L = lambda_lq LQ* (E^c Q^c) + h.c. (2005.06475 Eq. 1; S1-type for up-type, S1~ for down-type in ATLAS 2507.03650), Gamma = |lambda|^2 M/(16 pi). Lepton PDFs from the LUX structure-function method at NLO (2005.06477). Third-generation extensions: U1 vector LQ (4321/Pati-Salam) with beta_L, beta_R, kappa (1901.10480, 2012.11474).",
+  "assumptions": [
+    "Single non-zero LQ coupling (flavour-minimal), BR(LQ -> l q) = 100%.",
+    "Narrow width (valid for lambda <~ 1.5 at 2 TeV per ATLAS 2507.03650 Sec. 5); perturbative couplings (lambda < sqrt(4 pi) ~ 3.5).",
+    "Lepton PDFs (LUXlep, NLO) accurate; quark PDF (c, s, b) at x ~ M/sqrt(s) known.",
+    "For charm target: an LQ coupled to (e or mu) and c without accompanying couplings that would trigger tree-level FCNC (D, K decays)."
+  ],
+  "controlling_parameters": ["M_LQ", "lambda_{lq} (rate ~ lambda^2, width ~ lambda^2 M)", "quark flavour q (PDF luminosity: u > d >> s ~ c > b)", "lepton flavour (mu: worse m(lj) resolution, 6.7-17% vs 1.6-2.3% for e per 2005.06475)", "LQ spin/representation (scalar vs vector U1; chirality)", "c-tagging efficiency vs light/b mistag at pT ~ 1-3 TeV (experimental)"],
+  "robust_predictions": [
+    "Resonant m(lj) peak at M_LQ with second, forward same-flavour lepton from photon splitting (CMS 2608.28377 Sec. 1; ATLAS 2507.03650 SR-2L).",
+    "Lepton-quark luminosities known to <5% over most of the mass range; lu/lg uncertainty dominated by QCD partons (2005.06477 Sec. 6.1).",
+    "Signal scale/PDF uncertainties <10% (u) / <3% (d) for 1-5 TeV (2005.06475 footnote 6).",
+    "u/c (and d/s) couplings give kinematically indistinguishable detector signatures - reinterpretation by flavour rotation (ATLAS 2507.03650 Sec. 1); CMS states s or c sensitivities are bracketed by u-mu and b-mu benchmarks (2608.28377 Sec. 1)."
+  ],
+  "model_dependent_predictions": [
+    "Which flavour coupling is large (no theory preference for e/mu-c specifically after LFU anomalies in b->s ll weakened; UNVERIFIED status statement).",
+    "Vector-LQ resonant rates and kappa-dependence of pair production (U1).",
+    "Interference of resonant, pair and t-channel contributions at large lambda.",
+    "Large-x charm PDF (possible intrinsic charm) controls the l-c rate at M ~ 2-4 TeV - magnitude UNVERIFIED (not quantified in sources read)."
+  ],
+  "constraints_checked": [
+    {"constraint": "Atomic parity violation / Q_W (proton, nuclei)", "source_id": "arXiv:2005.06475 (text near Fig. 3, citing Schmaltz-Zhong 1810.10017); arXiv:2507.03650 Sec. 8.3", "verdict": "|lambda_eq| < 0.17 M/TeV applies to q=u,d only; resonant search beats it only below ~2.3 TeV (ATLAS y_de). Does NOT constrain c or s couplings -> charm region not killed by APV."},
+    {"constraint": "Pair production (coupling-independent)", "source_id": "arXiv:2507.03650 Sec. 1", "verdict": "ATLAS PP excludes ~1.8 TeV (e) / 1.7 TeV (mu) for BR=100% largely flavour independent; resonant mode wins for y_de >~ 0.25, y_smu >~ 0.7, y_b >~ 1.0. For c couplings expect threshold similar to s (~0.7), i.e. O(1) couplings needed."},
+    {"constraint": "Non-resonant Drell-Yan tails (t-channel LQ)", "source_id": "arXiv:2005.06475 (Fig. 3/4 green lines from 1810.10017); arXiv:2507.03650 Sec. 1 (CMS t-channel search to 5 TeV for u,d)", "verdict": "Strong for u,d; for c/s couplings suppressed by sea PDFs. Quantitative c-coupling DY bound UNVERIFIED."},
+    {"constraint": "Flavour (LFV, FCNC)", "source_id": "arXiv:2608.28377 Sec. 1", "verdict": "Comparable couplings to more than one lepton flavour excluded well beyond the probed masses -> e-mu-LFV resonant interpretation (sub-idea) is theoretically disfavoured; single-coupling c-ell LQ is flavour-safe at tree level (general argument)."},
+    {"constraint": "Perturbativity / narrow width", "source_id": "arXiv:2507.03650 Sec. 5 and Sec. 8.3", "verdict": "s-mu / b-l reach quoted at y = 3.5 (near sqrt(4 pi)); widths exceed resolution above y ~1.5 at 2 TeV. A charm channel will likewise only reach high masses for O(1-3) couplings - theoretically marginal region."},
+    {"constraint": "Muon g-2 / B anomalies as motivation", "source_id": "arXiv:2608.28377 Sec. 1", "verdict": "CMS notes the updated SM g-2 prediction is consistent with measurement; motivation for mu-q LQs now rests on generic GUT/flavour arguments."}
+  ],
+  "motivation_strength": 2,
+  "robustness": 4,
+  "theory_uncertainties": [
+    "Lepton PDF: <5% except M/sqrt(s) >~ 0.3 (2005.06477).",
+    "Charm/strange PDF at large x: dominant uncertainty for l-c rate; intrinsic charm unresolved (UNVERIFIED magnitude).",
+    "Parton-shower treatment of incoming leptons (2005.06475 replaced leptons by photons, O(10%) effect; ATLAS/CMS now use POWHEG-RES/NLO).",
+    "Broad-width line shape and interference with t-channel/DY for lambda >~ 1.5.",
+    "W+c (s g -> W c) and Z+c backgrounds at TeV pT are the irreducible c-tagged backgrounds; their high-pT heavy-flavour modelling is uncertain."
+  ],
+  "distinctiveness": "Single hard lepton + single hard jet forming a narrow m(lj) peak, low MET, jet veto, plus a forward soft same-flavour lepton; charm tag would add flavour identification of the LQ coupling (u vs c) which no other production mode gives at the resonance level. However the untagged light-jet category already captures most c-jet signal.",
+  "confidence": "medium",
+  "caveats": [
+    "The charm-tag target is a genuine experimental refinement (flavour identification + background rejection) but the physics gain is limited: theory states sensitivity for c is bracketed by u and b benchmarks and u/c signatures are kinematically identical, so existing light-jet results already constrain lambda_cl after reinterpretation (no such reinterpretation published that I verified).",
+    "Target statement that 2005.06475 projects 'HL reach ~5.7 (4.2) TeV' is imprecise: those masses are where the HL resonant limit would surpass Q_W bounds for lambda_eu (lambda_ed), not a mass reach.",
+    "Review 2505.08738 'remaining opportunities' sentence (Sec. 2/4) predates ATLAS 2507.03650 and refers to LQ searches generally, not specifically resonant production.",
+    "Third-generation sub-ideas not deeply re-evaluated here beyond reading 2012.11474/1901.10480 abstracts and structure; CMS 2308.07826 not read.",
+    "Motivation: no current anomaly singles out e/mu-charm couplings (UNVERIFIED claim on anomaly status)."
+  ]
+}

@@ -1,0 +1,2479 @@
+{
+ "C001": {
+  "cand_id": "C001",
+  "claim": "No ATLAS/CMS search targets quirks (pairs bound by a long infracolor string) via non-helical/coplanar tracks, stopped/out-of-time annihilation, or quirkonium resonance + soft-pion (SUEP-like) tracks; HL-LHC could open this.",
+  "verdict": "NARROWED",
+  "surviving_gap": "A dedicated central-detector (ATLAS/CMS) coplanar non-helical-hit search for colour-neutral EW-charged quirks with mQ above the FASER reach (FASER excludes up to ~179 GeV at Lambda=10 keV, 2607.26195 Fig.5) in the mesoscopic regime Lambda ~ 0.1-100 keV, i.e. the gap between reinterpreted HSCP/OoT (low Lambda) and monojet (high Lambda) limits; requires custom (non-helix) Phase-2 tracking/HLT. Secondary: quirkonium dijet/diboson resonance + low-pT track excess (2506.11192) is open but its HL-LHC viability under 200 PU is unproven; Wgamma/WZ resonance + displaced glueball vertex (2504.02940 Sec.4) is open but low-rate.",
+  "sub_verdicts": [
+   {
+    "part": "Macroscopic strings (Lambda <~ 100 eV): HSCP-like tracks",
+    "verdict": "DIES (indirectly-covered)",
+    "why": "Recast of CMS/ATLAS HSCP and monojet gives TeV-scale bounds on coloured quirks (1703.00912 Table I, Figs.1-2); FASER Fig.5 shows reinterpreted CMS HSCP region; HL-LHC HSCP searches will cover this automatically."
+   },
+   {
+    "part": "Stopped quirks / out-of-time annihilation",
+    "verdict": "DIES (mostly)",
+    "why": "ATLAS stopped-LLP search 2104.03050 (Sec. signal regions, l.~470 of text) added an inclusive SR explicitly 'to preserve acceptance for ... more forward topologies [41-43]' citing the quirk papers incl. Evans-Luty 1811.08903; CMS OoT recast shown in FASER Fig.5. Residual: no quirk interpretation published."
+   },
+   {
+    "part": "Mesoscopic regime, EW quirks, coplanar non-helical hits in ATLAS/CMS tracker",
+    "verdict": "SURVIVES (proposed-not-searched)",
+    "why": "No ATLAS/CMS/LHCb search found; review 2606.30760 (Sec. on quirks, ~p.39) states 'there are no dedicated LHC searches'; FASER 2607.26195 is the only LHC search and covers only mQ<~180 GeV forward; LHCb VELO proposal 2601.09023 is a competitor."
+   },
+   {
+    "part": "Microscopic regime: quirkonium resonance + soft-pion/SUEP tracks",
+    "verdict": "NARROWED",
+    "why": "Plain resonance part covered by ATLAS/CMS dijet, Wgamma, WZ, gammagamma searches (2504.02940 Sec.3 Figs.4-6; 2506.11192 uses ATLAS dijet). Only the track-anomaly-tagged resonance is uncovered (2506.11192 p.5); authors state study has no pile-up and 'will have to be revisited for the HL-LHC'."
+   },
+   {
+    "part": "Natural (folded-SUSY) squirks: diboson resonance + displaced glueball vertex",
+    "verdict": "SURVIVES (theory-explored-untested)",
+    "why": "2504.02940 Sec.4 proposes it for HL-LHC; no experimental implementation found; rate suppressed by hard hidden-gluon emission."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:1703.00912",
+    "what": "Reinterprets CMS/ATLAS HSCP and monojet searches for quirks; TeV-range bounds for Lambda ~1-100 eV (abstract; Table I gives mass limits up to ~1.8 TeV for coloured fermion quirks)",
+    "location": "abstract, Figs.1-2, Table I"
+   },
+   {
+    "id": "arXiv:2607.26195",
+    "what": "FASER first LHC quirk search: excludes EW quirks for 300 eV<Lambda<100 keV, masses up to 179 GeV at Lambda=10 keV; Fig.5 also shows reinterpreted ATLAS/CMS monojet, CMS HSCP, CMS OoT regions",
+    "location": "abstract, Fig.5, text near Fig.4"
+   },
+   {
+    "id": "arXiv:2104.03050",
+    "what": "ATLAS stopped-particle search includes an inclusive SR motivated by quirk topologies (cites 0805.4642, 1708.02243, 1811.08903)",
+    "location": "Sec. on signal regions (SRIncl)"
+   },
+   {
+    "id": "arXiv:2504.02940",
+    "what": "Microscopic EW quirk bound states already probed by ATLAS/CMS Wgamma/WZ/gammagamma resonance searches; projected to HL-LHC by authors",
+    "location": "Sec.3, Figs.4-6 and HL projection text (~p.15)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2607.26195",
+    "collab": "FASER",
+    "covers": "EW quirks, Lambda 0.3-100 keV, forward slow pairs, mQ up to ~179 GeV",
+    "region_gap": "central production, mQ > ~180 GeV, coloured quirks"
+   },
+   {
+    "id": "arXiv:2104.03050",
+    "collab": "ATLAS",
+    "covers": "stopped LLP decays incl. quirk-motivated inclusive SR",
+    "region_gap": "no quirk interpretation; mesoscopic tracks not targeted"
+   },
+   {
+    "id": "arXiv:1703.00912 (recast of CMS HSCP 12.9 fb-1 and monojet)",
+    "collab": "pheno recast of CMS/ATLAS",
+    "covers": "Lambda <~100 eV and large-Lambda monojet",
+    "region_gap": "intermediate Lambda for which tracks are neither HSCP-like nor invisible"
+   }
+  ],
+  "hl_projection_docs": "No ATLAS/CMS HL-LHC projection for quirks found. CERN HL/HE-LHC BSM Yellow Report 1812.07831: zero occurrences of 'quirk' in text. LLP white paper 1903.04497 Sec. on quirks: 'No dedicated searches for quirks exist at the LHC' (summary bullet ~l.4069 of text). Pheno HL projections: 2504.02940 (natural quirks, HL-LHC), 1708.02243 (tracking, 50 PU), FASER2/FPF 2203.05090, 2404.13814.",
+  "showstoppers": "(1) Requires non-standard (non-helical) track finding; Phase-2 L1 track trigger and offline tracking assume helices - needs custom HLT path (1708.02243 itself proposes HLT path). (2) Quirk dynamics (energy loss, glueball de-excitation) non-perturbative: large signal-modelling systematics (2606.30760 quirk section). (3) Soft-track resonance tagging degrades with 140-200 PU; 2506.11192 used no pile-up. (4) EW quirk cross sections small at mQ ~ TeV. (5) Strong competition from FASER/FASER2 and LHCb VELO (2601.09023) for low-pT quirk pairs.",
+  "queries_run": [
+   "INSPIRE: t quirk and (collaboration:ATLAS or collaboration:CMS or collaboration:LHCb)",
+   "INSPIRE: abstracts.value:\"quirk\" and (collaboration:ATLAS or collaboration:CMS)",
+   "INSPIRE: abstracts.value:\"quirks\" and (collaboration:ATLAS or collaboration:CMS)",
+   "INSPIRE: t quirks and date > 2018",
+   "INSPIRE: t quirk and date > 2018",
+   "INSPIRE: t quirky and date > 2008",
+   "INSPIRE: t quirkonium",
+   "INSPIRE: abstracts.value:\"quirk\" and abstracts.value:\"recast\"",
+   "INSPIRE: abstracts.value:\"quirks\" and abstracts.value:\"monojet\"",
+   "INSPIRE: abstracts.value:\"quirk\" and abstracts.value:\"high-luminosity\"",
+   "INSPIRE: abstracts.value:\"infracolor\"",
+   "INSPIRE: abstracts.value:\"non-helical\" or abstracts.value:\"nonhelical\"",
+   "INSPIRE: abstracts.value:\"kinked tracks\" and (collaboration:CMS or collaboration:ATLAS)",
+   "INSPIRE: t \"underlying event\" and t \"new physics\" and date < 2012",
+   "INSPIRE: collaboration:ATLAS and t stopped",
+   "INSPIRE citers (CMS/ATLAS/LHCb filter) of 0805.4642, 1106.2569, 1708.02243, 1811.08903",
+   "INSPIRE all citers of 2410.00269, 2601.09023, 1911.02223, 2504.02940, 2506.11192, 1703.00912",
+   "Full-text grep 'quirk' in 1812.07831 (HL-LHC YR) and 1903.04497 (LLP white paper)",
+   "WebSearch: CMS OR ATLAS search quirks non-helical tracks 2025 2026"
+  ],
+  "confidence": "medium",
+  "notes": "Bundle merged 6 scout seeds. Terminology checked: quirk, quirky, quirkonium, infracolor, non-helical, kinked tracks; ATLAS/CMS HSCP and stopped-particle papers do not carry quirk interpretations but are used in recasts. ATLAS photon+jet (1309.3230, 1112.3580) and CMS fractional-charge (1210.2311) cite Kang-Luty; the photon+jet abstracts interpret only q* and QBH (read); 1210.2311 not read in full. Absence of CMS/ATLAS quirk search corroborated by 2606.30760 but CDS internal notes not checked (UNVERIFIED)."
+ },
+ "C003": {
+  "cand_id": "C003",
+  "claim": "SUEP searches cover only prompt, resonant (ggF/VH-produced scalar) regimes; displaced (long-lived dark meson) SUEP and non-resonant/pair-produced mediator SUEP are unsearched and could be targeted at HL-LHC with L1 tracking/scouting.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Displaced, hadronically-decaying, isotropic (non-jet-like) SUEP with dark-meson c*tau ~ mm-m from ggF/VH-produced mediators, i.e. high-multiplicity soft displaced-track/vertex spray not passing emerging-jet jet requirements and not muon-rich; plus an HL-LHC (Phase-2 L1-track/scouting) projection of the prompt program. Pair-produced/non-resonant SUEP survives only as theory-explored-untested with no worked benchmark.",
+  "sub_verdicts": [
+   {
+    "part": "Prompt resonant SUEP (ggF, WH/ZH, scouting, muon-rich)",
+    "verdict": "DIES (well-covered)",
+    "why": "CMS 2403.05311 (ggF), 2607.09621 (scouting, 'most stringent limits to date' on ggF heavy scalars), 2604.05996 (W/Z-associated, 'first time'), ATLAS 2605.20015 (muons, mS 125-750 GeV)."
+   },
+   {
+    "part": "Displaced SUEP, leptonic (dark photon -> mu mu) from Higgs decay",
+    "verdict": "DIES (indirectly-covered)",
+    "why": "CMS 2511.11888: low-mass HV dark showers with non-prompt muon pairs from Higgs decay (B-parking/non-prompt muon triggers); CMS dark QCD summary 3137923 cites B-parking results."
+   },
+   {
+    "part": "Displaced SUEP, hadronic",
+    "verdict": "NARROWED",
+    "why": "CMS 2403.05311 (l.87-90 of text) explicitly states a displaced decay 'would result in an emerging jet signature' - i.e. collaboration regards it as covered by EJ searches (CMS 2403.01556, ATLAS 2510.12347, 2505.02429); CMS muon-detector-shower searches recast for HV (2505.03058) cover long lifetimes. Residual: isotropic soft displaced spray with low-pT tracks failing jet thresholds; no search found."
+   },
+   {
+    "part": "Non-resonant / pair-produced mediators to SUEP",
+    "verdict": "SURVIVES (proposed-not-searched, weakly motivated)",
+    "why": "Deferred in 1612.00850 (text l.347); CMS 3185627 non-resonant search covers semivisible-jet (small 't Hooft) regime only; no SUEP benchmark for pair production found."
+   },
+   {
+    "part": "HL-LHC projection",
+    "verdict": "SURVIVES (LHC-not-projected-to-HL)",
+    "why": "No CMS/ATLAS SUEP HL-LHC projection found; only pheno trigger studies 2203.07314 (Sec.2.2, track-trigger thresholds) and 2306.13595."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2403.05311",
+    "what": "CMS: 'A prompt decay is chosen rather than a displaced decay, which would result in an emerging jet signature' - displaced SUEP mapped to EJ by the collaboration",
+    "location": "Sec.1/2 signal model (text l.87-90)"
+   },
+   {
+    "id": "arXiv:2511.11888",
+    "what": "CMS search for low-mass hidden-valley dark showers from Higgs decay with non-prompt muon pairs (41.6 fb-1, 2018 non-prompt muon triggers)",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2607.09621",
+    "what": "CMS scouting SUEP, 127 fb-1, lower HT threshold, most stringent ggF limits; prompt dark photons only",
+    "location": "abstract; Sec.2 (l.100-105: 'fully visible, prompt SUEP')"
+   },
+   {
+    "id": "arXiv:2505.03058",
+    "what": "Pheno recast: CMS muon end-cap shower search is broadly sensitive to hidden-valley parameter variations (long-lived dark hadrons)",
+    "location": "abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2403.05311",
+    "collab": "CMS",
+    "covers": "prompt ggF SUEP, boosted, high-HT triggers",
+    "region_gap": "displaced dark mesons, HL-LHC"
+   },
+   {
+    "id": "arXiv:2604.05996",
+    "collab": "CMS",
+    "covers": "WH/ZH -> SUEP, prompt",
+    "region_gap": "displaced"
+   },
+   {
+    "id": "arXiv:2605.20015",
+    "collab": "ATLAS",
+    "covers": "prompt muon-rich SUEP, mS 125-750 GeV",
+    "region_gap": "hadronic/displaced"
+   },
+   {
+    "id": "arXiv:2510.12347 / arXiv:2403.01556",
+    "collab": "ATLAS / CMS",
+    "covers": "emerging jets (multiple displaced vertices in jets)",
+    "region_gap": "isotropic, soft (non-jet) displaced spray"
+   }
+  ],
+  "hl_projection_docs": "None from CMS/ATLAS found (INSPIRE abstracts SUEP+HL-LHC/Phase-2 returned only 2107.12379; WebSearch found none). Pheno: 2203.07314 'Track-Based Triggers for Exotic Signatures' (SUEP benchmark, HL-LHC L1 track trigger thresholds); 2306.13595 (autoencoder real-time SUEP). CMS Phase-2 L1 TDR (INSPIRE 1819968) cites 1612.00850 - content not read (UNVERIFIED).",
+  "showstoppers": "(1) Pile-up: SUEP signal 'closely resembles pile-up' (1612.00850 abstract); at 140-200 PU soft-track multiplicity discrimination degrades - needs MTD timing/vertex association, unproven. (2) Displaced soft tracks: Phase-2 L1 tracking is prompt-oriented (pT>2-3 GeV, small d0), so L1 acceptance for soft displaced spray is poor (2203.07314 Sec.2.2 notes low-pT threshold is essential for SUEP). (3) Hadronization modelling of SUEP is large uncertainty. (4) Rapidly moving field: three CMS + one ATLAS SUEP results in 2024-26 - risk of being scooped by Run-3 analyses.",
+  "queries_run": [
+   "INSPIRE: t \"soft unclustered energy\"",
+   "INSPIRE: t SUEP or t SUEPs",
+   "INSPIRE: abstracts.value:\"soft unclustered energy\" and (collaboration:CMS or collaboration:ATLAS or collaboration:LHCb)",
+   "INSPIRE: abstracts.value:\"SUEP\" and abstracts.value:\"displaced\"",
+   "INSPIRE: abstracts.value:\"SUEP\" and (abstracts.value:\"HL-LHC\" or abstracts.value:\"high-luminosity\" or abstracts.value:\"Phase-2\")",
+   "INSPIRE: abstracts.value:\"soft bombs\"",
+   "INSPIRE: abstracts.value:\"SUEP\" and date > 2023",
+   "INSPIRE: abstracts.value:\"isotropic\" and abstracts.value:\"dark mesons\" and abstracts.value:\"long-lived\"",
+   "INSPIRE: abstracts.value:\"spherical\" and abstracts.value:\"hidden valley\" and abstracts.value:\"pair\"",
+   "INSPIRE: collaboration:CMS and abstracts.value:\"dark showers\" and date > 2022",
+   "INSPIRE: collaboration:ATLAS and abstracts.value:\"dark showers\" and date > 2022",
+   "INSPIRE: collaboration:CMS and abstracts.value:\"hidden valley\" and date > 2023",
+   "INSPIRE: collaboration:CMS and t \"muon detector\" and t long-lived",
+   "INSPIRE: abstracts.value:\"high-multiplicity\" and abstracts.value:\"displaced vertices\" and abstracts.value:\"dark\" and date > 2021",
+   "INSPIRE citers of 1612.00850 (CMS/ATLAS/LHCb; +displaced; +long-lived)",
+   "INSPIRE all citers of 2403.05311",
+   "Full-text grep: 2403.05311, 2605.20015, 2607.09621 (lifetime/displaced), 1612.00850 (pile-up, future work), 2203.07314 (SUEP)",
+   "WebSearch: soft unclustered energy patterns HL-LHC projection CMS Phase-2 displaced SUEP search"
+  ],
+  "confidence": "medium",
+  "notes": "All four experimental SUEP results read at abstract level; lifetime assumptions checked in text for CMS ggF, CMS scouting and ATLAS muon SUEP (all prompt). CMS W/Z-associated paper (2604.05996) lifetime not checked (UNVERIFIED, assumed prompt). Thesis INSPIRE 3131301 has no abstract; not read."
+ },
+ "C005": {
+  "cand_id": "C005",
+  "claim": "Dark showers / emerging jets with GeV-scale (above a few GeV) dark pions are largely unconstrained, especially for Higgs-portal production, EW pair-produced dark-quark mediators, gluon-rich long-lived dark mesons, and regions hidden by trigger blind spots - an HL-LHC opportunity.",
+  "verdict": "NARROWED",
+  "surviving_gap": "CMS-side (ATLAS already preparing one) Higgs-portal (ggF/VBF/VH) emerging-jet/dark-shower search with hadronically decaying dark mesons of ~2-20 GeV at short proper decay lengths (~1-100 mm, in the tracker), where CMS muon-detector-shower limits (2402.01898) lose sensitivity and CMS displaced-jet searches (2409.10806) are interpreted only for H->SS (two LLPs), using multi-displaced-vertex counting and Phase-2 displaced L1/HLT tracking. A pheno HL-LHC projection already exists (2512.24814), so the residual novelty is experimental implementation only.",
+  "sub_verdicts": [
+   {
+    "part": "(a) Dark pion masses above a few GeV largely unconstrained (Snowmass 2203.09503 quote)",
+    "verdict": "DIES (outdated claim)",
+    "why": "Since 2022: CMS 2402.01898 dark-shower interpretation for LLP masses 2-20 GeV, cT 1 mm-10 m, five portals; ATLAS EJ 2505.02429/2510.12347 with dark pion 10-20 GeV, cT 1-1000 mm; CMS EJ 2403.01556; CMS 2511.11888 low-mass muonic."
+   },
+   {
+    "part": "(b) EW pair production of heavy dark-quark mediators",
+    "verdict": "DIES",
+    "why": "Source paper 2110.10691 (Conclusions, text l.2036-2040): Higgsino-search reinterpretation gives M >~ 1.1 TeV and 'The improvement expected in the high-luminosity phase is mild ... direct production of the mediators would need to wait for a future collider'. Related EW dark-meson recasts 2507.13430 (disappearing tracks ~1.2 TeV) and ATLAS dark mesons to tb 2405.20061."
+   },
+   {
+    "part": "(c) Emerging jets via Higgs portal",
+    "verdict": "NARROWED / pre-empted for ATLAS",
+    "why": "ATLAS proceeding INSPIRE 3201494 (Nuovo Cim. C 49 (2026) 131, DOI 10.1393/ncc/i2026-26131-3) 'reports a preliminary estimate of the exclusion reach of a search for Emerging Jets arising from a Higgs portal at the ATLAS experiment' - analysis in preparation. CMS 2402.01898 already sets 'the first LHC limits on models of dark showers produced via Higgs boson decay', B(H->dark quarks) down to 2e-3 (Sec.1, Sec. results p.24, Figs.18-22)."
+   },
+   {
+    "part": "(d) Trigger blind spots at Run 3 / HL-LHC",
+    "verdict": "NARROWED (infrastructure, not an analysis)",
+    "why": "CMS Run-3 dedicated displaced-jet triggers implemented in 2022 (2409.10806 Sec.4); CMS HL-LHC displaced-track reconstruction work (INSPIRE 3206256, 2609.26695, title only); pheno trigger studies 2103.08620, 2203.07314, 2211.05720. Trigger R&D is not a standalone physics-analysis gap."
+   },
+   {
+    "part": "(e) Gluon-rich ~GeV long-lived dark mesons from Higgs decay; off-shell h*->SS",
+    "verdict": "NARROWED",
+    "why": "Gluon portal explicitly covered for cT 1 mm-10 m, m 2-20 GeV by CMS 2402.01898 (Fig.19); 2512.24814 already gives HL-LHC tracker+MDS projections for this exact scenario. Off-shell h*->SS not checked in detail (UNVERIFIED)."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2402.01898",
+    "what": "CMS muon-detector showers: dark-shower models from H decay, five portals (gluon, photon, vector, Higgs, dark-photon), LLP mass 2-20 GeV, cT 1 mm-10 m; 'first LHC limits on models of dark showers produced via Higgs boson decay', B(H->dark quarks) as low as 2e-3",
+    "location": "abstract; Sec.1 (p.2-3); Sec.2 signal models (p.5); Sec. results p.24, Figs.18-22"
+   },
+   {
+    "id": "INSPIRE:3201494 (DOI 10.1393/ncc/i2026-26131-3)",
+    "what": "ATLAS proceeding: preliminary exclusion reach of an emerging-jet search from a Higgs portal - ATLAS analysis in preparation",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2110.10691",
+    "what": "EW mediators already >~1.1 TeV from Higgsino recast; HL-LHC improvement 'mild'",
+    "location": "Conclusions (text l.2036-2040)"
+   },
+   {
+    "id": "arXiv:2512.24814",
+    "what": "Pheno HL-LHC (14 TeV) projection for gluon-enriched dark jets from Higgs decays in tracker (EJ) and CMS muon system, with recast of CMS EJ and MDS",
+    "location": "abstract; Sec.III-IV (text l.453-470, 655-870)"
+   },
+   {
+    "id": "arXiv:2505.02429",
+    "what": "ATLAS 13.6 TeV EJ: s-channel Z' and t-channel Phi, dark pion cT 5-50 mm (abstract); Z' up to 2.5 TeV excluded",
+    "location": "abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2402.01898",
+    "collab": "CMS",
+    "covers": "Higgs-portal dark showers, long-lived mesons in muon system, 2-20 GeV",
+    "region_gap": "short cT (mm-cm) inside tracker"
+   },
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "Run-3 displaced jets, H->SS, m<60 GeV, cT<1 m, new triggers",
+    "region_gap": "not interpreted for multi-LLP dark showers (recastable)"
+   },
+   {
+    "id": "arXiv:2403.01556 / arXiv:2510.12347 / arXiv:2505.02429",
+    "collab": "CMS / ATLAS / ATLAS",
+    "covers": "emerging jets, QCD-pair-produced t-channel mediators and Z'",
+    "region_gap": "Higgs-portal production (being pursued by ATLAS, INSPIRE 3201494)"
+   },
+   {
+    "id": "arXiv:2511.11888",
+    "collab": "CMS",
+    "covers": "Higgs-portal dark showers with displaced dimuons (low mass)",
+    "region_gap": "hadronic decays"
+   }
+  ],
+  "hl_projection_docs": "Pheno: 2512.24814 (HL-LHC gluon-rich dark jets from H decay, tracker + CMS MDS); 2307.04847 (EJ probes, HL-oriented); 2110.10691 (Run3 / HL statements). No CMS/ATLAS HL-LHC projection for dark showers found (not exhaustive; CMS/ATLAS FTR/PUB notes not searched on CDS - UNVERIFIED).",
+  "showstoppers": "(1) Pre-emption: ATLAS Higgs-portal EJ analysis already in preparation (3201494); CMS MDS limits already reach B(H->dark quarks) ~2e-3. (2) Higgs-portal events are soft (m_H=125 GeV split into many mesons): L1 HT/jet thresholds at 200 PU are the bottleneck; needs VBF/VH tags or L1 displaced tracking. (3) Hadronization modelling uncertainty for dark showers is large (2505.03058 abstract urges caution). (4) Multi-DV fake background from material/merged vertices grows with pile-up.",
+  "queries_run": [
+   "INSPIRE: t \"emerging jets\" and (collaboration:CMS or collaboration:ATLAS or collaboration:LHCb)",
+   "INSPIRE: t \"dark jets\" and (collaboration:CMS or collaboration:ATLAS)",
+   "INSPIRE: t \"dark shower\" or t \"dark showers\"",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"dark quantum chromodynamics\"",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"Higgs boson\" and abstracts.value:\"dark quarks\"",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"hidden sector\" and abstracts.value:\"Higgs\" and abstracts.value:\"displaced jets\" and date > 2020",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"dark mesons\"",
+   "INSPIRE: collaboration:CMS and t \"displaced jets\" and date > 2019",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"emerging jets\" and abstracts.value:\"Higgs\"",
+   "INSPIRE: abstracts.value:\"emerging jets\" and abstracts.value:\"electroweak\"",
+   "INSPIRE citers of 2103.01238 (CMS/ATLAS)",
+   "INSPIRE all citers of 2110.10691",
+   "WebSearch: ATLAS \"dark jets\" Higgs portal search 2026 emerging jets Higgs boson decay dark quarks",
+   "WebFetch: arXiv 2601.13033 (ATLAS dark-sector proceedings)",
+   "WebFetch: INSPIRE record 3201494",
+   "Full text: 2402.01898 (dark shower models), 2409.10806, 2512.24814, 2110.10691"
+  ],
+  "confidence": "high",
+  "notes": "Bundle of 7 seeds split into 5 parts. The strongest kill is the CMS MDS dark-shower interpretation (2402.01898), which the scouts did not list. Semi-visible jet variants are reviewed under C008."
+ },
+ "C008": {
+  "cand_id": "C008",
+  "claim": "Semi-visible jets enriched in leptons, taus or photons, or produced with ISR (jet/photon) as recoil handle, are unsearched or under-searched at CMS/ATLAS and would gain at HL-LHC.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(i) Photon-enriched SVJs (prompt non-isolated photons inside SVJs, high neutral-EM-fraction jets that fail standard jet ID) from s-channel Z' - proposed-not-searched (pheno only, 2407.08276); (ii) photon-ISR-tagged low-mass (~200-700 GeV) Z' -> SVJ SVJ - proposed-not-searched (2409.04741). Jet-ISR boosted SVJ appears to be in preparation at CMS (thesis INSPIRE 2751239), so only the photon-ISR variant is clean. Lepton- and tau-enriched SVJ are taken.",
+  "sub_verdicts": [
+   {
+    "part": "Lepton-enriched SVJ (s-channel)",
+    "verdict": "DIES",
+    "why": "CMS 2608.05323 (EXO-24-029): resonant lepton-enriched SVJ, both SVJl (all flavours) and SVJtau, 138 fb-1, GNN tagger (abstract); earlier PAS INSPIRE 2963506."
+   },
+   {
+    "part": "Tau-enriched SVJ",
+    "verdict": "DIES",
+    "why": "CMS 2608.05323 SVJtau scenario; CMS-PAS-EXO-26-005 (INSPIRE 3136606) dedicated tau-enriched s-channel search."
+   },
+   {
+    "part": "Non-resonant / t-channel hadronic SVJ",
+    "verdict": "DIES (well-covered)",
+    "why": "ATLAS 2305.18037 (t-channel, mediator to 2.7 TeV at unit coupling), CMS INSPIRE 3185627 (non-resonant, GNN + autoencoder), ATLAS 2505.01634 (resonant + anomaly)."
+   },
+   {
+    "part": "Jet-ISR boosted SVJ (low-mass Z')",
+    "verdict": "NARROWED / likely pre-empted",
+    "why": "CMS dissertation INSPIRE 2751239 develops a boosted SVJ search recoiling against an ISR jet for mZ' <= 550 GeV in preparation for Run-2 data; no public CMS result found (status UNVERIFIED)."
+   },
+   {
+    "part": "Photon-ISR SVJ",
+    "verdict": "SURVIVES (proposed-not-searched)",
+    "why": "Only pheno 2409.04741 (Sec.1: 'The ISR production channel has not yet been explored in the context of dark QCD searches') and 2604.20456 (r_inv regression in photon+SVJ). No CMS/ATLAS result found."
+   },
+   {
+    "part": "Photon-enriched SVJ",
+    "verdict": "SURVIVES (proposed-not-searched)",
+    "why": "Only pheno 2407.08276; same authors' lepton/tau proposals (2206.03909, 2212.11523) were turned into CMS searches, so pre-emption by CMS is plausible (speculative)."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2608.05323",
+    "what": "CMS resonant lepton-enriched SVJ search incl. tau-enriched scenario, 138 fb-1",
+    "location": "abstract"
+   },
+   {
+    "id": "INSPIRE:3136606 (CMS-PAS-EXO-26-005)",
+    "what": "CMS s-channel tau-enriched SVJ search, 138 fb-1",
+    "location": "abstract"
+   },
+   {
+    "id": "INSPIRE:2751239",
+    "what": "CMS thesis: boosted SVJ recoiling against ISR jet, mZ' <= 550 GeV, developed for Run-2 CMS data",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2305.18037 / INSPIRE:3185627",
+    "what": "ATLAS and CMS non-resonant (t-channel) SVJ searches",
+    "location": "abstracts"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2608.05323",
+    "collab": "CMS",
+    "covers": "Z' -> lepton/tau-enriched SVJs, MET aligned with jets containing non-isolated leptons",
+    "region_gap": "photons-enriched; low-mass via ISR"
+   },
+   {
+    "id": "arXiv:2112.11125",
+    "collab": "CMS",
+    "covers": "resonant hadronic SVJ (high-mass Z', dijet+MET triggers)",
+    "region_gap": "mZ' below trigger thresholds (needs ISR)"
+   },
+   {
+    "id": "arXiv:2505.01634",
+    "collab": "ATLAS",
+    "covers": "resonant SVJ + anomalous signatures; leptons vetoed (text l.603)",
+    "region_gap": "photon-rich, ISR-tagged"
+   }
+  ],
+  "hl_projection_docs": "No CMS/ATLAS HL-LHC SVJ projection found (INSPIRE abstracts semivisible + HL-LHC/high-luminosity/3000 returned none relevant). CONTUR study 2502.11237 constrains SVJ with existing measurements (does not treat photon variant as covered; only cites it).",
+  "showstoppers": "(1) Photon-enriched SVJs have high neutral-EM fraction and fail standard jet ID / photon isolation (2407.08276 abstract) - requires dedicated jet ID and trigger studies; at HL-LHC with 200 PU, non-isolated photon/jet-ID and MET-alignment variables degrade. (2) Signal efficiency in the proposed photon-SVJ selection is ~0.4-0.6% (2407.08276 cut-flow table, last rows) - small. (3) Photon-ISR channel pays alpha_em suppression and single-photon trigger thresholds (~140 GeV in Run 2 per 2409.04741 l.829; Phase-2 thresholds UNVERIFIED). (4) Model dependence: photon enrichment needs an extra light pseudoscalar (ALP) portal - ad-hoc benchmark. (5) Pre-emption: CMS group that proposed lepton/tau variants executed them; ISR-jet variant in CMS thesis.",
+  "queries_run": [
+   "INSPIRE: t \"semivisible\" or t \"semi-visible\"",
+   "INSPIRE: (collaboration:CMS or collaboration:ATLAS) and (abstracts.value:\"semivisible\" or abstracts.value:\"semi-visible\")",
+   "INSPIRE: collaboration:CMS and abstracts.value:\"semivisible\" and abstracts.value:\"boosted\"",
+   "INSPIRE: abstracts.value:\"semivisible\" and abstracts.value:\"photon\" and (collaboration:CMS or collaboration:ATLAS)",
+   "INSPIRE: (abstracts.value:\"semi-visible\" or abstracts.value:\"semivisible\") and (abstracts.value:\"HL-LHC\" or abstracts.value:\"high-luminosity\" or abstracts.value:\"3000\")",
+   "INSPIRE: abstracts.value:\"dark\" and abstracts.value:\"jets\" and abstracts.value:\"non-isolated photons\"",
+   "INSPIRE all citers of 2409.04741 and 2407.08276",
+   "WebSearch: CMS search boosted semivisible jets initial state radiation low mass Z' EXO 2025 2026",
+   "WebSearch: \"semivisible jets\" CMS \"initial-state radiation\" boosted search leptophobic Z' below 550 GeV",
+   "WebFetch: CMS EXO public results twiki; CMS EXO publications page",
+   "Full text: 2505.01634, 2409.04741, 2407.08276, 2502.11237, 2512.16343 (CMS dark-sector proceedings)"
+  ],
+  "confidence": "medium",
+  "notes": "WebFetch of CMS EXO pages is lossy (did not list 2112.11125), so absence of a CMS boosted/ISR SVJ PAS is UNVERIFIED. Photon-ISR + SVJ overlaps in phase space with photon+MET (monophoton) at r_inv->1 and with ISR-photon low-mass dijet resonance searches at r_inv->0; the residual gap is intermediate r_inv only."
+ },
+ "C009": {
+  "cand_id": "C009",
+  "claim": "No CMS/ATLAS analysis targets semi-visible / semi-dark Higgs decays (h->Z(ll)X with X invisible, or non-resonant h->ll+MET / jj+MET from dark-sector EFT operators), so a dedicated HL-LHC search would fill a gap left by H->invisible and H->gamma+gamma_D searches.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(a) h->Z X(inv) [semi-dark, resonant Z]: no dedicated CMS/ATLAS search found; it is a gap, but the physics room is small. The best published HL-LHC phenomenology study (2206.01214, ZH->4l+MET, NN) reaches BR(h->ZX)xBR(X->inv) ~ 2.8 x BR(h->Z nu nu)_SM ~ 1.5% at 2 sigma. That is only about 2-8x stronger than the indirect bound from HL-LHC H->inv (h->Z(nu nu)X counts as invisible) and from the Higgs-rate global fits. What survives is a dedicated h->Z+MET search that combines the ZH(4l+MET), VBF and boosted ggF categories and is interpreted for ALP/2HDM+a/dark photon X in m_X ~ 1-30 GeV. Its value is modest unless several production modes are combined. (b) Non-resonant h->ll+MET / jj+MET (DSMEFT, 2511.09778): no experimental search found, but the claimed HL-LHC reach is not credible as it stands (see showstoppers). It needs a re-study with the full background set before it can count as an analysis gap.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:1902.00134",
+    "what": "The HL-LHC Yellow Report (WG2) uses a combined VBF+VH projected limit mu*BR_inv <= 2.5% (Eq. 126). Since BR(Z->nu nu) ~ 20%, h->ZX with X invisible feeds h->inv at ~0.2*BR(h->ZX). That indirectly caps BR(h->ZX) at roughly 12% (my estimate, not in the source). The Higgs-rate global fit (Table 78, values not read: UNVERIFIED) also constrains BR(h->ZX) generically. So the direct search competes with existing HL-LHC projections over only a narrow window.",
+    "location": "Sec. 6.2.1 Eq. (126); Sec. 6.2.2 / Table 78"
+   },
+   {
+    "id": "arXiv:2206.01214",
+    "what": "The HL-LHC phenomenology for the semi-dark mode already exists: ZH, 4l+MET, NN analysis, 2 sigma reach BR x BR = 2.8 x BR(h->Z nu nu)_SM for m_X = 1 GeV at 3 ab^-1 (BR(h->Z nu nu)_SM = 5.4e-3 quoted). The seed's 'quantitative study is future work' quote (2511.09778) is therefore partly superseded for the resonant-Z case.",
+    "location": "Sec. III, Figs. 2-3, text near Fig. 3"
+   },
+   {
+    "id": "arXiv:2511.09778",
+    "what": "Background list for ZH(Z->jj), H->ll+MET (Table II b) is only ZH-lep, ZH-W, ZZ, ZZZ, WWZ, ttZ, tWZ, tt-inc. It omits Z/gamma*->tautau+jets, WW+jets, WZ and W+jets fakes. All of these naturally give m_ll<60 GeV, MT(ll,MET)<125 GeV and modest MET, the very region the signal selects. The quoted sigma_bkg = 1.5 fb after cuts is therefore not reliable. The same region is also the SM H->WW*->l nu l nu phase space.",
+    "location": "Sec. V.B, Table II, text after Table I"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2111.08372",
+    "collab": "ATLAS",
+    "covers": "ZH, Z->ll, H->invisible (and DM), BDT; full Run 2",
+    "region_gap": "Leptons are from the associated Z. It does not target h->Z(ll)X, where the dilepton comes from the Higgs decay and MT(ll,MET)<m_h."
+   },
+   {
+    "id": "arXiv:1908.02699 / arXiv:2212.09649",
+    "collab": "CMS / ATLAS",
+    "covers": "ZH, H->gamma + gamma_D (massless dark photon), ll+gamma+MET",
+    "region_gap": "Photon, not Z, accompanies the invisible state. This is the closest semi-visible Higgs analysis by topology and shows the analysis strategy (MT endpoint) is standard."
+   },
+   {
+    "id": "arXiv:2312.01942, arXiv:2411.16361",
+    "collab": "ATLAS",
+    "covers": "h->Za with a->gamma gamma and a->hadrons (light a)",
+    "region_gap": "a decays visibly. a->invisible (or long-lived beyond the detector) is not covered."
+   },
+   {
+    "id": "arXiv:2111.01299",
+    "collab": "CMS",
+    "covers": "H->Z Z_d / Z_d Z_d -> 4l, low-mass dilepton resonances",
+    "region_gap": "Visible Z_d only."
+   },
+   {
+    "id": "arXiv:2301.10731",
+    "collab": "ATLAS",
+    "covers": "H->invisible combination, Run 2",
+    "region_gap": "Fully invisible only; indirectly constrains h->Z(nu nu)X."
+   }
+  ],
+  "hl_projection_docs": "arXiv:1902.00134 (HL-LHC YR WG2 Sec. 6: H->inv projections, indirect undetected-BR fits); arXiv:2206.01214 (phenomenology HL-LHC projection for h->ZX, 300 fb^-1 and 3 ab^-1). I found no CMS/ATLAS Phase-2 projection note specific to h->Z+invisible.",
+  "showstoppers": "Rate: the clean ZH->4l+MET channel has only ~1.4 fb selected signal for BR=1 (2206.01214), so ~20 events per 1% BR at 3 ab^-1 before NN. Background: ggF h->Z(ll)X has low MET (<~40 GeV), so DY+jets with fake MET under 140-200 PU dominates, and Phase-2 MET resolution is critical. Model: the DSMEFT h->ll+MET study omits the dominant tautau/WW backgrounds. The O_e phi-type operators are unitarity-limited per the paper's own Fig. 9. Competition: h->inv and coupling fits already bound the same BR at the few-percent level.",
+  "queries_run": [
+   "inspire: cites arxiv:2206.01214",
+   "inspire: cites arxiv:2511.09778",
+   "inspire: cites arxiv:2607.09344",
+   "inspire: (collaboration:CMS or collaboration:ATLAS) and t higgs and t invisible and t Z",
+   "inspire: (CMS or ATLAS) and abstracts.value:\"Z boson\" and \"dark photon\" and \"Higgs\" date>2017",
+   "inspire: (CMS or ATLAS) and t higgs and t \"dark photon\"",
+   "inspire: (CMS or ATLAS) and abstracts.value:\"semi-visible\" and Higgs",
+   "inspire: (CMS or ATLAS) and t axion-like and t Z and t higgs",
+   "inspire: (CMS or ATLAS) and t higgs and t \"Z boson\" and t light and (t resonance or t pseudoscalar)",
+   "inspire: (CMS or ATLAS) and abstracts.value:\"Z+invisible\"",
+   "inspire: (CMS or ATLAS) and \"missing transverse momentum\" and \"exotic decays of the Higgs\"",
+   "inspire: (CMS or ATLAS) and t \"Z boson\" and t \"missing transverse momentum\" date>2019",
+   "inspire: collaboration:CMS and Higgs boson + Z boson + invisible date>2018",
+   "inspire: t undetected and t higgs and t HL-LHC",
+   "web: CMS OR ATLAS search Higgs decay Z plus invisible dark photon MET",
+   "web: HL-LHC projection Higgs untagged BR global fit 3000 fb-1",
+   "pdf grep: ATLAS Run-2 exotic Higgs summary 2405.04914 for h->Za / semi-dark / invisible"
+  ],
+  "confidence": "medium",
+  "notes": "The ATLAS Run-2 exotic Higgs summary (2405.04914) lists h->Za only with visible a decays and H->inv; it does not list h->Z+inv. A CMS exotic Higgs proceedings item (INSPIRE 2759006) was not read. The two seeds are split here: semi-dark resonant (a) is a narrow genuine experimental gap with marginal reach; non-resonant DSMEFT (b) is a theory/phenomenology idea whose quoted sensitivity is unreliable. 2201.04658 (dark photon from semi-invisible Higgs decay, phenomenology) was not read in detail."
+ },
+ "C013": {
+  "cand_id": "C013",
+  "claim": "Bundle: (a) millicharged particles (~e/10-e/3) in the CMS/ATLAS main detectors with Phase-2 dE/dx and timing; (b) fractionally charged particles; (c) high-charge |z|>7 states, where ATLAS's multi-charged search stops at z=7. The claim is that these regions are left open by current searches.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only two small pieces survive. (1) Phase-2 strategy for FCPs (e/3 to ~0.9e) under binary outer-tracker readout: the Run-2 CMS method relies on strip dE/dx, which the Phase-2 Outer Tracker does not provide. A redesigned HL-LHC FCP search would need pixel ToT dE/dx, the pattern of hits missing below threshold, MTD timing, and the L1 track trigger. I found no HL-LHC FCP projection, so this is 'LHC-not-projected-to-HL'. (2) A residual high-charge window at |z| ~ 8-9 (between ATLAS z<=7 and MoEDAL z>=10 / ATLAS HECO z>=20), and |z| 10-19 where only MoEDAL, with 6.46 fb^-1, has results. Part (a), millicharged in the main detectors below ~e/3, is effectively dead.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2308.04835",
+    "what": "ATLAS Run-2 (138 fb^-1, dedicated HIP trigger) high-electric-charge objects with 20 <= |z| <= 100, spin-0 and spin-1/2, Drell-Yan AND photon-fusion. This contradicts the seed's implication that |z|>7 is uncovered and that photon fusion is not considered.",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2311.06509",
+    "what": "MoEDAL full detector, Run 2 (6.46 fb^-1): HECOs with charge 10e-400e, spins 0, 1/2 and 1, DY + photon fusion. This covers the |z|>7 region and spin-1, so the 'spin, production assumptions' gap is partly addressed.",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2303.13613",
+    "what": "The ATLAS multi-charged search (z=2-7) already uses DY (gamma+Z) plus photon-fusion production.",
+    "location": "Sec. 1 (line ~77) and Sec. 3 (signal model)"
+   },
+   {
+    "id": "arXiv:2402.09932",
+    "what": "CMS Run-2 FCP search covers charges e/3 to 0.9e (and 2e/3), with masses excluded up to 640 GeV. The method needs low-dE/dx strip hits (lower threshold 0.25 MeV/cm) and a single-muon trigger. Charges below e/3 are not accessible: ionisation scales as Q^2, so hits fall below the readout threshold (signal-loss discussion).",
+    "location": "Abstract; Sec. 3-4 (lines ~159-164, ~300)"
+   },
+   {
+    "id": "arXiv:2104.07151",
+    "what": "The milliQan HL-LHC projection already covers 0.0018e-0.3e for masses of 10 MeV-80 GeV, so the millicharged window is the territory of a dedicated detector, not CMS/ATLAS main-detector tracks.",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2010.07941",
+    "what": "FORMOSA (forward) is proposed for millicharged particles in the 10 MeV-100 GeV mass range.",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:1912.02061",
+    "what": "The CMS Phase-2 Outer Tracker strips are read out by the CMS Binary Chip (binary hits, no analogue amplitude). The strip-dE/dx observable of the Run-2 FCP method therefore disappears at HL-LHC. This is a showstopper for a straight extrapolation and a reason any Phase-2 FCP search must be redesigned.",
+    "location": "Sec. on module readout (CBC description, ~line 181 of text)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2402.09932",
+    "collab": "CMS",
+    "covers": "FCP e/3-0.9e, 138 fb^-1, tracker dE/dx",
+    "region_gap": "No Phase-2 projection; Phase-2 OT binary readout removes the main observable; <e/3 inaccessible."
+   },
+   {
+    "id": "arXiv:2303.13613",
+    "collab": "ATLAS",
+    "covers": "multi-charged z=2-7, spin-1/2, DY+PF",
+    "region_gap": "z>7 fails muon reconstruction; spin-0 not shown here (spin-0 is covered by MoEDAL/HECO for z>=10/20)."
+   },
+   {
+    "id": "arXiv:2308.04835",
+    "collab": "ATLAS",
+    "covers": "HECO 20<=|z|<=100 and monopoles, DY+PF, spin 0 and 1/2",
+    "region_gap": "8<=|z|<=19 not covered by ATLAS."
+   },
+   {
+    "id": "arXiv:2311.06509",
+    "collab": "MoEDAL",
+    "covers": "HECO 10e-400e, spins 0/1/2/1, 6.46 fb^-1",
+    "region_gap": "Low luminosity; |z| 8-9 not covered."
+   },
+   {
+    "id": "INSPIRE:2961278",
+    "collab": "ATLAS",
+    "covers": "PUB-type note: simulation and expected performance of FCPs in ATLAS (2023)",
+    "region_gap": "Suggests an ATLAS FCP search is in preparation (UNVERIFIED); it would further reduce any FCP gap."
+   }
+  ],
+  "hl_projection_docs": "arXiv:2104.07151 (milliQan HL-LHC); arXiv:2010.07941 and arXiv:2504.12973 (FORMOSA / ESPPU input). I found no CMS/ATLAS HL-LHC projection for FCP or multi-charged/HECO searches by title (not proof of absence).",
+  "showstoppers": "(a) Millicharged in the main detector: dE/dx scales as Q^2, so e/10 deposits ~1% of a MIP, far below the pixel and strip thresholds. Tracks are not reconstructed and there is no trigger; the Run-2 FCP search needs a muon trigger and already stops at e/3. Dedicated detectors (milliQan, FORMOSA) are far more sensitive below ~0.3e. (b) Phase-2 CMS OT binary readout removes strip dE/dx; only pixel ToT (coarse) and the MTD remain. HL-LHC pileup increases the rate of fake low-dE/dx tracks. (c) High-z: the HIP-trigger and TRT-based technique already exists. Extending ATLAS multi-charged to z=8-19 is incremental, and ATLAS Phase-2 removes the TRT, which the HECO analysis relies on (TRT role in 2308.04835: UNVERIFIED in detail).",
+  "queries_run": [
+   "inspire: (CMS or ATLAS or MoEDAL) and (t \"high electric charge\" or t \"highly ionising/ionizing\" or t \"high-electric-charge\")",
+   "inspire: (CMS or ATLAS) and (t multi-charged or t multiply charged or t fractionally charged or t fractional charge)",
+   "inspire: (CMS or ATLAS) and t monopole",
+   "inspire: collaboration:ATLAS and t magnetic monopoles and t high-electric-charge and date>2022",
+   "inspire: abstracts.value:\"high-electric-charge\" and date>2022",
+   "inspire: t millicharged and (t HL-LHC or High-Luminosity or FORMOSA or milliQan or SUBMET or FPF)",
+   "inspire: t \"Phase-2 Upgrade of the CMS Tracker\"",
+   "inspire: (CMS or ATLAS) and (t heavy stable charged or t long-lived charged) and (HL-LHC or Phase-2 or timing)",
+   "inspire: t millicharged and (t CMS or t ATLAS or t main detector or t general purpose)",
+   "inspire: abstracts.value:\"fractionally charged\" and date>2023 (mostrecent)",
+   "web: CMS Phase-2 outer tracker binary readout no dE/dx HSCP pixel ToT",
+   "pdf grep: 2402.09932 trigger/threshold/charge range; 2303.13613 production modes"
+  ],
+  "confidence": "medium-high",
+  "notes": "The bundle is split. Millicharged in the main detector: DIES (physical showstopper plus dedicated experiments). FCP e/3-0.9e: searched-limited-regime, with a real technical HL-LHC question (binary OT readout). High-charge: largely covered (ATLAS z 2-7 and 20-100, MoEDAL 10-400), leaving a tiny |z|~8-9 window. The phenomenology paper 2507.16900 (FCPs with two representations, colored FCPs) could motivate new interpretations of existing searches rather than a new analysis. The lower-z edge of MoEDAL (10e) was read from the abstract; the exact per-spin coverage was not checked."
+ },
+ "C015": {
+  "cand_id": "C015",
+  "claim": "Bundle: (a) long-lived ALPs from exotic top decays t->q a (q=u,c) at intermediate lifetimes are claimed to be unsearched by CMS/ATLAS; (b) prompt flavour-violating t->q a (a->gamma gamma, mu mu, jj) is claimed to be untested; (c) long-lived ALPs from h->aa with displaced calorimeter deposits are claimed to be unstudied for HL-LHC.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Long-lived t->q a with LIGHT ALPs (m_a ~ 1-35 GeV, the 2202.09371 benchmarks m_a = 2 and 10 GeV) decaying in the HCAL or muon system (c tau ~ 0.01-10 m) in lepton-triggered ttbar events. The leptonic ALP decays (displaced mu mu / gamma gamma) from top decays are also open. ATLAS has already done the ID-DV version for 40-55 GeV (2403.15332). The Higgs part (c) and generic h->aa long-lived searches are well covered. The prompt part (b) is narrowed to a->gamma gamma / mu mu from top decay (t->qX with X->bb is covered by ATLAS 2301.03902). Much of what survives could be met by adding top-decay signal interpretations to existing ATLAS CalRatio W/Z+LLP and CMS muon-detector-shower analyses. A wholly new analysis is not needed.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2403.15332",
+    "what": "ATLAS (140 fb^-1, ID displaced vertices, 1-lepton region) explicitly searches for long-lived ALPs from t->ac/au in ttbar with a->cc/gg. It excludes BR(t->aq) > 0.1% for 1.6 < c tau < 130 mm at 40 < m_a < 55 GeV ('Long-lived ALPs produced via t->aq are probed for the first time'). This directly contradicts the seed's 'no top-tagged displaced ALP search seen'.",
+    "location": "Abstract; benchmark description ~lines 56-61, 117-124; 1-lepton SR ~line 140; Summary ~lines 341-344"
+   },
+   {
+    "id": "arXiv:2404.06126",
+    "what": "A phenomenology recast of the ATLAS DV+jets search for LL ALPs from top decays, with an HL-LHC (3 ab^-1) projection already provided.",
+    "location": "Abstract; Sec. 3.1, App. A"
+   },
+   {
+    "id": "arXiv:2202.09371",
+    "what": "The original proposal already includes HL-LHC background-free 10-event lines for HCAL and muon-system decays, down to BR(t->aq) ~ 1e-8. The HL-LHC phenomenology is done; what is missing is the experimental analysis.",
+    "location": "Sec. 4 (text before Conclusions), Fig. 7 (Appendix)"
+   },
+   {
+    "id": "arXiv:2301.03902",
+    "what": "ATLAS prompt t->qX (q=u,c), X->bb search covers the prompt hadronic FCNC top->light scalar case.",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2312.03306",
+    "what": "ATLAS H->aa->4gamma with short- and long-lived ALPs. Together with ATLAS 2407.09183 (CalRatio incl. W/Z+LLP channels), the Higgs-decay long-lived ALP part of the bundle is well covered, so seed S122's Higgs component dies.",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2403.15332",
+    "collab": "ATLAS",
+    "covers": "t->aq, a->cc/gg, ID DV, m_a 40-55 GeV, c tau 1.6-130 mm (BR>0.1%)",
+    "region_gap": "m_a < 40 GeV not interpreted for top; decays beyond the ID (c tau > ~0.2 m) not covered; leptonic/photonic a decays not covered."
+   },
+   {
+    "id": "arXiv:2407.09183",
+    "collab": "ATLAS",
+    "covers": "LLP decays in HCAL, with W/Z(leptonic)+LLP channels",
+    "region_gap": "Not interpreted for ttbar t->qa; the 1-lepton channel is likely recastable (UNVERIFIED)."
+   },
+   {
+    "id": "arXiv:2301.03902",
+    "collab": "ATLAS",
+    "covers": "prompt t->qX, X->bb",
+    "region_gap": "X->gamma gamma/mu mu and light m_X (< ~20 GeV) not covered (mass range not read: UNVERIFIED)."
+   },
+   {
+    "id": "arXiv:2304.14247",
+    "collab": "ATLAS",
+    "covers": "ttbar + a(->mu mu) associated production (3-lepton)",
+    "region_gap": "Associated production, not t->qa decay; prompt only."
+   },
+   {
+    "id": "arXiv:2112.13769",
+    "collab": "CMS",
+    "covers": "displaced dimuons via scouting, model-independent limits",
+    "region_gap": "Not interpreted for top decays; recastable for a->mu mu."
+   }
+  ],
+  "hl_projection_docs": "Phenomenology only: arXiv:2202.09371 (HL-LHC 4 ab^-1 lines, Fig. 7), arXiv:2404.06126 (HL-LHC 3 ab^-1), arXiv:2307.11154 (rare top decays to light singlets at HL-LHC, including LLP signals). I found no CMS/ATLAS Phase-2 projection for t->qa.",
+  "showstoppers": "The ALP with only top-flavour-violating couplings must still decay. Its decay to hadrons/photons proceeds through loop-induced or additional couplings, so the a->cc/gg/gamma gamma branching ratios are model-dependent. Low-mass ALPs (2 GeV) give highly collimated decays that are hard to vertex in the ID with 200 PU. For HCAL/MS decays, the trigger in ttbar is the lepton, so trigger is not a showstopper. Flavour constraints from B/K decays (2402.14232, 2507.19578) restrict the low-mass region for the up-type FV couplings that also induce loop-level down-type couplings (extent not checked: UNVERIFIED).",
+  "queries_run": [
+   "inspire: (CMS or ATLAS) and t top and (t axion-like or t ALP or t pseudoscalar or t light scalar) and date>2018",
+   "inspire: (CMS or ATLAS) and t top and (t long-lived or t displaced)",
+   "inspire: (CMS or ATLAS) and t flavour-changing and t top and t scalar",
+   "inspire: cites arxiv:2202.09371",
+   "inspire: cites arxiv:2306.08686",
+   "inspire: cites arxiv:2404.06126",
+   "inspire: (CMS or ATLAS) and abstracts top-quark decays and (light scalar or new scalar or pseudoscalar or axion)",
+   "inspire: (CMS or ATLAS) and abstracts long-lived and top quark date>2019",
+   "inspire: (CMS or ATLAS or LHCb) and t axion-like and (t displaced or t long-lived)",
+   "inspire: t top and t long-lived and (decays or ALP or scalar) non-collab",
+   "pdf grep: 2403.15332 for top/ALP benchmark and limits",
+   "pdf grep: 2202.09371 and 2404.06126 for recast/HL-LHC statements"
+  ],
+  "confidence": "high",
+  "notes": "The seed's own exp_coverage listed 2403.15332 but marked its top interpretation UNVERIFIED. It is verified here, and it is a direct hit for m_a = 40-55 GeV. The surviving gap is mostly an interpretation/extension (lower m_a, calorimeter/MS volumes, leptonic decays), so it is low-hanging but modest in novelty. ATLAS PUB-type record INSPIRE:2903120 (LL ALP constraints from exotic Higgs searches) further covers the Higgs part."
+ },
+ "C017": {
+  "cand_id": "C017",
+  "claim": "CMS/ATLAS HNL searches assume pure Majorana or Dirac limits and/or combine OS+SS dilepton samples. The LNV/LNC (SS/OS) ratio and the time-resolved heavy neutrino-antineutrino oscillation pattern of pseudo-Dirac HNL pairs, which encode the mass splitting, are not exploited.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only the intermediate mass-splitting regime survives as an experimental gap: measuring R_ll = LNV/LNC (between the Dirac 0 and Majorana 1 limits) as a function of reconstructed proper decay time in displaced-vertex W->l N events, and interpreting limits as a function of Delta m in the 2QDH/pSPSS model. HL-LHC phenomenology exists (2212.00562, CMS-like Delphes), but no experimental result does this. The window is small: resolvable oscillations need c tau_osc ~ mm-cm and long-lived N (m_N ~ 5-20 GeV, |theta|^2 ~ 1e-7-1e-6). Current ATLAS/CMS displaced HNL limits already reach that region, so the HL-LHC event yield in the surviving window may be too small to resolve oscillations. The prompt OS/SS split part of the claim is dead.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2503.16213",
+    "what": "ATLAS displaced HNL (140 fb^-1) interprets both 1SFH and two-quasi-degenerate-HNL (2QDH) models, separating LNC and LNV decays. The 'Dirac limit = zero mass splitting' and 'Majorana limit = small nonzero splitting enabling oscillations' are stated explicitly. Dirac-like and Majorana-like HNLs below 14.5 GeV are excluded down to mixing ~1e-7. This kills 'searches assume only Majorana or Dirac'; only the intermediate splitting is missing.",
+    "location": "Abstract; Sec. 2 (lines ~82, 114-116, 325-341), Table 1"
+   },
+   {
+    "id": "arXiv:2204.11988",
+    "what": "Earlier ATLAS displaced-dilepton HNL search: 2QDH model, LNC-only (Dirac limit) and LNC=LNV (Majorana limit) interpretations, constrained by neutrino oscillation data for normal/inverted hierarchy.",
+    "location": "Sec. 1 (lines ~45-46, 88-90)"
+   },
+   {
+    "id": "arXiv:2403.00100",
+    "what": "CMS prompt HNL search (e, mu, tau_h final states) gives separate limits for Majorana (LNV+LNC) and Dirac (LNC only) HNLs, with same- and opposite-charge categories. The 2016 complaint (1607.05641) that 'CMS gives only combined OS+SS results' is outdated.",
+    "location": "Abstract; Sec. 1-3 (lines ~101-109, 246)"
+   },
+   {
+    "id": "arXiv:2201.05578",
+    "what": "CMS displaced HNL search gives separate Dirac and Majorana interpretations, with LNC/LNV distinguished by lepton charges.",
+    "location": "Abstract; Sec. 2-4 (lines ~127, 168, 268-271)"
+   },
+   {
+    "id": "arXiv:2212.00562",
+    "what": "A full HL-LHC phenomenology study of resolving N-Nbar oscillations with a CMS-like Delphes simulation already exists, for benchmarks m_N = 14 GeV, |theta_mu|^2 = 1e-7, Delta m = 83-743 micro-eV, c tau_osc = 1.7-15 mm. The phenomenology is done; the authors ask collaborations for DV-resolution information. The benchmark mass and mixing sit at the edge of the region ATLAS 2503.16213 reports as excluded (exact overlap UNVERIFIED).",
+    "location": "Abstract; Table 1; Sec. 4 (lines ~422-434)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2503.16213",
+    "collab": "ATLAS",
+    "covers": "displaced W->lN, leptonic and semileptonic DV; 1SFH and 2QDH in Dirac/Majorana limits; LNC/LNV separated",
+    "region_gap": "No intermediate-Delta m / time-dependent R_ll interpretation."
+   },
+   {
+    "id": "arXiv:2201.05578",
+    "collab": "CMS",
+    "covers": "displaced HNL, Dirac and Majorana",
+    "region_gap": "Same: endpoints only."
+   },
+   {
+    "id": "arXiv:2403.00100",
+    "collab": "CMS",
+    "covers": "prompt HNL, 3l incl. tau_h, Dirac and Majorana, SS/OS categories",
+    "region_gap": "Prompt regime: oscillations are averaged out, so only R_ll endpoints (or an intermediate R_ll reinterpretation) are possible. This is a reinterpretation, not a new analysis."
+   },
+   {
+    "id": "arXiv:2204.11988",
+    "collab": "ATLAS",
+    "covers": "displaced dilepton DV HNL, 2QDH",
+    "region_gap": "Endpoints only."
+   }
+  ],
+  "hl_projection_docs": "arXiv:2212.00562 (HL-LHC, CMS-like Delphes, oscillation resolution); arXiv:2606.25982 (LHC/FCC-hh sensitivities, LN-blind vs LNV for pseudo-Dirac); arXiv:2203.08039 (HNL status review). Related phenomenology: 1709.03797, 1905.03097, 2210.10738, 2307.06208 (decoherence). I found no CMS/ATLAS HL-LHC projection note for oscillation resolution.",
+  "showstoppers": "Statistics: resolving an oscillation pattern needs many signal events with good proper-time reconstruction. This requires a full N reconstruction (semileptonic N->l pi / l jj; the leptonic N->l l nu loses the neutrino, degrading the boost estimate) and DV position resolution. Parameter space: the needed (m_N ~ 10-15 GeV, |theta|^2 ~ 1e-7) region overlaps with the existing ATLAS Run-2 exclusion, so the HL-LHC surviving window is narrow. Decoherence/damping effects (2307.06208, 2606.25982) modify the pattern and are model-dependent. Charge misidentification for displaced tracks dilutes LNV/LNC tagging. The trigger is fine (prompt lepton from W).",
+  "queries_run": [
+   "inspire: (CMS or ATLAS) and (t heavy neutral lepton or t heavy neutrino or t Majorana neutrino) and date>2021",
+   "inspire: (CMS or ATLAS or LHCb) and abstracts Dirac and (t heavy neutral or t heavy neutrino)",
+   "inspire: cites arxiv:2212.00562",
+   "inspire: cites arxiv:2606.25982",
+   "inspire: cites arxiv:1607.05641",
+   "inspire: (CMS or ATLAS or LHCb) and abstracts oscillation and heavy neutral lepton",
+   "inspire: t heavy neutrino and t oscillations and (t LHC or t HL-LHC or t W boson)",
+   "inspire: (CMS or ATLAS) and abstracts opposite-sign and (heavy neutrino or heavy neutral lepton)",
+   "pdf grep: 2204.11988, 2503.16213, 2508.20929 for pseudo/quasi-Dirac, LNC, oscillation, mass splitting",
+   "pdf grep: 2403.00100, 2201.05578 for Dirac/Majorana treatment",
+   "pdf grep: 2212.00562 for benchmarks and experimental requests"
+  ],
+  "confidence": "medium-high",
+  "notes": "Bundle split: (i) the prompt SS-vs-OS / e-mu exploitation claim (seed S141, based on a 2016 paper) DIES, because the current CMS and ATLAS results separate LNC/LNV and provide Dirac and Majorana limits. (ii) Time-resolved N-Nbar oscillations and intermediate-Delta m interpretation in displaced searches survives as 'one-observable-not-another', but the phenomenology is mature and the viable parameter window is squeezed by Run-2 limits. A cheaper first step is to reinterpret the existing Dirac/Majorana endpoint limits in terms of R_ll(Delta m), which the 2QDH framework of ATLAS already supports. The 2606.25982 abstract claim about damped oscillations alleviating the LNV suppression was read from the abstract only. 2508.20929 (ATLAS prompt) targets the LNV scenario only and was not checked in detail."
+ },
+ "C019": {
+  "cand_id": "C019",
+  "claim": "Doubly charged scalars (type-II seesaw / triplet) in compressed-spectrum cascades, long-lived (0.1-100 mm) regimes, and tau / W+W+ / H+W* final states are not covered by existing CMS/ATLAS searches, which assume prompt H++ -> e/mu pairs.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(i) Fermiophobic H++ -> W+W+ with c*tau ~0.1-100 mm (m ~150 GeV to ~TeV): same-sign / charged-parent displaced-vertex search (no CMS/ATLAS result found; the ATLAS displaced-dilepton-vertex search requires opposite charge). (ii) Compressed triplet (Delta M ~1-30 GeV, H0/A0 -> nu nu) with soft low-m_ll same-sign leptons + ISR: phenomenology only, and existing compressed-electroweakino searches were shown by a recast to be insensitive. (iii) Hadronic-tau H++ final states with full Run 2/Run 3/HL data: CMS has only a 12.9 fb-1 PAS, ATLAS uses e/mu only. The prompt W+W+ channel and stable/HSCP regime are DEAD (covered).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2101.11961",
+    "what": "ATLAS full Run 2 search for H++/H+ -> vector bosons in multi-lepton final states: covers the H++ -> W+W+ part of the bundle",
+    "location": "abstract; cited as excluding 200-350 GeV in arXiv:2305.06889 intro and arXiv:2603.15882 sec.1"
+   },
+   {
+    "id": "arXiv:2211.00632",
+    "what": "Low-mass (84-200 GeV) H++ -> WW boosted (fat jet / adjacent SS leptons) phenomenology already exists",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2303.13613",
+    "what": "ATLAS full Run 2 heavy long-lived multi-charged particles; per arXiv:2608.27251 it excludes a stable doubly charged scalar up to ~1 TeV, so the cτ > O(m) regime is covered",
+    "location": "arXiv:2608.27251 sec.3.2.1 (text near Fig.2) and sec. summary of constraints"
+   },
+   {
+    "id": "INSPIRE:1510936 (CMS-PAS-HIG-16-036)",
+    "what": "CMS 13 TeV 12.9 fb-1 H++ search in 3/4-lepton final states including tau channels; it is cited as the CMS tau-tau limit (a 2025 Helsinki MSc thesis quotes 396 GeV for left-handed H++ -> tau tau; arXiv:2305.06889 quotes 535 GeV; the discrepancy is UNVERIFIED)",
+    "location": "PAS abstract; INSPIRE:3063898 thesis sec.on previous searches (ref [191]); arXiv:2305.06889 intro"
+   },
+   {
+    "id": "arXiv:2108.10952",
+    "what": "Recast of many CMS/ATLAS searches over (vt, Delta m, mH++). The compressed-SUSY-type soft-lepton/ISR searches were found to be insensitive (per arXiv:2305.06889 intro). So 'different terminology' coverage via electroweakino searches does NOT kill the compressed gap but has been checked",
+    "location": "arXiv:2305.06889 p.1-2 intro, refs [45],[80-83]"
+   },
+   {
+    "id": "INSPIRE:3063898",
+    "what": "Helsinki MSc thesis (2025, CMS-based, supervisors Lehti/Waltari): 4 tau_h H++ search with 2018 MC, plus Run 3/HL-LHC projections. Signals CMS-internal activity on tau_h H++, so the tau sub-gap may soon close",
+    "location": "abstract; conclusions"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2211.07505",
+    "collab": "ATLAS",
+    "covers": "prompt pair-produced H++ -> l l' (e, mu, and leptonic taus), 2-4 leptons, 139 fb-1",
+    "region_gap": "only final states with e/mu; no tau_h; prompt only; assumes degenerate triplet / golden decays. Its 4-lepton efficiency is disputed by arXiv:2608.03988"
+   },
+   {
+    "id": "arXiv:2101.11961",
+    "collab": "ATLAS",
+    "covers": "H++/H+ -> W W / W Z multi-lepton, full Run 2",
+    "region_gap": "prompt only, degenerate spectrum (no cascades)"
+   },
+   {
+    "id": "arXiv:2601.05664",
+    "collab": "ATLAS",
+    "covers": "LLP displaced vertices with oppositely charged leptons, 140 fb-1",
+    "region_gap": "an opposite-charge requirement excludes same-sign DV from H++ -> l+l+ (title-level; selection detail UNVERIFIED in full text)"
+   },
+   {
+    "id": "arXiv:2410.16835",
+    "collab": "ATLAS",
+    "covers": "displaced leptons (large d0), Run 2 + Run 3",
+    "region_gap": "could partially cover H++ -> l+l+ displaced via a recast; per arXiv:2608.27251 sec.3.2.2 the published limits are model-dependent and not recast"
+   }
+  ],
+  "hl_projection_docs": "CMS prospects for DCH at HL-LHC (INSPIRE:2084511, 2022, prompt ee/mumu only, Delphes); pheno HL studies arXiv:1909.07429 (prompt leptonic), arXiv:2305.06889 and arXiv:2603.15882 (compressed, 3000 fb-1), arXiv:2608.27251 (displaced DV, HL-LHC). No ATLAS ATL-PHYS-PUB on H++ HL-LHC found (web search).",
+  "showstoppers": "Yukawa (Delta L=2) case: LL H++ only for 100-150 GeV (arXiv:2608.27251 abstract), a region already squeezed by LEP DELPHI (<~100 GeV) and prompt LHC limits. Fermiophobic displaced case: small rate (~12 fb at 300 GeV before W BRs, arXiv:2608.27251 sec.3.2.2). Compressed: soft SS leptons are dominated by fakes and charge-flip, and the soft-lepton trigger at 200 PU is hard. Tau_h: 4tau_h rate low and trigger-limited.",
+  "queries_run": [
+   "t doubly charged and collaboration:ATLAS and date > 2017",
+   "t doubly charged and collaboration:CMS and date > 2018",
+   "abstracts.value:\"doubly charged\" and abstracts.value:\"long-lived\"",
+   "abstracts.value:\"doubly charged\" and abstracts.value:\"compressed\"",
+   "t doubly charged and t tau and date > 2015",
+   "abstracts.value:\"multiply charged\" and collaboration:ATLAS/CMS and date > 2018",
+   "t multi-charged and date > 2017",
+   "t doubly charged and (t HL-LHC or t high-luminosity)",
+   "abstracts.value:\"doubly charged\" and abstracts.value:\"cascade\" and date > 2018",
+   "abstracts.value:\"doubly charged\" and abstracts.value:\"soft leptons\"",
+   "a Ashanujjaman and t type-II",
+   "abstracts.value:\"long-lived\" and \"charged\" and \"displaced vertex\" and collaboration:ATLAS",
+   "t displaced and t leptons and (collaboration:CMS or ATLAS) and date > 2019",
+   "cites arXiv:2305.06889",
+   "WebSearch: CMS doubly charged Higgs search full Run 2 138 fb-1 tau leptons",
+   "WebSearch: ATLAS HL-LHC prospects doubly charged Higgs ATL-PHYS-PUB"
+  ],
+  "confidence": "medium",
+  "notes": "Bundle split. (a) prompt W+W+: DIES (ATLAS 2101.11961). (b) stable/HSCP: DIES (ATLAS 2303.13613 + CMS/ATLAS HSCP). (c) displaced 0.1-100 mm fermiophobic: SURVIVES as proposed-not-searched; strongest part but low rate. (d) compressed soft-SS: SURVIVES as theory-explored-untested, background-limited. (e) tau_h: searched-limited-regime (12.9 fb-1 CMS PAS only); this is a Run-2/3 legacy gap rather than an HL-specific one. Side finding: no CMS full-Run-2 DY H++ -> ll paper found in INSPIRE (CMS has only the 2017 PAS and the 2022 HL projection). Treat as UNVERIFIED and check the CMS public results page. arXiv:2608.03988 (2026) claims the ATLAS 4-lepton efficiency is unphysical, so a revised (weaker) prompt limit may reopen low-mass prompt space."
+ },
+ "C021": {
+  "cand_id": "C021",
+  "claim": "Light ALPs (10 MeV-10 GeV) with photon couplings are open: (a) in a+gamma at very high pT, where the ALP's photons fully merge into one photon candidate (0.1-6 GeV), and (b) in VBF production. Both need dedicated merged-photon substructure / conversion reconstruction plus Run-3 VBF parking or Phase-2 L1 scouting.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only the experimental execution survives. (a) A CMS/ATLAS high-mass diphoton (m_gg > ~1.5 TeV) analysis that reinterprets one photon as a merged a->gg candidate (loose+tight photon ID or shower-shape substructure), as an ALP-photon EFT limit. (b) The actual VBF-parked Run-3 / Phase-2 L1-scouting merged-conversion search, plus the invariant-mass reconstruction in the scouting stream that 2609.22570 left as future work. Both have published HL-LHC sensitivity projections already, so the 'HL-LHC projection' value-add is largely pre-empted.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2607.12004",
+    "what": "Already provides a recast of the ATLAS 139 fb-1 high-mass diphoton search (arXiv:2102.13405) for fully merged a+gamma AND an HL-LHC 3 ab-1 expected limit",
+    "location": "Fig.2 legend 'HL LHC (3 ab-1)'; p.3 text 'I also estimated the sensitivity for the HL LHC'"
+   },
+   {
+    "id": "arXiv:2607.12004",
+    "what": "Author states Belle II with its ultimate 50 ab-1 is expected to outperform the HL-LHC projection, especially with gamma-gamma fusion. For c_W ~ c_B, B -> K a (BaBar/Belle) gives g_agg <~ 5e-6 GeV^-1, which is 'much stronger than the ATLAS bound ... or any other existing or projected direct bound'",
+    "location": "p.3-4 Discussion"
+   },
+   {
+    "id": "arXiv:2609.22570",
+    "what": "Full CMS-specific feasibility study of the VBF + merged-photon (tracker conversions) ALP search with Run-3 VBF parking (312 fb-1) and HL-LHC L1 scouting (3 ab-1). Authors include CMU CMS members (Cremonesi, Amendola, Marchegiani), so the experimental analysis is very likely already being pursued inside CMS",
+    "location": "title page, abstract"
+   },
+   {
+    "id": "arXiv:2302.12262",
+    "what": "Earlier proposal ('Tracking axionlike particles at the LHC') of tracker/conversion-based reconstruction of merged ALP photons, so the reconstruction technique is not new",
+    "location": "INSPIRE abstract; cited as ref in 2609.22570"
+   },
+   {
+    "id": "arXiv:2112.07720",
+    "what": "Earlier proposal of low-mass diphoton ALP searches with data scouting at ATLAS/CMS",
+    "location": "cited as ref [3] in arXiv:2607.12004"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2102.13405",
+    "collab": "ATLAS",
+    "covers": "high-mass diphoton resonances 139 fb-1 (recast for merged a+gamma by arXiv:2607.12004)",
+    "region_gap": "tight-photon ID removes part of the merged signal for m_a >~ 1 GeV; no merged-photon-specific category"
+   },
+   {
+    "id": "arXiv:2405.00834",
+    "collab": "CMS",
+    "covers": "new resonances decaying to pairs of merged diphotons (X->aa->(gg)(gg))",
+    "region_gap": "pair-ALP resonant topology, not a+gamma non-resonant EFT"
+   },
+   {
+    "id": "arXiv:2412.15413 / arXiv:2008.05355",
+    "collab": "CMS / ATLAS",
+    "covers": "gamma-gamma -> a -> gamma-gamma in ultraperipheral PbPb (ALP masses ~ few GeV to ~100 GeV)",
+    "region_gap": "resolved-diphoton, m_a above ~5 GeV; does not reach the sub-GeV merged regime"
+   },
+   {
+    "id": "INSPIRE:3185612 (ATLAS ALP summary plots, Summer 2026)",
+    "collab": "ATLAS",
+    "covers": "summary of ALP limits, prompt and long-lived",
+    "region_gap": "content per channel UNVERIFIED (abstract only)"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2607.12004 (HL-LHC 3 ab-1 expected limit for merged a+gamma); arXiv:2609.22570 (HL-LHC L1 scouting VBF projection). No official CMS/ATLAS PUB note found.",
+  "showstoppers": "a+gamma: Belle II at 50 ab-1 is projected to overtake the HL-LHC; for c_W ~ c_B, B->Ka already dominates. The signal grows with sqrt(s-hat) and sits at m_gg > 1.5 TeV, so EFT validity needs charged UV states above the TeV scale (stated in 2607.12004). VBF scouting: the K_L -> gg long-lived background is irreducible without mass reconstruction (2609.22570 abstract), and the L1 scouting stream lacks offline-quality photons. Photon-conversion probability (~tens of %) cuts the rate.",
+  "queries_run": [
+   "abstracts.value:\"axion-like\" and abstracts.value:\"merged\" and (collaboration:CMS or collaboration:ATLAS)",
+   "abstracts.value:\"photon-jet\" and date > 2015",
+   "abstracts.value:\"axion-like\" and abstracts.value:\"vector boson fusion\"",
+   "abstracts.value:\"axion\" and abstracts.value:\"scouting\"",
+   "t Z and t three photons and date > 2014",
+   "t diphoton and t scouting",
+   "abstracts.value:\"diphoton\" and abstracts.value:\"scouting\" and collaboration:CMS",
+   "t light-by-light and t axion and (collaboration:CMS or collaboration:ATLAS)",
+   "t Level-1 scouting and date > 2022",
+   "abstracts.value:\"data parking\" and abstracts.value:\"vector boson fusion\" and collaboration:CMS",
+   "t axion-like and collaboration:CMS and date > 2023",
+   "t axion-like and collaboration:ATLAS and date > 2023",
+   "abstracts.value:\"converted photons\" and abstracts.value:\"axion\"",
+   "abstracts.value:\"merged photon\" and date > 2019",
+   "refersto:arxiv:2112.07720 / 2302.12262 (tool returned unrelated results; unreliable)"
+  ],
+  "confidence": "medium",
+  "notes": "Split: (a) merged a+gamma = theory-explored-untested, but a recast plus HL projection already exist, the physics reach is capped by Belle II and flavour, and the improvement from substructure is incremental (the loose-photon line in 2607.12004 Fig.2 is the author's estimate of that gain). (b) VBF parking/scouting = LHC-not-projected-to-HL is FALSE: an HL projection exists, written by CMS-affiliated authors, so the gap is likely occupied in practice. A residual technical gap is diphoton invariant-mass reconstruction in L1 scouting (2609.22570 future-work sentence)."
+ },
+ "C023": {
+  "cand_id": "C023",
+  "claim": "Mixed/asymmetric exotic Higgs final states lack dedicated searches: h->aa->(mumu)(gg) / 2mu4gamma, h->aa->(gg)(gamma gamma) with m_a~10 GeV, non-resonant gg->aa->4gamma at low m_a, h->Za with a->hadrons/taus/bb, and h->aa->4tau in di-Higgs production.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(i) h->aa->(mu mu)(gamma gamma) with both pairs resonant at the same m_a (and 2mu4gamma contact topologies): proposed-not-searched, but motivated only where BR(a->gg) ~ BR(a->mumu). (ii) h->aa->(gg)(gamma gamma) for m_a ~10-20 GeV, where the gg system is one wide 2-prong jet, below the 20 GeV floor of the dedicated ATLAS/CMS gamma-gamma-jj / bb-gamma-gamma searches. Topical because of the CMS 13.6 GeV diphoton local excess. (iii) h->Za with a->tau tau or a->bb (m_a > 3.5 GeV), and displaced hadronic a. DEAD: h->Za(gamma gamma), h->Za(hadronic, 0.5-3.5 GeV), the generic 'h->Za not studied experimentally' claim, and HH->4tau(+bb) as an HL-LHC analysis (already projected and rate-limited).",
+  "kill_evidence": [
+   {
+    "id": "INSPIRE:2646011 / arXiv:2311.00130",
+    "what": "CMS full Run 2 (138 fb-1) h -> Z a, a -> gamma gamma, m_a 1-30 GeV. Kills the 1704.08207 'h->Za not studied experimentally' claim for the photon channel",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2312.01942",
+    "what": "ATLAS h -> Z a, a -> gamma gamma (139 fb-1)",
+    "location": "title/abstract"
+   },
+   {
+    "id": "arXiv:2411.16361",
+    "what": "ATLAS full Run 2 h -> Z a, a -> hadrons (single small-R jet), m_a 0.5-3.5 GeV, interpreted for ALPs",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1803.11145",
+    "what": "ATLAS dedicated h -> aa -> gamma gamma g g (gamma-gamma-jj) search, m_a 20-60 GeV, VBF-enriched, 2015-16 data. Contradicts the 'no dedicated search' sentence in arXiv:2608.18506 (which cites it) for m_a >= 20 GeV",
+    "location": "abstract; cited as ref in 2608.18506 bibliography"
+   },
+   {
+    "id": "INSPIRE:3166161",
+    "what": "CMS full Run 2 h -> AA -> bb gamma gamma (VH), m_A 20-62 GeV",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2211.07674",
+    "what": "HL-LHC projection of h->aa->4tau in single AND non-resonant/resonant di-Higgs production already published. The authors state non-resonant di-Higgs reach is rate-limited and weaker than single Higgs",
+    "location": "sec.1 p.10 (lines on 'low production rates, rendering them weaker than the single Higgs production channels'); start of sec.5"
+   },
+   {
+    "id": "arXiv:2203.14984",
+    "what": "The 2mu2gamma channel was already recast/analysed there (sec. III B). The 'do not exist' statement refers to 2 leptons + >2 photons (2mu4gamma); the authors neglected 4gamma2mu as too difficult (low-energy photon efficiency)",
+    "location": "Sec. IV end / p.8 column 1"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2311.00130",
+    "collab": "CMS",
+    "covers": "h->Z(ll) a(gamma gamma), m_a 1-30 GeV",
+    "region_gap": "assumes a Z->ll pair; (mumu)(gamma gamma) with m_mumu = m_a is likely outside a Z-window selection (selection detail UNVERIFIED)"
+   },
+   {
+    "id": "arXiv:2603.03250 and arXiv:2211.04172",
+    "collab": "CMS / ATLAS",
+    "covers": "inclusive boosted low-mass diphoton resonances 10-70 GeV (CMS local excess at 13.6 GeV per arXiv:2608.18506 sec.3.2)",
+    "region_gap": "inclusive diphoton; no jet-substructure tag on the recoiling gg system"
+   },
+   {
+    "id": "arXiv:1803.11145",
+    "collab": "ATLAS",
+    "covers": "h->aa->gamma gamma jj, 20-60 GeV, 36 fb-1",
+    "region_gap": "m_a < 20 GeV merged-gluon regime; never updated to full Run 2 (not found)"
+   },
+   {
+    "id": "arXiv:2312.03306",
+    "collab": "ATLAS",
+    "covers": "h->aa->4gamma prompt and long-lived",
+    "region_gap": "Higgs-resonant only; non-resonant gg->aa continuum and m_a below its range left open (per 2607.21712 statement, unverified in detail)"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2211.07674 (HL-LHC h->4tau in single and di-Higgs). No CMS/ATLAS HL projection found for h->aa->mumu gamma gamma, (gg)(gamma gamma) at low m_a, or h->Za(tautau/bb).",
+  "showstoppers": "HH->4tau: sigma(HH) is roughly 1/1000 of single Higgs, so it is never competitive with single-Higgs h->4tau for BR(h->aa). This part DIES as an HL-LHC analysis idea. 2mu2gamma: generic ALP models give BR(a->gg) >> BR(a->mumu) or the reverse; the mixed channel is optimal only in a narrow coupling ratio, and existing 4mu / 4gamma / Z(ll)a(gamma gamma) searches constrain the extremes. (gg)(gamma gamma) at 10-20 GeV: the low-pT wide jet faces huge gamma-gamma+jet background, and diphoton trigger thresholds hurt at m_a ~10 GeV. Non-resonant gg->aa->4gamma at low m_a: the photons merge (pairs of photon-jets) and the dim-6 rate is suppressed.",
+  "queries_run": [
+   "t Higgs and t Z boson and t light and (t hadronically or t hadronic) and (collaboration:ATLAS or collaboration:CMS)",
+   "t Higgs and t pair of light and t photons and t jets",
+   "abstracts.value:\"gamma gamma jj\" or t \"gammagammajj\"",
+   "t Higgs and t Z and t pseudoscalar and collaboration:CMS",
+   "abstracts.value:\"two muons\" and \"two photons\" and \"Higgs\" and date > 2015",
+   "t exotic Higgs and t four tau and t Higgs pair",
+   "t Higgs and t light and t photons and t jets and collaboration:ATLAS",
+   "abstracts.value:\"2mu2gamma\" or \"mumu gamma gamma\" or \"two muons and two photons\"",
+   "t Higgs and t aa and t muons and t photons",
+   "cites arXiv:2203.14984; cites arXiv:2608.18506; cites arXiv:2211.07674",
+   "get arXiv:1803.11145, INSPIRE:3166161, INSPIRE:2646011, arXiv:2411.16361"
+  ],
+  "confidence": "medium",
+  "notes": "Bundle split. h->Za photon/hadronic = well-covered. h->Za(tau tau / bb, m_a > 3.5 GeV) = searched-limited-regime (no dedicated result found; ATLAS 2110.13673 4l covers a->ll only). HH->4tau = projected already and rate-dominated by single Higgs, so DIES. (gg)(gamma gamma) m_a 10-20 GeV = constrained-but-region-open; the 2608.18506 'no dedicated search' sentence is wrong for m_a >= 20 GeV. mumu gamma gamma resonant-pair = proposed-not-searched, low priority. Note: INSPIRE 'refersto:' via tools/inspire.py search returned unrelated records (tool issue), so forward citations used the 'cites' subcommand."
+ },
+ "C026": {
+  "cand_id": "C026",
+  "claim": "HL-LHC precision timing layers (CMS MTD / ATLAS HGTD) can make displaced vertices 4D (space+time), and add time-of-flight to slow charged LLPs (HSCP). The candidate claims no CMS/ATLAS analysis or projection exploits this for DVs, delayed photons or HSCPs.",
+  "verdict": "DIES",
+  "surviving_gap": "Only a marginal residual survives: (i) ATLAS HGTD (2.4<|eta|<4) timing for forward LLP decay products, since the ATLAS HGTD TDR contains no LLP timing study; physics value is limited because forward tracker DVs are rare. (ii) Converting the CMS MTD TDR generator/simplified LLP studies into a full-simulation Phase-2 projection for specific benchmarks such as VBF h->ss->bb DVs with track-level timing (arXiv:2608.27868), scotogenic delayed DVs (INSPIRE:3188833) or compressed DM (arXiv:2608.29275). This is an incremental benchmark extension, not a gap in the concept.",
+  "kill_evidence": [
+   {
+    "id": "INSPIRE:1819664 (CMS-TDR-020, CERN-LHCC-2019-003, MTD TDR)",
+    "what": "The TDR abstract states MTD 'provides new capabilities ... for the search for long-lived particles'. Sec. 5.4.2.1 'Vertex time discrimination and mass reconstruction of SUSY particles' uses the space-time displacement between primary and displaced e+e- vertex (GMSB neutralino -> Z gravitino, ctau 3-100 mm, 30 ps per-track time) to measure beta_LLP and reconstruct a peaking LLP mass: exactly the '4D displaced vertex' concept",
+    "location": "Sec. 5.4.2 intro and 5.4.2.1; Figs. 5.25-5.26 (pp. ~226-229)"
+   },
+   {
+    "id": "INSPIRE:1819664 (CMS-TDR-020)",
+    "what": "Delayed photons from long-lived neutralinos timed with MTD (converted photons) + PV time: a sensitivity study at 30 ps",
+    "location": "Sec. 5.4.2 'Measurement of late photon with respect to the primary vertex in SUSY models', Fig. 5.27"
+   },
+   {
+    "id": "INSPIRE:1819664 (CMS-TDR-020)",
+    "what": "H -> XX -> jjjj long-lived scalar with MTD jet time relative to PV: BR(H->XX) upper limits vs lifetime (covers the h->ss, s->bb/jj delayed-DV benchmark)",
+    "location": "Figs. 5.28-5.29"
+   },
+   {
+    "id": "INSPIRE:1819664 (CMS-TDR-020)",
+    "what": "HSCP velocity (1/beta) with MTD: tighter 1/beta threshold (1.25 -> 1.05) and HSCP mass reconstruction (432 GeV stau). Covers the 'timing-assisted HSCP' seed",
+    "location": "Sec. 'Particle velocity reconstruction in the context of HSCP searches' (p.231), Figs. 5.30-5.31"
+   },
+   {
+    "id": "arXiv:2502.06694",
+    "what": "ATLAS Run-2 HSCP search already combines dE/dx with time-of-flight",
+    "location": "title/abstract"
+   },
+   {
+    "id": "arXiv:1805.05957, arXiv:1903.05825",
+    "what": "Theory proposals of timing for LLP mass/lifetime determination at HL-LHC, heavily followed up (>50 citing papers incl. arXiv:2112.04518 ECAL-timing displaced-jet triggers, arXiv:2109.01682 jet timing)",
+    "location": "INSPIRE citations listing"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "CMS-TDR-020 (INSPIRE:1819664)",
+    "collab": "CMS",
+    "covers": "4D DV beta/mass reconstruction, delayed photons, delayed jets (H->XX), HSCP TOF: HL-LHC projections",
+    "region_gap": "simplified/generator-level studies; no hadronic DV (s->bb) with track-timing in VBF; no full-sim update found"
+   },
+   {
+    "id": "arXiv:2212.06695",
+    "collab": "CMS",
+    "covers": "Run-2 out-of-time trackless jets with ECAL timing",
+    "region_gap": "calorimeter timing, not tracker-DV timing"
+   },
+   {
+    "id": "arXiv:2502.06694",
+    "collab": "ATLAS",
+    "covers": "HSCP dE/dx + TOF, Run 2",
+    "region_gap": "no HGTD (not yet installed)"
+   },
+   {
+    "id": "INSPIRE:2091129 (ATLAS-TDR-031, HGTD TDR)",
+    "collab": "ATLAS",
+    "covers": "HGTD design, pileup mitigation; LLPs mentioned only generically (text scan: 'long-lived' 4 hits, no LLP timing study)",
+    "region_gap": "no ATLAS projection of HGTD timing for LLPs found"
+   }
+  ],
+  "hl_projection_docs": "CMS-TDR-020 (MTD TDR, 2019) Sec. 5.4.2-5.4.4: LLP/HSCP timing projections; CMS-CR-2022-199 (INSPIRE:2598929) 'Physics opportunities with a MIP Timing Detector'; arXiv:1810.00860 'CMS precision timing physics impact for the HL-LHC upgrade'; ATLAS-TDR-031 (HGTD), with no LLP study found.",
+  "showstoppers": "MTD barrel covers only |eta|<1.48 (2608.27868 setup), and per-track 30-40 ps degrades with radiation. DV daughter tracks must reach the MTD with sufficient pT. For heavy-flavour/instrumental DV backgrounds, the timing gain depends on data-driven estimates (2608.27868 abstract states fast sim cannot normalise them). HGTD forward-only.",
+  "queries_run": [
+   "t MIP timing detector",
+   "t MTD and t long-lived",
+   "abstracts.value:\"timing layer\" and abstracts.value:\"long-lived\"",
+   "abstracts.value:\"MIP timing\" and abstracts.value:\"long-lived\"",
+   "t High-Granularity Timing Detector and t technical design report",
+   "abstracts.value:\"precision timing\" and abstracts.value:\"displaced vertex\"",
+   "collaboration:CMS and t (projection or prospects or HL-LHC) and t long-lived and date > 2017",
+   "abstracts.value:\"timing\" and abstracts.value:\"long-lived\" and collaboration:CMS and date > 2022",
+   "abstracts.value:\"4D vertex\" or abstracts.value:\"4D vertexing\"",
+   "abstracts.value:\"time-of-flight\" and abstracts.value:\"heavy stable charged\" and date > 2018",
+   "cites arXiv:1805.05957 (80 most recent)",
+   "full-text scan of CMS-TDR-020 PDF and ATLAS-TDR-031 PDF for long-lived/displaced/delayed/time-of-flight"
+  ],
+  "confidence": "high",
+  "notes": "The scout's statement that 'no CMS/ATLAS analysis using MTD/HGTD timing for DVs was found' is true only for data analyses, which cannot exist before Phase-2 installation. The concept is in the official CMS MTD TDR with projections. Status: indirectly-covered / LHC-projected. A new CMS analysis proposal would only refresh TDR studies. Proceedings INSPIRE:3115293 (2026, 'Advanced algorithms for 4D vertex reconstruction with MTD') show ongoing CMS reconstruction work."
+ },
+ "C029": {
+  "cand_id": "C029",
+  "claim": "Bundle: (a) a nested disappearing-track -> displaced-dilepton-vertex cascade (compressed scotogenic, eta+- DT then long-lived N2 -> DV, optionally MTD-timed) is not targeted by any search; (b) pure-higgsino (loop-split ~0.3 GeV) disappearing tracks lack an HL-LHC/Phase-2 projection.",
+  "verdict": "NARROWED (part b DIES; part a narrowed to a low-priority correlated-topology/reinterpretation niche)",
+  "surviving_gap": "Only (a) survives, narrowly: an event-level DT + collinear downstream dilepton DV (+MTD delay) selection for a charged parent with ~0.2 GeV splitting to a long-lived neutral; each leg individually is searched (DT incl. charged-scalar/stau interpretation; displaced opposite-sign dilepton DVs), so the gap is a combined-selection/acceptance study, best done first as a recast of ATLAS 2603.08315 + ATLAS 2601.05664, not as a stand-alone HL-LHC analysis. Part (b) residual is at most an UPDATED ITk/Phase-2 projection using 3-layer tracklets + soft-pion tagging (methods of 2603.08315), a projection refresh rather than a new analysis.",
+  "kill_evidence": [
+   {
+    "id": "ATL-PHYS-PUB-2018-031 (INSPIRE recid 1795267)",
+    "what": "ATLAS HL-LHC (3 ab-1, 14 TeV) disappearing-track prospects for winos AND higgsinos with highly compressed spectra - directly contradicts 'HL projection not located' for part (b)",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1812.07831",
+    "what": "HL/HE-LHC Yellow Report WG3: Sec. 4.1.1 ATLAS DT projection with pure-higgsino cross sections (Fig. 4.1.2 right), Fig. 4.1.3 exclusion in (m, Delta m) plane reaching Delta m ~0.2-0.4 GeV; Sec. 4.1.3 (Han, Mukhopadhyay, Wang) higgsino-like DT reach at HL-LHC; text also lists ITk improvements (3-4 hit tracklets) as expected enhancements",
+    "location": "Sec. 4.1.1 (Figs. 4.1.2, 4.1.3), Sec. 4.1.3 (Fig. 4.1.5, Table 4.1.2)"
+   },
+   {
+    "id": "arXiv:2603.08315",
+    "what": "ATLAS Run-2 DT search with 3-pixel-hit tracklets plus ML soft-pion reconstruction, explicitly targeting pure-higgsino charginos with loop-induced splitting (lifetimes < 0.03 ns) and also tau-slepton (charged scalar) DTs - the exact 'pure-higgsino short track' regime",
+    "location": "abstract; Sec. 1 (lines on 3-hit tracklets and 250-350 MeV pions)"
+   },
+   {
+    "id": "arXiv:2401.14046 / arXiv:2511.20042",
+    "what": "ATLAS searches for nearly mass-degenerate higgsinos using low-momentum mildly displaced tracks - covers the Delta m region between DT and soft leptons, overlapping the 'ultra-compressed' soft-displaced sub-idea",
+    "location": "titles/abstracts (INSPIRE 2751400, 3086532)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2603.08315",
+    "collab": "ATLAS",
+    "covers": "DT (3/4 pixel layers) + jet + MET, wino/higgsino/stau interpretations, 0.01-10 ns",
+    "region_gap": "No requirement/use of a downstream DV; acceptance for events where the invisible daughter later decays to leptons inside tracker not evaluated (possible loss via lepton veto/isolation)"
+   },
+   {
+    "id": "arXiv:2601.05664",
+    "collab": "ATLAS",
+    "covers": "Displaced vertices of oppositely charged leptons (140 fb-1)",
+    "region_gap": "No DT association; lepton pT thresholds may be high for compressed N2->N1 ll"
+   },
+   {
+    "id": "arXiv:2309.16823",
+    "collab": "CMS",
+    "covers": "Disappearing tracks full Run 2, wino/higgsino",
+    "region_gap": "Same as ATLAS: single-leg"
+   },
+   {
+    "id": "ATL-PHYS-PUB-2018-031 / arXiv:1812.07831 Sec 4.1",
+    "collab": "ATLAS",
+    "covers": "HL-LHC DT projection for wino and higgsino",
+    "region_gap": "Pre-dates 3-hit tracklet + soft-pion methods; no nested-LLP model"
+   }
+  ],
+  "hl_projection_docs": "ATL-PHYS-PUB-2018-031 (recid 1795267); arXiv:1812.07831 Sec 4.1.1-4.1.3; CMS Phase-2 higgsino note recid 1704585 is a soft-dilepton (not DT) projection; CMS MTD TDR (recid 1819664) for LLP timing physics case. No collaboration projection for the nested DT->DV topology found.",
+  "showstoppers": "(a) Model relies on two hierarchically small Yukawa entries (~1e-3 and ~1e-6) and Delta M ~200 MeV; with such splitting eta+- -> N2 + e (muon barely open), and any eta0/eta+- splitting must be arranged so eta+- -> eta0 pi is closed - fine-tuned benchmark. N2 is nearly collinear with the DT, so the DV sits near the DT extrapolation where the DT search's isolation/calorimeter veto may already be affected - a modest acceptance effect, not a new discovery handle. Yields: inert-doublet EW pair production is small (scalar, ~1/4-1/10 of fermion rates; UNVERIFIED numerically). Trigger is MET+ISR as in DT searches - OK. Single-author 0-1 citation preprints (2609.28334, 2608.29275, INSPIRE 3188833) without detector-level simulation.",
+  "queries_run": [
+   "t disappearing and (collaboration:CMS or collaboration:ATLAS)",
+   "t disappearing and (t HL-LHC or t \"high-luminosity\" or t phase-2)",
+   "abstracts.value:\"disappearing track\" and abstracts.value:higgsino and date > 2021",
+   "t \"highly compressed\" and collaboration:ATLAS",
+   "t higgsino and (t HL-LHC or t \"high luminosity\") and date > 2017",
+   "refersto:recid:1704585",
+   "abstracts.value:\"disappearing track\" and abstracts.value:\"displaced vertex\"",
+   "abstracts.value:\"kinked track\"",
+   "abstracts.value:\"disappearing track\" and abstracts.value:\"displaced\" and (collaboration:CMS or collaboration:ATLAS)",
+   "abstracts.value:\"long-lived\" and abstracts.value:\"inert doublet\" and date > 2018",
+   "cites 1911.09037; cites 2609.28334; cites 2007.03708",
+   "collaboration:ATLAS and t \"displaced tracks\"",
+   "collaboration:CMS and abstracts.value:timing and abstracts.value:\"long-lived\" and date > 2021",
+   "abstracts.value:\"MIP timing detector\" and abstracts.value:\"long-lived\"",
+   "(collaboration:CMS or collaboration:ATLAS) and t displaced and (t dilepton or t \"lepton pairs\" or t leptons) and date > 2019",
+   "grep 'disappearing' in arXiv:1812.07831 full text; grep higgsino/stau/pion in arXiv:2603.08315 full text"
+  ],
+  "confidence": "high for (b) DIES; medium for (a) NARROWED",
+  "notes": "Scout's pure-higgsino seed cited 1703.09675 and 2311.17149 but missed ATL-PHYS-PUB-2018-031 and YR 1812.07831 Sec 4.1. The stau-DT interpretation in 2603.08315 (charged scalar -> soft charged particle + invisible) is the closest experimental analogue of the eta+- DT leg. 2608.29275's 'ultra-compressed Delta M~2 GeV soft displaced' overlaps with ATLAS low-momentum displaced-track higgsino searches (2401.14046, 2511.20042) and the INSPIRE 3189809 soft-displaced-lepton pheno study."
+ },
+ "C031": {
+  "cand_id": "C031",
+  "claim": "Bundle: (a) sequential displaced vertices in one decay chain ('tumblers', LLP -> LLP' -> SM) with vertex-to-vertex pointing and event-by-event mass reconstruction are not targeted by CMS/ATLAS multi-DV searches; (b) LLP mass/lifetime (beta-gamma) determination with HL-LHC timing is not done experimentally (only (m, c tau) limits).",
+  "verdict": "NARROWED (both parts reduce to post-discovery characterization; (b) largely DIES as an HL-LHC projection already exists)",
+  "surviving_gap": "A tumbler-vs-independent-DV discriminant (DV2 lying on the DV1->DV2 flight line, consistent PV-DV1-DV2 timing with MTD/ETL, 3-step mass reconstruction) layered on top of inclusive multi-DV displaced-jet selections - i.e. a characterization/model-discrimination study for a post-discovery scenario or an add-on signal region, not a discovery-reach gap. For (b), only an extension of the existing CMS MTD LLP mass-reconstruction study to lifetime extraction / hadronic DVs and to ATLAS HGTD acceptance survives.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2108.02204",
+    "what": "The tumbler paper itself states the benchmarks would first appear as an excess in existing displaced-jet/multi-DV searches (background 0.1-0.7 events at 137 fb-1, scaled to HL-LHC) and that the tumbler-specific mass reconstruction is needed to distinguish tumblers from non-tumbler multi-DV events after an excess - i.e. discovery is indirectly covered by inclusive DV searches",
+    "location": "Sec. V end / Sec. VI intro (text around 'a significant excess of DV-class events would be observed at the HL-LHC for all of our benchmarks')"
+   },
+   {
+    "id": "arXiv:1903.04497",
+    "what": "LHC LLP community white paper, Sec. 5.1.3.7 'LLP Searches with Precision Timing at CMS': CMS (Preliminary, MTD) study of full kinematic LLP mass reconstruction from PV-SV space-time displacement (beta measurement), GMSB chi0 -> Z G~ benchmark and a higgsino scenario, mass resolution vs MTD resolution (Fig. 5.25)",
+    "location": "Sec. 5.1.3.7, Fig. 5.25"
+   },
+   {
+    "id": "CMS MTD TDR, CERN-LHCC-2019-003 (INSPIRE recid 1819664)",
+    "what": "Source of the CMS MTD LLP physics case (LLP velocity/mass reconstruction with timing) quoted in 1903.04497",
+    "location": "physics-case chapter (UNVERIFIED exact section; not on arXiv, read via white-paper quote only)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2104.13474",
+    "collab": "CMS",
+    "covers": "Pair-produced LLPs decaying to jets with displaced vertices (multi-DV selections in tracker)",
+    "region_gap": "Treats DVs as independent; no requirement that DV2 lies on the DV1 flight direction; chained LLP signal not interpreted"
+   },
+   {
+    "id": "arXiv:1808.03078",
+    "collab": "CMS",
+    "covers": "Two displaced vertices in multijet events",
+    "region_gap": "Same; independent vertices"
+   },
+   {
+    "id": "arXiv:2203.00587",
+    "collab": "ATLAS",
+    "covers": "Pair of displaced vertices in the muon spectrometer",
+    "region_gap": "Large-radius only; independent DVs"
+   },
+   {
+    "id": "arXiv:2301.13866",
+    "collab": "ATLAS",
+    "covers": "DV + multiple jets (inclusive >=1 DV)",
+    "region_gap": "Inclusive; would capture tumbler events but not identify the chain"
+   }
+  ],
+  "hl_projection_docs": "arXiv:1903.04497 Sec 5.1.3.7 (CMS MTD LLP mass reconstruction); CMS MTD TDR recid 1819664; ATLAS/CMS HL-LHC BSM YR arXiv:1812.07831 (LLP chapter, not specifically for tumblers); CMS Phase-2 L1 displaced-vertex track trigger proceedings (recid 2908980). No collaboration projection for sequential DV chains found.",
+  "showstoppers": "Tumblers need two macroscopic lifetimes (both DVs inside the tracker volume and resolvable) - a doubly tuned spectrum; the paper's benchmarks give a much larger population of non-tumbler multi-DV events, so the generic multi-DV searches reach discovery first. Event-by-event mass reconstruction requires good DV position + timing for displaced hadronic vertices; MTD/ETL timing applies to charged tracks reaching the timing layer, displaced-track timing association is UNVERIFIED in performance terms. Lifetime/mass measurement (b) is conditional on an observed signal - not a stand-alone search proposal.",
+  "queries_run": [
+   "cites 2108.02204 (all 16 citing papers; none experimental)",
+   "cites 1912.06669 (none experimental)",
+   "cites 1903.05825 (none experimental)",
+   "t \"Searching for long-lived particles beyond the Standard Model at the Large Hadron Collider\"",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"two displaced vertices\"",
+   "abstracts.value:\"long-lived\" and (abstracts.value:\"mass reconstruction\" or abstracts.value:\"mass measurement\") and (abstracts.value:timing or abstracts.value:\"time of flight\") and date > 2016",
+   "abstracts.value:\"sequential\" and abstracts.value:\"displaced vertices\"",
+   "abstracts.value:\"long-lived\" and abstracts.value:\"decay chain\" and abstracts.value:\"displaced\" and date > 2018",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"long-lived\" and (abstracts.value:\"HL-LHC\" or abstracts.value:\"Phase-2\") and date > 2017",
+   "abstracts.value:\"long-lived\" and abstracts.value:lifetime and abstracts.value:determin and abstracts.value:LHC and date > 2018",
+   "abstracts.value:\"MIP timing detector\" and abstracts.value:\"long-lived\"",
+   "full-text grep of arXiv:2108.02204 (CMS/ATLAS/existing searches) and arXiv:1903.04497 (characterization/timing)"
+  ],
+  "confidence": "medium",
+  "notes": "No CMS/ATLAS paper interpreting a chained LLP->LLP topology was found, but 'not found' is not proof of absence. The surviving piece is phenomenology/characterization (novelty_kind: phenomenology), weak as a new HL-LHC analysis. The 2608.27868 VBF timing-reference preprint (0 cites) is not experimental."
+ },
+ "C040": {
+  "cand_id": "C040",
+  "claim": "Bundle of four: (a) direct stau pair production in the coannihilation corridor m_tau < Delta m(stau, LSP) < ~60 GeV lacks LHC/HL-LHC sensitivity; (b) light right staus in natural SUSY are not in HL projections; (c) g-2-motivated light sleptons/EWkinos lack HL coverage; (d) Z'(B-L) -> slepton/sneutrino pairs are unsearched.",
+  "verdict": "NARROWED (a survives narrowly as an HL-projection/Phase-2 analysis gap; b, c, d DIE as distinct proposals)",
+  "surviving_gap": "(a) only: a collaboration-level HL-LHC/Phase-2 projection (and eventual Phase-2 analysis) for DIRECT stau pair production with Delta m(stau, chi0_1) ~ 5-60 GeV using ISR/VBF recoil + soft tau_h (Phase-2 tau trigger/ID, e.g. low-pT tau_h at L1). Run-2/3 searches exist but are weak there: ATLAS 2609.37215 (ISR channel excludes only up to m(stau)=115 GeV at Delta m=30 GeV; combined: no exclusion); CMS 1910.01185 (77 fb-1, interpreted for chargino/neutralino with intermediate stau). The HL-LHC YR stau projections are sensitive only for Delta m > 100 GeV. Status: searched-limited-regime + LHC-not-projected-to-HL. Phenomenology projections for this corridor already exist (e.g. 1704.04669, 2308.05723, 2403.18991), so novelty is experimental-analysis/projection only.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2609.37215",
+    "what": "ATLAS Run 2+3 (140+53 fb-1) search explicitly targeting compressed direct stau (and EWkino->stau) production with ISR, 1 tau_h + lepton and >=2 tau_h; excludes direct stau only up to 115 GeV at Delta m=30 GeV in ISR channel; no exclusion when combined (2.1-2.4 sigma local deviations) - region is actively searched, not unsearched",
+    "location": "abstract; Sec. 6 (direct stau ML analysis)"
+   },
+   {
+    "id": "arXiv:1910.01185",
+    "what": "CMS soft tau_h + ISR jet + MET search motivated by stau-neutralino coannihilation",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2601.17576 / arXiv:2603.08315",
+    "what": "Delta m < m_tau limit (long-lived stau) covered by CMS displaced-tau GNN search and ATLAS DT search with tau-slepton interpretation",
+    "location": "abstracts"
+   },
+   {
+    "id": "arXiv:1812.07831",
+    "what": "YR WG3: Sec. 2.3.1-2.3.3 ATLAS/CMS HL stau projections (sensitive for Delta m > 100 GeV) - shows projection exists for non-compressed only; Sec. 3.3.4 HL projection for singlet DM with slepton-like coannihilation partners notes the low-Delta gap could be closed with ISR",
+    "location": "Sec. 2.3.3 (text), Sec. 3.3.4"
+   },
+   {
+    "id": "arXiv:2505.21476",
+    "what": "Muon g-2 Theory Initiative WP25: 'no tension between the SM prediction and the experimental world average' - removes the (c) motivation",
+    "location": "Introduction (line ~226 of text) and Conclusions"
+   },
+   {
+    "id": "arXiv:2402.01888 / arXiv:2508.13900",
+    "what": "CMS combined EW (winos/binos/higgsinos/sleptons) and CMS general compressed-spectra search (ISR recoil, selectron/smuon and EWkino-via-slepton interpretations) cover (c)",
+    "location": "abstracts; 2508.13900 Sec. on signal models (slepton pair with Delta m < 10 GeV)"
+   },
+   {
+    "id": "arXiv:2603.11035",
+    "what": "CMS search for Z' -> chargino pairs in 2 OS leptons + MET (U(1)' extended MSSM) - same final state and resonant-SUSY topology as (d); Z'->slepton pairs is a reinterpretation of this 2l+MET resonance-shaped search",
+    "location": "abstract; Sec. 1"
+   },
+   {
+    "id": "arXiv:2608.18321",
+    "what": "Seed paper of (d) itself admits benchmark viability needs a suppressed effective leptonic coupling (g ~0.1) for M_Z'=3 TeV to evade dilepton resonance bounds - fragile model-dependent corner",
+    "location": "Sec. 2, Eqs. (2.13)-(2.14)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2609.37215",
+    "collab": "ATLAS",
+    "covers": "Compressed direct stau and EWkino->stau with ISR, 1-2 tau_h, Run 2+3",
+    "region_gap": "Weak/no exclusion for direct stau at Delta m ~ 10-60 GeV; no HL projection"
+   },
+   {
+    "id": "arXiv:1910.01185",
+    "collab": "CMS",
+    "covers": "Soft tau_h + ISR jet + MET, 77 fb-1",
+    "region_gap": "Partial Run-2 dataset; interpreted for EWkino with intermediate stau, not pure direct stau"
+   },
+   {
+    "id": "arXiv:2207.02254",
+    "collab": "CMS",
+    "covers": "Direct stau pairs, 2 tau_h + MET, 138 fb-1",
+    "region_gap": "Large Delta m"
+   },
+   {
+    "id": "CMS-PAS-FTR-18-010 (INSPIRE 1704284)",
+    "collab": "CMS",
+    "covers": "HL-LHC direct stau projection (tau_h tau_h, tau_l tau_h), mass-degenerate L/R",
+    "region_gap": "Non-compressed only"
+   }
+  ],
+  "hl_projection_docs": "CMS Phase-2 stau projection INSPIRE 1704284; arXiv:1812.07831 Sec. 2.3 (ATLAS+CMS stau HL/HE), Sec. 3.3.4 (slepton-like coannihilation partners); pheno HL studies 2403.18991, 1704.04669, 2308.05723, 2411.13837 (VBF compressed EWkinos), 2102.10194 (VBF higgsino compressed).",
+  "showstoppers": "(a) Direct stau cross sections are small (YR: <1 fb above 400 GeV at 14 TeV), soft tau_h ID efficiency/fake rates at pT ~ 10-20 GeV and HL pileup 140-200 are the dominant obstacles; trigger must rely on ISR-MET; ATLAS Run 2+3 already gets no combined exclusion, so HL reach may be limited to m(stau) ~ 100-200 GeV (UNVERIFIED estimate). (c) Motivation removed by WP25 g-2 consensus. (d) Requires suppressed Z' leptonic coupling to survive dilepton bounds; Z'->slepton BR small.",
+  "queries_run": [
+   "(collaboration:CMS or collaboration:ATLAS) and (t stau or t \"tau slepton\" ...) and date > 2018",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"tau slepton\" and abstracts.value:compressed",
+   "(collaboration:CMS or collaboration:ATLAS) and (abstracts.value:\"tau slepton\" or stau or staus) and date > 2020",
+   "collaboration:CMS and t tau and t supersymmetry and date > 2020",
+   "abstracts.value:stau and abstracts.value:coannihilation and (HL-LHC or high-luminosity or 3000) and date > 2014",
+   "collaboration:CMS and (abstracts.value:\"soft tau\" ...) and date > 2019",
+   "collaboration:CMS and abstracts.value:\"vector boson fusion\" and abstracts.value:compressed and date > 2018",
+   "cites 1910.01185",
+   "t \"anomalous magnetic moment of the muon in the Standard Model\" and date > 2024",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"Z prime\" and abstracts.value:slepton",
+   "(collaboration:CMS or collaboration:ATLAS) and Z' and (sleptons or supersymmetric or dark matter) and missing transverse and date > 2015",
+   "(collaboration:ATLAS or collaboration:CMS) and abstracts.value:slepton and (HL-LHC or 3000)",
+   "full-text grep: 2609.37215 abstract/Sec.6; 2508.13900 (stau/slepton coverage); 1812.07831 (stau, slepton, coannihilation); 2603.11035; 2608.18321; 2505.21476"
+  ],
+  "confidence": "medium-high",
+  "notes": "ATLAS 2609.37215 appeared 29 Sep 2026 and is the decisive closest result; scout flagged it as unread. Its observed 2.1-2.4 sigma local deviations make an HL follow-up arguably MORE interesting, but it also shows the collaboration is already on this target (ATLAS likely to extend with Run 3 full data). CMS 2508.13900 general compressed search does not include direct staus (grep found no stau signal model), so a CMS compressed-direct-stau Run-3/Phase-2 analysis is the concrete residual. For (b), natural-SUSY light right staus give the same tau-tau+MET final state as direct-stau simplified models -> reinterpretation, not new analysis."
+ },
+ "C044": {
+  "cand_id": "C044",
+  "claim": "Bundle of four: (a) charge-5/3 top partners with exotic decays (X5/3 -> t phi+ -> t W+ gamma; multi-top) are not searched, needing SSL + hard photon / multi-top searches; (b) VLQ -> t/b + S with S -> gg/WW/ZZ/tautau/long-lived remains open beyond S -> bb and gamma gamma; (c) fully hadronic B -> b Phi (Phi -> gg/bb) 2b4j/6b pair topology is unsearched; (d) recasts show exotic VLQ channels (notably TT -> tS0 tS0 -> 6t) only indirectly bounded and deserve a dedicated search.",
+  "verdict": "NARROWED (several sub-claims die; residual channel-specific gaps remain: X5/3 -> t phi+(W+ gamma) SSL+gamma; TT -> 6t; T -> t S(gg/WW) and B -> b Phi with m_Phi != 125 GeV)",
+  "surviving_gap": "(1) Dedicated pair-production search for T T -> (t S0)(t S0) -> 6 top (or tS0 + tZ/th mixed), which the 2026 recasting atlas states has no direct search yet and recasts already to ~1.65 TeV at BR=100% - a high-ST multi-lepton/multi-b search; HL-LHC suitable. (2) X5/3 -> t phi+ -> t W+ gamma (SSL + hard photon): not targeted; the CMS X5/3 single-lepton search (CMS-PAS-B2G-24-005) covers only X5/3 -> t H+(-> tb). (3) T -> t S with S -> gg/WW (no S->gamma gamma/bb) and B -> b Phi(gg/bb) with Phi mass away from 125 GeV: no VLQ interpretation found, but final states are partially covered by stealth/RPV multijet searches (tt + many light jets; pair-produced trijet resonances) and by B -> bH fully hadronic - a reinterpretation-first gap. Status overall: searched-limited-regime / indirectly-covered.",
+  "kill_evidence": [
+   {
+    "id": "INSPIRE 3157006 (CMS-PAS-B2G-24-005)",
+    "what": "CMS Run-2 X5/3 pair search in single-lepton final state with BSM decay X5/3 -> t H+ (H+ -> tb) in addition to tW: exotic X5/3 decays are already searched by a collaboration (contradicts the scout note 'X5/3 decays to ALP not seen')",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1907.05894",
+    "what": "Seed paper itself: 'We use existing same-sign lepton searches to show that the new final states are constrained at the same level as the standard one' - exotic X5/3 channels are indirectly covered; only SSL+photon and top-rich channels are offered as improvements. Also clarifies the decay is X5/3 -> t phi+ (charged scalar), not X5/3 -> t a as the seed text implies (charge conservation)",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2607.28381",
+    "what": "ATLAS pair T -> tS, S -> gamma gamma, model-independent fiducial limits, explicitly 'targets cascade decays into final states with electroweak bosons or ttbar' - covers S->gamma gamma and partially WW/ZZ/tt cascades with one S->gamma gamma",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2610.03489",
+    "what": "CMS pair T -> t phi with phi -> gamma gamma, boosted all-hadronic tops (138 fb-1); 2.7 sigma local excess",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2510.25874 / arXiv:2604.10729",
+    "what": "CMS single T -> t phi(bb) lepton+jets and heavy resonance -> t phi(bb) fully hadronic boosted - covers S->bb",
+    "location": "abstracts"
+   },
+   {
+    "id": "arXiv:2402.13808",
+    "what": "CMS B-pair fully hadronic and dileptonic (B -> bH/bZ/tW): 6-jet/6b-like fully hadronic topology at m_Phi = m_H is searched",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2506.08825 / arXiv:2102.06976",
+    "what": "CMS stealth/RPV top-squark searches in tt + many light-flavour jets with low MET - same final state as T T -> (t a)(t a), a -> gg; not interpreted for VLQs",
+    "location": "abstracts"
+   },
+   {
+    "id": "arXiv:1810.10092 / arXiv:2401.16333",
+    "what": "CMS pair-produced three-jet resonances (35.9 fb-1) and ATLAS RPV many-jets: cover B -> b Phi(gg) as a three-jet resonance pair (not interpreted for VLQ)",
+    "location": "abstracts"
+   },
+   {
+    "id": "arXiv:2609.00127",
+    "what": "Recasting atlas: X X -> tS+ tS- -> ttbttb is 'the only exotic channel with top-philic decays that has been targeted so far' (ref [8] = CMS-PAS-B2G-24-005); TT -> 6t recast-excluded up to 1.65 TeV for BR=100%; 'a dedicated search ... can test VLQ masses well above 1.5 TeV' - identifies the 6t channel as the surviving one",
+    "location": "Sec. on exotic channels, Figs. 3-4 and text after Fig. 4"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "INSPIRE 3157006 (CMS-PAS-B2G-24-005)",
+    "collab": "CMS",
+    "covers": "X5/3 pair, single-lepton, tW and t H+(tb)",
+    "region_gap": "No phi+ -> W+ gamma (photon) channel; no SSL+gamma; no b phi++ or b pi6"
+   },
+   {
+    "id": "arXiv:1810.03188",
+    "collab": "CMS",
+    "covers": "X5/3 SSL + single-lepton (35.9 fb-1), tW decay",
+    "region_gap": "Standard decay only; recastable for exotic modes per 1907.05894"
+   },
+   {
+    "id": "arXiv:2607.28381",
+    "collab": "ATLAS",
+    "covers": "TT -> tS tS with >=1 S->gamma gamma, high ST/MET",
+    "region_gap": "Needs S->gamma gamma; S->gg/WW-only not covered"
+   },
+   {
+    "id": "arXiv:2610.03489",
+    "collab": "CMS",
+    "covers": "TT -> t phi, phi->gamma gamma, boosted hadronic tops",
+    "region_gap": "Same, CMS side"
+   },
+   {
+    "id": "arXiv:2506.08825",
+    "collab": "CMS",
+    "covers": "tt + >=6 light jets, 0-2 leptons, low MET",
+    "region_gap": "Not interpreted for T -> t a(gg); acceptance for VLQ kinematics unknown (UNVERIFIED)"
+   },
+   {
+    "id": "arXiv:2402.13808",
+    "collab": "CMS",
+    "covers": "B pair fully hadronic bH/bZ",
+    "region_gap": "Fixed H/Z masses; Phi mass scan absent"
+   },
+   {
+    "id": "arXiv:2606.30862",
+    "collab": "CMS",
+    "covers": "BSM interpretations in 4t/3t production events (SSL/multilepton)",
+    "region_gap": "Signal-region overlap with TT->6t is high (SSL/3L + many b); VLQ 6t interpretation not found in title/abstract - read before claiming gap (UNVERIFIED)"
+   }
+  ],
+  "hl_projection_docs": "Collaboration HL projections exist only for standard VLQ decays (CMS HL T->bW/tZ/tH single-lepton, INSPIRE 2809474/2611744; ATLAS 2025 single-T b-jet projection INSPIRE 3071495; arXiv:1812.07831 VLQ section; arXiv:1902.03942). No collaboration HL projection for exotic VLQ->S or X5/3 exotic decays found. Pheno HL studies: 2203.13753 (roadmap benchmarks for HL-LHC), 2204.09005, 2606.20054, 1812.11286 (6-top), 2505.07769 (hadronic B->b Phi).",
+  "showstoppers": "SSL + hard photon: fake-photon (jet->gamma) and charge-flip backgrounds must be data-driven (admitted by 1907.05894); phi+ -> W+ gamma BR is model-dependent (anomaly-induced). Fully hadronic 2b4j/6b: huge QCD multijet background, combinatorics, but high-HT triggers are fine for TeV-scale VLQs; Phi mass scan multiplies the signal grid. 6t: tiny SM background but VLQ pair cross section falls steeply above 1.5 TeV - HL gain is mostly luminosity-driven; BR into exotic channel is model-dependent (recasting atlas notes full models dilute the 6t BR). Overall the exotic-decay space is a large model-dependent grid; collaborations prefer model-independent fiducial limits (as 2607.28381 does).",
+  "queries_run": [
+   "(collaboration:CMS or collaboration:ATLAS) and (t \"vector-like\" or t vectorlike) and date > 2021 (50 results scanned)",
+   "cites 1907.05894 (42 citing papers scanned)",
+   "(collaboration:CMS or collaboration:ATLAS) and (t \"charge 5/3\" or t \"5/3\")",
+   "r CMS-PAS-B2G-24-005",
+   "(collaboration:CMS or collaboration:ATLAS) and (t three-jet or t \"three jets\" or t trijet) and t pair and date > 2017",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:stealth and abstracts.value:\"top squark\" and date > 2018",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"vector-like\" and (pseudoscalar or \"new scalar\") and date > 2019",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"same-sign\" and abstracts.value:photon and date > 2016",
+   "collaboration:ATLAS and pair-produced and \"three jets\" and date > 2018",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"vector-like\" and (HL-LHC or \"3000 fb\")",
+   "inspire get: 2505.07769, 2609.00127, 1908.07524, 2203.13753, 2610.03489, 2607.28381, 2402.13808, 2604.10729, 2602.20477",
+   "full-text grep of arXiv:2609.00127 (dedicated search / exotic channels / ref [8])",
+   "(collaboration:CMS or collaboration:ATLAS) and (\"six top\" or \"three top\" or \"multi-top\" ...)",
+   "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"top-philic\" and date > 2020"
+  ],
+  "confidence": "medium",
+  "notes": "Scout's seed S019 mis-describes the physics (X5/3 cannot decay to t + neutral a; it is t phi+ with phi+ -> W+ gamma/a W+). The biggest correction is CMS-PAS-B2G-24-005 (X5/3 -> t H+) and the two diphoton T->t phi searches (ATLAS 2607.28381, CMS 2610.03489). CMS 2610.03489 reports a 2.7 sigma local excess (1.5 global) - an HL follow-up in S->gamma gamma is natural but is a continuation, not a gap. The 6t channel is the cleanest surviving item and is explicitly flagged by an independent recast paper; CMS 2606.30862 (BSM in 3t/4t events) and ATLAS 2609.24950 (top-philic resonance + tops) are the multi-top searches whose SRs a 6t signal would populate; their VLQ-6t interpretation was not checked in full text. S->long-lived and S->tautau channels were not checked in depth (UNVERIFIED either way)."
+ },
+ "C045": {
+  "cand_id": "C045",
+  "claim": "Same-charge uu->TT production of a charge-2/3 VLQ coupled only to first-generation quarks (T->Wd/Zu/Hu) has no dedicated CMS/ATLAS search and should be a new HL-LHC analysis.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only a dedicated same-sign-dilepton + 2 light jets (+MET) search with reconstructed m(W j)/m(Z j) peaks and large-width (Gamma/m >~ 1-50%) signal templates survives; it is a niche corner because generic searches/measurements already exclude most of the first-generation kappa-M plane up to kappa~0.07, APV bounds the same couplings, and the only HL-LHC projection (2212.01514) gains only a sliver over APV (g* in [0.056,0.074], M_T 1.5-2.5 TeV). Status: indirectly-covered / constrained-but-region-open.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2006.07172",
+    "what": "Contur reinterpretation of published LHC measurements: 'the majority of the first-generation kappa-M_Q plane is excluded at 95% CL ... despite the lack of dedicated searches'; allowed region extends to kappa~0.07 at high mass, similar to APV limits. Includes t-channel weak VLQ pair production (Fig. 1e), i.e. the same-charge process.",
+    "location": "Sec. 5.1, Fig. 7; Sec. 5 intro (Fig. 1e discussion)"
+   },
+   {
+    "id": "arXiv:2504.05476",
+    "what": "The seminal paper itself recasts ATLAS/CMS generic searches (ATLAS 0L squark/gluino 2010.14293, CMS jets+MET 1908.04722, CMS multilepton 1911.04968, CMS 3-jet resonances 1810.10092): same-charge TT excluded up to ~3.5-4 TeV for large widths; bound from same-charge TT is 'largely subdominant with respect to the APV bound on the mixing angle' except low-mass singlet; ATLAS 2405.19862 has 'much higher reach' in the Wd case and 'the same-charge process would also be effectively tested by this search'.",
+    "location": "Sec. 3 (Fig. 3, Fig. 5 and text after Eq. APV), Sec. 4.1"
+   },
+   {
+    "id": "arXiv:2212.01514",
+    "what": "HL-LHC (3000 fb-1) projection of exactly this signature (pp->TT via t-channel first-generation coupling, T->Wq, same-sign dileptons + 2 jets + MET) already exists; HL-LHC reach only 'slightly better than the noncollider limits from atomic parity violation'.",
+    "location": "Abstract; Conclusions"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2405.19862",
+    "collab": "ATLAS",
+    "covers": "QCD pair production of VLQ->W+light quark, l+jets, 140 fb-1, reinterpreted for Zu/Hu",
+    "region_gap": "Narrow-width QCD pair only; no same-sign dilepton channel, no large-width/t-channel same-charge signal model"
+   },
+   {
+    "id": "arXiv:1807.11883",
+    "collab": "ATLAS",
+    "covers": "same-charge dileptons + b-jets: VLQ pair, T5/3, same-sign top pair",
+    "region_gap": "Requires b-jets; first-generation T decays to light quarks not targeted"
+   },
+   {
+    "id": "INSPIRE:1204346",
+    "collab": "ATLAS",
+    "covers": "7 TeV single production of VLQs coupling to light generations",
+    "region_gap": "Old, low-luminosity; single production only"
+   },
+   {
+    "id": "arXiv:2312.00420",
+    "collab": "ATLAS",
+    "covers": "W+-W+-jj fiducial/differential cross sections (same final state as TT->W+dW+d), used in Contur-type reinterpretations",
+    "region_gap": "VBS selection (large m_jj, Delta y_jj), not a resonance search"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2212.01514 (pheno HL-LHC projection, same-sign dilepton channel, 3000 fb-1). No CMS/ATLAS Phase-2 projection for this channel found.",
+  "showstoppers": "Couplings that drive same-charge production (kappa^4) are bounded by atomic parity violation (kappa<~0.07 first generation; 2006.07172 Sec.5, 2504.05476 Sec.3); single production (kappa^2) and QCD pair production generally dominate sensitivity; physics case relies on large-width region which is in tension with APV for singlet/doublet embeddings (2504.05476 Fig. 5). Backgrounds (ssWW, WZ, charge-flip, fakes) manageable but signal rate small for APV-allowed couplings.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\"",
+   "collaboration:ATLAS and abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\"",
+   "abstracts.value:\"same-charge\" and abstracts.value:\"vector-like\"",
+   "abstracts.value:\"same-sign top partner\"",
+   "cites arxiv:2504.05476; cites arxiv:2406.09193; refs arxiv:2504.05476",
+   "abstracts.value:\"vector-like\" and abstracts.value:\"first generation\" and abstracts.value:\"single production\"",
+   "collaboration:CMS/ATLAS and abstracts.value:\"excited quark\" and boson (qW/qZ resonances)",
+   "collaboration:ATLAS and t \"same-sign\" and date > 2019 and tc p",
+   "abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\" and abstracts.value:\"HL-LHC\"",
+   "collaboration:CMS/ATLAS and abstracts.value:\"vector-like\" and (light quark | first-generation)",
+   "abstracts.value:\"same-sign\" and abstracts.value:\"top partner\" and abstracts.value:\"first-generation\""
+  ],
+  "confidence": "medium",
+  "notes": "Seed's 'gap_evidence' sentence from 2406.09193 is true literally (no dedicated experimental same-sign VLQ-pair search found), but the parameter space is largely covered indirectly and by APV. A dedicated search would be a modest extension (add SS2l channel + width templates to an ATLAS-2405.19862-like analysis), not a high-value new HL-LHC analysis. CMS qW/qZ excited-quark dijet search 1708.05379 also constrains T->Zu/Wd single production (not quantified here, UNVERIFIED)."
+ },
+ "C047": {
+  "cand_id": "C047",
+  "claim": "Bundle: (a) top-partner/VLQ 'portal matter' decaying to t + dark photon (boosted prompt A'->ll lepton-jet or long-lived A' decaying in the detector) has no CMS/ATLAS search; (b) vector-like leptons in long-lived, tau-rich, triplet/exotic-charge or dark/ALP decay modes are under-searched.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Part (a) only: a dedicated CMS/ATLAS search for pair (or single) produced T -> t + gamma_d with gamma_d reconstructed as a boosted (prompt or displaced, mm-m) lepton-jet/collimated ll, i.e. 'top + lepton-jet' or 'top + displaced lepton-jet' at HL-LHC. No experimental search found; the phenomenology (including the displaced regime) already exists (1904.05893 Sec. 5-6/Fig. 10, 2112.08425, 2209.13888, 2410.06925), so novelty is experimental-analysis only (proposed-not-searched). The fully-invisible (escaping A') regime is indirectly covered by tt+MET/t+MET recasts. Part (b) DIES: VLL tau/third-generation, LLP-in-muon-system, triplet (type-III seesaw) and inclusive multilepton searches all exist; only doubly-charged VLL prompt decays remain without a found dedicated search (low priority, UNVERIFIED gap).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:1904.05893",
+    "what": "Original maverick-top-partner paper already treats long-lived gamma_d (decay lengths, displaced vertices, MATHUSLA) and recasts CMS stop (tt+MET) and ATLAS t+MET (1812.09743) searches for the escaping-A' case; so the '2410.06925 future work' long-lived case is not new phenomenology.",
+    "location": "Sec. on dark photon lifetime (Fig. 8, Fig. 10), Fig. 9 and text around eq. (65)"
+   },
+   {
+    "id": "arXiv:2209.13888",
+    "what": "Pheno study of maverick top partner decays including 14 TeV 300 and 3000 fb-1 projections",
+    "location": "Results/conclusions (14 TeV 3000 fb-1 figure)"
+   },
+   {
+    "id": "arXiv:2112.08425",
+    "what": "Pheno search strategy for T -> t gamma_d with gamma_d -> overlapping electrons (lepton-jet), claims viability up to ~3 TeV",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2503.16699",
+    "what": "CMS VLL -> tau + long-lived pseudoscalar (a->gamma gamma) in muon system, 138 fb-1",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2503.22581 / arXiv:2303.05441 / arXiv:2208.09700",
+    "what": "ATLAS/CMS third-generation VLL searches in tau/b final states",
+    "location": "Abstracts"
+   },
+   {
+    "id": "arXiv:2202.02039 / arXiv:2202.08676",
+    "what": "ATLAS type-III seesaw (SU(2) triplet heavy leptons) and CMS inclusive multilepton searches cover triplet VLLs",
+    "location": "Abstracts"
+   },
+   {
+    "id": "arXiv:2411.07143",
+    "what": "ATLAS VLL coupling to first/second generation",
+    "location": "Title/abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2607.28381",
+    "collab": "ATLAS",
+    "covers": "VLQ T -> t + spin-0 S, S->gamma gamma, 140 fb-1",
+    "region_gap": "Scalar to diphoton, not dark photon to lepton-jets; prompt only"
+   },
+   {
+    "id": "arXiv:2610.03489 / arXiv:2510.25874",
+    "collab": "CMS",
+    "covers": "T -> t phi (phi->gamma gamma boosted tops; single T -> t phi, phi->bb)",
+    "region_gap": "No dark-photon/lepton-jet or displaced decays"
+   },
+   {
+    "id": "arXiv:2206.12181",
+    "collab": "ATLAS",
+    "covers": "Displaced collimated lepton/hadron jets from long-lived dark photons (Higgs ggF/WH production)",
+    "region_gap": "Production via Higgs; not interpreted for VLQ -> t gamma_d (sensitivity of inclusive selection to VLQ topology UNVERIFIED)"
+   },
+   {
+    "id": "arXiv:1812.09743 (via 1904.05893 recast)",
+    "collab": "ATLAS",
+    "covers": "t + large MET; covers escaping gamma_d",
+    "region_gap": "Invisible regime only"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2209.13888 (pheno, 14 TeV 3000 fb-1); arXiv:2112.08425 (pheno LHC). No CMS/ATLAS Phase-2 projection for T -> t gamma_d found.",
+  "showstoppers": "Boosted GeV-scale A' gives collimated leptons failing standard isolation (needs dedicated lepton-jet reconstruction, as in ATLAS LJ searches - feasible). BR(T->t gamma_d) is model-dependent (dominates only for small m_gamma_d << m_Z and suitable v_d, sin theta). Kinetic mixing epsilon constrained by beam-dump/B-factory; for displaced regime epsilon ~1e-6-1e-4 (1904.05893). Pair-production rate falls fast above ~1.5-2 TeV, so HL-LHC reach is driven by QCD pair rate; existing VLQ limits in standard modes do not apply when BR(T->t gamma_d) ~ 1.",
+  "queries_run": [
+   "abstracts.value:\"vector-like\" and abstracts.value:\"dark photon\"",
+   "abstracts.value:\"portal matter\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"vector-like\" and (exotic decay | new scalar | spin-0 | pseudoscalar) and date > 2019",
+   "(CMS or ATLAS) and abstracts.value:\"top partner\" and abstracts.value:\"long-lived\"",
+   "(CMS or ATLAS) and abstracts.value:\"lepton-jet\" and date > 2015",
+   "cites arxiv:2410.06925; cites arxiv:1904.05893; cites arxiv:1810.07531",
+   "(CMS or ATLAS) and abstracts.value:\"dark photon\" and abstracts.value:\"top quark\"",
+   "(CMS or ATLAS) and abstracts.value:\"displaced\" and abstracts.value:\"top quark\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"dark photon\" and abstracts.value:\"displaced\" and date > 2019",
+   "abstracts.value:\"top partner\" and abstracts.value:\"dark photon\"",
+   "(CMS or ATLAS) and abstracts.value:\"type-III seesaw\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"vector-like lepton\" and date > 2018",
+   "(CMS or ATLAS) and doubly charged heavy lepton",
+   "abstracts.value:\"doubly charged lepton\" and date > 2015",
+   "abstracts.value:\"vector-like lepton\" and abstracts.value:\"long-lived\""
+  ],
+  "confidence": "medium",
+  "notes": "The seed's gap quote (2410.06925 'leave long-lived dark photon for future work') is a lead from a 2-citation paper; the long-lived case had been discussed in 1904.05893 (53 citations). Bundle split: (a) NARROWED-survives as experimental gap 'top + (displaced) lepton-jet'; (b) DIES. Whether ATLAS/CMS displaced-vertex+jets or muon-system shower inclusive searches already constrain VLQ -> t gamma_d was not checked by a recast (UNVERIFIED)."
+ },
+ "C048": {
+  "cand_id": "C048",
+  "claim": "Colour-sextet fermionic top partners (hyperbaryons of fundamental composite Higgs models) have no dedicated CMS/ATLAS search; a dedicated HL-LHC search (pair: multi-top/multi-b/MET; single: Q6 t / Q6 b) is warranted.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(i) A dedicated search for compressed Q6 -> pi6 Q1hat -> bb + MET spectra (soft b-jets) where generic SUSY recasts lose sensitivity; (ii) a dedicated >=5-6 top / 4t+X high-HT signature from Q6Q6 -> (t S pi8)(t S pi8) at m6 ~ 2.5-3 TeV; (iii) single sextet production (Q6 t, Q6 b via chromomagnetic operator) at HL-LHC - no pheno study yet (theory-explored-untested only for pair). The bulk of pair-production parameter space is indirectly-covered by generic SUSY searches (excluded to ~2.4-2.6 TeV full multiplet), with HL-LHC extrapolated recast reach ~2.75-3 TeV, leaving only a few hundred GeV of mass reach for a dedicated analysis.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2605.04143",
+    "what": "Seminal paper's own recast of ATLAS-SUSY-2018-31, ATLAS-SUSY-2018-17, CMS-SUS-19-006: full sextet multiplet excluded up to 2.42 (2.64) TeV LO (K=3); pi6 channel 2.65 (2.9) TeV; HL-LHC extrapolation (3 ab-1, 13 TeV) ~2.75 TeV LO, ~3 TeV with K=3. 'existing analyses already have sensitivity to a substantial fraction of the multi-TeV mass range'.",
+    "location": "Sec. 4, Figs. 3-4, Conclusions"
+   },
+   {
+    "id": "arXiv:2605.04143",
+    "what": "Compressed bb+MET regime explicitly identified as where recasts lose sensitivity -> surviving gap",
+    "location": "Conclusions"
+   },
+   {
+    "id": "arXiv:2506.04318",
+    "what": "HL-LHC (14 TeV, 3 ab-1) pheno projection for colour-sextet (and octet) scalars in four-top same-sign-lepton channel (scalar sextets, not fermions) - adjacent coverage of the multi-top signature",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "CMS-SUS-19-006 / ATLAS-SUSY-2018-31 / ATLAS-SUSY-2018-17 (as recast in 2605.04143)",
+    "collab": "CMS/ATLAS",
+    "covers": "multijet+HT+MET, multi-b+MET, high-jet-multiplicity SUSY final states",
+    "region_gap": "Not optimized for multi-top without large MET or compressed bb+MET"
+   },
+   {
+    "id": "arXiv:2410.20601",
+    "collab": "CMS",
+    "covers": "pair-produced heavy particles -> t + g (colour-octet/excited top partners), l+jets",
+    "region_gap": "t+g decay, not t+S+pi8 cascades of sextets"
+   },
+   {
+    "id": "arXiv:2604.14058",
+    "collab": "CMS",
+    "covers": "BSM resonances in four-top events, 2-lepton channel (Z', scalar, ALP)",
+    "region_gap": "Resonant tt in 4t; not pair-produced coloured fermions to >=4t+X"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2605.04143 Sec. 4 & App. B (luminosity extrapolation of recasts to 3 ab-1 at 13 TeV); arXiv:2609.19918 (proceedings summary, recast bound up to 2.64 TeV). No CMS/ATLAS Phase-2 projection for coloured sextet fermions found.",
+  "showstoppers": "(1) MC: public shower tools do not support the 3x6x8 colour flow; 2605.04143 uses an unvalidated triplet surrogate - a dedicated experimental analysis needs proper signal modelling. (2) No NLO cross section (K-factor of 3 is a guess) -> large theory uncertainty on mass limits. (3) Model dependence on pNGB masses (pi8 fixed at 1.5 TeV, constrained >~1.375 TeV) and on spectrum (m1, m6). (4) Small marginal gain: rate-limited at ~3 TeV, recasts already near HL reach. (5) Single production is loop/model-coupling suppressed.",
+  "queries_run": [
+   "abstracts.value:\"sextet\" and abstracts.value:\"fermion\" and date > 2010",
+   "colour/color(-)sextet abstracts (all spellings)",
+   "(CMS or ATLAS) and abstracts.value:\"sextet\"",
+   "(CMS or ATLAS) and abstracts.value:\"color-octet\" and (fermion | top partner | excited top)",
+   "(CMS or ATLAS) and (six top | multi-top | multiple top)",
+   "(CMS or ATLAS) and abstracts.value:\"four top\" and BSM and date > 2021",
+   "abstracts.value:\"hyperbaryon\" or \"chimera baryon\" and LHC",
+   "cites arxiv:2605.04143",
+   "collaboration:ATLAS and t \"four top\" and (resonance | top-philic)",
+   "(CMS or ATLAS) and sgluon / color-octet scalar four top"
+  ],
+  "confidence": "medium",
+  "notes": "No CMS/ATLAS paper mentioning 'sextet' in abstract found (not proof of absence). Seed's gap quotes are accurate but the same paper shows strong indirect coverage. Novelty mostly theory/phenomenology (2605.04143 is 2026); experimental priority low unless compressed/bb+MET or single-production pheno shows large gains."
+ },
+ "C051": {
+  "cand_id": "C051",
+  "claim": "Bundle: (1) Drell-Yan angular coefficients A0-A2 (Lam-Tung violation) and (2) naive-T-odd A5-A7 have only been measured at the Z peak, so a high-m_ll/high-pT unfolded A_i measurement is a gap; (3) high-mass A_FB / running of sin2theta_W above the Z pole has not been probed.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(1) A full (phi-dependent) unfolded A0-A7 measurement, in particular A2 and A0-A2, double-differential in m_ll (>~170-200 GeV) and pT_ll - not done by CMS/ATLAS (A0 alone vs mass, pT/y-integrated, template-level, exists in CMS 2202.12327). (2) A5-A7 above the Z peak: no measurement found (survives, but SM ~0 and statistics at high m & high pT are small). (3) A_FB at high mass is ALREADY MEASURED (CMS 2202.12327, m>170 GeV up to >1 TeV, 138 fb-1) and used in SMEFT fits -> that part DIES; only an experimental extraction of MSbar sin2theta_W(mu) running from high-mass NC DY survives (no CMS/ATLAS result found; theory HL-LHC projections exist in 2302.10782).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2202.12327",
+    "what": "CMS 13 TeV, 138 fb-1: A_FB measured vs dilepton mass for m>170 GeV (bins 170,200,250,320,510,700,1000,inf), mumu and ee, AND A0 measured vs mass in the same high-mass region; used to set Z' limits. Directly contradicts the seed statement that existing angular measurements are Z-peak only.",
+    "location": "Abstract; Sec. 1 (lines on A0 'in the same high-mass region (>170 GeV)'); Sec. on binning ('bin edges ... 170, 200, 250, 320, 510, 700, 1000 and infinity'); Table of A_FB per mass bin"
+   },
+   {
+    "id": "arXiv:2303.08257 / arXiv:2310.19638",
+    "what": "Pheno SMEFT fits already using available high-invariant-mass ATLAS/CMS A_FB data for four-fermion operators",
+    "location": "Abstract (2303.08257)"
+   },
+   {
+    "id": "arXiv:2503.20023",
+    "what": "CMS t-channel LQ search uses differential (angular) distributions of dileptons with m>500 GeV - angular information at high mass already exploited for BSM",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2512.05018",
+    "what": "Its table of existing A_i measurements omits CMS 2202.12327 - the seed's 'not yet available' gap quote is partly stale; it also already provides LHC 300 fb-1 / HL-LHC 3 ab-1 sensitivity projections for A0-A2",
+    "location": "Sec. 6 table of measurements; Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2202.12327",
+    "collab": "CMS",
+    "covers": "A_FB and A0 vs m_ll for m>170 GeV, integrated over pT and y, template fit (not unfolded to parton-level mass bins)",
+    "region_gap": "No A1, A2, A3, A5-A7; no pT_ll differential; no Lam-Tung test; no sin2theta running extraction"
+   },
+   {
+    "id": "arXiv:2604.25678",
+    "collab": "CMS",
+    "covers": "A0-A7 double-differential in pT, y, 140 fb-1",
+    "region_gap": "m_mumu 81-101 GeV only"
+   },
+   {
+    "id": "arXiv:2408.07622",
+    "collab": "CMS",
+    "covers": "A_FB, A4 and sin2theta_eff vs mass and rapidity",
+    "region_gap": "Mass bins around the Z (edges up to ~150 GeV per text), not high mass"
+   },
+   {
+    "id": "arXiv:1606.00689 / arXiv:1504.03512",
+    "collab": "ATLAS/CMS",
+    "covers": "8 TeV A0-A7 at Z peak",
+    "region_gap": "Z peak only"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2302.10782 (sin2theta_MSbar running, 13.6 TeV Run 3 and 3 ab-1 HL-LHC, pheno); arXiv:2512.05018 (A0-A2 sensitivity, 300 fb-1 and 3 ab-1); arXiv:2511.19617 (A6,A7 dim-8 CP-odd at HL-LHC); CMS HL-LHC sin2theta proposal recid:1643433 (on-peak). No CMS/ATLAS Phase-2 projection for high-mass A_i found.",
+  "showstoppers": "Chirality-breaking ops enter A0-A2 only quadratically (1/Lambda^4), and A5-A7 effects come from dim-8 or dipole x dipole: expected effects are small relative to systematic uncertainties of phi-dependent acceptance corrections at high mass. A2/A5-A7 need finite pT_ll; the high-m_ll x high-pT_ll corner has limited statistics even at 3 ab-1 (number not checked, UNVERIFIED). Running of sin2theta at high mass is degenerate with PDFs and with SMEFT four-fermion operators (2310.19638 discussion) - interpretive, not detector, challenge.",
+  "queries_run": [
+   "(CMS or ATLAS) and abstracts.value:\"forward-backward asymmetry\" and abstracts.value:\"high\"",
+   "(CMS or ATLAS or LHCb) and abstracts.value:\"angular coefficients\" and date > 2015",
+   "(CMS or ATLAS) and abstracts.value:\"running\" and abstracts.value:\"weak mixing angle\"",
+   "abstracts.value:\"running\" and \"weak mixing angle\" and \"Drell-Yan\" and date > 2017",
+   "(CMS or ATLAS) and abstracts.value:\"Lam-Tung\"",
+   "abstracts.value:\"Lam-Tung\" and date > 2018",
+   "(CMS or ATLAS) and Drell-Yan and angular and mass and date > 2017",
+   "get arxiv:2202.12327 (CMS high-mass AFB, recalled then verified)",
+   "cites arxiv:2202.12327",
+   "collaboration:ATLAS dilepton angular/forward-backward contact interaction",
+   "ATLAS high-mass Drell-Yan",
+   "(CMS or ATLAS) and A_0 and A_2",
+   "cites arxiv:2302.10782; cites arxiv:2511.19617; cites arxiv:2512.05018",
+   "(CMS or ATLAS) and abstracts.value:\"T-odd\"",
+   "(CMS or ATLAS) and Drell-Yan and effective field theory and date > 2020",
+   "collaboration:ATLAS and weak mixing angle and date > 2019"
+  ],
+  "confidence": "medium-high for the A_FB kill (read from CMS PDF); medium for the A2/A5-A7 surviving gaps (ATLAS CONF notes/HEPData not checked; UNVERIFIED)",
+  "notes": "Seed missed CMS 2202.12327 entirely. Recommended reformulation: 'Full unfolded A0-A7 (esp. A2, A0-A2, A5-A7) in high-mass bins vs pT_ll at Run 3+HL-LHC, plus MSbar running extraction from the existing high-mass A_FB/triple-differential framework'. The sin2theta running piece is more an interpretation of existing-type measurements than a new analysis."
+ },
+ "C053": {
+  "cand_id": "C053",
+  "claim": "A bundle of EW-EFT observables claimed under-exploited at HL-LHC: interference-resurrection azimuthal angles for aTGC, polarisation/spin-correlation asymmetries for aQGC in ssWW, universal-SMEFT W,Y from NC+CC Drell-Yan, triboson dim-6/8 SMEFT, gauge-invariant dim-8 nTGC angular observables, gluonic dim-8 QGCs (gg->Zgamma/gammagamma), and HEFT-vs-SMEFT VBF HH/HHH.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Most sub-ideas are already done by CMS/ATLAS. Small residual gaps remain: (i) a decay-plane azimuthal interference-resurrection fit in boosted semileptonic WV (l nu J), where only standard-parametrisation aTGC fits were found; (ii) an experimental interpretation of high-mass gamma-gamma / Z gamma spectra in terms of gluonic dim-8 QGC operators, which is recast-level (pheno 2112.06729 already uses ATLAS data; HL-LHC projection in 2512.04336); (iii) a joint NC+CC Drell-Yan universal W,Y fit with dim-8 terms; (iv) dim-8 nTGC from ZZ->4l decay angles combined with Z gamma. None is a strong standalone HL-LHC analysis.",
+  "parts": [
+   {
+    "part": "S059 interference resurrection (WV/WZ azimuthal angles)",
+    "verdict": "DIES (leptonic) / NARROWED (semileptonic boosted)",
+    "reason": "CMS W gamma 2111.13948 uses the lepton azimuthal decay angle phi explicitly as 'interference resurrection' for O_3W (Abstract; Sec.2). ATLAS WZ 2507.03500 uses phi*_W, phi*_Z decay angles to revive interference for CP-odd operators (EFT section, txt ~l.1076, 1591). ATLAS WZ CP-sensitive observables are summarised in proceedings 2601.17461. Residual: boosted l nu qq."
+   },
+   {
+    "part": "S060 polarisation/spin-correlation asymmetries for aQGC in ssWW/WZ",
+    "verdict": "NARROWED (weak)",
+    "reason": "Proposal 2606.06436 finds sensitivity only 'comparable' to the m_T(WW) tail (Abstract). Polarised ssWW is already measured (CMS 2009.09429, ATLAS 2503.11317), as is WZjj-EW (ATLAS 2607.20246). aQGC from ssWW/WZ is in the ATLAS combination 2603.18630. Two neutrinos prevent rest-frame reconstruction. CMS HL-LHC VBS projection: INSPIRE 1488789."
+   },
+   {
+    "part": "S064 universal SMEFT W,Y from DY",
+    "verdict": "DIES (NC and CC separately) / NARROWED (joint + dim-8)",
+    "reason": "CMS-PAS-EXO-25-001 (INSPIRE 3181329) gives W and Y limits from high-mass ee/mumu, 207 fb-1 at 13+13.6 TeV. CMS 2202.06075 constrains the W parameter from l+MET. A joint NC+CC fit with dim-8 terms was not found."
+   },
+   {
+    "part": "S067 triboson dim-6/8",
+    "verdict": "NARROWED",
+    "reason": "aQGC limits from ATLAS WWgamma 2509.14070, CMS WZgamma 2503.21977, CMS W/Z gamma gamma 2105.12780 (scout), ATLAS VVZ 2412.15123, ATLAS QGC combination 2603.18630 (includes a triboson input). Residual: dim-6 triboson SMEFT global interpretation; rates are low."
+   },
+   {
+    "part": "S068 gauge-invariant dim-8 nTGC",
+    "verdict": "DIES (Z gamma) / NARROWED (ZZ phi angles)",
+    "reason": "ATLAS-CONF-2025-001 (INSPIRE 2909586) gives SU(2)xU(1) gauge-invariant nTGC limits from Z(ll)gamma. CMS 2512.08582 constrains dim-8 nTGC in a recent EFT framework, which it describes as 'for the first time'. CMS Z(nunu)gamma 2601.14102 also exists."
+   },
+   {
+    "part": "S069 gluonic dim-8 QGC (gg->Zgamma, gammagamma)",
+    "verdict": "SURVIVES (recast-level)",
+    "reason": "No CMS/ATLAS interpretation found. Pheno already recasts ATLAS data (2112.06729 abstract) and gives HL-LHC reach (2512.04336 abstract). The signal is a high-mass tail shared with nonresonant diphoton/contact-interaction searches."
+   },
+   {
+    "part": "S070 HEFT vs SMEFT in VBF HH/HHH",
+    "verdict": "DIES (HH) / showstopper (HHH)",
+    "reason": "kappa_2V is measured (CMS 2205.06667). HEFT interpretations exist: ATLAS 2069569, ATLAS 2970397, CMS combination 2510.07527. ATLAS HL-LHC boosted VBF HH 4b projection: INSPIRE 2898243. ATLAS W+-W+-Hjj probes WWHH (2609.25153). The VBF HHH rate is far below the ggF HHH SM rate (0.079 fb at 13 TeV, 2411.02040)."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2111.13948",
+    "what": "CMS W gamma differential + EFT using photon pT and charged-lepton azimuthal decay angle, explicitly 'interference resurrection', giving about 10x interference sensitivity",
+    "location": "Abstract; Sec.2 'Interference resurrection'"
+   },
+   {
+    "id": "arXiv:2507.03500",
+    "what": "ATLAS WZ: phi*_W/phi*_Z decay angles used to revive interference for CP-odd dim-6 operators",
+    "location": "EFT interpretation section"
+   },
+   {
+    "id": "CMS-PAS-EXO-25-001 (INSPIRE 3181329)",
+    "what": "CMS limits on oblique W and Y from high-mass dileptons, 207 fb-1",
+    "location": "Abstract"
+   },
+   {
+    "id": "ATLAS-CONF-2025-001 (INSPIRE 2909586)",
+    "what": "ATLAS fully gauge-invariant nTGC form factors in Z(ll)gamma, 140 fb-1",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2512.08582",
+    "what": "CMS Z gamma at 13.6 TeV with dim-8 nTGC constraints in a new EFT framework",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2603.18630",
+    "what": "ATLAS combined dim-8 (Eboli) aQGC interpretation of VBS + triboson",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2510.07527",
+    "what": "CMS HH combination including HEFT interpretation",
+    "location": "Abstract (HEFT keyword match)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2111.13948",
+    "collab": "CMS",
+    "covers": "W gamma interference resurrection via phi",
+    "region_gap": "not WV semileptonic boosted"
+   },
+   {
+    "id": "arXiv:2510.00118",
+    "collab": "CMS",
+    "covers": "semileptonic VBS l nu qq / ll qq aQGC",
+    "region_gap": "aQGC via mass tails, not decay-plane angles"
+   },
+   {
+    "id": "INSPIRE 3181329",
+    "collab": "CMS",
+    "covers": "W,Y from NC DY",
+    "region_gap": "no CC combination/dim-8"
+   },
+   {
+    "id": "INSPIRE 2909586",
+    "collab": "ATLAS",
+    "covers": "gauge-invariant nTGC from Z gamma",
+    "region_gap": "no ZZ phi-angle dim-8"
+   }
+  ],
+  "hl_projection_docs": "CMS HL-LHC ssWW/WZ VBS prospects (INSPIRE 1488789); ATLAS HL-LHC boosted VBF HH 4b (INSPIRE 2898243); ATLAS HL-LHC HH projections (INSPIRE 2898222). Pheno: 2512.04336 (gluonic QGC at HL-LHC), 2008.12978 (W,Y HL).",
+  "showstoppers": "Neutrino ambiguity limits decay-plane reconstruction in WW and ssWW. In boosted semileptonic WV, quark/antiquark subjet identification is ambiguous (phi folded), which reduces the resurrection gain (UNVERIFIED magnitude). EFT validity in tails at dim-8. Triboson and VBF multi-Higgs rates are low.",
+  "queries_run": [
+   "t \"interference resurrection\" or abstracts.value:\"interference resurrection\"",
+   "t \"triple gauge\" and t azimuthal (CMS/ATLAS)",
+   "abstracts.value:\"azimuthal\" and \"triple gauge\" (CMS/ATLAS)",
+   "t \"anomalous gauge\" or \"triple gauge\" (CMS/ATLAS) date>2021",
+   "abstracts.value:\"interference\" and \"triple gauge\" date>2019",
+   "abstracts.value:\"decay angle\" and \"effective field theory\"",
+   "cites 1708.07823 (collab filter)",
+   "cites 2301.13663",
+   "t \"same-sign\" and polarized W",
+   "abstracts.value:\"polarization\" and \"quartic\" (CMS/ATLAS)",
+   "t same-sign WW HL-LHC",
+   "abstracts.value:\"oblique parameters\" and \"Drell-Yan\"",
+   "abstracts.value:\"W and Y\" and \"Drell-Yan\"",
+   "t \"Higgs compositeness\" and dilepton",
+   "abstracts.value:\"W parameter\" (CMS/ATLAS)",
+   "cites 2008.12978 (collab filter)",
+   "t triboson (CMS/ATLAS) date>2019",
+   "abstracts.value:\"anomalous quartic\" (CMS/ATLAS) date>2021",
+   "cites 2112.06729",
+   "abstracts.value:\"gluon\" and \"quartic\" and \"photon\"",
+   "abstracts.value:\"HEFT\" (CMS/ATLAS)",
+   "t VBF Higgs boson pair (CMS/ATLAS)",
+   "abstracts.value:\"semileptonic\" and \"triple gauge\"",
+   "pdf grep 2111.13948, 2507.03500"
+  ],
+  "confidence": "medium-high",
+  "notes": "This bundle should not go forward as one candidate. Interference resurrection in particular is an established experimental technique: CMS has used it since 2021 in W gamma. The best remaining HL-LHC hook is the boosted semileptonic WV azimuthal analysis, which is incremental."
+ },
+ "C054": {
+  "cand_id": "C054",
+  "claim": "Quantum entanglement / Bell tests (spin-density-matrix tomography) in WW, WZ, ZZ continuum production, H->ZZ*, H->WW* and tau pairs have not been measured by CMS/ATLAS and are an HL-LHC opportunity.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(a) H->WW*->lvlv entanglement/CGLMP test: no CMS/ATLAS result found (pheno 2209.14033, 2605.19754), but it is a Run-2/3 analysis, not HL-LHC-specific; (b) full two-qutrit tomography + concurrence/Bell in continuum high-mass ZZ->4l (and WW) at HL-LHC: only polarisation fractions measured so far; (c) tau-pair (Z/H->tautau) entanglement tomography at LHC: pheno only (2504.01496). H->ZZ* entanglement is done (ATLAS 4.7 sigma; CMS density matrix). WZ entanglement is theoretically disfavoured as demonstrable (2601.09540).",
+  "parts": [
+   {
+    "part": "H->ZZ*->4l entanglement / density matrix",
+    "verdict": "DIES",
+    "reason": "ATLAS 2603.26463 (separable hypothesis disfavoured at 4.7 sigma, exp 4.9); CMS-PAS-HIG-25-011 (INSPIRE 3087935) measures polarization density matrix in H->ZZ. HL-LHC is only a precision update (ATLAS conclusions)."
+   },
+   {
+    "part": "H->WW* entanglement",
+    "verdict": "SURVIVES (not HL-specific)",
+    "reason": "No CMS/ATLAS measurement found; 2209.14033 claims Run-2 sensitivity using already-measured m_ll; showstopper: two neutrinos, spin-0 SM entanglement guaranteed (QM test, weak BSM leverage)"
+   },
+   {
+    "part": "pp->ZZ/WZ/WW continuum entanglement & Bell",
+    "verdict": "NARROWED",
+    "reason": "ATLAS joint-polarisation WZ (2211.09435), ZZ longitudinal (2310.04350), WZ energy dependence (2402.16365), WZjj-EW (2607.20246), CMS WZ angles (2110.11231) cover partial density-matrix information; full tomography/concurrence not done. WZ entanglement not demonstrable in realistic regimes per 2601.09540 Conclusions; Bell violation in WW/ZZ needs m_VV>900 GeV (2302.00683 abstract) -> rate-limited, HL-LHC ZZ->4l high-mass is the only plausible slice."
+   },
+   {
+    "part": "tau-pair entanglement",
+    "verdict": "SURVIVES (pheno-only)",
+    "reason": "Pheno at LHC 2504.01496 (ML neutrino reconstruction); CMS/ATLAS H->tautau CP (2110.04836, 2212.05833, CMS 13.6 TeV INSPIRE 3138184) already exploit transverse tau spin correlations (one-observable-not-another). Showstopper: two-fold/neutrino ambiguity, tau trigger thresholds."
+   },
+   {
+    "part": "VBS entanglement / dim-8",
+    "verdict": "SURVIVES (theory-explored-untested)",
+    "reason": "2306.17247 pheno; rate in leptonic VBS very low; no experimental study found"
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2603.26463",
+    "what": "ATLAS first measurement of ZZ* spin entanglement in H->ZZ*->4l at 13 and 13.6 TeV; separable hypothesis disfavoured at 4.7 sigma (exp 4.9); conclusions: HL-LHC will enable more precise tests",
+    "location": "Abstract; conclusions (txt line ~444)"
+   },
+   {
+    "id": "CMS-PAS-HIG-25-011 (INSPIRE 3087935)",
+    "what": "CMS H->4l with 138+62 fb-1: polarization density matrix in H->ZZ measured, CP violation in Z polarization searched",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2601.09540",
+    "what": "WZ concurrence bounds do not allow to show the WZ system is spin-entangled in realistic (incl. boosted) regimes",
+    "location": "Conclusions (quoted by scout; abstract consistent)"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2603.26463",
+    "collab": "ATLAS",
+    "covers": "H->ZZ* entanglement",
+    "region_gap": "no H->WW*, no continuum ZZ"
+   },
+   {
+    "id": "arXiv:2211.09435",
+    "collab": "ATLAS",
+    "covers": "WZ joint polarisation fractions",
+    "region_gap": "not full density matrix/entanglement markers"
+   },
+   {
+    "id": "arXiv:2310.04350",
+    "collab": "ATLAS",
+    "covers": "ZZ->4l longitudinal pair evidence + CP",
+    "region_gap": "no tomography/Bell at high m_ZZ"
+   },
+   {
+    "id": "arXiv:2110.04836",
+    "collab": "CMS",
+    "covers": "H->tautau CP via tau decay-plane correlations",
+    "region_gap": "not entanglement/Bell tomography"
+   }
+  ],
+  "hl_projection_docs": "None found from CMS/ATLAS for diboson/H->WW/tau entanglement (not proof of absence). Pheno: 2302.00683, 2506.16077 (pp->ZZ entanglement Run2+3/HL), 2504.01496 (tau), 2605.19754 (HWW).",
+  "showstoppers": "Neutrino reconstruction for WW/tau (2605.26724 two-fold ambiguity); SMEFT truncation and NLO corrections spoil qutrit interpretation (2505.12125, 2609.25217 tomography limitations in H->4l); WZ entanglement not demonstrable (2601.09540); high-m_VV Bell region statistically starved in fully leptonic modes. BSM leverage over standard angular-coefficient EFT fits is debated (entanglement markers are functions of the same coefficients).",
+  "queries_run": [
+   "t entanglement and (collaboration:ATLAS or collaboration:CMS)",
+   "t Bell and (collaboration:ATLAS or collaboration:CMS)",
+   "t \"spin density matrix\" and (collaboration:ATLAS or collaboration:CMS) and date > 2018",
+   "t \"quantum\" and (t WZ or t WW or t ZZ) and date > 2021",
+   "t entanglement and t tau and date > 2021",
+   "t quantum tomography and t Higgs",
+   "t \"spin correlation\" and t tau and (collaboration:CMS or collaboration:ATLAS)",
+   "t \"quantum information\" and t HL-LHC",
+   "t polarization and (t WZ or t ZZ or t WW) and (collaboration:CMS or collaboration:ATLAS) and date > 2021",
+   "abstracts.value:\"entanglement\" and (collaboration:ATLAS or collaboration:CMS) and date > 2024",
+   "t \"joint-polarisation\" or t \"longitudinally polarised\" (ATLAS/CMS)",
+   "t \"tau polarization\" (ATLAS/CMS)",
+   "abstracts.value:\"entanglement\" and abstracts.value:\"WZ\"",
+   "abstracts.value:\"entanglement\" and abstracts.value:\"vector boson scattering\"",
+   "abstracts.value:\"entanglement\" and abstracts.value:\"high-luminosity\"",
+   "t CP tau Higgs Yukawa (CMS/ATLAS)",
+   "cites 2208.11723",
+   "cites 2209.14033",
+   "pdf grep 2603.26463"
+  ],
+  "confidence": "medium",
+  "notes": "The flagship part (H->ZZ*) is dead. Remaining parts are measurements (QM tests) rather than BSM searches; HL-LHC relevance strongest for continuum high-mass ZZ tomography. H->WW* entanglement is the most concrete experimental gap but could be done with Run 2+3."
+ },
+ "C057": {
+  "cand_id": "C057",
+  "claim": "Energy-correlator (EEC/E3C) observables on boosted top/W jets (top mass), EEC 'bump hunts inside jets' for light hadrophilic resonances, and QCD-instanton multi-jet searches are untested by CMS/ATLAS and suited to HL-LHC.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only the top/W-jet E3C measurement (m_t/m_W standard-candle method of 2311.14389/2407.12900) survives as an experimental gap: no CMS/ATLAS measurement found (only a thesis-level feasibility, INSPIRE 2853221). It is a precision measurement doable with Run 2/3, not HL-LHC-specific. The EEC bump hunt is an alternative observable for the parameter space already searched by CMS low-mass Z'->qq ISR-boosted searches (claimed only 'competitive'). The QCD-instanton part is anti-HL: the signal is low-mass and soft and needs low-pileup runs.",
+  "parts": [
+   {
+    "part": "E3C/EEC on boosted top & W jets (top mass)",
+    "verdict": "SURVIVES (not HL-specific)",
+    "reason": "No CMS/ATLAS measurement found; closest are the ATLAS Lund plane in top/W jets (2407.10879), CMS EEC in inclusive jets (2402.13864), and CMS boosted-top jet-mass m_t (1911.03800, 2211.01456). Pheno feasibility already done (2311.14389 incl. HL-LHC statistics, 2407.12900, 2405.20001); thesis 2853221. Gap type: proposed-not-searched, measurement."
+   },
+   {
+    "part": "EEC bump hunt inside jets (light hadrophilic Z')",
+    "verdict": "NARROWED -> indirectly-covered",
+    "reason": "2605.28934 recasts CMS low-mass qq search and finds sensitivity only 'competitive' (abstract; Fig.4 text). Same Z' parameter space is searched by CMS 1909.04114, 2603.21965 (50-300 GeV, ParticleNet), 1905.10331 (ISR photon). Signal ECs at particle level; detector granularity/unfolding may degrade (2605.28934 p.~3). Residual: a different observable/systematics profile, plus SM W/Z in EEC as a benchmark."
+   },
+   {
+    "part": "QCD instanton multi-jet / soft-bomb",
+    "verdict": "DIES for HL-LHC",
+    "reason": "Signal sits at low instanton mass (20-60 GeV, 2104.01861 abstract) where pileup kills it; proposals require low-luminosity runs (2104.01861); 2012.09120 Sec.5.3 already sets a recast limit from ATLAS min-bias data; CMS low-PU event-shape measurement 2505.17850 is explicitly a reference for future instanton searches (Sec.1, lines ~64-69, 147). High-mass instantons are 'highly suppressed' (2012.09120 Sec.4). Not an HL-LHC (200 PU) analysis."
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2104.01861",
+    "what": "Instanton search strategy for masses 20-60 GeV in diffractive events in low-luminosity runs, 'thus avoiding problems with pile-up'",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2012.09120",
+    "what": "First limit on instanton processes from recasting ATLAS charged-particle min-bias data; at high luminosity pileup 'further complicates such a search'",
+    "location": "Sec.5.3; Sec.4 intro"
+   },
+   {
+    "id": "arXiv:2505.17850",
+    "what": "CMS low-PU (64 microb-1) event-shape measurement motivated by instantons, a reference for future instanton searches",
+    "location": "Introduction"
+   },
+   {
+    "id": "arXiv:2605.28934",
+    "what": "EEC bump hunt projected LHC sensitivity for light Z' is 'competitive with existing searches', based on recast of CMS low-mass resonance search",
+    "location": "Abstract; Fig.4 discussion"
+   },
+   {
+    "id": "arXiv:2603.21965",
+    "what": "CMS low-mass (50-300 GeV) qq resonance search with ISR-boosted two-prong large-R jet",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2402.13864",
+    "collab": "CMS",
+    "covers": "EEC/E3C in inclusive jets, alpha_s",
+    "region_gap": "no top/W jets, no BSM interpretation"
+   },
+   {
+    "id": "arXiv:2407.10879",
+    "collab": "ATLAS",
+    "covers": "Lund jet plane in top and W jets (ttbar)",
+    "region_gap": "different observable; no EEC/m_t extraction"
+   },
+   {
+    "id": "arXiv:2603.21965",
+    "collab": "CMS",
+    "covers": "light Z'->qq 50-300 GeV boosted",
+    "region_gap": "uses N2/ParticleNet, not EEC angular bump"
+   },
+   {
+    "id": "arXiv:2505.17850",
+    "collab": "CMS",
+    "covers": "low-PU event shapes vs multiplicity (instanton-sensitive)",
+    "region_gap": "no instanton limit; low-PU only"
+   }
+  ],
+  "hl_projection_docs": "None from CMS/ATLAS found for EEC top mass or EEC bump hunt. Pheno 2311.14389 includes HL-LHC statistical feasibility. Instanton: 2012.09120 notes prescaled jet triggers would be needed during HL-LHC for the high-mass regime.",
+  "showstoppers": "EEC top mass: constituent/track-level angular observable at 200 PU needs charged-track or PUPPI-type mitigation; non-perturbative and NLO theory (JEEEC at NLO is an open problem per 2201.08393 outlook) limit interpretation. EEC bump hunt: detector angular granularity at small angles and unfolding; no clear sensitivity gain over N2/ParticleNet. Instantons: pileup, trigger (soft, high-multiplicity), and large generator uncertainty in the instanton cross-section.",
+  "queries_run": [
+   "t energy correlator and (collaboration:CMS or ATLAS or ALICE or LHCb)",
+   "t \"energy correlators\" and t top",
+   "abstracts.value:\"energy correlator\" and abstracts.value:\"top quark mass\"",
+   "t \"energy-energy correlation\" and (CMS/ATLAS) and date > 2018",
+   "t \"three-point energy correlator\"",
+   "t \"top quark mass\" and t boosted and (CMS/ATLAS)",
+   "cites 2201.08393; cites 2311.02157",
+   "WebSearch: CMS energy correlator boosted top quark jets measurement top mass PAS",
+   "WebSearch: ATLAS OR CMS energy correlators top quark jets 2025 2026",
+   "abstracts.value:\"energy correlator\" and abstracts.value:\"new physics\"",
+   "abstracts.value:\"energy correlator\" and (resonance or boosted)",
+   "t \"low mass\" and t \"quark-antiquark\" and collaboration:CMS",
+   "t \"dark photon\" or leptophobic boosted (CMS/ATLAS)",
+   "t instanton and (CMS/ATLAS/TOTEM/H1)",
+   "t instantons and t LHC and date > 2018",
+   "t \"QCD instanton\" and date > 2022",
+   "abstracts.value:\"instanton\" and abstracts.value:\"forward proton\"",
+   "WebSearch: CMS search QCD instanton induced events multiplicity 13 TeV",
+   "pdf read: 2605.28934, 2012.09120, 2104.01861, 2505.17850"
+  ],
+  "confidence": "medium",
+  "notes": "This is a heterogeneous bundle with no common HL-LHC rationale. The surviving part is a SM precision measurement. Forward-proton-tag instanton searches (2609.15252 follow-up to Tasevsky 2022) also need low pileup. CMS also measures 4-point EEC (INSPIRE 3188778) and charm-jet EEC (2504.03431, found by web search, ID not INSPIRE-verified). The EEC programme is active in CMS, so a top-jet EEC is a natural next CMS step and could be in preparation (UNVERIFIED)."
+ },
+ "C061": {
+  "cand_id": "C061",
+  "claim": "Triple/quadruple Higgs production beyond the 6b final state (bbbb tautau, bbbb WW, 4b gamma gamma, multilepton, resonant X->SH->HHH, 8b HHHH, quartic coupling) is not covered by CMS/ATLAS.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only non-6b, non-4b2gamma HHH channels (chiefly 4b+tautau, possibly 4b+multilepton/WW) and a multi-channel HHH (6b+4b2gamma+4btautau) combination with an HL-LHC projection survive; no CMS/ATLAS result found for these. 8b HHHH has only phenomenology (2608.16998) and is SM-rate-dead; only meaningful as resonant S->hhhh / h3->h2h2 cascades. Gap type: searched-limited-regime. The 6b (non-resonant + resonant TRSM cascades), 4b2gamma, kappa3/kappa4 constraints and 6b HL-LHC projection are already done.",
+  "parts": [
+   {
+    "part": "HHH->6b nonresonant/kappa3-kappa4",
+    "verdict": "DIES",
+    "reason": "ATLAS 2411.02040, CMS 2607.05145 (CMS-PAS-HIG-24-012), ATLAS HL-LHC projection ATL-PHYS-PUB-2025-003 (recid 2893567)"
+   },
+   {
+    "part": "HHH->4b2gamma",
+    "verdict": "DIES",
+    "reason": "CMS-PAS-HIG-24-015 (recid 2945642): Run-2 138 fb-1, limits on HHH xsec and lambda3/lambda4"
+   },
+   {
+    "part": "Resonant X->SH->HHH cascades",
+    "verdict": "DIES (6b) / NARROWED (other channels)",
+    "reason": "ATLAS 2411.02040 Resonant + Heavy-resonant searches (TRSM 325<=mX<=575, 200<=mS<=350 GeV, plus generic X,S); recast/HL projections 2606.01966, 2501.14866"
+   },
+   {
+    "part": "HHH->4b tautau / multilepton",
+    "verdict": "SURVIVES (weakly)",
+    "reason": "No CMS/ATLAS result or HL projection found; pheno exists only at 100 TeV (2504.04037; 1704.04298)"
+   },
+   {
+    "part": "HHHH 8b / quartic",
+    "verdict": "NARROWED to BSM-resonant",
+    "reason": "Pheno HL-LHC study 2608.16998 already gives c3,d4 and resonant S->hhhh; SM rate unobservable"
+   }
+  ],
+  "kill_evidence": [
+   {
+    "id": "arXiv:2411.02040",
+    "what": "ATLAS HHH->6b, 126 fb-1, nonresonant + resonant (TRSM, DM-CPV, generic heavy X,S) interpretations; SM xsec 0.079 fb at 13 TeV used",
+    "location": "Abstract; Sec.1 (lines on TRSM/DM-CPV); Sec.3 signal samples"
+   },
+   {
+    "id": "arXiv:2607.05145",
+    "what": "CMS nonresonant HHH->6b, 138 fb-1, boosted/resolved topologies, limit 44 (43) fb = 588 (572) x SM; -177<kappa4<185",
+    "location": "Abstract"
+   },
+   {
+    "id": "CMS-PAS-HIG-24-015 (INSPIRE 2945642)",
+    "what": "CMS HHH->4b2gamma Run 2, limit 244 (152) fb, interpreted in lambda3, lambda4",
+    "location": "Abstract"
+   },
+   {
+    "id": "ATL-PHYS-PUB-2025-003 (INSPIRE 2893567)",
+    "what": "ATLAS HL-LHC projection of HHH->6b, 1-3 ab-1 at 14 TeV, kappa3/kappa4 constraints",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2608.16998",
+    "what": "HL-LHC phenomenology of HHHH 8b with c3,d4 constraints and resonant S->hhhh, h3->h2h2 cascades",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2411.02040",
+    "collab": "ATLAS",
+    "covers": "6b nonres + resonant cascades",
+    "region_gap": "no tau/lepton/photon HHH channels"
+   },
+   {
+    "id": "arXiv:2607.05145",
+    "collab": "CMS",
+    "covers": "6b nonres all boost regimes",
+    "region_gap": "nonresonant only; 6b only"
+   },
+   {
+    "id": "CMS-PAS-HIG-24-015",
+    "collab": "CMS",
+    "covers": "4b2gamma HHH",
+    "region_gap": "no HL-LHC projection seen; no combination with 6b seen"
+   }
+  ],
+  "hl_projection_docs": "ATL-PHYS-PUB-2025-003 (ATLAS HHH 6b HL-LHC); pheno: 2312.04646 (GNN HHH HL-LHC), 2606.01966 (recast + HL TRSM), 2501.14866, 2608.16998 (HHHH). No CMS HHH HL-LHC projection found (not proof of absence).",
+  "showstoppers": "SM sigma(HHH)=0.079 fb at 13 TeV (2411.02040 Sec.3) -> O(few hundred) events at 3 ab-1 before BR; 4b-tautau BR fraction of order 6% (estimate from standard Higgs BRs, UNVERIFIED) -> O(10) produced SM events before efficiency: SM HHH is unobservable in any channel; only large kappa4 (O(100)) or resonant BSM enhancement is testable. Tau trigger/ID plus 4b in 200 PU is hard. HHHH: SM rate effectively zero.",
+  "queries_run": [
+   "t triple Higgs or t HHH",
+   "t \"three Higgs\" and date > 2023",
+   "abstracts.value:\"triple Higgs\" and collaboration:CMS",
+   "abstracts.value:\"HHH\" and (collaboration:CMS or collaboration:ATLAS)",
+   "t \"quartic Higgs\" or t \"quartic self-coupling\" and date > 2022",
+   "t triple Higgs and (t tau or t lepton or t multilepton)",
+   "t four Higgs or t quadruple Higgs or t HHHH",
+   "t \"triple Higgs\" and t HL-LHC",
+   "abstracts.value:\"triple Higgs\" and abstracts.value:\"HL-LHC\" and date > 2023",
+   "abstracts.value:\"triple Higgs\" and abstracts.value:\"tau\"",
+   "abstracts.value:\"HHH\" and abstracts.value:\"leptons\" and date > 2022",
+   "t HL-LHC and t \"Higgs boson pair\" and date > 2024 and (collaboration:CMS or collaboration:ATLAS)",
+   "abstracts.value:\"X -> SH\" or t \"scalar particle and a Higgs\"",
+   "abstracts.value:\"6b\" and abstracts.value:\"resonant\" and date > 2023",
+   "cites arxiv:2407.03015 / 2411.02040 / 2312.04646 (mostrecent, 100 each)",
+   "pdf grep 2411.02040"
+  ],
+  "confidence": "medium-high",
+  "notes": "Scout's 'open' list was largely already done: 4b2gamma (CMS PAS) and resonant HHH (ATLAS 6b) exist. ATLAS thesis INSPIRE 3073505 also documents the 6b search and BSM models. Remaining channel novelty is marginal: an incremental channel addition to an HHH combination with very low SM rate; value lies in BSM-resonant HHH in tau channels and the combination."
+ },
+ "C064": {
+  "cand_id": "C064",
+  "claim": "Bundle: (a) A->ZH (lltt, nunubb) as FOEWPT smoking gun lacks a CMS counterpart and VBF/V-associated X->Zh CP-violation probes are unexplored; (b) light H+ (m<mt) in t->bH+ with H+->WZ has no dedicated search; (c) heavy->light scalar cascades X->YY->4b / X->SH lack coverage and HL-LHC projections.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(a) DIES as stated: CMS has an A->Z(ll)H(tt) result (138/fb, trilepton + all-hadronic combination, INSPIRE recid 3188772, 2026) and the ATLAS lltt/nunubb paper (2311.04033); a pheno HL-LHC lumi-rescaled projection exists (2309.17431 Sec. 3.3/App. B). V-associated Ha->Zh is rate-killed in the C2HDM (2507.05942 Sec. III, Fig. 3: 'impossible to probe at the HL-LHC with 3 ab-1'); VBF set aside by the same authors because ggF contamination needs better q/g tagging. Residual: an official ATLAS/CMS HL-LHC projection of A->ZH (lltt/nunubb), not in the 2025 ATLAS+CMS HL BSM-scalar projections (2504.00672 cover S->HH/ZZ). (b) NARROWED: a dedicated t->bH+, H+->WZ(*) search with an explicit m(H+) reconstruction (3l/4l + b), motivated only in triplet/Georgi-Machacek models (loop-suppressed in 2HDM); currently only a ttZ-differential recast (2509.07094) sets sub-permille BR limits, and existing GM H+->WZ searches are VBF and m>=200 GeV. (c) NARROWED: X->SH/YH is well covered (CMS 4b 2605.02848 & 2204.12413, bbgg 2508.11494; ATLAS 2307.11120, 2405.20926); the open piece is X->YY->4b with both daughters non-SM, m_Y ~20-120 GeV and m_X in the few-hundred-GeV range (resolved/boosted), plus Vh2, h2->h1h1->4b with m(4b) != 125 GeV (ATLAS 2507.01165 fixes the parent to the 125 GeV H). Pheno HL projections exist for the latter (2603.29395, 2608.23183).",
+  "kill_evidence": [
+   {
+    "id": "INSPIRE recid 3188772 (CMS note, 2026, no arXiv)",
+    "what": "CMS search for A->Z(ll)H(tt semileptonic), 138/fb, three-lepton events, combined with an all-hadronic tt search; kills 'no CMS counterpart'",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2311.04033",
+    "what": "ATLAS A->ZH in lltt and nunubb, 140/fb",
+    "location": "Title/abstract"
+   },
+   {
+    "id": "arXiv:2309.17431",
+    "what": "HL-LHC projections (300-3000/fb) for A->ZH lltt by rescaling the ATLAS expected limits with sqrt(L), plus a comparison to earlier CMS-based projections",
+    "location": "Sec. 3.3 (text ~p.17) and App. B"
+   },
+   {
+    "id": "arXiv:2507.05942",
+    "what": "W/Z-associated Ha->Zh->llbb cross sections in the C2HDM are 'very suppressed, and impossible to probe at the HL-LHC with 3 ab-1'; VBF left aside because ggF contamination requires better quark/gluon tagging",
+    "location": "Sec. II-III, Fig. 3 and footnote 2; discussion of VBF in Sec. I"
+   },
+   {
+    "id": "arXiv:2509.07094",
+    "what": "Recast of CMS+ATLAS ttZ differential measurements gives sub-permille limits on Br(t->H+b)xBr(H+->WZ) for m_H+ < m_t (with a ~2 sigma preference); the light-H+->WZ phase space is therefore already indirectly constrained",
+    "location": "Abstract; Sec. III, Fig. 2"
+   },
+   {
+    "id": "arXiv:2605.02848; arXiv:2204.12413; arXiv:2508.11494; arXiv:2307.11120",
+    "what": "X->YH/SH extensively searched (4b resolved m_X 400-1600 GeV, m_Y 60-1400 GeV; 4b boosted; bbgg; ATLAS l/ll+tautau)",
+    "location": "Abstracts"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "recid:3188772",
+    "collab": "CMS",
+    "covers": "A->Z(ll)H(tt), 3l + hadronic combination, 138/fb",
+    "region_gap": "no nunubb counterpart verified in CMS; no HL projection"
+   },
+   {
+    "id": "arXiv:2311.04033",
+    "collab": "ATLAS",
+    "covers": "A->ZH in lltt and nunubb, 140/fb",
+    "region_gap": "Run 2 only; HL extrapolation only in pheno (2309.17431)"
+   },
+   {
+    "id": "arXiv:1911.03781",
+    "collab": "CMS",
+    "covers": "H->ZA->llbb, 35.9/fb",
+    "region_gap": "partial Run 2; reversed hierarchy only"
+   },
+   {
+    "id": "arXiv:2104.04762 / arXiv:2207.03925 / arXiv:2407.10798",
+    "collab": "CMS/ATLAS",
+    "covers": "VBF H+->WZ (Georgi-Machacek), m_H+ >= 200 GeV",
+    "region_gap": "m_H+ < m_t from top decays not covered"
+   },
+   {
+    "id": "arXiv:2412.17584",
+    "collab": "ATLAS",
+    "covers": "Light and heavy H+ from top decays / tH+ association, H+->tau nu, 140/fb",
+    "region_gap": "WZ decay not considered"
+   },
+   {
+    "id": "arXiv:2605.02848",
+    "collab": "CMS",
+    "covers": "X->YH->4b, m_X 400-1600, m_Y 60-1400 GeV",
+    "region_gap": "requires one daughter = SM H; X->YY (both new) not covered"
+   },
+   {
+    "id": "arXiv:2507.01165",
+    "collab": "ATLAS",
+    "covers": "ZH, H->aa / a1a2 -> 4b/6b",
+    "region_gap": "parent fixed to the 125 GeV Higgs"
+   },
+   {
+    "id": "arXiv:2206.09997 / arXiv:2507.17884",
+    "collab": "CMS",
+    "covers": "paired dijet resonances (4j), m_jj>0.2 TeV, m_4j>1.6 TeV (broad-mediator reinterpretation)",
+    "region_gap": "high masses, no b-tag; light-Y/intermediate-X 4b not covered"
+   }
+  ],
+  "hl_projection_docs": "ATL-PHYS-PUB-2025-018 / CMS-HIG-25-002, summarized in arXiv:2504.00672 (Sec. 5 and 7: heavy scalar S->HH, ZZ; singlet). No A->ZH, H+->WZ or X->YY HL projection found there. Pheno: arXiv:2309.17431 (A->ZH lltt rescaled to 3000/fb), arXiv:1812.05640 (H->hh, H/A->tt, bbH/A; not A->ZH), arXiv:2507.05942 (W-AP sets), arXiv:2603.29395 and arXiv:2608.23183 (TRSM Vh2, h2->h1h1->4b at 300 and 3000/fb). CMS-PAS-FTR-13-024 (A->Zh->llbb projection, per web search; not verified)",
+  "showstoppers": "(a) V-AP Ha->Zh is rate-killed in the C2HDM (2507.05942); VBF Ha separation from ggF needs q/g tagging beyond the present state of the art (same ref). (b) In a 2HDM, H+->WZ is loop-induced (tiny BR), so only triplet/GM models motivate it; its signature is ttZ-like with large irreducible ttZ/tWZ background and an off-shell W or Z for m_H+ < m_W+m_Z; the existing recast is already at sub-permille BR. (c) The 4b + low-mass Y regime has heavy QCD multijet background and is trigger-limited at low m_X; Vh2 production of a light h2 is suppressed by mixing (UNVERIFIED magnitude).",
+  "queries_run": [
+   "collaboration:CMS and t pseudoscalar and t \"Z boson\" and t heavy and date > 2018",
+   "collaboration:ATLAS and (t \"A -> ZH\" or abstracts.value:\"A \\to ZH\") and date > 2019",
+   "collaboration:CMS and abstracts.value:\"A to ZH\" and date > 2015",
+   "collaboration:CMS and t \"neutral Higgs\" and (t \"Z boson\" or t ZA) and date > 2015",
+   "cites arxiv:2311.04033 (forward citations; found CMS recid 3188772 and thesis recid 2936838)",
+   "(A->ZH or H->ZA) and HL-LHC/3000 in abstracts",
+   "(CMS or ATLAS) and Zh and vector boson fusion",
+   "cites arxiv:2507.05942",
+   "(CMS or ATLAS) and t \"charged Higgs\" and WZ",
+   "(CMS or ATLAS) and t \"charged Higgs\" and t \"top quark decays\" and date>2019",
+   "(CMS or ATLAS) and Georgi-Machacek",
+   "cites arxiv:2509.07094",
+   "(CMS or ATLAS) and abstracts X \\to YH / X \\to SH",
+   "(CMS or ATLAS) and X->YY / X->SS / pair of light scalars",
+   "(CMS or ATLAS) and t \"pairs of dijet resonances\"",
+   "(CMS or ATLAS) and triple Higgs / HHH",
+   "cites arxiv:1910.08574; cites arxiv:2209.10996",
+   "WebSearch: HL-LHC projection A->ZH ATL-PHYS-PUB OR CMS-PAS-FTR"
+  ],
+  "confidence": "medium",
+  "notes": "The CMS A->ZH->lltt result (recid 3188772) seems to be a CMS public note without arXiv; its PAS number was not retrieved (UNVERIFIED). The CMS UIC thesis (recid 2936838, DOI 10.25417/uic.29049977.v1) is its precursor. The H+->WZ sub-gap depends on the 152 GeV / GM motivation. Of the three, the best-surviving sub-part is (c) X->YY->4b with non-SM daughters, but it is model-dependent (TRSM/NMSSM)."
+ },
+ "C066": {
+  "cand_id": "C066",
+  "claim": "Bundle of six LQ ideas: (a) resonant single LQ via lepton PDFs, extended to c/s/top-flavoured jets, vector LQ, LFV and HL-LHC; (b) third-generation resonant b+tau, mono-top and mono-jet; (c) U1 with right-handed coupling beta_R and non-minimal kappa; (d) a joint pair+single+t-channel fit with interference at large coupling; (e) HL-LHC follow-up of the CMS 2.8 sigma b-tau excess; (f) photon-PDF uncertainties for vector-LQ limits.",
+  "verdict": "NARROWED",
+  "surviving_gap": "The only clean experimental remnant is resonant lepton-PDF single-LQ production with charm-tagged jets (e/mu + c-jet), and possibly vector-LQ or e-mu-LFV interpretations of the lepton+jet resonance. ATLAS (2507.03650) and CMS (2608.28377, mu only) use light-jet and b-jet categories without c-tagging; the ATLAS+CMS review 2505.08738 (Sec. 4) lists e/mu + light- or charm-flavoured jets as remaining opportunities. A collaboration-level HL-LHC projection of the resonant lepton-quark channel is also missing, but a pheno HL projection exists (2005.06475 Figs. 3-4: HL reach to ~5.7 (4.2) TeV for the u (d) couplings) and 2005.06475 states that s/c couplings are harder to constrain because of PDF suppression. Sub-ideas (b), (c), (e) and (f) DIE. (d) is reduced to reinterpretation level.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2503.19836",
+    "what": "ATLAS high-mass tautau measurement with b-jet multiplicity: 'This analysis excludes these benchmark parameter values' (the CMS 2.8 sigma excess benchmark m_LQ = 2 TeV, lambda = 2.5) for scalar and vector LQs. It also includes beta_R = -beta_L and pure right-handed U1 scenarios. This kills (e) and most of (c).",
+    "location": "Sec. on LQ interpretation, text after Fig. 11 (p.21); coupling scenarios in the model section (around Eq. for U1, p.~19)"
+   },
+   {
+    "id": "arXiv:2208.02717",
+    "what": "CMS tautau vector-LQ interpretation with two benchmarks, beta_R = 0 (BM1) and beta_R = -1 (BM2, Pati-Salam-like); the 'neglected beta_R' claim is already covered experimentally",
+    "location": "Sec. 2 (model), Eq. (2) and text below it"
+   },
+   {
+    "id": "arXiv:2308.06143",
+    "what": "CMS LQ via tau-quark scattering (lepton PDF), with a btag category and lambda_b-tau interpretation; together with CMS 2308.07826 (single+pair+nonresonant b-tau) this covers the b+tau resonant signature of 2012.11474",
+    "location": "Abstract; Sec. 2-4 (btag category, Fig. 3-4)"
+   },
+   {
+    "id": "arXiv:2012.11474",
+    "what": "The seminal paper itself states that the mono-top and mono-jet final states 'have been targeted at the LHC', and finds b+tau generically stronger than mono-top. It is already an HL-LHC (3 ab-1) projection study.",
+    "location": "Sec. 7 Conclusions; Figs. 6, 7, 10"
+   },
+   {
+    "id": "arXiv:2606.02067",
+    "what": "ATLAS tau+MET(+b) resonant and t-channel U1 search, scanning beta_L^23 and g_U; covers the b-tau-nu / c-nu topology",
+    "location": "Introduction (p.2); results p.14"
+   },
+   {
+    "id": "arXiv:1812.07831",
+    "what": "HL-LHC Yellow Report already contains LQ->tau b at HL-LHC (CMS, single+pair), U1/Z' for B anomalies at HL/HE-LHC, and LQ->t tau / t mu projections",
+    "location": "Sec. 5.2.1-5.2.3"
+   },
+   {
+    "id": "arXiv:2005.06475",
+    "what": "Pheno HL-LHC projection for resonant lepton-quark LQ across first/second-generation flavour combinations",
+    "location": "Sec. on results, Figs. 3-4, Conclusions"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2507.03650",
+    "collab": "ATLAS",
+    "covers": "Resonant scalar LQ via lepton PDF: e+light, mu+light, e+b, mu+b; 140/fb 13 TeV + 55/fb 13.6 TeV",
+    "region_gap": "no c-tag category; scalar only (no vector interpretation found in model section); no tau"
+   },
+   {
+    "id": "arXiv:2608.28377",
+    "collab": "CMS",
+    "covers": "Resonant scalar LQ via muon-quark scattering, mu + u or b jet, 138/fb",
+    "region_gap": "muon only; no CMS e-quark result found (UNVERIFIED absence)"
+   },
+   {
+    "id": "arXiv:2308.06143",
+    "collab": "CMS",
+    "covers": "LQ via tau-quark scattering, tau + jet + MET, btag/no-btag",
+    "region_gap": "scalar only"
+   },
+   {
+    "id": "arXiv:2308.07826",
+    "collab": "CMS",
+    "covers": "b-tau LQ single+pair+nonresonant combined; 2.8 sigma local excess",
+    "region_gap": "excess benchmark excluded by ATLAS 2503.19836"
+   },
+   {
+    "id": "arXiv:2503.19836",
+    "collab": "ATLAS",
+    "covers": "high-mass tautau vs b-jet multiplicity; U1 (beta_L, beta_R, beta^23_L) and S1 non-resonant constraints",
+    "region_gap": "non-resonant only"
+   },
+   {
+    "id": "arXiv:2402.16561 / arXiv:2503.20033",
+    "collab": "ATLAS / CMS",
+    "covers": "mono-top (top + MET) searches",
+    "region_gap": "no resonant-LQ (b tau -> t nu) interpretation; reinterpretation possible"
+   },
+   {
+    "id": "arXiv:2503.20023",
+    "collab": "CMS",
+    "covers": "t-channel scalar and vector LQ in high-mass ee/mumu",
+    "region_gap": "not jointly fit with pair/single production"
+   }
+  ],
+  "hl_projection_docs": "arXiv:1812.07831 (HL/HE-LHC YR BSM) Sec. 5.2.1-5.2.4; CMS-PAS-FTR-18-028 (INSPIRE recid 1710497: CMS LQ->tau b prospects; PAS number from memory, UNVERIFIED). Pheno: arXiv:2005.06475 (resonant lepton-quark, 3 ab-1), arXiv:2012.11474 (b+tau, mono-top, mono-jet at 300/fb and 3 ab-1). ATLAS thesis recid 3183811 (resonant LQ + HL muon detectors).",
+  "showstoppers": "c/s-initiated resonant LQ is PDF-suppressed (2005.06475 Conclusions), and c-tagging at TeV jet pT has limited efficiency (UNVERIFIED numbers). Lepton-PDF signal rates scale as lambda^2 times alpha-suppressed lepton luminosities. (f) is a theory-systematics study, not an experimental analysis. (d) needs a model-specific coherent signal (interference depends on the LQ representation), which suits reinterpretation better than a new HL analysis.",
+  "queries_run": [
+   "(CMS or ATLAS) and t leptoquark and date > 2023",
+   "(CMS or ATLAS) and abstracts lepton-quark / electron-quark / lepton content of the proton / lepton PDF",
+   "(CMS or ATLAS) and t leptoquark and charm",
+   "(CMS or ATLAS) and (single top / mono-top) and MET/dark matter, date > 2017",
+   "(CMS or ATLAS) and abstracts leptoquark and monojet",
+   "(CMS or ATLAS) and abstracts leptoquark and single top",
+   "cites arxiv:2012.11474 (collaboration papers)",
+   "t leptoquark and (HL-LHC or high-luminosity)",
+   "(CMS or ATLAS) and t leptoquark and (prospects or projection or HL-LHC)",
+   "arxiv_pdf 2503.19836 grep CMS/excess/beta_R",
+   "arxiv_pdf 2208.02717 grep beta_R benchmarks",
+   "arxiv_pdf 2606.02067 intro",
+   "arxiv_pdf 2507.03650 grep vector/charm/HL",
+   "arxiv_pdf 2505.08738 grep charm/opportunities",
+   "arxiv_pdf 1812.07831 grep leptoquark",
+   "arxiv_pdf 2012.11474 conclusions"
+  ],
+  "confidence": "high",
+  "notes": "Per-part ratings: (a) NARROWED, surviving with c-tag/vector/LFV extensions, moderate promise and incremental. (b) DIES: b+tau is done by CMS 2308.06143 and 2308.07826; mono-top/mono-jet are covered as final states and only lack an LQ reinterpretation; HL pheno exists. (c) DIES: beta_R benchmarks are in CMS 2208.02717 and ATLAS 2503.19836; kappa = 0/1 pair-production benchmarks are standard (not re-verified here). (d) NARROWED to reinterpretation: CMS 2308.07826 already combines single+pair+nonresonant for b-tau. (e) DIES: ATLAS 2503.19836 excludes the CMS excess benchmark. (f) DIES as an experimental idea (theory systematics)."
+ },
+ "C069": {
+  "cand_id": "C069",
+  "claim": "Bundle: (a) scalar LQ (R2~) -> N j with a Majorana RHN gives same-sign dimuon + multijet LNV signatures that existing searches leave unconstrained; (b) mono-LQ / LQ-mediated DM (lepton + jet + MET) was searched only with partial Run 2 data; (c) LQ + vector-like lepton cascades give multi-tau/b final states that no single search targets.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(a) NARROWED: there is no dedicated LQ->Nj search, but the final state is already probed inclusively by SS-dilepton + jets SUSY searches (ATLAS gluino SS search recast in 2603.01903, Fig. 4; CMS 2001.10086), by CMS Z'->NN (2307.06959: two same-flavour leptons + >=2 jets, boosted-N categories) and by CMS W_R->lN (2112.03949). The HL-LHC pheno projection is the seed paper itself (2603.01903). The residual gap is a dedicated multi-TeV single-production regime (mu N j -> mu+- mu+- + >=4 jets with H_T > 2 TeV), where 2603.01903 Sec. VII says the SUSY-search constraints no longer bite, and a boosted/light-N (m_N ~ 50 GeV) channel with a non-isolated muon inside the N jet. This is model-specific and phenomenology-level. (b) NARROWED to a full-Run-2/HL update of CMS EXO-17-015 (1811.10151, 77.4/fb, mu + jet + MET with an m(mu j) peak); there is no gap evidence, and the topology overlaps LQ-pair l-nu-jj channels. (c) DIES: ATLAS 2503.22581 and CMS 2208.09700 search pair-produced VLL decaying via a U1 vector LQ (4321 model) into multi-tau + b final states, and an HL pheno study of LQ-mediated VL-tau production exists (2508.18047).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2503.22581",
+    "what": "ATLAS pair-produced VLL -> third-generation quark + U1 vector LQ (4321), tau + b-jet final states, 140/fb; m_VLL > 910 GeV observed",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2208.09700",
+    "what": "CMS pair-produced VLL in >=3b + N tau final states (third-generation 4321-type VLL)",
+    "location": "Title/abstract"
+   },
+   {
+    "id": "arXiv:2508.18047",
+    "what": "HL-LHC prospects for VL tau production enhanced by LQ-mediated processes (mono- and di-lepton final states)",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2603.01903",
+    "what": "The seed paper is itself the HL-LHC projection. Existing ATLAS direct LQ, ATLAS SS gluino SUSY and CMS t-channel LQ constraints already exclude parts of the (Y12, Z11) plane at m_LQ = 1 TeV. The benchmark is m_N = 50 GeV, so N is highly boosted. The paper admits the SS dimuon + multijet signature 'is not unique' (Z', type-II seesaw).",
+    "location": "Fig. 4 and caption; Sec. VII Results; Conclusions (final paragraph)"
+   },
+   {
+    "id": "arXiv:2307.06959",
+    "what": "CMS Z'->NN search, two same-flavour leptons + >=2 jets, m_Z' 0.4-4.6 TeV, 138/fb: the same NN -> l l + jets decay topology",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2001.10086",
+    "what": "CMS SS-dilepton/3l + jets search with 168 SRs, including RPV interpretations: inclusive coverage of SS + multijet",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:1811.10151",
+    "what": "CMS LQ + DM search (mu + jet + MET, m(mu j) peak), 77.4/fb, already exists; a MadAnalysis5 recast implementation exists (INSPIRE recid 1842797)",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2001.10086",
+    "collab": "CMS",
+    "covers": "SS 2l / >=3l + jets inclusive, 137/fb",
+    "region_gap": "requires isolated leptons; no LQ->Nj interpretation"
+   },
+   {
+    "id": "arXiv:2307.06959",
+    "collab": "CMS",
+    "covers": "Z'->NN->ll+jets (incl. boosted N), 138/fb",
+    "region_gap": "s-channel Z' production; LQ pair/single production not interpreted"
+   },
+   {
+    "id": "arXiv:2112.03949",
+    "collab": "CMS",
+    "covers": "W_R -> l N -> l l j j",
+    "region_gap": "different production; recastable"
+   },
+   {
+    "id": "arXiv:1806.10905",
+    "collab": "CMS",
+    "covers": "heavy Majorana N in SS dilepton + jets (mixing-produced)",
+    "region_gap": "low jet multiplicity, single N via W"
+   },
+   {
+    "id": "arXiv:1811.10151",
+    "collab": "CMS",
+    "covers": "LQ pair, LQ->mu j and LQ->DM + soft SM, 77.4/fb",
+    "region_gap": "partial Run 2, muon only; full Run 2 only in thesis recid 2162343 (not published)"
+   },
+   {
+    "id": "arXiv:2503.22581 / arXiv:2208.09700",
+    "collab": "ATLAS / CMS",
+    "covers": "VLL -> q + U1 (4321), multi-tau + b",
+    "region_gap": "vector LQ only; scalar-LQ + VLL (2206.11718-type g-2 model) not interpreted"
+   }
+  ],
+  "hl_projection_docs": "Pheno only: arXiv:2603.01903 (R2~ + RHN, SS dimuon, HL-LHC 3 ab-1), arXiv:2412.19751 (RHN via first-generation LQ, all scalar/vector LQ), arXiv:2508.18047 (VL tau via LQ, HL). No collaboration HL projection found for LQ->Nj, mono-LQ or LQ+VLL.",
+  "showstoppers": "(a) With m_N << m_LQ (benchmark 50 GeV), N->mu jj is collimated: the muon is non-isolated, and backgrounds from heavy-flavour non-prompt muons and charge mis-ID dominate. 2603.01903 applies only a pT > 20 GeV muon cut with no specific isolation treatment (Sec. V selection), so the background estimate is likely optimistic (UNVERIFIED quantitatively). For small V_muN, N may also be long-lived (decay via mixing or an off-shell LQ), which pushes the signature to displaced vertices (same authors' earlier study is ref [34]). The model requires an R2~ Yukawa to N of order 1 while respecting 0vbb and low-energy constraints (the paper fixes the flavour structure). (b) The DM-LQ model is non-minimal and no gap evidence is cited. (c) Is already searched.",
+  "queries_run": [
+   "(CMS or ATLAS) and t leptoquark and (t neutrino or abstracts right-handed/heavy neutrino)",
+   "(CMS or ATLAS) and (heavy neutrinos / heavy Majorana neutrino) and (Z' or pair), date > 2017",
+   "t leptoquark and (right-handed / sterile / heavy neutrino), date > 2016, mostcited",
+   "(CMS or ATLAS) and abstracts same-sign and jets and leptoquark",
+   "(CMS or ATLAS) and t Majorana neutrinos and t same-sign",
+   "collaboration:CMS and (heavy Majorana neutrinos / heavy neutral leptons / heavy neutrinos), date > 2021",
+   "cites arxiv:2412.19751; cites arxiv:2603.01903; cites arxiv:1210.5622",
+   "(CMS or ATLAS) and abstracts leptoquark and dark matter",
+   "cites arxiv:1811.10151",
+   "(CMS or ATLAS) and t vector-like leptons, date > 2019",
+   "arxiv_pdf 2603.01903 grep recast/isolation/lifetime and Results/Conclusions"
+  ],
+  "confidence": "medium",
+  "notes": "Per-part ratings: (a) NARROWED, phenomenology-level and model-specific; a realistic HL study would need non-isolated-muon/boosted-N backgrounds and displaced-N handling. (b) NARROWED, low novelty (an update of an existing CMS search). (c) DIES for the 4321 vector-LQ realisation; the scalar-LQ + VLL g-2 model (2206.11718) has no experimental interpretation, but no gap evidence was given and it is a recast-level item. The ATLAS thesis recid 2622762 covers W_R boosted N and single LQ as separate searches, not LQ->N."
+ }
+}

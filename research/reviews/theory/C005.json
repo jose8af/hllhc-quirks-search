@@ -1,0 +1,46 @@
+{
+ "cand_id": "C005",
+ "claim": "Confining dark sector (dark QCD) reached through the 125 GeV Higgs (ggF/VBF/VH) gives h -> q_d q_d-bar dark showers made of GeV dark mesons. These decay back to SM hadrons at macroscopic distances (emerging-jet-like multi-displaced-vertex jets). The target is m_dark-meson ~2-20 GeV, c*tau ~1-100 mm, hadronic decays, with an m_jj ~ m_h handle and Phase-2 displaced L1/HLT tracking.",
+ "framework": "SU(N_d) hidden valley with n_f light dark quarks. Production portal: H^dagger H coupled to dark-quark bilinear, or Higgs-singlet mixing (2512.24814 Eq.1-2: singlet pseudoscalar phi_p with gamma5 Yukawa to q_d, mixing with h). Decay portal: eta_d mixes with Higgs (Higgs portal), dim-5 eta G Gtilde (gluon portal), dark photon, or Z-portal (CP-odd dark pions as composite ALPs, 2110.10691). Shower/hadronisation via PYTHIA8 Hidden Valley module.",
+ "assumptions": [
+  "Mediator (h) mass >> Lambda_d, so a perturbative dark shower exists; with Q = 125 GeV and m_eta ~ few GeV the shower is short and multiplicity modest",
+  "Lightest visibly decaying dark particle (VDP) has no faster dark-sector decay; vector mesons are either stable (MET) or decay to eta eta",
+  "Lifetime fixed by a single portal operator; branching ratios fixed by the portal (Higgs portal gives heavy-flavour-rich decays)",
+  "BR(h -> dark) is a free parameter bounded by BR(h -> undetected)",
+  "Dark-sector hadronisation parameters copied from QCD (Lund string), per 2203.09503 Sec 4.1.2"
+ ],
+ "controlling_parameters": ["BR(h->q_d q_d-bar) or BR(h->h2 h2)", "m_eta (VDP mass)", "c*tau_eta (via mixing x=sin(theta_Lambda)sin(theta_p), or f_eta, or epsilon)", "m_omega/m_eta (xi_omega) and Lambda_d/m_eta (xi_Lambda)", "probVector", "N_c^D, n_f^D", "decay portal (gg / bb,cc,tautau / leptons / photons)"],
+ "robust_predictions": [
+  "Several (O(few-10)) displaced vertices per event from a 125 GeV resonance; total visible mass of the two dark jets <= m_h (resonant m_jj ~ 125 GeV only when the omega-tilde decays visibly)",
+  "Per-portal branching ratios at fixed m_eta (theoretically controlled, 2203.09503 Sec 2.2.7, 2103.01238 Tab. II)",
+  "Lifetime-mass correlation: for Higgs/gluon portals the minimal natural c*tau scales ~ m^-7 (2103.01238 Eq.4, Eq.15)",
+  "Production rates of each Higgs mode are SM-known; only BR is free"
+ ],
+ "model_dependent_predictions": [
+  "Meson multiplicity, vector/pseudoscalar fraction and invisible fraction (probVector, xi_omega, xi_Lambda), which drive the number of DVs and MET",
+  "Track-level EJ variables (alpha3D, <IP2D>) for soft (~60 GeV) dark jets",
+  "Decay products at m_eta ~ 2-4 GeV: hadronic widths of a Higgs-mixed scalar are non-perturbative (1809.01876)",
+  "Cascade (h -> h2 h2 -> 4 eta) vs shower topology (2512.24814 BPs)",
+  "Whether h -> dark quarks gives showers at all vs few-body final states (low Q/Lambda)"
+ ],
+ "constraints_checked": [
+  {"constraint": "BR(h->undetected/BSM) global fits", "source_id": "arXiv:2512.24814 Sec III (BR<19%, ATLAS-CONF-2020-027); arXiv:2604.05996 (0.16 quoted)", "verdict": "BR of order 1e-3 to 1e-1 allowed; not limiting"},
+  {"constraint": "Existing CMS MDS (muon detector shower) dark-shower interpretation, 5 portals, m 2-20 GeV, c*tau 1 mm-10 m, ggF only", "source_id": "arXiv:2402.01898 Sec 1, 3, Figs 18-22", "verdict": "Already sets BR(h->dark quarks) limits as low as 2e-3 (best at long c*tau). The short-c*tau tracker regime is weaker there, so the target region is partly open (constrained-but-region-open)"},
+  {"constraint": "Theoretical lifetime lower bound (minimal UV completion, no tuning): Higgs portal c*tau >~ 3 cm (5 GeV/m)^7; gluon portal c*tau >~ 7 cm (m_a/500 GeV)^4 (5 GeV/m)^7", "source_id": "arXiv:2103.01238 Eq.(4), Eq.(15), Fig.1", "verdict": "For c*tau = 1-100 mm this needs m_eta >~ 4-8 GeV (Higgs portal) or >~ 5-9 GeV (gluon portal). The 2-4 GeV, mm-cm corner requires tuning or a non-minimal UV completion. The bounds are not rigorous exclusions"},
+  {"constraint": "Flavour: B->K eta_d, Upsilon->gamma eta_d for m~3 GeV Higgs-mixed eta_d", "source_id": "arXiv:2512.24814 Sec III (refs LHCb 1508.04094, 1612.07818; Belle II 2306.02830)", "verdict": "Paper states x <~ O(1e-3), i.e. c*tau >~ 0.8 mm at 3 GeV, so the 1 mm edge is marginal. Not independently re-derived (UNVERIFIED numerically)"},
+  {"constraint": "Z->invisible, h->invisible, T parameter and direct Higgsino-like recast on EW-doublet UV mediators", "source_id": "arXiv:2110.10691 Sec 2.1-2.2, Sec 7 (M >~ 1.1 TeV; HL-LHC estimate M >~ 1.3 TeV for invisible pions)", "verdict": "UV mediators pushed to TeV. The CP-even dark pions there are 'out of reach due to very small mixing with the Higgs' (Sec 8), so the Higgs-mixing decay route is disfavoured in that framework, while the CP-odd (Z-portal) route naturally gives mm-10 m"},
+  {"constraint": "BBN (dark meson lifetime < ~1 s)", "source_id": "arXiv:1502.05409 Sec 2", "verdict": "Trivially satisfied for c*tau mm-m"},
+  {"constraint": "Relic abundance of stable dark states (e.g. stable omega-tilde in DS3, dark baryons)", "source_id": "arXiv:2512.24814 (not discussed)", "verdict": "UNVERIFIED; not addressed in the projection paper"}
+ ],
+ "motivation_strength": 3,
+ "robustness": 2,
+ "theory_uncertainties": "Dark hadronisation is not computable. 2203.09503 Sec 4.1.2 says there is 'no theoretical insight' into how Lund parameters should scale with N_c, N_f or m_pi/Lambda, and probVector is uncertain between 0.5 and 0.75. Multiplicity, invisible fraction and DV count therefore change by O(1) factors. With Q = 125 GeV and m_eta of a few GeV the shower is short, which amplifies this. Non-perturbative decay widths and BRs of 2-4 GeV scalars matter (1809.01876). The cascade vs shower topology choice is a model assumption. 2505.03058 also warns that results depend on the hadronisation model.",
+ "distinctiveness": "Against SM: several displaced vertices with vertex masses above m_B (for m_eta >~ 5 GeV), the total dark-jet system near m_h, and a Higgs-mode tag (VBF jets, W/Z leptons). Main fakes are b/c hadrons (c*tau ~0.5 mm, vertex mass < 5 GeV), material interactions and pileup; a 3 GeV gg-decaying eta overlaps the B vertex-mass region. Against neighbouring BSM: h->SS (2 LLPs, 2409.10806) has exactly two DVs with fixed mass; SUEP is isotropic and soft; t-channel emerging jets come with hard QCD jets at TeV mass. DV multiplicity >2 and jet-like grouping separate dark showers from h->SS.",
+ "confidence": "medium",
+ "caveats": [
+  "The seed's 'largely unconstrained above a few GeV' quote from 2203.09503 Sec 2.1 refers to FLAVOUR constraints on t-channel bifundamental models, not to Higgs-portal dark showers",
+  "2512.24814 Eq.(9)-(11) as printed give a negative m^2 for the lighter eta_d eigenstate (zero diagonal entry); m_eta and x are effectively free inputs. The pseudoscalar eta_d decays via CP-even Higgs mixing, which needs CP violation, and no EDM check is given",
+  "2512.24814 HL-LHC background model is LO PYTHIA bb-bar only, without pileup or material/fake vertices; its MDS projection is background-free. Its Category I/II trigger thresholds (e.g. dijet 70/40 GeV) are not verified Phase-2 menu values. All UNVERIFIED as realistic",
+  "EW (Drell-Yan) production of SU(2)-doublet mediators with in-detector dark-pion decays is stated as 'beyond the scope' in 2110.10691 Sec 7, a lead not checked by forward citation here"
+ ]
+}

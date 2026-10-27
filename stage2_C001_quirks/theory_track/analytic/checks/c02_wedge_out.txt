@@ -1,0 +1,14 @@
+(1) wave eq. for f(t+x)+g(t-x): True ; Leibniz boundary balance matches claim: True
+(2) y_tt - y_xx = 0 ; y(t, vt) = b/2 ; y(t,-vt) = -b/2
+(3) F_R = -b*sigma/(2*t*atanh(v))  ; F_L = b*sigma/(2*t*atanh(v))  ; F_R + sigma b/(2 t artanh v) = 0
+(4) F_R series v->0: b*sigma*(v**2 - 3)/(6*t*v)  (expect -sigma b/(2 v t) + O(v))
+(5) Kang-Luty transverse force to O(theta): sigma*theta*(v**2 - 1)  (expect -sigma theta (1 - v^2))
+    KL/NG ratio = (1 - v**2)*atanh(v)/v
+      beta*=0.3049: KL/NG = 0.937; NG/quasistatic(1/v) = 0.968
+      beta*=0.6242: KL/NG = 0.716; NG/quasistatic(1/v) = 0.853
+      beta*=0.7806: KL/NG = 0.524; NG/quasistatic(1/v) = 0.746
+      beta*=0.866: KL/NG = 0.380; NG/quasistatic(1/v) = 0.658
+      beta*=0.9428: KL/NG = 0.208; NG/quasistatic(1/v) = 0.535
+(6) degree-1 force on right end = -sigma*(u1 - u2 + v**2*(u1 + u2))/(2*v)  (t-independent)
+    free mode residual (k = n pi/(2 chi_v)): 0
+(7) impulse per end per side = log((t2/t1)**(b*sigma/2))/atanh(v)

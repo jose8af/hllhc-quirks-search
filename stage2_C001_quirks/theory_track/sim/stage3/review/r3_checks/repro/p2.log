@@ -1,0 +1,26 @@
+F_m200: Nosc1=0.296, lmax=0.427, ds100=0.5, lmax100um=16.3, merge100=12.8, merge25=26.3
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/stage3/scripts/p2_results.py:271: RuntimeWarning: All-NaN axis encountered
+  acc[g + '_lo'][e].append(np.nanmin(d_)); acc[g + '_hi'][e].append(np.nanmax(d_))
+F_m300: Nosc1=0.28, lmax=0.502, ds100=0.496, lmax100um=19.2, merge100=13.8, merge25=27.8
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/stage3/scripts/p2_results.py:229: RuntimeWarning: All-NaN axis encountered
+  return {k: [float(np.nanmin(v)), float(np.nanmax(v))] for k, v in vals.items()}
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/.pixi/envs/default/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/stage3/scripts/p2_results.py:276: RuntimeWarning: Mean of empty slice
+  syst['robust_shifts'] = {k: {e: dict(mean=float(np.nanmean(v)), sd=float(np.nanstd(v)),
+F_m400: Nosc1=0.307, lmax=0.591, ds100=0.489, lmax100um=22.6, merge100=nan, merge25=nan
+F_m500: Nosc1=0.291, lmax=0.626, ds100=0.512, lmax100um=23.9, merge100=16.4, merge25=nan
+F_m600: Nosc1=0.305, lmax=0.647, ds100=0.511, lmax100um=24.7, merge100=nan, merge25=nan
+F_m700: Nosc1=0.3, lmax=0.686, ds100=0.506, lmax100um=26.2, merge100=19.4, merge25=nan
+F_m800: Nosc1=0.308, lmax=0.737, ds100=0.53, lmax100um=28.2, merge100=nan, merge25=nan
+F_m900: Nosc1=0.292, lmax=0.652, ds100=0.484, lmax100um=24.9, merge100=nan, merge25=nan
+F_m1000: Nosc1=0.301, lmax=0.681, ds100=0.473, lmax100um=26, merge100=19.4, merge25=39.3
+F_m1100: Nosc1=0.296, lmax=0.695, ds100=0.495, lmax100um=26.6, merge100=nan, merge25=nan
+F_m1200: Nosc1=0.31, lmax=0.712, ds100=0.498, lmax100um=27.2, merge100=20.4, merge25=nan
+F_m1300: Nosc1=0.281, lmax=0.716, ds100=0.485, lmax100um=27.4, merge100=nan, merge25=nan
+F_m1400: Nosc1=0.285, lmax=0.762, ds100=0.476, lmax100um=29.1, merge100=nan, merge25=nan
+F_m1500: Nosc1=0.291, lmax=0.776, ds100=0.486, lmax100um=29.6, merge100=19.8, merge25=nan
+S_m200: Nosc1=0.321, lmax=0.593, ds100=0.544, lmax100um=22.7, merge100=17.7, merge25=nan
+S_m500: Nosc1=0.328, lmax=0.783, ds100=0.548, lmax100um=29.9, merge100=22.9, merge25=nan
+S_m1000: Nosc1=0.317, lmax=0.941, ds100=0.546, lmax100um=36, merge100=25, merge25=nan
+pixi run python $R/run.py p2_results.py  156.18s user 0.48s system 99% cpu 2:36.73 total

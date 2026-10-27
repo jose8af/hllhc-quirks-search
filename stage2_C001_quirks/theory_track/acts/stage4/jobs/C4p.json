@@ -1,0 +1,41 @@
+{
+ "campaign": "C4p",
+ "runner": "g1-1",
+ "created": "2026-10-13 18:01",
+ "jobs": [
+  {
+   "id": "C4p_A2rest",
+   "campaign": "C4p",
+   "sample": "A2rest",
+   "kind": "g1",
+   "description": "rest of A2: all 307 points (53 344 events, 2 400 rows)",
+   "est_s": 190827.84,
+   "mem_gb": 1.0,
+   "out": "C4p/A2rest/DONE.json",
+   "requires": "G1"
+  },
+  {
+   "id": "C4p_A5rest",
+   "campaign": "C4p",
+   "sample": "A5rest",
+   "kind": "g1",
+   "description": "A5 -> 20 points + the PU-140 rerun",
+   "est_s": 88980.0,
+   "mem_gb": 1.0,
+   "out": "C4p/A5rest/DONE.json",
+   "requires": "G1"
+  },
+  {
+   "id": "C4p_val",
+   "campaign": "C4p",
+   "sample": "val",
+   "kind": "g1",
+   "description": "validation",
+   "est_s": 18000.0,
+   "mem_gb": 1.0,
+   "out": "C4p/val/DONE.json",
+   "requires": "G1"
+  }
+ ],
+ "note": "plan \u00a76.2 campaign content; PU-only jobs runnable now, requires=G1 jobs wait for run_chain.py"
+}

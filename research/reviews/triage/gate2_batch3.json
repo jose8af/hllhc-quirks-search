@@ -1,0 +1,654 @@
+[
+ {
+  "cand_id": "C027",
+  "verdict": "HOLD",
+  "status_label": "LHC-not-projected-to-HL",
+  "observable": "L1-track-trigger displaced-vertex / displaced-dimuon (exotic B->K Phi, low-mass hadronic DV) and ECAL-timing displaced-jet triggers at HL-LHC; umbrella of trigger/algorithm enablers rather than one signature",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2508.06363",
+    "collab": "CMS",
+    "covers": "B->K Phi, Phi->hadron pairs, B-parking 2018, endcap-muon clusters + displaced muon, m_Phi 0.3-3 GeV, ctau 1-500 cm",
+    "gap_left": "Run-2 parking only; no HL-LHC reach; nothing at L1 with tracker",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2606.25840",
+    "collab": "CMS",
+    "covers": "Run-3 scouting low-pT dimuon displaced LLP (Higgs/B portals)",
+    "gap_left": "13.6 TeV Run 3 only; HL not projected",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "Run-3 HLT displaced-jet triggers, H->SS, mS 15-55 GeV",
+    "gap_left": "Trigger at HLT not L1; Run-3 only",
+    "location": "abstract/Sec.1"
+   },
+   {
+    "id": "arXiv:2601.17544",
+    "collab": "CMS",
+    "covers": "Run-3 LLP trigger program (strategy+performance)",
+    "gap_left": "Run 3; no Phase-2 L1 results",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "recid:2908980 (CMS, 2025) Phase-2 L1 displaced-vertex track trigger feasibility study, simulation only, vertices 0.02-20 cm, no physics-reach limits",
+   "arXiv:2609.26695 (CMS, 2026) Line Segment Tracking for displaced tracks at HL-LHC (reconstruction, not physics reach)",
+   "pheno: 2008.06918, 2012.07864, 2112.04518, 2003.03943 (verified in INSPIRE)"
+  ],
+  "hl_lhc_angle": "Phase-2 L1 outer-tracker tracks (extended d0) and ECAL timing could lift current trigger thresholds for light LLPs; strong HL relevance but already being developed inside CMS.",
+  "specific_gap_statement": "No CMS/ATLAS-published physics-reach projection (limits/sensitivity vs Run-3 scouting/parking) for L1-triggered low-mass displaced dimuon or hadronic DV at HL-LHC; recid:2908980 is a trigger feasibility study only. Candidate is an enabler umbrella, not a single signature; best sub-target is B->KPhi displaced dimuon/hadrons.",
+  "reason": "Identifiable observable and strong HL link, but umbrella of three trigger/algorithm seeds, the collaboration already works on the Phase-2 DV trigger, and Run-3 parking/scouting searches cover the near-term signatures; evidence on net added physics reach unclear.",
+  "queries_run": [
+   "collaboration:CMS and t displaced and t trigger",
+   "collaboration:CMS and abstracts.value:level-1 and displaced",
+   "collaboration:CMS and abstracts.value:scouting and long-lived",
+   "collaboration:CMS and t Phase-2 and long-lived",
+   "collaboration:CMS and abstracts.value:parking and displaced",
+   "collaboration:ATLAS and long-lived and HL-LHC",
+   "collaboration:CMS and t Phase-2 and t trigger and track"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C028",
+  "verdict": "REJECT",
+  "status_label": "well-covered",
+  "observable": "Higgs -> phi phi -> 4j displaced multi-jet vertices at c*tau ~ 1 cm (ggF/VBF/VH)",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "H->SS (ggF), S->bb/dd/tautau, mS 15-55 GeV, HLT displaced-jet triggers; B(H->SS)>1% excluded for mS>40 GeV and c*tau 1.5-370 mm (b b) / 1.3-380 mm (d d)",
+    "gap_left": "mS <40 GeV at ~cm weaker; other production modes",
+    "location": "Conclusions; Fig.6; abstract"
+   },
+   {
+    "id": "arXiv:2107.06092",
+    "collab": "ATLAS",
+    "covers": "ZH, H->aa->4b, displaced vertices in ID; sensitivity ~1 mm to 0.1 m per its Introduction (also cites CMS 1 mm-1 m)",
+    "gap_left": "ZH only (small xsec); limits modest",
+    "location": "Introduction lines ~118-124; abstract"
+   },
+   {
+    "id": "arXiv:2203.01009",
+    "collab": "ATLAS",
+    "covers": "CalRatio displaced hadronic jets, 139/fb, c*tau from 20 mm to 10 m for BR>10%",
+    "gap_left": "Starts at 20 mm",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none found for H->phi phi->4j at ~1 cm"
+  ],
+  "hl_lhc_angle": "L1 track trigger extending to large d0 could further improve low-mass sensitivity (also feeds C027).",
+  "specific_gap_statement": "The 2019 'blind spot at ~1 cm' (1902.10229, 1902.00134) is now addressed by CMS 2409.10806 for mS>40 GeV in ggF; residual region (mS<40 GeV, B<1%) is an incremental HL extension folded into C027.",
+  "reason": "Positive evidence that CMS 2409.10806 covers c*tau ~1 cm for H->SS->4b/4d with ggF triggers, with limits stated in conclusions.",
+  "queries_run": [
+   "collaboration:CMS and t displaced and (t jets or t vertex)",
+   "collaboration:ATLAS and t displaced and (t jets or t vertex)",
+   "collaboration:CMS and abstracts.value:Higgs and long-lived and displaced",
+   "collaboration:ATLAS and abstracts.value:Higgs and long-lived",
+   "collaboration:CMS and t long-lived and t Higgs",
+   "collaboration:ATLAS and t Higgs and t long-lived"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C029",
+  "verdict": "PASS",
+  "status_label": "theory-explored-untested",
+  "observable": "Short/disappearing charged track followed by a displaced dilepton vertex (+MET), nested DT->DV chain, with MTD/HGTD time-of-flight delay (~200-800 ps); plus pure-higgsino ~0.3 GeV splitting DT",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2603.08315",
+    "collab": "ATLAS",
+    "covers": "Disappearing track + jet + MET, 137/fb, 3-4 pixel hit tracks, soft-pion tag",
+    "gap_left": "No displaced-vertex requirement on the neutral daughter; no timing",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2309.16823",
+    "collab": "CMS",
+    "covers": "Disappearing tracks, 137/fb, wino/higgsino charginos, track length categories",
+    "gap_left": "Neutral daughter treated as invisible",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2410.16835",
+    "collab": "ATLAS",
+    "covers": "Displaced leptons Run2+Run3, large-d0 tracking triggers",
+    "gap_left": "Prompt-ish parent; no DT association",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2603.01991",
+    "collab": "ATLAS",
+    "covers": "DV + displaced muon (RPV-style)",
+    "gap_left": "No disappearing-track parent",
+    "location": "INSPIRE title/abstract"
+   }
+  ],
+  "projections_found": [
+   "recid:1795267 (ATLAS 2018 note) HL-LHC disappearing track + soft-track prospects for compressed winos/higgsinos",
+   "recid:1704585 (CMS Phase-2 higgsino, dilepton soft, 2018)",
+   "pheno-only for nested chain: arXiv:2609.28334, arXiv:2608.29275 (no collaboration study; both state existing DT/DV searches retain only partial unoptimised acceptance)"
+  ],
+  "hl_lhc_angle": "MTD (30 ps) turns the 100-1000 mm flight into a 70-700 ps delay; Phase-2 tracker/ITk and 3 ab-1 for ultra-compressed regimes.",
+  "specific_gap_statement": "No CMS/ATLAS search requires the correlated DT stub + delayed displaced dilepton vertex (nor uses MTD/HGTD delay for it); individual DT and DV searches are model-agnostic about the other leg. Benchmark is scotogenic (model-specific), higgsino part already has HL projections.",
+  "reason": "Identifiable signature, specific gap per grep of searches, explicit HL timing relevance; confidence limited because evidence for the gap comes from pheno papers' own claims and the benchmark is niche.",
+  "queries_run": [
+   "collaboration:CMS and t disappearing",
+   "collaboration:ATLAS and t disappearing",
+   "abstracts.value:disappearing track and abstracts.value:HL-LHC",
+   "collaboration:CMS and abstracts.value:disappearing and abstracts.value:timing",
+   "abstracts.value:higgsino and disappearing and high-luminosity",
+   "collaboration:ATLAS and displaced and track and chargino",
+   "abstracts.value:4D and vertex and long-lived and timing"
+  ],
+  "confidence": "medium-low"
+ },
+ {
+  "cand_id": "C030",
+  "verdict": "HOLD",
+  "status_label": "indirectly-covered",
+  "observable": "Neutral LLP -> gamma gamma decaying inside the HCAL: EM-like shower in HCAL, no tracks, no ECAL energy (emerging photon jet)",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2203.01009",
+    "collab": "ATLAS",
+    "covers": "CalRatio: trackless jets with low EM fraction in HCAL, 139/fb, hadronic LLP benchmarks (H, scalars)",
+    "gap_left": "Not interpreted for photon-decay LLPs; acceptance of EM showers in HCAL unknown (BIB cuts, jet shape)",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2209.01029",
+    "collab": "ATLAS",
+    "covers": "Displaced/non-pointing photons from Higgs LLP decays in ECAL",
+    "gap_left": "Decay must occur before/in ECAL",
+    "location": "abstract"
+   },
+   {
+    "id": "recid:3186732",
+    "collab": "CMS",
+    "covers": "LLP->photons in Higgs decays, ECAL-only kinematic fit position, 138/fb",
+    "gap_left": "ECAL decays only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2304.12885",
+    "collab": "ATLAS",
+    "covers": "Displaced H->gamma gamma / Z->ee",
+    "gap_left": "ECAL/tracker region",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2504.19693 pheno claims discovery-level HL-LHC sensitivity (ATLAS geometry, h_f<1 GeV); not collaboration projection"
+  ],
+  "hl_lhc_angle": "HL statistics for rare H+ -> W h_f production; HGTD/timing not essential.",
+  "specific_gap_statement": "No ATLAS/CMS interpretation of photon-decaying LLPs depositing energy in the HCAL; existing ECAL photon searches stop at the ECAL and CalRatio may already be partly sensitive (unchecked), so a recast/reinterpretation is the first step.",
+  "reason": "Signature identifiable, but overlap with CalRatio-type selections is unresolved and the sole benchmark is an ultralight fermiophobic Higgs; evidence unclear.",
+  "queries_run": [
+   "collaboration:CMS and t photons and long-lived",
+   "collaboration:ATLAS and abstracts.value:displaced photons",
+   "collaboration:ATLAS and calorimeter and photons and long-lived",
+   "collaboration:ATLAS and abstracts.value:long-lived and Higgs and hadronic"
+  ],
+  "confidence": "low-medium"
+ },
+ {
+  "cand_id": "C031",
+  "verdict": "PASS",
+  "status_label": "theory-explored-untested",
+  "observable": "Sequential displaced vertices (tumblers) in one decay chain, vertex-to-vertex direction consistency, chain mass/lifetime reconstruction, with 4D vertex timing",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2104.13474",
+    "collab": "CMS",
+    "covers": "Two DVs in jets, pair-produced independent LLPs",
+    "gap_left": "No chain/direction-consistency requirement; no timing",
+    "location": "abstract/title"
+   },
+   {
+    "id": "arXiv:2203.00587",
+    "collab": "ATLAS",
+    "covers": "Pair of DVs in muon spectrometer, independent decays",
+    "gap_left": "Same",
+    "location": "title/abstract"
+   },
+   {
+    "id": "arXiv:2301.13866",
+    "collab": "ATLAS",
+    "covers": "DV + multiple jets",
+    "gap_left": "Single/independent DVs",
+    "location": "title"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2108.02204 (pheno) assesses tumblers before and after HL-LHC upgrade with CMS timing layer; no collaboration projection"
+  ],
+  "hl_lhc_angle": "Explicit: MTD barrel/endcap timing (and HGTD) to order vertices and measure beta; abstract of 2108.02204 motivates timing capabilities.",
+  "specific_gap_statement": "No ATLAS/CMS search or projection targeting vertex chains; INSPIRE forward citations of 2108.02204 show no collaboration follow-up (only pheno/DM papers). Second seed (generic lifetime/mass measurement) is vague and only supports this.",
+  "reason": "Concrete new multi-DV topology with timing synergy and no collaboration search found; confidence limited because only title/abstract-level check of multi-DV searches and the model dependence of tumbler rates.",
+  "queries_run": [
+   "abstracts.value:tumbler and displaced",
+   "t tumblers",
+   "collaboration:CMS and abstracts.value:two displaced vertices",
+   "collaboration:ATLAS and abstracts.value:two displaced vertices",
+   "collaboration:CMS and abstracts.value:cascade and long-lived",
+   "abstracts.value:lifetime measurement and long-lived and HL-LHC",
+   "abstracts.value:MIP timing detector and displaced vertex",
+   "cites recid:1899867 (30 most recent)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C032",
+  "verdict": "HOLD",
+  "status_label": "searched-limited-regime",
+  "observable": "Displaced tau pairs from light long-lived pseudoscalar a (h->Za or h->aa->4tau), displaced-track tau jets",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "H->SS, S->tau tau (hadronic taus) with displaced-jet trigger/ML, mS 15,23,30,40,55 GeV, c*tau 1 mm-1 m, ggF; 'first exclusions of displaced hadronic taus'",
+    "gap_left": "mS<15 GeV; Z-associated mode; leptonic/mixed tau channels weak (eff 0.2-0.7%)",
+    "location": "Sec.1; signal samples; conclusions (lines ~184, 227, 642-645)"
+   },
+   {
+    "id": "recid:2866938",
+    "collab": "CMS",
+    "covers": "Displaced tau ID (ParticleNet), 10-100 cm, 70-80% eff",
+    "gap_left": "Method note, not a search",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none for displaced tau pairs at HL-LHC"
+  ],
+  "hl_lhc_angle": "Z->ll lepton trigger makes triggering easy; extra luminosity helps rare h->Za; L1 track trigger low-mass benefit unclear.",
+  "specific_gap_statement": "GeV-scale (<15 GeV, collimated) displaced tau pair and h->Za-associated topology not covered by CMS 2409.10806 (mS>=15, ggF, tau ID); pheno paper 2408.07366 shows reach already at 300/fb, so HL-specific value is unclear.",
+  "reason": "Signature partially searched; remaining region (low mass, Z-associated) is describable but HL-specific added value not demonstrated.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:displaced and tau",
+   "collaboration:ATLAS and abstracts.value:displaced and tau",
+   "collaboration:CMS and t displaced and t tau",
+   "collaboration:CMS and long-lived and tau leptons",
+   "collaboration:ATLAS and long-lived and tau leptons",
+   "collaboration:LHCb and displaced and tau",
+   "abstracts.value:displaced tau and pseudoscalar"
+  ],
+  "confidence": "medium-low"
+ },
+ {
+  "cand_id": "C033",
+  "verdict": "REJECT",
+  "status_label": "indirectly-covered",
+  "observable": "None distinct: benchmark of main-detector LLP reach vs far detectors (GRENDEL/MATHUSLA/ANUBIS)",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "Light LLP displaced jets, mS 15-55 GeV",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2403.15332",
+    "collab": "ATLAS",
+    "covers": "Light LLPs 5-55 GeV decaying hadronically in ID, 140/fb",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2606.25840",
+    "collab": "CMS",
+    "covers": "Scouting low-mass displaced dimuon",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2609.00152",
+    "collab": "(proposal, not CMS/ATLAS)",
+    "covers": "GRENDEL far detector proposal; motivation sentence only",
+    "gap_left": "-",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [],
+  "hl_lhc_angle": "Context only; main-detector improvements captured under C027.",
+  "specific_gap_statement": "n/a - not a measurable signature; the 'trigger limitations' gap is C027.",
+  "reason": "Fails Q1: a detector-comparison framing, not a collider observable CMS/ATLAS can measure; GeV-scale LLP main-detector coverage exists (2409.10806, 2403.15332, 2606.25840). Fold into C027.",
+  "queries_run": [
+   "inspire get 2609.00152, 2403.15332",
+   "(see C027 queries)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C034",
+  "verdict": "REJECT",
+  "status_label": "well-covered",
+  "observable": "HSCP R-hadrons with charge flipping (dE/dx+ToF), stopped R-hadrons, gluinonium resonance",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2410.09164",
+    "collab": "CMS",
+    "covers": "HSCP dE/dx, 101/fb, gluinos/stops/staus, includes charge-suppressed R-hadron model",
+    "gap_left": "Run 2",
+    "location": "abstract; Sec. around line 338 (charge-suppressed model)"
+   },
+   {
+    "id": "arXiv:2502.06694",
+    "collab": "ATLAS",
+    "covers": "dE/dx + ToF HSCP, 140/fb, 200 GeV-3 TeV, lifetimes >3 ns",
+    "gap_left": "Run 2",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2104.03050",
+    "collab": "ATLAS",
+    "covers": "Stopped gluino R-hadrons, 579 h live time, m up to 1.4 TeV for tau 1e-5-1e3 s; robust against charge flips",
+    "gap_left": "Run 2",
+    "location": "abstract; Sec.1 lines ~51-54"
+   },
+   {
+    "id": "arXiv:2601.20063",
+    "collab": "CMS",
+    "covers": "HSCP with L1 trigger scouting, 13.6 TeV",
+    "gap_left": "Run 3 3.7/fb",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1801.00359",
+    "collab": "CMS",
+    "covers": "Stopped exotic LLPs 2015-16",
+    "gap_left": "older data",
+    "location": "title"
+   }
+  ],
+  "projections_found": [
+   "recid:1749447 / recid:1766323 (CMS HSCP with RPC Phase-II, 2019, title-level only, not read)",
+   "gluinonium: only theory 1996-2011 (hep-ph/0408335 etc.), no experimental search"
+  ],
+  "hl_lhc_angle": "HSCP ToF with MTD/RPC at HL plausible but not demonstrated here.",
+  "specific_gap_statement": "Residual: gluinonium resonances at HL (theory-only, rates UNVERIFIED) - weak motivation.",
+  "reason": "Charge-flip and stopped R-hadron modelling already treated in CMS 2410.09164 and ATLAS 2104.03050/2502.06694; remaining gluinonium piece not supported by evidence of HL-LHC reach.",
+  "queries_run": [
+   "collaboration:CMS and stopped and long-lived",
+   "collaboration:ATLAS and stopped",
+   "collaboration:ATLAS and R-hadrons",
+   "abstracts.value:gluinonium",
+   "abstracts.value:R-hadron and HL-LHC",
+   "abstracts.value:heavy stable charged particles and high-luminosity",
+   "abstracts.value:timing and R-hadron",
+   "grep charge-suppress in 2410.09164"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C035",
+  "verdict": "REJECT",
+  "status_label": "well-covered",
+  "observable": "Intermediate-lifetime RPV LSP: DV, displaced leptons/jets plus cascade MET/jets across coupling range",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2603.15007",
+    "collab": "ATLAS",
+    "covers": "Reinterpretation of 13 ATLAS SUSY searches over variable RPV coupling (prompt to long-lived): gluino (Gqq+LQD, Gqq+UDD, Gtt), stop, stau, higgsino/EW; abstract gives gluino limits 1.0-1.7 TeV at low/intermediate coupling vs 1.8 TeV prompt",
+    "gap_left": "HL not projected; reach degraded at intermediate lifetime",
+    "location": "abstract; Sec. 2 models"
+   },
+   {
+    "id": "arXiv:2402.15804",
+    "collab": "CMS",
+    "covers": "DV + MET, c*tau 0.1-1000 mm, 137/fb",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2603.12051",
+    "collab": "ATLAS",
+    "covers": "DV + MET incl. fuzzy vertexing, 137/fb",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2601.05664",
+    "collab": "ATLAS",
+    "covers": "OS displaced lepton-pair DV with RPV neutralino benchmarks, c*tau 1-1e4 mm",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2110.04809",
+    "collab": "CMS",
+    "covers": "Large-d0 e/mu pairs, d0 0.01-10 cm",
+    "gap_left": "-",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "pheno only (arXiv:2503.03830 ABC II explicitly defers long-lived LSP region)"
+  ],
+  "hl_lhc_angle": "3 ab-1 would extend reach, but no HL-specific enabler identified.",
+  "specific_gap_statement": "Residual: electroweak-production slepton/sneutrino/higgsino LLP corners (see C038, C037); broad claim of an uncovered intermediate regime is superseded by ATLAS 2603.15007.",
+  "reason": "Broad framing is directly covered by ATLAS 2603.15007 (+CMS DV/displaced-lepton searches); no specific uncovered signature remains in this candidate.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:displaced and R-parity",
+   "collaboration:ATLAS and abstracts.value:displaced and R-parity",
+   "collaboration:CMS and displaced and electron and muon and date>2021",
+   "collaboration:CMS and long-lived and supersymmetry and date>2023",
+   "abstracts.value:R-parity and long-lived and HL-LHC and neutralino",
+   "grep 2603.15007 text"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C036",
+  "verdict": "HOLD",
+  "status_label": "one-observable-not-another",
+  "observable": "qqqN quark-portal: MET+jet/top/bjet, and displaced N->qqq vertex + MET; mesogenesis colour-triplet scalar to b+light quark at few TeV",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2107.13021",
+    "collab": "CMS",
+    "covers": "Energetic jets + MET (monojet/large-R), 101/fb; used as recast in 2602.15936",
+    "gap_left": "Not interpreted for BNV qqqN",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2402.15804",
+    "collab": "CMS",
+    "covers": "DV + MET, c*tau 0.1-1000 mm, ML",
+    "gap_left": "N->qqq benchmark not interpreted; likely sensitive (unchecked)",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2609.21850",
+    "collab": "CMS",
+    "covers": "Pair-produced dijet (b + light) resonances, diquark 2-8 TeV, stops 0.5-3 TeV, 136/fb",
+    "gap_left": "Pair production only; mass reach below 3-5 TeV mesogenesis window unclear",
+    "location": "abstract; Sec. signal models"
+   },
+   {
+    "id": "arXiv:2402.18461",
+    "collab": "CMS",
+    "covers": "BNV in top production/decay (dilepton+1b)",
+    "gap_left": "Different operator",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2602.15936 (pheno) says HL-LHC (3 ab-1) can scrutinise the mesogenesis window and improves MET-top reach; no collaboration projection"
+  ],
+  "hl_lhc_angle": "3 ab-1 for few-TeV scalars and high-mass tails; no timing/trigger angle.",
+  "specific_gap_statement": "Displaced N->qqq + MET from quark-portal BNV not interpreted by collaborations; DV+MET searches likely sensitive, so recast needed. Second seed (DeltaB=2 same-sign tops/multijet) has no concrete uncovered signature.",
+  "reason": "Observable identifiable and partly recast by pheno, but overlap with DV+MET and paired-dijet searches unresolved; HL value not shown beyond luminosity scaling.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:baryon number",
+   "collaboration:ATLAS and baryon number",
+   "collaboration:ATLAS/CMS and baryogenesis",
+   "abstracts.value:mesogenesis and LHC",
+   "collaboration:CMS/ATLAS and same-sign and top",
+   "collaboration:CMS and multijet resonances / three jets",
+   "grep 2602.15936 text"
+  ],
+  "confidence": "low-medium"
+ },
+ {
+  "cand_id": "C037",
+  "verdict": "HOLD",
+  "status_label": "searched-limited-regime",
+  "observable": "Higgsino/wino -> three jets (UDD, top-philic lambda''_3jk): multilepton + many jets + b-jets; also paired b+light dijet resonances; coloured-LSP mu-nu-SSM",
+  "closest_existing_searches": [
+   {
+    "id": "recid:2773141",
+    "collab": "CMS",
+    "covers": "Hadronic RPV decays of EW partners via jet-scaling patterns in 1/2/3/4-lepton events, 138/fb, wino 125-600 GeV",
+    "gap_left": "Flavour-agnostic jets; top-philic not targeted",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2503.06726",
+    "collab": "CMS",
+    "covers": "Jet multiplicity patterns of multilepton events, with and without b quarks",
+    "gap_left": "Prompt only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2106.09609",
+    "collab": "ATLAS",
+    "covers": "Leptons + many jets, 0 or >=3 b, gluino/stop/electroweakino",
+    "gap_left": "Specific benchmarks",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2609.21850",
+    "collab": "CMS",
+    "covers": "Paired dijet resonances with b jets, 136/fb",
+    "gap_left": "Covers the paired-dijet b-tag seed (third seed)",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2602.06957 (pheno HL-LHC DNN, lambda''_112/113, defers top-philic)"
+  ],
+  "hl_lhc_angle": "3 ab-1 plus ML for large QCD backgrounds; EW cross sections small.",
+  "specific_gap_statement": "Top-philic UDD electroweakino signal region not explicitly targeted, but CMS jet-scaling and b-category searches may partly cover it; paired-dijet seed is now covered by 2609.21850; coloured-LSP seed is pheno-only.",
+  "reason": "Three loosely related seeds; main gap partly covered by existing multilepton+many-jet searches; evidence unclear.",
+  "queries_run": [
+   "collaboration:CMS and R-parity and electroweak and jets",
+   "collaboration:ATLAS and R-parity violating and higgsino",
+   "collaboration:CMS and squark and R-parity violating",
+   "collaboration:CMS and top squark and R-parity violating",
+   "abstracts.value:R-parity and UDD and HL-LHC and higgsino"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C038",
+  "verdict": "HOLD",
+  "status_label": "constrained-but-region-open",
+  "observable": "Direct slepton/sneutrino LSP pair production with LQD coupling: pair of l+jj / 4-jet resonances, or displaced dilepton from sneutrino decays",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2608.21033",
+    "collab": "(pheno recast)",
+    "covers": "CheckMATE recast: no exclusion for direct slepton LSP with ATLAS multijet or CMS dijet searches; low EW cross sections and high jet thresholds",
+    "gap_left": "Lower-jet-threshold 4j searches suggested",
+    "location": "Sec. 4.1 slepton LSP; Conclusions"
+   },
+   {
+    "id": "arXiv:2601.05664",
+    "collab": "ATLAS",
+    "covers": "Displaced OS lepton-pair vertex, RPV neutralino benchmarks, 140/fb",
+    "gap_left": "Not sneutrino LQD hadronic decays",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2106.09609",
+    "collab": "ATLAS",
+    "covers": "Leptons + many jets",
+    "gap_left": "High jet multiplicity",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1811.09760",
+    "collab": "CMS",
+    "covers": "Resonant smuon/sneutrino via lambda'_211, SS dimuon",
+    "gap_left": "2016 data only",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none"
+  ],
+  "hl_lhc_angle": "3 ab-1 helps small EW rates but QCD 4-jet background is large; trigger-scouting could lower thresholds.",
+  "specific_gap_statement": "Direct slepton/sneutrino LSP LQD signals unconstrained per ABC-III recast (no ATLAS/CMS search targets low-mass l+jj pairs); HL viability unproven.",
+  "reason": "Gap exists in the cited pheno recast but tiny EW cross sections vs QCD multijet make HL relevance unclear.",
+  "queries_run": [
+   "collaboration:CMS and slepton and R-parity violating",
+   "collaboration:ATLAS and sneutrino",
+   "collaboration:CMS and sneutrino",
+   "grep 2608.21033 text"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C039",
+  "verdict": "HOLD",
+  "status_label": "searched-limited-regime",
+  "observable": "Stealth SUSY: many jets (and 0-2 leptons) or gamma gamma + jets with low MET; left-handed stop/sbottom topologies, e-mu+jets, diphoton outside Higgs window",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2310.03154",
+    "collab": "CMS",
+    "covers": "Stealth gamma gamma + jets, low MET, 138/fb, gluino/squark pair, excluded up to 2150/1850 GeV",
+    "gap_left": "Only gluino/squark; diphoton mass >90 GeV; no stop/sbottom-specific",
+    "location": "abstract; Sec. selection"
+   },
+   {
+    "id": "arXiv:2506.08825",
+    "collab": "CMS",
+    "covers": "Stop -> 2 tops + 6 light jets, 0/1/2 leptons, no MET requirement, 138/fb; RPV and hidden-sector",
+    "gap_left": "Single topology",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1411.7255",
+    "collab": "CMS",
+    "covers": "8 TeV stealth gamma gamma or e-mu + jets",
+    "gap_left": "No 13 TeV e-mu stealth found",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2401.16333",
+    "collab": "ATLAS",
+    "covers": "RPV many-jets, Run 2",
+    "gap_left": "Not stealth-specific",
+    "location": "title"
+   }
+  ],
+  "projections_found": [
+   "none (no ATLAS/CMS HL stealth projection found; INSPIRE abstract query empty)"
+  ],
+  "hl_lhc_angle": "Luminosity for high-multiplicity tails; mostly incremental.",
+  "specific_gap_statement": "Left-handed stop/sbottom stealth topologies and 13 TeV e-mu stealth have no dedicated search; no ATLAS stealth search found by title/abstract queries; HL benefit is incremental luminosity.",
+  "reason": "Gap is real but model-completeness driven (arXiv:1512.05781, 2015), partly addressed by CMS 2506.08825, and no HL-specific enabler.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:stealth",
+   "collaboration:ATLAS and abstracts.value:stealth",
+   "collaboration:CMS/ATLAS and t stealth",
+   "abstracts.value:stealth supersymmetry and HL-LHC",
+   "collaboration:CMS and low missing transverse momentum and jets",
+   "collaboration:ATLAS and high jet multiplicity",
+   "grep 2310.03154 text"
+  ],
+  "confidence": "low-medium"
+ }
+]

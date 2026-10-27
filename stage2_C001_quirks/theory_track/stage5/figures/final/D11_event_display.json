@@ -1,0 +1,57 @@
+{
+ "figure": "D11_event_display",
+ "files": [
+  "D11_event_display.pdf",
+  "D11_event_display.png"
+ ],
+ "created": "2026-10-16T14:23:12",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/event_display.npz": "8294bc3c5561245e3e439c214a94cdc64c16d453f58dfa0a5c15cdcfa1e615af",
+  "data/acts_stage4/prod/C2/B1/B1_00201.npz": "ab66f025abc2b2468acfac8dfad787fc9994eae6657ad3411b270430bf4bb163"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "b371cc12a8c7a47ad2b31dd5d9299e1483d42904747bea486e29e1c41f8f6782"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "events": {
+   "signal": {
+    "key": "A2|F|200|0.45|BM",
+    "row": 12070,
+    "depth": 14,
+    "met_phi": 2.3146319625185323
+   },
+   "pu_fake": {
+    "job": "B1_00201",
+    "trial": 28,
+    "depth": 7,
+    "met_phi": null
+   }
+  },
+  "fake_road": {
+   "phi": 2.2973876246153395,
+   "delta95": 0.15,
+   "ev": 5032,
+   "road": 0,
+   "dphi_to_signal_met": 0.017244337903192797,
+   "fake_hits_median_phi_r_gt_100mm": 2.2841739654541016,
+   "source": "data/acts_stage4/prod/C2/B1/B1_00201.npz"
+  },
+  "signal_met_phi": 2.3146319625185323
+ }
+}

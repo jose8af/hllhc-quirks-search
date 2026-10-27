@@ -1,0 +1,629 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/logs/output_F_INC.mg
+The import format was not given, so we guess it as command
+import model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE-no_b_mass
+INFO: Restrict model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE-no_b_mass with file models/quirkE/restrict_no_b_mass.dat . 
+INFO: Run "set stdout_level DEBUG" before import for more information. 
+INFO: Change particles name to pass to MG5 convention 
+Defined multiparticle p = g u c d s u~ c~ d~ s~
+Defined multiparticle j = g u c d s u~ c~ d~ s~
+Defined multiparticle l+ = e+ mu+
+Defined multiparticle l- = e- mu-
+Defined multiparticle vl = ve vm vt
+Defined multiparticle vl~ = ve~ vm~ vt~
+[1;34mPass the definition of 'j' and 'p' to 5 flavour scheme.[0m
+Defined multiparticle all = g u c d s b u~ c~ d~ s~ b~ a ve vm vt e- mu- ve~ vm~ vt~ e+ mu+ t t~ z w+ h sxe- w- sxe+ ta- xe- ta+ xe+
+define p = p b b~
+Defined multiparticle p = g u c d s b u~ c~ d~ s~ b~
+define j = j b b~
+Defined multiparticle j = g u c d s b u~ c~ d~ s~ b~
+generate p p > xe+ xe- @0
+INFO: Checking for minimal orders which gives processes. 
+INFO: Please specify coupling orders to bypass this step. 
+INFO: Trying process: g g > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: u u~ > xe+ xe- WEIGHTED<=4  
+INFO: Process has 2 diagrams 
+INFO: Trying process: u c~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: c u~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: c c~ > xe+ xe- WEIGHTED<=4  
+INFO: Process has 2 diagrams 
+INFO: Trying process: d d~ > xe+ xe- WEIGHTED<=4  
+INFO: Process has 2 diagrams 
+INFO: Trying process: d s~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: d b~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: s d~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: s s~ > xe+ xe- WEIGHTED<=4  
+INFO: Process has 2 diagrams 
+INFO: Trying process: s b~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: b d~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: b s~ > xe+ xe- WEIGHTED<=4  
+INFO: Trying process: b b~ > xe+ xe- WEIGHTED<=4  
+INFO: Process has 2 diagrams 
+INFO: Process u~ u > xe+ xe- added to mirror process u u~ > xe+ xe- 
+INFO: Process c~ c > xe+ xe- added to mirror process c c~ > xe+ xe- 
+INFO: Process d~ d > xe+ xe- added to mirror process d d~ > xe+ xe- 
+INFO: Process s~ s > xe+ xe- added to mirror process s s~ > xe+ xe- 
+INFO: Process b~ b > xe+ xe- added to mirror process b b~ > xe+ xe- 
+5 processes with 10 diagrams generated in 0.010 s
+Total: 5 processes with 10 diagrams
+add process p p > xe+ xe- j @1
+INFO: Checking for minimal orders which gives processes. 
+INFO: Please specify coupling orders to bypass this step. 
+INFO: Trying coupling order WEIGHTED<=5: WEIGTHED IS QCD+2*QED 
+INFO: Trying process: g g > xe+ xe- g WEIGHTED<=5 @1  
+INFO: Trying process: g u > xe+ xe- u WEIGHTED<=5 @1  
+INFO: Process has 4 diagrams 
+INFO: Trying process: g u > xe+ xe- c WEIGHTED<=5 @1  
+INFO: Trying process: g c > xe+ xe- u WEIGHTED<=5 @1  
+INFO: Trying process: g c > xe+ xe- c WEIGHTED<=5 @1  
+INFO: Process has 4 diagrams 
+INFO: Trying process: g d > xe+ xe- d WEIGHTED<=5 @1  
+INFO: Process has 4 diagrams 
+INFO: Trying process: g d > xe+ xe- s WEIGHTED<=5 @1  
+INFO: Trying process: g d > xe+ xe- b WEIGHTED<=5 @1  
+INFO: Trying process: g s > xe+ xe- d WEIGHTED<=5 @1  
+INFO: Trying process: g s > xe+ xe- s WEIGHTED<=5 @1  
+INFO: Process has 4 diagrams 
+INFO: Trying process: g s > xe+ xe- b WEIGHTED<=5 @1  
+INFO: Trying process: g b > xe+ xe- d WEIGHTED<=5 @1  
+INFO: Trying process: g b > xe+ xe- s WEIGHTED<=5 @1  
+INFO: Trying process: g b > xe+ xe- b WEIGHTED<=5 @1  
+INFO: Process has 4 diagrams 
+INFO: Crossed process found for g u~ > xe+ xe- u~, reuse diagrams. 
+INFO: Crossed process found for g c~ > xe+ xe- c~, reuse diagrams. 
+INFO: Crossed process found for g d~ > xe+ xe- d~, reuse diagrams. 
+INFO: Crossed process found for g s~ > xe+ xe- s~, reuse diagrams. 
+INFO: Crossed process found for g b~ > xe+ xe- b~, reuse diagrams. 
+INFO: Process u g > xe+ xe- u added to mirror process g u > xe+ xe- u 
+INFO: Crossed process found for u u~ > xe+ xe- g, reuse diagrams. 
+INFO: Process c g > xe+ xe- c added to mirror process g c > xe+ xe- c 
+INFO: Crossed process found for c c~ > xe+ xe- g, reuse diagrams. 
+INFO: Process d g > xe+ xe- d added to mirror process g d > xe+ xe- d 
+INFO: Crossed process found for d d~ > xe+ xe- g, reuse diagrams. 
+INFO: Process s g > xe+ xe- s added to mirror process g s > xe+ xe- s 
+INFO: Crossed process found for s s~ > xe+ xe- g, reuse diagrams. 
+INFO: Process b g > xe+ xe- b added to mirror process g b > xe+ xe- b 
+INFO: Crossed process found for b b~ > xe+ xe- g, reuse diagrams. 
+INFO: Process u~ g > xe+ xe- u~ added to mirror process g u~ > xe+ xe- u~ 
+INFO: Process u~ u > xe+ xe- g added to mirror process u u~ > xe+ xe- g 
+INFO: Process c~ g > xe+ xe- c~ added to mirror process g c~ > xe+ xe- c~ 
+INFO: Process c~ c > xe+ xe- g added to mirror process c c~ > xe+ xe- g 
+INFO: Process d~ g > xe+ xe- d~ added to mirror process g d~ > xe+ xe- d~ 
+INFO: Process d~ d > xe+ xe- g added to mirror process d d~ > xe+ xe- g 
+INFO: Process s~ g > xe+ xe- s~ added to mirror process g s~ > xe+ xe- s~ 
+INFO: Process s~ s > xe+ xe- g added to mirror process s s~ > xe+ xe- g 
+INFO: Process b~ g > xe+ xe- b~ added to mirror process g b~ > xe+ xe- b~ 
+INFO: Process b~ b > xe+ xe- g added to mirror process b b~ > xe+ xe- g 
+15 processes with 60 diagrams generated in 0.045 s
+Total: 20 processes with 70 diagrams
+add process p p > xe+ xe- j j @2
+INFO: Checking for minimal orders which gives processes. 
+INFO: Please specify coupling orders to bypass this step. 
+INFO: Trying coupling order WEIGHTED<=6: WEIGTHED IS QCD+2*QED 
+INFO: Trying process: g g > xe+ xe- g g WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- u u~ WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: g g > xe+ xe- u c~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- c u~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- c c~ WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: g g > xe+ xe- d d~ WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: g g > xe+ xe- d s~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- d b~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- s d~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- s s~ WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: g g > xe+ xe- s b~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- b d~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- b s~ WEIGHTED<=6 @2  
+INFO: Trying process: g g > xe+ xe- b b~ WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Crossed process found for g u > xe+ xe- g u, reuse diagrams. 
+INFO: Crossed process found for g c > xe+ xe- g c, reuse diagrams. 
+INFO: Crossed process found for g d > xe+ xe- g d, reuse diagrams. 
+INFO: Crossed process found for g s > xe+ xe- g s, reuse diagrams. 
+INFO: Crossed process found for g b > xe+ xe- g b, reuse diagrams. 
+INFO: Crossed process found for g u~ > xe+ xe- g u~, reuse diagrams. 
+INFO: Crossed process found for g c~ > xe+ xe- g c~, reuse diagrams. 
+INFO: Crossed process found for g d~ > xe+ xe- g d~, reuse diagrams. 
+INFO: Crossed process found for g s~ > xe+ xe- g s~, reuse diagrams. 
+INFO: Crossed process found for g b~ > xe+ xe- g b~, reuse diagrams. 
+INFO: Process u g > xe+ xe- g u added to mirror process g u > xe+ xe- g u 
+INFO: Trying process: u u > xe+ xe- u u WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: u u > xe+ xe- u c WEIGHTED<=6 @2  
+INFO: Trying process: u u > xe+ xe- c c WEIGHTED<=6 @2  
+INFO: Trying process: u c > xe+ xe- u u WEIGHTED<=6 @2  
+INFO: Trying process: u c > xe+ xe- u c WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: u c > xe+ xe- c c WEIGHTED<=6 @2  
+INFO: Trying process: u d > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: u d > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Trying process: u d > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Trying process: u d > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Trying process: u d > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Trying process: u d > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Trying process: u s > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Trying process: u s > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: u s > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Trying process: u s > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Trying process: u s > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Trying process: u s > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Trying process: u b > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Trying process: u b > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Trying process: u b > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: u b > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Trying process: u b > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Trying process: u b > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Crossed process found for u u~ > xe+ xe- g g, reuse diagrams. 
+INFO: Crossed process found for u u~ > xe+ xe- u u~, reuse diagrams. 
+INFO: Crossed process found for u u~ > xe+ xe- c c~, reuse diagrams. 
+INFO: Crossed process found for u u~ > xe+ xe- d d~, reuse diagrams. 
+INFO: Crossed process found for u u~ > xe+ xe- s s~, reuse diagrams. 
+INFO: Crossed process found for u u~ > xe+ xe- b b~, reuse diagrams. 
+INFO: Crossed process found for u c~ > xe+ xe- u c~, reuse diagrams. 
+INFO: Crossed process found for u d~ > xe+ xe- u d~, reuse diagrams. 
+INFO: Crossed process found for u s~ > xe+ xe- u s~, reuse diagrams. 
+INFO: Crossed process found for u b~ > xe+ xe- u b~, reuse diagrams. 
+INFO: Process c g > xe+ xe- g c added to mirror process g c > xe+ xe- g c 
+INFO: Process c u > xe+ xe- u c added to mirror process u c > xe+ xe- u c 
+INFO: Trying process: c c > xe+ xe- u u WEIGHTED<=6 @2  
+INFO: Trying process: c c > xe+ xe- u c WEIGHTED<=6 @2  
+INFO: Trying process: c c > xe+ xe- c c WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: c d > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Trying process: c d > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Trying process: c d > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Trying process: c d > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: c d > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Trying process: c d > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Trying process: c s > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Trying process: c s > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Trying process: c s > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Trying process: c s > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Trying process: c s > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: c s > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- u d WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- u s WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- u b WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- c d WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- c s WEIGHTED<=6 @2  
+INFO: Trying process: c b > xe+ xe- c b WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Crossed process found for c u~ > xe+ xe- c u~, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- g g, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- u u~, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- c c~, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- d d~, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- s s~, reuse diagrams. 
+INFO: Crossed process found for c c~ > xe+ xe- b b~, reuse diagrams. 
+INFO: Crossed process found for c d~ > xe+ xe- c d~, reuse diagrams. 
+INFO: Crossed process found for c s~ > xe+ xe- c s~, reuse diagrams. 
+INFO: Crossed process found for c b~ > xe+ xe- c b~, reuse diagrams. 
+INFO: Process d g > xe+ xe- g d added to mirror process g d > xe+ xe- g d 
+INFO: Process d u > xe+ xe- u d added to mirror process u d > xe+ xe- u d 
+INFO: Process d c > xe+ xe- c d added to mirror process c d > xe+ xe- c d 
+INFO: Trying process: d d > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: d d > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Trying process: d d > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Trying process: d d > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Trying process: d d > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Trying process: d d > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Trying process: d s > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Trying process: d s > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: d s > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Trying process: d s > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Trying process: d s > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Trying process: d s > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Trying process: d b > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Trying process: d b > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Trying process: d b > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: d b > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Trying process: d b > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Trying process: d b > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Crossed process found for d u~ > xe+ xe- d u~, reuse diagrams. 
+INFO: Crossed process found for d c~ > xe+ xe- d c~, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- g g, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- u u~, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- c c~, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- d d~, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- s s~, reuse diagrams. 
+INFO: Crossed process found for d d~ > xe+ xe- b b~, reuse diagrams. 
+INFO: Crossed process found for d s~ > xe+ xe- d s~, reuse diagrams. 
+INFO: Crossed process found for d b~ > xe+ xe- d b~, reuse diagrams. 
+INFO: Process s g > xe+ xe- g s added to mirror process g s > xe+ xe- g s 
+INFO: Process s u > xe+ xe- u s added to mirror process u s > xe+ xe- u s 
+INFO: Process s c > xe+ xe- c s added to mirror process c s > xe+ xe- c s 
+INFO: Process s d > xe+ xe- d s added to mirror process d s > xe+ xe- d s 
+INFO: Trying process: s s > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Trying process: s s > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Trying process: s s > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Trying process: s s > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Trying process: s s > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Trying process: s s > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Trying process: s b > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Trying process: s b > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Trying process: s b > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Trying process: s b > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Trying process: s b > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Process has 8 diagrams 
+INFO: Trying process: s b > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Crossed process found for s u~ > xe+ xe- s u~, reuse diagrams. 
+INFO: Crossed process found for s c~ > xe+ xe- s c~, reuse diagrams. 
+INFO: Crossed process found for s d~ > xe+ xe- s d~, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- g g, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- u u~, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- c c~, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- d d~, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- s s~, reuse diagrams. 
+INFO: Crossed process found for s s~ > xe+ xe- b b~, reuse diagrams. 
+INFO: Crossed process found for s b~ > xe+ xe- s b~, reuse diagrams. 
+INFO: Process b g > xe+ xe- g b added to mirror process g b > xe+ xe- g b 
+INFO: Process b u > xe+ xe- u b added to mirror process u b > xe+ xe- u b 
+INFO: Process b c > xe+ xe- c b added to mirror process c b > xe+ xe- c b 
+INFO: Process b d > xe+ xe- d b added to mirror process d b > xe+ xe- d b 
+INFO: Process b s > xe+ xe- s b added to mirror process s b > xe+ xe- s b 
+INFO: Trying process: b b > xe+ xe- d d WEIGHTED<=6 @2  
+INFO: Trying process: b b > xe+ xe- d s WEIGHTED<=6 @2  
+INFO: Trying process: b b > xe+ xe- d b WEIGHTED<=6 @2  
+INFO: Trying process: b b > xe+ xe- s s WEIGHTED<=6 @2  
+INFO: Trying process: b b > xe+ xe- s b WEIGHTED<=6 @2  
+INFO: Trying process: b b > xe+ xe- b b WEIGHTED<=6 @2  
+INFO: Process has 16 diagrams 
+INFO: Crossed process found for b u~ > xe+ xe- b u~, reuse diagrams. 
+INFO: Crossed process found for b c~ > xe+ xe- b c~, reuse diagrams. 
+INFO: Crossed process found for b d~ > xe+ xe- b d~, reuse diagrams. 
+INFO: Crossed process found for b s~ > xe+ xe- b s~, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- g g, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- u u~, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- c c~, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- d d~, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- s s~, reuse diagrams. 
+INFO: Crossed process found for b b~ > xe+ xe- b b~, reuse diagrams. 
+INFO: Process u~ g > xe+ xe- g u~ added to mirror process g u~ > xe+ xe- g u~ 
+INFO: Process u~ u > xe+ xe- g g added to mirror process u u~ > xe+ xe- g g 
+INFO: Process u~ u > xe+ xe- u u~ added to mirror process u u~ > xe+ xe- u u~ 
+INFO: Process u~ u > xe+ xe- c c~ added to mirror process u u~ > xe+ xe- c c~ 
+INFO: Process u~ u > xe+ xe- d d~ added to mirror process u u~ > xe+ xe- d d~ 
+INFO: Process u~ u > xe+ xe- s s~ added to mirror process u u~ > xe+ xe- s s~ 
+INFO: Process u~ u > xe+ xe- b b~ added to mirror process u u~ > xe+ xe- b b~ 
+INFO: Process u~ c > xe+ xe- c u~ added to mirror process c u~ > xe+ xe- c u~ 
+INFO: Process u~ d > xe+ xe- d u~ added to mirror process d u~ > xe+ xe- d u~ 
+INFO: Process u~ s > xe+ xe- s u~ added to mirror process s u~ > xe+ xe- s u~ 
+INFO: Process u~ b > xe+ xe- b u~ added to mirror process b u~ > xe+ xe- b u~ 
+INFO: Crossed process found for u~ u~ > xe+ xe- u~ u~, reuse diagrams. 
+INFO: Crossed process found for u~ c~ > xe+ xe- u~ c~, reuse diagrams. 
+INFO: Crossed process found for u~ d~ > xe+ xe- u~ d~, reuse diagrams. 
+INFO: Crossed process found for u~ s~ > xe+ xe- u~ s~, reuse diagrams. 
+INFO: Crossed process found for u~ b~ > xe+ xe- u~ b~, reuse diagrams. 
+INFO: Process c~ g > xe+ xe- g c~ added to mirror process g c~ > xe+ xe- g c~ 
+INFO: Process c~ u > xe+ xe- u c~ added to mirror process u c~ > xe+ xe- u c~ 
+INFO: Process c~ c > xe+ xe- g g added to mirror process c c~ > xe+ xe- g g 
+INFO: Process c~ c > xe+ xe- u u~ added to mirror process c c~ > xe+ xe- u u~ 
+INFO: Process c~ c > xe+ xe- c c~ added to mirror process c c~ > xe+ xe- c c~ 
+INFO: Process c~ c > xe+ xe- d d~ added to mirror process c c~ > xe+ xe- d d~ 
+INFO: Process c~ c > xe+ xe- s s~ added to mirror process c c~ > xe+ xe- s s~ 
+INFO: Process c~ c > xe+ xe- b b~ added to mirror process c c~ > xe+ xe- b b~ 
+INFO: Process c~ d > xe+ xe- d c~ added to mirror process d c~ > xe+ xe- d c~ 
+INFO: Process c~ s > xe+ xe- s c~ added to mirror process s c~ > xe+ xe- s c~ 
+INFO: Process c~ b > xe+ xe- b c~ added to mirror process b c~ > xe+ xe- b c~ 
+INFO: Process c~ u~ > xe+ xe- u~ c~ added to mirror process u~ c~ > xe+ xe- u~ c~ 
+INFO: Crossed process found for c~ c~ > xe+ xe- c~ c~, reuse diagrams. 
+INFO: Crossed process found for c~ d~ > xe+ xe- c~ d~, reuse diagrams. 
+INFO: Crossed process found for c~ s~ > xe+ xe- c~ s~, reuse diagrams. 
+INFO: Crossed process found for c~ b~ > xe+ xe- c~ b~, reuse diagrams. 
+INFO: Process d~ g > xe+ xe- g d~ added to mirror process g d~ > xe+ xe- g d~ 
+INFO: Process d~ u > xe+ xe- u d~ added to mirror process u d~ > xe+ xe- u d~ 
+INFO: Process d~ c > xe+ xe- c d~ added to mirror process c d~ > xe+ xe- c d~ 
+INFO: Process d~ d > xe+ xe- g g added to mirror process d d~ > xe+ xe- g g 
+INFO: Process d~ d > xe+ xe- u u~ added to mirror process d d~ > xe+ xe- u u~ 
+INFO: Process d~ d > xe+ xe- c c~ added to mirror process d d~ > xe+ xe- c c~ 
+INFO: Process d~ d > xe+ xe- d d~ added to mirror process d d~ > xe+ xe- d d~ 
+INFO: Process d~ d > xe+ xe- s s~ added to mirror process d d~ > xe+ xe- s s~ 
+INFO: Process d~ d > xe+ xe- b b~ added to mirror process d d~ > xe+ xe- b b~ 
+INFO: Process d~ s > xe+ xe- s d~ added to mirror process s d~ > xe+ xe- s d~ 
+INFO: Process d~ b > xe+ xe- b d~ added to mirror process b d~ > xe+ xe- b d~ 
+INFO: Process d~ u~ > xe+ xe- u~ d~ added to mirror process u~ d~ > xe+ xe- u~ d~ 
+INFO: Process d~ c~ > xe+ xe- c~ d~ added to mirror process c~ d~ > xe+ xe- c~ d~ 
+INFO: Crossed process found for d~ d~ > xe+ xe- d~ d~, reuse diagrams. 
+INFO: Crossed process found for d~ s~ > xe+ xe- d~ s~, reuse diagrams. 
+INFO: Crossed process found for d~ b~ > xe+ xe- d~ b~, reuse diagrams. 
+INFO: Process s~ g > xe+ xe- g s~ added to mirror process g s~ > xe+ xe- g s~ 
+INFO: Process s~ u > xe+ xe- u s~ added to mirror process u s~ > xe+ xe- u s~ 
+INFO: Process s~ c > xe+ xe- c s~ added to mirror process c s~ > xe+ xe- c s~ 
+INFO: Process s~ d > xe+ xe- d s~ added to mirror process d s~ > xe+ xe- d s~ 
+INFO: Process s~ s > xe+ xe- g g added to mirror process s s~ > xe+ xe- g g 
+INFO: Process s~ s > xe+ xe- u u~ added to mirror process s s~ > xe+ xe- u u~ 
+INFO: Process s~ s > xe+ xe- c c~ added to mirror process s s~ > xe+ xe- c c~ 
+INFO: Process s~ s > xe+ xe- d d~ added to mirror process s s~ > xe+ xe- d d~ 
+INFO: Process s~ s > xe+ xe- s s~ added to mirror process s s~ > xe+ xe- s s~ 
+INFO: Process s~ s > xe+ xe- b b~ added to mirror process s s~ > xe+ xe- b b~ 
+INFO: Process s~ b > xe+ xe- b s~ added to mirror process b s~ > xe+ xe- b s~ 
+INFO: Process s~ u~ > xe+ xe- u~ s~ added to mirror process u~ s~ > xe+ xe- u~ s~ 
+INFO: Process s~ c~ > xe+ xe- c~ s~ added to mirror process c~ s~ > xe+ xe- c~ s~ 
+INFO: Process s~ d~ > xe+ xe- d~ s~ added to mirror process d~ s~ > xe+ xe- d~ s~ 
+INFO: Crossed process found for s~ s~ > xe+ xe- s~ s~, reuse diagrams. 
+INFO: Crossed process found for s~ b~ > xe+ xe- s~ b~, reuse diagrams. 
+INFO: Process b~ g > xe+ xe- g b~ added to mirror process g b~ > xe+ xe- g b~ 
+INFO: Process b~ u > xe+ xe- u b~ added to mirror process u b~ > xe+ xe- u b~ 
+INFO: Process b~ c > xe+ xe- c b~ added to mirror process c b~ > xe+ xe- c b~ 
+INFO: Process b~ d > xe+ xe- d b~ added to mirror process d b~ > xe+ xe- d b~ 
+INFO: Process b~ s > xe+ xe- s b~ added to mirror process s b~ > xe+ xe- s b~ 
+INFO: Process b~ b > xe+ xe- g g added to mirror process b b~ > xe+ xe- g g 
+INFO: Process b~ b > xe+ xe- u u~ added to mirror process b b~ > xe+ xe- u u~ 
+INFO: Process b~ b > xe+ xe- c c~ added to mirror process b b~ > xe+ xe- c c~ 
+INFO: Process b~ b > xe+ xe- d d~ added to mirror process b b~ > xe+ xe- d d~ 
+INFO: Process b~ b > xe+ xe- s s~ added to mirror process b b~ > xe+ xe- s s~ 
+INFO: Process b~ b > xe+ xe- b b~ added to mirror process b b~ > xe+ xe- b b~ 
+INFO: Process b~ u~ > xe+ xe- u~ b~ added to mirror process u~ b~ > xe+ xe- u~ b~ 
+INFO: Process b~ c~ > xe+ xe- c~ b~ added to mirror process c~ b~ > xe+ xe- c~ b~ 
+INFO: Process b~ d~ > xe+ xe- d~ b~ added to mirror process d~ b~ > xe+ xe- d~ b~ 
+INFO: Process b~ s~ > xe+ xe- s~ b~ added to mirror process s~ b~ > xe+ xe- s~ b~ 
+INFO: Crossed process found for b~ b~ > xe+ xe- b~ b~, reuse diagrams. 
+95 processes with 1040 diagrams generated in 0.761 s
+Total: 115 processes with 1110 diagrams
+output /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC -nojpeg
+INFO: initialize a new directory: prod_F_INC 
+INFO: remove old information in prod_F_INC 
+INFO: Organizing processes into subprocess groups 
+INFO: Generating Helas calls for process: g g > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: g g > xe+ xe- u u~ @2 
+INFO: Combined process g g > xe+ xe- c c~ WEIGHTED<=6 @2 with process g g > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g g > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: g g > xe+ xe- d d~ @2 
+INFO: Combined process g g > xe+ xe- s s~ WEIGHTED<=6 @2 with process g g > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process g g > xe+ xe- b b~ WEIGHTED<=6 @2 with process g g > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g u > xe+ xe- g u WEIGHTED<=6 @2 
+INFO: Processing color information for process: g u > xe+ xe- g u @2 
+INFO: Combined process g c > xe+ xe- g c WEIGHTED<=6 @2 with process g u > xe+ xe- g u WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g d > xe+ xe- g d WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: g d > xe+ xe- g d @2 
+INFO: Combined process g s > xe+ xe- g s WEIGHTED<=6 @2 with process g d > xe+ xe- g d WEIGHTED<=6 @2 
+INFO: Combined process g b > xe+ xe- g b WEIGHTED<=6 @2 with process g d > xe+ xe- g d WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g u~ > xe+ xe- g u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: g u~ > xe+ xe- g u~ @2 
+INFO: Combined process g c~ > xe+ xe- g c~ WEIGHTED<=6 @2 with process g u~ > xe+ xe- g u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g d~ > xe+ xe- g d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: g d~ > xe+ xe- g d~ @2 
+INFO: Combined process g s~ > xe+ xe- g s~ WEIGHTED<=6 @2 with process g d~ > xe+ xe- g d~ WEIGHTED<=6 @2 
+INFO: Combined process g b~ > xe+ xe- g b~ WEIGHTED<=6 @2 with process g d~ > xe+ xe- g d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u u > xe+ xe- u u WEIGHTED<=6 @2 
+INFO: Processing color information for process: u u > xe+ xe- u u @2 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: u u~ > xe+ xe- u u~ @2 
+INFO: Combined process c c > xe+ xe- c c WEIGHTED<=6 @2 with process u u > xe+ xe- u u WEIGHTED<=6 @2 
+INFO: Combined process c c~ > xe+ xe- c c~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d d > xe+ xe- d d WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d d > xe+ xe- d d @2 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d d~ > xe+ xe- d d~ @2 
+INFO: Combined process s s > xe+ xe- s s WEIGHTED<=6 @2 with process d d > xe+ xe- d d WEIGHTED<=6 @2 
+INFO: Combined process s s~ > xe+ xe- s s~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process b b > xe+ xe- b b WEIGHTED<=6 @2 with process d d > xe+ xe- d d WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- b b~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u~ u~ > xe+ xe- u~ u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: u~ u~ > xe+ xe- u~ u~ @2 
+INFO: Combined process c~ c~ > xe+ xe- c~ c~ WEIGHTED<=6 @2 with process u~ u~ > xe+ xe- u~ u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d~ d~ > xe+ xe- d~ d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d~ d~ > xe+ xe- d~ d~ @2 
+INFO: Combined process s~ s~ > xe+ xe- s~ s~ WEIGHTED<=6 @2 with process d~ d~ > xe+ xe- d~ d~ WEIGHTED<=6 @2 
+INFO: Combined process b~ b~ > xe+ xe- b~ b~ WEIGHTED<=6 @2 with process d~ d~ > xe+ xe- d~ d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u c > xe+ xe- u c WEIGHTED<=6 @2 
+INFO: Processing color information for process: u c > xe+ xe- u c @2 
+INFO: Generating Helas calls for process: u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: u d > xe+ xe- u d @2 
+INFO: Combined process u s > xe+ xe- u s WEIGHTED<=6 @2 with process u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Combined process u b > xe+ xe- u b WEIGHTED<=6 @2 with process u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- c c~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: u u~ > xe+ xe- c c~ @2 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: u u~ > xe+ xe- d d~ @2 
+INFO: Combined process u u~ > xe+ xe- s s~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process u u~ > xe+ xe- b b~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u c~ > xe+ xe- u c~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: u c~ > xe+ xe- u c~ @2 
+INFO: Generating Helas calls for process: u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: u d~ > xe+ xe- u d~ @2 
+INFO: Combined process u s~ > xe+ xe- u s~ WEIGHTED<=6 @2 with process u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Combined process u b~ > xe+ xe- u b~ WEIGHTED<=6 @2 with process u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Combined process c d > xe+ xe- c d WEIGHTED<=6 @2 with process u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Combined process c s > xe+ xe- c s WEIGHTED<=6 @2 with process u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Combined process c b > xe+ xe- c b WEIGHTED<=6 @2 with process u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Combined process c u~ > xe+ xe- c u~ WEIGHTED<=6 @2 with process u c~ > xe+ xe- u c~ WEIGHTED<=6 @2 
+INFO: Combined process c c~ > xe+ xe- u u~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- c c~ WEIGHTED<=6 @2 
+INFO: Combined process c c~ > xe+ xe- d d~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process c c~ > xe+ xe- s s~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process c c~ > xe+ xe- b b~ WEIGHTED<=6 @2 with process u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Combined process c d~ > xe+ xe- c d~ WEIGHTED<=6 @2 with process u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Combined process c s~ > xe+ xe- c s~ WEIGHTED<=6 @2 with process u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Combined process c b~ > xe+ xe- c b~ WEIGHTED<=6 @2 with process u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d s > xe+ xe- d s WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d s > xe+ xe- d s @2 
+INFO: Combined process d b > xe+ xe- d b WEIGHTED<=6 @2 with process d s > xe+ xe- d s WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: d u~ > xe+ xe- d u~ @2 
+INFO: Combined process d c~ > xe+ xe- d c~ WEIGHTED<=6 @2 with process d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: d d~ > xe+ xe- u u~ @2 
+INFO: Combined process d d~ > xe+ xe- c c~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d d~ > xe+ xe- s s~ @2 
+INFO: Combined process d d~ > xe+ xe- b b~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d s~ > xe+ xe- d s~ @2 
+INFO: Combined process d b~ > xe+ xe- d b~ WEIGHTED<=6 @2 with process d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Combined process s b > xe+ xe- s b WEIGHTED<=6 @2 with process d s > xe+ xe- d s WEIGHTED<=6 @2 
+INFO: Combined process s u~ > xe+ xe- s u~ WEIGHTED<=6 @2 with process d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Combined process s c~ > xe+ xe- s c~ WEIGHTED<=6 @2 with process d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Combined process s d~ > xe+ xe- s d~ WEIGHTED<=6 @2 with process d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Combined process s s~ > xe+ xe- u u~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Combined process s s~ > xe+ xe- c c~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Combined process s s~ > xe+ xe- d d~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Combined process s s~ > xe+ xe- b b~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Combined process s b~ > xe+ xe- s b~ WEIGHTED<=6 @2 with process d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Combined process b u~ > xe+ xe- b u~ WEIGHTED<=6 @2 with process d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Combined process b c~ > xe+ xe- b c~ WEIGHTED<=6 @2 with process d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Combined process b d~ > xe+ xe- b d~ WEIGHTED<=6 @2 with process d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Combined process b s~ > xe+ xe- b s~ WEIGHTED<=6 @2 with process d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- u u~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- c c~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- d d~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- s s~ WEIGHTED<=6 @2 with process d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u~ c~ > xe+ xe- u~ c~ WEIGHTED<=6 @2 
+INFO: Processing color information for process: u~ c~ > xe+ xe- u~ c~ @2 
+INFO: Generating Helas calls for process: u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: u~ d~ > xe+ xe- u~ d~ @2 
+INFO: Combined process u~ s~ > xe+ xe- u~ s~ WEIGHTED<=6 @2 with process u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Combined process u~ b~ > xe+ xe- u~ b~ WEIGHTED<=6 @2 with process u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Combined process c~ d~ > xe+ xe- c~ d~ WEIGHTED<=6 @2 with process u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Combined process c~ s~ > xe+ xe- c~ s~ WEIGHTED<=6 @2 with process u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Combined process c~ b~ > xe+ xe- c~ b~ WEIGHTED<=6 @2 with process u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d~ s~ > xe+ xe- d~ s~ WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d~ s~ > xe+ xe- d~ s~ @2 
+INFO: Combined process d~ b~ > xe+ xe- d~ b~ WEIGHTED<=6 @2 with process d~ s~ > xe+ xe- d~ s~ WEIGHTED<=6 @2 
+INFO: Combined process s~ b~ > xe+ xe- s~ b~ WEIGHTED<=6 @2 with process d~ s~ > xe+ xe- d~ s~ WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Processing color information for process: u u~ > xe+ xe- g g @2 
+INFO: Combined process c c~ > xe+ xe- g g WEIGHTED<=6 @2 with process u u~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Reusing existing color information for process: d d~ > xe+ xe- g g @2 
+INFO: Combined process s s~ > xe+ xe- g g WEIGHTED<=6 @2 with process d d~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Combined process b b~ > xe+ xe- g g WEIGHTED<=6 @2 with process d d~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Generating Helas calls for process: g u > xe+ xe- u WEIGHTED<=5 @1 
+INFO: Processing color information for process: g u > xe+ xe- u @1 
+INFO: Combined process g c > xe+ xe- c WEIGHTED<=5 @1 with process g u > xe+ xe- u WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: g d > xe+ xe- d WEIGHTED<=5 @1 
+INFO: Reusing existing color information for process: g d > xe+ xe- d @1 
+INFO: Combined process g s > xe+ xe- s WEIGHTED<=5 @1 with process g d > xe+ xe- d WEIGHTED<=5 @1 
+INFO: Combined process g b > xe+ xe- b WEIGHTED<=5 @1 with process g d > xe+ xe- d WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: g u~ > xe+ xe- u~ WEIGHTED<=5 @1 
+INFO: Processing color information for process: g u~ > xe+ xe- u~ @1 
+INFO: Combined process g c~ > xe+ xe- c~ WEIGHTED<=5 @1 with process g u~ > xe+ xe- u~ WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: g d~ > xe+ xe- d~ WEIGHTED<=5 @1 
+INFO: Reusing existing color information for process: g d~ > xe+ xe- d~ @1 
+INFO: Combined process g s~ > xe+ xe- s~ WEIGHTED<=5 @1 with process g d~ > xe+ xe- d~ WEIGHTED<=5 @1 
+INFO: Combined process g b~ > xe+ xe- b~ WEIGHTED<=5 @1 with process g d~ > xe+ xe- d~ WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Processing color information for process: u u~ > xe+ xe- g @1 
+INFO: Combined process c c~ > xe+ xe- g WEIGHTED<=5 @1 with process u u~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Reusing existing color information for process: d d~ > xe+ xe- g @1 
+INFO: Combined process s s~ > xe+ xe- g WEIGHTED<=5 @1 with process d d~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Combined process b b~ > xe+ xe- g WEIGHTED<=5 @1 with process d d~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Generating Helas calls for process: u u~ > xe+ xe- WEIGHTED<=4 
+INFO: Processing color information for process: u u~ > xe+ xe- 
+INFO: Combined process c c~ > xe+ xe- WEIGHTED<=4 with process u u~ > xe+ xe- WEIGHTED<=4 
+INFO: Generating Helas calls for process: d d~ > xe+ xe- WEIGHTED<=4 
+INFO: Reusing existing color information for process: d d~ > xe+ xe- 
+INFO: Combined process s s~ > xe+ xe- WEIGHTED<=4 with process d d~ > xe+ xe- WEIGHTED<=4 
+INFO: Combined process b b~ > xe+ xe- WEIGHTED<=4 with process d d~ > xe+ xe- WEIGHTED<=4 
+INFO: Creating files in directory P2_gg_xepxemqq 
+INFO: Generating Feynman diagrams for Process: g g > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: g g > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Finding symmetric diagrams for subprocess group gg_xepxemqq 
+INFO: Creating files in directory P2_gq_xepxemgq 
+INFO: Generating Feynman diagrams for Process: g u > xe+ xe- g u WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: g d > xe+ xe- g d WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: g u~ > xe+ xe- g u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: g d~ > xe+ xe- g d~ WEIGHTED<=6 @2 
+INFO: Finding symmetric diagrams for subprocess group gq_xepxemgq 
+INFO: Creating files in directory P2_qq_xepxemqq 
+INFO: Generating Feynman diagrams for Process: u u > xe+ xe- u u WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d d > xe+ xe- d d WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u~ u~ > xe+ xe- u~ u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d~ d~ > xe+ xe- d~ d~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u c > xe+ xe- u c WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u d > xe+ xe- u d WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- c c~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- d d~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u c~ > xe+ xe- u c~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u d~ > xe+ xe- u d~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d s > xe+ xe- d s WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d u~ > xe+ xe- d u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- u u~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- s s~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d s~ > xe+ xe- d s~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u~ c~ > xe+ xe- u~ c~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: u~ d~ > xe+ xe- u~ d~ WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d~ s~ > xe+ xe- d~ s~ WEIGHTED<=6 @2 
+INFO: Finding symmetric diagrams for subprocess group qq_xepxemqq 
+INFO: Creating files in directory P2_qq_xepxemgg 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- g g WEIGHTED<=6 @2 
+INFO: Finding symmetric diagrams for subprocess group qq_xepxemgg 
+INFO: Creating files in directory P1_gq_xepxemq 
+INFO: Generating Feynman diagrams for Process: g u > xe+ xe- u WEIGHTED<=5 @1 
+INFO: Generating Feynman diagrams for Process: g d > xe+ xe- d WEIGHTED<=5 @1 
+INFO: Generating Feynman diagrams for Process: g u~ > xe+ xe- u~ WEIGHTED<=5 @1 
+INFO: Generating Feynman diagrams for Process: g d~ > xe+ xe- d~ WEIGHTED<=5 @1 
+INFO: Finding symmetric diagrams for subprocess group gq_xepxemq 
+INFO: Creating files in directory P1_qq_xepxemg 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- g WEIGHTED<=5 @1 
+INFO: Finding symmetric diagrams for subprocess group qq_xepxemg 
+INFO: Creating files in directory P0_qq_xepxem 
+INFO: Generating Feynman diagrams for Process: u u~ > xe+ xe- WEIGHTED<=4 
+INFO: Generating Feynman diagrams for Process: d d~ > xe+ xe- WEIGHTED<=4 
+INFO: Finding symmetric diagrams for subprocess group qq_xepxem 
+Generated helas calls for 36 subprocesses (364 diagrams) in 0.337 s
+Wrote files for 912 helas calls in 0.703 s
+ALOHA: aloha creates FFV2 routines
+ALOHA: aloha creates FFV3 routines
+ALOHA: aloha creates VVV1 set of routines with options: P0
+ALOHA: aloha creates FFV5 routines
+ALOHA: aloha creates FFV1 routines
+save configuration file to /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC/Cards/me5_configuration.txt
+INFO: Use Fortran compiler gfortran 
+INFO: Use c++ compiler clang 
+INFO: Generate web pages 
+Output to directory /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC done.
+Type "launch" to generate events from this process, or see
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC/README
+Run "open index.html" to see more information about this process.
+exit
+quit

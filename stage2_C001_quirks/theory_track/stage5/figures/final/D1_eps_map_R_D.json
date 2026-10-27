@@ -1,0 +1,36 @@
+{
+ "figure": "D1_eps_map_R_D",
+ "files": [
+  "D1_eps_map_R_D.pdf",
+  "D1_eps_map_R_D.png"
+ ],
+ "created": "2026-10-16T14:23:46",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/signal_eff.json": "1d487acb474f1d8efc10efc6a9b041d262c08a29c6b6dcb40ea2f3dfe61e7433",
+  "data/acts_stage4/analysis/C12FC_v1/limits.json": "4f99fe6a8362bfa2ee2ab162c5494f6bcd49184980a63f71a9f2b4f3b2895eff"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "fbea2e37ec2a10bf11cc641ed7dce6e5480b1886bf0d7c7b5e788fcb022b10e0"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "selection": "R_D",
+  "fallback": true,
+  "n_points": 32
+ }
+}

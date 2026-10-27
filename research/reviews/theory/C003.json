@@ -1,0 +1,42 @@
+{
+ "cand_id": "C003",
+ "claim": "A strongly coupled, quasi-conformal hidden valley (large 't Hooft coupling over a wide window) showers into a near-spherical, high-multiplicity spray of soft dark mesons (SUEP or 'soft bomb'). Proposed target: the same signature from ggF/VH Higgs-mediated production, but with dark mesons decaying hadronically at c*tau ~ mm-m. This gives an isotropic cloud of soft displaced tracks/vertices that fails emerging-jet jet requirements and is not muon-rich, plus an HL-LHC projection of the prompt programme. Pair-produced/non-resonant SUEP is a secondary item.",
+ "framework": "Portal L ~ M^(4-D_vis-D_HV) O_vis O_HV (1612.00850 Eq.6), with a scalar S (gg->S via S G G) or the Higgs (H^dagger H O_HV). Hidden sector flows near a strongly coupled fixed point (lambda = alpha_D N_cD >> 1) down to Q_c ~ Lambda. The multiplicity <n> ~ (Q/Lambda)^(1+O(1/sqrt(lambda))) (Eq.3) with Boltzmann momenta at T ~ Lambda (Eq.4). Benchmark decay: phi -> A'A', A' kinetically mixed and PROMPT (1612.00850 Sec II.D; CMS 2403.05311). Displaced variants need a long-lived A' (small epsilon) or a dark meson decaying via gluon/Higgs/Z portals.",
+ "assumptions": [
+  "lambda >> 1 over a wide energy window (walking/quasi-conformal), with deviations from sphericity ~1/sqrt(lambda); 'observably spherical' may need N_cD ~ 100 (2203.09503 Sec 3.1.1)",
+  "Thermal (Maxwell-Boltzmann) hadron momenta with T_D ~ m_D; ad hoc, not derived (2203.09503 Sec 3.1.1-3.1.2)",
+  "The Higgs-portal operator H^dagger H O_HV generically induces a tadpole that breaks conformality near the weak scale, so fine-tuning or extra model building is needed (1612.00850 Sec II.C)",
+  "For displaced variants: a single portal sets the lifetime of the visibly decaying dark hadron, and that hadron is not boosted much (p ~ T ~ m_D), so the lab decay length is about c*tau"
+ ],
+ "controlling_parameters": ["m_S (or m_h = 125 GeV)", "T_D", "m_D (dark meson)", "T_D/m_D", "decay portal and coupling (epsilon & m_A', or f_eta, or Higgs/Z mixing) -> c*tau", "BR(h->SUEP) or sigma(S)xBR", "invisible fraction"],
+ "robust_predictions": [
+  "Total visible+invisible energy bounded by the mediator mass; for Higgs SUEP, O(10-100) soft hadrons (pT ~ few x 100 MeV to ~1 GeV), roughly isotropic in the mediator rest frame",
+  "Multiplicity grows with m_S/T_D",
+  "For gluon/Higgs decay portals, GeV dark hadrons are generically long-lived (2107.12379 Sec 2.3; 2103.01238 Eq.4, Eq.15). The prompt hadronic SUEP is therefore the less generic case for those portals and displaced is the more generic one"
+ ],
+ "model_dependent_predictions": [
+  "Degree of sphericity (needs very large N_c), momentum spectrum (thermal ansatz, T_D/m_D), event-to-event fluctuations",
+  "Final-state composition (leptons vs hadrons vs photons), set by m_A' or the portal",
+  "Lifetime: minimal natural c*tau for Higgs/gluon portals is >~ 1-40 m at m_D ~ 2-3 GeV and ~cm at 5 GeV (2103.01238), so mm-cm displacement at m_D <~ 4 GeV needs tuning or another portal",
+  "Pair/non-resonant production topologies (no worked benchmark; 1612.00850 Sec II.C left them to future work)"
+ ],
+ "constraints_checked": [
+  {"constraint": "BR(h -> undetected)", "source_id": "arXiv:2604.05996 (quotes 0.16 as current best undetected BR)", "verdict": "Higgs-SUEP BR up to ~O(10%) allowed by global fits; not limiting"},
+  {"constraint": "Prompt SUEP searches (CMS ggF boosted 2403.05311; CMS WH/ZH 2604.05996; CMS scouting 2607.09621; ATLAS muon SUEP 2605.20015)", "source_id": "arXiv:2403.05311 (L.86-90); arXiv:2604.05996; arXiv:2605.20015 abstract (70 fb at m_S = 125 GeV)", "verdict": "All use prompt A' decays. CMS 2403.05311 explicitly chose prompt and states that a displaced decay 'would result in an emerging jet signature'. The displaced isotropic regime is not covered by these interpretations (constrained-but-region-open), but sensitivity to it has not been checked by recast here"},
+  {"constraint": "Dark-photon parameter space if displacement comes from long-lived A' (m_A' ~ 0.3-1 GeV, c*tau mm-m needs epsilon ~1e-5..1e-7 by scaling 1612.00850 Eq.8)", "source_id": "arXiv:1612.00850 Eq.(8) and text; arXiv:2005.01515 Sec 3.1.1", "verdict": "Beam dumps cover roughly 1e-7 <~ epsilon <~ 1e-3 for m_A' below a few GeV (2005.01515 Sec 3.1.1), so much of this route is likely constrained. Exact overlap UNVERIFIED (read from figures not done)"},
+  {"constraint": "Lifetime naturalness for gluon/Higgs decay portals", "source_id": "arXiv:2103.01238 Eq.(4), Eq.(15)", "verdict": "Displaced hadronic SUEP at m_D ~ 5-10 GeV with c*tau ~ mm-cm is natural. At m_D ~ 1-3 GeV, minimal completions give c*tau >~ m (decays mostly in calorimeter/muon system, covered by MDS-type searches 2402.01898)"},
+  {"constraint": "Conformality vs Higgs tadpole", "source_id": "arXiv:1612.00850 Sec II.C", "verdict": "Theoretical tension for Higgs-mediated SUEP. The proposed workaround (S S^dagger H H^dagger with m_S < m_h/2) yields pair-produced, lower-mass soft bombs"},
+  {"constraint": "BBN", "source_id": "arXiv:1502.05409 Sec 2 (lifetime < ~1 s)", "verdict": "Satisfied for mm-m"},
+  {"constraint": "Unitarity/consistency of very large N_c sector coupled to mediator (loops)", "source_id": "arXiv:2203.09503 Sec 3.1.1", "verdict": "Flagged as a model-building concern by the source; no quantitative check found (UNVERIFIED)"}
+ ],
+ "motivation_strength": 3,
+ "robustness": 2,
+ "theory_uncertainties": "No first-principles SUEP generator: the thermal-sphere ansatz is ad hoc, and the source says T_D/Q_c should be varied as an uncertainty. The thermal approximation itself is unproven, and corrections to sphericity are uncharacterised (2203.09503 Sec 3.1.1). The existence of these theories is proven only for a few supersymmetric cases with N_f >> N_c. Low visible multiplicity causes large Poisson asymmetries. The 5d/KK-cascade and thermal descriptions are disputed. For displaced variants the decay widths of 1-3 GeV hadrons are non-perturbative, and the lifetime is a free parameter only weakly tied to the production BR. Signal-shape uncertainties (multiplicity, track pT spectrum near threshold) directly control efficiency because the tracks sit near reconstruction thresholds.",
+ "distinctiveness": "Against SM: soft, high-multiplicity tracks that are displaced from the PV (which helps against pileup and the prompt QCD underlying event), isotropic in the mediator frame, with multi-track vertices of mass > m_K. Key SM fakes are K_S/Lambda (c*tau ~2.7/7.9 cm), photon conversions and nuclear interactions in material, B/D decays, and merged pileup vertices. Against neighbouring BSM: emerging jets are collimated (jet requirement), h->SS gives 2 DVs, Higgs-portal dark showers have a few jet-like DV groups, and quirks give anomalous tracks. The boundary with low-Q dark showers is continuous (SUEP vs shower is a lambda/regime choice), so the distinction is in event shape, not a sharp observable.",
+ "confidence": "medium",
+ "caveats": [
+  "Gap sentences verified in 1612.00850: 'non-prompt decays, to future work' (Sec II), 'The case of displaced decays is deferred to future work' (Sec II.D), 'leave a more systematic exploration of non-resonant or pair production cases to future work' (Sec II.C)",
+  "INSPIRE searches (abstracts SUEP+displaced/long-lived/emerging; citations of 1612.00850 flagged for displaced) found no dedicated displaced-SUEP pheno benchmark. Track-trigger studies 2203.07314/2211.05720 treat SUEP (prompt) and displaced Higgs-portal scalars as separate benchmarks. 2505.03058 (HV in CMS muon endcap) not read in full",
+  "Calling a signal from h decays with m_D ~ 5-10 GeV (natural cm lifetimes) 'SUEP' is stretched: m_h/m_D ~ 10-25 gives modest multiplicity, so the natural displaced region overlaps C005 dark showers"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+  "cand_id": "C003",
+  "xsec_sources": [
+    "LHC HXSWG YR4 14 TeV twiki (CERNYellowReportPageAt14TeV), mH=125.09: ggF 54.61 pb (N3LO), VBF 4.275, WH 1.510, ZH 0.9836, ttH 0.6128 pb",
+    "Heavy-scalar ggF: BSM-Higgs point-like EFT xsec used by CMS (arXiv:2403.05311 ref [46]; arXiv:2607.09621 p.3) - 14 TeV values not extracted: UNVERIFIED"
+  ],
+  "yield_estimate": "ESTIMATE: 3000 fb-1 x 62.0 pb = 1.86e8 Higgs (7.5e6 WH+ZH). For B(H->SUEP)=1e-3: ~1.9e5 total, ~7.5e3 VH before lepton BR, trigger, displaced-reco efficiencies (all unknown for displaced SUEP; no published efficiency). Current bound B<~0.2% only for muon-rich prompt SUEP (arXiv:2605.20015 abstract).",
+  "backgrounds": "Displaced: material/hadronic-interaction vertices, K0S/Lambda, b/c-hadron decays, merged/fake displaced tracks from PU 140-200 combinatorics, QCD multijet with ISR. Prompt: QCD multijet (ABCD, arXiv:2403.05311; 2607.09621), V+jets/ttbar for VH (2604.05996).",
+  "trigger": "Biggest issue. Prompt SUEP relies on PV-associated low-pT tracks (scouting pT>0.75 GeV, 2607.09621 p.3). CMS Phase-2 L1 tracks pT>2 GeV (2211.05720 sec 1.1/2.2) -> negligible multiplicity-trigger efficiency for T~1 GeV SUEP; and 'for displaced tracks a primary vertex requirement cannot be applied' (2211.05720 sec 3). Viable: VH single-lepton triggers; ggF via ISR HT (low efficiency); L1 displaced-track extensions (1705.04321) UNVERIFIED for soft multi-vertex sprays.",
+  "pileup": "Central: SUEP mimics pileup (1612.00850 sec I; 2203.09503 sec 3.1). Prompt analyses survive via PV association; displaced tracks lose dz-to-PV handle, so PU200 displaced-track combinatorics enters directly.",
+  "detector_upgrades": "Helps: CMS MTD track timing (could restore vertex association for displaced tracks - qualitative, no study found), ITk/Phase-2 tracker granularity, L1 track trigger, Phase-2 scouting. Hurts: L1 track pT>=2 GeV threshold; HLT CPU budget for large-d0 tracking at PU200. ATLAS: no hardware track trigger, tracking at EF on 1 MHz (2211.05720 sec 1.1).",
+  "systematics": "Tracking-efficiency uncertainty dominant even for prompt: up to 50% in highest-multiplicity bins for scouting (2607.09621 p.5); large-d0 tracking/vertexing efficiency for many soft overlapping vertices would be worse; SUEP signal-model (hadronization) uncertainty large (2203.09503 sec 3.1).",
+  "projection_docs": "No HL-LHC projection of any SUEP search found (HL-LHC YR WG3 1812.07831 has none). Trigger-design studies at PU200: 2211.05720, 2203.07314. Long-lived dark-shower muon-system HL projection (cTau ~0.3-2 m): 2505.03058 sec 5.4.",
+  "hl_specific_advantage": "Phase-2 tracking-based trigger/scouting and MTD timing could make the prompt program more efficient; for long lifetimes (>~10 cm) muon-system showers already projected to gain up to 2 orders of magnitude (2505.03058). For mm-cm displaced isotropic sprays no demonstrated HL advantage.",
+  "main_obstacle": "Displacement removes the primary-vertex association that is the only demonstrated SUEP-vs-QCD/pileup handle at PU200, while dark-meson products are too soft for the 2 GeV L1 track trigger: no viable trigger+background strategy shown for ggF; VH-lepton-tagged offline analysis is the only realistic path.",
+  "feasibility_rating": 2,
+  "confidence": "medium-low",
+  "caveats": [
+    "Prompt-SUEP HL projection part rated ~3 (straightforward extrapolation, but tracking systematics dominate and no official projection exists).",
+    "m-scale lifetimes partly covered by muon-system shower/emerging-jet searches (indirectly-covered); open window is ~mm-few cm.",
+    "Pair-produced/non-resonant SUEP: no benchmark - not assessable.",
+    "Phase-2 trigger thresholds/rates beyond those quoted in 2211.05720 not read from TDRs: UNVERIFIED."
+  ]
+}

@@ -1,0 +1,116 @@
+% Preamble for the C001 quirk P1/P2 note (xelatex + bibtex/natbib).
+% Adapted from jfc/src/conventions/preamble.tex (graphics/float/caption/breaking settings kept as is);
+% additions: fonts for xelatex, maths, natbib, hyperref, notation macros, uncertainty tags, TODO marker.
+
+% --- Fonts / encoding (xelatex) ---
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,hmargin=2.0cm,vmargin=1.8cm]{geometry}   % vmargin 2.0 -> 1.8 cm: page budget (fix R2)
+\usepackage{microtype}
+
+% --- Graphics and floats (JFC) ---
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{needspace}
+\setkeys{Gin}{height=0.45\linewidth,keepaspectratio}
+
+% --- Caption formatting (JFC) ---
+\usepackage[font=small,labelfont=bf]{caption}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+% --- Float placement (JFC, relaxed) ---
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{6}
+
+% --- Paragraph and page breaking (JFC) ---
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+
+% --- References, links ---
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{enumitem}
+\usepackage{multicol}   % two-column bibliography (page budget, fix R2)
+\setlist{itemsep=1pt,topsep=3pt}
+
+% --- Units ---
+\newcommand{\eV}{\,\mathrm{eV}}
+\newcommand{\keV}{\,\mathrm{keV}}
+\newcommand{\MeV}{\,\mathrm{MeV}}
+\newcommand{\GeV}{\,\mathrm{GeV}}
+\newcommand{\TeV}{\,\mathrm{TeV}}
+\newcommand{\um}{\,\mu\mathrm{m}}
+\newcommand{\mm}{\,\mathrm{mm}}
+\newcommand{\cm}{\,\mathrm{cm}}
+\newcommand{\ns}{\,\mathrm{ns}}
+\newcommand{\ps}{\,\mathrm{ps}}
+\newcommand{\fb}{\,\mathrm{fb}}
+\newcommand{\abinv}{\,\mathrm{ab}^{-1}}
+\newcommand{\tesla}{\,\mathrm{T}}
+
+% --- Notation (one symbol per quantity; table in Appendix A) ---
+\newcommand{\mQ}{m_Q}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Ds}{\Delta s}
+\newcommand{\DsB}{\Delta s_B}
+\newcommand{\DsMS}{\Delta s_{\rm MS}}
+\newcommand{\DsBM}{\Delta s_{BM}}
+\newcommand{\epsB}{\varepsilon_B}
+\newcommand{\epsp}{\varepsilon_\perp}
+\newcommand{\kB}{k_B}
+\newcommand{\gst}{\gamma^*}
+\newcommand{\bst}{\beta^*}
+\newcommand{\lmax}{\ell_{\max}}
+\newcommand{\lzero}{\ell_0}
+\newcommand{\bodd}{b_{\rm odd}}
+\newcommand{\rot}{\vartheta}
+\newcommand{\Nosc}{N_{\rm osc}}
+\newcommand{\RIT}{R_{\rm IT}}
+\newcommand{\Bzero}{B_0}
+\newcommand{\Estar}{\mathbf{E}^*}
+\newcommand{\Bstar}{\mathbf{B}^*}
+\newcommand{\Lcross}{\Lambda_{\rm cross}}
+\newcommand{\sepIT}{d_{\rm IT}}
+\newcommand{\Eff}{\mathcal{E}}
+\newcommand{\Nbkg}{N_{\rm bkg}}
+\newcommand{\Nbkgeightyfour}{N_{\rm bkg}^{84}}
+\newcommand{\Ntrig}{N_{\rm trig}}
+\newcommand{\Tseed}{T_{\rm seed}}
+\newcommand{\wcore}{w_{\rm core}}
+\newcommand{\chicore}{\chi^2_{\rm core}}
+\newcommand{\dninetyfive}{\delta_{95}}
+\newcommand{\Etil}{\tilde{E}}
+
+% --- Uncertainty tags (as in the stage reports) ---
+\newcommand{\EST}{\textsc{estimate}}
+\newcommand{\UNV}{\textsc{unverified}}
+\newcommand{\VER}{\textsc{verified}}
+
+% --- Open-item marker for Phase B (must be empty at the final compile) ---
+\newcommand{\TODO}[1]{{\color{red!75!black}\textsf{[TODO (Phase B): #1]}}}
+
+% --- Stage-report pointer (appendices point to the stage reports for full detail) ---
+\usepackage{xurl}
+\newcommand{\rep}[1]{{\small\nolinkurl{#1}}}
+\newcommand{\cmd}[1]{{\small\ttfamily #1}}
+\emergencystretch=2em
+
+% --- Compact table of contents (page budget, fix R2): less space between section entries ---
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\l@section}{\addvspace{1.0em \@plus\p@}}{\addvspace{0.25em \@plus\p@}}{}{\typeout{TOC patch failed}}
+\makeatother

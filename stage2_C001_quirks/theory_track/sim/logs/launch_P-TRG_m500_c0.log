@@ -1,0 +1,198 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/logs/launch_P-TRG_m500_c0.mg
+The import format was not given, so we guess it as command
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_TRG -n P-TRG_m500_c0
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_TRG/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_TRG/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events P-TRG_m500_c0
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 500
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 500.0 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 2000 events with run name P-TRG_m500_c0
+survey  P-TRG_m500_c0 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 85205001
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/7. 
+INFO:     P2_gg_xepxemqq  
+INFO: Compiling for process 2/7. 
+INFO:     P2_gq_xepxemgq  
+INFO: Compiling for process 3/7. 
+INFO:     P2_qq_xepxemqq  
+INFO: Compiling for process 4/7. 
+INFO:     P2_qq_xepxemgg  
+INFO: Compiling for process 5/7. 
+INFO:     P1_gq_xepxemq  
+INFO: Compiling for process 6/7. 
+INFO:     P1_qq_xepxemg  
+INFO: Compiling for process 7/7. 
+INFO:     P0_qq_xepxem  
+INFO:     P2_gg_xepxemqq  
+INFO:     P2_gq_xepxemgq  
+INFO:     P2_qq_xepxemqq  
+INFO:     P2_qq_xepxemgg  
+INFO:     P1_gq_xepxemq  
+INFO:     P1_qq_xepxemg  
+INFO:     P0_qq_xepxem  
+INFO:  Idle: 4,  Running: 6,  Completed: 19 [ current time: 01h57 ] 
+INFO:  Idle: 3,  Running: 6,  Completed: 20 [  0.081s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  7.4s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  7.4s  ] 
+INFO: End survey 
+refine 2000
+Creating Jobs
+INFO: Refine results to 2000 
+INFO: Generating 2000.0 unweighted events. 
+sum of cpu time of last step: 40 seconds
+INFO: Effective Luminosity 1987234.6814242657 pb^-1 
+INFO: need to improve 0 channels 
+- Current estimate of cross-section: 0.0012077083911800001 +- 5.518102725484605e-06
+    P2_gg_xepxemqq 
+    P2_gq_xepxemgq 
+    P2_qq_xepxemqq 
+    P2_qq_xepxemgg 
+    P1_gq_xepxemq 
+    P1_qq_xepxemg 
+    P0_qq_xepxem 
+INFO:  Idle: 0,  Running: 0,  Completed: 0 [ current time: 01h57 ] 
+INFO: Combining runs 
+sum of cpu time of last step: 40 seconds
+INFO: finish refine 
+refine 2000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 4.390885829925537 s 
+  === Results Summary for run: P-TRG_m500_c0 tag: tag_1 ===
+
+     Cross-section :   0.001208 +- 5.518e-06 pb
+     Nb of events :  2000
+ 
+INFO: Running Systematics computation 
+INFO: # events generated with PDF: CT18NLO (14400) 
+INFO: #Will Compute 104 weights per event. 
+INFO: # currently at event 0 [elapsed time: 0.0017 s] 
+INFO: #***************************************************************************
+#
+# original cross-section: 0.0012077083999999627
+#     scale variation: +6.06% -5.44%
+#     central scheme variation: + 0% -7.62%
+# PDF variation: +3.42% -4.22%
+#
+# dynamical scheme # 1 : 0.0011605 +5.77% -5.22% # \sum ET
+# dynamical scheme # 2 : 0.00113414 +5.68% -5.15% # \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 3 : 0.00119861 +6.08% -5.38% # 0.5 \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 4 : 0.00111564 +5.59% -5.07% # \sqrt{\hat s}
+# PDF 247000 : 0.0012205309945680204
+#***************************************************************************
+ 
+INFO: End of systematics computation 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+No user-defined value for Pythia8 parameter 'JetMatching:nJetMax'. Setting it automatically to 2.
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 5 Running, 0 Done [0 second]
+Pythia8 shower jobs: 0 Idle, 5 Running, 1 Done [12 seconds]
+Pythia8 shower jobs: 0 Idle, 4 Running, 2 Done [12 seconds]
+Pythia8 shower jobs: 0 Idle, 3 Running, 3 Done [12 seconds]
+Pythia8 shower jobs: 0 Idle, 2 Running, 4 Done [12 seconds]
+Pythia8 shower jobs: 0 Idle, 1 Running, 5 Done [12 seconds]
+Pythia8 shower jobs: 0 Idle, 0 Running, 6 Done [13 seconds]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+INFO: Pythia8 shower finished after 18 seconds. 
+  === Results Summary for run: P-TRG_m500_c0 tag: tag_1 ===
+
+     Cross-section :   0.001208 +- 5.518e-06 pb
+     Nb of events :  2000
+     Pythia8 merged cross-sections are:
+      > Merging scale = 45     : 0.93597     +/- 0.0056  [pb]
+      > Merging scale = 67.5   : 0.94564     +/- 0.0056  [pb]
+      > Merging scale = 90     : 0.96134     +/- 0.0057  [pb]
+     Notice that because Systematics computation is turned on, the merging did not veto events but modified their weights instead.
+     The resulting hepmc/stdhep file should therefore be use with those weights.
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_TRG/index.html
+exit
+quit

@@ -1,0 +1,546 @@
+% Reading companion to quirks_p1p2_note.pdf (v0.4): what Kang-Luty, Knapen et al. and Li et al. wrote,
+% what P1 changes, and where P1 enters their work.
+% Build (from theory_track/paper/companion/):  xelatex prior_work_companion && xelatex prior_work_companion
+\documentclass[11pt]{article}
+\input{../preamble}
+\usepackage{mdframed}
+\usepackage{array}
+
+% quoted source text: grey bar on the left
+\newmdenv[topline=false,bottomline=false,rightline=false,linewidth=2.2pt,linecolor=black!30,
+  leftmargin=0pt,rightmargin=0pt,innerleftmargin=9pt,innerrightmargin=0pt,innertopmargin=4pt,
+  innerbottommargin=4pt,skipabove=6pt,skipbelow=6pt,backgroundcolor=black!3]{srcquote}
+% our assessment: coloured bar
+\newmdenv[topline=false,bottomline=false,rightline=false,linewidth=2.2pt,linecolor=blue!50!black,
+  leftmargin=0pt,rightmargin=0pt,innerleftmargin=9pt,innerrightmargin=0pt,innertopmargin=4pt,
+  innerbottommargin=4pt,skipabove=6pt,skipbelow=6pt]{verdict}
+\newcommand{\src}[1]{\par\smallskip\noindent{\footnotesize\textsf{#1}}}
+\newcommand{\vhead}[1]{\noindent\textbf{\textsf{#1}}\par\smallskip}
+\newcommand{\note}[1]{{\small(note #1)}}
+
+\title{Prior work on the quirk plane thickness, and where P1 enters it\\[3pt]
+\large A reading companion to Kang--Luty, Knapen et al.\ and Li et al.}
+\author{Companion to \emph{quirks\_p1p2\_note.pdf}, v0.4}
+\date{19 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\small\textbf{How to read this.} Grey boxes are text quoted from the papers. The quotes were
+taken from the arXiv PDFs cached in \rep{research/cache/pdf/} (0805.4642, 1708.02243, 1911.02223, 2002.07503, 1811.08903).
+The equations in grey boxes were transcribed from the PDF text layer and retyped; compare them with your printed copy.
+Equation tags such as (KL~5.64) or (Li20~A.17) give the source paper's own numbers. ``Note~(7)'' means Eq.~(7) of our
+note. Blue boxes are our assessment. Statements tagged \EST{} are our own reading or arithmetic in this companion; they are not
+in the note and have not been reviewed.}}
+\end{center}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+%======================================================================================================
+\section{Short answer}\label{sec:short}
+
+None of the four papers makes a large error, and P1 changes none of their published limits: every one of them obtained the
+plane thickness used in its collider analysis from a numerical simulation, not from the analytic estimates discussed here.
+What P1 adds is the analytic origin of a quantity that all four touched but none derived: how far the solenoid field
+tilts the quirk plane. Measured against P1, each paper has one or two statements that are approximate, and one
+statement is misleading:
+
+\begin{itemize}
+\item \textbf{Kang \& Luty} estimate the field-induced separation ``after one oscillation'' as $\Delta r\sim(v_{\rm cm}B/m_Q)(m_Q/\Lambda^2)^2$.
+  This is correct in scale. It is the miss distance $\bodd$ of P1 (note~(5)), and it exists only at odd crossings.
+\item \textbf{Knapen et al.} estimate the plane rotation per oscillation as $\Delta\phi\propto B/\Lambda^2$, independent of $m_Q$.
+  The scale $q|\Estar|/\sigma$ and the $m_Q$ independence are right. The estimate describes the back-and-forth swing within one period and
+  misses the coherent, logarithmically enhanced rotation at each odd crossing (note~(7)). The true scaling is
+  $B\ln(1/B)$, giving $\DsB\approx B^{0.9}\Lambda^{-1.8}$, not $B\Lambda^{-2}$.
+\item \textbf{Li et al.\ 2019}, Eq.~(III.12), give the plane thickness as $d_{\min}\propto m_Q B/\Lambda^4$.
+  \emph{This is the misleading one.} That formula has the scaling of the miss distance, not of the accumulated plane-fit
+  thickness. It falls below the real thickness by $\times6$ at 2\,keV, $\times15$ at 3\,keV and $\times200$ at 10\,keV, and it predicts a mass dependence that their own Fig.~4 does not show.
+\item \textbf{Li et al.\ 2020} have the right structure: a small rotation $\eta$ of the system per period, which adds up to the
+  thickness. However, they determine $\eta$ numerically and assume it linear in the field, $r|\eta|\sim d_E$ (Eq.~A.17). P1 gives the
+  analytic $\eta$ (note~(7)); it carries $\ln(\lmax/\bodd)\approx8$--14, so it is not linear in $B$. Their ``linear in the charge'' holds to
+  about 7\% for $|q|=2$.
+\end{itemize}
+
+Table~\ref{tab:summary} at the end collects the verdicts.
+
+%======================================================================================================
+\section{The P1 chain in four steps}\label{sec:chain}
+
+The note's Section~3 is a chain of four steps. Each prior paper sits on one of them. The symbols are those of the note:
+$\sigma=\Lambda^2$, $\ell_0=m_Q/\sigma$, $\gst,\bst$ the end velocity in the pair rest frame, $\rho=\gst\bst$,
+$\lmax=2(\gst-1)\ell_0$ the oscillation amplitude, and the dimensionless field strengths
+\begin{equation}
+  \epsB=\frac{qB}{\sigma}=2.254\times10^{-4}\,\frac{B}{3.8112\tesla}\Big(\frac{\keV}{\Lam}\Big)^2,\qquad
+  \epsp=\frac{q|\Estar_\perp|}{\sigma},\qquad \Estar=\gamma_{\rm cm}\boldsymbol\beta_{\rm cm}\times\mathbf B . \tag{note 3}
+\end{equation}
+
+\paragraph{Step 1: field $\to$ torque $\to$ angular momentum.} In the pair rest frame the lab field $\mathbf B$ appears as
+a weak electric field $\Estar$. The magnetic forces on the two ends cancel in the relative motion, so only $\Estar$
+exerts a torque, $d\mathbf J/dt=q(\mathbf x_1-\mathbf x_2)\times\Estar$. The separation reverses every half period, so
+$\mathbf J$ builds up for one half period and is returned in the next. It is zero at production and at even crossings, and maximal at odd ones.
+\emph{Prior work:} Knapen et al.\ Eqs.~(5)--(7); Li et al.\ 2020 Eqs.~(A.4)--(A.5).
+
+\paragraph{Step 2: angular momentum $\to$ miss distance.} At a crossing the string has zero length and $\mathbf J=b\,p^*$, so the ends miss at odd
+crossings by
+\begin{equation}
+  \bodd = 2\,\epsp\,\lzero\Big[\gst-\frac{\operatorname{asinh}\rho}{\rho}\Big]
+  \ \xrightarrow{\ \rm NR\ }\ \frac43\,\frac{q|\Estar_\perp|\,m_Q\,\beta^{*2}}{\sigma^2},
+  \qquad b_{\rm even}=0, \tag{note 5}
+\end{equation}
+with a median of about $3.5\um\,(\keV/\Lam)^4$ for $m_Q=500\GeV$ at 3.8\,T.
+\emph{Prior work:} Kang--Luty Eq.~(5.64); Li et al.\ 2020 Eq.~(V.8); Li et al.\ 2019 Eq.~(III.12).
+
+\paragraph{Step 3: near miss $\to$ logarithm $\to$ rotation per period (the new step).} Near an odd crossing the
+string pulls the ends sideways with $\sigma\bodd/|x|$. Integrated over $\bodd\ll|x|\ll\lmax$ this gives a logarithm. Because the string carries no
+momentum at the crossing, the resulting kick rotates all later motion rigidly. The oscillation axis turns toward $+\Estar_\perp$ by
+\begin{equation}
+  \rot=\epsp\,G(\gst)\Big[\ln\frac{\lmax}{\bodd}+K(\gst)\Big],\qquad
+  G=\frac{2[\gst-\operatorname{asinh}\rho/\rho]}{\rho\,\operatorname{artanh}\bst}\xrightarrow{\rm NR}\frac43,\qquad
+  K_{\rm NR}=3\ln2-2 , \tag{note 7, 8}
+\end{equation}
+once per period, always in the same direction, so that $\Theta=N_{\rm odd}\rot$.
+\emph{Prior work:} Li et al.\ 2020's $\eta$ (Eq.~A.6), determined numerically; Knapen et al.'s $\Delta\phi$ (Eqs.~8--9),
+estimated without the logarithm.
+
+\paragraph{Step 4: accumulation $\to$ plane thickness.} The plane fit (smallest eigenvalue of $T_{ij}$, note~(4)) sees the
+out-of-plane part of the accumulated rotation:
+\begin{equation}
+  \DsB=\frac{qBR}{\sigma}\,F\Big[\ln\frac1{\epsB}+C\Big],\qquad
+  c=\frac{1}{\ln(1/\epsB)+C}\simeq0.104,\qquad \DsB\propto B^{1-c}\Lam^{-2+2c}\approx B^{0.9}\Lam^{-1.8}. \tag{note 9, 10}
+\end{equation}
+The thickness is nearly flat in $m_Q$: $33.5/31.1/29.5\um$ at $200/500/1000\GeV$ and $1\keV$. The blind numerics give
+$c=0.105\pm0.002$ and a $B$ exponent of $0.911\pm0.003$ (prediction 0.914).
+\emph{Prior work:} the observable is Knapen et al.\ Eqs.~(10)--(11); the secular structure is Li et al.\ 2020 Eq.~(V.5).
+
+\begin{table}[htbp]
+\centering\small
+\caption{Where each prior paper sits on the P1 chain.}
+\label{tab:chain}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+step & prior statement & P1 equation\\
+\midrule
+1 torque, $\mathbf J$ & Knapen (5)--(7); Li20 (A.4)--(A.5) & note \S3.2\\
+2 miss distance & Kang--Luty (5.64), (6.2); Li20 (V.8); Li19 (III.12) & note (5)\\
+3 rotation per period & Li20 $\eta$ (A.6), fitted numerically, (A.17); Knapen $\Delta\phi$ (8)--(9) & note (6)--(8)\\
+4 thickness & Knapen $\Delta s$ (10)--(11); Li20 (V.5)--(V.6), (B.9) & note (9)--(10)\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%======================================================================================================
+\section{Kang \& Luty, arXiv:0805.4642 (JHEP 11 (2009) 065)}\label{sec:kl}
+
+\subsection{What they wrote}
+\noindent\textbf{Equation of motion and the straight string} (\S3.2, p.~11--12):
+\begin{srcquote}
+\[
+  \frac{\partial}{\partial t}(m\gamma\vec v)=-\sigma\Big[\sqrt{1-\vec v_\perp^{\,2}}\,\hat s
+  +\frac{v_\parallel}{\sqrt{1-\vec v_\perp^{\,2}}}\,\vec v_\perp\Big]+\vec F_{\rm ext}\tag{KL 3.8}
+\]
+``The gauge string is a dynamical object with its own complicated equation of motion. However, if the quirks have no
+further interactions after they are produced (e.g.\ with matter in the detector) then in the center of mass frame the
+string remains straight. [\dots] If the string force is much larger than matter forces $F_{\rm ext}\ll\Lambda^2$ (3.10)
+then we expect that the string will remain approximately straight in the center of mass frame. [\dots] The full string
+dynamics is sufficiently complicated that it would be useful to check this by direct simulation.''
+\src{Kang \& Luty, \S3.2, Eqs.~(3.8)--(3.10) and following text.}
+\end{srcquote}
+
+\noindent\textbf{The magnetic field} (\S5.8, p.~36):
+\begin{srcquote}
+``Another effect that can be important in preventing annihilation is the magnetic field in the detector [\dots]. The
+quirk center of mass frame is boosted relative to the lab frame, so there will be an electric field in this frame.
+This electric field will typically have a component perpendicular to the direction of the quirk motion, which will
+give rise to a repulsive force between oppositely charged quirks. This in turn will generate a classical separation
+after one oscillation of order
+\[
+  \Delta r\sim aT^2\sim\frac{v_{\rm cm}B}{m_Q}\Big(\frac{m_Q}{\Lambda^2}\Big)^2 .\tag{KL 5.64}
+\]
+where $v_{\rm cm}$ is the velocity of the center of mass frame. Demanding that this is larger than $m_Q^{-1}$ (and assuming
+$v_{\rm cm}\sim1$) gives $\Lambda\lesssim{\rm MeV}\,(B/{\rm Tesla})^{1/4}(m_Q/{\rm TeV})^{1/2}$ (5.65) [\dots]
+It is straightforward to check that the magnetic field in the center of mass frame does not cause a transverse quirk
+separation to leading order in the magnetic field.''
+\src{Kang \& Luty, \S5.8, Eqs.~(5.64)--(5.65). The same estimate is repeated in \S6, Eq.~(6.2), for mesoscopic strings.}
+\end{srcquote}
+
+\subsection{Assessment}
+\begin{verdict}
+\vhead{Correct in scale, used for a different purpose, and slightly incomplete.}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{The scale is right.} With $|\Estar_\perp|=\gamma_{\rm cm}\beta_{\rm cm}B\times(\text{angle factor}\le1)$
+  and $\sigma=\Lambda^2$, the non-relativistic limit of note~(5) reads
+  \[
+    \bodd\simeq\frac43\,\beta^{*2}\,\gamma_{\rm cm}\beta_{\rm cm}\,\frac{qB\,m_Q}{\Lambda^4}\times(\text{angle factor}),
+  \]
+  which is (KL~5.64) with explicit $O(1)$ factors: $\tfrac43\beta^{*2}$, the angle factor, and $\gamma_{\rm cm}$.
+  The note's \S3.2 says this explicitly and credits Eq.~(5.64) for the $m_QB/\Lambda^4$ scale.
+\item \textbf{Refinement: the separation is not permanent.} ``A separation after one oscillation'' holds at
+  every \emph{odd} crossing (one half period after the last even one). At even crossings $\mathbf J$ has returned to zero
+  and the ends meet head-on again at linear order in the field (step~1). For Kang--Luty's question (re-annihilation) this
+  is not essential, since at an even crossing the axis has already rotated and matter and the next odd crossing intervene. It is
+  essential for the thickness, because the logarithm of step~3 arises only at odd crossings.
+\item \textbf{The CM magnetic field.} Their statement that $\Bstar$ causes no transverse separation at leading order agrees
+  with P1 (note \S3.7: in linear response $\Bstar$ neither changes $\bodd$ nor rotates the axis). P1 finds that $\Bstar$
+  does act \emph{non-linearly} inside the odd-crossing region ($-7$ to $-21\%$ on $\rot$ at $\gst=2$, $\kB=4$--16; \EST{}
+  in the note).
+\item \textbf{The straight-string check they asked for.} Their ``it would be useful to check this by direct simulation''
+  is answered in note \S3.7. A step-converged straight-string integrator reproduces the $B\ln(1/B)$ response ($c$ within
+  $\approx3\%$ at $\gst=1.28$), but the size of the rotation differs. The predicted straight/exact thickness ratio at $\gst=2$, 0.50, fails:
+  the measurement is $0.75\pm0.08$. Evans \& Luty (arXiv:1811.08903, \S2) made the same assumption in the pair rest frame:
+  ``As the quirks begin with no relative angular momentum and typically acquire very little relative to the overall
+  excitation of the system, retarded time corrections can also be safely neglected.'' P1 finds the retardation factor
+  $1/\operatorname{artanh}\bst$ instead of $1/\bst$ in the crossing force (note~(6)); it matters at the level of
+  the coefficient $G$, not of the structure.
+\end{enumerate}
+\textbf{Where P1 enters:} note~(5) is the exact relativistic form of (KL~5.64), restricted to odd crossings. Kang--Luty
+make no statement about a plane thickness, a logarithm or a rotation.
+\end{verdict}
+
+%======================================================================================================
+\section{Knapen, Lou, Papucci \& Setford, arXiv:1708.02243 (PRD 96 (2017) 115015)}\label{sec:knapen}
+
+\subsection{What they wrote}
+\noindent\textbf{The torque estimate} (\S II, p.~3):
+\begin{srcquote}
+``To estimate the effect of the B-field, it is useful to move to the center of mass frame. In this frame, the magnetic
+field is seen as an E-field, which introduces a torque
+\[
+  \vec\tau\sim2\vec d\times(e\vec E_{\rm cm})=2e\gamma_{\rm cm}\,\vec d\times(\vec v_{\rm cm}\times\vec B),\tag{Kn 5}
+\]
+[\dots] 2d is the typical displacement of the quirks in the center of mass frame, and B the magnetic field in the lab
+frame. The angular momentum that is picked up in a single oscillation with period $\Delta t$ is roughly
+\[
+  L\sim|\tau|\Delta t\sim e\,v_{\rm cm}\gamma_{\rm cm}\,v\gamma(\gamma-1)\,\frac{m_Q^2B}{\Lambda^4}\tag{Kn 6}
+\]
+[\dots] While the internal angular momentum of the system is typically very large in units of $\hbar$, it is still small
+compared to the resolution of the trackers, and the trajectories remain co-planar as far as the experiments are
+concerned. We can see this by estimating the angular rotation of the plane spanned by the quirks' velocity vectors:
+\[
+  \Delta\phi\sim|\tau|\Delta t^2/I\sim e\,v_{\rm cm}\gamma_{\rm cm}\,\frac{\gamma^2v^2B}{(\gamma-1)^2\Lambda^2}\tag{Kn 8}
+\]
+\[
+  \sim10^{-5}\,\frac{v_{\rm cm}}{v^2}\Big(\frac{B}{2\,{\rm T}}\Big)\Big(\frac{2\,{\rm keV}}{\Lambda}\Big)^2 .\tag{Kn 9}
+\]
+The key point here is that the effect of the torque on the angular acceleration is suppressed by the large moment of
+inertia of the system $I\sim2d^2m_Q$. There could be an enhancement for close to threshold quirks, where $v\ll1$; but
+this is relevant only for a very small part of phase space, and $\Delta\phi$ is typically not larger than $10^{-3}$. We
+show $\Delta\phi$ in Fig.~3 for two example events, as found in the full numerical solution of Eq.~3 with $F_{\rm ext}$
+the Lorentz force. In the numerical result, $\Delta\phi$ oscillates and slowly accumulates as the quirks travel through
+the detector until it stabilizes around a fixed value. We see that the typical $\Delta\phi$ is somewhat larger than
+$10^{-5}$, but is still small compared to the resolution of the tracker. The effect of the magnetic field is accounted
+for in all our simulations, and any potential efficiency loss due to shifting of the quirks' plane is included in our
+results.''
+\src{Knapen et al., \S II, Eqs.~(5)--(9) and following text. Fig.~3 (y-axis in units of $10^{-3}$) shows the accumulated
+$\Delta\phi\approx0.4\times10^{-3}$ for $m_Q=800\GeV$ and $\approx0.1\times10^{-3}$ for $1.8\TeV$, at $\Lambda=2\keV$, $B=2$\,T.}
+\end{srcquote}
+
+\noindent\textbf{Material and the scope of the argument} (\S II):
+\begin{srcquote}
+``[\dots] the forces exerted by the ionization process when the quirks traverse a silicon layer are of the order
+$\sim(100\ {\rm eV})^2$ [\dots] such that the shift in angle is $\Delta\phi\sim10^{-3}$ for each layer the quirks traverse.
+We therefore neglect this effect in our simulations.''
+\end{srcquote}
+
+\noindent\textbf{The observable} (\S III.C):
+\begin{srcquote}
+\[
+  d(\mathbf n,\mathbf x^a)\equiv\sqrt{\frac{1}{N-1}\sum_{a=1}^N(\mathbf n\cdot\mathbf x^a)^2}\,,\qquad
+  T(\mathbf x^a)_{ij}\equiv\frac{1}{N-1}\sum_{a=1}^Nx^a_ix^a_j \tag{Kn 10, 11}
+\]
+``Minimization of $d$ with respect to $\mathbf n$ simply reduces to solving an eigenvalue problem for $T$. The smallest
+eigenvalue, $\Delta s^2$, then gives the minimum value of $d^2$ [\dots]. $\Delta s$ therefore gives a measure of the
+thickness of the plane.'' Their selection uses $\Delta s<0.05$\,cm in the plane finding and $\Delta s<0.01$\,cm as a
+signal cut.
+\end{srcquote}
+
+\subsection{Assessment}
+\begin{verdict}
+\vhead{The scale and the $m_Q$ independence are right; the secular, logarithmic term is missing.}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{What (Kn~8) captures.} With $\tau\sim2d\,qE$, $I\sim2d^2m_Q$, $d\sim(\gamma-1)m_Q/\Lambda^2$ and
+  $\Delta t\sim2v\gamma\,m_Q/\Lambda^2$, the estimate is $\Delta\phi\sim qE\,\Delta t^2/(d\,m_Q)\propto qE/\sigma$, i.e.\
+  $\epsp$ times a velocity factor. The masses cancel. This is the right scale, and per period the P1 rotation (note~(7)) is
+  also $\propto\epsp$ and independent of $m_Q$ at fixed velocities. The note credits Knapen et al.\ for the scale and
+  the $m_Q$-independent $B/\Lambda^2$ behaviour (\S3.4 ``Credit'', \S3.5).
+\item \textbf{What it misses.} The estimate uses torque $\times\,\Delta t^2/I$ \emph{within} one oscillation. That is the
+  back-and-forth swing that $\mathbf J$ makes inside each period (step~1), which is undone in the next half period. It
+  does not identify the part that survives: the kick at each odd crossing, which carries $\ln(\lmax/\bodd)\approx8$--14
+  and always points toward $+\Estar_\perp$, so that it adds coherently over $N_{\rm odd}$ periods (note~(7)). The note's
+  wording is that the estimate ``captures the scale $q|\Estar|/\sigma$ and the alternating half-period rotation, but not
+  the logarithmic secular term.''
+\item \textbf{Consequence for the scaling.} Because of the logarithm the response is $B\ln(1/B)$, not $B$. The
+  thickness exponents are $B^{0.9}\Lambda^{-1.8}$, not $B\,\Lambda^{-2}$ (note~(10); measured $B$ exponent
+  $0.911\pm0.003$).
+\item \textbf{Their numerics vs their estimate} (\EST{}, our reading). They note that the numerical $\Delta\phi$ is
+  ``somewhat larger than $10^{-5}$'' and their Fig.~3 shows $(1$--$4)\times10^{-4}$. Two remarks:
+  (a) In P1 the accumulated angle after a distance $R$ is $\Theta=N_{\rm odd}\rot$ with $N_{\rm odd}\propto\sigma R/m_Q$,
+  so $\Theta\propto qBR/p^*$, a bending angle (note \S3.5). The accumulated angle therefore depends on $m_Q$ even though the
+  rotation per period does not, and the thickness (angle $\times$ lever arm $\propto m_Q$) is flat in $m_Q$. This is
+  consistent with Fig.~3, where the 800\,GeV event has a larger $\Delta\phi$ than the 1.8\,TeV one.
+  (b) We do not draw a size comparison between note~(7) and (Kn~9). The project's novelty audit (erratum, 11 Oct) found
+  that evaluating (Kn~8) gives a value about $9\times$ larger than the printed $10^{-5}$ of (Kn~9), so the ``estimate'' is
+  itself uncertain by an order of magnitude. Their statement that $\Delta\phi$ ``stabilizes around a fixed value'' was
+  not analysed in the project.
+\item \textbf{The observable.} P1 predicts exactly their $\Delta s$ (note~(4) is (Kn~10--11)). At $1\keV$ the field part
+  is $\DsB\approx30\um$, well inside their $\Delta s<0.01$\,cm cut. It grows to $\sim80\um$ near $0.6\keV$ (\EST{},
+  from $\Lambda^{-1.8}$), which is where a fixed 100\,$\mu$m cut starts to cost efficiency. They simulated the field
+  numerically (``any potential efficiency loss \dots{} is included in our results''), so \textbf{their reach is
+  unaffected}.
+\end{enumerate}
+\textbf{Where P1 enters:} note~(7) replaces (Kn~8--9) by an analytic rotation per period with the logarithm, and
+note~(9) predicts their $\Delta s$ in closed form.
+\end{verdict}
+
+%======================================================================================================
+\section{Li, Li, Pei \& Zhang 2019, arXiv:1911.02223 (PRD 102 (2020) 056006)}\label{sec:li19}
+
+\subsection{What they wrote}
+\begin{srcquote}
+``Given a set of hit positions $\vec h_i$ ($i=1,2,\dots,N$), we can define
+\[
+  d(\vec n)=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(\vec n\cdot\vec h_i)^2}\tag{Li19 III.11}
+\]
+[\dots] The $\vec n$ that gives the smallest $d(\vec n)$ (denoted by $d_{\min}$) corresponds to the normal vector of the
+quirk plane. The thickness of the quirk plane is induced by the $\vec n$-component of the Lorentz force, so it can be
+estimated as [50]
+\[
+  d_{\min}\sim1.16\,\Big(\frac{m}{100\ {\rm GeV}}\Big)\Big(\frac{\rm keV}{\Lambda}\Big)^4\Big(\frac{|q|}{e}\Big)
+  \Big(\frac{B_{xy}}{\rm T}\Big)\ \mu{\rm m},\tag{Li19 III.12}
+\]
+where $B_{xy}=|\vec B-(\vec B\cdot\vec n)\vec n|$. The thickness of the quirk plane can also be calculated by the
+algorithm proposed in Ref.~[1], which is simplified to an eigenvalue problem. We have verified that the thickness
+calculated from this method matches well with our estimation in Eq.~(III.12). In the lower panel in Fig.~4, we plot the
+distributions of the quirk plane thickness, varying both the quirk mass and the confinement scale. [\dots] It is clear
+that the dependence on the confinement scale is much stronger than the dependence on quirk mass. We can also observe
+that for $\Lambda\in[O(100)\ {\rm eV},O(1)\ {\rm keV}]$, most of the events have a quirk plane thickness smaller than
+$\sim O(100)\ \mu$m.''
+\src{Li et al.\ 2019, \S III.C, p.~5. Their Ref.~[50] is Li et al.\ 2020 (2002.07503); Ref.~[1] is Knapen et al.}
+\end{srcquote}
+
+\subsection{Assessment}
+\begin{verdict}
+\vhead{Eq.~(III.12) is the miss distance, not the plane thickness.}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{The scaling identifies it.} (Li19~III.12) $\propto m_Q\,qB/\Lambda^4$ is the scaling of step~2, the miss
+  distance $\bodd$ (note~(5); Kang--Luty~5.64). The accumulated plane-fit thickness of step~4 scales as
+  $\approx B^{0.9}\Lambda^{-1.8}$ and is nearly flat in $m_Q$. The note's \S3.2 states this directly: ``it measures the miss distance, not the accumulated plane-fit thickness, which scales differently.''
+\item \textbf{A tension inside their paper.} (Li19~III.12) is linear in $m$, while their Fig.~4 (lower panel), computed
+  numerically, shows that ``the dependence on the confinement scale is much stronger than the dependence on quirk mass''.
+  The numerics agree with P1, not with (III.12).
+\item \textbf{Numbers.} Table~\ref{tab:li19} compares (III.12) with the P1 median thickness and the measured median at
+  $m_Q=500\GeV$. With $B_{xy}=B$ (an upper bound on (III.12)) the formula is $\approx6.3\times$ the median $\bodd$ at every
+  $\Lambda$, i.e.\ it has exactly the $\bodd$ scaling. It agrees with the true thickness in order of magnitude near
+  $1\keV$, by coincidence of scales (\EST{}, our reading of why they found it to ``match well''), and falls below it
+  by a factor that grows as $\Lambda^{2.2}$.
+\item \textbf{Mass.} From 200 to 1000\,GeV (III.12) grows $\times5$; the P1 model medians at 1\,keV are
+  $33.5/31.1/29.5\um$, i.e.\ they fall by 12\%.
+\item \textbf{Practical caveat.} Above $\Lcross\approx1.2$--$1.9\keV$ multiple scattering, not the field, sets the
+  observed thickness (floor $10$--$28\um$; note \S4). The large factors at 5--10\,keV in Table~\ref{tab:li19} concern
+  the field part only.
+\end{enumerate}
+\textbf{Where P1 enters:} it reinterprets (III.12) as the odd-crossing miss distance and replaces it, as a thickness
+estimate, by note~(9). Their collider analysis uses numerically simulated hits, so \textbf{their reach is unaffected}; the
+formula is misleading only if it is used to estimate a thickness.
+\end{verdict}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Eq.~(III.12) of Li et al.\ 2019 against P1, $m_Q=500\GeV$, $B=3.8112$\,T, $|q|=1$. (III.12) is evaluated with
+$B_{xy}=B$, its largest value. Median $\bodd\approx3.5\um\,(\keV/\Lam)^4$ (note \S3.2). P1 model and blind-numerics medians
+of $\DsB$ from the Stage-1 note (\rep{analytic/NEAR\_MISS\_IMPULSE.md}, verification table row 20), field only, no material.}
+\label{tab:li19}
+\begin{tabular}{rrrrrr}
+\toprule
+$\Lambda$ [keV] & (III.12) [$\mu$m] & median $\bodd$ [$\mu$m] & P1 model $\DsB$ [$\mu$m] & blind numerics [$\mu$m] & model / (III.12)\\
+\midrule
+1  & 22.1    & 3.5      & 31.1 & $29.1\pm2.1$  & 1.4\\
+2  & 1.38    & 0.22     & 8.6  & $8.17\pm0.72$ & 6.2\\
+3  & 0.273   & 0.043    & 4.18 & $3.80\pm0.29$ & 15\\
+5  & 0.0354  & 0.0056   & 1.61 & $1.55\pm0.11$ & 45\\
+10 & 0.00221 & 0.00035  & 0.45 & $0.46\pm0.06$ & 200\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{A related finding not in the note.} During the theory-synthesis review (8 Oct, \rep{theory\_track/LOG.md}),
+the critical reviewer coded the literal Li et al.\ integrator (Li19 Eqs.~III.6--III.10). Step-converged, it reproduces
+the exact string's thickness to 0.84--1.04 (3--35\% low depending on $\gst$). At the step size printed in Eq.~(III.10)
+it is not converged, and the thickness changes by $\times0.8$--20. This is a project-internal result that was not carried into
+the note and has not been re-checked here (\EST{}).
+
+%======================================================================================================
+\section{Li, Li, Pei \& Zhang 2020, ``The quirk trajectory'', arXiv:2002.07503 (EPJC 80 (2020) 651)}\label{sec:li20}
+
+This is the closest prior work. P1 can be described as an analytic theory of their rotation parameter $\eta$.
+
+\emph{Notation of Li et al.:} in the CoM frame the quirks move along $\pm\hat e_{xc}$; $z_{1,2}$ are their displacements
+along $\hat e_z$, the direction of the field-induced force; $z^\pm=\tfrac12(z_1\pm z_2)$. The variable $g$ counts half
+periods: $g=0.5$ is the first turning point, $g=1$ the first (odd) crossing, $g=2n$ the even crossings. $r(g)$ is the
+distance of a quirk from the CoM, $r(0.5)=\lmax/2$; $\rho=\gst\bst$ as in the note.
+
+\subsection{What they wrote}
+\noindent\textbf{The rotation per period} (App.~A):
+\begin{srcquote}
+``[\dots] from Eq.~II.12, we know the average torque on the system of two quirks is zero when $g$ is increased from $2n$
+to $2n+2$ such that the total angular momentum of the quirk pair is also invariant at $g=2n$. Then there must be
+\[
+  z^+(2n)=0,\qquad z_1(2n)=-z_2(2n)=z^-(2n)=0,\qquad n=0,1,2\dots\tag{Li20 A.5}
+\]
+This means that two quirks meet each other and have opposite velocity at $g=2n$ in the CoM frame. We hence conclude that
+kinematics of quirk system at $g+2$ can be obtained by rotating the system at $g$ with an angle $-\eta$ around $\hat e_{yc}$,
+leading to
+\[
+  z^-(2n+\Delta)=z^-(\Delta)\cos(n\eta)+(-1)^{[\Delta]}r(\bar\Delta)\sin(n\eta)\approx z^-(\Delta)+(-1)^{[\Delta]}r(\Delta)\,n\eta\,,\tag{Li20 A.6}
+\]
+where $\Delta\in[0,2]$ and $\sin\eta\approx\eta\ll1$.''
+\end{srcquote}
+
+\noindent\textbf{First-order theory fails near the crossing} (App.~A, after Eq.~A.13):
+\begin{srcquote}
+``Results from the numerical calculations show that the difference between $z^-_o(g)$ and $z^-_{o0}(g)$ can not be
+ignored when $g\in[0.5,1]$, even though they are still of the same order of magnitude. Using $z^-(0.5)=w_{0.5}$,
+$z^-(1)=w_1$ from the numerical calculations, we can approximately construct $z^-_o(g)$ [\dots]''
+\end{srcquote}
+
+\noindent\textbf{$\eta$ is not derived} (App.~A):
+\begin{srcquote}
+``The above unknown parameters $w_{0.5}$, $w_1$ and $\eta$ can be obtained from the numerical calculations. Moreover, the
+magnitude order relation
+\[
+  r(0.5)\,|\eta|\sim|w_1|\sim|z^-_{o0}(1)|,\tag{Li20 A.17}
+\]
+is also obtained by the numerical results.''
+\end{srcquote}
+
+\noindent\textbf{The thickness formula} (\S V):
+\begin{srcquote}
+``According to the discussions in Sec.~II~B and Appendix~A, the quirk pair plane in the CoM frame can be approximately
+obtained by rotating the $\hat e_{xc}$--$\hat e_{yc}$ plane by an angle $(-j\eta)$ around $\hat e_{yc}$ [\dots] thickness
+of quirk pair plane in the lab frame can be estimated as
+\[
+  d=\sqrt{\frac{\eta^2r^2(0.5)}{3l_0}\sum_{i=1}^{l_0}\Big(j(l_0)-\Big[\frac i2\Big]\Big)^2
+  +\frac43\Big(\frac{2z^{+2}_o(1)}{15}+\frac{z^{-2}_o(1)}{5}\Big)}\tag{Li20 V.5}
+\]
+\[
+  \approx\sqrt{\Big(\frac{1}{3l_0}\sum_{i=1}^{l_0}\Big(j(l_0)-\Big[\frac i2\Big]\Big)^2+\frac4{15}\Big)d_E^2+\frac8{45}d_B^2}\,,\tag{Li20 V.6}
+\]
+where we have used the relations of Eq.~A.17 in the second line, and [\dots]
+\[
+  d_E=z^-_{o0}(1)=\frac{2mqE_z}{\Lambda^4}\,\rho\sinh^{-1}[\rho],\qquad
+  d_B=z^+_o(1)=\frac{2mqB_c}{\Lambda^4}\big(\rho-\tan^{-1}[\rho]\big).\tag{Li20 V.8, V.9}
+\]
+We provide the validation of Eq.~V.6 in Appendix~C, where we can conclude that our analytic formula for the quirk pair
+plane thickness matches the numerical result within an order magnitude when quirk pair goes through $\sim O(1-100)$
+periods inside tracker. The main difference [\dots] attributes to the following reasons. First of all, the former uses
+the shapes of overall quirk trajectories [\dots]. The latter only uses $O(10)$ positions of hits [\dots]. Besides, we
+employ the relations of Eq.~A.17 to obtain Eq.~V.6 as an approximation of Eq.~V.5.''
+\end{srcquote}
+
+\noindent\textbf{Validation} (App.~C):
+\begin{srcquote}
+``Strictly speaking, $E_z$ and $B_c$ respectively in Eqs.~V.8 and V.9 change with the number of periods due to the
+rotation of the quirk-pair system described by Eq.~A.10, but are thought to be invariant because of the small $\eta$. The
+effect of the system rotation can not be ignored when $n_T>O(100)$, so the plane thickness given by Eq.~B.9 is less than
+the numerical result.''
+\end{srcquote}
+
+\noindent\textbf{Charge dependence} (\S V.A) and \textbf{fixed string direction} (\S VIII):
+\begin{srcquote}
+``Because it is the Lorentz force rendering the quirk traveling outside the plane, the plane thickness is linearly
+proportional to each of the quirk charges. This feature is clearly shown by the solid lines in the right panel of
+Fig.~4 [\dots]''
+
+``[\dots] we plot the changes in the quirk pair plane thickness when the fixed $\hat s_{1,2}$ are used instead of
+Eqs.~VIII.3 and VIII.4. The quirk pair plane thickness is changed dramatically [\dots]. So choosing the correct $\hat s$
+direction is critical in coplanar quirk search.''
+\end{srcquote}
+
+\subsection{Assessment}
+\begin{verdict}
+\vhead{The structure is right; $\eta$ is derived in P1; (A.17) drops a logarithm; ``linear in $q$'' holds to $\approx7\%$.}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Agreement on the structure.} Their (A.5) is step~1 of P1: $\mathbf J$ returns to zero and the ends meet
+  head-on at even crossings. Their (A.6) and the first term of (V.5) are steps~3--4: a small rotation per period that
+  accumulates as $n\eta$ and dominates the thickness. The note credits this as the closest prior work (\S3.4 ``Credit'').
+\item \textbf{$\eta$ is derived in P1.} Their $\eta$ is the note's $\rot$:
+  \[
+    \eta\equiv\rot=\epsp\,G(\gst)\Big[\ln\frac{\lmax}{\bodd}+K(\gst)\Big]\qquad\text{(note 7)},
+  \]
+  ``Equation~(7) is an analytic expression for that angle'' (note \S3.4). It is generated at the odd crossings, which Li et al.\
+  do not identify as the origin.
+\item \textbf{(A.17) is not a constant ratio} (\EST{}, our arithmetic from note (5) and (7)). With $r(0.5)=\lmax/2$ and
+  the exact miss distance $w_1=\bodd/2$,
+  \[
+    \frac{r(0.5)\,\eta}{\bodd/2}=\frac{2(\gst-1)}{\rho\,\operatorname{artanh}\bst}\Big[\ln\frac{\lmax}{\bodd}+K\Big]
+    \simeq(0.88\text{--}1.0)\times\Big[\ln\frac{\lmax}{\bodd}+K\Big]\approx8\text{--}14 .
+  \]
+  The relation $r(0.5)|\eta|\sim|w_1|$ therefore hides the logarithm, which depends on $B$ and $\Lambda$. Replacing $\eta$
+  by $d_E/r(0.5)$ in (V.5)~$\to$~(V.6) turns the true $B\ln(1/B)$ into a linear $B$. Their $d_E$ is itself
+  $2\rho\sinh^{-1}\rho/(\gst-\sinh^{-1}\rho/\rho)=3.0$--$4.2$ times $\bodd/2$, because the first-order $z^-_{o0}$ integrates
+  the field force without the string's transverse pull (Stage-1 note \S3.2). The two errors partly compensate: $r(0.5)\eta/d_E\approx2$--5.
+  This plausibly accounts for part of their ``within an order of magnitude'' (App.~C), but the note does not quantify it.
+\item \textbf{Why first order fails on $g\in[0.5,1]$.} They observed this numerically and patched it with the fitted $w_{0.5}$,
+  $w_1$. P1 explains it (note \S3.3): near a crossing $|x|\simeq2v|s|$, so the string pull $\sigma z/|x|\propto1/|s|$ and its
+  impulse diverges logarithmically unless $z=0$ there. $z=0$ at production and at even crossings, so first-order theory is
+  exact there and fails only at odd crossings. The exact Nambu--Goto solution in the intermediate region (note~(6)) resolves the
+  divergence.
+\item \textbf{Charge.} ``Linearly proportional to each of the quirk charges'' is approximate. Since $q$ enters only via
+  $qB$, $\DsB(q)/\DsB(1)=q\,[1-\ln q/(\ln(1/\epsB)+C)]$, i.e.\ $1.86$ instead of 2 for $|q|=2$. This is verified by the blind numerics
+  (ratio to prediction $0.999\pm0.001$, note Table~2). The note calls the $\approx c\ln2\approx7\%$ deviation ``consistent
+  with their `linearly proportional' at their precision'' (\S3.7).
+\item \textbf{Fixed $\hat s$} (\EST{}, from the project's novelty audit, not in the note). A fixed string direction removes the
+  near-miss swing of $\hat s$ at the odd crossings, which is the P1 mechanism. Their Fig.~6 (right) is therefore indirect
+  numerical evidence that this swing controls the thickness. Li et al.\ do not interpret it this way.
+\item \textbf{Their numerics stand.} The published reach uses the numerical thickness, and a step-converged
+  straight-string (``Li-method'') integrator does contain the logarithm ($c$ within $\approx3\%$ of the exact string at
+  $\gst=1.28$; note \S3.7). The note says this ``without implying an error in published limits''.
+\end{enumerate}
+\textbf{Where P1 enters:} insert note~(7) for $\eta$ in the first term of (Li20~V.5), instead of the numerical fit and
+(A.17). With the coherent accumulation $\Theta=N_{\rm odd}\rot$ and the rotating-yo-yo plane fit this gives note~(9), which
+reproduces the exact string to 1--4\% per event for $\gst\lesssim1.6$.
+\end{verdict}
+
+%======================================================================================================
+\section{Summary}\label{sec:summary}
+
+\begin{table}[H]
+\centering\small
+\caption{Verdicts. ``Reach affected'' refers to the paper's published collider sensitivity.}
+\label{tab:summary}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.4cm}c}
+\toprule
+paper & their statement & P1 verdict & P1 equation & reach affected\\
+\midrule
+Kang--Luty (5.64) & separation $\sim(v_{\rm cm}B/m)(m/\Lambda^2)^2$ ``after one oscillation'' &
+  right scale; it is $\bodd$, present only at odd crossings & note (5) & no (none given)\\
+Knapen (8)--(9) & $\Delta\phi\propto B/\Lambda^2$, $m_Q$-independent & scale and $m_Q$ independence right;
+  coherent log term missing; $B\ln(1/B)$, $\DsB\approx B^{0.9}\Lam^{-1.8}$ & note (7), (9) & no\\
+Li 2019 (III.12) & thickness $\propto mB/\Lambda^4$ & \textbf{misidentified}: miss distance, not thickness;
+  $\times6$--200 low at 2--10\,keV & note (5) vs (9) & no\\
+Li 2020 (A.6), (A.17), (V.5) & rotation $\eta$ per period, numerical; $r\eta\sim d_E$ & structure right; $\eta$
+  derived; (A.17) drops $\ln(\lmax/\bodd)\approx8$--14 & note (7) & no\\
+Li 2020 \S V.A & thickness linear in $q$ & approximate: 1.86 for $|q|=2$ & note \S3.7 & no\\
+Kang--Luty \S3.2; Evans--Luty \S2 & straight string, retardation negligible & log structure survives; coefficient
+  differs ($1/\operatorname{artanh}\bst$); $\gst=2$ ratio prediction fails & note (6), \S3.7 & no\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Where to read this in the note.} \S3.2 end (Kang--Luty, Li~V.8, Li~III.12); \S3.3 (first-order breakdown, Li App.~A);
+\S3.4 ``Credit'' (Li~$\eta$, Knapen torque); \S3.5 after Table~1 (Knapen and Li scaling); \S3.7 ``Charge and spin'' and
+``Straight strings and a failed prediction''; App.~D around the ``alternating pattern'' (Li~A.4--A.5).
+
+\paragraph{References.}
+{\small
+\begin{enumerate}[label={[\arabic*]},leftmargin=*]
+\item J.~Kang, M.~A.~Luty, \emph{Macroscopic strings and `quirks' at colliders}, JHEP 11 (2009) 065, arXiv:0805.4642.
+\item S.~Knapen, H.~K.~Lou, M.~Papucci, J.~Setford, \emph{Tracking down quirks at the Large Hadron Collider}, Phys.\ Rev.\ D 96 (2017) 115015, arXiv:1708.02243.
+\item J.~Li, T.~Li, J.~Pei, W.~Zhang, \emph{Uncovering quirk signal via energy loss inside tracker}, Phys.\ Rev.\ D 102 (2020) 056006, arXiv:1911.02223.
+\item J.~Li, T.~Li, J.~Pei, W.~Zhang, \emph{The quirk trajectory}, Eur.\ Phys.\ J.\ C 80 (2020) 651, arXiv:2002.07503.
+\item J.~A.~Evans, M.~A.~Luty, \emph{Stopping quirks at the LHC}, JHEP 06 (2019) 090, arXiv:1811.08903.
+\item Our note: \emph{Coplanar, non-helical tracker patterns of electroweak quirks at the HL-LHC}, v0.4, 17 Oct 2026 (\rep{theory\_track/paper/quirks\_p1p2\_note.pdf}); novelty audit \rep{theory\_track/analytic/NOVELTY\_AUDIT.md}; Stage-1 note \rep{theory\_track/analytic/NEAR\_MISS\_IMPULSE.md}.
+\end{enumerate}}
+
+\end{document}

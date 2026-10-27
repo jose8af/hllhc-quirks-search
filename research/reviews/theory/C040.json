@@ -1,0 +1,36 @@
+{
+ "cand_id": "C040",
+ "claim": "In the MSSM with a bino-like chi0_1 LSP, stau-neutralino coannihilation sets the thermal relic density only when m_stau - m_chi is small; the prompt corridor m_tau < Delta m < ~60 GeV has no LHC sensitivity to DIRECT stau pair production, and a Phase-2 ISR/VBF + soft tau_h analysis/projection could cover it.",
+ "framework": "R-parity-conserving MSSM (pMSSM/electroweak MSSM or SUGRA) with bino-like LSP and light stau NLSP (stau_R or mixed stau_1); simplified model pp -> stau stau (+ISR jet), stau -> tau chi0_1 (100%). Bundled but secondary: natural SUSY light stau_R with higgsino LSP; g-2 motivated light sleptons; Z'(B-L) -> slepton pairs (not in proposed target).",
+ "assumptions": [
+  "Neutralino LSP is (mostly) bino, so that coannihilation (not mixing) controls Omega h^2",
+  "Standard thermal freeze-out cosmology",
+  "BR(stau -> tau chi0_1)=100%; electroweakinos and other sleptons decoupled (simplified model)",
+  "Stau chirality: pure stau_R (smallest cross section, typical NLSP) vs degenerate stau_L+stau_R (used by ATLAS 2609.37215)"
+ ],
+ "controlling_parameters": ["Delta m = m(stau_1) - m(chi0_1)", "m(stau_1)", "stau L-R mixing angle (sets cross section, tau polarisation, sneutrino partner)", "neutralino composition (bino fraction; higgsino/wino admixture opens larger Delta m and raises sigma_SI)", "tan beta / mu (stau mixing; for g-2)"],
+ "robust_predictions": [
+  "Pure-bino stau coannihilation requires small Delta m: <~10 GeV for stau_R-like and <~30 GeV for stau_L-like NLSP, m_LSP <~550 GeV in the g-2-constrained scan (2308.05723 Sec.5); ~20 GeV in SUGRA benchmarks (1704.04669 Sec.3)",
+  "Delta m > m_tau: prompt decays; Delta m < m_tau: long-lived stau covered by charged-LLP searches (2601.06358 Sec.3.4.2; 2308.05723 Fig.6)",
+  "Direct stau pair cross sections are electroweak and small; pure stau_R has no 5 sigma HL-LHC discovery reach even for large Delta m (YR as quoted in 2308.05723 Sec.5.5.1; 2403.18991 Sec.5.4)"
+ ],
+ "model_dependent_predictions": [
+  "Delta m up to ~60 GeV being relic-relevant requires bino-higgsino/wino mixing, which LZ direct detection largely removes for m_chi <~300 GeV (2308.05723 Sec.5)",
+  "Discovery in coannihilation models via chargino/neutralino cascades rather than direct staus (1704.04669 Sec.4: 1510-2650 fb-1 for 1tau-A)",
+  "Upper mass end of the strip (~550 GeV) depends on imposing the (now obsolete) g-2 anomaly"
+ ],
+ "constraints_checked": [
+  {"constraint": "Muon g-2 motivation", "source_id": "arXiv:2505.21476", "verdict": "WP25 SM prediction: Delta a_mu = 38(63)e-11, 'no tension' - g-2 motivation for light sleptons/staus is removed; 2308.05723 used WP20 value"},
+  {"constraint": "Relic density / coannihilation Delta m", "source_id": "arXiv:2308.05723", "verdict": "Relic-motivated corridor is Delta m <~10 (stau_R) to <~30 GeV (stau_L); upper half of the 5-60 GeV target is not coannihilation-motivated for bino LSP"},
+  {"constraint": "Direct detection (LZ)", "source_id": "arXiv:2308.05723", "verdict": "Pure-bino coannihilation points survive LZ, many below neutrino floor; mixed-LSP larger-Delta m points excluded for m_chi<~300 GeV"},
+  {"constraint": "LEP slepton limits", "source_id": "arXiv:2601.06358", "verdict": "stau_R > 65 GeV for Delta m >~2 GeV; LHC has no sensitivity beyond LEP for 2 <~ Delta m <~ 60 GeV (Sec.3.4.4)"},
+  {"constraint": "Current LHC direct-stau compressed search", "source_id": "arXiv:2609.37215", "verdict": "ISR channel alone excludes m(stau) <115 GeV at Delta m=30 GeV (degenerate L+R); combination: no exclusion (excesses, 2.7 sigma local at m=90, m_chi=40); expected combined reach just above 120 GeV - region open"},
+  {"constraint": "CMS soft-tau+ISR search", "source_id": "arXiv:1910.01185", "verdict": "77 fb-1; interpreted for chargino/neutralino with intermediate stau, not direct stau"}
+ ],
+ "motivation_strength": 3,
+ "robustness": 3,
+ "theory_uncertainties": "Signal cross section (NLO+NLL Resummino) theory error small (UNVERIFIED number) but chirality/mixing assumption changes sigma by an O(2-3) factor (UNVERIFIED); tau polarisation depends on stau mixing and chi0 composition and affects soft tau_h pT acceptance; ISR modelling of hard-jet recoil; relic-density prediction itself depends on Delta m exponentially, so the 'target' Delta m window scales with m_chi and composition.",
+ "distinctiveness": "Low-moderate: soft tau_h + ISR jet + MET (or VBF) resembles W(tau nu)+jets, Z(nu nu)+jets with fake taus; no resonance or edge. Distinguishing power comes only from kinematic shape (soft tau pT, mT) at high MET.",
+ "confidence": "medium",
+ "caveats": "Did not verify HL-LHC YR numbers directly (quoted via 2308.05723 and 2403.18991). Phenomenology of the corridor exists (1606.08878, 1704.04669, 2308.05723); the gap is a collaboration-level Phase-2 projection/analysis. Physically reachable target at HL-LHC is likely m(stau) ~ 100-200 GeV with Delta m ~ 5-30 GeV (UNVERIFIED; reasoned from current expected limits and cross sections), well below the ~550 GeV coannihilation upper end."
+}

@@ -1,0 +1,512 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/probes/t4_xsec_rerun.mg
+The import format was not given, so we guess it as command
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl -n rerun_E_m200
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events rerun_E_m200
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 200
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 200.0 [0m
+set aEWM1 132.507
+[1mINFO: modify param_card information BLOCK sminputs with id (1,) set to 132.507 [0m
+set Gf 1.16639e-05
+[1mINFO: modify param_card information BLOCK sminputs with id (2,) set to 1.16639e-05 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 2000 events with run name rerun_E_m200
+survey  rerun_E_m200 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 1546
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/1. 
+INFO:     P1_qq_xepxem  
+INFO:     P1_qq_xepxem  
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.42s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.42s  ] 
+INFO: End survey 
+refine 2000
+Creating Jobs
+INFO: Refine results to 2000 
+INFO: Generating 2000.0 unweighted events. 
+sum of cpu time of last step: 0 second
+INFO: Effective Luminosity 26105.68451280266 pb^-1 
+INFO: need to improve 2 channels 
+- Current estimate of cross-section: 0.091934 +- 0.0006733414041182971
+    P1_qq_xepxem 
+INFO:  Idle: 1,  Running: 2,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 3 [  0.73s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 1 seconds
+INFO: finish refine 
+refine 2000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 0.20229291915893555 s 
+  === Results Summary for run: rerun_E_m200 tag: tag_1 ===
+
+     Cross-section :   0.09236 +- 0.0001755 pb
+     Nb of events :  2000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/index.html
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl -n rerun_E_m1000
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events rerun_E_m1000
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 1000
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 1000.0 [0m
+set aEWM1 132.507
+[1mINFO: modify param_card information BLOCK sminputs with id (1,) set to 132.507 [0m
+set Gf 1.16639e-05
+[1mINFO: modify param_card information BLOCK sminputs with id (2,) set to 1.16639e-05 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 2000 events with run name rerun_E_m1000
+survey  rerun_E_m1000 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 1552
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/1. 
+INFO:     P1_qq_xepxem  
+INFO:     P1_qq_xepxem  
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.41s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.41s  ] 
+INFO: End survey 
+refine 2000
+Creating Jobs
+INFO: Refine results to 2000 
+INFO: Generating 2000.0 unweighted events. 
+sum of cpu time of last step: 0 second
+INFO: Effective Luminosity 32487309.644670047 pb^-1 
+INFO: need to improve 2 channels 
+- Current estimate of cross-section: 7.3875e-05 +- 3.814669192734804e-07
+    P1_qq_xepxem 
+INFO:  Idle: 1,  Running: 2,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 3 [  0.73s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 1 seconds
+INFO: finish refine 
+refine 2000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 0.19280695915222168 s 
+  === Results Summary for run: rerun_E_m1000 tag: tag_1 ===
+
+     Cross-section :   7.333e-05 +- 2.282e-07 pb
+     Nb of events :  2000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_incl/index.html
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl -n rerun_S_m200
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events rerun_S_m200
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MSXE 200
+[1mINFO: modify param_card information BLOCK mass with id (9000013,) set to 200.0 [0m
+set aEWM1 132.507
+[1mINFO: modify param_card information BLOCK sminputs with id (1,) set to 132.507 [0m
+set Gf 1.16639e-05
+[1mINFO: modify param_card information BLOCK sminputs with id (2,) set to 1.16639e-05 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 1000 events with run name rerun_S_m200
+survey  rerun_S_m200 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 30
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/1. 
+INFO:     P1_qq_sxepsxem  
+INFO:     P1_qq_sxepsxem  
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.41s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.41s  ] 
+INFO: End survey 
+refine 1000
+Creating Jobs
+INFO: Refine results to 1000 
+INFO: Generating 1000.0 unweighted events. 
+sum of cpu time of last step: 0 second
+INFO: Effective Luminosity 148744.96436318563 pb^-1 
+INFO: need to improve 1 channels 
+- Current estimate of cross-section: 0.0080675 +- 4.3031648306798574e-05
+    P1_qq_sxepsxem 
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.35s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 0 second
+INFO: finish refine 
+refine 1000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 0.09737396240234375 s 
+  === Results Summary for run: rerun_S_m200 tag: tag_1 ===
+
+     Cross-section :   0.008043 +- 2.221e-05 pb
+     Nb of events :  1000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/index.html
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl -n rerun_S_m500
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events rerun_S_m500
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MSXE 500
+[1mINFO: modify param_card information BLOCK mass with id (9000013,) set to 500.0 [0m
+set aEWM1 132.507
+[1mINFO: modify param_card information BLOCK sminputs with id (1,) set to 132.507 [0m
+set Gf 1.16639e-05
+[1mINFO: modify param_card information BLOCK sminputs with id (2,) set to 1.16639e-05 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 1000 events with run name rerun_S_m500
+survey  rerun_S_m500 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 36
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/1. 
+INFO:     P1_qq_sxepsxem  
+INFO:     P1_qq_sxepsxem  
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.44s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.44s  ] 
+INFO: End survey 
+refine 1000
+Creating Jobs
+INFO: Refine results to 1000 
+INFO: Generating 1000.0 unweighted events. 
+sum of cpu time of last step: 0 second
+INFO: Effective Luminosity 6483787.828849615 pb^-1 
+INFO: need to improve 1 channels 
+- Current estimate of cross-section: 0.000185077 +- 9.840094399953692e-07
+    P1_qq_sxepsxem 
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.41s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 0 second
+INFO: finish refine 
+refine 1000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 0.09657001495361328 s 
+  === Results Summary for run: rerun_S_m500 tag: tag_1 ===
+
+     Cross-section :   0.0001847 +- 4.878e-07 pb
+     Nb of events :  1000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/index.html
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl -n rerun_S_m1000
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events rerun_S_m1000
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MSXE 1000
+[1mINFO: modify param_card information BLOCK mass with id (9000013,) set to 1000.0 [0m
+set aEWM1 132.507
+[1mINFO: modify param_card information BLOCK sminputs with id (1,) set to 132.507 [0m
+set Gf 1.16639e-05
+[1mINFO: modify param_card information BLOCK sminputs with id (2,) set to 1.16639e-05 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 1000 events with run name rerun_S_m1000
+survey  rerun_S_m1000 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 42
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/1. 
+INFO:     P1_qq_sxepsxem  
+INFO:     P1_qq_sxepsxem  
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.46s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.46s  ] 
+INFO: End survey 
+refine 1000
+Creating Jobs
+INFO: Refine results to 1000 
+INFO: Generating 1000.0 unweighted events. 
+sum of cpu time of last step: 0 second
+INFO: Effective Luminosity 271634560.97064084 pb^-1 
+INFO: need to improve 1 channels 
+- Current estimate of cross-section: 4.4177e-06 +- 2.4953564214556605e-08
+    P1_qq_sxepsxem 
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 06h59 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.42s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 0 second
+INFO: finish refine 
+refine 1000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 0.09782624244689941 s 
+  === Results Summary for run: rerun_S_m1000 tag: tag_1 ===
+
+     Cross-section :   4.398e-06 +- 1.251e-08 pb
+     Nb of events :  1000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_S_incl/index.html
+quit

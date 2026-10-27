@@ -1,0 +1,36 @@
+{
+ "cand_id": "C001",
+ "xsec_sources": [
+  "2404.13814 Sec.2 (NLO K-factors 1.33/1.45 for E model at 200 GeV/1 TeV; sigma only in Fig.1)",
+  "2607.26195 p.5 (2-4% scale+PDF unc.)",
+  "ESTIMATE: LHC SUSY XS WG 13 TeV RH slepton table (WebFetch, re-verify) x4 (fermion) x2 (N_IC) x~1.1-1.3 (14 TeV, UNVERIFIED): ~1.5-2 fb at 500 GeV, ~0.5 fb at 650 GeV; consistent within x2 with 1708.02243 implied value"
+ ],
+ "yield_estimate": "ESTIMATE 3 ab-1: mQ=500 GeV ~4500-6000 produced, ~80-110 after eps_trig 0.10 x eps_fid 0.28 x eps_reco ~0.65 (1708.02243 Table I); mQ=800 GeV ~450 produced, ~8 selected. Background-free mass reach ~850-900 GeV vs ~650-700 GeV at 300 fb-1 (1708.02243 abstract; 2410.00269 Fig.9).",
+ "backgrounds": [
+  "random coplanar pile-up hits (1708.02243 Sec.IV: 6e-5 of events with full-layer plane at mu=50)",
+  "photon conversions (~10 fb fiducial before selection, 1708.02243 Sec.III)",
+  "Z(nunu)+jets+PU surviving selection ~1e-2 fb at mu=50 (1911.02223 Sec.IV/App.A) => ~30 events at 3 ab-1 (ESTIMATE); PU200 scaling UNVERIFIED"
+ ],
+ "trigger": "No native trigger. ISR-MET path (pT(QQ)>200 GeV) eps_trig=0.10 for DY 800 GeV (1708.02243 Table I), thresholds rise with lumi; L1 muon possible but HLT helix match fails (1708.02243 Sec.IIIB). CMS L1 track trigger is helix-based with stub pT>2 GeV (2110.02826 Sec.2): quirk tracks not expected at L1. Dedicated HLT plane-finder (O(N), 1708.02243 Sec.IIIC) or GPU GNN (2410.00269 Sec.VII) proposed, not demonstrated.",
+ "pileup": "No central-detector quirk study at mu=140-200: 1708.02243 and 1911.02223 use mu=50; 2410.00269 and 2509.08878 no/mu=1 PU. Dominant unknown.",
+ "detector_upgrades": "Help: all-silicon ITk / CMS Phase-2 tracker (6 barrel layers + 5 disks in OT, 2110.02826), wider eta; MTD/HGTD timing for slow-quirk tagging and PU-hit rejection (qualitative inference); Phase-2 HLT full tracking. Hurt: occupancy, higher MET thresholds.",
+ "systematics": "Statistics-limited if background-free; signal: ISR modelling (FASER analogue ~6%, up to 28% at small Lambda, 2607.26195), glueball emission eps=0.1 assumption, Geant4 quirk material modelling; background: extrapolation of random-plane rate to PU200 (UNVERIFIED, potentially dominant).",
+ "projection_docs": [
+  "No ATLAS/CMS HL-LHC quirk projection found",
+  "2404.13814: FASER2 3 ab-1 discovery to 1000 GeV (E), 600 GeV (E-tilde), surpassing projected main-detector searches",
+  "2601.09023: LHCb VELO 300 fb-1 (Upgrade II) mid-Lambda projection",
+  "1708.02243/2410.00269: 300 fb-1 main-detector projections",
+  "1812.07831 YR WG3: no quirk projection found (not exhaustive)"
+ ],
+ "hl_specific_advantage": "Phase-2 tracker (more layers, wider eta), HLT full tracking/GPU, MTD/HGTD timing enable custom non-helical reconstruction; if background stays ~0, 10x lumi adds ~+200 GeV mass reach (ESTIMATE).",
+ "main_obstacle": "Non-helical pattern recognition and trigger at PU 140-200 are undemonstrated; Z(nunu)+jets+PU coplanar background already ~1e-2 fb at mu=50 (1911.02223) undermines the background-free premise; ISR-MET trigger eff ~10% for DY.",
+ "feasibility_rating": 2,
+ "confidence": "medium",
+ "caveats": [
+  "Cross section is an ESTIMATE from scaled slepton table read via lossy WebFetch",
+  "FASER2/FPF approval status UNVERIFIED",
+  "PU200 background scaling not computed in any source",
+  "Secondary targets: SUEP-quirk (2506.11192) untested with PU, authors say must be revisited for HL-LHC; Wgamma/WZ+DV (2504.02940) background-free but low-rate theory projection",
+  "Overlap with FASER2/LHCb projections reduces unique value"
+ ]
+}

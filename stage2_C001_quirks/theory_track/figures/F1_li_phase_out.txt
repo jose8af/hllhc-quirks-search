@@ -1,0 +1,100 @@
+# F1_li_phase.py 2 0,1,2,3,4,5 0.003,0.001 (two parallel runs concatenated; seed 11 events, m=500 GeV, 3.8 T, no material)
+
+=== Lambda=2.0 ev0: causal thickness 4.97 um, 26 hits
+  Li x0.003: 4.63e+07 steps, 48s | thickness 4.79 um [26 hits] | plane-normal angle Li vs causal 12 mdeg | causal hits about Li plane 5.1 um | max|dhit| 7448 um, max out-of-plane 23.4 um, median|dhit| 32.9 um | (quirk,layer) count mismatches [(0, 9), (1, 3)]
+     hits with |dhit|>100 um: 7/26; first at t=376.5 cm (quirk 0, layer 8), |d|=468.8 um, out-of-plane 1.61 um, dt=2.96e+03 um/c; those hits sit in (quirk,layer) cells with count mismatch: 3/7
+       q0 L8 t=376.48 |d|=468.8 um out=1.61 in=468.8 um dt=2963 um
+       q1 L8 t=376.76 |d|=159.2 um out=0.559 in=159.2 um dt=1276 um
+       q0 L8 t=379.09 |d|=100.6 um out=2.47 in=100.5 um dt=1002 um
+       q0 L9 t=472.46 |d|=7448 um out=23.4 in=7448 um dt=-3.997e+04 um
+       q0 L9 t=473.12 |d|=6236 um out=20.2 in=6236 um dt=-3.334e+04 um
+       q1 L9 t=474.20 |d|=247.9 um out=1.57 in=247.9 um dt=1987 um
+     92 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.002), 31, np.float64(129.6)), (np.float64(0.005), 63, np.float64(259.2)), (np.float64(0.007), 87, np.float64(356.4))]; median miss 0.149 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.39e+08 steps, 208s | thickness 4.22 um [24 hits] | plane-normal angle Li vs causal 8.27 mdeg | causal hits about Li plane 4.99 um | max|dhit| 165.1 um, max out-of-plane 2.87 um, median|dhit| 8.6 um | (quirk,layer) count mismatches [(1, 3)]
+     hits with |dhit|>100 um: 1/24; first at t=376.3 cm (quirk 0, layer 8), |d|=165.1 um, out-of-plane 1.11 um, dt=1.03e+03 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/1
+       q0 L8 t=376.28 |d|=165.1 um out=1.11 in=165.1 um dt=1028 um
+     92 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.001), 91, np.float64(372.5)), (np.float64(0.002), 77, np.float64(315.8)), (np.float64(0.002), 59, np.float64(242.9))]; median miss 0.129 um, 1/Lambda = 9.87e-05 um
+     Li x0.001 vs previous Li step: max|dhit| 303.7 um, thickness change 0.574 um
+
+=== Lambda=2.0 ev1: causal thickness 13.3 um, 18 hits
+  Li x0.003: 6.2e+07 steps, 113s | thickness 13.7 um [20 hits] | plane-normal angle Li vs causal 1.27 mdeg | causal hits about Li plane 13.3 um | max|dhit| 611.6 um, max out-of-plane 9.5 um, median|dhit| 48.1 um | (quirk,layer) count mismatches [(0, 9), (1, 9)]
+     hits with |dhit|>100 um: 7/18; first at t=202.0 cm (quirk 0, layer 5), |d|=100.4 um, out-of-plane 1.6 um, dt=167 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/7
+       q0 L5 t=201.96 |d|=100.4 um out=1.6 in=100.4 um dt=167.2 um
+       q0 L6 t=283.37 |d|=130.1 um out=4.7 in=130 um dt=248 um
+       q1 L6 t=286.37 |d|=194.4 um out=3.04 in=194.4 um dt=327 um
+       q0 L7 t=373.68 |d|=298.6 um out=5.29 in=298.5 um dt=518.1 um
+       q1 L7 t=376.71 |d|=290.2 um out=5.07 in=290.1 um dt=510.4 um
+       q1 L8 t=468.64 |d|=611.6 um out=2.38 in=611.6 um dt=984.9 um
+     40 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.005), 35, np.float64(181.3)), (np.float64(0.006), 37, np.float64(191.4)), (np.float64(0.011), 1, np.float64(10.1))]; median miss 0.168 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.86e+08 steps, 273s | thickness 13.9 um [20 hits] | plane-normal angle Li vs causal 4.08 mdeg | causal hits about Li plane 13.3 um | max|dhit| 214.3 um, max out-of-plane 9.03 um, median|dhit| 17.7 um | (quirk,layer) count mismatches [(0, 9), (1, 9)]
+     hits with |dhit|>100 um: 4/18; first at t=373.6 cm (quirk 0, layer 7), |d|=105.2 um, out-of-plane 5.11 um, dt=179 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/4
+       q0 L7 t=373.65 |d|=105.2 um out=5.11 in=105.1 um dt=179.3 um
+       q1 L7 t=376.68 |d|=104.1 um out=5.32 in=103.9 um dt=178.9 um
+       q1 L8 t=468.58 |d|=214.3 um out=1.7 in=214.3 um dt=340.8 um
+       q0 L8 t=470.85 |d|=159.1 um out=9.03 in=158.8 um dt=-105.5 um
+     74 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.001), 33, np.float64(171.2)), (np.float64(0.001), 59, np.float64(302.2)), (np.float64(0.001), 57, np.float64(292.1))]; median miss 0.151 um, 1/Lambda = 9.87e-05 um
+     Li x0.001 vs previous Li step: max|dhit| 612.2 um, thickness change 0.135 um
+
+=== Lambda=2.0 ev2: causal thickness 11.6 um, 34 hits
+  Li x0.003: 4.82e+07 steps, 69s | thickness 9.87 um [34 hits] | plane-normal angle Li vs causal 43 mdeg | causal hits about Li plane 11.8 um | max|dhit| 761.8 um, max out-of-plane 9.13 um, median|dhit| 17.6 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 8/34; first at t=163.6 cm (quirk 0, layer 5), |d|=153.7 um, out-of-plane 2.54 um, dt=-884 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/8
+       q0 L5 t=163.64 |d|=153.7 um out=2.54 in=153.7 um dt=-884 um
+       q0 L5 t=164.02 |d|=234.9 um out=2.09 in=234.9 um dt=1498 um
+       q1 L8 t=383.70 |d|=367.3 um out=2.68 in=367.3 um dt=2621 um
+       q0 L8 t=383.94 |d|=150.1 um out=1.09 in=150.1 um dt=1300 um
+       q1 L8 t=386.44 |d|=112.4 um out=4.88 in=112.3 um dt=1105 um
+       q1 L9 t=482.43 |d|=761.8 um out=9.13 in=761.8 um dt=5227 um
+     39 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.001), 27, np.float64(115.5)), (np.float64(0.006), 9, np.float64(41.3)), (np.float64(0.009), 23, np.float64(99.0))]; median miss 0.267 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.45e+08 steps, 190s | thickness 9.88 um [34 hits] | plane-normal angle Li vs causal 43.1 mdeg | causal hits about Li plane 11.8 um | max|dhit| 273 um, max out-of-plane 7.17 um, median|dhit| 5.53 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 2/34; first at t=383.5 cm (quirk 1, layer 8), |d|=121.8 um, out-of-plane 1.82 um, dt=865 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/2
+       q1 L8 t=383.53 |d|=121.8 um out=1.82 in=121.8 um dt=864.8 um
+       q1 L9 t=482.10 |d|=273 um out=6.44 in=272.9 um dt=1840 um
+     92 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.0), 19, np.float64(82.5)), (np.float64(0.001), 41, np.float64(173.3)), (np.float64(0.001), 43, np.float64(181.5))]; median miss 0.143 um, 1/Lambda = 9.87e-05 um
+     Li x0.001 vs previous Li step: max|dhit| 488.9 um, thickness change 0.00837 um
+
+=== Lambda=2.0 ev3: causal thickness 1.01 um, 20 hits
+  Li x0.003: 5.21e+07 steps, 55s | thickness 0.847 um [20 hits] | plane-normal angle Li vs causal 4.62 mdeg | causal hits about Li plane 1.03 um | max|dhit| 216.2 um, max out-of-plane 0.656 um, median|dhit| 10.1 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 3/20; first at t=401.4 cm (quirk 1, layer 8), |d|=142.8 um, out-of-plane 0.115 um, dt=967 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/3
+       q1 L8 t=401.40 |d|=142.8 um out=0.115 in=142.8 um dt=967.5 um
+       q1 L9 t=505.27 |d|=216.2 um out=0.33 in=216.2 um dt=1500 um
+       q0 L9 t=507.08 |d|=122 um out=0.656 in=122 um dt=1036 um
+     93 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.001), 89, np.float64(388.3)), (np.float64(0.004), 49, np.float64(215.7)), (np.float64(0.005), 31, np.float64(138.0))]; median miss 0.257 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.56e+08 steps, 257s | thickness 0.85 um [20 hits] | plane-normal angle Li vs causal 4.62 mdeg | causal hits about Li plane 1.05 um | max|dhit| 73.06 um, max out-of-plane 0.86 um, median|dhit| 5.86 um | (quirk,layer) count mismatches []
+     Li x0.001 vs previous Li step: max|dhit| 143.2 um, thickness change 0.00243 um
+
+=== Lambda=2.0 ev4: causal thickness 11.2 um, 22 hits
+  Li x0.003: 4.56e+07 steps, 69s | thickness 10.2 um [24 hits] | plane-normal angle Li vs causal 4.81 mdeg | causal hits about Li plane 11.5 um | max|dhit| 9794 um, max out-of-plane 37.8 um, median|dhit| 40.7 um | (quirk,layer) count mismatches [(0, 8)]
+     hits with |dhit|>100 um: 8/24; first at t=109.8 cm (quirk 0, layer 4), |d|=167 um, out-of-plane 0.988 um, dt=536 um/c; those hits sit in (quirk,layer) cells with count mismatch: 2/8
+       q0 L4 t=109.80 |d|=167 um out=0.988 in=167 um dt=535.5 um
+       q0 L7 t=300.61 |d|=148.7 um out=3.4 in=148.7 um dt=700.1 um
+       q1 L7 t=302.75 |d|=144.3 um out=3.21 in=144.3 um dt=705.8 um
+       q0 L8 t=375.70 |d|=9794 um out=37.8 in=9794 um dt=-2.883e+04 um
+       q0 L8 t=376.16 |d|=8249 um out=33 in=8249 um dt=-2.42e+04 um
+       q1 L8 t=376.86 |d|=269.6 um out=1.66 in=269.6 um dt=1216 um
+     27 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.006), 7, np.float64(32.4)), (np.float64(0.013), 5, np.float64(24.3)), (np.float64(0.019), 11, np.float64(48.6))]; median miss 0.243 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.37e+08 steps, 200s | thickness 9.49 um [22 hits] | plane-normal angle Li vs causal 30.4 mdeg | causal hits about Li plane 11.4 um | max|dhit| 136.3 um, max out-of-plane 7.06 um, median|dhit| 11.8 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 1/22; first at t=474.2 cm (quirk 1, layer 9), |d|=136.3 um, out-of-plane 3.17 um, dt=618 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/1
+       q1 L9 t=474.24 |d|=136.3 um out=3.17 in=136.2 um dt=617.9 um
+     117 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.0), 9, np.float64(40.5)), (np.float64(0.0), 25, np.float64(105.3)), (np.float64(0.0), 37, np.float64(153.9))]; median miss 0.243 um, 1/Lambda = 9.87e-05 um
+     Li x0.001 vs previous Li step: max|dhit| 275.7 um, thickness change 0.727 um
+
+=== Lambda=2.0 ev5: causal thickness 15.2 um, 34 hits
+  Li x0.003: 5.28e+07 steps, 76s | thickness 12.9 um [34 hits] | plane-normal angle Li vs causal 37.4 mdeg | causal hits about Li plane 15.5 um | max|dhit| 1648 um, max out-of-plane 10.9 um, median|dhit| 32.2 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 13/34; first at t=179.7 cm (quirk 0, layer 5), |d|=220.6 um, out-of-plane 2.18 um, dt=572 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/13
+       q0 L5 t=179.65 |d|=220.6 um out=2.18 in=220.6 um dt=572 um
+       q1 L6 t=253.50 |d|=141.7 um out=2.94 in=141.7 um dt=447.4 um
+       q0 L6 t=256.52 |d|=155.6 um out=1.87 in=155.6 um dt=482.9 um
+       q1 L7 t=334.48 |d|=256.4 um out=3.2 in=256.4 um dt=801.7 um
+       q0 L7 t=337.50 |d|=262.8 um out=3.13 in=262.8 um dt=820.7 um
+       q1 L8 t=416.85 |d|=274.4 um out=8.22 in=274.3 um dt=956.9 um
+     39 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.004), 15, np.float64(72.2)), (np.float64(0.007), 19, np.float64(90.2)), (np.float64(0.007), 1, np.float64(9.0))]; median miss 0.287 um, 1/Lambda = 9.87e-05 um
+  Li x0.001: 1.58e+08 steps, 217s | thickness 12.9 um [34 hits] | plane-normal angle Li vs causal 37.6 mdeg | causal hits about Li plane 15.4 um | max|dhit| 527.7 um, max out-of-plane 10.5 um, median|dhit| 10.4 um | (quirk,layer) count mismatches []
+     hits with |dhit|>100 um: 6/34; first at t=419.2 cm (quirk 1, layer 8), |d|=288.7 um, out-of-plane 1.95 um, dt=779 um/c; those hits sit in (quirk,layer) cells with count mismatch: 0/6
+       q1 L8 t=419.23 |d|=288.7 um out=1.95 in=288.7 um dt=779.1 um
+       q0 L8 t=419.54 |d|=132.3 um out=0.856 in=132.3 um dt=415.7 um
+       q1 L8 t=422.45 |d|=111.8 um out=6.93 in=111.6 um dt=369.5 um
+       q1 L9 t=527.10 |d|=527.7 um out=6.54 in=527.6 um dt=1397 um
+       q0 L9 t=527.99 |d|=206.8 um out=2.69 in=206.8 um dt=651.9 um
+       q1 L9 t=530.97 |d|=188.3 um out=7.18 in=188.2 um dt=611.5 um
+     92 crossings before t0; smallest miss distances before t0 [um] (crossing #, t): [(np.float64(0.0), 37, np.float64(171.4)), (np.float64(0.0), 75, np.float64(342.7)), (np.float64(0.001), 77, np.float64(351.8))]; median miss 0.152 um, 1/Lambda = 9.87e-05 um
+     Li x0.001 vs previous Li step: max|dhit| 1120 um, thickness change 0.00616 um

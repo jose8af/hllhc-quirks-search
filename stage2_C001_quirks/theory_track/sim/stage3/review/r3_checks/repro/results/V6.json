@@ -1,0 +1,26 @@
+{
+ "n_jobs": 50,
+ "campaigns": [
+  "mv",
+  "p1",
+  "p2"
+ ],
+ "cfgs": [
+  "B",
+  "B2",
+  "BM",
+  "BMx0.5",
+  "BMx2",
+  "M",
+  "Mx0.5",
+  "V"
+ ],
+ "n_events": 4329,
+ "n_array_differences": 0,
+ "differences": [],
+ "n_duplicate_event_hit_arrays": 0,
+ "start_method": "spawn (ProcessPoolExecutor, mp_context spawn)",
+ "seed_rule": "event seed = blake2b(\"spin|m|row|lam|cfg\") & 0x7fffffff (8-byte digest, little endian)",
+ "wall_s": 3.4969420433044434,
+ "PASS": true
+}

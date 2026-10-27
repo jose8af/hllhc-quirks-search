@@ -1,0 +1,155 @@
+{
+ "job": "A2FC_F200_L3_005",
+ "a2": "A2_F200_005",
+ "lam": 3.0,
+ "rows_equal": true,
+ "job_seed_equal": true,
+ "pu_event_seeds_equal": true,
+ "pu_simhits_A2": [
+  112463,
+  102048,
+  141228,
+  107335,
+  122589,
+  132732,
+  122817,
+  129465,
+  125209,
+  135244
+ ],
+ "pu_simhits_A2FC": [
+  112463,
+  102048,
+  141228,
+  107335,
+  122589,
+  132732,
+  122817,
+  129465,
+  125209,
+  135244
+ ],
+ "pu_simhits_equal": true,
+ "particles_in_equal": true,
+ "btl_cols": [
+  "ev",
+  "sid",
+  "x",
+  "y",
+  "z",
+  "s0",
+  "s1",
+  "dE",
+  "t",
+  "INT"
+ ],
+ "pu_btl_rows": [
+  10291,
+  10291
+ ],
+ "pu_btl_identical": false,
+ "rerun_pu_chain": [
+  {
+   "ev": 0,
+   "n_pu_meas_rerun": 43333,
+   "n_pu_meas_A2FC": 43333,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 84.58894887933212,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 1,
+   "n_pu_meas_rerun": 39901,
+   "n_pu_meas_A2FC": 39901,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 74.67620466284234,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 2,
+   "n_pu_meas_rerun": 55219,
+   "n_pu_meas_A2FC": 55219,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 83.64883791491616,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 3,
+   "n_pu_meas_rerun": 41286,
+   "n_pu_meas_A2FC": 41285
+  },
+  {
+   "ev": 4,
+   "n_pu_meas_rerun": 47184,
+   "n_pu_meas_A2FC": 47184,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 73.09994037165893,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 5,
+   "n_pu_meas_rerun": 52551,
+   "n_pu_meas_A2FC": 52551,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 84.78408241515842,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 6,
+   "n_pu_meas_rerun": 47962,
+   "n_pu_meas_A2FC": 47962,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 91.6955163884958,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 7,
+   "n_pu_meas_rerun": 51219,
+   "n_pu_meas_A2FC": 51219,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 81.03056712259308,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 8,
+   "n_pu_meas_rerun": 48275,
+   "n_pu_meas_A2FC": 48275,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 77.12621271917465,
+   "xyz_identical_frac": 0.0
+  },
+  {
+   "ev": 9,
+   "n_pu_meas_rerun": 53009,
+   "n_pu_meas_A2FC": 53009,
+   "sid_equal": true,
+   "truth_maxdiff": 0.0,
+   "barcode_equal": true,
+   "xyz_maxdiff_mm": 83.05367179002701,
+   "xyz_identical_frac": 0.0
+  }
+ ],
+ "note": "earlier script version: exact (1 nm) match of A2 record PU hits in the A2FC dump = 0/299821, as expected: ACTS re-draws the measurement smearing once quirk SimHits are in the event (rerun_pu_chain: identical SimHit truth and barcodes, re-smeared xyz; per-kind median |dxyz| IT 0.029 mm, PS 0.41 mm, 2S 13.8 mm, BTL 16 mm, 0 identical)",
+ "resmear_median_dxyz_mm": {
+  "IT": 0.029,
+  "PS": 0.406,
+  "2S": 13.77,
+  "BTL": 16.0
+ }
+}

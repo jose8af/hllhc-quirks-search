@@ -1,0 +1,11 @@
+! ---- OPT-IN fix for QED FSR off the quirks (plan D12; fixer S2-R1, 2026-10-11).  NOT used for the delivered samples. ----
+! Pythia 8.313: TimeShower:QEDshowerByOther (default on) acts only on particles flagged as resonances.  The quirks are
+! declared isResonance = off in pythia8_quirk_common.dat, and the SLHA DECAY block (width 0) in the MG LHE header resets
+! the flag even if it is set on.  These three lines make the quirk pair radiate photons (dipole = Q+ Q-); the quirk masses
+! are still imported from the SLHA MASS block.  SM DECAY blocks are then ignored too (Pythia's own widths; irrelevant here).
+! Measured on one split per point (VALIDATION §7): quirk->gamma in 17 % of events, P(E_gamma > 5 GeV) = 2.0 %;
+! tail median of x = 2(gamma*-1) shifts by -0.1..-1.1 %.  Use: produce.py task option qedfsr=True (appended after the
+! common card), or reshower.py --set for each line.
+SLHA:useDecayTable = off
+9000011:isResonance = on
+9000013:isResonance = on

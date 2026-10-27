@@ -1,0 +1,33 @@
+{
+ "figure": "T4_truth_edges_vs_mass",
+ "files": [
+  "T4_truth_edges_vs_mass.pdf",
+  "T4_truth_edges_vs_mass.png"
+ ],
+ "created": "2026-10-16T14:23:22",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": true,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "sim/stage3/results/P2.json": "e63d19d8d1ae76dee9693bfff1098bc62a457e7d6c95c02d1fab83b502442459"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "b371cc12a8c7a47ad2b31dd5d9299e1483d42904747bea486e29e1c41f8f6782"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "truth",
+  "source": "sim/stage3/results/P2.json edges + edge_fits_in_m (deg2, else deg1)"
+ }
+}

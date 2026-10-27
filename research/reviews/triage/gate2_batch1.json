@@ -1,0 +1,694 @@
+[
+ {
+  "cand_id": "C001",
+  "verdict": "PASS",
+  "status_label": "proposed-not-searched",
+  "observable": "Quirk pairs: non-helical/anomalously ionising tracks, out-of-time or stopped deposits, and (microscopic-string regime) resonance + soft unclustered low-pT track/energy pattern; TeV dijet resonance with anomalous soft tracks.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2607.26195",
+    "collab": "FASER",
+    "covers": "Slow pairs of charge +-1 colourless quirks via scintillator charge/timing; Lambda_IC 300 eV-100 keV, 186 fb-1 at 13.6 TeV",
+    "gap_left": "Forward detector only; no ATLAS/CMS main-detector quirk search; weak-scale-mass EW-charged quirks with Lambda ~ keV-GeV in central detectors untouched",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2403.05311",
+    "collab": "CMS",
+    "covers": "SUEP: isotropic soft tracks, prompt, no resonance reconstruction, ggF-like selection",
+    "gap_left": "No dijet/diboson resonance + soft-track anomaly (quirk) selection; SUEP assumes isotropic emission",
+    "location": "abstract; Sec.1 (lines 87-90 of converted text)"
+   },
+   {
+    "id": "arXiv:2605.20015",
+    "collab": "ATLAS",
+    "covers": "SUEP with muons, prompt dark photon decays",
+    "gap_left": "not quirk-specific",
+    "location": "abstract; Sec.1"
+   },
+   {
+    "id": "arXiv:2601.09023",
+    "collab": "LHCb (phenomenology)",
+    "covers": "Proposes quirk search with LHCb VELO planar hit patterns; not an LHCb result",
+    "gap_left": "proposal only",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2504.02940 (theory): abstract states natural-quirk discovery regions remain unexplored 'even after the LHC's high-luminosity run' (pheno projection, not a collaboration one)",
+   "arXiv:2506.11192 (theory): cut-based/supervised/CATHODE weakly-supervised strategies, expected discovery potentials for 140 fb-1 (abstract); HL extension not read"
+  ],
+  "hl_lhc_angle": "Higher statistics for low-rate EW-charged quirks (few hundred GeV); Phase-2 track trigger/L1 tracking and MTD timing for slow/non-helical tracks; weakly-supervised resonance+soft-track search benefits from larger samples.",
+  "specific_gap_statement": "INSPIRE (collaboration:CMS/ATLAS + 'quirk' in abstract) returns no CMS or ATLAS quirk search; only FASER (forward, QCD-colourless, charge +-1) and phenomenology (2504.02940, 2506.11192, 1708.02243) exist. Open: central-detector search for EW-charged quirks (non-helical tracks / soft-track anomalies + resonance) and its HL-LHC reach.",
+  "reason": "Identifiable observable; no CMS/ATLAS quirk search found with several synonym queries; closest (SUEP) is prompt/isotropic and not designed for quirk string dynamics. Exhaustiveness limited by INSPIRE abstract indexing.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:\"quirk\"",
+   "collaboration:ATLAS and abstracts.value:\"quirk\"",
+   "abstracts.value:\"quirk\" and (collaboration:CMS or ATLAS or FASER) and date>2018",
+   "t quirks and date>2023",
+   "abstracts.value:\"quirk\" and refersto:recid:1614773 and date>2019",
+   "collaboration:CMS and abstracts.value:\"highly ionizing\"",
+   "collaboration:CMS and t soft unclustered and date>2025"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C002",
+  "verdict": "HOLD",
+  "status_label": "searched-limited-regime",
+  "observable": "Displaced vertices (muon system/calorimeter/tracker) from Higgs -> glueball pairs; multiple DVs in top-partner-pair events (glueball c\u03c4 down to sub-cm).",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2503.20445",
+    "collab": "ATLAS",
+    "covers": "One displaced hadronic vertex, Higgs-portal scalar/LLP, proper decay length 5 cm - 40 m",
+    "gap_left": "Short (sub-cm to few cm) lifetimes and top-partner-initiated production not targeted",
+    "location": "abstract; Tables 1-2"
+   },
+   {
+    "id": "arXiv:2409.10806",
+    "collab": "CMS",
+    "covers": "Light LLP displaced jets, Higgs decays at 13.6 TeV, Run-3 trigger",
+    "gap_left": "Higgs-portal only; no top-partner/quirk production",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2402.01898",
+    "collab": "CMS",
+    "covers": "LLPs showering in muon detectors, Higgs-portal benchmarks (glueball-like)",
+    "gap_left": "Higgs production only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2603.01991",
+    "collab": "ATLAS",
+    "covers": "Massive LLP DV + displaced muon, cites quirky-probe paper",
+    "gap_left": "Not glueball/top-partner specific",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "recid2908980 (CMS) Displaced Vertex Track Trigger for Phase-2 L1: trigger development, not a physics projection",
+   "No collaboration HL-LHC glueball projection found"
+  ],
+  "hl_lhc_angle": "Phase-2 L1 displaced-vertex track trigger; larger Higgs sample for rare h->LLP; muon-system reach.",
+  "specific_gap_statement": "Higgs->glueball DV is covered by many Run-2/3 Higgs->LLP searches; a residual gap (top-partner pair -> glueballs, sub-cm decay lengths, theory refs 1512.05782, 2310.13731) is plausible but no search/reinterpretation evidence checked in detail.",
+  "reason": "Dominant signature (h->LLP) is well covered by ATLAS/CMS; the genuinely open sub-case is narrow and overlaps C001/C005. Hold pending a concrete top-partner+DV efficiency study.",
+  "queries_run": [
+   "abstracts.value:\"twin Higgs\" and (collaboration:CMS or ATLAS)",
+   "abstracts.value:\"neutral naturalness\" and (CMS or ATLAS)",
+   "collaboration:CMS and abstracts.value:\"long-lived\" and Higgs and (glueball/hidden valley/twin)",
+   "collaboration:ATLAS and (glueball or hidden valley or folded)",
+   "refersto:recid:1410596 and (collaboration:CMS or collaboration:ATLAS)",
+   "abstracts.value:glueball and date>2019",
+   "collaboration:ATLAS and Higgs and long-lived and date>2024",
+   "(CMS or ATLAS) and long-lived and (projection/HL-LHC/Phase-2)"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C003",
+  "verdict": "PASS",
+  "status_label": "searched-limited-regime",
+  "observable": "High-multiplicity isotropic soft tracks with displaced decays of dark photons/dark mesons (displaced SUEP), and non-ggF/non-prompt production modes.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2403.05311",
+    "collab": "CMS",
+    "covers": "First SUEP search, ggF, prompt dark-photon decay (decay length < 1 mm chosen explicitly), 138 fb-1",
+    "gap_left": "Displaced SUEP (explicitly excluded), VBF/other production",
+    "location": "Sec.1 / signal model (text lines 87-90)"
+   },
+   {
+    "id": "arXiv:2607.09621",
+    "collab": "CMS",
+    "covers": "SUEP via data scouting, 127 fb-1, ggF, prompt",
+    "gap_left": "Displaced decays; low-HT production modes beyond ggF",
+    "location": "Sec.1 lines 100-105"
+   },
+   {
+    "id": "arXiv:2604.05996",
+    "collab": "CMS",
+    "covers": "SUEP from H in W/Z-associated production, 138 fb-1",
+    "gap_left": "Prompt only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2605.20015",
+    "collab": "ATLAS",
+    "covers": "SUEP with muons, ggF, prompt (lines 111-148)",
+    "gap_left": "Displaced; non-muonic",
+    "location": "Sec.1"
+   }
+  ],
+  "projections_found": [
+   "recid2746428 (thesis) mentions SUEP at HL-LHC; no collaboration projection found",
+   "arXiv:2107.12379 (theory): unsupervised hadronic SUEP, not HL-specific"
+  ],
+  "hl_lhc_angle": "Phase-2 L1 track trigger / displaced-vertex track trigger (recid2908980), MTD timing, L1 scouting lower HT thresholds.",
+  "specific_gap_statement": "All CMS/ATLAS SUEP searches (2403.05311, 2607.09621, 2604.05996, 2605.20015) assume prompt dark-photon decay; no search with displaced dark-meson decays (c\u03c4 >~ mm) or VBF/non-ggF production found (abstracts.value:SUEP and displaced returned nothing).",
+  "reason": "Prompt SUEP now well covered, but the displaced-SUEP regime is explicit in the soft-bomb paper's deferrals and untouched by the four experimental papers read; HL-LHC tracking/trigger upgrades are directly relevant.",
+  "queries_run": [
+   "collaboration:CMS and t soft unclustered and date>2025",
+   "collaboration:ATLAS and abstracts.value:\"soft unclustered\"",
+   "abstracts.value:SUEP and abstracts.value:displaced",
+   "abstracts.value:SUEP and (HL-LHC/high-luminosity)",
+   "abstracts.value:SUEP and date>2024",
+   "abstracts.value:\"soft unclustered\" and (VBF/pair/non-resonant)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C004",
+  "verdict": "HOLD",
+  "status_label": "indirectly-covered",
+  "observable": "Anomaly score (autoencoder/flow) on jets/events as trigger or offline tag for dark showers/SUEP/SVJ; not a fixed signature.",
+  "closest_existing_searches": [
+   {
+    "id": "recid3188808",
+    "collab": "CMS",
+    "covers": "First deployment of AXOL1TL and CICADA unsupervised anomaly-detection triggers for real-time data selection",
+    "gap_left": "Hadronisation-robustness for dark showers not shown",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2505.01634",
+    "collab": "ATLAS",
+    "covers": "Semivisible jets or anomalous signatures with semi-supervised ML, 140 fb-1",
+    "gap_left": "Resonant Z' only",
+    "location": "abstract"
+   },
+   {
+    "id": "recid2751629",
+    "collab": "CMS",
+    "covers": "Unsupervised tagging of semivisible jets with normalized autoencoders",
+    "gap_left": "SVJ only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2502.09770",
+    "collab": "ATLAS",
+    "covers": "Weakly supervised dijet anomaly search",
+    "gap_left": "Dijet, not dark-shower-specific",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none found"
+  ],
+  "hl_lhc_angle": "L1/HLT anomaly triggers are in use at CMS; Phase-2 hardware extends them.",
+  "specific_gap_statement": "Not a signature gap: a method. Open item is only robustness of AE tagging to dark-hadronisation parameters; no measurable distinct observable.",
+  "reason": "Technique rather than collider signature (Q1 weak); CMS/ATLAS already deploy AD triggers and AD searches in SVJ/dijet. Not rejected only because no search quantifies hadronisation robustness for dark showers; merge into C003/C005/C008 as an analysis option.",
+  "queries_run": [
+   "(CMS or ATLAS) and (anomaly detection or autoencoder) and date>2024",
+   "(CMS or ATLAS) and AD and (dark shower/semivisible/hidden valley/SUEP)",
+   "abstracts.value:\"anomaly detection\" and \"dark shower\" and date>2022"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C005",
+  "verdict": "PASS",
+  "status_label": "searched-limited-regime",
+  "observable": "Displaced multi-vertex/trackless dark-shower jets from (i) EW pair-produced dark-quark mediators with leptons/MET, (ii) Higgs-portal (VBF/VH) production with hadronic dark-pion decays, dark-pion masses above ~20 GeV.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2403.01556",
+    "collab": "CMS",
+    "covers": "Emerging jets, t-channel scalar mediator, QCD pair production, m_X 1-2.5 TeV, dark pion 10 and 20 GeV, ctau 1 mm-1 m",
+    "gap_left": "Higgs-portal/EW production; m_pi > 20 GeV; lepton/MET-associated",
+    "location": "Tables 1-2 (text lines ~224-232)"
+   },
+   {
+    "id": "arXiv:2511.11888",
+    "collab": "CMS",
+    "covers": "Low-mass dark showers from Higgs decay, non-prompt dimuon, m_pi 1-12 GeV, ctau 0.1-500 mm, 41.6 fb-1 (2018)",
+    "gap_left": "Muon-rich only; hadronic dark-pion decays and m_pi > 12 GeV not covered",
+    "location": "parameter table, lines 310-313"
+   },
+   {
+    "id": "arXiv:2505.02429 / arXiv:2510.12347",
+    "collab": "ATLAS",
+    "covers": "Emerging jets, Z' s-channel and Phi t-channel (13.6 TeV) and 4-jet topology (13 TeV)",
+    "gap_left": "Not Higgs-portal or EW production",
+    "location": "abstracts"
+   },
+   {
+    "id": "recid3201494",
+    "collab": "ATLAS",
+    "covers": "Dark jets from a Higgs portal (proceedings; abstract truncated in cache)",
+    "gap_left": "Details UNVERIFIED; appears to be conference note",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2503.20445",
+    "collab": "ATLAS",
+    "covers": "One DV, Higgs-portal LLP, 5 cm - 40 m",
+    "gap_left": "Not multi-vertex dark-shower jets; short lifetimes",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2110.10691 (theory) says HL-LHC improvement 'mild' for EW pair production (seed quote, not re-read)",
+   "none from collaborations"
+  ],
+  "hl_lhc_angle": "Phase-2 L1 displaced-track trigger and scouting for Higgs-portal showers (ggF cleaner via VBF/VH tag); MTD timing.",
+  "specific_gap_statement": "Run-2/3 EJ searches target QCD-produced t/s-channel mediators with m_pi 10-20 GeV; the muon-rich Higgs-decay search covers m_pi 1-12 GeV. Hadronic displaced dark showers from Higgs-portal (VBF/VH-tagged) and from EW pair production are not covered by a published full search found.",
+  "reason": "Large crowded field, several sub-gaps remain; recommend splitting into (a) Higgs-portal hadronic displaced dark showers and (b) EW-production dark showers. Seeds partly stale (Snowmass 2022 quote predates 2511.11888).",
+  "queries_run": [
+   "abstracts.value:\"emerging jets\" and (HL-LHC/high-luminosity/Higgs)",
+   "(CMS or ATLAS) and (dark shower/dark pion/dark mesons) and date>2022",
+   "(CMS or ATLAS) and displaced and Higgs and (hidden valley/dark) and date>2023",
+   "arXiv:2403.01556 / 2511.11888 / 2505.02429 / 2510.12347 abstract lookups"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C006",
+  "verdict": "HOLD",
+  "status_label": "proposed-not-searched",
+  "observable": "Z -> dark quarks -> dark pions -> bb mumu / displaced multi-track vertices; Z -> chi chi + dark photon with displaced dimuon + MET.",
+  "closest_existing_searches": [
+   {
+    "id": "recid2181655",
+    "collab": "CMS",
+    "covers": "Higgs -> a a -> mumu bb (exotic Higgs decays)",
+    "gap_left": "Higgs source, not Z",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2306.07413",
+    "collab": "ATLAS",
+    "covers": "Z -> A' h_D rare decays, 4 leptons, prompt, m_A' 5-40 GeV",
+    "gap_left": "Z->dark-shower heavy-flavour/hadronic final states not covered",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2511.11888",
+    "collab": "CMS",
+    "covers": "Higgs-sourced non-prompt dimuon dark showers",
+    "gap_left": "Not Z-initiated",
+    "location": "abstract"
+   },
+   {
+    "id": "recid3132638",
+    "collab": "CMS",
+    "covers": "Dark bremsstrahlung of muons from Z decays in endcap calorimeters",
+    "gap_left": "Different signature",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none found for Z -> dark showers; arXiv:2605.03427 (theory) only forecasts FASER2/FACET/MATHUSLA for hidden-radiation dark photons"
+  ],
+  "hl_lhc_angle": "Huge Z sample with Phase-2 L1 scouting/track trigger could open soft muon+b final states; trigger thresholds are the question.",
+  "specific_gap_statement": "No ATLAS/CMS/LHCb search found for Z -> dark-shower bbmumu (only Higgs-sourced analogues). Viability depends on soft-muon/b trigger acceptance, not verified.",
+  "reason": "Signature identifiable and apparently unsearched, but rate x trigger acceptance and competition from LHCb/Tera-Z not assessed; second seed is mainly a forward-detector story (2605.03427).",
+  "queries_run": [
+   "(CMS or ATLAS or LHCb) and (Z decays) and (dark/exotic/long-lived/hidden) and date>2018",
+   "collaboration:LHCb and dark and Z and decay",
+   "refersto:recid:1738653 and (CMS or ATLAS or LHCb)",
+   "(CMS or ATLAS) and two muons and b quarks and light",
+   "Z and dark photon and displaced and HL-LHC"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C007",
+  "verdict": "HOLD",
+  "status_label": "one-observable-not-another",
+  "observable": "Lund-jet-plane density / graph-network tagging and energy correlators of dark-shower jets.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2505.01634",
+    "collab": "ATLAS",
+    "covers": "SVJ/anomalous signatures with semi-supervised ML",
+    "gap_left": "No Lund plane/EEC observable",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2507.07775",
+    "collab": "CMS",
+    "covers": "Lund-plane reweighting for multi-prong jet calibration (SM, not dark showers)",
+    "gap_left": "Not applied to dark showers",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2608.05323",
+    "collab": "CMS",
+    "covers": "Lepton-enriched SVJ with GNN jet ID",
+    "gap_left": "Generic GNN, no LJP observable",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none found"
+  ],
+  "hl_lhc_angle": "Statistics-limited substructure; no specific HL-LHC hardware link.",
+  "specific_gap_statement": "No CMS/ATLAS dark-shower analysis using LJP/EEC found (INSPIRE queries empty); only theory 2301.07732 and 2609.11692 (ML tagging).",
+  "reason": "Observable is a tagger technique for prompt dark jets; value depends on a model that already has a search; HL-LHC specificity weak.",
+  "queries_run": [
+   "(CMS or ATLAS) and Lund and date>2022",
+   "abstracts.value:Lund and (dark shower/dark sector/semivisible/hidden valley)",
+   "(CMS or ATLAS) and energy correlator and (dark/hidden/BSM)",
+   "energy correlators and dark showers date>2022"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C008",
+  "verdict": "PASS",
+  "status_label": "theory-explored-untested",
+  "observable": "Semi-visible jets recoiling against ISR photon/jet; MET aligned with jet; rinv reconstruction; low-mass (0.5-1 TeV) Z' where dijet resonance searches lose sensitivity.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2608.05323",
+    "collab": "CMS",
+    "covers": "Resonant lepton-/tau-enriched SVJ, 138 fb-1, GNN",
+    "gap_left": "ISR channels, photon-enriched, low-mass Z'",
+    "location": "abstract"
+   },
+   {
+    "id": "recid2963506",
+    "collab": "CMS",
+    "covers": "s-channel lepton-enriched SVJ",
+    "gap_left": "same",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2305.18037",
+    "collab": "ATLAS",
+    "covers": "Non-resonant SVJ (t-channel)",
+    "gap_left": "ISR recoil not used",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2505.01634",
+    "collab": "ATLAS",
+    "covers": "Resonant SVJ/anomalous hadronic final states",
+    "gap_left": "hadronic dijet-like; ISR channel not targeted",
+    "location": "abstract"
+   },
+   {
+    "id": "recid3185627",
+    "collab": "CMS",
+    "covers": "Non-resonant SVJ",
+    "gap_left": "not ISR-tagged",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2409.04741 (theory) sensitivity for 0.5/1.0 TeV Z' in photon and jet-ISR channels (Sec.5); no HL-LHC extrapolation read; arXiv:2604.20456 rinv regression in ISR-boosted events"
+  ],
+  "hl_lhc_angle": "ISR+SVJ is statistics-driven (HL-LHC 3 ab-1); lower-threshold photon/jet triggers and scouting.",
+  "specific_gap_statement": "Lepton/tau-enriched s-channel SVJ now searched by CMS; ISR-recoil SVJ (photon or jet, 2409.04741: 'ISR channel not yet explored') and low-mass Z' (0.5-1 TeV) have no CMS/ATLAS search found.",
+  "reason": "Seed gap partly closed (lepton/tau) but the ISR-recoil channel remains a specific, measurable, unsearched signature; added value at HL-LHC statistics.",
+  "queries_run": [
+   "(CMS or ATLAS) and (semivisible or semi-visible) and date>2023",
+   "(semivisible) and (photon/ISR/tau)",
+   "arxiv:2608.05323 abstract",
+   "(semivisible) and (HL-LHC/high-luminosity)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C009",
+  "verdict": "PASS",
+  "status_label": "theory-explored-untested",
+  "observable": "gg/VBF/ZH -> h -> Z(ll) + invisible X (m_X 1-32 GeV) and ZH with H -> ll/jj + MET: recoil mass and Z-MET alignment.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2212.09649",
+    "collab": "ATLAS",
+    "covers": "ZH, H -> gamma + dark photon (photon + MET), 139 fb-1",
+    "gap_left": "Z+X(invisible), not photon",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2606.14362",
+    "collab": "ATLAS",
+    "covers": "Semi-visible H decay in photon+MET, ggF",
+    "gap_left": "photon only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2301.10731",
+    "collab": "ATLAS",
+    "covers": "Invisible Higgs combination, ZH(ll)+MET",
+    "gap_left": "Fully invisible H, not Z+X",
+    "location": "scout note; abstract not re-read"
+   },
+   {
+    "id": "arXiv:2206.01214",
+    "collab": "phenomenology",
+    "covers": "h->ZX HL-LHC reach; refs [17-21] list existing CMS/ATLAS searches: photons+MET, bb+MET only",
+    "gap_left": "no Z+MET exotic Higgs decay search among them",
+    "location": "refs [17]-[21]"
+   }
+  ],
+  "projections_found": [
+   "arXiv:2206.01214 (theory): NN-based HL-LHC 3 ab-1 reach for h->ZX, mX 1-32.5 GeV, SM h->Z nunu irreducible",
+   "arXiv:2511.09778 (theory): HL-LHC sensitivity for ZH with H->ll(jj)+MET"
+  ],
+  "hl_lhc_angle": "Limited by statistics near the SM h->Z\u03bd\u03bd 'neutrino floor'; 3 ab-1 needed.",
+  "specific_gap_statement": "No ATLAS/CMS search for h -> Z + invisible X found (INSPIRE: only photon+MET and bb+MET exotic Higgs decays); theory-only HL-LHC projections exist.",
+  "reason": "Clear observable, no experimental search found, projections exist from theory only; irreducible SM h->Z\u03bd\u03bd makes reach limited, hence moderate confidence.",
+  "queries_run": [
+   "(CMS or ATLAS) and (semivisible/Z boson and missing/visible and invisible) and Higgs",
+   "(CMS or ATLAS) and Higgs and dark photon and missing transverse and date>2019",
+   "arxiv:2511.09778 or 2212.09649",
+   "semi-dark Higgs",
+   "refersto:recid:2091410",
+   "(CMS or ATLAS) and Z and missing and Higgs and light/125 and date>2019"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C010",
+  "verdict": "REJECT",
+  "status_label": "well-covered",
+  "observable": "MET + soft displaced lepton/track pairs from compressed iDM, higgsino or LLP spectra.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2305.11649",
+    "collab": "CMS",
+    "covers": "iDM: two displaced muons + MET, 138 fb-1, mass splitting scenarios (Delta/m1 = 0.1 and 0.4 shown)",
+    "gap_left": "Delta/m1 < 10% and ATLAS analogue",
+    "location": "abstract; Fig. (text lines 223,452)"
+   },
+   {
+    "id": "recid3186741",
+    "collab": "CMS",
+    "covers": "iDM with low-momentum displaced electrons + MET, 138 fb-1",
+    "gap_left": "as above",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2511.20042",
+    "collab": "ATLAS",
+    "covers": "Compressed higgsinos with low-momentum tracks, splittings 0.3-1 GeV and further range",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2401.14046",
+    "collab": "ATLAS",
+    "covers": "Nearly degenerate higgsinos, mildly displaced soft tracks",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2511.16394",
+    "collab": "CMS",
+    "covers": "Higgsinos with low-momentum lepton-track pairs",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2511.08212",
+    "collab": "CMS",
+    "covers": "DV with low-momentum tracks + MET + ISR jet, NLSP splitting < 25 GeV",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1905.13059 / arXiv:2409.18762",
+    "collab": "CMS/ATLAS",
+    "covers": "VBF compressed EWkino searches",
+    "gap_left": "-",
+    "location": "abstracts"
+   }
+  ],
+  "projections_found": [
+   "recid1795267 (ATLAS) winos/higgsinos highly compressed at HL-LHC (2018)",
+   "recid1704585 (CMS) light higgsinos HL-LHC Phase-2 (2018)"
+  ],
+  "hl_lhc_angle": "Covered by existing HL-LHC compressed-EWkino projections; ATLAS iDM analogue would be incremental.",
+  "specific_gap_statement": "Residual only: ATLAS iDM analogue and iDM with Delta/m1 < 10%; not a distinct signature.",
+  "reason": "Positive evidence of broad coverage by 8+ CMS/ATLAS results over iDM, higgsino, VBF-compressed variants, plus HL-LHC projections. If re-raised, narrow to small-splitting (1-5%) iDM.",
+  "queries_run": [
+   "arxiv ids lookup 2305.11649 / 3186741 / 2511.20042 / 2511.08212 / 2401.14046 / 2410.16835 / 2511.16394",
+   "(CMS or ATLAS) and inelastic dark matter and date>2020",
+   "(CMS or ATLAS) and VBF and compressed/soft lepton/electroweakino",
+   "(CMS or ATLAS) and (compressed or higgsino) and (HL-LHC/projection)"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C011",
+  "verdict": "HOLD",
+  "status_label": "searched-limited-regime",
+  "observable": "MET recoiling against a displaced dark-Higgs decay (bb/WW) ; Z -> A' h_D with displaced A'/h_D; lepton-jets from dark Higgs-strahlung.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2306.07413",
+    "collab": "ATLAS",
+    "covers": "Z -> A' h_D, prompt 4 leptons, m_A' 5-40 GeV, m_hD 20-70 GeV, 139 fb-1",
+    "gap_left": "Displaced regime and other mass ranges; contradicts seed claim that no LHC search is sensitive",
+    "location": "abstract; text lines 65, 98"
+   },
+   {
+    "id": "arXiv:2604.20999",
+    "collab": "CMS",
+    "covers": "Mono-dark-Higgs, h_D -> bb, prompt",
+    "gap_left": "displaced",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2407.10549",
+    "collab": "ATLAS",
+    "covers": "Mono-dark-Higgs bb 140 fb-1, prompt",
+    "gap_left": "displaced",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2603.12051",
+    "collab": "ATLAS",
+    "covers": "DV + MET (fuzzy vertexing), interpreted in SUSY/axino/Higgs portal",
+    "gap_left": "dark-Higgs recoil interpretation absent",
+    "location": "abstract; Sec.2.4"
+   }
+  ],
+  "projections_found": [
+   "none found"
+  ],
+  "hl_lhc_angle": "Displaced DV trigger and larger data; moderate.",
+  "specific_gap_statement": "Displaced mono-dark-Higgs (MET + displaced bb/WW decay) has no dedicated interpretation; generic DV+MET (2603.12051) could be recast. Prompt Z->A'h_D already searched (2306.07413).",
+  "reason": "Seed-2 premise outdated; seed-1 is mostly a reinterpretation of an existing DV+MET search. HOLD pending recast check.",
+  "queries_run": [
+   "(CMS or ATLAS or LHCb) and (dark Higgs or Higgs-strahlung)",
+   "(CMS or ATLAS or LHCb) and lepton-jet and date>2016",
+   "(CMS or ATLAS) and dark Higgs and (long-lived or displaced)",
+   "dark Higgs and displaced and (mono/MET/missing) and date>2018"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "cand_id": "C012",
+  "verdict": "HOLD",
+  "status_label": "indirectly-covered",
+  "observable": "DV+MET, disappearing tracks, HSCP, non-pointing/delayed photon (+MET) with lifetimes set by freeze-in/low reheating.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2209.01029",
+    "collab": "ATLAS",
+    "covers": "Delayed/non-pointing photons from neutral LLP in exotic Higgs decays, full Run 2",
+    "gap_left": "Lifetime/mass region tied to freeze-in benchmarks not checked",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:1909.06166",
+    "collab": "CMS",
+    "covers": "Delayed photons + MET, 77.4 fb-1",
+    "gap_left": "2016-17 data only",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2603.12051",
+    "collab": "ATLAS",
+    "covers": "DV + MET Run 2",
+    "gap_left": "-",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2402.01898",
+    "collab": "CMS",
+    "covers": "LLP in muon detectors",
+    "gap_left": "-",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "theory arXiv:2507.15930 (displaced photons from low-reheating freeze-in), arXiv:2102.06221; no collaboration HL projection with timing found"
+  ],
+  "hl_lhc_angle": "MTD/HGCAL timing for delayed photons is a genuine HL-LHC feature but no projection found.",
+  "specific_gap_statement": "Mostly a cosmological framing of existing LLP signatures; only potential gap is HL-LHC timing-based delayed-photon reach; not established.",
+  "reason": "No new signature; benchmark choice only. Hold as input for LLP benchmark selection.",
+  "queries_run": [
+   "(CMS or ATLAS) and (delayed photon/non-pointing/displaced photon)",
+   "freeze-in and (HL-LHC/timing) and LHC",
+   "freeze-in and long-lived and LHC and date>2020",
+   "(CMS or ATLAS) and (delayed/time-of-flight/timing) and long-lived and HL-LHC/MTD/HGTD",
+   "timing detector and long-lived and (HL-LHC/MTD/HGTD)"
+  ],
+  "confidence": "low"
+ },
+ {
+  "cand_id": "C013",
+  "verdict": "PASS",
+  "status_label": "searched-limited-regime",
+  "observable": "Heavily ionising tracks with charge 8<=|z|<=19 (between ATLAS multi-charged and HECO searches) and sub-e/3 fractional charges in main detectors via dE/dx and timing.",
+  "closest_existing_searches": [
+   {
+    "id": "arXiv:2303.13613",
+    "collab": "ATLAS",
+    "covers": "Multi-charged long-lived, 2e<=|q|<=7e, 139 fb-1; limited to z=7 because higher charges fail muon reconstruction in >=95% of cases",
+    "gap_left": "8<=|z|<=19 and non-muon reconstruction",
+    "location": "Sec.5 (text line 563)"
+   },
+   {
+    "id": "arXiv:2308.04835",
+    "collab": "ATLAS",
+    "covers": "MMs and HECOs 20<=|z|<=100 via specialised HIP trigger",
+    "gap_left": "|z|<20",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2402.09932",
+    "collab": "CMS",
+    "covers": "FCP with charge between e/3 and 0.9e via tracker dE/dx, 138 fb-1",
+    "gap_left": "charges below e/3; HL projection",
+    "location": "abstract"
+   },
+   {
+    "id": "arXiv:2311.06509",
+    "collab": "MoEDAL",
+    "covers": "HECOs 10e-400e on 6.46 fb-1 (low lumi, passive detector)",
+    "gap_left": "limited luminosity",
+    "location": "text line 72"
+   },
+   {
+    "id": "recid2961271",
+    "collab": "ATLAS",
+    "covers": "Simulation note on FCP performance (no search)",
+    "gap_left": "no ATLAS FCP result",
+    "location": "abstract"
+   }
+  ],
+  "projections_found": [
+   "none from collaborations; milliQan (2104.07151) is a separate detector"
+  ],
+  "hl_lhc_angle": "Luminosity x20-ish for Drell-Yan (z^4-enhanced rates at high z); Phase-2 trigger/timing and dE/dx.",
+  "specific_gap_statement": "No ATLAS/CMS result found for 8<=|z|<=19 (ATLAS stops at 7 and restarts at 20; CMS 13 TeV multi-charged coverage UNVERIFIED) and for FCP charges below e/3 in main detectors (CMS stops at e/3; ATLAS has no result).",
+  "reason": "Precisely locatable charge gaps between published results from verified text; HL-LHC added value moderate; theory motivation of z 8-19 unclear.",
+  "queries_run": [
+   "(CMS or ATLAS or MoEDAL) and (multi-charged/fractionally charged/millicharged/highly ionising/HECO) and date>2015",
+   "millicharged and (HL-LHC/timing) and date>2018",
+   "CMS and multiply charged and stable and date>2015",
+   "multi-charged/FCP and HL-LHC/3000 fb and (ATLAS or CMS)",
+   "millicharged and CMS and LHC and date>2021",
+   "fractionally charged and LHC and date>2022"
+  ],
+  "confidence": "medium"
+ }
+]

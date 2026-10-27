@@ -1,0 +1,13 @@
+J(2 v0) = J1 = 2*epsilon*v0**3/3  (expect 2/3 eps v0^3)
+J/x^2 = -2*epsilon*(t - 3*v0)/(3*(t - 2*v0)**2)
+I_out(delta) small-delta expansion: 2*epsilon*(delta*(log(4*v0**2/delta**2) - 1) + 2*v0)/(3*delta)
+I_out(R) - claim = 0
+S1(b,R) = (-R*sqrt(R**2 - b**2) + b**2*log(b) - b**2*log(R + sqrt(R**2 - b**2)))/v0
+Delta phi_1 (b << R) = -2*b*(log(b/(2*R)) + 1)/v0**2
+Delta phi_1 - claim = 0
+Delta phi_0 = Piecewise((pi - 2*asin(J/(R*v0)), R > J/v0), (2*I*acosh(J/(R*v0)), True))  (expect pi - 2 asin(J/(v0 R)))
+eta =  4*epsilon*(log(6/epsilon) - 2)/3
+eta - (4/3) eps [ln(6/eps) - 2] = 0
+R-dependence of eta: 0
+numeric K_NR = 3 ln 2 - 2 = 0.07944154167983593  (c04 numerics: 0.079447 at gamma*=1.00001)
+limit eps->0 of eta: 0

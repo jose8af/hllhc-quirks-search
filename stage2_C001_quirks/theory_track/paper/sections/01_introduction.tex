@@ -1,0 +1,84 @@
+\section{Introduction}\label{sec:intro}
+
+A quirk is a heavy particle charged under a new confining gauge group, SU($N_{\rm IC}$) ``infracolour'', that has no
+infracoloured matter lighter than the confinement scale~\cite{Okun:1980mu,Kang:2008ea}. The flux tube between a
+produced quirk and antiquirk can then not break, and if the confinement scale is far below the quirk mass the pair stays
+bound by a macroscopic string of tension $\sigma$. We use the collider convention $\Lam\equiv\sqrt\sigma$ throughout
+($\sigma=50.68\GeV/\mathrm{cm}\,(\Lam/\mathrm{keV})^2$). Quirks arise in neutral-naturalness and folded-supersymmetry
+models~\cite{Burdman:2008ek}, in supersymmetric extensions with gauge-coupling unification that predict the confinement
+scale~\cite{Martin:2010kk}, and their cosmology has recently been revisited~\cite{Asadi:2025btr}. Their collider
+signatures depend on the oscillation length, $\lmax\sim\mQ/\Lam^2$ up to kinematic factors. For $\Lam\lesssim100\eV$ the
+two quirks look like two separate heavy charged tracks, constrained by recasts of heavy-stable-charged-particle and
+monojet searches~\cite{Farina:2017cts} (for a recent heavy-stable-charged-particle search see
+Ref.~\cite{CMS:2024nhn}). For $\Lam$ in the MeV range and above the pair is microscopic and annihilates or
+appears as a single object~\cite{Kang:2008ea,Harnik:2008ax,Harnik:2011mv}. In between, for $\Lam\sim0.1$--$100\keV$,
+the oscillation amplitude runs from metres down to micrometres (for $\mQ=500\GeV$ at the median kinematics,
+$\lmax\approx5\cm\,(\keV/\Lam)^2$ from Eq.~\eqref{eq:lmax}: $\approx5$\,m at $0.1\keV$, 50\,cm at $0.3\keV$,
+$0.5\mm$ at $10\keV$, $5\um$ at $100\keV$), and inside the tracker the pair leaves tracker hits that are neither
+helical nor consistent with two separate tracks~\cite{Kang:2008ea,Knapen:2017kly}.
+
+\paragraph{Experimental situation.} The D0 experiment searched for quirks with anomalous ionisation and excluded
+$\mQ<107\GeV$ for $\Lam=10\keV$--$1\MeV$~\cite{D0:2010kkd}. FASER published the first quirk search at the
+LHC~\cite{FASER:2026fsy}, excluding colour-neutral $(1,1)_{-1}$ fermion quirks with $N_{\rm IC}=2$ up to
+$\mQ\approx180\GeV$ near $\Lam\approx10\keV$, falling to 57 and $66\GeV$ at the ends of the range
+$\Lam=0.3$--$105\keV$ (HEPData~\cite{FASER:HEPData181308v1t2}). Recasts of
+conventional searches~\cite{Farina:2017cts} and of stopped-particle searches~\cite{Evans:2018jmd,CMS:2017kku} constrain
+the edges of the window. For the central detectors, Knapen, Lou, Papucci and Setford proposed selecting tracker hits
+coplanar with the primary vertex but not helical~\cite{Knapen:2017kly}. With a simplified ATLAS-like barrel and a simulated
+$\langle\mu\rangle=50$ pile-up overlay they found a plane-reconstruction efficiency of up to 73\% (about 2\% in total after
+trigger and fiducial requirements) and, assuming negligible background, a discovery reach of $650\GeV$ for colour-neutral
+quirks with $300\fb^{-1}$. Li, Li, Pei and Zhang added ionisation information and a simulated $Z(\nu\nu)$+jets background
+with $\langle\mu\rangle=50$ pile-up, and found that $100\fb^{-1}$ probe colour-neutral fermion quirks up to $450\GeV$ for
+$N_{\rm IC}=3$~\cite{Li:2019wce}; they also showed that the selection of Knapen et al.\ leaves a non-negligible $Z(\nu\nu)$+jets
+background. Neither study simulated pile-up~200 or hit-level tracking, and neither treated single-interaction fakes beyond
+beam-pipe photon conversions (Knapen et al.) or SM backgrounds beyond $Z(\nu\nu)$+jets (Li et al.). Quirk
+trajectories, the FASER reach and far detectors~\cite{Li:2020aoq,Li:2021tsy,Li:2023jrt}, timing at forward
+experiments~\cite{Feng:2024zgp}, machine-learning reconstruction of quirk tracks~\cite{Sha:2024hzq}, generic non-helical
+track finding~\cite{Condren:2025czc} and LHCb~\cite{CidVidal:2020okg} have also been studied. Neither ATLAS nor CMS has
+published a dedicated search for coplanar, non-helical quirk tracks.
+
+\paragraph{The two questions of this note.} The coplanarity signature rests on how thin the quirk plane is. In a solenoid
+the Lorentz force tilts the plane during the propagation; the size of this effect sets the plane thickness $\Ds$ that a
+finder must tolerate, and it carries information on $\Lam$. Knapen et al.\ estimated the plane rotation per oscillation
+to be independent of $\mQ$ and to scale as $B/\Lam^2$~\cite{Knapen:2017kly}; Li et al.\ described the thickness as the
+secular accumulation of a small per-period rotation of the quirk system, which they determined
+numerically~\cite{Li:2020aoq}. \textbf{P1} asks for the analytic origin and the scaling law of this B-field thickness,
+and how it compares with the multiple-scattering floor; it is a truth-level question. \textbf{P2} asks whether a
+realistic Phase-2-like tracker at pile-up~200 can isolate quirk planes, and how well the quirk mass $\mQ$ and $\Lam$
+could then be measured, together with the resulting sensitivity; it is a detector-level question.
+
+\paragraph{What is new.} For P1 we show that the B-field thickness is generated at the near-miss crossings of the
+oscillating pair: at every second crossing the ends miss by a distance $\bodd$ fixed by the field-induced angular
+momentum, and the string's transverse pull integrates to a logarithm $\ln(\lmax/\bodd)$. This gives an analytic
+expression for the per-period rotation of Li et al., a $B\ln(1/B)$ non-linearity of the thickness and a local slope
+$c$ that is verified numerically and on $2.2\times10^5$ simulated events (Sections~\ref{sec:string}
+and~\ref{sec:p1}). The framework (a per-period rotation, the $\mQ B/\Lam^4$ miss distance, the $\mQ$-independent
+$B/\Lam^2$ scaling) is prior work~\cite{Kang:2008ea,Knapen:2017kly,Li:2020aoq} and is credited where it is used. For P2
+we pass the truth-level quirk hits through an ACTS~\cite{Ai:2021ghi} model of the public Phase-2 tracker
+layout~\cite{CMS:2017lum} with a pile-up overlay normalised to the Tracker TDR occupancies, and apply a pre-registered
+working-point rule that was frozen before any signal efficiency was computed (Sections~\ref{sec:detector}
+and~\ref{sec:strategy}). To our knowledge this is the first such study through a full hit-level tracking chain at
+pile-up 200, with the full set of single-interaction topologies as backgrounds (beyond the beam-pipe conversions of
+Knapen et al.), and the first to quantify the simulation statistics that
+a background-free claim needs; the signature, the factorised pile-up estimate and the existence of a $\Lam$ window are due
+to Knapen et al. The outcome is negative but informative: no selection reaches the required background level in
+this simulation set-up, the pre-registered fallback gives expected limits at best 790 times the predicted signal, so
+nothing is excluded, and the mass and $\Lam$ handles survive only qualitatively at pile-up 200
+(Sections~\ref{sec:results}--\ref{sec:bounds}). This null result reflects our background method, not a tension with the
+published projections (Section~\ref{sec:bounds}).
+
+\paragraph{Benchmark and scope.} The primary benchmark is a vector-like Dirac fermion $E=(1,1)_{-1}$ (an SU(2)$_L$
+singlet with hypercharge $-1$) with $N_{\rm IC}=2$; the scalar $\Etil$ with the same charges is the alternate. We use
+$\sqrt s=14\TeV$, $3\abinv$, pile-up 200 and the CMS solenoid field $\Bzero=3.8112\tesla$. P1 uses $|\eta_{\rm pair}|<1$
+and the ten barrel layers; P2 is restricted to a barrel selection $|\eta(\hat n_3)|<1$ of the finder axis
+(Section~\ref{sec:strategy}). Each number is tagged where it is not a direct measurement on our samples: \EST{} denotes
+our own model or interpretation, \UNV{} a transcribed number we have not checked against its primary source. Every
+number can be traced to a stage report of the project (Appendix~\ref{app:repro}); this note summarises them.
+
+\paragraph{Outline.} Section~\ref{sec:model} defines the model and the generated samples. Section~\ref{sec:string}
+derives the near-miss mechanism and the thickness law, and Section~\ref{sec:p1} tests it at truth level and compares it
+with the multiple-scattering floor (P1). Section~\ref{sec:detector} describes the detector model and simulation chain,
+Section~\ref{sec:strategy} the finder and the frozen working-point rule. Sections~\ref{sec:bkg}--\ref{sec:bounds} give
+the P2 backgrounds, results, mass and $\Lam$ handles and the comparison with existing bounds. Section~\ref{sec:opendata}
+discusses a possible validation with CMS Open Data, Section~\ref{sec:limits} the limitations, and
+Section~\ref{sec:concl} concludes.

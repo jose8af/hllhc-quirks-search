@@ -1,0 +1,100 @@
+{
+ "_meta": {
+  "role": "investigator (C001 theory track, Stage 4 analysis inputs D1-D3)",
+  "date": "2026-10-14",
+  "scope": "read-only investigation; nothing in the project was edited. Generator-level probes ran in the scratchpad only (nice 15, single process, ~9.5 CPU-min total, tt=None so no Pythia MPI-init file was read or written). Probe scripts: scratchpad probe_d2d3.py, zdiag.py, zdiag2.py, hdiag.py, ptdiag.py (exact s4pu.HardScatter / PythiaGen configuration imported from acts/stage4/code/s4pu.py).",
+  "tags": "VERIFIED = read from a file or reproduced exactly; ESTIMATE = probe/arithmetic with stated statistics; UNVERIFIED = external number not cited in the repo"
+ },
+
+ "D1_N_trig": {
+  "rule_text": {
+   "formula": "B = N_trig x [P_PU + P_SM,HS + sum_t rate_t P(pass|t)] + B_cosmic + B_halo (VERIFIED, acts/stage4/WP_RULE.md:313)",
+   "rate_t_unit": "'per triggered event in the road' (VERIFIED, WP_RULE.md:316)",
+   "missing_samples": "'tt 2l, single top, VV enter N_trig only' (VERIFIED, WP_RULE.md:326) -> N_trig is a sum over ALL SM processes, incl. ones without hit-level samples",
+   "normalisation": "'Pythia sigma x K-factor (NNLO/LO ~1.2-1.4, to be cited) with a +-30 % nuisance' (VERIFIED, WP_RULE.md:327); K itself UNVERIFIED (plan.md:1481, 2098)",
+   "selection_stage": "NOT fixed. The rule says 'triggered'; plan §3 defines trigger = L1+HLT MET turn-on T50 = 200 GeV (plan.md:1027-1040) and a separate offline preselection MET > 250, jet > 100, dphi > 0.5, e/mu/tau_h/gamma vetoes (plan.md:1041-1048); the signal chain uses eps_trig x eps_presel (plan.md:1049)."
+  },
+  "candidate_values": {
+   "1.28e8": {"value": 1.2769e8, "tag": "ESTIMATE", "what": "p6 N_3ab_sum 9.1209e7 (Z(nunu)+j 14.558 pb + W(lnu)+j 15.845 pb, LO Pythia, truth MET(nu) > 200 GeV, no vetoes, no tt/top/VV) x K 1.4", "source": "data/acts_stage4/p6/p6_xsec.json:4,9,14; normalisation.json:3-9"},
+   "3.3e7": {"value": 3.3e7, "tag": "ESTIMATE (planning number, never computed)", "what": "plan's 'about 3-5 x 10^7 after the lepton vetoes and a 250 GeV threshold' (plan.md:1062-1063) -- no script or JSON computes it. 3.3e7 = 0.1 / 3e-9, i.e. the inverse of the planning target P_PU <~ 3e-9 that was itself set from N ~ 3e7 (CRITICAL_REVIEW_S4PLAN_R1.md:291 'B_PU = 0.1 at 3 x 10^7 gives P = 3.3 x 10^-9'); first written as N_trig ~ 3.3e7 in REVIEW_S4PLAN_R3.md:341 and hard-coded in probes/f3r_campaigns.py:155 for the reach arithmetic (plan.md:881).", "source": "plan.md:881,1062-1066; f3r_campaigns.py:155"}
+  },
+  "discrepancy_explained": "1.28e8 / 3.3e7 = 3.87 = K 1.4 (not in 3.3e7) x 2.76 (MET 200 -> 250 GeV threshold + lepton vetoes, an un-computed ESTIMATE). The two numbers are different selection stages: truth MET > 200 without vetoes (p6, also the SM-sample definition) vs after the offline preselection (plan sizing). 3.3e7 is circular (derived from the planning P target) and has no provenance as a normalisation.",
+  "consistency_with_implementation": "VERIFIED: the SM terms are weighted sigma_s x K x L / n_ev on truth-MET > 200 samples with NO trigger efficiency, NO MET > 250, NO vetoes (analysis/background.py:662, code/s4pu.py:195 MET_MIN = 200). So the B sum as implemented treats every truth-MET > 200 event as 'triggered'. N_trig with the same population keeps P_PU, C' and SM terms on one footing.",
+  "rule_leaves_open": true,
+  "recommended": {
+   "value": 1.39e8,
+   "tag": "ESTIMATE",
+   "definition": "reading (a): N_trig = L x K x sum_processes sigma(truth MET > 200 GeV), L = 3e6 pb^-1, K = 1.4 (rule upper end), processes = Z(nunu)+j 14.558 + W(lnu)+j 15.845 (p6) + tt 1l 2.76 pb (this probe, D3) = 33.16 pb -> 1.393e8. tt 2l, single top and VV (rule: 'enter N_trig only') are NOT yet computed (UNVERIFIED, expected a few %; same generator-level probe, minutes).",
+   "why_not_1.28e8": "1.28e8 omits tt 1l (+9 %) and the rule's missing samples, so it is NOT the conservative value under reading (a); it is conservative only relative to 3.3e7.",
+   "variant_K_tt": "with a tt-specific K ~ 1.9 (see D3) -> 1.434e8 (ESTIMATE)",
+   "alternative_b": "reading (b): N_trig after trigger + offline preselection (MET > 250 smeared, jet, dphi, vetoes), plan's 3-5e7 (never computed). Computable at generator level from the s4pu HardScatter events in < 0.5 CPU-h. If chosen, the SM terms should get the same preselection for consistency (they currently do not, which is conservative).",
+   "user_decision": "YES (selection-stage definition; moves every B84 linearly by up to x3.9-4.3). Recommendation: (a) ~1.4e8 as the conservative pre-registered reading; never 3.3e7 as is."
+  }
+ },
+
+ "D2_rate_t": {
+  "what_the_rule_says": "rate_t per triggered event in the road, from Pythia at generator level; P(pass|t) from guns/toys (VERIFIED, WP_RULE.md:316; plan.md:1295 'rate per event in the road from Pythia, generator level'; plan.md:1471 'generator level, unlimited statistics'; CONSTRUCTIVE_REVIEW_S4PLAN_R1.md:258). NI: B_NI = sum_r (NIs/event at r) x P_PV-line 0.22 x P(pass|r) x N_trig (WP_RULE.md:318-320); DIF: no PV-line factor (WP_RULE.md:321).",
+  "was_it_a_campaign_output": "NO. No campaign or job kind produces it: cp0 (108 jobs, 5.4e5 events) and cppu (200 jobs) produce P(pass|t) only (G1B_REPORT.md:66-67); the plan's compute tables cost only the guns/toys (plan.md:1568, 1626-1627). It was never scheduled (an un-costed analysis-time generator input), not dropped from a job. G1_REPORT.md:188 and s4cp.py:12 note that the V0 charged BR 'enters rate_t'.",
+  "existing_numbers_and_why_they_are_not_rate_t": {
+   "NI_0.643-3.641": "ESTIMATE attributable NI rate at R0 (data/acts_stage4/fix_r6/f6r_numbers.json; plan.md:1385-1391, 1450): it ALREADY contains 0.22 x f_pre x P(R0). Feeding it as rate_t (normalisation.json:27-29) would double-count those factors.",
+   "NI_8/10/8": "ESTIMATE NIs per event (plan.md:1430-1434): 6.7e3 TBPX-L1 Fatras crossings x road fraction 0.58 at W_c = 75 mm (all pT > 50 MeV) x x/lambda_I x 1.2. Different acceptance from the toy (phi_MET +- 0.1 rad, pT 0.5-20 GeV, |eta| < 1, s4cp.py:16-20): an upper value by ~x100 relative to the toy-matched rate.",
+   "sum_rate_t_30": "'Sigma rate_t ~ 30 per event (NI alone ~26)' (REVIEW_S4PLAN_R5.md:237): same wide acceptance."
+  },
+  "code_gap": "analysis/wp.py:105-124 cp_terms computes N_trig x rate x P_given_t with NO P_PV-line factor (no 0.22 anywhere in analysis/*.py). Either the NI rate fed in must include x0.22 (values below give both) or cp_terms must apply it for ni22/ni30/ni61 (WP_RULE.md:318).",
+  "phase_space_to_match": "s4cp.py:8-22 (VERIFIED): gamma pT 0.5-50 |eta|<1; v0 K0S/Lambda pT 0.5-50 |eta|<1, any decay radius, x charged BR 0.692/0.639; pvpair two prompt charged (pT>0.05, |eta|<1.2) of ONE interaction, pair mean phi in window; looper pi/e pT 0.05-0.7 |eta|<0.3 within z_PV +- 0.5 mm; niR parent pi pT 0.5-20 |eta|<1; dif pi/K pT 0.5-10 |eta|<1 decaying at r 30-1000 mm; all aimed phi_MET +- 0.1 rad (s4cp.py:37 AIM).",
+  "source_of_each_rate": "gamma, v0, pvpair, looper: hard-scatter (PV) vertex only -- in-time PU conversions/V0s/loopers are simulated by Fatras/Pythia in B1 and k=1 PU candidates go to B_PU (WP_RULE.md:322-324; plan.md:1476-1478). NI, DIF: all 200 PU interactions + HS (Fatras has no NI/DIF), NI x 0.22, DIF x 1.",
+  "probe_estimates_per_event_in_window_phi_MET_pm_0.1": {
+   "tag": "ESTIMATE (scratchpad probe_d2d3.py; HS: 300 accepted events per sample, 150 for tt; min-bias: 3000 SoftQCD:inelastic interactions x 200)",
+   "gamma_HS": {"Znunu_j": 0.17, "Wtaunu_j": 0.25, "Wtauhnu_j": 0.23, "ttbar_1l": 0.64},
+   "v0_HS_xBR": {"Znunu_j": 0.029, "Wtaunu_j": 0.027, "Wtauhnu_j": 0.035, "ttbar_1l": 0.041},
+   "pvpair_HS_pairs": {"Znunu_j": 18.5, "Wtaunu_j": 18.8, "Wtauhnu_j": 20.4, "ttbar_1l": 24.9, "note": "~41 prompt charged pT>0.05 |eta|<1.2 per HS event"},
+   "looper_HS": {"Znunu_j": 0.14, "Wtaunu_j": 0.12, "Wtauhnu_j": 0.13, "ttbar_1l": 0.15, "note": "HS only; including the ~1.25 PU vertices within +-0.5 mm of z_PV (1.254 mm^-1 x 1 mm, plan.md:1440) would add their per-interaction looper rate (not computed)"},
+   "ni_parent_sum_cosh_eta": {"PU200": 37.8, "HS_Z": 0.37, "total": 38.2},
+   "ni_rate_per_r": {"ni22_beam_pipe_xlambda_1.9e-3": 0.073, "ni30_TBPX_L1_xlambda_2.4e-3": 0.092, "ni61_TBPX_L2_xlambda_2.4e-3": 0.092, "x/lambda_I_source": "plan.md:1431-1433 (ESTIMATE from s4geo.py)"},
+   "ni_rate_per_r_x_PVline_0.22": {"ni22": 0.016, "ni30": 0.020, "ni61": 0.020},
+   "dif": {"PU200": 1.12, "HS": 0.008, "total": 1.13, "note": "pi/K with P(decay at r 30-1000 mm) from the boosted lab length; all K decay modes counted (BR 1, conservative vs the toy's mu nu only 0.636)"},
+   "minbias_charged_per_interaction_eta1": 12.55
+  },
+  "production_cost": {
+   "tag": "ESTIMATE from measured probe timing (Mac M3 under the C1 load, nice 15)",
+   "minbias": "3.3 ms per interaction incl. Python counting + 27 s init -> 1e4 interactions (= 50 PU-200 events, per-event rates to ~1 %) ~ 1 CPU-min",
+   "hard_scatter": "0.036 (Z), 0.076-0.086 (W tau), 0.39 s (tt) per accepted event -> 2000 per sample ~ 1-13 CPU-min",
+   "total": "< 0.5 CPU-h for all 8 topologies at ~1-3 % statistics; negligible vs the cap. No detector simulation needed."
+  },
+  "definition_choices_for_the_user_or_orchestrator": [
+   "phi window: +-0.1 rad (gun AIM, s4cp.py:37) vs +-0.15 rad (delta95 road): x1.5 on every rate; +-0.15 is the conservative one",
+   "spectrum: guns are log-uniform in pT; plan.md:1269 says P(pass) is 'folded with the Pythia photon spectrum'. analysis/background.py cprime_term averages P flat over the gun spectrum. Folding needs the gun parent pT per C'0/C'_PU event (recoverable from the stored toy SimHits).",
+   "NI parents with pT < 0.5 GeV and DIF modes other than mu nu are outside the toy phase space (no P(pass) for them)",
+   "which HS sample defines 'per triggered event': sigma-weighted mix of Z/W/tt (rates above differ by <= x1.5 except gamma in tt, x3.8); max over samples is conservative"
+  ],
+  "recommended": "MUST BE PRODUCED (not in any campaign); < 0.5 CPU-h generator-level Pythia with the s4cp phase space. Preliminary ESTIMATEs above are usable for a dry run, with NI rates either x0.22 in the input or the 0.22 added in cp_terms.",
+  "user_decision": "Partly: the phi window (+-0.1 vs +-0.15) and spectrum folding are definitional choices with a clear conservative default; the rest is mechanical."
+ },
+
+ "D3_SM_cross_sections": {
+  "generator": "All SM samples are Pythia 8 (CP5, 14 TeV, 2->2, pThatMin 150 GeV, MPI + hadronisation on, truth MET(nu) > 200 GeV filter with a 150 GeV parton-level pre-filter), NOT MadGraph: code/s4pu.py:181-292 (VERIFIED). No run banner exists; the USB /Volumes/J8A/quirks_sim is not mounted and sim/ holds no SM sample. Per event the chain stores hs_sigma_gen_mb (Pythia running sigmaGen) and hs_tries (meta_json chain_meta.ev_info, s4pu.py:291; VERIFIED in data/acts_stage4/prod/smokeG1/SMC_Znunu_j/SMC_Znunu_j_00000.npz). C1b SM outputs do not exist yet (C1b not started at 03:00 on 2026-10-14).",
+  "bias_in_stored_metadata": {
+   "finding": "s4pu.HardScatter.generate (s4pu.py:242-266) counts a failed py.forceHadronLevel() (l.254) as a try and moves on. About 24-25 % of hadronisation attempts fail, independent of MET within statistics (fraction with parton MET > 200: 0.43 failed vs 0.45 ok for Z). sigma = hs_sigma_gen x N_acc / sum(hs_tries) is therefore biased LOW by the per-try failure fraction r.",
+   "r_hadfail_of_tries": {"Znunu_j": 0.229, "Wtaunu_j": 0.073, "Wtauhnu_j": 0.078, "ttbar_1l": 0.014},
+   "tag": "ESTIMATE (scratchpad hdiag.py: 2000/3000/3000/8000 tries)",
+   "check": "with failures excluded, Z = 14.58 pb, reproducing p6 14.558 pb (p6_xsec.json:5); as stored it would be 11.24 pb (-23 %).",
+   "fix": "use sigma = sigma_gen x N_acc / (T - N_hadfail): either divide the stored-metadata value by (1 - r) per sample, or count failures in a generator-only rerun of the stored event seeds (chain_meta.event_seeds -> hseed('hs', seed)); the physics of the accepted events is unaffected."
+  },
+  "per_sample": {
+   "Znunu_j": {"use_pb": 14.558, "tag": "VERIFIED as a Pythia LO number", "source": "p6_xsec.json:5 (MPI/hadronisation off, same MET definition); reproduced 14.58 +- 3 % by the s4pu configuration with hadronisation failures excluded (hdiag.py)", "pthat_truncation": "pThatMin 100 vs 150: 15.58 vs 15.20 pb at parton level (+2.5 +- 6 %, ptdiag.py, ESTIMATE)"},
+   "Wtaunu_j": {"use_pb": 5.37, "rel_stat": 0.053, "tag": "ESTIMATE", "source": "hdiag.py, s4pu config, hadronisation failures excluded; p6 W(lnu)/3 = 5.28 pb (normalisation.json:17) agrees within 2 %", "content": "inclusive tau decays; tau_h fraction of accepted events 193/300 = 0.643 (probe)"},
+   "Wtauhnu_j": {"use_pb": 3.56, "tag": "ESTIMATE", "source": "sample sigma as generated 5.49 pb (+-5 %) x BR(tau -> hadrons nu) 0.648", "BR_treatment": "VERIFIED by probe: Pythia sigmaGen does NOT include the forced tau BR (15:offIfAny 11 13, s4pu.py:191-192): sigma_gen 46.9 vs 47.2 pb inclusive; filter fractions 0.117 vs 0.114. The 0.648 = 1 - BR(e) - BR(mu) is PDG (UNVERIFIED citation); consistent with the probe's 0.643.", "current_input_wrong": "normalisation.json:18 uses 5.28 pb (full W tau sigma, no BR)"},
+   "ttbar_1l": {"use_pb": 2.76, "rel_stat": 0.08, "tag": "ESTIMATE", "source": "hdiag.py: sigma_gen(pThat > 150) 144.0 pb x 151/(8000-111); exactly one W -> l nu with l = e, mu, tau (s4pu.py:193, 249)", "pthat_truncation": "parton-level proxy: 3.24 pb at pThatMin 0 vs 3.01 pb at 150 (truncation 7 +- 13 %, ptdiag.py, ESTIMATE)", "K_factor": "LO Pythia sigma(tt, pThat > 0) = 518 pb (probe) vs NNLO+NNLL ~ 985 pb at 14 TeV (UNVERIFIED, literature, not cited in repo) -> K_tt ~ 1.9, outside the rule's 1.2-1.4"},
+   "Wenu_j": {"use_pb": 5.28, "tag": "ESTIMATE", "source": "p6 W(lnu)+j 15.845 / 3 (p6_xsec.json:11; lepton universality; e has no extra neutrinos so the p6 MET definition is exact here)", "status": "NO hit-level sample will exist: Wenu_j/Wmunu_j are C2 SM blocks only (run_stage4.py:90), and C2-C was moved to future work by the USER (LOG.md:209). They enter N_trig only; their B_SM,HS term is absent from the sum -- not listed among the rule's 'missing samples' (WP_RULE.md:326), so this needs a logged decision (treat as N_trig-only, or proxy with the W(tau nu) P_SM,HS)."},
+   "Wmunu_j": {"use_pb": 5.28, "tag": "ESTIMATE", "source": "as Wenu_j", "status": "as Wenu_j"}
+  },
+  "W_tau_50_50_weighting": {
+   "decision": "G1 executor split each W(tau nu) block 50/50 inclusive / forced-hadronic (G1_REPORT.md:166-180, 310 decision 2; run_stage4.py:85-92); orchestrator ACCEPTED 'with correct weights' (LOG.md:191).",
+   "current_pipeline": "normalisation.json:17-18 gives BOTH samples the full 5.28 pb and sm_term (background.py:662) adds them as two independent processes -> W(tau nu) is counted twice (the tau_h part ~1.65x); conservative but not the 'correct weights'.",
+   "correct_weights": "B_Wtau = L K [sigma_taul P_taul + sigma_tauh P_tauh], sigma_tauh = 0.648 sigma_Wtau = 3.48-3.56 pb, sigma_taul = 0.352 sigma_Wtau = 1.89 pb; P_taul from the tau_l events of Wtaunu_j only; P_tauh from the pooled tau_h events of Wtaunu_j (~64 %) and all of Wtauhnu_j. Per-event weights: tau_l event w = sigma_taul K L / N_taul,incl; tau_h event w = sigma_tauh K L / (N_tauh,incl + N_Wtauhnu).",
+   "needs": "per-event tau decay class of the inclusive sample: not in the outputs; regenerate the HS only from the stored event seeds (generator-only, ~0.08 s/event, ~2-3 CPU-min for C1's 1000 events).",
+   "fallback_if_no_class": "use the inclusive sample alone (sigma_Wtau = 5.37 pb, unbiased) and Wtauhnu_j as a cross-check, or keep the double count as an explicitly conservative bound (<= x2 on this term)."
+  },
+  "user_decision": "Small: (i) K-factor per sample (tt ~1.9 vs the rule's 1.4) -- the rule says K 'to be cited', so citing per-process K is within the rule; (ii) W(enu)/W(munu) HS term absent because C2-C was dropped -- needs a logged reading. The rest is mechanical."
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "channels": [
+  {
+   "name": "SR_T",
+   "samples": [
+    {
+     "name": "signal",
+     "data": [
+      0.010256410256410256
+     ],
+     "modifiers": [
+      {
+       "name": "mu",
+       "type": "normfactor",
+       "data": null
+      }
+     ]
+    },
+    {
+     "name": "background",
+     "data": [
+      887751.2656942098
+     ],
+     "modifiers": [
+      {
+       "name": "bkg_own_SR_T",
+       "type": "normsys",
+       "data": {
+        "hi": 11.885844767951136,
+        "lo": 0.08413369175882131
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "SR_G",
+   "samples": [
+    {
+     "name": "signal",
+     "data": [
+      0.041025641025641026
+     ],
+     "modifiers": [
+      {
+       "name": "mu",
+       "type": "normfactor",
+       "data": null
+      }
+     ]
+    },
+    {
+     "name": "background",
+     "data": [
+      775691.291871952
+     ],
+     "modifiers": [
+      {
+       "name": "bkg_own_SR_G",
+       "type": "normsys",
+       "data": {
+        "hi": 6.8998826401916435,
+        "lo": 0.14493000129814165
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "name": "SR_T",
+   "data": [
+    887751.2656942098
+   ]
+  },
+  {
+   "name": "SR_G",
+   "data": [
+    775691.291871952
+   ]
+  }
+ ],
+ "version": "1.0.0",
+ "measurements": [
+  {
+   "name": "quirk_counting",
+   "config": {
+    "poi": "mu",
+    "parameters": [
+     {
+      "name": "mu",
+      "bounds": [
+       [
+        0.0,
+        1000.0
+       ]
+      ],
+      "inits": [
+       1.0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

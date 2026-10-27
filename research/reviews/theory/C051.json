@@ -1,0 +1,37 @@
+{
+ "cand_id": "C051",
+ "claim": "Off-peak (m_ll > ~170 GeV), high-pT_ll unfolded Collins-Soper coefficients A0-A7 of neutral-current DY probe SMEFT directions invisible to unpolarised rates: (a) A0-A2 (Lam-Tung) breaking from dim-6 EW dipoles (only at O(1/Lambda^4), quadratic) ; (b) T-odd A6, A7 from dim-8 CP-odd psi^4 G operators (tree-level, linear 1/Lambda^4); (c) l=3 'B' harmonics from dim-8 psi^4 D^2 operators (outside the A0-A7 basis); plus (d) MSbar sin2theta_W(mu) running from high-mass A_FB / triple-differential DY.",
+ "framework": "SMEFT dim-6 (light-quark Z dipoles O_uZ,O_dZ; four-fermion) and dim-8 (CP-odd (l gamma l)(q gamma T^A q)G^A_{mu nu} class; psi^4 D^2 two-derivative class); SM NLO EW with MSbar sin2theta_W for the running test.",
+ "assumptions": [
+  "EFT expansion valid up to the probed sqrt(s_hat) (m_ll up to ~2.6 TeV and pT_ll up to several TeV in the 2511.19617 binning), i.e. Lambda well above probed energies",
+  "For (a): dipole effect enters A0-A2 only quadratically (|C|^2/Lambda^4) because interference vanishes for massless quarks",
+  "For (b): CP violation in heavy sector, operators involving first-generation quarks and electrons/muons; statistical-only fit (2511.19617)",
+  "For (d): SM running of alpha_EM assumed and no BSM contact terms (2302.10782)"
+ ],
+ "controlling_parameters": ["C_uZ/Lambda^2, C_dZ/Lambda^2 (dipoles)", "7 CP-odd dim-8 Wilson coefficients C_{l2q2g}^(1,3), C_{l2u2g}, C_{l2d2g}, C_{e2u2g}, C_{e2d2g}, C_{q2e2g} with effective scale Lambda/C^(1/4)", "dim-8 psi^4 D^2 coefficients (B0 coefficient)", "sin2theta_W^MSbar(mu)", "m_ll and pT_ll (effects grow ~ s_hat/Lambda^2 or s_hat^2/Lambda^4)"],
+ "robust_predictions": [
+  "Lam-Tung A0=A2 holds through O(alpha_s), broken at O(alpha_s^2) in SM QCD (1708.00008); A5-A7 start at O(alpha_s^2) and are O(1e-3) at the Z peak (CMS 2604.25678)",
+  "Dim-6 four-fermion operators do not create new angular structures; only dipole-type dim-6 operators break Lam-Tung at LO in QCD (2412.13014 Sec.2, App.C)",
+  "CP-odd dim-8 psi^4 G interference vanishes in phi-integrated rates (for Gamma_Z->0) so A6/A7 are the natural observables (2511.19617 Sec.IV)",
+  "SM sin2theta_MSbar rises from 0.2332 at 133 GeV to 0.2435 at 1 TeV (2302.10782 Tab.2)"
+ ],
+ "model_dependent_predictions": [
+  "Size of A6/A7 shifts (O(0.1-1) at Lambda=1 TeV, C=1, m_ll 350-1000 GeV, pT~1 TeV; 2511.19617 Figs.5-6) - linearised, signals EFT breakdown",
+  "HL-LHC reach Lambda/C^(1/4): up to ~9 TeV one-at-a-time, ~1-2 TeV marginalised (2511.19617 Figs.8,10)",
+  "Dipole-induced A0-A2 at high m_ll (2405.04069 Fig.5) uses C=1, Lambda=1 TeV, already excluded by pT_ll spectrum (2412.13014 Eq.26)"
+ ],
+ "constraints_checked": [
+  {"constraint": "Light-quark Z-dipole bounds from LEP/SLC Gamma(Z->qq) and ATLAS 13 TeV pT_ll", "source_id": "arXiv:2412.13014", "verdict": "|C_u|/Lambda^2 < 1/(2.3 TeV)^2, |C_d|/Lambda^2 < 1/(1.9 TeV)^2; at these values dipole effect on A0-A2 stays within SM theory band -> Lam-Tung channel is subdominant to inclusive pT_ll tail for dipoles"},
+  {"constraint": "SM Lam-Tung violation size", "source_id": "arXiv:2604.25678", "verdict": "Measured A0-A2 ~0.13-0.18 at Z peak for pT 80-400 GeV, above NNLO-matched MC; SM effect is O(0.1), not small - a BSM search via A0-A2 is limited by QCD O(alpha_s^3+) and resummation uncertainties"},
+  {"constraint": "EFT validity for A6/A7 dim-8 projection", "source_id": "arXiv:2511.19617", "verdict": "Marginalised reach 1-2 TeV while bins extend to m_ll 2.6 TeV and pT up to 7 TeV; no validity cut or quadratic-term discussion found - region partly outside EFT validity"},
+  {"constraint": "EDM bounds on CP-odd psi^4 G operators", "source_id": "arXiv:2511.19617", "verdict": "UNVERIFIED - not discussed in source; loop-induced EDM constraints not assessed"},
+  {"constraint": "High-mass A_FB already measured", "source_id": "arXiv:2202.12327", "verdict": "CMS measured A_FB and A0 vs mass >170 GeV (138 fb-1, pT/y-integrated templates); A_FB-as-SMEFT-probe part not open"},
+  {"constraint": "sin2theta running separable from contact terms", "source_id": "arXiv:1609.08157", "verdict": "Energy-growing W/Y and four-fermion operators distort high-mass NC DY; running extraction (2302.10782) assumes no BSM - interpretive degeneracy"}
+ ],
+ "motivation_strength": 3,
+ "robustness": 3,
+ "theory_uncertainties": "A0-A2: missing O(alpha_s^3+) and non-perturbative/resummation effects (SM already exceeds NNLO prediction at Z peak); A5-A7: SM O(alpha_s^2) absorptive parts, small but poorly known off-peak; sin2theta: PDF at high x dominates (0.8-2.8% at HL-LHC depending on set, 2302.10782 Tab.3); EFT truncation (dim-8 squared, dim-6 squared x dim-8) for all SMEFT interpretations.",
+ "distinctiveness": "A6/A7 off-peak: high (T-odd, CP-odd, SM ~1e-3, statistics-limited, small systematics). A0-A2 off-peak: moderate (SM QCD violation O(0.1) and dipoles better constrained by pT spectrum). B-harmonics (l=3): very distinctive but outside A0-A7 basis. sin2theta running: low distinctiveness vs contact interactions.",
+ "confidence": "medium",
+ "caveats": "Only theory papers and two CMS measurements read; experimental coverage at 13.6 TeV not exhaustively searched. Best-motivated sub-target is A5-A7 (and l=3 B coefficients) above the Z peak; A0-A2 as a BSM probe is weakly motivated after 2412.13014."
+}

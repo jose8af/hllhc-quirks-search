@@ -1,0 +1,52 @@
+=== (1) round-off replicas: implied quadrature bias on c_k (500 GeV) ===
+Lambda = 1 keV, n = 30 events
+  replica rel. sd of Delta_s, median / mean / p90 at f=1,1/2,1/4,1/20:
+    [0.0e+00 2.0e-05 4.0e-05 3.9e-04] [0.00017 0.0003  0.00053 0.00209] [0.00037 0.00046 0.00097 0.00324]
+  implied upward bias of c_k from noise (upper bound b = rs^2), k = 2,4,20: median [0. 0. 0.]  mean [1.0e-06 2.0e-06 1.2e-05]  max [3.0e-05 4.0e-05 2.5e-04]
+Lambda = 3 keV, n = 29 events
+  replica rel. sd of Delta_s, median / mean / p90 at f=1,1/2,1/4,1/20:
+    [0.00164 0.00264 0.00493 0.00827] [0.00553 0.00495 0.00653 0.01985] [0.01272 0.00836 0.01461 0.05382]
+  implied upward bias of c_k from noise (upper bound b = rs^2), k = 2,4,20: median [3.0e-06 1.1e-05 1.4e-05]  mean [-1.53e-04 -7.40e-05  4.94e-04]  max [0.00249 0.00029 0.00654]
+  observed (E2 FU.json, fine 1e-3, 500 GeV, 3 keV): c_k - c_E1 = +0.0021, +0.0055, +0.0113 (k = 2, 4, 20)
+  => required bias of Delta_s(1/k) relative: k=4: 0.0055*ln4/1.13 = 0.0067 ; k=20: 0.0113*ln20/1.28 = 0.0264
+
+=== (2) k-dependence of c_k (theory: c_k independent of k) and representativeness of the 1e-4 subsample ===
+m = 500 GeV: vfine tried 20 events, all-f status OK: 8 -> [1, 3, 4, 10, 14, 16, 17, 18]
+  fine, all events                         n=119  median c_k = [0.089  0.0918 0.0961]   c4-c2 = +0.0010 +- 0.0008   c20-c2 = +0.0075 +- 0.0025
+  fine, vfine survivors                    n=  8  median c_k = [0.0826 0.0858 0.0909]   c4-c2 = +0.0032 +- 0.0013   c20-c2 = +0.0070 +- 0.0063
+  fine, vfine non-survivors (first 20)     n= 12  median c_k = [0.0879 0.0944 0.0989]   c4-c2 = +0.0001 +- 0.0132   c20-c2 = +0.0389 +- 0.0319
+  fine, events >= 20                       n= 99  median c_k = [0.0895 0.0919 0.0961]   c4-c2 = +0.0010 +- 0.0009   c20-c2 = +0.0075 +- 0.0025
+  vfine (1e-4), survivors                  n=  8  median c_k = [0.0882 0.0879 0.0905]
+  median Delta_s(B0) [cm]: survivors 2.521e-04, others 3.788e-04
+m = 1000 GeV: vfine tried 20 events, all-f status OK: 9 -> [2, 5, 6, 8, 11, 15, 16, 17, 18]
+  fine, all events                         n=120  median c_k = [0.0841 0.0881 0.0956]   c4-c2 = +0.0009 +- 0.0004   c20-c2 = +0.0127 +- 0.0022
+  fine, vfine survivors                    n=  9  median c_k = [0.0855 0.0859 0.0909]   c4-c2 = +0.0004 +- 0.0017   c20-c2 = +0.0028 +- 0.0093
+  fine, vfine non-survivors (first 20)     n= 11  median c_k = [0.0811 0.0941 0.1164]   c4-c2 = +0.0157 +- 0.2005   c20-c2 = +0.0140 +- 0.0746
+  fine, events >= 20                       n=100  median c_k = [0.084  0.0882 0.0943]   c4-c2 = +0.0007 +- 0.0004   c20-c2 = +0.0127 +- 0.0024
+  vfine (1e-4), survivors                  n=  9  median c_k = [0.0864 0.0858 0.0902]
+  median Delta_s(B0) [cm]: survivors 3.865e-04, others 3.958e-04
+
+=== (3) same k-growth test at 1 keV, production (converged at 1 keV per E2) ===
+  m=500, 1 keV rnd0 (prod, 30 ev): median c_k = [0.1042 0.105  0.1056], c20-c2 = +0.0020 +- 0.0011
+  m=500, 3 keV rnd0 (prod, 30 ev): median c_k = [0.0949 0.0984 0.0904], c20-c2 = -0.0025 +- 0.0067
+
+=== (4) paired fine(1e-3) - vfine(1e-4) per event on survivors, c_k (k = 2, 4, 20) ===
+  m=500 ev  1: fine-vfine = [-0.0003 -0.0003 -0.    ]   c_vfine = [0.0895 0.0898 0.091 ]
+  m=500 ev  3: fine-vfine = [-0.0005 -0.0026 -0.0007]   c_vfine = [0.0884 0.0913 0.0915]
+  m=500 ev  4: fine-vfine = [-0.0153 -0.0081 -0.0043]   c_vfine = [0.0927 0.0918 0.0927]
+  m=500 ev 10: fine-vfine = [-0.0002 -0.0001  0.0002]   c_vfine = [0.0882 0.088  0.0901]
+  m=500 ev 14: fine-vfine = [0.     0.0006 0.0073]   c_vfine = [0.0695 0.0728 0.1029]
+  m=500 ev 16: fine-vfine = [ 0.0039  0.0127 -0.0004]   c_vfine = [0.0883 0.0878 0.0901]
+  m=500 ev 17: fine-vfine = [0.0007 0.0009 0.0167]   c_vfine = [0.0732 0.0764 0.0744]
+  m=500 ev 18: fine-vfine = [0.0003 0.0001 0.0042]   c_vfine = [0.0697 0.0728 0.0891]
+  m=500: median paired diff = [-0.0001 -0.      0.0001], rms = [0.0056 0.0054 0.0068]
+  m=1000 ev  2: fine-vfine = [0.0001 0.0001 0.0003]   c_vfine = [0.0854 0.0858 0.0879]
+  m=1000 ev  5: fine-vfine = [-0.001  -0.0006  0.0001]   c_vfine = [0.0887 0.0885 0.09  ]
+  m=1000 ev  6: fine-vfine = [0.0002 0.0007 0.0074]   c_vfine = [0.0728 0.0754 0.1044]
+  m=1000 ev  8: fine-vfine = [0.0026 0.0039 0.0003]   c_vfine = [0.0865 0.0884 0.0882]
+  m=1000 ev 11: fine-vfine = [-0.0033 -0.0009 -0.0008]   c_vfine = [0.0888 0.0828 0.0879]
+  m=1000 ev 15: fine-vfine = [ 0.0129 -0.0014  0.0026]   c_vfine = [0.0874 0.0799 0.0934]
+  m=1000 ev 16: fine-vfine = [0.0002 0.0006 0.0065]   c_vfine = [0.0767 0.0781 0.0995]
+  m=1000 ev 17: fine-vfine = [-0.005  -0.0049  0.0007]   c_vfine = [0.0739 0.0917 0.0981]
+  m=1000 ev 18: fine-vfine = [-0.0003 -0.0001  0.0007]   c_vfine = [0.0864 0.0862 0.0902]
+  m=1000: median paired diff = [ 0.0001 -0.0001  0.0007], rms = [0.0048 0.0022 0.0034]

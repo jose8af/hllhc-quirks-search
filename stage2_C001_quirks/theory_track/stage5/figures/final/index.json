@@ -1,0 +1,509 @@
+{
+ "level": "detector",
+ "results": "data/acts_stage4/analysis/C12FC_v1",
+ "extension_inputs": "data/acts_stage4/analysis/C12FC_v1",
+ "final": true,
+ "final_checks": [
+  "not placeholder",
+  "not DEV / dry run",
+  "freeze_match = True",
+  "freeze b42aef4d7b8d"
+ ],
+ "summary": "data/acts_stage4/analysis/STAGE4_SUMMARY.json (schema STAGE4_SUMMARY v2) used",
+ "stage4_outcome": {
+  "wp_T": null,
+  "wp_G": null,
+  "branch": "no WP in either category (\u00a75.3): \u00a78 fallback, user told",
+  "fallback": true,
+  "best": {
+   "value": 789.7425480167725,
+   "point": "A2|F|200|1.5|BM",
+   "tag": "ESTIMATE (mu95 VERIFIED toys; N_exp = sigma_norm (N_IC = 2) x f_tail x L x A with sigma_norm and f_tail from sim/results/xsec.json (S: TRGS npz) and truth-level A; eps(FB2) = 9/200, CP68 [0.030, 0.065] (full statistical uncertainty); numpy-A2 eps: full-chain systematic x 0.87 -> ratio ~ 907, see a2fc_revert.fullchain_eps_systematic)",
+   "value_before_fix_r3_norm": 37.62263955164025,
+   "note": "expected limits use zero-count simulation bounds as background central values: they measure the reach of this simulation set-up and are conservative, not the physics reach of a real search"
+  },
+  "n_points": 40,
+  "n_with_limit": 33,
+  "n_eps0": 7,
+  "ladder": {
+   "SR-T": {
+    "min_B84": 1232022.9270550597,
+    "min_B84_rung": "R09_p>1e-3",
+    "decades_over_0p11_at_min": 7.0492261046513915,
+    "first_rung_failing": "R01_IP2>=4",
+    "B84_at": {
+     "R_A": 2561395165.126519,
+     "R_B": 3788336.118300954,
+     "R07": 1374728.4274850832,
+     "R08": 1359913.3553843496,
+     "R09": 1232022.9270550597,
+     "R_D": 3296562.44022239,
+     "R_E": 8748495.766726773
+    },
+    "B_median_at": {
+     "R_A": 1971343644.920894,
+     "R_B": 2645002.3132043546,
+     "R07": 680485.603467742,
+     "R08": 636026.6763747905,
+     "R09": 544940.6253261531,
+     "R_D": 778139.698673446,
+     "R_E": 933226.7664004455
+    },
+    "central_by_class_at": {
+     "R_A": {
+      "PU": 411196.9763613255,
+      "SM": 1935298142.133332,
+      "Cprime": 33689470.24228272
+     },
+     "R_B": {
+      "PU": 6808.450889530277,
+      "SM": 1418377.2031977952,
+      "Cprime": 876826.0929762431
+     },
+     "R07": {
+      "PU": 5525.474461053366,
+      "SM": 70227.01864156369,
+      "Cprime": 376603.30512245564
+     },
+     "R08": {
+      "PU": 4410.929521802255,
+      "SM": 47382.56490881954,
+      "Cprime": 365492.73409427196
+     },
+     "R09": {
+      "PU": 251.93571105819143,
+      "SM": 45956.31761452007,
+      "Cprime": 329795.0860268996
+     },
+     "R_D": {
+      "PU": 6751.0180026039325,
+      "SM": 39207.734471552314,
+      "Cprime": 316937.9054561515
+     },
+     "R_E": {
+      "PU": 1255.6194891071527,
+      "SM": 5807.535493902693,
+      "Cprime": 316937.9054561515
+     }
+    },
+    "top3_at": {
+     "R_A": [
+      {
+       "label": "SM Znunu_j",
+       "value": 1167516426.6001596,
+       "zero_bound": false
+      },
+      {
+       "label": "SM Wtau_h",
+       "value": 243397992.84560886,
+       "zero_bound": false
+      },
+      {
+       "label": "SM ttbar_1l",
+       "value": 135688233.5700506,
+       "zero_bound": false
+      }
+     ],
+     "R_B": [
+      {
+       "label": "SM Znunu_j",
+       "value": 956158.0564419407,
+       "zero_bound": false
+      },
+      {
+       "label": "C' gamma",
+       "value": 402130.5152736356,
+       "zero_bound": false
+      },
+      {
+       "label": "C' dif",
+       "value": 295936.5968327639,
+       "zero_bound": false
+      }
+     ],
+     "R07": [
+      {
+       "label": "C' dif",
+       "value": 147968.29841638196,
+       "zero_bound": false
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 74014.26234064449,
+       "zero_bound": false
+      }
+     ],
+     "R08": [
+      {
+       "label": "C' dif",
+       "value": 168683.86019467542,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 42188.12953416735,
+       "zero_bound": true
+      }
+     ],
+     "R09": [
+      {
+       "label": "C' dif",
+       "value": 168683.86019467542,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "SM Znunu_j",
+       "value": 16099.458263705526,
+       "zero_bound": true
+      }
+     ],
+     "R_D": [
+      {
+       "label": "C' dif",
+       "value": 147858.69226940686,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 117270.95153005874,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 38942.88880076987,
+       "zero_bound": true
+      }
+     ],
+     "R_E": [
+      {
+       "label": "C' dif",
+       "value": 147858.69226940686,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 117270.95153005874,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 38942.88880076987,
+       "zero_bound": true
+      }
+     ]
+    }
+   },
+   "SR-G": {
+    "min_B84": 1234586.0446529929,
+    "min_B84_rung": "R09_p>1e-3",
+    "decades_over_0p11_at_min": 7.050128678381296,
+    "first_rung_failing": "R01_IP2>=4",
+    "B84_at": {
+     "R_A": 74537271470.75052,
+     "R_B": 151651420.65313065,
+     "R07": 1982005.5116523292,
+     "R08": 1356639.2459324528,
+     "R09": 1234586.0446529929,
+     "R_D": 2727491.4899833454,
+     "R_E": 6335037.588597116
+    },
+    "B_median_at": {
+     "R_A": 12612051994.058912,
+     "R_B": 41326036.48608205,
+     "R07": 933567.3326117012,
+     "R08": 634468.0450122573,
+     "R09": 545557.2330880326,
+     "R_D": 715580.5050233494,
+     "R_E": 860959.9568123401
+    },
+    "central_by_class_at": {
+     "R_A": {
+      "PU": 10512007159.959099,
+      "SM": 1935298142.133332,
+      "Cprime": 33689470.24228272
+     },
+     "R_B": {
+      "PU": 38329846.62120371,
+      "SM": 1418377.2031977952,
+      "Cprime": 876826.0929762431
+     },
+     "R07": {
+      "PU": 135349.11523019796,
+      "SM": 70227.01864156369,
+      "Cprime": 376603.30512245564
+     },
+     "R08": {
+      "PU": 4408.514038926448,
+      "SM": 47382.56490881954,
+      "Cprime": 365492.73409427196
+     },
+     "R09": {
+      "PU": 251.91508793865412,
+      "SM": 45956.31761452007,
+      "Cprime": 329795.0860268996
+     },
+     "R_D": {
+      "PU": 2556.58483550859,
+      "SM": 39207.734471552314,
+      "Cprime": 316937.9054561515
+     },
+     "R_E": {
+      "PU": 803.4980911598425,
+      "SM": 5807.535493902693,
+      "Cprime": 316937.9054561515
+     }
+    },
+    "top3_at": {
+     "R_A": [
+      {
+       "label": "PU R04_IP2>=7",
+       "value": 10512007159.959099,
+       "zero_bound": false
+      },
+      {
+       "label": "SM Znunu_j",
+       "value": 1167516426.6001596,
+       "zero_bound": false
+      },
+      {
+       "label": "SM Wtau_h",
+       "value": 243397992.84560886,
+       "zero_bound": false
+      }
+     ],
+     "R_B": [
+      {
+       "label": "PU R06_w<18.75",
+       "value": 38329846.62120371,
+       "zero_bound": false
+      },
+      {
+       "label": "SM Znunu_j",
+       "value": 956158.0564419407,
+       "zero_bound": false
+      },
+      {
+       "label": "C' gamma",
+       "value": 402130.5152736356,
+       "zero_bound": false
+      }
+     ],
+     "R07": [
+      {
+       "label": "C' dif",
+       "value": 147968.29841638196,
+       "zero_bound": false
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "PU R07_w<9.4",
+       "value": 135349.11523019796,
+       "zero_bound": false
+      }
+     ],
+     "R08": [
+      {
+       "label": "C' dif",
+       "value": 168683.86019467542,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 42188.12953416735,
+       "zero_bound": true
+      }
+     ],
+     "R09": [
+      {
+       "label": "C' dif",
+       "value": 168683.86019467542,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 140725.14183607048,
+       "zero_bound": true
+      },
+      {
+       "label": "SM Znunu_j",
+       "value": 16099.458263705526,
+       "zero_bound": true
+      }
+     ],
+     "R_D": [
+      {
+       "label": "C' dif",
+       "value": 147858.69226940686,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 117270.95153005874,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 38942.88880076987,
+       "zero_bound": true
+      }
+     ],
+     "R_E": [
+      {
+       "label": "C' dif",
+       "value": 147858.69226940686,
+       "zero_bound": true
+      },
+      {
+       "label": "C' pvpair",
+       "value": 117270.95153005874,
+       "zero_bound": true
+      },
+      {
+       "label": "C' gamma",
+       "value": 38942.88880076987,
+       "zero_bound": true
+      }
+     ]
+    }
+   }
+  }
+ },
+ "schema_issues": [],
+ "npz_aliases": {
+  "file": [
+   "file",
+   "src_file"
+  ]
+ },
+ "stamps": [],
+ "figures": {
+  "D1": {
+   "desc": "eps(m, Lambda) maps at R_A..R_E and the primary (fallback r_fb) selection",
+   "status": "OK",
+   "figures": [
+    "D1_eps_map_R_A",
+    "D1_eps_map_R_B",
+    "D1_eps_map_R_C",
+    "D1_eps_map_R_D",
+    "D1_eps_map_R_E",
+    "D1_eps_map_rfb"
+   ]
+  },
+  "D2": {
+   "desc": "eps vs ladder rung per species-mass",
+   "status": "OK",
+   "figures": [
+    "D2_eff_vs_rung_F200",
+    "D2_eff_vs_rung_F500",
+    "D2_eff_vs_rung_F1000",
+    "D2_eff_vs_rung_F1500",
+    "D2_eff_vs_rung_S500"
+   ]
+  },
+  "D3": {
+   "desc": "B84 / median B vs rung, SR-T and SR-G, r*",
+   "status": "OK",
+   "figures": [
+    "D3_bsum_vs_rung"
+   ]
+  },
+  "D4": {
+   "desc": "PU fake-rate extrapolation with closure",
+   "status": "OK",
+   "figures": [
+    "D4_pfake_extrapolation"
+   ]
+  },
+  "D5": {
+   "desc": "expected limit on N_sig vs Lambda per mass",
+   "status": "OK",
+   "figures": [
+    "D5_limit_mu_vs_lambda_F200",
+    "D5_limit_mu_vs_lambda_F500",
+    "D5_limit_mu_vs_lambda_F1000",
+    "D5_limit_mu_vs_lambda_F1500",
+    "D5_limit_mu_vs_lambda_S500"
+   ]
+  },
+  "D6": {
+   "desc": "expected sigma limit vs m (bands) + theory sigma",
+   "status": "OK",
+   "figures": [
+    "D6_limit_xsec_vs_m_L0p6",
+    "D6_limit_xsec_vs_m_L1",
+    "D6_limit_xsec_vs_m_L1p5",
+    "D6_limit_xsec_vs_m_L2",
+    "D6_limit_xsec_vs_m_L3",
+    "D6_limit_xsec_vs_m_L5"
+   ]
+  },
+  "D7": {
+   "desc": "expected exclusion / discovery map in (m, Lambda)",
+   "status": "OK",
+   "figures": [
+    "D7_exclusion_map"
+   ]
+  },
+  "D8": {
+   "desc": "M_est spectra per mass (R_A and r_fb)",
+   "status": "OK",
+   "figures": [
+    "D8_mest_RA_F200",
+    "D8_mest_RA_F500",
+    "D8_mest_RA_F1000",
+    "D8_mest_RA_F1500",
+    "D8_mest_RA_S500",
+    "D8_mest_rfb_F200",
+    "D8_mest_rfb_F500",
+    "D8_mest_rfb_F1000",
+    "D8_mest_rfb_F1500",
+    "D8_mest_rfb_S500"
+   ]
+  },
+  "D9": {
+   "desc": "detector-level vs truth edges",
+   "status": "OK",
+   "figures": [
+    "D9_edges_det_vs_truth"
+   ]
+  },
+  "D10": {
+   "desc": "sep_IT^det calibration vs truth",
+   "status": "OK",
+   "figures": [
+    "D10_sepit_calibration"
+   ]
+  },
+  "D11": {
+   "desc": "event display (signal in PU 200 vs best PU fake)",
+   "status": "OK",
+   "figures": [
+    "D11_event_display"
+   ]
+  }
+ }
+}

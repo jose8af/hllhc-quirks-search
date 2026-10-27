@@ -1,0 +1,116 @@
+{
+ "level": "detector",
+ "results": "/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/stage5/placeholder_inputs",
+ "schema_issues": [
+  "signal_srt.json: missing oot_checks",
+  "limits.json: missing dev",
+  "acceptance.json: absent",
+  "edges_det.json: absent",
+  "sep_it_det.json: absent",
+  "signal_obs_a2.npz: missing array sep_it_det_mm",
+  "signal_obs_a2.npz: missing array hitrec",
+  "signal_obs_a2.npz: missing array file"
+ ],
+ "stamps": [
+  "PLACEHOLDER (synthetic inputs, not a result)"
+ ],
+ "figures": {
+  "D1": {
+   "desc": "eps(m, Lambda) maps at R_A..R_E and the primary selection",
+   "status": "OK",
+   "figures": [
+    "D1_eps_map_R_A",
+    "D1_eps_map_R_B",
+    "D1_eps_map_R_C",
+    "D1_eps_map_R_D",
+    "D1_eps_map_R_E",
+    "D1_eps_map_primary"
+   ]
+  },
+  "D2": {
+   "desc": "eps vs ladder rung per species-mass",
+   "status": "OK",
+   "figures": [
+    "D2_eff_vs_rung_F200",
+    "D2_eff_vs_rung_F500",
+    "D2_eff_vs_rung_F1000",
+    "D2_eff_vs_rung_F1500",
+    "D2_eff_vs_rung_S500"
+   ]
+  },
+  "D3": {
+   "desc": "B84 / median B vs rung, SR-T and SR-G, r*",
+   "status": "OK",
+   "figures": [
+    "D3_bsum_vs_rung"
+   ]
+  },
+  "D4": {
+   "desc": "PU fake-rate extrapolation with closure",
+   "status": "OK",
+   "figures": [
+    "D4_pfake_extrapolation"
+   ]
+  },
+  "D5": {
+   "desc": "expected limit on N_sig vs Lambda per mass",
+   "status": "OK",
+   "figures": [
+    "D5_limit_mu_vs_lambda_F200",
+    "D5_limit_mu_vs_lambda_F500",
+    "D5_limit_mu_vs_lambda_F1000",
+    "D5_limit_mu_vs_lambda_F1500",
+    "D5_limit_mu_vs_lambda_S500"
+   ]
+  },
+  "D6": {
+   "desc": "expected sigma limit vs m (bands) + theory sigma",
+   "status": "OK",
+   "figures": [
+    "D6_limit_xsec_vs_m_L0p6",
+    "D6_limit_xsec_vs_m_L1",
+    "D6_limit_xsec_vs_m_L2",
+    "D6_limit_xsec_vs_m_L5"
+   ]
+  },
+  "D7": {
+   "desc": "expected exclusion / discovery map in (m, Lambda)",
+   "status": "OK",
+   "figures": [
+    "D7_exclusion_map"
+   ]
+  },
+  "D8": {
+   "desc": "M_est spectra per mass",
+   "status": "OK",
+   "figures": [
+    "D8_mest_F200",
+    "D8_mest_F500",
+    "D8_mest_F1000",
+    "D8_mest_F1500",
+    "D8_mest_S500"
+   ]
+  },
+  "D9": {
+   "desc": "detector-level vs truth edges",
+   "status": "OK",
+   "figures": [
+    "D9_edges_det_vs_truth"
+   ]
+  },
+  "D10": {
+   "desc": "sep_IT^det calibration vs truth",
+   "status": "OK",
+   "figures": [
+    "D10_sepit_calibration"
+   ]
+  },
+  "D11": {
+   "desc": "event display (signal in PU 200 vs best PU fake)",
+   "status": "OK",
+   "figures": [
+    "D11_event_display"
+   ]
+  }
+ }
+}

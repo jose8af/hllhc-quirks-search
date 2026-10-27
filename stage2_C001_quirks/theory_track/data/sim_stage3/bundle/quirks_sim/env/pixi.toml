@@ -1,0 +1,10 @@
+[workspace]
+name = "quirks-sim-worker"
+channels = ["conda-forge"]
+platforms = ["win-64", "osx-arm64", "linux-64"]
+
+[dependencies]
+python = "3.12.*"
+numpy = "2.5.*"
+scipy = "*"
+numba = "0.68.*"

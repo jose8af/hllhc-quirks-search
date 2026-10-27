@@ -1,0 +1,27 @@
+1) Li et al. 2002.07503 Fig.4: local exponent of numerical thickness (mode-based, by eye)
+   Lambda 200->632 eV: d ~ Lambda^-1.93
+   Lambda 632->2000 eV: d ~ Lambda^-1.27
+   formula d at 2 keV, 100 GeV, 3.8 T = 0.28 um vs Li numerical mode ~15 um (x54)
+   m = 100 and 500 GeV histograms at Lambda0 coincide (mode 50-80 um): m_Q independence already visible
+
+2) Run-2+3 stopped-pair update (v3 S-8) vs existing FASER/D0 limit, per Lambda
+   Lambda[keV] FASER  D0   best_existing | B=0      B=10     B~80   (beats existing at low end?)
+       0.3      57     0      57        | B=0:yes B=10:yes B~80:yes
+       0.5      72     0      72        | B=0:yes B=10:yes B~80:yes
+       1.0     105     0     105        | B=0:yes B=10:yes B~80:yes
+       2.0     135     0     135        | B=0:yes B=10:yes B~80:yes
+       3.0     150     0     150        | B=0:yes B=10:yes B~80:partly
+       5.0     165     0     165        | B=0:yes B=10:yes B~80:partly
+      10.0     179   107     179        | B=0:yes B=10:partly B~80:partly
+      20.0     175   107     175        | B=0:yes B=10:partly B~80:partly
+      30.0     170   107     170        | B=0:yes B=10:partly B~80:partly
+      50.0     155   107     155        | B=0:yes B=10:yes B~80:partly
+     100.0      65   107     107        | B=0:yes B=10:yes B~80:yes
+   v3 Box A says FASER ~0.11-0.18 TeV 'across the range': true only for ~1-50 keV; 0.06-0.07 TeV at 0.3 and 100 keV.
+
+3) Finest-step Li/causal per gamma* (R2 outputs)
+   gamma*=1.05: step x0.0003, median 0.969, range 0.967-0.970; 5/5 events with equal hit counts; among them max|dhit| 0.43 mm, max|dn| 5 um, median ratio 0.969
+   gamma*=1.28: step x0.003, median 0.845, range 0.841-0.884; 5/5 events with equal hit counts; among them max|dhit| 0.12 mm, max|dn| 25 um, median ratio 0.845
+   gamma*=1.6: step x0.003, median 0.921, range 0.735-0.947; 4/5 events with equal hit counts; among them max|dhit| 1.00 mm, max|dn| 30 um, median ratio 0.831
+   gamma*=2.0: step x0.003, median 0.688, range 0.675-1.073; 4/5 events with equal hit counts; among them max|dhit| 0.23 mm, max|dn| 51 um, median ratio 0.683
+   gamma*=3.0: step x0.003, median 0.645, range 0.525-1.361; 0/5 events with equal hit counts

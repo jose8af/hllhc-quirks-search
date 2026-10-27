@@ -1,0 +1,32 @@
+1. **Cross sections.**
+   - LO σ (MG, hand-written UFO) vs App. A / TH §2.3 after α rescaling: -0.6…+0.2 % for E and Ẽ at 200/500/1000 GeV; FeynRules vs hand-written UFO +0.12 % (E), -0.11 % (Ẽ). **VERIFIED** (two codes).
+   - σ_norm = N_IC × K_WG × LO(α = 1/127.9) reproduces the TH §2.3 table to -0.36…+0.15 % at the 9 table masses in 200-1200 GeV. This checks the LO part and the K interpolation only: K itself is transcribed from TH (**UNVERIFIED** for E and Ẽ alike). K beyond 1200 GeV is extrapolated (**ESTIMATE**, ±2 %).
+   - LO scale band (E LOPS, 9-point): +0.5/-0.8, +5.4/-4.9, +9.1/-7.9 % at 200/500/1000 GeV, as in TH (**VERIFIED**).
+   - EW scheme: the LO ratio α(M_Z)/Gμ is +6.9…+7.7 % (pure α rescaling) and +7.0…+9.8 % (consistent α(M_Z) scheme). This checks the α rescaling of the LO used in σ_norm; it is **not** the uncertainty of σ_norm, which inherits the WG scheme through K_WG. The yield nuisance is TH's **±5 %** (K transfer + scheme, ESTIMATE) (§1.3).
+   - Not in σ_norm: inelastic γγ (+4.0-4.2 %), Sommerfeld (+5-15 %), NLO EW (−few %, UNVERIFIED) (SAMPLES.md box).
+2. **Spectra vs the old generator (ESTIMATE: single generator each; measured differences).**
+   - Inclusive median of γ*−1: MG/old − 1 = -1.8…+0.9 % (criterion 2 %: PASS).
+   - Tail (pT > 200, |y| < 3.5): MG/old medians of γ*−1 1.005-1.065, of m(QQ̄) 1.001-1.027.
+3. **ISR tail and ℓ_max bias, S-13 (ESTIMATE: LO-MLM + Pythia CP5, single generator).**
+   - Fixed-pT ISR trick, like-for-like (|η| < 2.5 on both sides, (i') vs (iv)): median ℓ_max biased by -26 / -13 / -8 % (E) and -23 / -12 / -4 % (Ẽ) at 200/500/1000 GeV; N_osc by +26…+52 %.
+   - T2 §3 definition (no η cut on either side): ℓ_max -26…-4 %, N_osc +16…+29 %. The mixed comparison of the first draft (no η cut for (i), |η| < 2.5 for (iv)) gives N_osc -2.7…+14.8 %: no sign-definite bias at 1 TeV.
+   - The old T2 LO V*+jet generator: ℓ_max -4.0…+0.5 %, N_osc +0.4…+4.0 %.
+   - Uncertainty of the reference medians (stat ⊕ 9-pt scale ⊕ merging ⊕ Pythia shower ⊕ ME α_s): ℓ_max ±5.0…5.2 %, N_osc ±3.2…3.5 %, dominated by the (statistically limited) merging envelope. Not included: QED FSR off the quirks (item 9).
+4. **MLM (ESTIMATE: single generator).**
+   - DJR, plan metric (max deviation from a quadratic fit within ±0.1 decade of qCut; E-INC 200/500/1000, Ẽ-INC 500, V-MERGE 20/30 and 50/75): d01 2.5…9.5 %, d12 4.9…13.8 %. Above the plan's 10 %: E-INC_m500 d12 (11.7 %), V-MERGE-20_m500 d12 (11.6 %), V-MERGE-50_m500 d12 (13.8 %) (this metric mixes fit inadequacy with steps).
+   - DJR, local step test at qCut (two straight-line fits, §4.1): d01 -5.4…+6.9 %, d12 -15.8…+3.4 %; FAIL (> 10 %): V-MERGE-20_m500 d12 (-15.8 ± 2.8 %). All nominal (30/45) samples PASS.
+   - Merging-scale variation moves f(pT > 200) by -5.5…+3.7 %; 0-1j vs 0-2j +3.9 %.
+   - ME cut pT(QQ̄)_ME > 100 GeV misses 4.0…7.1 % of the matched tail; the generation cut itself closes (0.981-1.029). Trigger samples are **stitched** (TRGS = TRG ∪ INC[pT_ME < 100]) and **shuffled**; their INC rows carry 4-11× the TRG weight, so weights are mandatory (loader returns them; deterministic unweighting available).
+   - Mass-interpolation closure at 550 GeV (V-INTERP vs 500/600): σ_matched -0.9 ± 0.9 %, f(pT>200) -0.8 ± 2.1 %, tail median ℓ_max -4.2 ± 2.8 %, N_osc +0.3 ± 2.0 % (all |pull| < 2; precision limited by MC statistics).
+5. **Tune, MPI, shower and ISR-tail uncertainty (ESTIMATE).**
+   - CP5 → Monash (TRG, 500 GeV): f(pT>200) -0.0 %, γ* tail median +0.2 %, leading-jet pT -2.2 %; σ_matched -10.8 % (irrelevant: normalisation from K). MPI off: |shift| ≤ 2.0 % on pT(QQ̄), leading-jet pT, f(pT>200) and the γ*/N_osc tail medians.
+   - V-SHOWER (Pythia ISR+FSR μ_R × ½ / × 2, 500 GeV): f(pT>200) +1.3 / -1.6 ± 1.3 %, median ℓ_max +1.2 / -0.1 ± 2.4 %, q84(γ*−1) +1.2 / +0.6 % (all within 1.3σ of zero).
+   - ME emission α_s (MG `--alps` ×½ / ×2, E and Ẽ at 200/500/1000): f(pT>200) +11…+15 % / -11…-9 %; median ℓ_max -0.3…+0.1 %. The production 9-point (μ_R, μ_F) weights move f by only -2.3…+3.2 % (μ_F; they do not vary the emission α_s).
+   - **Tail-rate uncertainty of f(pT > 200) at LO-MLM: +12…+15 % / −11…−13 %** (ME α_s ⊕ merging envelope ⊕ Pythia shower, quadrature; largest at 200 GeV). LO+PS is 9-10 % below MLM. The **shape** (ℓ_max, γ* medians) is stable to ≈ ±5 % (item 3). No NLO (FxFx) point: DEFERRED.md.
+6. **Loader, interface and reproducibility (VERIFIED where stated).**
+   - `run_causal` on 4 × 500 MG events: 0 failures; plane-thickness medians 15.7-21.0 µm vs 18.3-20.9 µm with the old cache.
+   - First-N regression check on the stitched files (INC share of w and weighted median of ℓ_max in the first 500/2000/5000 events, weighted and unweighted, template/toy halves): PASS at all 4 points.
+   - Regeneration of the full Pythia record from the kept LHE + stored card/seed (row map columns): bit-for-bit in all kinematic columns for 2 test jobs (B-5).
+7. **Statistics.** Effective tail statistics N_eff (pT > 200, |η| < 2.5, Kish) of TRGS: 200 GeV 24.6k (5.0×), 300 GeV 10.2k (6.6×), 400 GeV 4.9k (7.9×), 500 GeV 14.1k (50.0×), 1000 GeV 15.5k (1277.5×) (× = ratio to the expected 3 ab⁻¹ signal after a Knapen-like ε = 0.18). 200/300 GeV were topped up for this.
+8. **Toolchain findings (VERIFIED).** MG 2.9.22 re-orders a tune given in its `pythia8_card` and `Tune:pp` resets PDF:pSet and the shower α_s (§8); our production runs Pythia itself. MG install: only the 13 Python bytecode files our runs created were removed and a dangling config comment was fixed (§8).
+9. **QED FSR off the quirks (plan D12) is NOT in the samples.** Pythia's `QEDshowerByOther` acts only on resonances and the SLHA DECAY block resets the flag. With the fix (`cards/pythia8_quirk_qedfsr.dat`, opt-in) 17 % of events radiate, P(E_γ > 5 GeV) = 2.0 %; the tail median of ℓ_max shifts by -1.1…-0.1 % (mean -0.8…-0.4 %). Bias of the delivered samples, not regenerated (full re-shower ≈ 15 CPU-h, beyond the remaining budget): decision for the orchestrator.

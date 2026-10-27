@@ -1,0 +1,33 @@
+{
+ "cand_id": "C005",
+ "xsec_sources": [
+  "1902.00134 Table 2: ggF 54.72 pb (14 TeV)",
+  "1902.00134 Table 4: VBF 4.260 pb",
+  "1902.00134 Tables 5,10: WH 1.498 pb, ZH 0.981 pb",
+  "1902.00134 Table 16: ttH 0.6128 pb",
+  "1902.00134 Tables 8,9,13: l+nuH 0.104, l-nuH 0.0666, llH 0.0331 pb per lepton flavour"
+ ],
+ "yield_estimate": "ESTIMATE: N_H ~1.9e8 (3000 fb-1) / 2.5e8 (4000 fb-1) from sigma_tot ~62.1 pb; BR(H->dark)=1e-3 gives ~1.9e5 produced. Lepton-tagged VH (e,mu): 0.407 pb -> ~1.2e3 events for BR=1e-3, ~120 after O(10%) acceptance (2512.24814 Sec V Fig 13). ggF via Run-3 displaced-jet trigger (eff 0.4-1%, 2409.10806 Sec 4, H->SS, UNVERIFIED for dark showers): ~750-1900 triggered events at BR=1e-3. HT>900 trigger keeps only 3.5e-3 of ggF (2307.04847).",
+ "backgrounds": "Heavy-flavour hadron decays (dominant in 2512.24814), K_S/Lambda, photon conversions and material interactions (same mass range as 2-5 GeV mesons), random track crossings growing with PU, Z/W+HF jets and ttbar in VH(l). >=2 DV + lepton is near background-free (2107.06092: 1.30+-0.08+-0.27 bkg, 0 obs); single-DV/ggF is background-limited (2409.10806: 3.34+-1.28 bkg).",
+ "trigger": "Run-3 CMS displaced-jet HLT (HT>430 GeV + 2 tagged jets; L1 HT>240+mu6) eff ~0.4-1% for H->SS (2409.10806). Phase-2 L1 tracks pT>2 GeV, but baseline is prompt-only (tight tracks die beyond a few mm, 1705.04321). Displaced L1 vertexing exists only as a simulation feasibility study (INSPIRE 2908980). Phase-2 L1 jet seeds at PU140: single 173, dijet 136, quad 72, HT 350 GeV, with a same-z-vertex requirement built from tracks with Lxy<1 cm (2003.03943 quoting L1 TDR); may be raised at PU200. VH(l) single/double-lepton triggers are robust.",
+ "pileup": "PU 140-200 raises random displaced-track crossings and dilutes prompt-veto variables (PU_dz, alpha3D). The 2512.24814 projection did not simulate PU. Size of the effect is UNVERIFIED for Phase-2.",
+ "detector_upgrades": "Help: CMS L1 track trigger (pT>2 GeV), MTD ~30 ps MIP timing for PU rejection (2003.03943), finer tracker granularity; ATLAS ITk/HGTD analogous. Limit: prompt-only baseline L1 tracking, higher L1 jet/HT thresholds at PU200, HLT displaced-tracking CPU cost.",
+ "systematics": "Signal: displaced-track/vertex reconstruction efficiency (dominant, 2107.06092 Sec 7), JES 5-10%, PU 1-8%, tagger modelling 4-14% (2409.10806 Table 2). Background: data-driven ABCD, 21% (2107.06092) to ~38% (2409.10806). Dark-shower hadronization modelling dominates the interpretation. 2512.24814 includes no systematics.",
+ "projection_docs": [
+  "2512.24814 (pheno, 3000 fb-1, BR down to O(1e-4) in tracker; no PU, LO bb bkg only, no systematics, optimistic dijet 70/40 GeV trigger)",
+  "2307.04847 (CMS EJ recast to Higgs portal, 3000 fb-1 statistics-only, BR~1%)",
+  "1902.00134 (indirect B_BSM 1-sigma 0.025, ATLAS+CMS S2)",
+  "1705.04321, 2003.03943 (L1 track-trigger LLP studies)"
+ ],
+ "hl_specific_advantage": "Phase-2 L1 track trigger (first hardware access to track multiplicity and displacement) and MTD timing. ~20-30x Run-2 Higgs statistics matters mainly in the background-free VH(l) >=2-DV channel, where reach scales ~L.",
+ "main_obstacle": "Triggering ggF/VBF Higgs->soft displaced dark showers at PU200: Run-3 displaced-jet triggers keep only ~0.4-1% of H->SS, and the needed L1 displaced-track/vertex seed is not baseline. Second: low-mass (2-5 GeV) DV backgrounds (K_S, material, B hadrons) prevent background-free counting.",
+ "feasibility_rating": 3,
+ "confidence": "medium",
+ "caveats": [
+  "Phase-2 L1 menu thresholds are secondary-sourced via 2003.03943; the TDR (CERN-LHCC-2020-004) could not be downloaded.",
+  "Run-3 displaced-jet trigger efficiency is for H->SS two-body decays; dark-shower efficiency UNVERIFIED.",
+  "Status and region of the ATLAS Higgs-portal dark-jet search (INSPIRE 3201494) not verified beyond the proceeding abstract.",
+  "Residual novelty is experimental implementation only (a pheno projection 2512.24814 exists).",
+  "Acceptance values (O(10%)) taken from a Delphes-level study without PU."
+ ]
+}

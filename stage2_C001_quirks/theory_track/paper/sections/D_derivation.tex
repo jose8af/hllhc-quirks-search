@@ -1,0 +1,479 @@
+\section{The near-miss mechanism step by step (full derivation of Section~\ref{sec:string})}\label{app:derivation}
+
+Section~\ref{sec:string} gives the results of the P1 theory in condensed form. This appendix gives every step, in the
+order in which the argument is built, so that it can be checked line by line. It follows the Stage-1 note
+\rep{analytic/NEAR_MISS_IMPULSE.md} (v5.1); each step names the sympy or numerical check that verifies it
+(\rep{analytic/checks/cNN_*.py}, with outputs next to them). Units are $\hbar=c=1$; the notation is that of
+Appendix~\ref{app:notation}. Table~\ref{tab:derivation_status} at the end lists which steps are derived, which are
+verified numerically and which are numerical only.
+
+\subsection{Equations of motion}\label{app:der:eom}
+The system is a classical Nambu--Goto (NG) string of tension $\sigma$ whose two ends carry point masses $\mQ$~\cite{Kang:2008ea}. Here the ends also carry
+charges $q_1=+q$, $q_2=-q$ and sit in a uniform constant external field:
+\begin{equation}
+  S=-\sigma\int d^2\xi\,\sqrt{-\det h_{ab}}\;-\;\sum_{i=1,2}\mQ\int d\tau_i\;+\;\sum_{i=1,2}q_i\int A_\mu\,dx_i^\mu ,
+  \label{eq:D:action}
+\end{equation}
+where $h_{ab}$ is the induced metric on the world sheet and $\tau_i$ the proper time of end $i$. Two consequences are
+used throughout.
+\begin{enumerate}
+\item \textbf{The string is neutral.} The field acts only on the ends. The string exchanges momentum and angular momentum
+  with the ends but conserves the totals, so the total momentum and the total angular momentum (ends plus string) change
+  only through the Lorentz forces on the ends.
+\item \textbf{Bulk and boundary.} For a string lying along $x$ with a small transverse displacement $y(t,x)$, the static
+  gauge $X^\mu=(t,x,y(t,x))$ gives the Lagrangian density $-\sigma\sqrt{1+y_x^2-y_t^2}\simeq-\sigma+\tfrac{\sigma}{2}(y_t^2-y_x^2)$.
+  So $y$ obeys the wave equation $y_{tt}=y_{xx}$ and the string carries the transverse momentum density $\sigma y_t$.
+  The force that the string exerts on an end follows from momentum balance (Section~\ref{app:der:wedge}). For a straight
+  string whose end moves along it, the force is $-\sigma\hat s$, of magnitude $\sigma$ and directed toward the other end.
+\end{enumerate}
+The infracolour gauge group enters only through $\sigma=\Lam^2$. All results below therefore hold for any $N_{\rm IC}$
+and representation once $\sigma$ is fixed.
+
+\subsection{From the lab solenoid to the pair rest frame}\label{app:der:frame}
+In the lab there is only a magnetic field $\mathbf B=B\hat z$. Let $\boldsymbol\beta_{\rm cm}$ be the initial velocity of
+the pair and $\gamma_{\rm cm}$ its Lorentz factor. The standard field transformation (e.g.\ Jackson, Sec.~11.10) gives,
+in the frame moving with $\boldsymbol\beta_{\rm cm}$ (``CM frame''),
+\begin{equation}
+  \Estar=\gamma_{\rm cm}\,\boldsymbol\beta_{\rm cm}\times\mathbf B,\qquad
+  \Bstar=\gamma_{\rm cm}\mathbf B-(\gamma_{\rm cm}-1)(\mathbf B\cdot\hat\beta_{\rm cm})\,\hat\beta_{\rm cm}.
+  \label{eq:D:fields}
+\end{equation}
+Both fields are uniform and constant, and $|\Estar|=\gamma_{\rm cm}\beta_T B$, with $\beta_T$ the component of
+$\boldsymbol\beta_{\rm cm}$ transverse to $\hat z$. The action~\eqref{eq:D:action} is Lorentz invariant. One can therefore
+solve the problem in the CM frame and boost the hits back to the lab, and no simultaneity convention enters. In the CM
+frame the two ends start at the origin with momenta $\pm p^*\hat n$. Here $\hat n$ is the direction of end~1 (charge $+q$)
+and $p^*=\mQ\rho$ with $\rho\equiv\gst\bst$. The pair invariant mass is $M=2\mQ\gst$, so
+\begin{equation}
+  \gamma_{\rm cm}\beta_T=\frac{p_T}{M}=\frac{p_T}{2\mQ\gst}.
+  \label{eq:D:gbT}
+\end{equation}
+Split $\Estar$ into its components along $\hat n$ and perpendicular to it, $\Estar_\perp=|\Estar_\perp|\hat e_\perp$,
+and let $\alpha$ be the angle between $\Estar$ and $\hat n$. The dimensionless field strengths of Eq.~\eqref{eq:eps} are
+then
+\begin{equation}
+  \epsB=\frac{qB}{\sigma},\qquad
+  \epsp=\frac{q|\Estar_\perp|}{\sigma}=\epsB\,\gamma_{\rm cm}\beta_T\sin\alpha,\qquad
+  \kB=\frac{|\Bstar_\perp|}{|\Estar_\perp|}.
+  \label{eq:D:eps}
+\end{equation}
+With $qB=2.998\times10^{-3}\GeV/\mathrm{cm}$ per tesla and $\sigma=50.68\GeV/\mathrm{cm}\,(\Lam/\keV)^2$, one gets
+$\epsB=2.254\times10^{-4}$ at $3.8112\tesla$ and $1\keV$. Typical events have $\epsp\sim10^{-5}$--$10^{-4}$ at $1\keV$,
+so the field is a very weak perturbation of the string force.
+
+\subsection{The vacuum yo-yo (zeroth order)}\label{app:der:yoyo}
+\paragraph{Solution.} Without fields the string stays straight along $\hat n$ and each end moves along it. The force on
+each end is therefore exactly $\sigma$, directed toward the other end~\cite[Sec.~3]{Kang:2008ea}. For end~1,
+$dp_1/dt=-\sigma$, so $p_1(t)=p^*-\sigma t$ and
+\begin{equation}
+  x_1(t)=\int_0^t\frac{p_1\,dt'}{\sqrt{\mQ^2+p_1^2}}=\frac{1}{\sigma}\Bigl[\sqrt{\mQ^2+p^{*2}}-\sqrt{\mQ^2+(p^*-\sigma t)^2}\Bigr].
+\end{equation}
+The separation $x=x_1-x_2=2x_1$ is therefore~\cite{Kang:2008ea} (check \rep{c01} (1))
+\begin{equation}
+  x(t)=2\lzero\Bigl[\gst-\sqrt{1+(\rho-t/\lzero)^2}\Bigr],\qquad 0\le t\le T_h=\frac{2p^*}{\sigma}=2\rho\lzero,
+  \qquad \lzero=\frac{\mQ}{\sigma}.
+  \label{eq:D:x}
+\end{equation}
+It vanishes at $t=0$ and $t=T_h$, reaches $\lmax=2(\gst-1)\lzero$ at $t=\rho\lzero$, and the ends pass each other at
+speed $\bst$. At $t=T_h$ the ends pass \emph{through} each other, and the next half-period is the mirror image,
+$x(t+T_h)=-x(t)$. The full CM period is $2T_h=4p^*/\sigma$. We number the crossings $j=1,2,\ldots$: odd $j$ at
+$t=T_h,3T_h,\ldots$, even $j$ at $t=2T_h,4T_h,\ldots$ (production is the crossing $j=0$).
+
+\paragraph{Zero-length string at the crossings.} The world sheet is a chain of flat ``lenses'' bounded by the two end
+world lines, which touch at the crossings. At a crossing the string has zero length, and hence zero energy, momentum and
+angular momentum. The whole state is given by the two end momenta at a common point.
+
+\paragraph{Half-period integral.} The torque in Section~\ref{app:der:torque} needs $I\equiv\int_0^{T_h}x\,dt$.
+Substitute $u=\rho-t/\lzero$ and use $\sqrt{1+\rho^2}=\gst$ (check \rep{c01} (2)):
+\begin{equation}
+  I=2\lzero^2\int_{-\rho}^{\rho}\bigl[\gst-\sqrt{1+u^2}\bigr]du
+   =2\lzero^2\Bigl[2\rho\gst-\bigl(\rho\sqrt{1+\rho^2}+\operatorname{asinh}\rho\bigr)\Bigr]
+   =2\lzero^2\bigl[\gst\rho-\operatorname{asinh}\rho\bigr].
+  \label{eq:D:I}
+\end{equation}
+
+\paragraph{Rigid-rotation lemma.} \emph{A transverse momentum $\Delta p_\perp$ given to the relative motion around a crossing
+rotates the whole later motion rigidly by $\delta=\Delta p_\perp/p^*$.} Proof: at a crossing the string has zero length
+(previous paragraph), so the state is two point momenta at one point. Without fields the equations are rotation
+invariant, so the rotated initial state evolves into the rotated vacuum solution. A kick changes the momenta from
+$\pm p^*\hat n$ to $\pm(p^*\hat n+\Delta p_\perp\hat e)$, which equals $\pm p^*(\hat n+\delta\hat e)$ up to a change of
+magnitude of $O(\delta^2)$. The subsequent motion is the yo-yo along the axis $\hat n+\delta\hat e$. In other words, the
+axis direction is a zero mode of the yo-yo. Anything that happens in a short window around a crossing acts on the
+long-time motion only through this zero mode.
+
+\subsection{Torque, angular momentum and the miss distance}\label{app:der:torque}
+\paragraph{Torque law.} Let $\mathbf J=\sum_i\mathbf x_i\times\mathbf p_i+\mathbf J_{\rm string}$ be the total angular
+momentum about the CM. By item~1 of Section~\ref{app:der:eom} it changes only through the Lorentz forces on the ends:
+\begin{equation}
+  \frac{d\mathbf J}{dt}=\sum_i\mathbf x_i\times q_i\bigl(\Estar+\mathbf v_i\times\Bstar\bigr).
+\end{equation}
+To first order in the field, evaluate the right-hand side on the yo-yo, where $\mathbf x_2=-\mathbf x_1$,
+$\mathbf v_2=-\mathbf v_1$ and $q_2=-q_1$. The magnetic terms cancel exactly:
+$\mathbf x_1\times q(\mathbf v_1\times\Bstar)+(-\mathbf x_1)\times(-q)\bigl((-\mathbf v_1)\times\Bstar\bigr)=0$. Their
+contribution to the relative force, $(\mathbf F_1-\mathbf F_2)/2$, also vanishes (check \rep{c01} (4)). The electric term
+gives
+\begin{equation}
+  \frac{d\mathbf J}{dt}=q(\mathbf x_1-\mathbf x_2)\times\Estar=q\,x(t)\,\hat n\times\Estar
+  =q|\Estar_\perp|\,x(t)\,\hat n\times\hat e_\perp .
+  \label{eq:D:torque}
+\end{equation}
+Only $\Estar_\perp$ produces a torque, and in linear response $\Bstar$ does nothing to the relative motion. The
+symmetry reason is that under inversion through the CM combined with exchange of the ends, the $\Estar$ force is even
+and the $\Bstar$ force is odd.
+
+\paragraph{The alternating pattern.} Integrating Eq.~\eqref{eq:D:torque} over the first half-period gives
+$\mathbf J(T_h)=q|\Estar_\perp|\,I\,\hat n\times\hat e_\perp$. Over the second half-period $x$ changes sign, so
+$\mathbf J(2T_h)=0$. The angular momentum is therefore zero at production and at every even crossing, and equal to
+$\mathbf J_{\rm odd}=q|\Estar_\perp|I\,\hat n\times\hat e_\perp$ at every odd crossing (Li et al.'s ``meet at
+$g=2n$''~\cite[Eqs.~(A.4)--(A.5)]{Li:2020aoq}, here with the value at the odd crossings).
+
+\paragraph{Miss distance.} At an odd crossing the string has zero length, so $\mathbf J$ is carried by the ends. If they
+pass at transverse offsets $\pm(b/2)\hat s$ with momenta $\mp p^*\hat n$ (end~1 is now moving back),
+$\mathbf J=\tfrac b2\hat s\times(-p^*\hat n)+(-\tfrac b2\hat s)\times(p^*\hat n)=b\,p^*\,\hat n\times\hat s$. Comparing
+with $\mathbf J_{\rm odd}$ gives $\hat s=\hat e_\perp$: the positive end passes on the $+\Estar_\perp$ side, as
+expected. The miss distance is $b=J/p^*$. With Eq.~\eqref{eq:D:I}, $p^*=\mQ\rho$ and $\lzero^2/\mQ=\lzero/\sigma$
+(check \rep{c01} (3)):
+\begin{equation}
+  \bodd=\frac{q|\Estar_\perp|\,2\lzero^2(\gst\rho-\operatorname{asinh}\rho)}{\mQ\rho}
+  =2\epsp\lzero\Bigl[\gst-\frac{\operatorname{asinh}\rho}{\rho}\Bigr],\qquad
+  \frac{\bodd}{\epsp\lmax}=\frac{\gst-\operatorname{asinh}\rho/\rho}{\gst-1}.
+  \label{eq:D:bodd}
+\end{equation}
+This is Eq.~\eqref{eq:bodd}. For slow ends, $\gst\simeq1+\rho^2/2$ and $\operatorname{asinh}\rho/\rho\simeq1-\rho^2/6$,
+so $\gst-\operatorname{asinh}\rho/\rho\simeq\tfrac23\rho^2$ and $\bodd\to\tfrac43\epsp\lzero{\bst}^2$, i.e.\
+$\bodd/(\epsp\lmax)\to4/3$. The ratio is 1.327/1.298/1.240/1.188 at $\gst=1.05/1.3/2/3$. The causal solver reproduces it to $10^{-4}$
+(check \rep{c03}); two solvers (causal and conformal) agree with it to $\le10^{-3}$ (Table~\ref{tab:numerics}). Even crossings have $b=0$ at this order. At $500\GeV$, $1\keV$ a
+typical event has $\epsp\approx5\times10^{-5}$ and $\lmax\approx4.5\cm$, so $\bodd\approx3\um$, against a median of
+$\approx3.5\um\,(\keV/\Lam)^4$ over the sample (the $\Lam^{-4}$ comes from $\epsp\propto\Lam^{-2}$ and $\lzero\propto\Lam^{-2}$).
+
+\subsection{Linear response and where it fails}\label{app:der:linear}
+The failure is easiest to see for a straight string with slow ends. Let $\mathbf r=\mathbf x_1-\mathbf x_2=x\hat
+n+z\hat e_\perp$, with reduced mass $\mu=\mQ/2$. Each end is pulled toward the other with force $\sigma$, so
+$\mu\ddot{\mathbf r}=-\sigma\hat{\mathbf r}+q\Estar$. Its transverse component, to first order in $z$, is
+\begin{equation}
+  \mu\ddot z=-\sigma\frac{z}{|x(t)|}+q|\Estar_\perp| .
+  \label{eq:D:zlin}
+\end{equation}
+Three exact properties follow (the third is used in check \rep{c05}).
+\begin{enumerate}
+\item $z=\theta_0x(t)$ solves the homogeneous equation, because $\mu\ddot x=-\sigma\,{\rm sgn}\,x$. This is the
+  rotation zero mode.
+\item The Wronskian $W=\mu(x\dot z-z\dot x)$, which is the angular momentum $J$, obeys
+  $\dot W=\mu(x\ddot z-z\ddot x)=q|\Estar_\perp|\,x$, i.e.\ the torque law~\eqref{eq:D:torque}.
+\item The angle $\theta=z/x$ of the relative vector to the original axis obeys $\dot\theta=J/(\mu x^2)$.
+\end{enumerate}
+Near a crossing at time $s=0$ the separation is $|x|\simeq2v|s|$ (each end moves with $v=\bst$), so the coefficient
+$\sigma/|x|\propto1/|s|$ makes $s=0$ a regular singular point of Eq.~\eqref{eq:D:zlin}. Let $z_c$ be the offset at the
+crossing. Integrating through it, $\mu\Delta\dot z\simeq-\int\sigma z_c\,ds/(2v|s|)$ diverges logarithmically unless
+$z_c=0$. Thus $z$ stays continuous but $\dot z$ has a $\ln|s|$ singularity.
+\begin{itemize}
+\item At production and at even crossings, $z_c=J/p^*=0$. The linear solution is regular, and first-order perturbation
+  theory is exact there. Numerically, the response before the first crossing is linear in $B$ to $10^{-4}$.
+\item At odd crossings, $z_c=\bodd\ne0$. The linear equation then has no unique continuation through the crossing. The
+  outcome is set by a region $|x|\lesssim\bodd$ in which the small-angle assumption $|z|\ll|x|$ fails, and the impulse
+  is $\propto\bodd\ln(1/\bodd)$, which is not linear in the field.
+\end{itemize}
+So first-order perturbation theory fails at every odd crossing and only there. Physically, the odd crossing is a
+particle passing a constant-magnitude central force at impact parameter $\bodd$. The logarithm of the deflection is
+elementary orbit mechanics (Section~\ref{app:der:nr}); what is specific to quirks is where it occurs and how large $b$ is.
+Li et al.\ noted that the first-order solution fails on the approach to the crossing~\cite[App.~A]{Li:2020aoq}.
+
+\subsection{The intermediate region: an exact NG solution with retardation}\label{app:der:wedge}
+Use the time $s$ from the odd crossing and look at the region $\bodd\ll|x|\ll\lmax$, i.e.\ $|s|\ll T_h$. There:
+\begin{itemize}
+\item the ends move with nearly constant velocities $\pm v$, $v=\bst$, at $x=\pm vs$ (the deceleration changes $v$ by
+  $O(\sigma|s|/p^*)$);
+\item the whole string between them has length $2v|s|$ and energy $2\sigma v|s|\ll\mQ\gst$, so it is light and slaved to
+  the motion of its ends;
+\item in static gauge the unperturbed world sheet is the flat wedge $|x|<v|s|$, and the transverse displacement obeys
+  $y_{ss}=y_{xx}$ there (Section~\ref{app:der:eom});
+\item the ends are offset by $\pm b/2$, with $b=\bodd$: $y(s,\pm vs)=\pm b/2$.
+\end{itemize}
+
+\paragraph{Solution.} Apart from $b$, which only sets the amplitude, the problem has no scale. Try a self-similar
+solution $y=f(u)$ with $u=x/s$. Then $y_{xx}=f''/s^2$ and $y_{ss}=(u^2f''+2uf')/s^2$, and the wave equation becomes
+$(1-u^2)f''=2uf'$. Hence $f'\propto1/(1-u^2)$ and $f\propto\operatorname{artanh}u$. The boundary values fix the
+constant (check \rep{c02} (2)):
+\begin{equation}
+  y(s,x)=\frac b2\,\frac{\operatorname{artanh}(x/s)}{\operatorname{artanh}v}.
+  \label{eq:D:wedge}
+\end{equation}
+The string is curved: it is not the straight line between the ends.
+
+\paragraph{Force on the ends.} The transverse momentum of the string between $X_L(s)$ and $X_R(s)$ is
+$P=\int_{X_L}^{X_R}\sigma y_s\,dx$. By Leibniz' rule and $y_{ss}=y_{xx}$,
+\begin{equation}
+  \frac{dP}{ds}=\sigma\bigl[y_x+V y_s\bigr]_{X_L}^{X_R},\qquad V=\dot X .
+\end{equation}
+Apply this balance to a short piece of string adjacent to the right end: the momentum that flows through the moving
+boundary $X_R$ is taken up by that end, since the total transverse momentum of end plus string changes only through the
+external force (Section~\ref{app:der:eom}). So the right end receives
+$dp_R/ds=-\sigma(y_x+Vy_s)|_{X_R}$, and the left end the opposite with $X_L$ (check \rep{c02} (1)). At $x=vs$,
+Eq.~\eqref{eq:D:wedge} gives $y_x=C/[s(1-v^2)]$ and $y_s=-Cv/[s(1-v^2)]$ with $C=b/(2\operatorname{artanh}v)$, so
+$y_x+vy_s=C/s$ and (check \rep{c02} (3))
+\begin{equation}
+  F_\perp=\mp\frac{\sigma b}{2|s|\operatorname{artanh}v}.
+  \label{eq:D:Fperp}
+\end{equation}
+Each end is pulled toward the side of the other end, with the same sign before and after the crossing. Three remarks:
+\begin{itemize}
+\item For $v\to0$, Eq.~\eqref{eq:D:Fperp} becomes $\sigma b/(2v|s|)$: the tension times the slope $b/(2v|s|)$ of a
+  straight string between the ends, i.e.\ the quasi-static value (check \rep{c02} (4)). The factor
+  $v/\operatorname{artanh}v=0.97/0.85/0.66/0.53$ at $\gst=1.05/1.28/2/3$ is the retardation effect: the string cannot
+  follow the ends instantaneously. The Kang--Luty straight-string force gives instead $\sigma b(1-v^2)/(2v|s|)$ (check
+  \rep{c02} (5); Table in \rep{NEAR_MISS} \S4.4).
+\item A relative transverse velocity of the ends gives an $s$-independent force, and the free log-periodic string modes
+  give convergent impulses (check \rep{c02} (6)). Only the offset $b$ produces a $1/|s|$ force.
+\item The approximations fail at $|x|\gtrsim\lmax$, where the ends decelerate, and at $|x|\lesssim\bodd{\gst}^2/\operatorname{artanh}\bst$,
+  where the offset is no longer small compared with the separation. These two scales cut off the logarithm.
+\end{itemize}
+
+\paragraph{Impulse and rotation.} Integrated over the intermediate region on both sides of the crossing, each end
+receives $\int\sigma b\,ds/(2|s|\operatorname{artanh}v)=(\sigma b/\operatorname{artanh}v)\ln(s_{\rm out}/s_{\rm in})$
+(check \rep{c02} (7)). The relative transverse momentum $p_{{\rm rel},\perp}=(p_{1\perp}-p_{2\perp})/2$ changes by
+\begin{equation}
+  \Delta p_{{\rm rel},\perp}=-\frac{\sigma\bodd}{\operatorname{artanh}\bst}\Bigl[\ln\frac{\lmax}{\bodd}+O(1)\Bigr]\hat e_\perp .
+  \label{eq:D:dprel}
+\end{equation}
+This momentum is acquired logarithmically, mostly at $|x|\ll\lmax$: about 85\% of the logarithm is collected within
+$|s|\lesssim0.05\,T_h$, where $x\lesssim0.2\,\lmax$ and the string is short and light. By the rigid-rotation lemma it
+therefore rotates the axis by $\delta=|\Delta p_{{\rm rel},\perp}|/p^*$; the remainder from the finite string length is
+$O(1)$ and is part of $K$, which the matched calculation of Section~\ref{app:der:nr} treats exactly. The sign works as
+follows. End~1 passes on the $+\hat e_\perp$ side and is pulled toward $-\hat e_\perp$ while it moves along $-\hat n$, so
+after the crossing it heads along $-(\hat n+\delta\hat e_\perp)$. The axis, as a line, turns from $\hat n$ toward
+$+\hat e_\perp$, i.e.\ toward $+\Estar_\perp$. Inserting $\bodd$ from Eq.~\eqref{eq:D:bodd} and $p^*=\mQ\rho=\sigma\lzero\rho$:
+\begin{equation}
+  \frac{\sigma\bodd}{p^*\operatorname{artanh}\bst}
+  =\frac{2\epsp\bigl[\gst-\operatorname{asinh}\rho/\rho\bigr]}{\rho\operatorname{artanh}\bst}
+  \equiv\epsp\,G(\gst),
+  \label{eq:D:G}
+\end{equation}
+which is the coefficient of the logarithm in Eq.~\eqref{eq:rot}. For slow ends, $\gst-\operatorname{asinh}\rho/\rho\simeq\tfrac23\rho^2$ and $\operatorname{artanh}\bst\simeq\rho$, so $G\to\tfrac43$. In
+exact-NG numerics the slope of $\rot/\epsp$ against $\ln(1/\epsp)$ equals $G$ to $\le0.03\%$ (check \rep{c03}) and
+to 0.1--0.2\% in the two-solver campaign (\rep{NEAR_MISS} \S9.1). A quasi-static string ($1/\bst$ instead of
+$1/\operatorname{artanh}\bst$) would give a slope 1.03--1.87 times larger.
+
+\paragraph{No logarithm in the momentum at the turning points.} The logarithm ends up in the \emph{direction} of the
+axis, not in a lasting transverse momentum. At the next turning point only $J$ survives, and the transverse momentum
+measured from turning point to turning point has no logarithm: $\Delta\Pi/(\sigma b/\bst)=\rho\bst/[(\gst-1)(1+(\gst-1)/3)]$,
+measured 1.92/1.61/1.15/0.79 against the predicted 1.920/1.608/1.125/0.800 at $\gst=1.05/1.3/2/3$ (\rep{NEAR_MISS} \S3.4).
+This check is for a vacuum near miss at fixed $J=bp^*$, and the formula is post hoc, from
+$p_\perp=J/[\ell(1+\sigma\ell/6\mQ)]$ for a rigidly rotating straight string at the turning point.
+
+\subsection{The constant: matched asymptotics for slow ends}\label{app:der:nr}
+The constant $K$ in $\rot=\epsp G[\ln(\lmax/\bodd)+K]$ needs the region that the intermediate analysis leaves out. For
+slow ends it can be computed in closed form by matching an outer and an inner solution (check \rep{c05}). The units are
+$\mu=\sigma=1$, so $\mQ=2$, the relative speed at a crossing is $v_0=2\bst$, $p^*=v_0$, and $\epsilon=q|\Estar_\perp|$
+in these units equals $\epsp$.
+
+\paragraph{Setup.} Over one period, measured from an even crossing at $t=0$, the separation and the angular momentum
+are
+\begin{equation}
+  x(t)=t\Bigl(v_0-\frac t2\Bigr),\qquad J(t)=\epsilon\int_0^tx\,dt'=\epsilon\Bigl(\frac{v_0t^2}{2}-\frac{t^3}{6}\Bigr),
+  \qquad 0\le t\le2v_0,
+\end{equation}
+mirrored on $2v_0\le t\le4v_0$. Here $\lmax=v_0^2/2$, $J_1=J(2v_0)=\tfrac23\epsilon v_0^3$ and
+$b=J_1/v_0=\tfrac23\epsilon v_0^2$. Choose a matching radius $R_m$ with $b\ll R_m\ll\lmax$. The axis is a line. At the
+even crossing the relative vector passes through zero head-on ($J=0$) and the angle $\theta=z/x$ is continuous. At the
+odd crossing the relative vector swings around the other end by $\approx\pi$, of which $\pi$ is the trivial reversal.
+So the rotation of the axis per period is
+\begin{equation}
+  \rot=I_{\rm out}(R_m)+\Delta\varphi_{\rm in}(R_m)-\pi .
+\end{equation}
+
+\paragraph{Outer region ($|x|>R_m$).} Here $\dot\theta=J/x^2$ (item~3 of Section~\ref{app:der:linear}). The integrand
+simplifies to
+\begin{equation}
+  \frac{J}{x^2}=\frac{\epsilon(v_0/2-t/6)}{(v_0-t/2)^2}=\frac{2\epsilon}{3}\,\frac{v_0+w}{w^2},\qquad w\equiv2v_0-t .
+\end{equation}
+It is regular at the even crossing ($t\to0$) and has the $1/w^2$ and $1/w$ singularities at the odd one. Stop the
+integral at $w=\delta$, where $|x|=R_m$, and double it for the mirror half:
+\begin{equation}
+  I_{\rm out}=2\cdot\frac{2\epsilon}{3}\int_\delta^{2v_0}\Bigl(\frac{v_0}{w^2}+\frac1w\Bigr)dw
+  =\frac{4\epsilon}{3}\Bigl[\frac{v_0}{\delta}-\frac12+\ln\frac{2v_0}{\delta}\Bigr].
+\end{equation}
+With $R_m=\delta(v_0-\delta/2)$, i.e.\ $v_0/\delta=v_0^2/R_m-\tfrac12+O(R_m)$ and $\ln(2v_0/\delta)=\ln(2v_0^2/R_m)+O(R_m)$, and
+with $\tfrac43\epsilon=2b/v_0^2$:
+\begin{equation}
+  I_{\rm out}(R_m)=\frac{2b}{R_m}+\frac{2b}{v_0^2}\Bigl[\ln\frac{2v_0^2}{R_m}-1\Bigr]+O\!\Bigl(\frac{R_m}{v_0^2}\Bigr).
+  \label{eq:D:Iout}
+\end{equation}
+The $1/w$ term, and hence the logarithm, comes from the deceleration of the relative motion: $x$ is not linear in $w$.
+
+\paragraph{Inner region ($r<R_m$).} Here the field is negligible: it changes $J$ by a fraction $O(R_m^2/v_0^4)$. The
+motion is therefore a passage through the central potential $V=\sigma r=r$ at fixed $J=J_1$ and energy $v_0^2/2$, with
+$V\ll v_0^2$. The angle swept between entering and leaving radius $R_m$ follows from the radial action, as in the
+standard treatment of orbit precession (Landau--Lifshitz, \emph{Mechanics}, \S\S14--15):
+\begin{equation}
+  \Delta\varphi_{\rm in}=-\frac{\partial S_r}{\partial J},\qquad
+  S_r=2\int_{r_{\min}}^{R_m}p_r\,dr,\qquad p_r=\sqrt{v_0^2-2r-J^2/r^2}.
+\end{equation}
+At zeroth order in $V$, $p_r=\sqrt{v_0^2-J^2/r^2}$ and $\Delta\varphi_0=\pi-2\arcsin(b/R_m)\simeq\pi-2b/R_m$, which is a
+straight line at impact parameter $b$. At first order, $p_r\simeq\sqrt{v_0^2-J^2/r^2}-r/\sqrt{v_0^2-J^2/r^2}$, so
+\begin{equation}
+  S_1=-\frac{2}{v_0}\int_b^{R_m}\frac{r^2\,dr}{\sqrt{r^2-b^2}}
+     =-\frac{1}{v_0}\Bigl[R_m\sqrt{R_m^2-b^2}+b^2\ln\frac{R_m+\sqrt{R_m^2-b^2}}{b}\Bigr]
+     \simeq-\frac{1}{v_0}\Bigl[R_m^2-\frac{b^2}{2}+b^2\ln\frac{2R_m}{b}\Bigr].
+\end{equation}
+Since $J=bv_0$, $\Delta\varphi_1=-(1/v_0)\,\partial S_1/\partial b$, and
+\begin{equation}
+  \Delta\varphi_{\rm in}(R_m)=\pi-\frac{2b}{R_m}+\frac{2b}{v_0^2}\Bigl[\ln\frac{2R_m}{b}-1\Bigr].
+  \label{eq:D:inner}
+\end{equation}
+
+\paragraph{Matching.} In the sum the $2b/R_m$ terms cancel and $R_m$ drops out, as it must:
+\begin{equation}
+  \rot_{\rm NR}=\frac{2b}{v_0^2}\Bigl[\ln\frac{4v_0^2}{b}-2\Bigr]
+  =\frac43\epsp\Bigl[\ln\frac{6}{\epsp}-2\Bigr]
+  =\frac43\epsp\Bigl[\ln\frac{\lmax}{\bodd}+3\ln2-2\Bigr],
+  \label{eq:D:rotNR}
+\end{equation}
+using $4v_0^2/b=6/\epsp$ and $\lmax/b=3/(4\epsp)$. This is Eq.~\eqref{eq:rotNR}, with $K(1)=3\ln2-2=0.0794$. Two
+consistency checks:
+\begin{itemize}
+\item The log coefficient $2b/v_0^2$ equals $\sigma b/(p^*\bst)$ (with $p^*=v_0$, $\bst=v_0/2$). This is the slow-end
+  limit of the intermediate-region result~\eqref{eq:D:dprel}, obtained here by a different route.
+\item The same calculation with constant $J$ and no field gives the vacuum rotation per crossing,
+  $\psi=(b/\lmax)[\ln(\lmax/b)+3\ln2-2]$ (check \rep{c09}). This is measured as $K_{\rm vac}=0.0791\pm0.0003$.
+\end{itemize}
+The split between the two crossings is $\psi_{\rm even}=\tfrac23+\tfrac43\ln2=1.591$ (in units of $\epsp$; a smooth
+torque rotation with no logarithm) and $\psi_{\rm odd}=\tfrac43[\ln(1/\epsp)+\ln3-\tfrac52]$. The two-solver numerics give
+1.606 and $1.318\ln(1/\epsp)-1.91$ at $\gst=1.05$ (\rep{NUMERICS.md} M2b; compared in check \rep{c09}).
+
+\paragraph{Relativistic constant.} For relativistic ends the inner problem is the full NG string around a near miss,
+which was not solved analytically. $K(\gst)$ is obtained numerically: an exact causal string with the pair at rest in a
+pure $\Estar\perp\hat n$ field, $\epsp=10^{-6}$--$10^{-3}$, axis read from the apocentres, and $G$ fixed to
+Eq.~\eqref{eq:D:G}. The result is $K=+0.056/-0.049/-0.175/-0.309/-0.569$ at $\gst=1.05/1.28/1.6/2/3$, with a second
+solver agreeing at $\gst=1.3$ and 2 (\EST{}).
+
+\subsection{Accumulation and the thickness law}\label{app:der:law}
+\paragraph{Coherence.} $\mathbf J_{\rm odd}$ points the same way in every period, because $\hat n$ and $\hat e_\perp$
+change only by $O(\Theta)$. Every odd-crossing rotation therefore turns the axis toward $+\Estar_\perp$, and after
+$N_{\rm odd}$ odd crossings $\Theta=N_{\rm odd}\rot$. There is no random walk. In the tracker $\Theta\lesssim10^{-2}$,
+so the rotations add linearly.
+
+\paragraph{Projection on the hit plane.} In the vacuum the hits lie on the plane through the vertex spanned by
+$\hat\beta_{\rm cm}$ and $\hat n$, with normal $\hat N\propto\hat n\times\hat\beta_{\rm cm}$. A boost along
+$\hat\beta_{\rm cm}$ leaves components perpendicular to $\hat\beta_{\rm cm}$ unchanged, so the CM and lab planes have
+the same $\hat N$. Only the part of the rotation along $\hat N$ moves hits out of the plane. Its share is
+$f_N=|\hat e_\perp\cdot\hat N|$. Since $\hat n\cdot\hat N=0$, one has $f_N\sin\alpha=|\hat E^*\cdot\hat N|$: the
+out-of-plane rotation is driven by the out-of-plane component of the CM electric field,
+\begin{equation}
+  f_N\rot=\epsB\,\gamma_{\rm cm}\beta_T\,|\hat E^*\cdot\hat N|\,G(\gst)\Bigl[\ln\frac{\lmax}{\bodd}+K\Bigr].
+  \label{eq:D:fNrot}
+\end{equation}
+For a transverse pair ($\hat\beta_{\rm cm}=\hat x$, $\mathbf B=B\hat z$, $\hat n=(\cos\theta^*,\sin\theta^*\cos\phi^*,
+\sin\theta^*\sin\phi^*)$) one has $\hat E^*=-\hat y$ and $\hat N=(0,\sin\phi^*,-\cos\phi^*)$. Hence $\sin\alpha=
+\sqrt{1-\sin^2\theta^*\cos^2\phi^*}$ and $|\hat E^*\cdot\hat N|=|\sin\phi^*|$. Pairs whose axis lies in the bending plane
+($\phi^*=0$) rotate within their own plane and acquire almost no thickness. This angle drives most of the
+event-to-event spread of $\DsB$.
+
+\paragraph{Number of periods.} The pair reaches lab radius $R$ at lab time $R/\beta_T$, i.e.\ CM time
+$R/(\gamma_{\rm cm}\beta_T)$. The number of CM periods, and hence of odd crossings, is, with Eq.~\eqref{eq:D:gbT},
+\begin{equation}
+  N_{\rm odd}(R)\simeq\frac{R}{\gamma_{\rm cm}\beta_T}\cdot\frac{\sigma}{4p^*}=\frac{\sigma R}{2\bst p_T}=\Nosc(R).
+  \label{eq:D:Nosc}
+\end{equation}
+
+\paragraph{The plane fit sees a twist.} The out-of-plane displacement of a hit is $h=\pm\tfrac{x}{2}\,\Theta\,f_N$. Here
+$\pm x/2$ is the in-plane lever of the hit, which oscillates between $-\lmax/2$ and $\lmax/2$, and $\Theta$ grows
+linearly with the radius $R_k$ of the hit. So $h=\kappa\,u\,R_k$ with $u=\pm x/2$ and
+$\kappa=f_N\rot\Nosc(R_{\rm out})/R_{\rm out}$: a helicoid. The fitted plane through the vertex can tilt about
+$\hat\beta_{\rm cm}$ and absorb the mean twist $\kappa\langle R\rangle u$. Since $u$ is symmetric about zero (the two
+quirks sit at $\pm u$), it cannot absorb anything else. The residual is $\kappa^2\langle u^2\rangle{\rm Var}(R)$, so
+\begin{equation}
+  \DsB\simeq g\,f_N\,\rot\,\Nosc(R_{\rm out})\,\frac{\lmax}{2},\qquad
+  g\simeq\frac{x_{\rm rms}}{\lmax}\cdot\frac{\sigma_R}{R_{\rm out}}=0.73\times0.32=0.23 ,
+  \label{eq:D:g}
+\end{equation}
+where $x_{\rm rms}/\lmax=0.73$ is the RMS of $x(t)/\lmax$ over a half-period (0.69--0.73 for $\gst=1$--2), and
+$\sigma_R/R_{\rm out}=0.32$ is the RMS spread of the ten barrel radii divided by the outer radius $108.3\cm$. The full
+rotating-yo-yo model (next paragraph) gives a median $g=0.219$--0.225 (16--84\%: 0.18--0.26) at $\mQ=200$--$1000\GeV$ and
+$\Lam=1$, $3\keV$, independent of $\mQ$ and $\Lam$ (check \rep{c16}, added for this appendix; \EST{}).
+
+\paragraph{The law.} Insert Eqs.~\eqref{eq:D:fNrot}, \eqref{eq:D:Nosc}, $\lmax=2(\gst-1)\mQ/\sigma$ and
+Eq.~\eqref{eq:D:gbT} into Eq.~\eqref{eq:D:g}. The factors of $\mQ$ and $p_T$ cancel, because $\gamma_{\rm cm}\beta_T\mQ/p_T=1/(2\gst)$:
+\begin{equation}
+  \DsB\simeq\frac{qBR_{\rm out}}{\sigma}\,
+  \underbrace{g\,|\hat E^*\cdot\hat N|\,\frac{G(\gst)(\gst-1)}{4\rho}}_{F}\,
+  \Bigl[\ln\frac{1}{\epsB}+C\Bigr],
+  \label{eq:D:law}
+\end{equation}
+which is Eq.~\eqref{eq:law}. The logarithm was rewritten using $\epsp=\epsB\gamma_{\rm cm}\beta_T\sin\alpha$ and
+Eq.~\eqref{eq:D:bodd}:
+\begin{equation}
+  \ln\frac{\lmax}{\bodd}+K=\ln\frac1\epsB
+  \underbrace{-\ln(\gamma_{\rm cm}\beta_T\sin\alpha)+\ln\frac{\gst-1}{\gst-\operatorname{asinh}\rho/\rho}+K(\gst)}_{C}.
+  \label{eq:D:C}
+\end{equation}
+$F$ depends only on the CM velocity $\gst$, on angles and on the layer geometry, not on $\mQ$ or $\Lam$ at fixed
+velocities. $C$ depends on $\mQ$ only through $\gamma_{\rm cm}\beta_T=p_T/M$, and $B$ and $\Lam$ enter only through
+$\epsB$. For a slow pair $F\to g|\hat E^*\cdot\hat N|\bst/6$, so $\DsB$ vanishes linearly with $\bst$: $\lmax\propto{\bst}^2$
+and $\Nosc\propto1/\bst$. Equation~\eqref{eq:D:law} is a transparent estimate. The predictions of the note (Table~\ref{tab:c},
+and $\DsB^{\rm model}$ and $c_{\rm ev}$ in Table~\ref{tab:p1}) come from the \emph{rotating-yo-yo model}, which evaluates the same physics without the
+twist approximation. It takes the exact vacuum yo-yo in the CM frame, steps its axis by $\rot$ toward $\hat e_\perp$ at
+each odd crossing, boosts it to the lab, records the hits on the ten barrel layers and fits the plane (check \rep{c06}).
+Nothing is fitted to the exact string. The model omits the non-secular first-order offsets (the miss distance itself and
+the static polarisation of the string by $\Estar$), the effect of $\Bstar$ (Section~\ref{sec:string:valid}) and the
+spreading of the rotation over the half-period at $\gst>2$. Its accuracy against the exact string is 1--4\% for
+$\gst\lesssim1.6$.
+
+\paragraph{The slope $c$ and the exponents.} Per event, $F$ and $C$ do not depend on $B$ or $\Lam$, and $\epsB\propto
+B\Lam^{-2}$. So $\ln\DsB=\ln\epsB+\ln[\ln(1/\epsB)+C]+{\rm const}$, and differentiating gives exactly
+\begin{equation}
+  \frac{d\ln\DsB}{d\ln B}=1-c,\qquad \frac{d\ln\DsB}{d\ln\Lam}=-2+2c,\qquad c=\frac{1}{\ln(1/\epsB)+C}.
+\end{equation}
+The response per unit field follows without expansion:
+$\mathcal R(f)=[\ln(1/\epsB)+\ln(1/f)+C]/[\ln(1/\epsB)+C]=1+c\ln(1/f)$. At $500\GeV$ and $1\keV$, $\ln(1/\epsB)=8.40$, and
+the population median $c=0.104$ (Table~\ref{tab:c}) corresponds to $C=1.23$. Locally at $\Bzero$ the thickness then
+grows like $B^{0.90}$ and falls like $\Lam^{-1.79}$ rather than $B\Lam^{-2}$; averaged over $\Bzero/80\ldots\Bzero$
+the $B$ exponent is 0.914 (Table~\ref{tab:numerics}). For charge $q$, $\epsB\to q\epsB$, which gives the $|q|=2$ ratio $2[1-c\ln2]=1.86$ of
+Section~\ref{sec:string:valid}.
+
+\subsection{The scale-free property}\label{app:der:scale}
+Scale all coordinates and times by $\lambda$ at fixed momenta. Then $d\tau\to\lambda d\tau$, the world-sheet area
+$dA\to\lambda^2dA$, and with $A_\mu$ of a uniform field ($\mathbf A=\mathbf B\times\mathbf x/2$), $A\cdot dx\to\lambda^2A\cdot
+dx$. Hence $S[\lambda x;\mQ,\sigma,qB]=\lambda\,S[x;\mQ,\lambda\sigma,\lambda qB]$ (check \rep{c15}). A solution for
+$(\sigma,qB)$ therefore maps onto one for $(\sigma/\lambda,qB/\lambda)$. The motion per oscillation depends only on
+$\epsB=qB/\sigma$ and the velocities, and $\sigma$ (with $\mQ$) sets the length unit $\lzero=\mQ/\sigma$. At a fixed tracker the only other
+$\Lam$ dependence is $\Nosc\propto\sigma$ and the lever $\lzero/R$. This is why $(\Lam\sqrt k,B)$ and $(\Lam,B/k)$ are the
+same physics per oscillation (Section~\ref{sec:string:valid}).
+
+\subsection{Conditions and status of each step}\label{app:der:status}
+The derivation assumes: (i) $\epsp\ll1$ (true by $\gtrsim3.5$ orders of magnitude); (ii) $\Theta\ll1$ over the tracker;
+(iii) first order in $\Estar_\parallel$, which only makes successive half-periods unequal; (iv) classical NG at the odd
+crossing, $\bodd\gg1/\Lam$, i.e.\ $\Lam\lesssim10$--$26\keV$; (v) $\Bstar$ small in the inner region of the crossing,
+$\kB\lesssim4$--6, beyond which its non-linear effect is measured but not derived; (vi) for the hit-level law, the
+pair turns around well inside the tracker, median $\lmax/\RIT\lesssim0.6$ (found empirically,
+Section~\ref{sec:p1:law}); and (vii) the rotation is localised at the odd crossing, $\gst\lesssim1.6$--2 (rotating-yo-yo
+model accurate to 1--4\%; 10--35\% off for $\gst>2$).
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Status of each step of the P1 derivation. ``Derived'' means derived analytically and, where a check is listed, checked by sympy and a
+limiting case; ``verified'' means confirmed by exact-string numerics (two solvers where stated in
+Table~\ref{tab:numerics}); \EST{} means a numerically determined constant or a model step.}
+\label{tab:derivation_status}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}Xl}
+\toprule
+step & status & check\\
+\midrule
+fields in the CM frame, Eq.~\eqref{eq:D:fields} & exact & ---\\
+vacuum yo-yo, half-period integral, Eqs.~\eqref{eq:D:x}--\eqref{eq:D:I} & exact (derived) & c01\\
+rigid-rotation lemma & derived & ---\\
+torque law, no linear $\Bstar$ effect, Eq.~\eqref{eq:D:torque} & derived & c01 (4)\\
+miss distance $\bodd$, Eq.~\eqref{eq:D:bodd} & derived; verified to $10^{-4}$ (c03), $\le10^{-3}$ (two solvers) & c01, c03\\
+failure of linear theory only at odd crossings & derived; linear to $10^{-4}$ before the first crossing & c01, c02\\
+intermediate NG solution, force, Eqs.~\eqref{eq:D:wedge}--\eqref{eq:D:Fperp} & derived; slope $\bst/\operatorname{artanh}\bst$ verified to $\le0.8\%$ ($\gst\le2$), 3\% at $\gst=3$ & c02, \rep{NUMERICS.md} M2a\\
+log coefficient $G$, Eq.~\eqref{eq:D:G} & derived; verified to $\le0.03\%$ (c03), 0.1--0.2\% (two solvers) & c01 (6), c03\\
+$K(1)=3\ln2-2$, Eq.~\eqref{eq:D:rotNR} & derived; verified (field: 0.07945; vacuum $K_{\rm vac}=0.0791\pm0.0003$) & c04, c05, c09\\
+$K(\gst)$ for relativistic ends & numerical (\EST{}); two solvers at $\gst=1.3$, 2 & c03, c08\\
+coherence $\Theta=N_{\rm odd}\rot$, projection $f_N$ & derived (first order in $\Theta$) & c13\\
+twist factor $g\simeq0.23$, Eq.~\eqref{eq:D:g} & estimate; model gives 0.22 & c16\\
+thickness law, $C$, Eqs.~\eqref{eq:D:law}--\eqref{eq:D:C} & scaling derived; $F$ from the rotating-yo-yo model (\EST{}, 1--4\% for $\gst\lesssim1.6$) & c06, c07\\
+$c$, exponents, $\mathcal R(f)$ & exact consequences of the law; verified at $1\keV$ & c07, \rep{NUMERICS.md}\\
+scale-free property & exact & c15\\
+effect of $\Bstar$ on $\rot$ & numerical only; mechanism not derived & c12, c14\\
+\bottomrule
+\end{tabularx}
+\end{table}

@@ -1,0 +1,45 @@
+FIX_ANALYSIS_R2 -- fixer round 2 (D1-D3 implementation), 2026-10-14
+Inputs: analysis/INVESTIGATION_D1_D3.txt/.json; USER D1 + orchestrator D2/D3 decisions (2026-10-14).
+Constraints kept: nice 15, one process, generator-level Pythia only, no signal efficiency looked at.
+CPU: ~64 CPU-min total (main 51, tt top-up 11, tests 2) <= 1.5 CPU-h; wall was long because production saturates the Mac.
+
+NEW CODE
+- analysis/gen_d123.py (ACTS env): 'nt' = generator-level N_trig per SM process with the event-level preselection,
+  C' rates and pT spectra; 'smregen' = per SM hit-level job, regenerate each hard scatter from the stored seeds
+  (production MPI-init file, read-only), VERIFY truth MET == stored hs_met, return tau class + preselection weight.
+- analysis/normalise.py: gen JSON (+ top-ups) -> inputs/normalisation.json (n_trig + breakdown, sm_processes,
+  cprime_rates, cprime_spectra). Outputs: data/acts_stage4/analysis/d123/gen_d123{,_tt_topup}.json (+ logs).
+
+D1 (USER): N_trig after the event-level preselection = 3.63e7 (rel. stat 2.2 %), ESTIMATE.
+  Breakdown (1e6): Z(nunu) 24.91 | W(tau_l) 1.66 | W(tau_h) 4.27 | W(e nu) 1.92 | W(mu nu) 1.81 | tt 1l 1.72.
+  f_presel (eps_trig-weighted): Z 0.427, W tau_l 0.209, W tau_h 0.285, W e 0.109, W mu 0.101, tt 0.111.
+  Per-process stat: Z 3.1 %, W(tau nu) 2.3 % (tau_l 5.9 %, tau_h 2.3 %), W e 4.2 %, W mu 4.4 %, tt 4.4 % (after a
+  1500-event top-up with distinct seeds).
+  Generator proxies (each the looser choice; normalisation.json n_trig.preselection_proxies): SlowJet anti-kT 0.4,
+  smeared 10 %/sqrt(E)+5 %; min dphi over 4 leading jets > 30 GeV; e/mu/gamma vetoed only if prompt AND isolated;
+  tau_h veto NOT applied; MET < 200 truth events not generated. NOT included: tt 2l, single top, VV (rule l.326).
+  SM terms on the same footing: each HS-tagged candidate weighted by its event's preselection weight from smregen
+  (background.sm_term SM_PSEUDO); sm_term REFUSES if any regenerated event does not reproduce its stored hs_met.
+D3: sigma = sigma_gen x N_acc / (tries - hadfail): Z 13.89 pb (r_hadfail 0.219), W e 4.20, W mu 4.26, tt 2.72
+  (r 0.014); W(tau_l) 1.89 pb on tau_l events of the inclusive sample, W(tau_h) 3.56 pb on tau_h events pooled from
+  both samples (no double counting); K = 1.4, K_tt = 1.9 (CONSERVATIVE DEVIATION from the rule's 1.2-1.4, logged).
+  tau class regeneration: VERIFIED mechanism on the only existing SM output (smoke Z: 2/2 hs_met reproduced);
+  C1b SM outputs do not exist yet -> run_all runs smregen at analysis time (~5 min) and refuses on any mismatch.
+  W(e nu)/W(mu nu): FLAGGED conservative proxy sigma K L f_presel x max over W(tau_l, tau_h) of P(r | preselected);
+  its fraction of B_SM per rung is written to background.json sm._proxy_fraction_of_B_SM (needs C1b; by
+  construction <= (N_e + N_mu) / N_W(tau) x the P ratio, N_e+mu / N_W(tau) = 0.63).
+D2: rate_t per preselected event, road +-0.15 rad, gun phase space, max over SM processes (N_trig-weighted mean in
+  normalisation.json): gamma 0.432, V0 (x BR) 0.0503, PV pairs 31.1, loopers 0.220 (HS vertex);
+  NI per event at 22/30/61.5 mm 0.0976/0.123/0.123 (HS + 200 x min-bias, x x/lambda_I), x P_PV-line 0.22 in
+  wp.cp_terms (WP_RULE.md:318; selftest R2_ni_pv_line); DIF 1.57 (HS + 200 x min-bias, all K modes).
+  Spectrum fold: gun pT regenerated from the stored seeds (RNG replay VERIFIED: 1000/1000 stored phi_MET reproduced)
+  and reweighted to the Pythia spectrum; R_t (f_pre x P_deep) = gamma 0.011, V0 0.088, looper 1.0, NI 0.36/0.16/0.15,
+  DIF 0.071 on the C1 C'0 + 191 C'_PU jobs -> max(1, R_t) = 1 everywhere (unweighted P used). The old NI 0.64-3.6
+  number is removed from normalisation.json.
+
+RERUNS: selftest PASS (incl. R2_gun_rng_replay, R2_ni_pv_line, freeze); G3 T_seed=6 dry run 619 s on the frozen code
+(no WP; B sum INCOMPLETE in the dry run only because G3 has no SM/C' samples); SM code-path test (tau split,
+preselection weights, proxy, refusal on a hs_met mismatch) PASS.
+RE-FREEZE: inputs/analysis_freeze.json, 20 files, sha256 9c3c23fc...
+OPEN for the user: N_trig moved from the 1.28e8 default to 3.63e7 (x0.28 on every N_trig-scaled B term); tt 2l /
+single top / VV are not in N_trig; tau_h veto not applied (looser).

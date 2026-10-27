@@ -1,0 +1,91 @@
+{
+ "cand_id": "C008",
+ "coverage_table": [
+  {
+   "id": "arXiv:2112.11125",
+   "collab": "CMS",
+   "final_state": "s-channel leptophobic Z' -> 2 hadronic SVJs, MET aligned with jet; jet pT>450/500 GeV or HT trigger; mT>1.5 TeV region",
+   "covered_region": "mZ' 1.5-4.0 TeV (inclusive) up to 5.1 TeV (BDT); vetoes events whose leading narrow jet has photon energy fraction f_gamma>0.7 and pT>1 TeV",
+   "location": "Abstract; Sec. 6 (f_gamma veto, l.~494); Sec. 5 triggers"
+  },
+  {
+   "id": "arXiv:2608.05323 (PAS INSPIRE 2963506, 3136606)",
+   "collab": "CMS",
+   "final_state": "s-channel Z' -> lepton-enriched (SVJl) and tau-enriched (SVJtau) SVJs, non-isolated leptons, GNN tagger; same jet/HT triggers, mT>1.5 TeV",
+   "covered_region": "prompt dark-hadron decays; SVJl mZ' up to 4.7 TeV, SVJtau 1.8-3.5 TeV excluded (gq=0.25); same f_gamma>0.7 & pT>1 TeV veto",
+   "location": "Abstract; Sec. 5 (veto text)"
+  },
+  {
+   "id": "arXiv:2505.01634",
+   "collab": "ATLAS",
+   "final_state": "resonant Z' -> SVJ SVJ + anomaly-detection region, single-jet trigger 360-420 GeV, mT fit",
+   "covered_region": "signal grid mZ' 2000-5000 GeV, Rinv 0.2-0.6; exclusions 2000-3200 GeV for Rinv 0.37-0.2",
+   "location": "Sec. 3 (l.274), Sec. 9 / conclusions (l.979)"
+  },
+  {
+   "id": "arXiv:2305.18037 / INSPIRE 3185627 / 2916295",
+   "collab": "ATLAS / CMS",
+   "final_state": "t-channel (non-resonant) SVJ + MET (ATLAS MET trigger, MET>250 GeV); CMS nonresonant SVJ (GNN + autoencoder) PAS",
+   "covered_region": "ATLAS: mediator up to 2.7 TeV for coupling 1; CMS PAS limits (numbers UNVERIFIED)",
+   "location": "Abstracts"
+  },
+  {
+   "id": "arXiv:2405.13778",
+   "collab": "CMS (summary)",
+   "final_state": "reinterpretation of dijet and monojet searches for SVJ",
+   "covered_region": "mZ'-rinv plane and gq limits for rinv=0.3,0.6 shown only for mZ' >~1.5-5 TeV (axis range); monojet best at high rinv / small mZ' within that range",
+   "location": "Sec. 4.2.4.1, Figs. 31-32"
+  },
+  {
+   "id": "arXiv:2403.08547 / arXiv:1905.10331 / INSPIRE 3159750",
+   "collab": "ATLAS / CMS",
+   "final_state": "low-mass visible dijet resonance + ISR photon (pT>150 GeV) or jet; CMS boosted large-R jet + ISR photon",
+   "covered_region": "visible Z'->qq: ATLAS 200-650 GeV; CMS PAS 10-150 GeV; CMS 1905.10331 mass range UNVERIFIED; no SVJ/rinv interpretation found (would be indirect at small rinv only)",
+   "location": "Abstracts; 2403.08547 Sec. 1 (l.70), trigger text (l.255)"
+  },
+  {
+   "id": "INSPIRE 2751239 (thesis, Nabili 2024)",
+   "collab": "CMS (in preparation)",
+   "final_state": "boosted all-hadronic SVJ recoiling against ISR jet, single large-R jet",
+   "covered_region": "mZ' <= 550 GeV, simulation-only at thesis time; no public PAS/paper found",
+   "location": "Thesis abstract"
+  }
+ ],
+ "open_region": "(i) Photon-enriched SVJ (SVJgamma, non-isolated photons, high neutral-EM fraction): no dedicated search found; the CMS hadronic and lepton-enriched SVJ searches explicitly veto events with leading-jet photon-energy fraction >0.7 at pT>1 TeV and use standard jet ID; pheno (2407.08276) claims the inclusive CMS SVJ search has no sensitivity. Status proposed-not-searched. (ii) Photon-ISR-tagged low-mass (~200-700 GeV) Z'->SVJ SVJ: no SVJ search below ~1.5-2 TeV exists (CMS mT>1.5 TeV; ATLAS grid >=2 TeV); jet-ISR boosted variant in preparation at CMS (thesis, mZ'<=550 GeV); visible dijet+photon-ISR searches (ATLAS 200-650 GeV) have no SVJ interpretation, giving at most indirect coverage at small rinv. Photon-ISR SVJ: proposed-not-searched / partly indirectly-covered. Lepton/tau-enriched SVJ: covered (CMS 2608.05323). No HL-LHC SVJ projection document found.",
+ "status_label": "(i) proposed-not-searched; (ii) proposed-not-searched with partial indirect coverage (low-rinv via dijet+ISR searches) and competing in-preparation CMS jet-ISR analysis; HL: LHC-not-projected-to-HL",
+ "hl_projection_docs": [
+  "None found for SVJ (CMS/ATLAS FTR/PUB); queries on SVJ+HL-LHC returned only reviews (2405.13778, 2403.09292) without dedicated projections - absence not proven"
+ ],
+ "queries_run": [
+  "t semivisible jets or t semi-visible jets or t \"semi-visible jet\"",
+  "(collaboration:CMS or collaboration:ATLAS) and (abstracts.value:\"semivisible\" or abstracts.value:\"semi-visible\")",
+  "collaboration:CMS and t boosted and (t semivisible or t \"dark matter\") and date > 2023",
+  "fulltext:\"semivisible\" and fulltext:\"initial-state radiation\" and collaboration:CMS and date > 2023",
+  "refersto:recid:2806840",
+  "refersto:recid:2826356",
+  "(collaboration:CMS or collaboration:ATLAS) and t photon and t \"dark\" and t jets and date > 2020",
+  "(collaboration:CMS or collaboration:ATLAS) and t \"photon\" and t \"dijet\" and date > 2018",
+  "fulltext:\"dark showers\" and fulltext:\"photon jets\" and date > 2020",
+  "fulltext:\"boosted semivisible\" or fulltext:\"boosted semi-visible\"",
+  "fulltext:\"semivisible\" and fulltext:\"photon\" and fulltext:\"initial-state\" and (collaboration:CMS or collaboration:ATLAS)",
+  "fulltext:\"semi-visible jets\" and (fulltext:\"HL-LHC\" or fulltext:\"3000 fb\") and date > 2018",
+  "fulltext:\"neutral electromagnetic fraction\" and fulltext:\"dark\" and date > 2020",
+  "collaboration:CMS and t \"low-mass\" and t resonances and t photon",
+  "collaboration:CMS and t \"boosted\" and t \"resonances\" and t \"initial-state\"",
+  "abstracts.value:\"semivisible\" and abstracts.value:\"boosted\"",
+  "abstracts.value:\"semi-visible\" and abstracts.value:\"photon\"",
+  "refersto:recid:2751239",
+  "fulltext:\"dark showers\" and fulltext:\"HL-LHC\" and fulltext:\"semi-visible\" and (collaboration:CMS or collaboration:ATLAS)",
+  "t \"dark quarks\" and date > 2023 and (collaboration:CMS or collaboration:ATLAS)",
+  "cites/refersto recid:2806840 (2407.08276)",
+  "refersto recid:2826356 (2409.04741)"
+ ],
+ "confidence_open": "medium",
+ "key_caveats": [
+  "The CMS boosted (jet-ISR) SVJ analysis could be extended to photon-ISR or released with a combined strategy; status of CMS/ATLAS Run-3 SVJ analyses unknown",
+  "Photon-enriched SVJ proposers (Cazzaniga et al.) are CMS members; the 2026 ETH thesis INSPIRE 3131301 cites 2407.08276 and may contain a photon-SVJ study - content UNVERIFIED",
+  "ATLAS anomaly-detection SVJ region (2505.01634) could have partial sensitivity to SVJgamma depending on jet cleaning - UNVERIFIED",
+  "Photon-ISR channel has ~alpha_em cross-section penalty; 2409.04741 uses dark hadron mass 20 GeV benchmark only; sensitivity claims are pheno-level (CMS-like fast detector simulation)",
+  "Model dependence: SVJgamma requires a light ALP portal in addition to Z'; existing ALP/diphoton constraints on that portal not reviewed here"
+ ]
+}

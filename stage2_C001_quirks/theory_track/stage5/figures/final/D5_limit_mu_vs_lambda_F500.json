@@ -1,0 +1,49 @@
+{
+ "figure": "D5_limit_mu_vs_lambda_F500",
+ "files": [
+  "D5_limit_mu_vs_lambda_F500.pdf",
+  "D5_limit_mu_vs_lambda_F500.png"
+ ],
+ "created": "2026-10-16T14:37:59",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/limits.json": "4f99fe6a8362bfa2ee2ab162c5494f6bcd49184980a63f71a9f2b4f3b2895eff",
+  "data/acts_stage4/analysis/C12FC_v1/signal_eff.json": "1d487acb474f1d8efc10efc6a9b041d262c08a29c6b6dcb40ea2f3dfe61e7433",
+  "data/acts_stage4/analysis/C12FC_v1/acceptance.json": "c019215008aec81a8125afbb250a0a05393666714eb0c046f0da68902c3deaf9",
+  "sim/results/xsec.json": "16a09e3c88f66fcdf723e2be61fd7830e5a8e1acf526ee2f3c3c4b13a67961b2"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "4012eb6a408314d0ddb33de1b85dfc09379c128534fa7ba5526d569a2e143d6d"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "point": "F500",
+  "bands": "toys (primary)",
+  "mu95_over_Nexp": {
+   "0.6": 125157.60670050926,
+   "0.85": 145724.63538829886,
+   "1": 88905.88371647027,
+   "1.5": 27373.522534377305,
+   "2": 18413.851293831038,
+   "3": 13266.997776560243,
+   "5": 34901.71428323467
+  },
+  "no_limit_lambdas": [
+   0.45
+  ]
+ }
+}

@@ -1,0 +1,115 @@
+{
+ "cand_id": "C003",
+ "coverage_table": [
+  {
+   "id": "arXiv:2403.05311",
+   "collab": "CMS (EXO-23-002)",
+   "final_state": "ggF scalar S -> SUEP recoiling vs ISR; PV-associated tracks pT>0.7 GeV in R=1.5 track-jet; HT trigger 900/1050 GeV, offline HT>1200 GeV; lepton veto",
+   "covered_region": "PROMPT only (dark photon decay length <1 mm by construction); mA'=0.5/0.7/1.0 GeV (ee/mumu/pipi mixes, 100% pipi); SR nconst>70, S_boosted>0.5; limits vs mS at mphi=TD=3 GeV and in (mphi,TD) plane",
+   "location": "Sec. signal model (text p.2); Figs. 3-4"
+  },
+  {
+   "id": "arXiv:2607.09621",
+   "collab": "CMS (EXO-23-001, scouting)",
+   "final_state": "ggF S->SUEP + ISR, HLT scouting HT>410 GeV, HLT PF candidates pT>0.75 GeV associated to PV",
+   "covered_region": "PROMPT; mS 125 GeV-2 TeV, mphi 1-8 GeV, TD mphi/4-4mphi, three A' scenarios; strongest ggF limits to date",
+   "location": "Abstract; Figs. 3-4"
+  },
+  {
+   "id": "arXiv:2604.05996",
+   "collab": "CMS (EXO-25-007)",
+   "final_state": "WH/ZH, H(125)->SUEP; 1 or 2 leptons; PV-associated charged PF cands pT>1 GeV clustered R=1.5, pT>60 GeV",
+   "covered_region": "PROMPT; mediator fixed at 125 GeV; hadronic, leptonic and pipi dark-photon scenarios; model-agnostic yield limits",
+   "location": "Abstract; Figs. 4-7"
+  },
+  {
+   "id": "arXiv:2605.20015",
+   "collab": "ATLAS",
+   "final_state": "ggF S->SUEP with >=5 prompt muons (multi-muon trigger), N_tracks vs muon sphericity S_mu, tight dz0 cut",
+   "covered_region": "PROMPT (signal assumed prompt; d0(mu1) cut to reject heavy flavour); mS=125/400/750 GeV; limits 70/0.4/0.05 fb; B(H->SUEP) ~0.2-0.3%",
+   "location": "Abstract; Sec. 2; Figs. 10-12"
+  },
+  {
+   "id": "arXiv:2511.11888",
+   "collab": "CMS (EXO-24-008, B-parking)",
+   "final_state": "H->dark partons -> long-lived dark mesons -> displaced mu+mu- vertices (non-prompt muon triggers, 41.6 fb-1)",
+   "covered_region": "DISPLACED but muon-rich; ctau 0.1-500 mm, dimuon mass 0.3-20 GeV, lxy bins up to >10 cm; B(H->dark partons) down to ~1e-4",
+   "location": "Abstract; Table of models (ctau ranges); lxy categories text"
+  },
+  {
+   "id": "arXiv:2403.01556 / arXiv:2510.12347 / arXiv:2505.02429",
+   "collab": "CMS / ATLAS Run-2 / ATLAS Run-3",
+   "final_state": "emerging jets (jets with multiple displaced vertices); t-channel pair-produced mediators (2 SM jets + 2 EJ); ATLAS Run-3 also s-channel Z'",
+   "covered_region": "DISPLACED, jet-like, heavy mediators (ATLAS Run-3: Z' 600-2550 GeV, Phi 600-1375 GeV excluded for ctau 5-50 mm); requires energetic jets - isotropic low-mass SUEP not targeted",
+   "location": "Abstracts"
+  },
+  {
+   "id": "arXiv:2402.01898 / INSPIRE 3181328",
+   "collab": "CMS",
+   "final_state": "LLP decays in muon system (muon detector showers); Run-3 pair-MDS combined with Run-2",
+   "covered_region": "large ctau (~m), LLP mass 1-55 GeV (twin Higgs); HV reinterpretation only via pheno recast arXiv:2505.03058",
+   "location": "Abstracts (3181328 no arXiv found); 2505.03058 abstract"
+  },
+  {
+   "id": "arXiv:2211.05720 (also 2203.07314)",
+   "collab": "pheno/trigger study (Snowmass)",
+   "final_state": "HL-LHC hardware track trigger acceptance for SUEP (truth-level)",
+   "covered_region": "PROMPT SUEP only: 'this study focuses on a scenario in which each dark meson decays promptly'; mS 125-1000 GeV, m=T=1 GeV; displaced tracks studied only for other benchmarks",
+   "location": "Sec. 2.2, Table 1"
+  }
+ ],
+ "open_region": "Hadronic (non-muon-rich) SUEP with dark-meson/dark-photon ctau ~1 mm - O(10 cm): every SUEP search (CMS ggF, scouting, WH/ZH; ATLAS muons) assumes prompt decays and builds multiplicity only from PV-associated tracks, so displaced soft tracks are lost; emerging-jet searches need energetic jets and heavy (>~600 GeV) mediators; CMS displaced-dimuon HV search covers the muon-rich displaced case only; MDS covers metre-scale ctau. Open: low/intermediate mediator (125 GeV-~1 TeV) isotropic displaced-track multiplicity. Also no official CMS/ATLAS HL-LHC SUEP projection found (only truth-level Snowmass trigger study, prompt). Pair-produced/non-resonant SUEP: no experimental search found.",
+ "status_label": "searched-limited-regime (prompt SUEP well covered in Run 2; displaced-hadronic SUEP partly open; HL-LHC: LHC-not-projected-to-HL)",
+ "hl_projection_docs": [
+  "arXiv:2211.05720 (track-trigger study, HL-LHC, prompt SUEP, truth level)",
+  "arXiv:2203.07314 (Snowmass version)",
+  "CMS Phase-2 L1 Trigger TDR INSPIRE 1819968 cites soft-bombs paper - content re SUEP UNVERIFIED",
+  "CMS Phase-2 L1 Data Scouting INSPIRE 3110965/3065059 (no SUEP projection verified)"
+ ],
+ "queries_run": [
+  "t soft unclustered energy",
+  "abstracts.value:\"soft unclustered energy patterns\" and collaboration:CMS",
+  "abstracts.value:\"soft unclustered energy patterns\" and collaboration:ATLAS",
+  "t SUEP",
+  "abstracts.value:\"soft unclustered energy\" and abstracts.value:\"displaced\"",
+  "abstracts.value:\"SUEP\" and abstracts.value:\"long-lived\"",
+  "abstracts.value:\"dark showers\" and abstracts.value:\"displaced\" and date > 2020",
+  "t emerging jets and date > 2018",
+  "abstracts.value:\"SUEP\" and (abstracts.value:\"HL-LHC\" or abstracts.value:\"Phase-2\" or abstracts.value:\"track trigger\")",
+  "abstracts.value:\"high multiplicity\" and abstracts.value:\"displaced vertices\" and abstracts.value:\"hidden valley\"",
+  "abstracts.value:\"isotropic\" and abstracts.value:\"dark shower\" and date > 2019",
+  "refersto:arxiv:1612.00850 and abstracts.value:\"displaced\"",
+  "cites arXiv:1612.00850 (all, mostrecent)",
+  "collaboration:CMS and abstracts.value:\"hidden valley\" and abstracts.value:\"muon\" and abstracts.value:\"displaced\" and date > 2022",
+  "collaboration:CMS and abstracts.value:\"dark shower\" and date > 2021",
+  "collaboration:ATLAS and abstracts.value:\"dark shower\" and date > 2021",
+  "collaboration:LHCb and abstracts.value:\"hidden valley\" and date > 2019",
+  "abstracts.value:\"high-multiplicity\" and abstracts.value:\"displaced vertex\" and date > 2022",
+  "abstracts.value:\"dark mesons\" and abstracts.value:\"long-lived\" and abstracts.value:\"soft\" and date > 2022",
+  "abstracts.value:\"track trigger\" and abstracts.value:\"dark shower\"",
+  "collaboration:CMS and t \"Phase-2\" and abstracts.value:\"long-lived\" and abstracts.value:\"projection\"",
+  "t dark showers and collaboration:ATLAS",
+  "t \"hidden valley\" and date > 2021 and (collaboration:ATLAS or collaboration:CMS or collaboration:LHCb)",
+  "t \"long-lived\" and t \"muon\" and t \"showers\" and collaboration:CMS and date > 2020",
+  "t \"displaced vertices\" and collaboration:ATLAS and date > 2021",
+  "fulltext:\"soft unclustered energy\" and collaboration:ATLAS",
+  "fulltext:\"SUEP\" and t HL-LHC",
+  "fulltext:\"soft unclustered energy\" and fulltext:\"displaced\" and date > 2023",
+  "collaboration:CMS and t \"muon\" and t \"long-lived\" and (t \"showers\" or t \"detector\")",
+  "collaboration:CMS and abstracts.value:\"dark shower\"",
+  "collaboration:CMS and t \"displaced jets\" and date > 2020",
+  "collaboration:ATLAS and t \"calorimeter\" and t \"long-lived\" and date > 2021",
+  "t long-lived and t muon detectors and collaboration:CMS (MDS Run-2)",
+  "fulltext:\"soft unclustered energy\" and (fulltext:\"HL-LHC\" or fulltext:\"3000 fb\") and date > 2021",
+  "fulltext:\"SUEP\" and fulltext:\"pair production\" and date > 2019",
+  "fulltext:\"SUEP\" and fulltext:\"emerging jet\" and fulltext:\"displaced\" and fulltext:\"isotropic\" and date > 2022",
+  "collaboration:CMS and t \"Level-1\" and t \"scouting\" and date > 2022"
+ ],
+ "confidence_open": "medium",
+ "key_caveats": [
+  "Displaced SUEP may be partly picked up by CMS displaced-jet / MDS / ATLAS DV searches for some parameters; no recast quantifying this was found - 'not found' is not proof of absence",
+  "Run-3 SUEP analyses (CMS/ATLAS) may be in preparation; CMS Run-3 scouting has improved displaced-track capability (UNVERIFIED for SUEP)",
+  "Pheno benchmark for displaced SUEP (dark meson lifetimes with hadronic decays) not verified as existing in literature; signal modelling (thermal SUEP generator) uncertainties large",
+  "ATLAS has no published hadronic SUEP search found (only muon-channel); ATLAS hadronic prompt SUEP is itself a gap but not the proposed target"
+ ]
+}

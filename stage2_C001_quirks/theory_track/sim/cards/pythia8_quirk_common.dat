@@ -1,0 +1,11 @@
+! ---- quirk E / Etilde (sim/cards/pythia8_quirk_common.dat, appended to every pythia8_card by scripts) ----
+! Colour-neutral, electrically charged heavy particles: stable, not hadronised (no colour), no decays.
+! The infracolour string dynamics is applied afterwards by T3_causal (code/T3_causal.py).
+9000011:all = xe- xe+ 2 -3 0 500.0 0.0 0.0 0.0 0.0
+9000011:mayDecay = off
+9000011:isResonance = off
+9000013:all = sxe- sxe+ 1 -3 0 500.0 0.0 0.0 0.0 0.0
+9000013:mayDecay = off
+9000013:isResonance = off
+! keep Pythia defaults otherwise (Monash 2013 tune, MPI on, ISR/FSR on, hadronisation on)
+Next:numberShowEvent = 0

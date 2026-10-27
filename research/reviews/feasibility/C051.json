@@ -1,0 +1,30 @@
+{
+ "cand_id": "C051",
+ "xsec_sources": [
+  "No absolute sigma read; yields inferred from stat errors in arXiv:2202.12327 Table 2/3 and bin design in arXiv:2511.19617 Table II (>=100 ev/bin at 14 TeV, 3 ab-1, pT_ll>100 GeV)"
+ ],
+ "yield_estimate": "ESTIMATE: ~200-300 selected ee+mumu events with m_ll>1 TeV in 138 fb-1 at 13 TeV (from dAFB_stat=0.052, 2202.12327 Tab.2); ~5000 at 3000 fb-1 before 13->14 TeV gain (UNVERIFIED). High-pT_ll(>100 GeV) & m_ll>1.5 TeV: only ~1-4 bins of >=100 events at 3 ab-1 (2511.19617 Tab.II).",
+ "backgrounds": "ttbar dileptonic dominant at high mass, tW, diboson, DY tautau, photon-induced (1.8-4.1%, 2202.12327 Tab.5), fake leptons; e\u03bc control region + b-veto. High S/B.",
+ "trigger": "Single-lepton triggers (2202.12327 Sec.5); high-mass leptons far above Phase-2 thresholds (threshold values UNVERIFIED). Not an obstacle; trigger syst negligible (Tab.1).",
+ "pileup": "Pileup syst on AFB 2.8e-3 in Run 2 (2202.12327 Tab.1) via isolation/MET/b-veto; angular variables lepton-only and robust. Moderate concern at PU 200.",
+ "detector_upgrades": "Extended tracker acceptance (CMS Phase-2 tracker / ATLAS ITk): |eta|<2.8 vs 2.4 reduces stat ~30%, PDF ~20% for sin2theta_eff at Z peak (1902.04070 Sec.4.4.5, Tab.26); high-mass gain unquantified. Better TeV muon momentum/charge (UNVERIFIED). HGCAL forward electrons; MTD/HGTD only via pileup mitigation.",
+ "systematics": "A0: syst-dominated already in Run 2 (syst 0.022-0.05, 2202.12327 Tab.3); SM A0-A2 theory already in tension at Z peak (1606.00689); unfolding/resolution for phi. A5-A7 stat-dominated; detector-induced phi asymmetries unquantified. sin2theta running: PDF-dominated (varies up to 50% by PDF set, 2302.10782 Tab.3), lumi 1%, EW Sudakov.",
+ "projection_docs": [
+  "arXiv:2302.10782 (sin2theta MSbar: 1.9% @1 TeV, 3.5% @3.25 TeV at 3 ab-1; SM running 0.2332->0.2435 from 133 GeV to 1 TeV)",
+  "arXiv:2511.19617 (A6/A7 dim-8, stat only: 1D up to ~9 TeV, marginalized 1-2 TeV)",
+  "arXiv:2405.04069 (A0-A2 dipoles, Z-peak only, HL stat-only)",
+  "arXiv:2412.13014 (dipole bounds from pT spectrum improve x4.5 at HL; existing bounds exclude A0-A2 excess explanation)",
+  "arXiv:1902.04070 Sec.4.4.5 (Z-peak sin2theta_eff, forward acceptance)"
+ ],
+ "hl_specific_advantage": "~22x lumi in stat-limited high-m/high-pT cells; extended |eta| tracker reduces dilution and PDF uncertainty; sin2theta(mu) running only meaningful with HL stats (1.9% vs 2.3% Run 3 at 1 TeV).",
+ "main_obstacle": "Tiny event counts exactly where EFT effects grow (m_ll>1.5 TeV, pT_ll>100 GeV) combined with SM theory uncertainty on Lam-Tung violation and EFT degeneracies; for running: PDF uncertainty. Dim-6 dipoles already strongly bounded by other observables.",
+ "feasibility_rating": 3,
+ "confidence": "medium",
+ "caveats": [
+  "Yields are scaling estimates, 13->14 TeV gain not computed",
+  "No collaboration HL-LHC projection for high-mass Ai found",
+  "Phenomenology projections (2511.19617, 2405.04069) assume statistics only",
+  "sin2theta running significance per bin ~2 sigma (ESTIMATE from Table 2); combined significance not quoted",
+  "Sub-target (3) sensitivity comes mainly from absolute cross section, not AFB"
+ ]
+}

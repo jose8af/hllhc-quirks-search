@@ -1,0 +1,34 @@
+FIX_ANALYSIS_R1 -- fixer response to REVIEW_ANALYSIS_R1 (ITERATE 4 A / 9 B / 10 C), 2026-10-14
+Machine-readable record (finding -> change, file:line, test): acts/stage4/analysis/inputs/fix_r1.json
+Constraints kept: nice 15, one process, no frozen/production file touched, no signal efficiency looked at.
+
+CATEGORY A (all fixed)
+A-1 SR-T no-BTL summand: P(r)-P(r&BTL) only where both columns are reachable thinning estimates; else the full-column
+    end state (never 0). wp.py srt_pu_term. Test: selftest A1; G3 dry run not-present summand > 0 at R08-R23.
+A-2 one bound per term: add_guarded (zero factor on a base that holds its bound enters as 1, the conservative guard);
+    SR-T summands, SM and C' rows x F1 evaluated as one Term. Test: selftest A2_* (4 checks).
+A-3 SM/C' rows for every requirement column 0-36; depth from the deepest ladder rung contained in the column.
+    background.depth_term, sm_term, cprime_term; wp rows[col]. Test: selftest A3 (FB0 starts at R04, differs from R14).
+A-4 signal OOT lookups: C1 B1 index from the manifest, job-relative S5 event index; refusal if no OOT hit is ever found.
+    srt.c1_b1_event_index, signal_srt. Test: selftest A4 on G3B1 (289/300 lookups with hits, 66 in-band, 7 earliest-OOT).
+
+CATEGORY B (all addressed)
+B-1 T3 branch wired into every factorised column; degenerate T3 -> 'T3 non-informative' flag (G3: flagged at R07+).
+    USER TO BE TOLD: no non-degenerate cross-variable closure test exists for the factorised deep rungs.
+B-2 missing lever arm: x max(r,1), |ln r| in sigma_ln.   B-3 global c_max; c applied to SM and C' chains.
+B-4 SR-T time-independence test on the production union (G3: PASS, c_time 1).   B-5 rho_dens trigger -> limits refuse.
+B-6 status != 1 rows are failures in the denominator.   B-7 C' N_pre = 0 path, V4-10 leak correction, source clustering.
+B-8 freeze file inputs/analysis_freeze.json (18 files, sha256 2944a1d4...); signal/limits refused unless frozen or
+    --dev (outputs stamped DEV); limits refused with an incomplete B sum unless --dev; D4 calculator fixed.
+B-9 srt_pv/srt_sigt shared within the category; retrend scales the central value.
+
+CATEGORY C: C-1, C-2, C-3, C-4, C-5, C-6, C-8 fixed; C-7, C-10 covered by the D8 guard; C-9 to be told to the user.
+
+DECISIONS implemented (ambiguities.json status DECIDED): D4 toys primary (5000, seed 20261014, common random numbers;
+asymptotic = cross-check), D5, D6 (no env change), D7, D8 (guard), D9 (lower-bound labels), D10 (A28 confirmed: a
+conservative reading; the literal per-step product is anti-conservative). OPEN: D1 (N_trig, default 1.28e8), D2, D3.
+
+RERUNS: selftest PASS (18 checks incl. freeze); G3 T_seed=6 dry run 613 s (no WP; B sum INCOMPLETE without SM/C');
+signal --dev on C1a A2 (89 files) all self-checks PASS; limits --dev 40 points in 26 s (toy CLs ~0.05 s/point).
+Note: the dry-run outputs were produced before the last two edits (stats toys speed-up, admissibility docstring);
+background/srt/wp code is identical to the frozen versions.

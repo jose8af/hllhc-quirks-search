@@ -1,0 +1,22 @@
+# Stage-4 ACTS env (E5, 2026-10-11; route R1 of INSTALL_CHECK.md). Separate from ../pixi.toml and ../sim/pixi.toml.
+#   pixi run python scripts/smoke_test.py        (run from theory_track/acts/)
+# pyacts = official ACTS PyPI wheel (Core, Fatras, digitisation, seeding/CKF, CSV/JSON/HepMC3 I/O; no ROOT/Pythia8 plugins).
+# The macosx_26_0_arm64 wheel requires macOS >= 26 (system-requirements below). Nothing here links against a system ROOT.
+[workspace]
+name = "quirk-acts-stage4"
+channels = ["conda-forge"]
+platforms = [{ platform = "osx-arm64", macos = "26.0" }]
+
+[dependencies]
+python = "3.12.*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+mplhep = "*"
+awkward = "*"
+uproot = "*"
+pythia8 = "*"
+pyhepmc = "*"
+
+[pypi-dependencies]
+pyacts = "==48.0.0"

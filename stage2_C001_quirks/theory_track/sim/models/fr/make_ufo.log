@@ -1,0 +1,62 @@
+ - FeynRules - 
+Version: 2.3.49 (*29 September 2021).
+Authors: A. Alloul, N. Christensen, C. Degrande, C. Duhr, B. Fuks
+ 
+Please cite:
+    - Comput.Phys.Commun.185:2250-2300,2014 (arXiv:1310.1921);
+    - Comput.Phys.Commun.180:1614-1641,2009 (arXiv:0806.4194).
+ 
+http://feynrules.phys.ucl.ac.be
+ 
+The FeynRules palette can be opened using the command FRPalette[].
+Merging model-files...
+This model implementation was created by
+N. Christensen
+C. Duhr
+B. Fuks
+Model Version: 1.4.7
+http://feynrules.phys.ucl.ac.be/view/Main/StandardModel
+For more information, type ModelInformation[].
+
+   - Loading particle classes.
+   - Loading gauge group classes.
+   - Loading parameter classes.
+
+Model quirkE_FR loaded.
+
+Global`a$::shdw: Symbol a$ appears in multiple contexts {Global`, FeynRules`}; definitions in context Global` may shadow or be shadowed by other definitions.
+Loading restrictions from /Users/jochoafl/8A/FeynRules/feynrules-current/Models/SM/DiagonalCKM.rst : Dynamic[PRIVATE`FR$restrictionCounter] / 3
+Restrictions loaded.
+Style[Starting Feynman rule calculation., RGBColor[1, 0.5, 0], Bold]
+Expanding the Lagrangian...
+Collecting the different structures that enter the vertex.
+2 possible non-zero vertices have been found -> starting the computation: Dynamic[FR$FeynmanRules] / 2.
+2 vertices obtained.
+E vertices: {{{{xebar, 1}, {xe, 2}, {A, 3}}, -I*ee*Ga[Index[Lorentz, Ext[3]], Index[Spin, Ext[1]], Index[Spin, Ext[2]]]}, {{{xebar, 1}, {xe, 2}, {Z, 3}}, (I*ee*sw*Ga[Index[Lorentz, Ext[3]], Index[Spin, Ext[1]], Index[Spin, Ext[2]]])/cw}}
+Style[Starting Feynman rule calculation., RGBColor[1, 0.5, 0], Bold]
+Expanding the Lagrangian...
+Collecting the different structures that enter the vertex.
+5 possible non-zero vertices have been found -> starting the computation: Dynamic[FR$FeynmanRules] / 5.
+5 vertices obtained.
+S vertices: {{{{A, 1}, {A, 2}, {sxe, 3}, {sxebar, 4}}, (2*I)*ee^2*ME[Index[Lorentz, Ext[1]], Index[Lorentz, Ext[2]]]}, {{{A, 1}, {sxe, 2}, {sxebar, 3}}, -I*ee*FV[2, Index[Lorentz, Ext[1]]] + I*ee*FV[3, Index[Lorentz, Ext[1]]]}, {{{A, 1}, {sxe, 2}, {sxebar, 3}, {Z, 4}}, ((-2*I)*ee^2*sw*ME[Index[Lorentz, Ext[1]], Index[Lorentz, Ext[4]]])/cw}, {{{sxe, 1}, {sxebar, 2}, {Z, 3}}, (I*ee*sw*FV[1, Index[Lorentz, Ext[3]]])/cw - (I*ee*sw*FV[2, Index[Lorentz, Ext[3]]])/cw}, {{{sxe, 1}, {sxebar, 2}, {Z, 3}, {Z, 4}}, ((2*I)*ee^2*sw^2*ME[Index[Lorentz, Ext[3]], Index[Lorentz, Ext[4]]])/cw^2}}
+ --- Universal FeynRules Output (UFO) v 1.1 ---
+Style[Starting Feynman rule calculation., RGBColor[1, 0.5, 0], Bold]
+Expanding the Lagrangian...
+Expanding the indices over 8 cores
+Collecting the different structures that enter the vertex.
+43 possible non-zero vertices have been found -> starting the computation: Dynamic[FR$FeynmanRules] / 43.
+38 vertices obtained.
+Flavor expansion of the vertices: Dynamic[FR$Count1] / 38
+   - Saved vertices in InterfaceRun[ 1 ].
+Style[Computing the squared matrix elements relevant for the 1->2 decays: , RGBColor[1, 0.5, 0], Bold]
+Dynamic[FR$DecayCounter] / 38
+Squared matrix elent compute in 0.358707 seconds.
+Dynamic[PRIVATE`mycounter] / 41
+Decay widths computed in 0.078268 seconds.
+Preparing Python output.
+    - Splitting vertices into building blocks.
+Splitting of vertices distributed over 8 kernels.
+    - Optimizing: Dynamic[PRIVATE`PY$SplitVertexCounter]/70 .
+    - Writing files.
+Done!
+DONE

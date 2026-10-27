@@ -1,0 +1,293 @@
+[
+ {
+  "cand_id": "C045",
+  "claim": "Same-charge uu->TT production of a charge-2/3 VLQ coupled only to first-generation quarks (T->Wd/Zu/Hu) has no dedicated CMS/ATLAS search and should be a new HL-LHC analysis.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Only a dedicated same-sign-dilepton + 2 light jets (+MET) search with reconstructed m(W j)/m(Z j) peaks and large-width (Gamma/m >~ 1-50%) signal templates survives; it is a niche corner because generic searches/measurements already exclude most of the first-generation kappa-M plane up to kappa~0.07, APV bounds the same couplings, and the only HL-LHC projection (2212.01514) gains only a sliver over APV (g* in [0.056,0.074], M_T 1.5-2.5 TeV). Status: indirectly-covered / constrained-but-region-open.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2006.07172",
+    "what": "Contur reinterpretation of published LHC measurements: 'the majority of the first-generation kappa-M_Q plane is excluded at 95% CL ... despite the lack of dedicated searches'; allowed region extends to kappa~0.07 at high mass, similar to APV limits. Includes t-channel weak VLQ pair production (Fig. 1e), i.e. the same-charge process.",
+    "location": "Sec. 5.1, Fig. 7; Sec. 5 intro (Fig. 1e discussion)"
+   },
+   {
+    "id": "arXiv:2504.05476",
+    "what": "The seminal paper itself recasts ATLAS/CMS generic searches (ATLAS 0L squark/gluino 2010.14293, CMS jets+MET 1908.04722, CMS multilepton 1911.04968, CMS 3-jet resonances 1810.10092): same-charge TT excluded up to ~3.5-4 TeV for large widths; bound from same-charge TT is 'largely subdominant with respect to the APV bound on the mixing angle' except low-mass singlet; ATLAS 2405.19862 has 'much higher reach' in the Wd case and 'the same-charge process would also be effectively tested by this search'.",
+    "location": "Sec. 3 (Fig. 3, Fig. 5 and text after Eq. APV), Sec. 4.1"
+   },
+   {
+    "id": "arXiv:2212.01514",
+    "what": "HL-LHC (3000 fb-1) projection of exactly this signature (pp->TT via t-channel first-generation coupling, T->Wq, same-sign dileptons + 2 jets + MET) already exists; HL-LHC reach only 'slightly better than the noncollider limits from atomic parity violation'.",
+    "location": "Abstract; Conclusions"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2405.19862",
+    "collab": "ATLAS",
+    "covers": "QCD pair production of VLQ->W+light quark, l+jets, 140 fb-1, reinterpreted for Zu/Hu",
+    "region_gap": "Narrow-width QCD pair only; no same-sign dilepton channel, no large-width/t-channel same-charge signal model"
+   },
+   {
+    "id": "arXiv:1807.11883",
+    "collab": "ATLAS",
+    "covers": "same-charge dileptons + b-jets: VLQ pair, T5/3, same-sign top pair",
+    "region_gap": "Requires b-jets; first-generation T decays to light quarks not targeted"
+   },
+   {
+    "id": "INSPIRE:1204346",
+    "collab": "ATLAS",
+    "covers": "7 TeV single production of VLQs coupling to light generations",
+    "region_gap": "Old, low-luminosity; single production only"
+   },
+   {
+    "id": "arXiv:2312.00420",
+    "collab": "ATLAS",
+    "covers": "W+-W+-jj fiducial/differential cross sections (same final state as TT->W+dW+d), used in Contur-type reinterpretations",
+    "region_gap": "VBS selection (large m_jj, Delta y_jj), not a resonance search"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2212.01514 (pheno HL-LHC projection, same-sign dilepton channel, 3000 fb-1). No CMS/ATLAS Phase-2 projection for this channel found.",
+  "showstoppers": "Couplings that drive same-charge production (kappa^4) are bounded by atomic parity violation (kappa<~0.07 first generation; 2006.07172 Sec.5, 2504.05476 Sec.3); single production (kappa^2) and QCD pair production generally dominate sensitivity; physics case relies on large-width region which is in tension with APV for singlet/doublet embeddings (2504.05476 Fig. 5). Backgrounds (ssWW, WZ, charge-flip, fakes) manageable but signal rate small for APV-allowed couplings.",
+  "queries_run": [
+   "collaboration:CMS and abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\"",
+   "collaboration:ATLAS and abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\"",
+   "abstracts.value:\"same-charge\" and abstracts.value:\"vector-like\"",
+   "abstracts.value:\"same-sign top partner\"",
+   "cites arxiv:2504.05476; cites arxiv:2406.09193; refs arxiv:2504.05476",
+   "abstracts.value:\"vector-like\" and abstracts.value:\"first generation\" and abstracts.value:\"single production\"",
+   "collaboration:CMS/ATLAS and abstracts.value:\"excited quark\" and boson (qW/qZ resonances)",
+   "collaboration:ATLAS and t \"same-sign\" and date > 2019 and tc p",
+   "abstracts.value:\"same-sign\" and abstracts.value:\"vector-like\" and abstracts.value:\"HL-LHC\"",
+   "collaboration:CMS/ATLAS and abstracts.value:\"vector-like\" and (light quark | first-generation)",
+   "abstracts.value:\"same-sign\" and abstracts.value:\"top partner\" and abstracts.value:\"first-generation\""
+  ],
+  "confidence": "medium",
+  "notes": "Seed's 'gap_evidence' sentence from 2406.09193 is true literally (no dedicated experimental same-sign VLQ-pair search found), but the parameter space is largely covered indirectly and by APV. A dedicated search would be a modest extension (add SS2l channel + width templates to an ATLAS-2405.19862-like analysis), not a high-value new HL-LHC analysis. CMS qW/qZ excited-quark dijet search 1708.05379 also constrains T->Zu/Wd single production (not quantified here, UNVERIFIED)."
+ },
+ {
+  "cand_id": "C047",
+  "claim": "Bundle: (a) top-partner/VLQ 'portal matter' decaying to t + dark photon (boosted prompt A'->ll lepton-jet or long-lived A' decaying in the detector) has no CMS/ATLAS search; (b) vector-like leptons in long-lived, tau-rich, triplet/exotic-charge or dark/ALP decay modes are under-searched.",
+  "verdict": "NARROWED",
+  "surviving_gap": "Part (a) only: a dedicated CMS/ATLAS search for pair (or single) produced T -> t + gamma_d with gamma_d reconstructed as a boosted (prompt or displaced, mm-m) lepton-jet/collimated ll, i.e. 'top + lepton-jet' or 'top + displaced lepton-jet' at HL-LHC. No experimental search found; the phenomenology (including the displaced regime) already exists (1904.05893 Sec. 5-6/Fig. 10, 2112.08425, 2209.13888, 2410.06925), so novelty is experimental-analysis only (proposed-not-searched). The fully-invisible (escaping A') regime is indirectly covered by tt+MET/t+MET recasts. Part (b) DIES: VLL tau/third-generation, LLP-in-muon-system, triplet (type-III seesaw) and inclusive multilepton searches all exist; only doubly-charged VLL prompt decays remain without a found dedicated search (low priority, UNVERIFIED gap).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:1904.05893",
+    "what": "Original maverick-top-partner paper already treats long-lived gamma_d (decay lengths, displaced vertices, MATHUSLA) and recasts CMS stop (tt+MET) and ATLAS t+MET (1812.09743) searches for the escaping-A' case; so the '2410.06925 future work' long-lived case is not new phenomenology.",
+    "location": "Sec. on dark photon lifetime (Fig. 8, Fig. 10), Fig. 9 and text around eq. (65)"
+   },
+   {
+    "id": "arXiv:2209.13888",
+    "what": "Pheno study of maverick top partner decays including 14 TeV 300 and 3000 fb-1 projections",
+    "location": "Results/conclusions (14 TeV 3000 fb-1 figure)"
+   },
+   {
+    "id": "arXiv:2112.08425",
+    "what": "Pheno search strategy for T -> t gamma_d with gamma_d -> overlapping electrons (lepton-jet), claims viability up to ~3 TeV",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2503.16699",
+    "what": "CMS VLL -> tau + long-lived pseudoscalar (a->gamma gamma) in muon system, 138 fb-1",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2503.22581 / arXiv:2303.05441 / arXiv:2208.09700",
+    "what": "ATLAS/CMS third-generation VLL searches in tau/b final states",
+    "location": "Abstracts"
+   },
+   {
+    "id": "arXiv:2202.02039 / arXiv:2202.08676",
+    "what": "ATLAS type-III seesaw (SU(2) triplet heavy leptons) and CMS inclusive multilepton searches cover triplet VLLs",
+    "location": "Abstracts"
+   },
+   {
+    "id": "arXiv:2411.07143",
+    "what": "ATLAS VLL coupling to first/second generation",
+    "location": "Title/abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2607.28381",
+    "collab": "ATLAS",
+    "covers": "VLQ T -> t + spin-0 S, S->gamma gamma, 140 fb-1",
+    "region_gap": "Scalar to diphoton, not dark photon to lepton-jets; prompt only"
+   },
+   {
+    "id": "arXiv:2610.03489 / arXiv:2510.25874",
+    "collab": "CMS",
+    "covers": "T -> t phi (phi->gamma gamma boosted tops; single T -> t phi, phi->bb)",
+    "region_gap": "No dark-photon/lepton-jet or displaced decays"
+   },
+   {
+    "id": "arXiv:2206.12181",
+    "collab": "ATLAS",
+    "covers": "Displaced collimated lepton/hadron jets from long-lived dark photons (Higgs ggF/WH production)",
+    "region_gap": "Production via Higgs; not interpreted for VLQ -> t gamma_d (sensitivity of inclusive selection to VLQ topology UNVERIFIED)"
+   },
+   {
+    "id": "arXiv:1812.09743 (via 1904.05893 recast)",
+    "collab": "ATLAS",
+    "covers": "t + large MET; covers escaping gamma_d",
+    "region_gap": "Invisible regime only"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2209.13888 (pheno, 14 TeV 3000 fb-1); arXiv:2112.08425 (pheno LHC). No CMS/ATLAS Phase-2 projection for T -> t gamma_d found.",
+  "showstoppers": "Boosted GeV-scale A' gives collimated leptons failing standard isolation (needs dedicated lepton-jet reconstruction, as in ATLAS LJ searches - feasible). BR(T->t gamma_d) is model-dependent (dominates only for small m_gamma_d << m_Z and suitable v_d, sin theta). Kinetic mixing epsilon constrained by beam-dump/B-factory; for displaced regime epsilon ~1e-6-1e-4 (1904.05893). Pair-production rate falls fast above ~1.5-2 TeV, so HL-LHC reach is driven by QCD pair rate; existing VLQ limits in standard modes do not apply when BR(T->t gamma_d) ~ 1.",
+  "queries_run": [
+   "abstracts.value:\"vector-like\" and abstracts.value:\"dark photon\"",
+   "abstracts.value:\"portal matter\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"vector-like\" and (exotic decay | new scalar | spin-0 | pseudoscalar) and date > 2019",
+   "(CMS or ATLAS) and abstracts.value:\"top partner\" and abstracts.value:\"long-lived\"",
+   "(CMS or ATLAS) and abstracts.value:\"lepton-jet\" and date > 2015",
+   "cites arxiv:2410.06925; cites arxiv:1904.05893; cites arxiv:1810.07531",
+   "(CMS or ATLAS) and abstracts.value:\"dark photon\" and abstracts.value:\"top quark\"",
+   "(CMS or ATLAS) and abstracts.value:\"displaced\" and abstracts.value:\"top quark\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"dark photon\" and abstracts.value:\"displaced\" and date > 2019",
+   "abstracts.value:\"top partner\" and abstracts.value:\"dark photon\"",
+   "(CMS or ATLAS) and abstracts.value:\"type-III seesaw\" and date > 2018",
+   "(CMS or ATLAS) and abstracts.value:\"vector-like lepton\" and date > 2018",
+   "(CMS or ATLAS) and doubly charged heavy lepton",
+   "abstracts.value:\"doubly charged lepton\" and date > 2015",
+   "abstracts.value:\"vector-like lepton\" and abstracts.value:\"long-lived\""
+  ],
+  "confidence": "medium",
+  "notes": "The seed's gap quote (2410.06925 'leave long-lived dark photon for future work') is a lead from a 2-citation paper; the long-lived case had been discussed in 1904.05893 (53 citations). Bundle split: (a) NARROWED-survives as experimental gap 'top + (displaced) lepton-jet'; (b) DIES. Whether ATLAS/CMS displaced-vertex+jets or muon-system shower inclusive searches already constrain VLQ -> t gamma_d was not checked by a recast (UNVERIFIED)."
+ },
+ {
+  "cand_id": "C048",
+  "claim": "Colour-sextet fermionic top partners (hyperbaryons of fundamental composite Higgs models) have no dedicated CMS/ATLAS search; a dedicated HL-LHC search (pair: multi-top/multi-b/MET; single: Q6 t / Q6 b) is warranted.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(i) A dedicated search for compressed Q6 -> pi6 Q1hat -> bb + MET spectra (soft b-jets) where generic SUSY recasts lose sensitivity; (ii) a dedicated >=5-6 top / 4t+X high-HT signature from Q6Q6 -> (t S pi8)(t S pi8) at m6 ~ 2.5-3 TeV; (iii) single sextet production (Q6 t, Q6 b via chromomagnetic operator) at HL-LHC - no pheno study yet (theory-explored-untested only for pair). The bulk of pair-production parameter space is indirectly-covered by generic SUSY searches (excluded to ~2.4-2.6 TeV full multiplet), with HL-LHC extrapolated recast reach ~2.75-3 TeV, leaving only a few hundred GeV of mass reach for a dedicated analysis.",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2605.04143",
+    "what": "Seminal paper's own recast of ATLAS-SUSY-2018-31, ATLAS-SUSY-2018-17, CMS-SUS-19-006: full sextet multiplet excluded up to 2.42 (2.64) TeV LO (K=3); pi6 channel 2.65 (2.9) TeV; HL-LHC extrapolation (3 ab-1, 13 TeV) ~2.75 TeV LO, ~3 TeV with K=3. 'existing analyses already have sensitivity to a substantial fraction of the multi-TeV mass range'.",
+    "location": "Sec. 4, Figs. 3-4, Conclusions"
+   },
+   {
+    "id": "arXiv:2605.04143",
+    "what": "Compressed bb+MET regime explicitly identified as where recasts lose sensitivity -> surviving gap",
+    "location": "Conclusions"
+   },
+   {
+    "id": "arXiv:2506.04318",
+    "what": "HL-LHC (14 TeV, 3 ab-1) pheno projection for colour-sextet (and octet) scalars in four-top same-sign-lepton channel (scalar sextets, not fermions) - adjacent coverage of the multi-top signature",
+    "location": "Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "CMS-SUS-19-006 / ATLAS-SUSY-2018-31 / ATLAS-SUSY-2018-17 (as recast in 2605.04143)",
+    "collab": "CMS/ATLAS",
+    "covers": "multijet+HT+MET, multi-b+MET, high-jet-multiplicity SUSY final states",
+    "region_gap": "Not optimized for multi-top without large MET or compressed bb+MET"
+   },
+   {
+    "id": "arXiv:2410.20601",
+    "collab": "CMS",
+    "covers": "pair-produced heavy particles -> t + g (colour-octet/excited top partners), l+jets",
+    "region_gap": "t+g decay, not t+S+pi8 cascades of sextets"
+   },
+   {
+    "id": "arXiv:2604.14058",
+    "collab": "CMS",
+    "covers": "BSM resonances in four-top events, 2-lepton channel (Z', scalar, ALP)",
+    "region_gap": "Resonant tt in 4t; not pair-produced coloured fermions to >=4t+X"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2605.04143 Sec. 4 & App. B (luminosity extrapolation of recasts to 3 ab-1 at 13 TeV); arXiv:2609.19918 (proceedings summary, recast bound up to 2.64 TeV). No CMS/ATLAS Phase-2 projection for coloured sextet fermions found.",
+  "showstoppers": "(1) MC: public shower tools do not support the 3x6x8 colour flow; 2605.04143 uses an unvalidated triplet surrogate - a dedicated experimental analysis needs proper signal modelling. (2) No NLO cross section (K-factor of 3 is a guess) -> large theory uncertainty on mass limits. (3) Model dependence on pNGB masses (pi8 fixed at 1.5 TeV, constrained >~1.375 TeV) and on spectrum (m1, m6). (4) Small marginal gain: rate-limited at ~3 TeV, recasts already near HL reach. (5) Single production is loop/model-coupling suppressed.",
+  "queries_run": [
+   "abstracts.value:\"sextet\" and abstracts.value:\"fermion\" and date > 2010",
+   "colour/color(-)sextet abstracts (all spellings)",
+   "(CMS or ATLAS) and abstracts.value:\"sextet\"",
+   "(CMS or ATLAS) and abstracts.value:\"color-octet\" and (fermion | top partner | excited top)",
+   "(CMS or ATLAS) and (six top | multi-top | multiple top)",
+   "(CMS or ATLAS) and abstracts.value:\"four top\" and BSM and date > 2021",
+   "abstracts.value:\"hyperbaryon\" or \"chimera baryon\" and LHC",
+   "cites arxiv:2605.04143",
+   "collaboration:ATLAS and t \"four top\" and (resonance | top-philic)",
+   "(CMS or ATLAS) and sgluon / color-octet scalar four top"
+  ],
+  "confidence": "medium",
+  "notes": "No CMS/ATLAS paper mentioning 'sextet' in abstract found (not proof of absence). Seed's gap quotes are accurate but the same paper shows strong indirect coverage. Novelty mostly theory/phenomenology (2605.04143 is 2026); experimental priority low unless compressed/bb+MET or single-production pheno shows large gains."
+ },
+ {
+  "cand_id": "C051",
+  "claim": "Bundle: (1) Drell-Yan angular coefficients A0-A2 (Lam-Tung violation) and (2) naive-T-odd A5-A7 have only been measured at the Z peak, so a high-m_ll/high-pT unfolded A_i measurement is a gap; (3) high-mass A_FB / running of sin2theta_W above the Z pole has not been probed.",
+  "verdict": "NARROWED",
+  "surviving_gap": "(1) A full (phi-dependent) unfolded A0-A7 measurement, in particular A2 and A0-A2, double-differential in m_ll (>~170-200 GeV) and pT_ll - not done by CMS/ATLAS (A0 alone vs mass, pT/y-integrated, template-level, exists in CMS 2202.12327). (2) A5-A7 above the Z peak: no measurement found (survives, but SM ~0 and statistics at high m & high pT are small). (3) A_FB at high mass is ALREADY MEASURED (CMS 2202.12327, m>170 GeV up to >1 TeV, 138 fb-1) and used in SMEFT fits -> that part DIES; only an experimental extraction of MSbar sin2theta_W(mu) running from high-mass NC DY survives (no CMS/ATLAS result found; theory HL-LHC projections exist in 2302.10782).",
+  "kill_evidence": [
+   {
+    "id": "arXiv:2202.12327",
+    "what": "CMS 13 TeV, 138 fb-1: A_FB measured vs dilepton mass for m>170 GeV (bins 170,200,250,320,510,700,1000,inf), mumu and ee, AND A0 measured vs mass in the same high-mass region; used to set Z' limits. Directly contradicts the seed statement that existing angular measurements are Z-peak only.",
+    "location": "Abstract; Sec. 1 (lines on A0 'in the same high-mass region (>170 GeV)'); Sec. on binning ('bin edges ... 170, 200, 250, 320, 510, 700, 1000 and infinity'); Table of A_FB per mass bin"
+   },
+   {
+    "id": "arXiv:2303.08257 / arXiv:2310.19638",
+    "what": "Pheno SMEFT fits already using available high-invariant-mass ATLAS/CMS A_FB data for four-fermion operators",
+    "location": "Abstract (2303.08257)"
+   },
+   {
+    "id": "arXiv:2503.20023",
+    "what": "CMS t-channel LQ search uses differential (angular) distributions of dileptons with m>500 GeV - angular information at high mass already exploited for BSM",
+    "location": "Abstract"
+   },
+   {
+    "id": "arXiv:2512.05018",
+    "what": "Its table of existing A_i measurements omits CMS 2202.12327 - the seed's 'not yet available' gap quote is partly stale; it also already provides LHC 300 fb-1 / HL-LHC 3 ab-1 sensitivity projections for A0-A2",
+    "location": "Sec. 6 table of measurements; Abstract"
+   }
+  ],
+  "closest_existing": [
+   {
+    "id": "arXiv:2202.12327",
+    "collab": "CMS",
+    "covers": "A_FB and A0 vs m_ll for m>170 GeV, integrated over pT and y, template fit (not unfolded to parton-level mass bins)",
+    "region_gap": "No A1, A2, A3, A5-A7; no pT_ll differential; no Lam-Tung test; no sin2theta running extraction"
+   },
+   {
+    "id": "arXiv:2604.25678",
+    "collab": "CMS",
+    "covers": "A0-A7 double-differential in pT, y, 140 fb-1",
+    "region_gap": "m_mumu 81-101 GeV only"
+   },
+   {
+    "id": "arXiv:2408.07622",
+    "collab": "CMS",
+    "covers": "A_FB, A4 and sin2theta_eff vs mass and rapidity",
+    "region_gap": "Mass bins around the Z (edges up to ~150 GeV per text), not high mass"
+   },
+   {
+    "id": "arXiv:1606.00689 / arXiv:1504.03512",
+    "collab": "ATLAS/CMS",
+    "covers": "8 TeV A0-A7 at Z peak",
+    "region_gap": "Z peak only"
+   }
+  ],
+  "hl_projection_docs": "arXiv:2302.10782 (sin2theta_MSbar running, 13.6 TeV Run 3 and 3 ab-1 HL-LHC, pheno); arXiv:2512.05018 (A0-A2 sensitivity, 300 fb-1 and 3 ab-1); arXiv:2511.19617 (A6,A7 dim-8 CP-odd at HL-LHC); CMS HL-LHC sin2theta proposal recid:1643433 (on-peak). No CMS/ATLAS Phase-2 projection for high-mass A_i found.",
+  "showstoppers": "Chirality-breaking ops enter A0-A2 only quadratically (1/Lambda^4), and A5-A7 effects come from dim-8 or dipole x dipole: expected effects are small relative to systematic uncertainties of phi-dependent acceptance corrections at high mass. A2/A5-A7 need finite pT_ll; the high-m_ll x high-pT_ll corner has limited statistics even at 3 ab-1 (number not checked, UNVERIFIED). Running of sin2theta at high mass is degenerate with PDFs and with SMEFT four-fermion operators (2310.19638 discussion) - interpretive, not detector, challenge.",
+  "queries_run": [
+   "(CMS or ATLAS) and abstracts.value:\"forward-backward asymmetry\" and abstracts.value:\"high\"",
+   "(CMS or ATLAS or LHCb) and abstracts.value:\"angular coefficients\" and date > 2015",
+   "(CMS or ATLAS) and abstracts.value:\"running\" and abstracts.value:\"weak mixing angle\"",
+   "abstracts.value:\"running\" and \"weak mixing angle\" and \"Drell-Yan\" and date > 2017",
+   "(CMS or ATLAS) and abstracts.value:\"Lam-Tung\"",
+   "abstracts.value:\"Lam-Tung\" and date > 2018",
+   "(CMS or ATLAS) and Drell-Yan and angular and mass and date > 2017",
+   "get arxiv:2202.12327 (CMS high-mass AFB, recalled then verified)",
+   "cites arxiv:2202.12327",
+   "collaboration:ATLAS dilepton angular/forward-backward contact interaction",
+   "ATLAS high-mass Drell-Yan",
+   "(CMS or ATLAS) and A_0 and A_2",
+   "cites arxiv:2302.10782; cites arxiv:2511.19617; cites arxiv:2512.05018",
+   "(CMS or ATLAS) and abstracts.value:\"T-odd\"",
+   "(CMS or ATLAS) and Drell-Yan and effective field theory and date > 2020",
+   "collaboration:ATLAS and weak mixing angle and date > 2019"
+  ],
+  "confidence": "medium-high for the A_FB kill (read from CMS PDF); medium for the A2/A5-A7 surviving gaps (ATLAS CONF notes/HEPData not checked; UNVERIFIED)",
+  "notes": "Seed missed CMS 2202.12327 entirely. Recommended reformulation: 'Full unfolded A0-A7 (esp. A2, A0-A2, A5-A7) in high-mass bins vs pT_ll at Run 3+HL-LHC, plus MSbar running extraction from the existing high-mass A_FB/triple-differential framework'. The sin2theta running piece is more an interpretation of existing-type measurements than a new analysis."
+ }
+]

@@ -1,0 +1,114 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/probes/t13_ward.mg
+The import format was not given, so we guess it as command
+import model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE
+INFO: Restrict model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE with file models/quirkE/restrict_default.dat . 
+INFO: Run "set stdout_level DEBUG" before import for more information. 
+INFO: Change particles name to pass to MG5 convention 
+Defined multiparticle p = g u c d s u~ c~ d~ s~
+Defined multiparticle j = g u c d s u~ c~ d~ s~
+Defined multiparticle l+ = e+ mu+
+Defined multiparticle l- = e- mu-
+Defined multiparticle vl = ve vm vt
+Defined multiparticle vl~ = ve~ vm~ vt~
+Defined multiparticle all = g u c d s u~ c~ d~ s~ a ve vm vt e- mu- ve~ vm~ vt~ e+ mu+ t b t~ b~ z w+ h sxe- w- sxe+ ta- xe- ta+ xe+
+check gauge a a > sxe+ sxe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process a a > sxe+ sxe- in unitary gauge 
+INFO: Checking process a a > sxe+ sxe- in feynman gauge 
+check: 2 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+a a > sxe+ sxe-  1.0358551757e-02  1.0358551757e-02  0.0000000000e+00  Passed
+Summary: 1/1 passed, 0/1 failed
+ 
+check gauge a a > xe+ xe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process a a > xe+ xe- in unitary gauge 
+INFO: Checking process a a > xe+ xe- in feynman gauge 
+check: 2 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+a a > xe+ xe-    5.6130361131e-02  5.6130361131e-02  0.0000000000e+00  Passed
+Summary: 1/1 passed, 0/1 failed
+ 
+check gauge a z > sxe+ sxe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process a z > sxe+ sxe- in unitary gauge 
+INFO: Checking process a z > sxe+ sxe- in feynman gauge 
+check: 2 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+a z > sxe+ sxe-  2.1250882071e-03  2.1250882071e-03  0.0000000000e+00  Passed
+Summary: 1/1 passed, 0/1 failed
+ 
+check gauge z z > sxe+ sxe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process z z > sxe+ sxe- in unitary gauge 
+INFO: Checking process z z > sxe+ sxe- in feynman gauge 
+check: 2 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+z z > sxe+ sxe-  3.7420915542e-04  3.7420915542e-04  0.0000000000e+00  Passed
+Summary: 1/1 passed, 0/1 failed
+ 
+check lorentz a a > sxe+ sxe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking lorentz transformations for process a a > sxe+ sxe- 
+INFO: Skipping Process: a a > sxe+ sxe-, identical matrix element already tested 
+check: 1 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Lorentz invariance results:
+Process          Min element       Max element       Relative diff.    Result
+Summary: 0/0 passed, 0/0 failed
+Not checked processes: a a > sxe+ sxe-
+ 
+exit
+quit

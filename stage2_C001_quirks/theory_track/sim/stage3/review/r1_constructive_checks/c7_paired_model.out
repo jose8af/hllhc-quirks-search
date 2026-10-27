@@ -1,0 +1,48 @@
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/stage3/review/r1_constructive_checks/c7_paired_model.py:23: RuntimeWarning: divide by zero encountered in divide
+  r = ds[m][sel] / np.array([mod[q] for q in rows[sel]]); f = ff[m][sel].astype(bool)
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/stage3/review/r1_constructive_checks/c7_paired_model.py:23: RuntimeWarning: invalid value encountered in divide
+  r = ds[m][sel] / np.array([mod[q] for q in rows[sel]]); f = ff[m][sel].astype(bool)
+model note: p1_model_mg.py -- the analytic predictions RE-DERIVED on the MadGraph P1 events (E8, 2026-10-13).
+
+For every P1 event (same rows as the production P1 B runs: |eta_pair| < 1, vertex at the origin, 300 events at
+Lambda <= 5 keV, 200 at 7-10 keV) and Lambda in {0.45, 0.6, 1, 2, 3, 5, 7, 10} keV, evalua
+model point dtype/sample: ['F_m200' 'F_m200'] [10. 10.]
+F_m200   L0.45  n=300 paired median ratio = 0.9665 +- 0.0030
+F_m200   L0.6   n=300 paired median ratio = 0.9753 +- 0.0032
+F_m200   L1     n=300 paired median ratio = 0.9864 +- 0.0014
+F_m200   L2     n=300 paired median ratio = 0.9871 +- 0.0022
+F_m200   L3     n=300 paired median ratio = 0.9887 +- 0.0034
+  F_m200 L5: 1 non-finite ratios (model=[np.float64(0.0)], meas=[0.01031697]) dropped
+F_m200   L5     n=299 paired median ratio = 0.9899 +- 0.0024
+F_m500   L0.45  n=300 paired median ratio = 0.9804 +- 0.0040
+F_m500   L0.6   n=300 paired median ratio = 0.9897 +- 0.0021
+F_m500   L1     n=300 paired median ratio = 0.9927 +- 0.0014
+F_m500   L2     n=300 paired median ratio = 0.9952 +- 0.0016
+F_m500   L3     n=300 paired median ratio = 0.9952 +- 0.0019
+F_m500   L5     n=300 paired median ratio = 0.9965 +- 0.0014
+F_m500   L7     n=200 paired median ratio = 1.0007 +- 0.0019 | unflagged 1.0003 +- 0.0018 (n=189) | flagged 1.0121 +- 0.0097 (n=11)
+F_m500   L10    n=200 paired median ratio = 1.0159 +- 0.0045 | unflagged 1.0193 +- 0.0069 (n=166) | flagged 1.0082 +- 0.0052 (n=34)
+  F_m1000 L0.45: 1 non-finite ratios (model=[np.float64(0.0)], meas=[57.97785979]) dropped
+F_m1000  L0.45  n=299 paired median ratio = 0.9940 +- 0.0044
+F_m1000  L0.6   n=300 paired median ratio = 0.9953 +- 0.0018
+F_m1000  L1     n=300 paired median ratio = 0.9977 +- 0.0009
+F_m1000  L2     n=300 paired median ratio = 0.9978 +- 0.0010
+F_m1000  L3     n=300 paired median ratio = 0.9974 +- 0.0008
+F_m1000  L5     n=300 paired median ratio = 0.9999 +- 0.0009 | unflagged 0.9993 +- 0.0009 (n=278) | flagged 1.0038 +- 0.0036 (n=22)
+F_m1000  L7     n=200 paired median ratio = 1.0079 +- 0.0015 | unflagged 1.0080 +- 0.0018 (n=165) | flagged 1.0069 +- 0.0027 (n=35)
+  F_m1000 L10: 1 non-finite ratios (model=[np.float64(0.0)], meas=[0.]) dropped
+F_m1000  L10    n=199 paired median ratio = 1.0269 +- 0.0048 | unflagged 1.0326 +- 0.0088 (n=125) | flagged 1.0214 +- 0.0040 (n=74)
+F_m1500  L0.45  n=300 paired median ratio = 1.0007 +- 0.0035
+F_m1500  L0.6   n=300 paired median ratio = 0.9997 +- 0.0023
+F_m1500  L1     n=300 paired median ratio = 0.9985 +- 0.0012
+F_m1500  L2     n=300 paired median ratio = 0.9987 +- 0.0008
+  F_m1500 L3: 1 non-finite ratios (model=[np.float64(0.0)], meas=[0.0075876]) dropped
+F_m1500  L3     n=299 paired median ratio = 0.9996 +- 0.0007 | unflagged 0.9994 +- 0.0006 (n=289) | flagged 1.0045 +- 0.0043 (n=10)
+F_m1500  L5     n=300 paired median ratio = 1.0019 +- 0.0003 | unflagged 1.0017 +- 0.0004 (n=269) | flagged 1.0056 +- 0.0021 (n=31)
+S_m500   L0.45  n=300 paired median ratio = 0.9928 +- 0.0064
+S_m500   L0.6   n=300 paired median ratio = 0.9861 +- 0.0036
+S_m500   L1     n=300 paired median ratio = 0.9686 +- 0.0053
+S_m500   L2     n=300 paired median ratio = 0.9541 +- 0.0067
+S_m500   L3     n=300 paired median ratio = 0.9471 +- 0.0052
+  S_m500 L5: 1 non-finite ratios (model=[np.float64(0.0)], meas=[0.00605719]) dropped
+S_m500   L5     n=299 paired median ratio = 0.9524 +- 0.0081

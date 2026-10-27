@@ -1,0 +1,53 @@
+{
+ "_doc": "PROPOSED extension of acts/stage4/analysis/inputs/schema.json (v1) for the Stage-5 figures that schema v1 cannot feed. Written by Stage 5 (2026-10-14); NOT part of the frozen Stage-4 schema. Stage 4 (or a Stage-5 post-processor of Stage-4 outputs) should write these files, or equivalent keys, into the results directory or <results>/proposed/. Placeholders in stage5/placeholder_inputs/proposed/.",
+ "version": "proposal-1",
+ "files": {
+  "acceptance.json": {
+   "required": {
+    "label": "str",
+    "points": "dict key (signal_eff a2 key) -> {A_trig_presel: float, err_rel: float}"
+   },
+   "why": "limits.json gives mu = signal events in the trigger + preselection acceptance; sigma_95 = mu_95 / (L x A) needs A per (m, Lambda) (E and Etilde). Without it Stage 5 falls back to the ESTIMATE trigger proxy f(pT(QQ) > 200, |eta| < 2.5) from sim/results/xsec.json (E only, no preselection)."
+  },
+  "edges_det.json": {
+   "required": {
+    "label": "str",
+    "points": "dict 'spin|m' -> {lower: {value keV, stat_err, definition, b84_label}, upper: {...}}"
+   },
+   "why": "plan §5 / §11 item 3: detector-level edges (logistic in ln Lambda, row-level bootstrap jointly across Lambda) vs the Stage-3 truth edges, incl. the W_c / t_tol attribution (V4-3)."
+  },
+  "sep_it_det.json": {
+   "required": {
+    "label": "str",
+    "points": "dict key -> {sep_truth_median_mm, sep_det_median_mm, err_mm, n}"
+   },
+   "why": "plan §11 item 4: sep_IT^det calibration vs Stage-3 truth sep_IT (the Lambda^-2 handle)."
+  },
+  "event_display.npz": {
+   "arrays": [
+    "x",
+    "y",
+    "z (mm, hits)",
+    "cls (0 PU, 1 quirk truth, 2 best PU fake candidate, ...)",
+    "cls_names",
+    "met_phi",
+    "label"
+   ],
+   "why": "plan §11 Stage-5 list: event display, signal in PU 200 vs the best PU fake; needs one hit dump of a signal event and of the best-ranked PU-only candidate."
+  },
+  "external_bounds.json": {
+   "location": "stage5/external_bounds.json (Stage-5 own input, NOT in <results>/proposed; superseded 2026-10-16)",
+   "required": {
+    "curves": "dict id -> {label, applies_to [E|Etilde], kind upper_mass_edge|polygon|benchmarks, points [[m_GeV, lam_keV], ...], uncertainty_tag VERIFIED|ESTIMATE, draw bool, source, model_match, method}"
+   },
+   "why": "FASER / D0 / Farina-Low overlay on the exclusion map; built by stage5/build_external_bounds.py; schema 'external_bounds v1' in stage5/EXTERNAL_BOUNDS.md."
+  }
+ },
+ "schema_v1_notes": [
+  "limits.json: 'discovery' (mu_3events, mu_5sigma) and 'expected_primary' are written by run_all.limits_stage but are not listed in schema v1; D7 reads 'discovery' if present.",
+  "limits.json: expected_toys (PRIMARY) has only the median; the +-1/2 sigma bands exist only for the asymptotic cross-check. Stage 5 draws the toy median with asymptotic bands (labelled); toy quantiles (16/84/2.5/97.5 %) would make the bands primary.",
+  "plan §2.6 names results/fallback_limits.json and results/sensitivity.json; schema v1 has limits.json only (same content per run_all). Stage 5 reads limits.json.",
+  "signal_eff.json: the efficiency factor breakdown (trigger, preselection, PV, fiducial, finder; plan §11 item 3) is not in schema v1, so 'eps maps by factor' are drawn per report rung R_A..R_E + primary, not per factor."
+ ],
+ "status_2026_10_16": "SUPERSEDED for the real run: the four extension files are now part of the frozen Stage-4 schema (acts/stage4/analysis/inputs/schema.json v2) and run_all writes them at the TOP LEVEL of the run dir (C12FC_v1). Real layouts read by make_figures (2026-10-16): edges_det.json points 'sample|spin|m' (sample A1/A2) -> {sample, lam_keV, truth{lower_*,upper_*}, R04{eff, lower, upper}, R14{...}}; sep_it_det.json points 'sample|spin|m|lam|var' -> {sep_det_median_mm, err_mm, n, sep_truth_median_mm, pu200, measurable, flag} + top-level pu200_measurable; limits.json expected_toys has band_1s/band_2s (toy bands are now primary in D5-D7); signal_obs npz array 'file' is written as 'src_file' (accepted alias). The 'spin|m' edges layout below is kept only for the synthetic placeholder inputs."
+}

@@ -1,0 +1,64 @@
+{
+ "figure": "D8_mest_rfb_F1500",
+ "files": [
+  "D8_mest_rfb_F1500.pdf",
+  "D8_mest_rfb_F1500.png"
+ ],
+ "created": "2026-10-16T14:22:08",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz": "97a2631196b415cc90c023c32a2752f59629a8bb3dcd9668b2fdd2bf4b11422b",
+  "data/acts_stage4/analysis/C12FC_v1/limits.json": "4f99fe6a8362bfa2ee2ab162c5494f6bcd49184980a63f71a9f2b4f3b2895eff"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "8c4b402133f9c405f552744ed8463215bfc47983865c058983cce61fd0061861"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "point": "F1500",
+  "lambdas": [
+   0.45,
+   0.85,
+   2.0,
+   5.0
+  ],
+  "selection": "primary",
+  "x_range_GeV": [
+   0.0,
+   4800.0
+  ],
+  "per_curve_event_level": {
+   "2": {
+    "N_events": 6,
+    "N_undefined": 1,
+    "median_over_m": 1.3137341467909587,
+    "frac_below_0p5m": 0.3333333333333333,
+    "n_1p3_1p7m": 0,
+    "frac_overflow": 0.0
+   },
+   "5": {
+    "N_events": 8,
+    "N_undefined": 4,
+    "median_over_m": 2.2539197366776356,
+    "frac_below_0p5m": 0.125,
+    "n_1p3_1p7m": 0,
+    "frac_overflow": 0.0
+   }
+  },
+  "estimator": "pair-mass proxy |MET| cosh(eta)/(beta gamma), M_QQ >= 2 m_Q (acts/stage4/analysis/signal.py)"
+ }
+}

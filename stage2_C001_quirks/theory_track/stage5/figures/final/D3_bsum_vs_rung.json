@@ -1,0 +1,40 @@
+{
+ "figure": "D3_bsum_vs_rung",
+ "files": [
+  "D3_bsum_vs_rung.pdf",
+  "D3_bsum_vs_rung.png"
+ ],
+ "created": "2026-10-16T14:20:38",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/bsum_wp.json": "9077ba14d416a400a9e50f2e8051b6c26f5a5342d761af7ddf44ff767f401f69",
+  "data/acts_stage4/analysis/STAGE4_SUMMARY.json": "c951162f3ab3eab92fc9cc4fffdaba9d48614ac1a9855f768b90930e225d0e28"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "339aa60334039527c72dd83ab67d21b9b80119581d5d152a9a28dd1b8e2e7c73"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "complete_inputs": true,
+  "wp": {
+   "T": null,
+   "G": null,
+   "branch": "no WP in either category (\u00a75.3): \u00a78 fallback, user told"
+  },
+  "branch": "no WP in either category (\u00a75.3): \u00a78 fallback, user told"
+ }
+}

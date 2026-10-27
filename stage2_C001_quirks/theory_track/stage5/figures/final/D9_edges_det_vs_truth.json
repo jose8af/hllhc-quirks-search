@@ -1,0 +1,91 @@
+{
+ "figure": "D9_edges_det_vs_truth",
+ "files": [
+  "D9_edges_det_vs_truth.pdf",
+  "D9_edges_det_vs_truth.png"
+ ],
+ "created": "2026-10-16T14:57:48",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/edges_det.json": "5639bdd9da6e30ed5b377a84047911f8af1e0b43e5f4ad2e4f4c04b91f0a881f",
+  "data/acts_stage4/analysis/STAGE4_SUMMARY.json": "181e837f6fcebac6102a23ffe1edde7eb33d302e83059adcd671d2a7a77d587c"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "d1f34c95b43c53d61c24ee314fea8f68ed7aa580a689a9deeaf413e367913e72"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector + truth-level comparators",
+  "truth_upper_source": "data/acts_stage4/analysis/STAGE4_SUMMARY.json",
+  "truth_upper_any_merged": {
+   "F200": [
+    5.142180778631806,
+    0.273990658037256
+   ],
+   "F500": [
+    4.8739106898508,
+    0.4821319082279552
+   ],
+   "F1000": [
+    4.481578278841043,
+    0.4287577430123202
+   ],
+   "F1500": [
+    4.7049979539789755,
+    0.6549655693550507
+   ],
+   "S500": [
+    5.474092954268335,
+    0.7920326070691373
+   ]
+  },
+  "truth_upper_merged_or_seed": {
+   "F200": [
+    4.444000908367144,
+    0.49775444332083585
+   ],
+   "F500": [
+    4.270295123341096,
+    0.37272501081177634
+   ],
+   "F1000": [
+    4.119272083281216,
+    0.3805059932550298
+   ],
+   "F1500": [
+    4.2995577129583715,
+    0.5713200008773683
+   ],
+   "S500": [
+    4.94707113685473,
+    0.5886194363478153
+   ]
+  },
+  "a2_upper_missing": [
+   "F200",
+   "F500",
+   "F1000",
+   "F1500",
+   "S500"
+  ],
+  "display_offsets_GeV": {
+   "truth_any_merged": 30,
+   "truth_merged_or_seed": 60,
+   "a2_upper_arrow": -30
+  },
+  "not_drawn": "Stage-3 upper_merge100_hit (median IT sep < 100 um, 13-25 keV): not the comparator of the detector upper edge (STAGE4_RESULTS \u00a76.1)"
+ }
+}

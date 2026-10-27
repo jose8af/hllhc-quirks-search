@@ -1,0 +1,50 @@
+{
+ "cand_id": "C015",
+ "claim": "A GeV-scale ALP with flavour-violating couplings to right-handed up-type quarks ('charming ALP') allows t -> a q (q=u,c). For m_a ~ 1-10 GeV the ALP is naturally long-lived (c tau ~ cm-m), so a top-triggered ttbar search for an ALP decaying in the HCAL (CalRatio-like: high E_had/E_em, track veto) or in the muon system probes Br(t->aq) < 1e-4 (Run 3, conservative) and, if background-free, ~1e-7 (Run 3) to ~1e-8 (HL-LHC). Single-top recasts cover only the very short and very long c tau limits at the ~1e-3 level (arXiv:2202.09371 abstract, Sec. 4.3, App. A).",
+ "framework": "Dimension-5 derivative ALP EFT L = (d_mu a/f_a) (c_uR)_ij ubar_Ri gamma^mu u_Rj with hermitian c_uR (2202.09371 Eq. 2.1-2.2); UV completions: t-channel flavoured dark-QCD sectors (dark pions) or Froggatt-Nielsen models where only RH up quarks are charged (2101.07803). Couplings to gluons, photons, leptons and down-type FCNC arise only through loops / RG running (2110.10698 Eqs. 2.15-2.21, 2.31).",
+ "assumptions": [
+  "ALP couples at tree level only to RH up-type quarks; c_GG, c_gamma gamma, lepton couplings vanish at the UV scale.",
+  "(c_uR)_12 tiny (D0-D0bar mixing, 2101.07803 Sec. IV.A); (c_uR)_13,23 ~ O(1) relative to f_a.",
+  "Benchmark of 2202.09371 sets all diagonal entries equal (c_ii) and all t-q entries equal (c_3q); lifetime set by c_ii, Br(t->aq) by c_3q/f_a.",
+  "m_a >~ 1 GeV so that perturbative QCD / quark-hadron duality is used for hadronic widths (2202.09371 Sec. 2).",
+  "No other light dark-sector states (otherwise t -> emerging jet, 2202.09371 Sec. 5)."
+ ],
+ "controlling_parameters": ["m_a", "(c_uR)_3q / f_a  -> Br(t->aq) (Eq. 2.3)", "(c_uR)_ii / f_a (esp. c_cc, c_uu, c_tt via running) -> c tau", "ratio (c_uR)_ii/(c_uR)_3q", "UV scale Lambda (log-sensitivity of loop-induced lepton/photon couplings)"],
+ "robust_predictions": [
+  "Production via ttbar with one t -> a q: single displaced object recoiling against a light jet, with m(a + j) = m_t if the LLP four-momentum is measured; the other top provides the trigger.",
+  "ALP highly boosted (m_a << m_t), decays to a narrow single-jet-like object; for m_a > 2 m_c dominantly a -> c cbar (tree level), cf. ATLAS benchmark Br(cc)~75%, Br(gg)~25% at m_a=40-55 GeV (2403.15332).",
+  "At fixed (c_ii/c_3q) ratio, c tau scales as 1/Br(t->aq): long lifetimes and large exotic branching ratios are anti-correlated unless off-diagonal >> diagonal couplings (2202.09371 Fig. 1 right).",
+  "BBN/cosmology irrelevant for c tau <~ 100 m (tau << 1 s)."
+ ],
+ "model_dependent_predictions": [
+  "The c tau - Br(t->aq) relation (depends on ratio c_ii/c_3q, i.e. on UV flavour structure).",
+  "ALP branching ratios for 1 GeV < m_a < 2 m_c: 2202.09371 Fig. 1 (f_a = 1e6 GeV) shows hadrons dominant with Br(gamma gamma) ~ O(0.3-0.6) and Br(mu mu) ~ 1e-3, whereas 2110.10698 Sec. 3.8.4 (Lambda = 4 pi TeV, universal c_u) states leptonic channels dominate for 2 m_e < m_a < few GeV. Visible channel at m_a ~ 1-3 GeV is therefore theory-uncertain at order-of-magnitude level.",
+  "Displaced a -> gamma gamma / mu mu from top decays: only sizeable below the charm threshold, or with extra c_gamma gamma / lepton couplings outside the minimal model.",
+  "Low-mass (m_a < m_B - m_K) parameter space is subject to B -> K(*) a(mu mu) and Upsilon/J/psi -> gamma a constraints on c_tt and c_cc (2110.10698 Fig. 23)."
+ ],
+ "constraints_checked": [
+  {"constraint": "D0-D0bar mixing on (c_uR)_12", "source_id": "arXiv:2101.07803 Sec. IV.A, Eq. 35-36", "verdict": "forces (c_uR)_12 ~ 0; built into benchmark; does not limit t-q couplings at tree level"},
+  {"constraint": "Loop-induced b->s (B -> K(*) a, a -> mu mu / invisible) from c_tt via [k_D]_ij ~ V_ti* V_tj 1.9e-2 c_tt", "source_id": "arXiv:2110.10698 Eq. 2.31, Fig. 23; arXiv:2101.07803 Eq. 43-45", "verdict": "relevant only for m_a <~ 4.8 GeV (m_B-m_K); the diagonal couplings required for cm-m lifetimes are small (reviewer estimate c_ii/f ~ 1e-3/TeV at m_a=2 GeV, UNVERIFIED), likely below the B->K a(mu mu) reach shown in Fig. 23, so the m_a=2 GeV benchmark is probably not excluded; quantitative check UNVERIFIED"},
+  {"constraint": "Upsilon -> gamma a, J/psi -> gamma a, top chromomagnetic moment, Z width", "source_id": "arXiv:2110.10698 Sec. 3.7, 3.8.4, Fig. 23", "verdict": "only bound |c_u|/f >~ O(1-100)/TeV; far above the couplings relevant here; pass"},
+  {"constraint": "Single top / top+jet recasts", "source_id": "arXiv:2202.09371 Sec. 3.2, Fig. 6", "verdict": "exclude Br >~ 1e-3 at very short (<~ 0.006-0.02 m) and Br >~ 1e-4 at long c tau; intermediate c tau open"},
+  {"constraint": "ATLAS ID displaced-vertex search, t->aq", "source_id": "arXiv:2403.15332 (conclusions)", "verdict": "excludes Br(t->aq) > 0.1% for 1.6 < c tau < 130 mm only for 40 < m_a < 55 GeV; lower masses and HCAL/MS volumes not covered by that paper"},
+  {"constraint": "Beam dump / SN1987A / BBN", "source_id": "arXiv:2101.07803 Sec. V-VI", "verdict": "relevant only below ~ m_D or for very long lifetimes; irrelevant for m_a > few GeV and c tau ~ cm-m"},
+  {"constraint": "UV consistency of the c_ii << c_3q hierarchy (reviewer derivation)", "source_id": "reasoning from 2202.09371 Fig. 1 + 2110.10698 Eq. 3.45 (c_cc(m_c) ~ c_cc(Lambda) - 0.13 c_tt)", "verdict": "In FN models with same-sign RH-up charges c_uR = U^dag diag(Q) U is positive semidefinite, so |c_3q|^2 <= c_33 c_qq; and c_tt radiatively feeds c_cc. Hence without tuning c_ii/c_3q >~ 0.1-1. Reading Fig. 1 (approx., factor-few): at ratio 0.1, c tau ~ 1-4 cm needs Br(t->aq) ~ 1e-6 (m_a=2 GeV) and ~ 1e-7 (m_a=10 GeV); at ratio 1, ~1e-8 / ~1e-9. Br ~ 1e-4 with cm-m lifetimes needs ratio ~ 1e-2 (2 GeV) to ~ 1e-3 (10 GeV), and the ATLAS 40-55 GeV region needs even stronger hierarchy. Dark-QCD completions (couplings ~ kappa T^a kappa^dag, indefinite) can evade this only with structure. Numbers approximate, UNVERIFIED beyond figure reading."}
+ ],
+ "motivation_strength": 3,
+ "robustness": 2,
+ "theory_uncertainties": [
+  "Hadronic ALP width for 1 GeV <~ m_a <~ 3 GeV (duality vs chiral/data-driven treatments): changes c tau and visible channel by large factors.",
+  "Log(Lambda) dependence of loop-induced lepton/photon couplings (f_a = 1e6 GeV vs Lambda = 4 pi TeV conventions differ between 2202.09371 and 2110.10698).",
+  "Mapping of (Br, c tau) to UV couplings depends on unknown flavour structure; the signal itself (ttbar x Br, LLP kinematics) is well predicted (ttbar cross section known at percent level, UNVERIFIED number).",
+  "CalRatio efficiency modelled via a published ATLAS efficiency map in 2202.09371, not full simulation; background-free projections (1e-7 / 1e-8) are optimistic assumptions by the authors."
+ ],
+ "distinctiveness": "Single displaced hadronic (or for m_a < 2 m_c photon/muon) object plus a light jet reconstructing m_t, in ttbar with a leptonic top. Distinct from h->aa (two LLPs, m=125 GeV), W/Z+a, and emerging jets. Not distinguishable from any other t -> q X(LLP) (e.g. flavour-violating light scalar, CP not measured), so results should be quoted model-independently as Br(t->qX) vs (m_X, c tau).",
+ "confidence": "medium",
+ "caveats": [
+  "Proposed target (m_a ~ 1-35 GeV, HCAL/MS, lepton-triggered ttbar) is theoretically consistent and largely free of flavour/cosmology constraints for m_a >~ 5 GeV; at m_a = 2 GeV B->K a(mu mu) must be checked quantitatively.",
+  "Large-Br + long-lifetime corner presupposes an inverted coupling hierarchy (off-diagonal >> diagonal) that is not generic; generic UV completions put the signal at Br <~ 1e-6-1e-8, i.e. the reach of a near background-free HL-LHC search.",
+  "Leptonic/photonic ALP channel sub-target is strongly model-dependent; do not use the minimal charming-ALP model to motivate a -> gamma gamma above 2 m_c.",
+  "Figure readings (Fig. 1 of 2202.09371, Fig. 23 of 2110.10698) are approximate."
+ ]
+}

@@ -1,0 +1,185 @@
+{
+ "_doc": "Stable output schema of acts.stage4.analysis.run_all (version 1). run_all.validate_outputs checks the required keys and types of every file it wrote; Stage-5 figure code reads only the keys listed here. Units: probabilities per trial (one PU-200 event, one MET road), B in events in 3 ab^-1, times in ns, lengths in mm. v2 (2026-10-14, round 3): Stage-5 proposed_schema additions (acceptance, bands, factor breakdown, discovery, edges, sep_IT, event display).",
+ "version": 2,
+ "files": {
+  "manifest.json": {
+   "required": {
+    "label": "str",
+    "created": "str",
+    "campaigns": "list",
+    "t_seed": "int",
+    "governing_documents": "dict",
+    "analysis_code_sha256": "dict",
+    "input_sha256": "dict",
+    "status": "dict",
+    "inputs": "dict",
+    "ambiguities": "list",
+    "analysis_map": "list"
+   }
+  },
+  "signal_eff.json": {
+   "required": {
+    "label": "str",
+    "admissibility": "dict",
+    "admissibility_inputs_sha256": "dict"
+   },
+   "per_kind": {
+    "a1|a2|a5": {
+     "n_files": "int",
+     "checks": "dict",
+     "self_consistency": "dict",
+     "points": "dict"
+    }
+   },
+   "point": {
+    "sample": "str",
+    "spin": "str",
+    "m": "float",
+    "lam": "float",
+    "cfg": "str",
+    "n_den": "int",
+    "ladder": "dict rung-name -> {k, eps, cp68}",
+    "ladder_T_present": "dict",
+    "fallback": "dict 'FB_k[e>x]&h>5&o>5' -> {k, eps, cp68}",
+    "fallback_T_present": "dict",
+    "injob_columns": "dict (43 in-job columns)",
+    "report_rungs": "dict R_A..R_E",
+    "lower_bound_columns": "list"
+   }
+  },
+  "signal_obs_<kind>.npz": {
+   "arrays": [
+    "key",
+    "row",
+    "cand",
+    "met",
+    "phimet_reco",
+    "eta_axis",
+    "eta_pair",
+    "dedx",
+    "w_core",
+    "h",
+    "o",
+    "beta_tof",
+    "dt_earliest",
+    "M_est",
+    "f_ckf",
+    "t_pv",
+    "t_raw_in",
+    "pv",
+    "normal",
+    "axis",
+    "L (n,23)",
+    "FB (n,20)",
+    "L_names",
+    "FB_names",
+    "sep_it_det_mm",
+    "hitrec",
+    "file"
+   ],
+   "note": "one row per signal-matched candidate (f_CKF stored, not applied); Stage 5 selects with L/FB and f_ckf < 0.2"
+  },
+  "signal_rows_<kind>.npz": {
+   "arrays": [
+    "<key>|rows",
+    "<key>|L",
+    "<key>|LT",
+    "<key>|FB",
+    "<key>|P"
+   ],
+   "note": "per-row event pass matrices for the row-level bootstrap jointly across Lambda (plan \u00a74.1)"
+  },
+  "signal_srt.json": {
+   "required": {
+    "window_ns": "list",
+    "points": "dict key -> {n_den, ladder_SRT, fallback_SRT, n_earliest_oot}",
+    "oot_checks": "dict kind -> {N_B1, n_lookups, n_lookups_missing_file, frac_rows_missing_file, n_oot_inband_hits, n_earliest_oot, pass_}"
+   }
+  },
+  "background.json": {
+   "required": {
+    "label": "str",
+    "samples": "dict",
+    "closure": "dict",
+    "T3": "dict",
+    "c_test": "dict",
+    "reach": "dict",
+    "density": "dict",
+    "rho_dens": "dict",
+    "columns": "list[43]",
+    "end_state": "list[43] {column, P_per_trial, sigma_ln, sigma_ln_components, closure_factor, base_method, zero_branch}",
+    "end_state_T": "list[43]",
+    "f1_factors": "dict",
+    "sm": "dict|null",
+    "cprime": "dict|null"
+   }
+  },
+  "srt.json": {
+   "required": {
+    "edges": "dict {t_min_ns, t_max_ns, R0_window, R1_window, Rm_window_k_le_m1}",
+    "columns": "dict column -> {own, late_population, P_late {N, M}, oot_population, P_oot {N, M, n_km}, sigma_ln_PV, sigma_ln_sigma_t}",
+    "kernel_check": "dict"
+   }
+  },
+  "bsum_wp.json": {
+   "required": {
+    "label": "str",
+    "n_trig": "dict",
+    "ladder": "dict {T: list[23], G: list[23], FB: dict, missing_inputs: list, complete: bool}",
+    "rule": "dict {r_star_T, r_star_G, wp {T, G, branch}, combined_guard?, complete_inputs}"
+   },
+   "rung": {
+    "rung": "int",
+    "name": "str",
+    "B84": "float|null",
+    "B_median": "float",
+    "B_mean": "float",
+    "zero_branch": "bool",
+    "terms": "list {label, value, comps, zero_branch}"
+   }
+  },
+  "limits.json": {
+   "required": {
+    "label": "str",
+    "flags": "list",
+    "points": "dict key -> {primary, s, b, sigma_ln, selections, expected_primary (= expected_toys.median), expected_toys {median, band_1s, band_2s} (PRIMARY, D4), expected_asymptotic {median, band_1s, band_2s} (cross-check), discovery {mu_3events, mu_5sigma, mu_3events_single_category?}}",
+    "n_points": "int",
+    "dev": "bool"
+   },
+   "note": "mu = signal events in the trigger + preselection acceptance in 3 ab^-1"
+  },
+  "workspaces/<key>.json": {
+   "note": "pyhf JSON workspace (schema 1.0.0), channels SR_T, SR_G"
+  },
+  "acceptance.json": {
+   "required": {
+    "label": "str",
+    "points": "dict key (signal_eff key) -> {A_trig_presel, err_rel, level ('truth (Stage-3)'), factors {fiducial_eta25, trigger, preselection_given_trigger, PV (1, not modelled), finder_at_report_rungs {R_A..R_E}}, n_events, definition}"
+   },
+   "note": "sigma_95 = mu_95 / (L x A_trig_presel); eps_total = A x eps_finder (factorised chain, plan \u00a73)"
+  },
+  "edges_det.json": {
+   "required": {
+    "label": "str",
+    "points": "dict 'sample|spin|m' -> {lam_keV, truth (Stage-3 P2.json edges), R04/R14 -> {eff, lower {value keV, stat_err, definition}, upper {...}, b84_label}}"
+   }
+  },
+  "sep_it_det.json": {
+   "required": {
+    "label": "str",
+    "points": "dict key -> {sep_det_median_mm, err_mm, n, sep_truth_median_mm}"
+   }
+  },
+  "event_display.npz": {
+   "arrays": [
+    "x",
+    "y",
+    "z (mm)",
+    "cls (0 PU in the signal event, 1 quirk, 2 PU-only fake)",
+    "cls_names",
+    "met_phi",
+    "label (json)"
+   ]
+  }
+ }
+}

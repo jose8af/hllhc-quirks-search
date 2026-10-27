@@ -1,0 +1,55 @@
+% C001 quirks theory track: P1 + P2 paper-level note.
+% Build (from theory_track/paper/):  xelatex quirks_p1p2_note && bibtex quirks_p1p2_note && xelatex quirks_p1p2_note && xelatex quirks_p1p2_note
+\documentclass[11pt]{article}
+\input{preamble}
+
+\title{Coplanar, non-helical tracker patterns of electroweak quirks at the HL-LHC:\\
+B-field plane thickness from near-miss string crossings, and a\\
+Phase-2-like tracker study of the mass and confinement scale}
+\author{AUTHOR(S) --- to be filled by the user}
+\date{Version 0.4, 2026-10-17}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\small\textbf{Status of this document.} Private phenomenology work using public
+information only. It is \emph{not} a CMS result and has not been reviewed by any collaboration. ``CMS Phase-2-like''
+refers to a detector model built from public Technical Design Reports. All results are from simulation. Truth-level
+and detector-level results are labelled as such throughout.}}
+\end{center}
+
+\input{sections/00_abstract}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+\vspace{1em}
+\input{sections/00_changelog}
+
+\input{sections/01_introduction}
+\input{sections/02_model_samples}
+\input{sections/03_string_dynamics}
+\input{sections/04_truth_p1}
+\input{sections/05_detector_chain}
+\input{sections/06_strategy_wp}
+\input{sections/07_backgrounds}
+\input{sections/08_results_p2}
+\input{sections/09_mass_lambda}
+\input{sections/10_bounds}
+\input{sections/11_opendata}
+\input{sections/12_limitations}
+\input{sections/13_conclusions}
+
+\bibliographystyle{unsrtnat_hep}
+{\footnotesize\setlength{\bibsep}{1pt}\setlength{\columnsep}{1.5em}
+\begin{multicols}{2}\raggedright
+\bibliography{references}
+\end{multicols}}
+
+\appendix
+\input{sections/A_notation}
+\input{sections/B_reproduction}
+\input{sections/C_limitation_index}
+\input{sections/D_derivation}
+
+\end{document}

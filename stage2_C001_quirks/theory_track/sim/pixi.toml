@@ -1,0 +1,39 @@
+# Separate pixi workspace for Stage 2 (MadGraph5_aMC 2.9.22 + Pythia8). Does NOT touch ../pixi.toml.
+#   pixi run -e mg  python $MG/bin/mg5_aMC ...    (Python 3.9: matches HEPTools/lhapdf6_py3 bindings, MG 2.9 needs six)
+#   pixi run -e ana python scripts/...            (conversion / validation / plots)
+[workspace]
+name = "quirk-sim-stage2"
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[feature.mg.dependencies]
+python = "3.9.*"
+six = "*"
+numpy = "1.26.*"
+lhapdf = "*"
+
+[feature.ana.dependencies]
+python = "3.11.*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+mplhep = "*"
+pyhepmc = "*"
+numba = "*"
+
+[environments]
+mg = ["mg"]
+ana = ["ana"]
+
+[feature.ana.pypi-dependencies]
+fastjet = "*"
+
+# Stage-2 driver (review S2-R1 B7c): pixi run -e ana <task>; each task calls scripts/run_all.sh <stage> (resumable stages).
+[feature.ana.tasks]
+probes = "bash scripts/run_all.sh probes"
+produce = { cmd = "bash scripts/run_all.sh produce", depends-on = ["probes"] }
+vshower = { cmd = "bash scripts/run_all.sh vshower", depends-on = ["produce"] }
+post = { cmd = "bash scripts/run_all.sh post", depends-on = ["produce"] }
+validate = { cmd = "bash scripts/run_all.sh validate", depends-on = ["post", "vshower"] }
+docs = { cmd = "bash scripts/run_all.sh docs", depends-on = ["validate"] }
+docs-only = "bash scripts/run_all.sh docs"

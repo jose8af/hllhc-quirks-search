@@ -1,0 +1,135 @@
+{
+ "cand_id": "C044",
+ "coverage_table": [
+  {
+   "id": "arXiv:2610.03489",
+   "collab": "CMS",
+   "final_state": "TT->(t phi)(t phi), phi->gamma gamma, boosted hadronic tops",
+   "covered_region": "138 fb-1; m_phi 100-300 GeV; m_T 800-1800 GeV; BR(T->t phi)=100%",
+   "location": "Sec.7, Figs.7-8"
+  },
+  {
+   "id": "arXiv:2607.28381",
+   "collab": "ATLAS",
+   "final_state": "TT->(tS)(tS), >=1 S->gamma gamma + {gamma gamma, Z gamma, ZZ, WW, ttbar}",
+   "covered_region": "140 fb-1; m_T 1000-1800 GeV; m_S 200-1200 GeV; fiducial sigma x BR",
+   "location": "Sec.1, Sec.7, Fig.5"
+  },
+  {
+   "id": "CMS-PAS-B2G-24-005 (INSPIRE 3157006)",
+   "collab": "CMS",
+   "final_state": "X5/3 pair, single lepton, tW or tH+(->tb)",
+   "covered_region": "138 fb-1; m_H+ 200-1000 GeV; tW obs excl ~1630 GeV (public page, recheck)",
+   "location": "public page Figs.6-7"
+  },
+  {
+   "id": "arXiv:1810.03188",
+   "collab": "CMS",
+   "final_state": "X5/3 SS dilepton + 1L, tW",
+   "covered_region": "35.9 fb-1; >1.33/1.30 TeV",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:1807.11883",
+   "collab": "ATLAS",
+   "final_state": "SS2L/3L + b-jets",
+   "covered_region": "36.1 fb-1; T5/3 pair >1.19 TeV",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:2209.07327",
+   "collab": "CMS",
+   "final_state": "VLQ pair 1L/SS2L/ML SM decays",
+   "covered_region": "138 fb-1; T<1.54, B<1.56 TeV",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:2510.25874",
+   "collab": "CMS",
+   "final_state": "single T->t phi(bb), l+jets",
+   "covered_region": "138 fb-1; m_phi 25-250 GeV",
+   "location": "results section"
+  },
+  {
+   "id": "arXiv:2604.10729",
+   "collab": "CMS",
+   "final_state": "single T'->t phi(bb) all-hadronic boosted",
+   "covered_region": "138 fb-1; m_phi 75-500 GeV",
+   "location": "Fig.3"
+  },
+  {
+   "id": "arXiv:2402.13808",
+   "collab": "CMS",
+   "final_state": "BB->bH/bZ/tW hadronic+dilepton",
+   "covered_region": "138 fb-1; m_B>1 TeV; SM bosons only",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:2506.08825",
+   "collab": "CMS",
+   "final_state": "tt + >=6 light jets, 0/1/2 leptons (stealth/RPV)",
+   "covered_region": "138 fb-1; SUSY interpretation only",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:2404.02992",
+   "collab": "CMS",
+   "final_state": "pair-produced multijet resonances (scouting)",
+   "covered_region": "128 fb-1; RPV interpretation",
+   "location": "abstract"
+  },
+  {
+   "id": "arXiv:2609.00127",
+   "collab": "pheno recast",
+   "final_state": "TT->6t via 2SSL/3L recasts",
+   "covered_region": "excl. to 1.65 TeV at BR=100%",
+   "location": "Fig.4a, Fig.13"
+  }
+ ],
+ "open_region": "(1) Dedicated TT->(tS0)(tS0)->6t (S0->ttbar) multi-lepton/high-Nb search: no direct search, only recast (1.65 TeV) + ATLAS gamma gamma+ttbar mixed channel -> partly open. (2) X5/3->t phi+->tW gamma (SSL+photon): no search found -> open, but recast-constrained. (3) Pair T->tS(gg/bb) and B->b Phi(m!=125): no VLQ interpretation; final states covered by stealth/RPV multijet searches -> reinterpretation gap. No experimental HL projection for any VLQ->q+new scalar.",
+ "status_label": "searched-limited-regime / indirectly-covered (sub-target 2: proposed-not-searched)",
+ "hl_projection_docs": [
+  "INSPIRE 2611744/2809474 CMS HL-LHC T->bW/tZ/tH 1L (SM decays)",
+  "INSPIRE 3071495 ATLAS HL-LHC single VLT + vector LQ (SM decays)"
+ ],
+ "queries_run": [
+  "collaboration:CMS and t vector-like and date > 2019",
+  "collaboration:ATLAS and t vector-like and date > 2019",
+  "collaboration:ATLAS and abstracts.value:\"vector-like\" and abstracts.value:\"scalar\" and date > 2019",
+  "collaboration:CMS and abstracts.value:\"vector-like\" and abstracts.value:\"scalar\" and date > 2019",
+  "abstracts.value:\"charge 5/3\" and (collaboration:CMS or collaboration:ATLAS)",
+  "t \"same-sign\" and (collaboration:CMS or collaboration:ATLAS) and date > 2019",
+  "abstracts.value:\"six top\" or abstracts.value:\"6 top\" or t \"six top\"",
+  "abstracts.value:\"same-sign\" and abstracts.value:\"photon\" and (collaboration:CMS or collaboration:ATLAS) and date>2017",
+  "t vector-like and (t recast or t reinterpretation or abstracts.value:\"recast\") and date > 2023",
+  "refersto:arxiv:2203.13753 and date > 2024",
+  "collaboration:CMS and (t \"B2G-24-005\" or abstracts.value:\"5/3\" ) and date > 2022",
+  "r CMS-PAS-B2G-24-005",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"HL-LHC\" or t \"High-Luminosity\" or t projection or t \"Phase-2\" or t \"prospects\") and (t \"vector-like\" or t \"vectorlike\" or t \"top partner\")",
+  "(collaboration:CMS or collaboration:ATLAS) and (t stealth or t \"R-parity violating\" or t RPV) and t top and date > 2019",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"three-jet\" or t trijet or t \"multijet resonances\" or t \"pair-produced resonances\") and date > 2017",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"four top\" or t \"four-top\" or t \"tttt\") and date > 2022",
+  "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"light-flavor jets\" and abstracts.value:\"top\" and date > 2018",
+  "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"many jets\" and date > 2019",
+  "collaboration:ATLAS and abstracts.value:\"same-charge\" and abstracts.value:\"b-jets\" and date > 2017",
+  "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"vector-like\" and abstracts.value:\"bottom\" and abstracts.value:\"hadronic\" and date > 2020",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"six b\" or abstracts.value:\"six b\" or abstracts.value:\"6b\" or abstracts.value:\"six bottom\")",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"W gamma\" or t \"W\u03b3\" or abstracts.value:\"W gamma resonance\" or abstracts.value:\"W\u03b3 resonance\") and date > 2016",
+  "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"photon\" and abstracts.value:\"top quark\" and abstracts.value:\"vector-like\"",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"vector-like\" or t vectorlike or t \"top partner\") and (abstracts.value:\"13.6 TeV\" or t \"13.6\")",
+  "(t \"vector-like\" or t \"top partner\") and (abstracts.value:\"gluons\" or abstracts.value:\"gg\") and (abstracts.value:\"pseudoscalar\" or abstracts.value:\"singlet\") and date > 2018",
+  "collaboration:CMS and t \"top squarks\" and abstracts.value:\"light-flavor\"",
+  "(collaboration:CMS or collaboration:ATLAS) and abstracts.value:\"top partner\" and abstracts.value:\"exotic\" and date > 2018",
+  "(collaboration:CMS or collaboration:ATLAS) and (t \"vector-like\" or t \"vectorlike\") and abstracts.value:\"long-lived\"",
+  "inspire cites arxiv:2203.13753",
+  "inspire cites arxiv:1907.05894",
+  "WebFetch CMS B2G-24-005 public page"
+ ],
+ "confidence_open": "medium",
+ "key_caveats": [
+  "absence based on INSPIRE queries only; Run-3 and in-preparation analyses unknown",
+  "6t gain over existing SS2L/3L recasts is pheno-claimed only",
+  "BR to S model-dependent; diphoton searches cover composite benchmark if BR(gamma gamma) non-negligible",
+  "X5/3 limit number from WebFetch, recheck PAS PDF"
+ ]
+}

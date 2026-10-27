@@ -1,0 +1,74 @@
+\section{Notation}\label{app:notation}
+
+One symbol is used per quantity throughout. Where the stage reports or the literature use a different symbol, it is
+given in the last column. Times of flight are written in natural units (speed of light set to one); the symbol $c$ is reserved for the
+local slope of the thickness law.
+
+\begin{center}
+\scriptsize
+\begin{longtable}{l>{\raggedright\arraybackslash}p{0.50\linewidth}l}
+\toprule
+symbol & meaning & elsewhere\\
+\midrule
+\endhead
+$\Lam$, $\sigma=\Lam^2$ & string scale and tension; $\sigma=50.68\GeV/\mathrm{cm}\,(\Lam/\keV)^2$ & Ref.~\cite{Asadi:2025btr}: $\Lam=T_c$\\
+$\mQ$ & quirk mass & $m$ (Stage 1)\\
+$N_{\rm IC}$ & number of infracolours (2) & $N_c$, $N$\\
+$E$, $\Etil$ & fermion and scalar benchmark, $(1,1)_{-1}$ & F, S in file names\\
+$B$, $\Bzero$ & lab magnetic field; $\Bzero=3.8112\tesla$ & \\
+$\Estar$, $\Bstar$ & CM-frame electric and magnetic fields of the pair & \\
+$\epsB$, $\epsp$ & $qB/\sigma$; $q|\Estar_\perp|/\sigma$ & $\varepsilon$, $\varepsilon_\perp$\\
+$\kB$ & $|\Bstar_\perp|/|\Estar_\perp|$ & \\
+$\gst$, $\bst$ & Lorentz factor and speed of one quirk in the pair CM frame & $\gamma^*$, $v$\\
+$\lzero$, $\lmax$ & $\mQ/\sigma$; maximum separation $2(\gst-1)\lzero$ & \\
+$\Nosc$ & number of oscillations within the tracker & \\
+$\bodd$ & miss distance at odd crossings & $b$\\
+$\rot$, $\Theta$, $N_{\rm odd}$ & axis rotation per CM period; accumulated rotation $\Theta=N_{\rm odd}\rot$; number of odd crossings & $\eta$ (Li et al., Stage 1)\\
+$G(\gst)$, $K(\gst)$ & log coefficient and constant of $\rot$ & $A_o$ (numerics)\\
+$C$, $c$ & constant and local log slope of the thickness law & \\
+$\alpha$; $\theta^*$, $\phi^*$ & CM angle between $\Estar$ and $\hat n$; polar angle and azimuth of $\hat n$ about $\hat\beta_{\rm cm}$ (App.~\ref{app:derivation}) & \\
+$f_N$ & out-of-plane share of the axis rotation, $|\hat e_\perp\cdot\hat N|$; $f_N\sin\alpha=|\hat E^*\cdot\hat N|$ & \\
+$F$, $g$ & dimensionless prefactor of the thickness law; twist factor of the plane fit ($\simeq0.23$), Eq.~\eqref{eq:D:law} & \\
+$R_m$ & matching radius of the non-relativistic calculation (App.~\ref{app:der:nr}) & \\
+$\mathcal R(f)$ & response per unit field, $\DsB(fB)/[f\DsB(B)]$ & $R(f)$ (Stage 1)\\
+$R$ & tracker radius (in Eq.~\eqref{eq:law}) & \\
+$\Ds$ & plane thickness through the PV, Eq.~\eqref{eq:ds} & \\
+$\DsB$, $\DsMS$, $\DsBM$ & field only; material only; both (truth level) & $\Delta s_{B+M}$\\
+$\Lcross$ & $\Lam$ at which median $\DsB=$ median $\DsMS$ & \\
+$\RIT$ & outer radius of the IT barrel ($\approx14.6\cm$) & \\
+$\sepIT$ & separation of the two quirks in the IT & sep$_{\rm IT}$\\
+$\eta$, $\eta_{\rm pair}$ & pseudorapidity; of the pair momentum & \\
+$\hat n$, $\hat n_2$, $\hat n_3$ & plane normal; in-plane transverse direction; plane axis & $n$, $n_2$, $n_3$\\
+$W_c$, $t_{\rm tol}$, $\sigma_{\rm tot}$ & finder window (75\,mm); thickness tolerance (30\,$\mu$m); collection width & \\
+$\Tseed$ & seed threshold (layers with $\ge2$ crossings) & $T_{\rm seed}$\\
+$N_{\rm IT2}$, $N_{\rm IP2}$, $N_{\rm 2S2}$ & IT, IT+PS, 2S barrel layers with $\ge2$ crossings & \\
+$\wcore$, $\chicore$ & robust core width; core-hit $\chi^2$ & \\
+$\dninetyfive$ & MET road half-width (0.15\,rad) & $\delta_{\rm road}$\\
+$f_{\rm CKF}$ & fraction of band hits on CKF tracks & \\
+$\rho$ & pile-up density in units of a normalised PU-200 event & \\
+$n_{\rm int}$ & number of interactions contributing to a candidate & $k$ (plan)\\
+$f_{200}$ & fraction of $\sigma_{\rm norm}$ with $p_T(Q\bar Q)>200\GeV$ and $|\eta_{\rm pair}|<4$ (the tail sample) & $f$, f\_tail\\
+$A$, $A_{\rm incl}$ & truth-level acceptance $\Eff_{\rm fid}\Eff_{\rm trig}\Eff_{\rm presel|trig}\Eff_{\rm PV}$ of the tail sample; $f_{200}A$ & $A$, A\_incl\\
+$\Eff_{\rm sel}$, $\Eff_{\rm tot}$ & detector-level selection efficiency ($\Eff$ from Section~\ref{sec:results} on); $f_{200}A\,\Eff_{\rm sel}$ & $\varepsilon$, $\varepsilon_{\rm finder}$\\
+$\Ntrig$ & SM events after trigger and preselection in $3\abinv$ & $N_{\rm trig}$\\
+$\kappa$ & signal category, T (SR-T, late BTL hit) or G (SR-G) & $c$ (WP\_RULE)\\
+$K_{\rm QCD}$ & QCD $K$-factor of the signal cross section & $K$, $K_{\rm WG}$\\
+$K_{\rm SM}$ & $K$-factor of the SM background cross sections & $K$\\
+$L$ & integrated luminosity ($3\abinv$) & \\
+$\Nbkg$, $\Nbkgeightyfour$ & expected background; its 84th percentile & $B$, $B_{84}$\\
+$\sigma_{\ln}$ & log-normal width of a background term & \\
+$\sigma_{\rm norm}$ & signal cross-section normalisation, Eq.~\eqref{eq:signorm} & \\
+$N_{\rm exp}$, $S$ & predicted yield in the acceptance $\sigma_{\rm norm}f_{200}LA$; selected yield $N_{\rm exp}\Eff_{\rm sel}$ & \\
+$\mu$, $\mu_{95}$ & signal yield in the acceptance; its expected 95\% CL upper limit & \\
+$\sigma_{95}$ & limit on the inclusive cross section, $\mu_{95}/(Lf_{200}A)$ & \\
+$\sigma_{\rm th}$ & figure label for $\sigma_{\rm norm}$ & \\
+R01--R23 & cumulative ladder rungs (Table~\ref{tab:ladder}) & \\
+R$_A$--R$_E$ & fixed reporting selections: R04, R04 + $\wcore<18.75\mm$, R04 + $\wcore<4.7\mm$, R14, R23 & \\
+$h$, $o$ & F1 helix-test and arm-opening linearity variables & \\
+FB$_k$ & non-width part of R14 with the single width cut $\wcore<W_c/2^k$ (FB0: none) & \\
+$r_{\rm fb}$, $k_{\rm adm}$, $e_{\rm adm}$ & fallback selection; admissible width index; admissible $dE/dx$ threshold & \\
+$\Lam_R(\mQ)$, $R_{\rm eff}$ & smoothed $\Lam$ with median $\lmax=\RIT$; expected truncated-mean $dE/dx$ of the quirk & \\
+$M_{\rm est}$, $\beta_{\rm ToF}$ & pair-mass proxy $\mathrm{MET}\cosh\eta_{\rm axis}/(\beta\gamma)_{\rm ToF}$; time-of-flight velocity & \\
+\bottomrule
+\end{longtable}
+\end{center}

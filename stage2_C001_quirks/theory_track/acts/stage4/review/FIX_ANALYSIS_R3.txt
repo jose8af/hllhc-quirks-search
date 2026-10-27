@@ -1,0 +1,76 @@
+FIX_ANALYSIS_R3 -- fixer round 3 (REVIEW_ANALYSIS_R2: 1 A, 2 B, 9 C) + Stage-5 schema additions, 2026-10-14
+Constraints kept: nice 15, one process, background + polling, generator-level Pythia only, no signal eps looked at.
+CPU this round: ~98 CPU-min (generator re-run 71, smoke 3, C1a signal+products --dev test 12, G3 dry run 10, tests 2).
+
+A-1 (fixed): hadronisation failures per ATTEMPT. gen_d123.generate_counted counts attempts A (tries reaching
+  forceHadronLevel); sigma = sigma_gen x N / (T x (1 - F/A)) (mode_nt, normalise.merge; merge refuses runs without A).
+  Measured F/A = 0.229-0.262 for all 11 processes (reviewer: 0.235-0.249). Re-run with the same seed tags:
+  data/acts_stage4/analysis/d123/gen_d123_r3.json. sigma (pb): Z 14.27 (p6 14.56), W tau 7.09, W tau_h sample 6.59,
+  W e 5.21, W mu 5.27, tt 1l 3.50.  W(tau) class sigmas now from the run (no literals): tau_l = sigma(W tau) x N_lep/N
+  = 2.60 pb; tau_h = max(sigma(W tau), sigma(W tau_h sample)) x N_had/N = 4.50 pb (was 1.89 / 3.56).
+B-1 (fixed): (i) N_trig-only processes generated with the same filter and preselection: tt 2l (K 1.9, tt-like), single
+  top t-channel (K 1.4), WW / WZ / ZZ (K 1.4, rule top). s-channel single top negligible (0.012 pb in a smoke run):
+  not included, logged. tW: not available in Pythia 8 -> FLAGGED ALLOWANCE 0.10 x N_trig(tt 1l + 2l) (UNVERIFIED ratio,
+  rounded up). Each gets a flagged proxy B_SM = N_trig,p x max P(r | preselected) of the closest existing sample
+  (tt-like -> tt 1l; WW -> W(tau); WZ -> W(tau), Z; ZZ -> Z); background.sm_term, proxy fraction reported per rung
+  (background.json sm._proxy_fraction_of_B_SM; needs the C1b SM outputs).
+  (ii) veto inefficiency: neither plan nor WP_RULE defines one -> flat 5 % per veto-able prompt isolated e/mu/gamma
+  (event weight x 0.05 per object), raising N_trig and B_SM (A38).
+N_trig = 4.08e7 (rel. stat 2.0 %; was 3.63e7). Breakdown (1e6): Z 25.08 | W tau_l 2.26 | W tau_h 5.41 | W e 2.54 |
+  W mu 2.24 | tt 1l 2.38 | NEW: tt 2l 0.213 | single top t 0.110 | tW allowance 0.259 | WW 0.126 | WZ 0.137 | ZZ 0.105
+  (new terms together 0.95e6 = 2.3 % of N_trig). Per-process stat: <= 4.7 % for the six hit-level processes; tt 2l
+  19 %, top t 13 %, WW 8 %, WZ 6 %, ZZ 5 % (small terms). rate_t (re-derived): gamma 0.379, V0 0.052, PV pairs 30.3,
+  loopers 0.302, NI 0.098 / 0.124 / 0.124, DIF 1.59 (minimum-bias block reused from the R2 run).
+B-2 (fixed): run_all refuses --inputs other than the frozen inputs/normalisation.json unless --dev (then DEV stamp and
+  manifest freeze.match = false); limits_stage refuses unless both upstream manifests are frozen and non-DEV, or
+  propagates DEV with --dev. Tests: selftest B2_inputs_refused, B2_inputs_dev_stamped, B2_limits_refuse_dev_upstream,
+  B2_limits_refuse_unfrozen_upstream, B2_limits_dev_propagated: all PASS.
+C: C-1 no SR-T credit for a signal row with a missing-file OOT crossing, fraction reported; C-2 SM regeneration uses
+  the stored production road phi_MET for min dphi; C-3 approximations labelled (A40); C-4 PV-line sigma_ln not wired,
+  logged why (A39: no magnitude defined, 0.22 already an upper value); C-5 code/s4pu.py, s4cp.py, s4sig.py, jobs/C1.json
+  in the freeze, sm_regen cache reused only with matching gen_d123/s4pu sha256; C-6 proxy fraction reported;
+  C-8 minbias rel_stat fixed; C-7, C-9 notes only.
+
+STAGE-5 ADDITIONS (stage5/proposed_schema.json), schema.json v2, run_all stage 'products' (freeze-gated):
+  1 acceptance.json: A(m, Lambda, spin) trigger + preselection (D1 definition), TRUTH level (Stage-3 records), with the
+    factor breakdown fiducial / trigger / preselection | trigger / PV (= 1, not modelled) / finder (R_A..R_E).
+  2 limits.json expected_toys.band_1s / band_2s from the same toys (b-only test-statistic quantiles).
+  3 factor breakdown: in acceptance.json (above).   4 'discovery' (and 'expected_primary', 'dev') in schema.json.
+  5 D9-D11 ARE plan deliverables (plan §11 item 3 edges, item 4 sep_IT^det, Stage-5 figure list event display):
+    minimal edges_det.json (half-maximum crossings, joint row bootstrap, vs P2.json truth edges), sep_it_det.json
+    (detector median vs Stage-3 truth median), event_display.npz (signal event; PU-only fake once C1b B1 exists).
+  Tested on the complete C1a outputs with --dev (A1 367, A2 100, A5 100 files): schema OK; self-checks PASS except a
+  core-recompute check that saw 2 / 620 118 float32 boundary cases in A2 -> tolerance 1e-5 (A44).
+
+RE-FREEZE: inputs/analysis_freeze.json, 25 files, sha256 8322b840...  selftest PASS (freeze true after re-freeze).
+G3 dry run on the frozen code: see LOG (no WP; SM/C' absent in G3).
+
+DELTA R4 (REVIEW_ANALYSIS_R3: 0 A, 2 B, 8 C), 2026-10-14
+B-1 (fixed): every producing stage embeds its own stamp (common.provenance: dev, freeze_match, freeze_sha256) in
+  signal_eff.json, signal_rows/obs_*.npz ('provenance' array), background.json, srt.json, signal_srt.json, bsum_wp.json
+  and limits.json. limits_stage and the products stage check the EMBEDDED stamps of every consumed file
+  (common.provenance_issues: missing stamp, DEV, unfrozen, or another freeze sha) and refuse without --dev; with
+  --dev the output is DEV. The manifest that a run rewrites is no longer trusted. Regression tests (selftest): the
+  reviewer's exact reproduction r3/b2_probe2.py (R3B1_repro_refused, R3B1_repro_complete_refused: refused and no
+  limits.json), R3B1_repro_dev_stamped, R3B1_products_refused, and the positive path R3B1_stamped_frozen_nondev: PASS.
+B-2 (fixed): acceptance.json pairs A only with the A2 finder eps (same denominator: template half, in_eta25, status !=
+  1 as failures); A1 / A5 are not paired; finder_note corrected.
+C: C-2/C-3 tW allowance and the 5 % veto inefficiency labelled ESTIMATE (UNVERIFIED) with the reviewer's sensitivities
+  (A37, A38: each extra 5 % veto inefficiency ~ +4 % N_trig; tW x2 = +0.6 %); C-4 stale texts fixed (normalise/gen
+  docstrings, n_trig.not_included, 'topups' -> additional_sources); C-5 processes outside the rule list logged (A48);
+  C-6 finder/{finder,weights,production}.py, STAGE3_INDEX.json, P2.json added to the freeze; C-7 sep_IT label; C-1,
+  C-8 notes. normalisation.json regenerated (N_trig unchanged, 4.08e7).
+RE-FREEZE: 30 files, analysis_freeze.json sha256 b11cdf55...; selftest PASS. No CPU-heavy rerun (code-only round;
+  the earlier dry-run outputs carry no stamps and are superseded by the next production run).
+
+DELTA R5 (REVIEW_ANALYSIS_R4: 0 A, 1 B, 2 C), 2026-10-14
+B-1 (fixed): products.edges keeps only point keys (exactly five '|'), so the npz 'provenance' key no longer crashes it.
+  Audit of every other npz consumer: signal_srt_stage, products.sep_it_det, products.event_display and the provenance
+  check read named keys only; background.rho_dens filters 'dump.*'; gen_d123 reads named keys -> no other exposure.
+  New selftest R4B1_e2e_default_stages: the WHOLE default stage list (signal -> background -> srt -> wp -> products ->
+  limits) on C1a,C1b with --dev --max-jobs 2 (37 s): all 10 outputs written, schema OK, limits.json DEV. It exposed
+  and fixed two partial-production crashes (no B2 output yet: closure untestable/flagged, B_PU = upper envelope of the
+  available models, flagged; PUSamples.n2 = 0).
+C-1 (fixed): the provenance stamp carries t_seed and campaigns; limits_stage compares the EMBEDDED T_seed of
+  signal_eff.json and bsum_wp.json (refuse on mismatch; missing -> treated as unstamped).
+RE-FREEZE: 30 files, analysis_freeze.json sha256 bce02b6f...; selftest PASS (incl. R3B1_stamped_frozen_nondev).

@@ -1,0 +1,129 @@
+{
+ "description": "M4_conformal_thickness.py -- E2 (M4): solver independence of the M3 thickness and of its response per unit B.\n\nThe first NEV M3 events (m = 500 GeV, Lambda = 1 and 2 keV, same kinematics as M3_thickness.py, seed 777 + m) are re-run\nwith the conformal-gauge solver (nm_conformal = R1 formulation) at N = 1024 and 4096 for B = B0 x {1, 1/4, 1/20} and\ncompared with the causal kernel at max_boost 1e-3, hmax 0.02 cm: event-by-event Delta_s ratio and event-level response\nR_ev(k) = Delta_s(B0/k) k / Delta_s(B0).  Hit sets: the 10 barrel radii, no z limit for both solvers (the conformal solver\nhas no z acceptance), so Delta_s here differs slightly from M3 for events with hits beyond |z| = 20/120 cm.\nOutput: results/M4_conformal_thickness.json.  Run: pixi run python analytic/numerics/M4_conformal_thickness.py [NEV]\n",
+ "nev": 12,
+ "cpu_seconds": 379.047479391098,
+ "L1": {
+  "conf1024_over_causal_k1": {
+   "median": 0.9992089281331518,
+   "min": 0.9984066729059635,
+   "max": 1.118801769653668,
+   "n": 11
+  },
+  "conf1024_over_causal_k4": {
+   "median": 0.9993845578084866,
+   "min": 0.9989234904801401,
+   "max": 1.000867674745941,
+   "n": 8
+  },
+  "conf1024_over_causal_k20": {
+   "median": 0.9992657235183087,
+   "min": 0.9987511256152762,
+   "max": 1.000398920824264,
+   "n": 8
+  },
+  "R_ev_causal_k4": {
+   "median": 1.1522745526613336,
+   "err": 0.006044382099006815
+  },
+  "R_ev_conf1024_k4": {
+   "median": 1.1426301493561772,
+   "err": 0.008445641829111283
+  },
+  "R_ev_causal_k20": {
+   "median": 1.3289071851993013,
+   "err": 0.0079485530455999
+  },
+  "R_ev_conf1024_k20": {
+   "median": 1.3311432232230023,
+   "err": 0.011630627803343977
+  },
+  "conf4096_over_causal_k1": {
+   "median": 0.9992088946835435,
+   "min": 0.9984929947484483,
+   "max": 1.0921618064012817,
+   "n": 11
+  },
+  "conf4096_over_causal_k4": {
+   "median": 0.9993857752076932,
+   "min": 0.9989232907439911,
+   "max": 1.0286042923737344,
+   "n": 9
+  },
+  "conf4096_over_causal_k20": {
+   "median": 0.9991569264941028,
+   "min": 0.9583808671375218,
+   "max": 1.0003642772059127,
+   "n": 9
+  },
+  "R_ev_conf4096_k4": {
+   "median": 1.143792437871731,
+   "err": 0.010427171019008474
+  },
+  "R_ev_conf4096_k20": {
+   "median": 1.3263192353298063,
+   "err": 0.01610744892086609
+  }
+ },
+ "L2": {
+  "conf1024_over_causal_k1": {
+   "median": 0.9986602074526199,
+   "min": 0.9884376567272093,
+   "max": 1.1677058145543393,
+   "n": 8
+  },
+  "conf1024_over_causal_k4": {
+   "median": 0.9991425627036438,
+   "min": 0.7582391050586104,
+   "max": 1.0421588100696118,
+   "n": 5
+  },
+  "conf1024_over_causal_k20": {
+   "median": 0.9951291887583783,
+   "min": 0.9951291887583783,
+   "max": 0.9951291887583783,
+   "n": 1
+  },
+  "R_ev_causal_k4": {
+   "median": 1.1263689358248055,
+   "err": 0.005655557718435049
+  },
+  "R_ev_conf1024_k4": {
+   "median": 1.1336360436320156,
+   "err": 0.11117949584593975
+  },
+  "R_ev_causal_k20": {
+   "median": 1.2951883914017608,
+   "err": 0.007925893845023447
+  },
+  "R_ev_conf1024_k20": {
+   "median": 1.277868791482036,
+   "err": NaN
+  },
+  "conf4096_over_causal_k1": {
+   "median": 0.999216916992792,
+   "min": 0.9983530925728203,
+   "max": 1.001665980675976,
+   "n": 8
+  },
+  "conf4096_over_causal_k4": {
+   "median": 1.0010672035066364,
+   "min": 0.9957407945001916,
+   "max": 1.0305453556469515,
+   "n": 6
+  },
+  "conf4096_over_causal_k20": {
+   "median": 0.998065174802556,
+   "min": 0.9952810531443765,
+   "max": 1.0501967361857627,
+   "n": 4
+  },
+  "R_ev_conf4096_k4": {
+   "median": 1.1349270291937632,
+   "err": 0.023474413872224004
+  },
+  "R_ev_conf4096_k20": {
+   "median": 1.3097717911742774,
+   "err": 0.018048769402102854
+  }
+ }
+}

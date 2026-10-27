@@ -1,0 +1,43 @@
+{
+ "figure": "D2_eff_vs_rung_F500",
+ "files": [
+  "D2_eff_vs_rung_F500.pdf",
+  "D2_eff_vs_rung_F500.png"
+ ],
+ "created": "2026-10-16T14:21:30",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/signal_eff.json": "1d487acb474f1d8efc10efc6a9b041d262c08a29c6b6dcb40ea2f3dfe61e7433"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "262ae9be19b772ea5770f4249df7a19b1035d2e75bf3a3dd6a832ac57ed867d0"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "point": "F500",
+  "lambdas": [
+   0.45,
+   0.6,
+   0.85,
+   1.0,
+   1.5,
+   2.0,
+   3.0,
+   5.0
+  ]
+ }
+}

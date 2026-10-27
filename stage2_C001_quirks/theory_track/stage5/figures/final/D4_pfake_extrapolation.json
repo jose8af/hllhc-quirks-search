@@ -1,0 +1,52 @@
+{
+ "figure": "D4_pfake_extrapolation",
+ "files": [
+  "D4_pfake_extrapolation.pdf",
+  "D4_pfake_extrapolation.png"
+ ],
+ "created": "2026-10-16T14:21:17",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/background.json": "d4308ec6d18a31c3021c841ab753d3fae612c76fd2e87a5644a1b8c5b843ab1d"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "d9da35e230158949a701528f291a562516e2612d433644e91af8230ad2ac54b4"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "closure_branch": "anti-conservative",
+  "y_quantity": "expected PU fake candidates (groups) per trial (B1_per_trial = B1_groups / trials)",
+  "factorisation_drawn_rungs": [
+   "R08_w<4.7",
+   "R09_p>1e-3",
+   "R10_p>0.01",
+   "R11_p>0.05",
+   "R12_2S2>=1",
+   "R13_2S2>=2",
+   "R14_2S2>=3"
+  ],
+  "factorisation_equals_direct_rungs": [
+   "R01_IP2>=4",
+   "R02_IP2>=5",
+   "R03_IP2>=6",
+   "R04_IP2>=7",
+   "R05_w<37.5",
+   "R06_w<18.75",
+   "R07_w<9.4"
+  ]
+ }
+}

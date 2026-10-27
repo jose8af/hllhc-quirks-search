@@ -1,0 +1,55 @@
+{
+  "cand_id": "C044",
+  "claim": "Top/bottom partners (T, B, X5/3) can decay dominantly into a third-generation quark plus a lighter BSM spin-0 state (neutral S0/a/eta, charged phi+, phi++), which re-routes VLQ signals into final states (6t, ttgg, 6b/4j2b, SSL+photon) not targeted by standard VLQ searches; current VLQ mass bounds then rely on recasts. Proposed targets: (1) dedicated TT->(tS0)(tS0)->6t search; (2) X5/3->t phi+ -> t W+ gamma (SSL + hard photon); (3) T->tS / B->bPhi with S->gg (or bb) away from 125 GeV, reinterpretation-first.",
+  "framework": "Partial-compositeness composite Higgs with underlying gauge-fermion UV completion (cosets SU(4)/Sp(4), SU(5)/SO(5), SU(6)/SO(6), SU(4)^2/SU(4)) giving extra pNGBs lighter than top partners; bottom-up: singlet/doublet VLQ + SM-singlet (pseudo)scalar Phi with L = -lambda^a Phi F_L Gamma F_R - lambda^b Phi F_L Gamma q_R + VLQ-quark mass mixing (2203.13753 Eqs. 3-9); eVLQ simplified model with kappa couplings (2609.00127 Eqs. 8-13); charged pNGB phi+ couplings via WZW anomaly (phi+ W B~) and via m_t/f phi+ t b (1907.05894 Eq. 2.4).",
+  "assumptions": [
+    "A BSM spin-0 state lighter than M_VLQ - m_q exists and has O(0.1-1) off-diagonal coupling to VLQ-quark (composite: kappa ~ O(1) from compositeness of q_L).",
+    "Small VLQ-quark mass mixing (theta_L,R <~ 0.05 in 2203.13753 scans), so standard W/Z/h decays (proportional to mixing) are subdominant -> BR(Q->q Phi) large without tuning.",
+    "QCD pair production (model independent, depends only on mass); single production assumed negligible (small mixing).",
+    "Scalar decay pattern fixed by representation: S0->tt above threshold, ->gg (loop, anomaly) below; phi+ -> W gamma/WZ ONLY if its fermion couplings vanish (otherwise phi+ -> tb dominates since tree-level).",
+    "Narrow widths; no Phi-Higgs mixing; BRs treated as free in simplified models."
+  ],
+  "controlling_parameters": ["M_T, M_B, M_X5/3", "M_S0 / M_phi+ / M_phi++ (relative to 2 m_t, 2 m_b, m_W)", "BR(Q->q Phi) vs BR(Q->bW,tZ,th) (set by lambda^{a,b} vs mixing mu_F/M_F)", "BR(S->tt), BR(S->gg), BR(S->gamma gamma) ~ 9 alpha^2 Q^4/(2 alpha_s^2) x BR(gg) (~0.004 for T-loop)", "phi+ fermion couplings kappa_tb (zero vs nonzero) and WZW coefficients kappa_W, kappa_B", "kappa_Phi gg (direct gg->Phi production)"],
+  "robust_predictions": [
+    "Pair-production rate fixed by QCD and M_Q (NNLO+NNLL); kinematic boost of S and t for M_Q >> M_S.",
+    "If M_S0 > 2 m_t and S0 is top-philic: TT -> 6t final state with very high b/lepton multiplicity; SSL/multilepton recasts already give M_T bounds of 1.3 TeV (1907.05894 App. A, 35.9 fb-1) and 1.65 TeV at BR=100% (2609.00127 Sec. 4.1).",
+    "For loop-only scalar decays below tt threshold, S->gg dominates and S->gamma gamma is ~4e-3 (T-loop) or ~3e-4 (B-loop) of it (2203.13753 Eq. 42) -> the diphoton channel is BR-starved; the gg (boosted two-prong jet) channel is the rate-dominant one.",
+    "WZW-only phi+: BR(W gamma):BR(WZ) ~ cos^2 thetaW : sin^2 thetaW ~ 80:20 for M_phi >> m_W (1907.05894 Eq. 2.5) - a group-theory prediction of the triplet embedding."
+  ],
+  "model_dependent_predictions": [
+    "Whether exotic BR dominates (free in simplified models; benchmark-dependent in UV models).",
+    "phi+ -> W gamma requires vanishing phi+ fermion couplings for the chosen top-partner representation; otherwise tb dominates and the hard-photon signature disappears.",
+    "S0 decay pattern: tt vs gg vs WW/ZZ/Zgamma (WW only for composite pNGB with SU(2) anomaly couplings; an elementary SM singlet coupled only via VLQ loops cannot decay to WW at the order considered in 2203.13753).",
+    "Mixed channels (tS0 + tZ/th) and BR splitting reduce single-channel bounds (e.g. 1.65 -> 1.30 TeV for BR(tS0)=50%, 2609.00127).",
+    "Degeneracy of multiple VLQ multiplets (combined bounds up to 1.79-1.86 TeV in 2609.00127 sample model)."
+  ],
+  "constraints_checked": [
+    {"constraint": "Z b_L b_L coupling (R_b, LEP) on b-B mixing", "source_id": "arXiv:2203.13753 (Sec. IV)", "verdict": "Satisfied for mixing angles < 0.05 used in scans; exotic-BR dominance is compatible with (in fact favoured by) small mixing."},
+    {"constraint": "Direct gg->Phi->gamma gamma (Phi-gluon coupling via VLQ loops)", "source_id": "arXiv:2203.13753 (Fig. 2, Eq. 38)", "verdict": "Constrains diagonal couplings only (kappa^2 BR_gammagamma <~ 2.7e-9 at 400 GeV); off-diagonal couplings driving Q->q Phi unconstrained; large open region."},
+    {"constraint": "Recast standard VLQ searches with BR rescaling", "source_id": "arXiv:2203.13753 (Fig. 3)", "verdict": "Limits relax by ~300-500 GeV as BR(exotic)->1; region M_Q ~1.2 TeV open (2022 status)."},
+    {"constraint": "Recast of SSL/multilepton/4-top-sensitive searches on TT->6t", "source_id": "arXiv:2609.00127 (Sec. 4.1, Fig. 4a)", "verdict": "M_T < 1.65 TeV excluded at BR(tS0)=100% (M_S0 >= 400 GeV grid); 1.30 TeV at 50%. Target region for a dedicated search is M_T >~ 1.5-2 TeV - consistent."},
+    {"constraint": "Dedicated searches T->tS, S->gamma gamma", "source_id": "arXiv:2607.28381 (ATLAS, Sec. 7) ; arXiv:2610.03489 (CMS B2G-24-016)", "verdict": "ATLAS: M_T < 1620 GeV excluded in the 2gamma case of the composite model of its Ref. [61] (m_S 200-1200 GeV); CMS: limits on sigma B(T->phi t)^2 B_gg(2-B_gg). Diphoton route is covered; tt/gg/WW routes without photons are not directly targeted."},
+    {"constraint": "Dedicated single-T -> t phi(bb) search", "source_id": "arXiv:2510.25874 (CMS B2G-23-009)", "verdict": "Covers single production with phi->bb, m_phi 25-250 GeV; coupling-dependent, not the pair-production 6t/gg target."},
+    {"constraint": "T->ta with a->gg/bb below tt threshold, recast", "source_id": "arXiv:1908.07524", "verdict": "In 2019 allowed M_T as light as 400 GeV for a->gg; status post-Run-2 RPV/stealth searches UNVERIFIED here."},
+    {"constraint": "Drell-Yan/VBF bounds on phi+ (WZW decays W gamma)", "source_id": "UNVERIFIED (1907.05894 Sec. 4.1 only cites GM-model idea, Ref. [48])", "verdict": "Not checked; no bound quoted in sources read. 2609.00127 Sec 3.1 states no individual DY bounds on these scalars from Ref. [85]."},
+    {"constraint": "Electroweak precision (S,T) for VLQ multiplets", "source_id": "UNVERIFIED (not computed in sources read beyond small-mixing argument)", "verdict": "Generic expectation: small mixing safe; not quantitatively checked."}
+  ],
+  "motivation_strength": 4,
+  "robustness": 3,
+  "theory_uncertainties": [
+    "BR(Q->q Phi) and BR(S->X) are free parameters; physics output scales as BR^2 for pair channels.",
+    "Signal modelled at LO with NNLO+NNLL normalisation of sigma(QQ); 6t final state kinematics/ttbb+jets backgrounds (tttt, ttW, ttZ, ttH) carry large modelling uncertainties (tttt cross section itself measured above SM prediction - UNVERIFIED number).",
+    "SSL+photon: fake-photon backgrounds only data-driven (1907.05894 Sec. 4.1, no reach estimated).",
+    "Recast-based bounds (MadAnalysis5/CheckMATE) depend on validation quality; 2609.00127 Sec 3.4 lists shortcomings.",
+    "For S->gg: boosted two-prong gluon jets have lower tagging discrimination vs QCD than W/Z/H/top; jet-substructure modelling uncertainty large."
+  ],
+  "distinctiveness": "6t: up to 6 b-jets + multiple same-sign leptons, extreme H_T, very low SM background; SSL+hard photon (p_T^gamma > 200 GeV) from X5/3 -> t W gamma with W gamma resonance; T->t S(gg) gives resonant dijet/large-R two-prong jet pair with m(t+S) mass peak. Each also reconstructs two resonances (M_S and M_Q), giving a 2D bump hunt.",
+  "confidence": "medium",
+  "caveats": [
+    "Target (1) is well motivated and theoretically clean (top-philic pNGB generic in gauge-fermion composite Higgs), but recasts already reach 1.65 TeV; a dedicated search gain at HL-LHC not quantified by any source read.",
+    "Target (2) relies on a special representation choice (fermiophobic phi+); in generic models phi+ -> tb dominates (1907.05894 Sec. 2.2) -> lower theoretical priority.",
+    "Target (3): S->gg is generically dominant below tt threshold for an elementary singlet (2203.13753), so it is the best-motivated non-photon S decay; S->WW requires composite anomaly couplings.",
+    "CMS-PAS-B2G-24-005 (INSPIRE recid 3157006) exists; its claimed content (X5/3 -> t H+ -> ttb only) not read - UNVERIFIED.",
+    "Did not check post-2019 RPV/stealth multijet search reach for T->t(gg)."
+  ]
+}

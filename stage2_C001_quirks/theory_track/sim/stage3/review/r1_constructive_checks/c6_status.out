@@ -1,0 +1,13 @@
+p1 status4 by (Lambda,cfg) [counting set]: {(1.0, 'M'): 2, (1.0, 'Mx0.5'): 2, (1.0, 'Mx2'): 2, (2.0, 'BM'): 1, (2.0, 'M'): 2, (3.0, 'BM'): 1, (3.0, 'BMx0.5'): 1, (3.0, 'BMx2'): 1, (3.0, 'M'): 3, (3.0, 'Mx0.5'): 3, (3.0, 'Mx2'): 3, (5.0, 'BM'): 2, (5.0, 'M'): 2, (7.0, 'M'): 1, (10.0, 'BM'): 3, (10.0, 'M'): 1}
+p1 status0 by (Lambda,cfg) [counting set]: {}
+p2 status4 by (Lambda,cfg) [counting set]: {(7.0, 'BM'): 3, (10.0, 'BM'): 7, (15.0, 'BM'): 2, (20.0, 'BM'): 4, (30.0, 'BM'): 3, (40.0, 'BM'): 3}
+p2 status0 by (Lambda,cfg) [counting set]: {(0.3, 'BM'): 25, (0.35, 'BM'): 7, (0.4, 'BM'): 2}
+p2 template points with status 4 (key, n4, n): [(np.str_('p2/F_m1500/L10_BM'), 3, 200), (np.str_('p2/F_m1500/L20_BM'), 3, 200), (np.str_('p2/F_m1500/L40_BM'), 3, 200), (np.str_('p2/F_m1500/L30_BM'), 2, 200), (np.str_('p2/F_m1100/L7_BM'), 1, 200), (np.str_('p2/F_m1400/L10_BM'), 1, 200), (np.str_('p2/F_m1500/L15_BM'), 1, 200), (np.str_('p2/F_m1500/L7_BM'), 1, 200)]
+mv status4 by (Lambda,cfg) [counting set]: {(10.0, 'BMx0.5'): 4, (10.0, 'BMx2'): 4, (20.0, 'BMx0.5'): 4, (20.0, 'BMx2'): 4}
+mv status0 by (Lambda,cfg) [counting set]: {}
+F_m1500 L 10 f_merged100 = {'value': 0.07106598984771574, 'err': 0.018373421766123787} status [0, 197, 0, 0, 3, 0]
+F_m1500 L 15 f_merged100 = {'value': 0.271356783919598, 'err': 0.031060813036307984} status [0, 199, 0, 0, 1, 0]
+F_m1500 L 20 f_merged100 = {'value': 0.5076142131979695, 'err': 0.036936090378342605} status [0, 197, 0, 0, 3, 0]
+F_m1500 L 30 f_merged100 = {'value': 0.8080808080808081, 'err': 0.027305912563792997} status [0, 198, 0, 0, 2, 0]
+F_m1500 L 40 f_merged100 = {'value': 0.949238578680203, 'err': 0.015411086242333137} status [0, 197, 0, 0, 3, 0]
+status0 at 0.3 keV per mass: {'p2/F_m1000/L0.3_BM': 1, 'p2/F_m1100/L0.3_BM': 1, 'p2/F_m1200/L0.3_BM': 3, 'p2/F_m1300/L0.3_BM': 2, 'p2/F_m1400/L0.3_BM': 2, 'p2/F_m1500/L0.3_BM': 2, 'p2/F_m400/L0.3_BM': 1, 'p2/F_m500/L0.3_BM': 1, 'p2/F_m600/L0.3_BM': 2, 'p2/F_m700/L0.3_BM': 1, 'p2/F_m800/L0.3_BM': 1, 'p2/F_m900/L0.3_BM': 1, 'p2/S_m1000/L0.3_BM': 4, 'p2/S_m500/L0.3_BM': 3}

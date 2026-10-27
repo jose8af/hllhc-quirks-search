@@ -1,0 +1,36 @@
+{
+ "figure": "D9_edges_det_vs_truth",
+ "files": [
+  "D9_edges_det_vs_truth.pdf",
+  "D9_edges_det_vs_truth.png"
+ ],
+ "created": "2026-10-16T11:57:12",
+ "stamps": [
+  "PLACEHOLDER (synthetic inputs, not a result)"
+ ],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "stage5/placeholder_inputs/proposed/edges_det.json": "605c6322a16cd390fd9eb75357c7797b985022b521ec9bf248cdc578ffd21549",
+  "sim/stage3/results/P2.json": "e63d19d8d1ae76dee9693bfff1098bc62a457e7d6c95c02d1fab83b502442459"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "b864eea1b1ab71d1db708c1362b3e7bf8eda4a2d3e7aee82f541750835c61a56",
+  "stage5/make_figures.py": "65319e704aebb5ed4d7a8d79bb852cbbc1454f2dd2b483d3d432865498f21b05"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector + truth overlay",
+  "proposed_input": true
+ }
+}

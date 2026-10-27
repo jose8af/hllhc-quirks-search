@@ -1,0 +1,268 @@
+[
+ {
+  "item": "Admission \u00a75.4 item 11 + HASH_ADDENDUM \u00a71-\u00a76",
+  "function": "common.admission/collect/governing_docs",
+  "inputs": "all job meta",
+  "output": "manifest.json status, input_sha256",
+  "status": "IMPL+T (C1a, G3)"
+ },
+ {
+  "item": "T_seed mixing guard (LOG 2026-10-14)",
+  "function": "run_all.main",
+  "inputs": "campaign list",
+  "output": "refusal",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "Signal match pre-declared (LOG 2026-10-13 20:35)",
+  "function": "hitrec.core, hitrec.signal_match",
+  "inputs": "C1a a1/a2/a5 S4 records",
+  "output": "signal_eff.json",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "eps per hypothesis x rung, A1/A2core/A5core",
+  "function": "signal.analyse_file/aggregate/eff_table",
+  "inputs": "C1a a1/a2/a5",
+  "output": "signal_eff.json, signal_rows_<kind>.npz",
+  "status": "IMPL+T (A2 partial; A1/A5 pending outputs)"
+ },
+ {
+  "item": "F1 h, o (\u00a71.4 [D6])",
+  "function": "hitrec.h_var, hitrec.o_var",
+  "inputs": "S4 hit records",
+  "output": "via signal / background.f1_factors",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "R_A..R_E reporting rungs (\u00a78)",
+  "function": "signal.eff_table report_rungs; wp.assemble",
+  "inputs": "as above",
+  "output": "signal_eff.json, bsum_wp.json",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "D4-17 (i) admissibility k_adm, e_adm, r_fb (\u00a78)",
+  "function": "admissibility.Admissibility, rstar_admissible, primary",
+  "inputs": "f4r_admissibility.json, eadm_dilution.json (A.3 sha checked)",
+  "output": "signal_eff.json admissibility",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "PU-density update trigger rho_dens > 1.05 (\u00a78)",
+  "function": "background.rho_dens",
+  "inputs": "C1b B1 S6 dumps",
+  "output": "background.json rho_dens",
+  "status": "IMPL (needs C1b)"
+ },
+ {
+  "item": "V4-3 eps vs W_c, t_tol",
+  "function": "-",
+  "inputs": "C1a a1 sig.var_eff (in-job definition only)",
+  "output": "-",
+  "status": "LABELLED DIAGNOSTIC (D7): in-job-definition variants only"
+ },
+ {
+  "item": "V4-6 CKF stealing",
+  "function": "meta.v46 (read)",
+  "inputs": "C1a a5",
+  "output": "-",
+  "status": "STUB"
+ },
+ {
+  "item": "D4-13 per-event observables (MET, eta_axis, beta_ToF, dE/dx, M_est)",
+  "function": "signal.analyse_file obs, met_reco, tof_obs",
+  "inputs": "C1a + Stage-3 truth",
+  "output": "signal_obs_<kind>.npz",
+  "status": "IMPL+T (MET and in-band BTL recompute exact)"
+ },
+ {
+  "item": "B1/B2 union, per-hit-set counts (\u00a72, \u00a76.1)",
+  "function": "background.PUSamples",
+  "inputs": "C1b+C2B pu (G3 dry run)",
+  "output": "background.json",
+  "status": "IMPL+T (G3)"
+ },
+ {
+  "item": "T1/T1w/T1e/trend re-measured at T_seed 4 (\u00a76.4; USER 2026-10-14)",
+  "function": "background.closure (analyse_g3.family_test/trend_test)",
+  "inputs": "B1, B2",
+  "output": "background.json closure",
+  "status": "IMPL+T (reproduces G3 x1.319 / x1.424)"
+ },
+ {
+  "item": "T3, c-test (\u00a76.4)",
+  "function": "analyse_g3.t3_test, c_test",
+  "inputs": "B1 S2/S3",
+  "output": "background.json T3, c_test",
+  "status": "IMPL+T; T3 branch wired into factorised columns (R1 B-1); global c (B-3)"
+ },
+ {
+  "item": "T3s (\u00a76.2 h/o row)",
+  "function": "-",
+  "inputs": "B2 S7",
+  "output": "-",
+  "status": "GUARD (D8): required only if an h/o factor < 1 is credited (wp.f1_credited)"
+ },
+ {
+  "item": "closure end state (USER 2026-10-14)",
+  "function": "background.family_correction/compounded/end_state/trend_sigma",
+  "inputs": "closure",
+  "output": "background.json end_state(_T)",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "thinning / factorisation / zero-count rule (\u00a74.2, \u00a76.2)",
+  "function": "background.bpu_columns, chain_factors, Term",
+  "inputs": "B1 S2, B2",
+  "output": "background.json columns",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "density sigma_ln (PC-11)",
+  "function": "background.density_sigma",
+  "inputs": "C1b dens + B1_00000-00079",
+  "output": "background.json density",
+  "status": "IMPL (needs C1b)"
+ },
+ {
+  "item": "F1 factors + density-bin c (\u00a76.2)",
+  "function": "background.f1_factors",
+  "inputs": "B1 S4",
+  "output": "background.json f1_factors",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "SR-T window, P(late), P_OOT, sigma_ln,PV/sigma_t (PC-19)",
+  "function": "srt.job_arrays, srt_factors (srt_tmin_check kernel/edges)",
+  "inputs": "B1 S2/S3/S5",
+  "output": "srt.json",
+  "status": "IMPL+T (G3)"
+ },
+ {
+  "item": "signal eps_SR-T with pre-registered OOT assignment (PC-19)",
+  "function": "srt.oot_events, srt.signal_srt, run_all.signal_srt_stage",
+  "inputs": "signal obs + C1 B1 S5",
+  "output": "signal_srt.json",
+  "status": "IMPL (runs when C1a+C1b together)"
+ },
+ {
+  "item": "SM term B_SM,HS (\u00a77)",
+  "function": "background.sm_term",
+  "inputs": "C1b sm",
+  "output": "background.json sm",
+  "status": "IMPL (smoke); ttbar sigma missing (D3)"
+ },
+ {
+  "item": "C'0 / C'_PU terms, f_pre, V4-10 (\u00a77)",
+  "function": "background.cprime_term",
+  "inputs": "C1a cp0/cppu",
+  "output": "background.json cprime",
+  "status": "IMPL; rate_t missing (D2)"
+ },
+ {
+  "item": "B sum per category, B84 (\u00a74.1)",
+  "function": "wp.assemble, stats.b84",
+  "inputs": "all above + inputs/normalisation.json",
+  "output": "bsum_wp.json ladder",
+  "status": "IMPL+T (G3)"
+ },
+ {
+  "item": "r*_c, combined guard, continuation (\u00a75.1-\u00a75.3)",
+  "function": "stats.rstar/combined_guard/wp_rule, wp.apply_rule",
+  "inputs": "bsum",
+  "output": "bsum_wp.json rule",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "primary selection per (m, Lambda, c) (\u00a78)",
+  "function": "admissibility.primary",
+  "inputs": "rule + admissibility",
+  "output": "limits.json primary",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "two-bin pyhf workspace, expected 95 % CL limit, discovery (\u00a78, D4-13)",
+  "function": "stats.workspace, expected_limit_asymptotic, expected_limit_toys, discovery; run_all.limits_stage",
+  "inputs": "signal_eff (+signal_srt) + bsum_wp",
+  "output": "limits.json, workspaces/",
+  "status": "IMPL+T (asymptotic = pyhf 0.7.6 to 1e-4)"
+ },
+ {
+  "item": "SR-T time-independence test on the production union (\u00a76.2, \u00a76.4)",
+  "function": "srt.time_independence",
+  "inputs": "B1 S3/S2 + S5",
+  "output": "srt.json time_independence",
+  "status": "IMPL+T (R1 B-4)"
+ },
+ {
+  "item": "analysis freeze (R1 B-8)",
+  "function": "common.freeze_status; run_all --dev",
+  "inputs": "inputs/analysis_freeze.json",
+  "output": "manifest.json freeze",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "D1 N_trig after the event-level preselection (USER 2026-10-14)",
+  "function": "gen_d123.py nt; normalise.build",
+  "inputs": "generator-level Pythia (s4pu.HardScatter)",
+  "output": "normalisation.json n_trig (breakdown)",
+  "status": "IMPL+T: 3.63e7 (2.2 % stat)"
+ },
+ {
+  "item": "D1/D3 SM terms on the preselection footing; W(tau) per tau class",
+  "function": "gen_d123.py smregen; background.sm_term (SM_PSEUDO)",
+  "inputs": "C1b sm jobs (seeds, hs_met)",
+  "output": "background.json sm",
+  "status": "IMPL; regeneration VERIFIED on smoke (2/2 hs_met); C1b outputs pending"
+ },
+ {
+  "item": "D2 C' rate_t + spectrum fold + NI P_PV-line",
+  "function": "normalise.build (rates), background.gun_pt/reweight_factor, wp.cp_terms (0.22)",
+  "inputs": "generator-level Pythia; C1 Cp0/CpPU",
+  "output": "normalisation.json cprime_rates; background.json cprime",
+  "status": "IMPL+T (gun RNG replay 1000/1000)"
+ },
+ {
+  "item": "D3 W(e nu)/W(mu nu) proxy",
+  "function": "background.sm_term",
+  "inputs": "W(tau) pseudo-samples",
+  "output": "background.json sm _proxy_fraction_of_B_SM",
+  "status": "IMPL (flagged proxy)"
+ },
+ {
+  "item": "Stage-5: acceptance A(m, Lambda, spin) + efficiency factor breakdown",
+  "function": "products.acceptance",
+  "inputs": "Stage-3 truth records; signal_eff.json",
+  "output": "acceptance.json",
+  "status": "IMPL+T (C1a, --dev)"
+ },
+ {
+  "item": "Stage-5: toy +-1/2 sigma expected bands",
+  "function": "stats.expected_limit_toys",
+  "inputs": "-",
+  "output": "limits.json expected_toys.band_*",
+  "status": "IMPL+T"
+ },
+ {
+  "item": "D9 detector-level vs truth edges (plan \u00a711 item 3)",
+  "function": "products.edges",
+  "inputs": "signal_rows_a1/a2.npz; P2.json",
+  "output": "edges_det.json",
+  "status": "IMPL+T (minimal)"
+ },
+ {
+  "item": "D10 sep_IT^det calibration (plan \u00a711 item 4)",
+  "function": "hitrec.sep_it; products.sep_it_det",
+  "inputs": "signal_obs; P2.json sep_IT_handle",
+  "output": "sep_it_det.json",
+  "status": "IMPL+T (minimal)"
+ },
+ {
+  "item": "D11 event display hit dump (plan \u00a711 Stage-5 list)",
+  "function": "products.event_display",
+  "inputs": "A2 obs + C1 B1 S4",
+  "output": "event_display.npz",
+  "status": "IMPL+T (signal part; PU fake needs C1b)"
+ }
+]

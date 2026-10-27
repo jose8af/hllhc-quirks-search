@@ -1,0 +1,239 @@
+{
+ "description": "M5_li_blinearity.py -- E2 measurement M5 (coordinator request): is the B ln(1/B) non-linearity of the causal string\npresent in a step-converged straight string?\n\nIntegrator: the literal Li-Li-Pei-Zhang CM-simultaneous straight string of code/R1_li_literal.li_run, via its scalarised\ncopy nm_li.run_li (validated against it: 0.3 um at 1e-3 of the printed step;\nexplicit Euler, Kang-Luty force, CM simultaneity Eq.III.6-7, s_hat Eq.III.8-9), at 1e-3 of the printed step bound for\nall events and 3e-4 for the first NCONV events (convergence check).  Reference: causal kernel (nm_kernel = T3_causal B-only) at max_boost 1e-3, hmax 0.02 cm.\nEvents: the R1 recipe (R1_conformal_ng.make_event: m = 500 GeV, gamma* = 1.28, pT = 300 GeV, |y| < 0.8), seed 2026,\nNEV events, Lambda = 1 keV.  B = B0 x {1, 1/4, 1/20, 1/80}, B0 = 3.8 T (R1 convention), plus B = 0 for each integrator.\nMetrics (hits matched by quirk, layer and order of crossing of that layer):\n  d(f) = hit(f B0) - hit(0) [same integrator, same step, so step-dependent in-plane phase errors cancel to first order];\n  response per unit B  R(k) = median_hits |d(B0/k)| k / |d(B0)|, and the S/T4 metric Q68|d(B0) - k d(B0/k)| / Q68|d(B0)|,\n  split into hits before / after the first crossing (vacuum lab crossing time Dt); also the event-level\n  Delta_s(B0/k) k / Delta_s(B0).\nOutput: results/raw/M5/ev<i>.npz (one per event), results/M5.json.\nRun: pixi run python analytic/numerics/M5_li_blinearity.py [NEV] [workers]\n",
+ "results": {
+  "li0.001": {
+   "k4": {
+    "R_pre_median": 1.000000082338985,
+    "R_pre_err": 4.4719406280721434e-07,
+    "n_pre": 60,
+    "nonlin_pre": 8.698622871015666e-05,
+    "R_post_median": 1.1496797773668872,
+    "R_post_err": 0.0010659625554573073,
+    "n_post": 644,
+    "nonlin_post": 0.17758691329938422,
+    "ds_ratio_median": 1.1439049908528718,
+    "ds_ratio_err": 0.0028605185045941545
+   },
+   "k20": {
+    "R_pre_median": 1.0000000988858826,
+    "R_pre_err": 5.67675039951882e-07,
+    "n_pre": 60,
+    "nonlin_pre": 0.0001101761748475903,
+    "R_post_median": 1.3519785528176178,
+    "R_post_err": 0.008797098351232236,
+    "n_post": 644,
+    "nonlin_post": 0.5359171700894408,
+    "ds_ratio_median": 1.3126332849793676,
+    "ds_ratio_err": 0.004968769331092434
+   },
+   "k80": {
+    "R_pre_median": 1.000000094216786,
+    "R_pre_err": 5.930409611634106e-07,
+    "n_pre": 60,
+    "nonlin_pre": 0.00011464358463481993,
+    "R_post_median": 1.8375549565819336,
+    "R_post_err": 0.0963538830357675,
+    "n_post": 644,
+    "nonlin_post": 1.4626731719765733,
+    "ds_ratio_median": 1.4610285741081457,
+    "ds_ratio_err": 0.009238133009557142
+   }
+  },
+  "li0.0003": {
+   "k4": {
+    "R_pre_median": 0.9999905513191157,
+    "R_pre_err": 1.824252946792332e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00013622878403319428,
+    "R_post_median": 1.146138731173871,
+    "R_post_err": 0.001569018052085005,
+    "n_post": 122,
+    "nonlin_post": 0.15197531140981213,
+    "ds_ratio_median": 1.1420071890221495,
+    "ds_ratio_err": 0.0038067455225129863
+   },
+   "k20": {
+    "R_pre_median": 0.9999880415102953,
+    "R_pre_err": 2.3137744788080587e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.0001725213523326196,
+    "R_post_median": 1.3185223868605416,
+    "R_post_err": 0.0035291695060637417,
+    "n_post": 122,
+    "nonlin_post": 0.33189382915568444,
+    "ds_ratio_median": 1.3060676195364125,
+    "ds_ratio_err": 0.008328965520754045
+   },
+   "k80": {
+    "R_pre_median": 0.9999875732082666,
+    "R_pre_err": 2.406924861133395e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00017936221444703418,
+    "R_post_median": 1.500945863735716,
+    "R_post_err": 0.017735238754426556,
+    "n_post": 122,
+    "nonlin_post": 0.6568783812562042,
+    "ds_ratio_median": 1.4470507198890257,
+    "ds_ratio_err": 0.012545333065873075
+   }
+  },
+  "causal": {
+   "k4": {
+    "R_pre_median": 0.9999999999580773,
+    "R_pre_err": 2.4209722114696806e-07,
+    "n_pre": 60,
+    "nonlin_pre": 7.264995559819888e-05,
+    "R_post_median": 1.1443186841563728,
+    "R_post_err": 0.0003539711796409336,
+    "n_post": 622,
+    "nonlin_post": 0.15104970232643447,
+    "ds_ratio_median": 1.1449675792119145,
+    "ds_ratio_err": 0.0016245363042714609
+   },
+   "k20": {
+    "R_pre_median": 1.0000000002748703,
+    "R_pre_err": 3.0646527385297766e-07,
+    "n_pre": 60,
+    "nonlin_pre": 9.201765978912914e-05,
+    "R_post_median": 1.3122448416335892,
+    "R_post_err": 0.0010521560249216952,
+    "n_post": 622,
+    "nonlin_post": 0.3189198493001464,
+    "ds_ratio_median": 1.3133615929121805,
+    "ds_ratio_err": 0.0026322500888712476
+   },
+   "k80": {
+    "R_pre_median": 1.0000000025796174,
+    "R_pre_err": 3.1782068129309156e-07,
+    "n_pre": 60,
+    "nonlin_pre": 9.563330138648669e-05,
+    "R_post_median": 1.4573316467410307,
+    "R_post_err": 0.001353083823951334,
+    "n_post": 623,
+    "nonlin_post": 0.4652581238769763,
+    "ds_ratio_median": 1.4586692908543086,
+    "ds_ratio_err": 0.0026123124927350497
+   }
+  }
+ },
+ "results_first_NCONV_events": {
+  "li0.001": {
+   "k4": {
+    "R_pre_median": 0.9999905583781069,
+    "R_pre_err": 1.8245138259789897e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00013622435432913705,
+    "R_post_median": 1.1493425730381441,
+    "R_post_err": 0.002321398838717653,
+    "n_post": 122,
+    "nonlin_post": 0.16065522133984184,
+    "ds_ratio_median": 1.1421469431917253,
+    "ds_ratio_err": 0.003690877158550498
+   },
+   "k20": {
+    "R_pre_median": 0.9999880684032885,
+    "R_pre_err": 2.3134359065045792e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00017256665392701147,
+    "R_post_median": 1.3293964192456746,
+    "R_post_err": 0.010486505323100593,
+    "n_post": 122,
+    "nonlin_post": 0.4327562984841515,
+    "ds_ratio_median": 1.305943438133082,
+    "ds_ratio_err": 0.008339353001061128
+   },
+   "k80": {
+    "R_pre_median": 0.9999875773823597,
+    "R_pre_err": 2.4108695629865675e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00017941757053579715,
+    "R_post_median": 1.5375058228511873,
+    "R_post_err": 0.02998208122740166,
+    "n_post": 122,
+    "nonlin_post": 0.7269124974956651,
+    "ds_ratio_median": 1.4502936361150736,
+    "ds_ratio_err": 0.013459317779590377
+   }
+  },
+  "li0.0003": {
+   "k4": {
+    "R_pre_median": 0.9999905513191157,
+    "R_pre_err": 1.824252946792332e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00013622878403319428,
+    "R_post_median": 1.146138731173871,
+    "R_post_err": 0.001569018052085005,
+    "n_post": 122,
+    "nonlin_post": 0.15197531140981213,
+    "ds_ratio_median": 1.1420071890221495,
+    "ds_ratio_err": 0.0038067455225129863
+   },
+   "k20": {
+    "R_pre_median": 0.9999880415102953,
+    "R_pre_err": 2.3137744788080587e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.0001725213523326196,
+    "R_post_median": 1.3185223868605416,
+    "R_post_err": 0.0035291695060637417,
+    "n_post": 122,
+    "nonlin_post": 0.33189382915568444,
+    "ds_ratio_median": 1.3060676195364125,
+    "ds_ratio_err": 0.008328965520754045
+   },
+   "k80": {
+    "R_pre_median": 0.9999875732082666,
+    "R_pre_err": 2.406924861133395e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00017936221444703418,
+    "R_post_median": 1.500945863735716,
+    "R_post_err": 0.017735238754426556,
+    "n_post": 122,
+    "nonlin_post": 0.6568783812562042,
+    "ds_ratio_median": 1.4470507198890257,
+    "ds_ratio_err": 0.012545333065873075
+   }
+  },
+  "causal": {
+   "k4": {
+    "R_pre_median": 0.9999992321153763,
+    "R_pre_err": 1.1376417147959203e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.0001203263785704535,
+    "R_post_median": 1.1462291147140105,
+    "R_post_err": 0.0009661703784489224,
+    "n_post": 122,
+    "nonlin_post": 0.16948666642988286,
+    "ds_ratio_median": 1.1551420703849071,
+    "ds_ratio_err": 0.01597935880091761
+   },
+   "k20": {
+    "R_pre_median": 0.9999990276599532,
+    "R_pre_err": 1.4532290496752585e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.00015241415426513302,
+    "R_post_median": 1.3131083416269038,
+    "R_post_err": 0.0019370481346414048,
+    "n_post": 122,
+    "nonlin_post": 0.3340090794625673,
+    "ds_ratio_median": 1.319543548558015,
+    "ds_ratio_err": 0.016133535161846357
+   },
+   "k80": {
+    "R_pre_median": 0.9999989886074672,
+    "R_pre_err": 1.5124333303402532e-05,
+    "n_pre": 12,
+    "nonlin_pre": 0.0001584279577130712,
+    "R_post_median": 1.459189819972559,
+    "R_post_err": 0.002666877097508907,
+    "n_post": 122,
+    "nonlin_post": 0.47492649978523166,
+    "ds_ratio_median": 1.4668294509277116,
+    "ds_ratio_err": 0.008005751412270855
+   }
+  }
+ },
+ "nev": 30,
+ "nconv": 6,
+ "cpu_seconds_this_invocation": 0.0,
+ "cpu_seconds_first_run": 1153.0
+}

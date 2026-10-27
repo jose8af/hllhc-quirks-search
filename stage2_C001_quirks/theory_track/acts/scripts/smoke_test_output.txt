@@ -1,0 +1,35 @@
+02:30:07    GenericDetec   INFO      Building tracking geometry
+02:30:07    GenericDetec   INFO      Building tracking geometry for Generic Detector in Gen1 mode
+02:30:07    GenericDetec   INFO      Tracking geometry built
+== A. versions
+python 3.12.15 | acts 48.0.0 | pythia8 module pythia8.so | pyhepmc 2.16.1 | numpy 2.5.4 | uproot 5.7.7 | awkward 2.14.0
+GenericDetector: 18728 sensitive surfaces
+
+== B. hybrid chain: gun -> Fatras + injected external hits -> digitisation
+  event 0: 59 Fatras hits + 7 external hits -> 66 measurements
+  event 1: 62 Fatras hits + 7 external hits -> 69 measurements
+  event 2: 64 Fatras hits + 7 external hits -> 71 measurements
+  B PASS (0.0 s)
+
+== C. Pythia8 CP5 minimum bias (400 interactions) -> HepMC3 -> ACTS (200 per event) -> Fatras -> digitisation
+  Pythia8: init 20.6 s; 400 events in 15.4 s (incl. Python HepMC3 conversion); sigma_gen(inelastic) = 78.9 mb; <N_ch(|eta|<2.5)> = 31.9; file 28 MB
+  PU-200 event 0: 37120 generated particles, 8889 charged selected (pT>150 MeV, |eta|<4), 93060 sim-hits, 93050 measurements; selected-particle vertex rms z = 48.4 mm, t = 186 ps
+  PU-200 event 1: 36907 generated particles, 9092 charged selected (pT>150 MeV, |eta|<4), 95762 sim-hits, 95754 measurements; selected-particle vertex rms z = 49.1 mm, t = 191 ps
+  ACTS part: 3.0 s for 2 PU-200 events (1 thread)
+  C PASS (expects >1000 measurements/event and a vertex z spread of 20-80 mm from sigma_z = 45.0 mm)
+
+== D. acts/geometry/cms_phase2_public.json (baseline D111)
+  TBPX_L1  r =    30.00 mm (TDR-2017    29.0; T3     30)  |z| <=   200.1 mm  ['IT_1x2']
+  TBPX_L2  r =    61.50 mm (TDR-2017    70.1; T3     61)  |z| <=   201.4 mm  ['IT_1x2']
+  TBPX_L3  r =   104.50 mm (TDR-2017   117.8; T3    104)  |z| <=   201.4 mm  ['IT_2x2']
+  TBPX_L4  r =   146.50 mm (TDR-2017   157.4; T3    146)  |z| <=   201.4 mm  ['IT_2x2']
+  TBPS_L1  r =   249.44 mm (TDR-2017   248.1; T3    249)  |z| <=  1202.9 mm  ['PS']
+  TBPS_L2  r =   371.68 mm (TDR-2017   371.7; T3    372)  |z| <=  1203.5 mm  ['PS']
+  TBPS_L3  r =   522.70 mm (TDR-2017   522.7; T3    523)  |z| <=  1201.9 mm  ['PS']
+  TB2S_L1  r =   687.00 mm (TDR-2017   687.0; T3    688)  |z| <=  1174.2 mm  ['2S']
+  TB2S_L2  r =   860.00 mm (TDR-2017   860.0; T3    860)  |z| <=  1174.2 mm  ['2S']
+  TB2S_L3  r =  1083.00 mm (TDR-2017  1108.0; T3   1083)  |z| <=  1174.2 mm  ['2S']
+  discs per side: 17; beamspot: sigma_z 45.0 mm, sigma_t 190.0 ps, sigma_xy 5.0 um; material baseline: T3_slabs_used (user decision 2026-10-11), systematic variation x0.5 and x2 (all layers together)
+
+SUMMARY: B:PASS C:PASS D:PASS | total 39.3 s
+timeout 600 nice pixi run python -W ignore scripts/smoke_test.py 400 200  39.37s user 0.21s system 99% cpu 39.754 total

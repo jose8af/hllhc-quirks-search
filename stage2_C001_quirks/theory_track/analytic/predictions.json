@@ -1,0 +1,450 @@
+{
+ "meta": {
+  "author": "E1 (analytic executor), theory track Stage 1 / P1",
+  "date": "2026-10-11",
+  "note": "analytic/NEAR_MISS_IMPULSE.md (v5.1); v4 kept as NEAR_MISS_IMPULSE_v4.md; v5 not kept separately",
+  "conventions": "hbar=c=1, cm, GeV; Lambda = sqrt(sigma), sigma = 50.68 GeV/cm (Lambda/keV)^2; qB = 2.998e-3 GeV/cm per T (unit charge); rho = gamma* beta*; l0 = m/sigma; l_max = 2(gamma*-1) l0; E* = gamma_cm beta_cm x B (pair rest frame); eps_perp = q|E*_perp|/sigma (component perpendicular to the initial CM axis n); alpha = angle(E*, n); default B = 3.8112 T, truth level, B only, T3 event sample (|eta_pair|<1, LO DY+ISR).",
+  "tags": "DERIVED = derived in the note and checked by sympy + limiting case; VERIFIED-NUM = derived and confirmed by targeted exact-NG runs; ESTIMATE = numerically determined constant or model step; CONJECTURE",
+  "version": "v5.1 (2026-10-11): fix pass S1-R3 (edited in place from v5); v1 numerical values unchanged",
+  "tag_mapping": "E1 VERIFIED-NUM may rest on one solver; E2 VERIFIED = two solvers agree (NEAR_MISS §9 lists two-solver items)",
+  "P1_scope": "User decision 2026-10-11: option (b). P1 = B-field crossing physics; multiple scattering only as the measured numerical floor (S-2/T3: 10-25 um, Highland sqrt(x/X0) credited); no analytic MS claim; analytic MS kept as possible later extension (NEAR_MISS §11 (a), §10 item 8)"
+ },
+ "c": {
+  "formula": "c_ev = 1 / [ ln(l_max/b_odd) + K(gamma*) ] = 1 / { ln[sigma/(qB)] - ln(gamma_cm beta_T,cm sin alpha) + ln[(gamma*-1)/(gamma* - asinh(rho)/rho)] + K(gamma*) }",
+  "status_formula": "v4: DERIVED under the rotating-yo-yo assumption (Ds ~ eta, pure E*, non-secular terms omitted); population median VERIFIED-NUM at 1 keV (<=1.5 %); per-event not valid for k_B >~ 6 (B*, +17..+36 % at k_B = 8-12; fraction of events with k_B>6: 5/29/43 % at 200/500/1000 GeV)",
+  "meaning": "v4: c = local log slope d ln(Ds/eps_B)/d ln(1/B) = 1/[ln(1/eps_B) + C]; per event with the event C; R(f) = 1 + c ln(1/f) under the rotating-yo-yo assumption. (v1-v3 text \"equivalently Ds ~ eps_B [1 + c ln(Lambda^2/qB)]\" withdrawn.)",
+  "value_m500_1keV_3.8T": {
+   "median": 0.104,
+   "p16": 0.098,
+   "p84": 0.112,
+   "status": "ESTIMATE (population of the derived law on 150 events)"
+  },
+  "values_median": {
+   "m200": {
+    "0.6keV": 0.128,
+    "1keV": 0.113,
+    "2keV": 0.098,
+    "3keV": 0.091,
+    "5keV": 0.083,
+    "10keV": 0.074
+   },
+   "m500": {
+    "0.6keV": 0.116,
+    "1keV": 0.104,
+    "2keV": 0.091,
+    "3keV": 0.085,
+    "5keV": 0.078,
+    "10keV": 0.07
+   },
+   "m1000": {
+    "0.6keV": 0.111,
+    "1keV": 0.1,
+    "2keV": 0.088,
+    "3keV": 0.082,
+    "5keV": 0.076,
+    "10keV": 0.068
+   }
+  },
+  "fitted_reference_not_used": "0.08-0.11 (synthesis S-3, X-3); agreement",
+  "source": "checks/c07_predictions_out.txt",
+  "comparison_E2": {
+   "500GeV_1keV": "pred 0.104 vs 0.105 +- 0.002 (pull -0.5)",
+   "1TeV_1keV": "pred 0.100 vs 0.101 +- 0.001 (pull -1)",
+   "500GeV_3keV": "pred 0.085 vs 0.093 +- 0.002 (pull -4; fine settings 0.085-0.098) FAILED/open [v2 blind production; superseded: see v4_FIX1 verdict (v5.1)]",
+   "1TeV_3keV": "pred 0.082 vs 0.091-0.095 (pull ~ -5) FAILED/open [v2 blind production; superseded: see v4_FIX1 verdict (v5.1)]",
+   "source": "numerics/results/M3.json; analytic/checks/c11_e2_compare_out.txt",
+   "v3_FU1": {
+    "500GeV_3keV_converged": "measured-E1 per event: k=2 +0.0021+-0.0015 (pull 1.4), k=4 +0.0055+-0.0020, k=20 +0.0113+-0.0018 (numerically unreliable); population c(k=2)=0.0890 vs E1 0.0839-0.0846",
+    "1TeV_3keV_converged": "k=2 -0.0003+-0.0006 (pull -0.5), k=4 +0.0043+-0.0017, k=20 +0.0132+-0.0033; population c(k=2)=0.0841 vs E1 0.0815-0.0819",
+    "verdict": "v4 (A1): consistent at k_f = 2 only; k_f >= 4 OPEN (+5-6 % at B0/4, +13-16 % at B0/20, one-sided); round-off attribution withdrawn (reviewer: mean-zero noise biases c by ~1e-5)",
+    "source": "numerics/results/FU.json (FU1a)",
+    "note_v5": "superseded: see v4_FIX1.verdict (v5 final / v5.1 two-part decomposition)"
+   },
+   "v4_FIX1": {
+    "3keV_max_boost_1e-4_39ev": "c(1/2)-c_E1 = +0.0017+-0.0021 (500), +0.0008+-0.0015 (1000); c(1/4): +0.0035+-0.0034 / +0.0028+-0.0033; c(1/20): +0.0122+-0.0027 / +0.0130+-0.0035 (positive in 90-97 % of events)",
+    "deterministic": "perturbations 1e-14..1e-8 shift c by <= 5e-4",
+    "kB_dependence_500GeV_c(1/20)": "E1 k_B (|B*perp|/|E*perp|) bins <3/3-5/5-7/7-10/>10: +0.004/+0.011/+0.019/+0.031/+0.116 (top bin n=12, +-0.058; 1 TeV +0.135, n=22); E2 k_B^tot bins: +0.001/+0.007/+0.014/+0.047/+0.096 (r=0.74)",
+    "kB<5_gamma<1.3": "agrees with E1 to <= 0.003 at all f (<= 0.001 at B0/2, B0/4); B0/20 residual +0.0026+-0.0012 / +0.0030+-0.0005",
+    "verdict": "v5.1: two parts. (i) physical cumulative B* part: k_B>=5 Delta c(4) on-off = +0.0009/-0.0003 (s=1/9), +0.0055+-0.0029/+0.0002+-0.0035 (1/3), +0.0136+-0.0039/+0.0125+-0.0038 (s=1) (500 GeV/1 TeV; floor cancels in on-off); about half of Delta c(20) at 500 GeV, ~20 % at 1 TeV. (ii) per-period part surviving B* and E*par off, N-independent within errors, eps_perp^-2 shape of the precision floor, amplitude 3.8-3.9x the CM coefficient (ESTIMATE, not demonstrated). Law holds at B0/2 (all events) and k_B<5 at B0/2, B0/4.",
+    "c14": "v5: c14 does NOT reproduce the excess: opposite trend with k_f (largest at k_f=2), <=+0.016 at k_f=20 (gamma*=1.6), no effect at gamma*=1.1; \"c14 gets the right size\" withdrawn | v5 final: tension partly explained: c14 runs 3 periods, the physical B* part is cumulative (0 at N/9) so invisible there; c14 per-period pattern (gamma*~1.3-1.6, large k_B) untested in full-event subsets (minor open)",
+    "source": "numerics/results/FIX1.json; checks/c14_Bstar_cscan_out.txt"
+   }
+  }
+ },
+ "per_crossing_impulse_law": {
+  "odd_crossing_miss_distance": {
+   "formula": "b_odd = J_odd/p* = 2 eps_perp l0 [gamma* - asinh(rho)/rho]",
+   "status": "DERIVED, VERIFIED-NUM (b1/b_pred = 1.00003-1.0001 at max_boost 1e-4)",
+   "typical": "median ~3.5 um (keV/Lambda)^4 at m=500 GeV, 3.8 T",
+   "checks": [
+    "checks/c01_yoyo_bodd_out.txt",
+    "checks/c03_causal_E_out_*.txt"
+   ]
+  },
+  "even_crossing_miss_distance": {
+   "formula": "0 at first order; ~12 eps_par b_odd at second order (gamma*=1.28)",
+   "status": "DERIVED (first order) / ESTIMATE (second order)",
+   "E2": "pure CM E*: artefact proportional to max_boost (=0 physically); full events <~1e-3 b_odd, growing with crossing index"
+  },
+  "intermediate_region_force": {
+   "formula": "F_perp = -/+ sigma b / (2 |s| artanh beta*) per end (exact NG, self-similar wedge solution y = (b/2) artanh(x/s)/artanh(beta*))",
+   "status": "DERIVED",
+   "check": "checks/c02_wedge_out.txt"
+  },
+  "relative_impulse": {
+   "formula": "Delta p_rel,perp = -(sigma b/artanh beta*) [ln(L/b) + O(1)]",
+   "status": "DERIVED",
+   "wording_v2": "log impulse accrued within |s| <~ 0.05 T_h of the crossing relative to the incoming axis = rotation of p_rel; the turning-point-to-turning-point transfer has no log"
+  },
+  "rotation_per_period": {
+   "formula": "eta = eps_perp G(gamma*) [ln(l_max/b_odd) + K(gamma*)],  G = 2[gamma* - asinh(rho)/rho]/(rho artanh beta*)",
+   "direction": "toward +E*_perp (end with charge +q swings toward E*), same sign every period (coherent)",
+   "status": "log coefficient DERIVED + VERIFIED-NUM (0.1 %, eps = 1e-6..1e-3, gamma* = 1.05..3); K ESTIMATE",
+   "check": "checks/c03_causal_E_out_*.txt"
+  },
+  "G_values": {
+   "1.05": 1.316,
+   "1.28": 1.245,
+   "1.6": 1.165,
+   "2.0": 1.087,
+   "3.0": 0.953,
+   "NR_limit": "4/3 - 8 beta*^2/45"
+  },
+  "K_values": {
+   "1.0": 0.0794,
+   "1.05": 0.056,
+   "1.28": -0.049,
+   "1.6": -0.175,
+   "2.0": -0.309,
+   "3.0": -0.569,
+   "fit": "K = (3 ln2 - 2) - 0.506 ln(gamma*) - 0.077 ln^2(gamma*)",
+   "status": "ESTIMATE (exact-NG numerics, max_boost 1e-4; NR value DERIVED)",
+   "check": "checks/c08_K_fit_out.txt"
+  },
+  "nonrelativistic_closed_form": {
+   "formula": "eta_NR = (4/3) eps_perp [ln(6/eps_perp) - 2]",
+   "status": "DERIVED (matched asymptotics, sympy c05; numerics c04 to 6e-6)"
+  },
+  "regime_of_validity": "eps_perp << 1; b_odd >> 1/Lambda (Lambda <~ 26 keV typical event, <~ 12 keV if eps_perp is 10x below typical); first order in eps_par; per-period law exact at first order for all gamma*, localisation at the crossing good for gamma* <~ 1.5 | v5: \"per-period law exact at first order\" applies to the pure-E* problem; with B* (k_B >~ 5) the constant changes (non-monotonic, eps-dependent)",
+  "comparison_E2": {
+   "b_odd/(eps l_max)": "pred 1.3268/1.2979/1.2397/1.1884 vs 1.328/1.298/1.240/1.189 (gamma*=1.05/1.3/2/3)",
+   "G_vs_A_o": "1.316/1.239/1.087/0.953 vs 1.318/1.241/1.0875/0.954",
+   "per_period_constant": "G[ln((g-1)/(g-asinh rho/rho))+K] = -0.300/-0.396/-0.569/-0.707 vs K_o+psi_even = -0.304/-0.399/-0.574/-0.704",
+   "source": "numerics/results/M2.json"
+  },
+  "vacuum_law_post_hoc": {
+   "formula": "psi = A_hat (b/l_max)[ln(l_max/b) + K_vac], A_hat = 2(g-1)/(rho artanh beta*) (implied by the v1 force law), K_vac,NR = 3 ln2 - 2",
+   "E2": "A_hat = 0.996/0.951/0.878/0.793 vs pred 0.992/0.955/0.877/0.802; ln(L/l_max)_E2 = -0.015/-0.105/-0.58/-0.84 (relation K = K_vac + delta_pair/G)",
+   "kappa": "beta*/artanh beta* = 0.968/0.845/0.658/0.535 vs E2 0.963/0.840/0.653/0.52",
+   "KL_A_hat": "2(g-1)(1-beta^2)/(rho beta) = 0.929/0.669/0.333/0.167 vs E2 0.934/0.670/0.332/0.167",
+   "status": "DERIVED (A_hat, kappa implied by v1 P-3; K_vac,NR post-hoc c09/c10)",
+   "FU2": "K_vac(NR) measured 0.0791+-0.0003 (extrapolated, A_hat fixed) vs 3ln2-2 = 0.0794: CONFIRMED; K_vac(1.3/2/3) = -0.158/-0.560/-0.965"
+  },
+  "odd_even_split_post_hoc": {
+   "psi_even_NR": "(2/3 + (4/3) ln 2) eps_perp = 1.591 eps_perp (E2: 1.606-1.696)",
+   "psi_odd_NR": "(4/3) eps_perp [ln(1/eps_perp) + ln 3 - 5/2] (E2 gamma*=1.05: 1.318 ln - 1.91)",
+   "meaning": "smooth torque (Knapen-like) non-log rotation, alternating, contained in K (eta is per period)",
+   "status": "DERIVED post-hoc (c09)"
+  },
+  "TP_to_TP_transfer_post_hoc": {
+   "formula": "Delta Pi = 2J/[l_max(1+(g-1)/3)] -> Delta Pi/(sigma b/beta*) = rho beta*/[(g-1)(1+(g-1)/3)] = 1.920/1.608/1.125/0.800",
+   "E2": "1.92/1.61/1.15/0.79 (no log)",
+   "status": "DERIVED post-hoc (rigidly rotating straight string at the turning point)"
+  }
+ },
+ "accumulation": {
+  "model": "rotating yo-yo: exact vacuum yo-yo + rigid rotation by eta at each odd crossing, boosted to lab, hits at 10 barrel radii, plane fit through origin; no fitted parameter",
+  "scaling": "Ds_B = (qBR/sigma) F(gamma*, angles, layer phases) [ln(l_max/b_odd) + K]: m-independent at fixed velocities, Lambda^-2 x log",
+  "accuracy_vs_causal": {
+   "gamma*<1.5": "v5: MEDIAN 1-4 % (per-event range 0.877-1.123 for gamma*<1.6; n = 16/18/10/6/2 per bin)",
+   "gamma*>2": "10-35 % high (0.6 keV: 25-35 % low)",
+   "medians": "0.967-1.001 (m=200-1000, 1-3 keV)",
+   "status": "ESTIMATE",
+   "check": "checks/c06_rotating_yoyo_out_*.txt"
+  },
+  "model_median_Ds_um_1keV": {
+   "m200": 33.5,
+   "m500": 31.1,
+   "m1000": 29.5,
+   "causal_T3": "38/34/32"
+  }
+ },
+ "exponents_B3.8T_m500": {
+  "dlnDs_dlnLambda_per_event": {
+   "formula": "-2 + 2 c_ev",
+   "0.6keV": -1.77,
+   "1keV": -1.79,
+   "3keV": -1.83,
+   "10keV": -1.86,
+   "status": "DERIVED per event"
+  },
+  "dlnDs_dlnLambda_population": {
+   "1to3keV": -1.83,
+   "3to10keV": -1.85,
+   "m200_1to3": -1.86,
+   "m1000_1to3": -1.86,
+   "status": "ESTIMATE (model medians; +-0.1 sampling scatter)",
+   "measured_T3": "1.76-1.92 (1->3), 1.63-1.98 (3->10)"
+  },
+  "dlnDs_dlnB": {
+   "formula": "1 - c_ev",
+   "0.6keV": 0.884,
+   "1keV": 0.896,
+   "3keV": 0.915,
+   "10keV": 0.93,
+   "status": "DERIVED per event",
+   "effective_B/80_to_B_1keV": 0.914,
+   "measured_T4": 0.91
+  },
+  "dlnDs_dlnm": "0 at fixed velocities; +c_ev from ln M in L at fixed p_T, plus gamma*-spectrum effect (model medians decrease 33.5 -> 29.5 um from 200 to 1000 GeV at 1 keV)",
+  "comparison_E2": {
+   "B_exponent": "pred 0.914 (500) / 0.917 (1000) vs 0.911 +- 0.003 / 0.912 +- 0.003",
+   "Lambda_exponents_500GeV": "pred -1.79,-1.86,-1.78,-1.87,-1.84 (0.6-1,1-2,2-3,3-5,5-10 keV) vs -1.83+-0.10,-1.83+-0.07,-1.88+-0.11,-1.76+-0.09,-1.74+-0.14",
+   "mean_0.6-5keV": "E2 -1.81/-1.81/-1.78 (200/500/1000 GeV)"
+  }
+ },
+ "response_per_unit_B": {
+  "formula": "R(f) = Ds(fB)/(f Ds(B)) = 1 + c_ev ln(1/f) per event",
+  "m500_1keV": {
+   "B/4": 1.144,
+   "B/20": 1.311,
+   "B/80": 1.455,
+   "B/1000": 1.718,
+   "measured": "v1 entry: '1.15-1.19/1.14 (S/R1), 1.32-1.38/1.31, 1.45-1.51, 1.83 (3 events)'. E2 M3 (blind): R(1/2,1/4,1/20,1/80) = 1.073/1.147/1.320/1.460 (+-0.001-0.005); B/1000 floor-affected",
+   "B/1000_status": "NOT TESTABLE: b_odd/l0 at B0/1000 is at the double-precision floor (~3e-8) of both solvers (E2 NUMERICS §1.3); v1 comparison with S_Bscan 1.83 withdrawn"
+  },
+  "m500_3keV": {
+   "B/4": 1.117,
+   "B/20": 1.253,
+   "B/80": 1.371,
+   "B/1000": 1.584,
+   "B/80_B/1000_status": "NOT TESTABLE (precision floor)",
+   "E2_measured": "R(1/2,1/4,1/20) = 1.066/1.130/1.278 -> c = 0.093 +- 0.002: prediction 0.085 FAILS at 4-5 sigma (open; hypothesis: floor noise for gamma*>~2 events) | v3: superseded by step-converged FU1: consistent at k=2 (see c.comparison_E2.v3_FU1)",
+   "status_v4": "v5 final: k_f=2 consistent (all events), k_f=4 for k_B<5; excess at k_f>=4 = physical cumulative B* part + precision-floor part (ESTIMATE)"
+  },
+  "m200_1keV": {
+   "B/4": 1.157,
+   "B/20": 1.339,
+   "B/80": 1.496,
+   "B/1000": 1.782
+  },
+  "m1000_1keV": {
+   "B/4": 1.138,
+   "B/20": 1.299,
+   "B/80": 1.437,
+   "B/1000": 1.689
+  },
+  "status": "ESTIMATE (medians of the DERIVED per-event law)"
+ },
+ "straight_string_models": {
+  "statement": "v5: the logarithm needs neither curvature nor retardation; Li has B ln(1/B); c within ~3 % of NG measured at gamma*=1.28 only (expected c_KL ~ 1.25 c_NG at gamma*=2); coefficient depends on retardation",
+  "KL_vs_NG": {
+   "b_KL/b_NG": {
+    "1.05": 1.04,
+    "1.28": 1.213,
+    "2.0": 1.68
+   },
+   "force_ratio": "(1-beta^2) artanh(beta)/beta",
+   "K_KL": {
+    "1.05": 0.05,
+    "1.28": -0.18,
+    "2.0": -1.8
+   },
+   "eta_KL/eta_NG": {
+    "1.05": 0.97,
+    "1.28": 0.84,
+    "2.0": 0.5
+   },
+   "measured_Li/causal_thickness_R2": {
+    "1.05": 0.97,
+    "1.28": 0.85,
+    "2.0": 0.69
+   }
+  },
+  "status": "DERIVED structure; ESTIMATE ratios",
+  "check": "checks/c04_straight_E_out.txt",
+  "comparison_E2": "M5: Li response 1.142/1.306/1.447 vs causal 1.155/1.320/1.467 (consistent with c_KL ~ 1.03 c_NG); vacuum A_hat_KL matches formula; eta ratio != vacuum A_hat ratio because b_KL/b_NG = 1.04/1.21/1.68",
+  "gamma2_status_v4": "FAILED: predicted eta_KL/eta_NG = 0.50 vs measured converged Li/causal thickness 0.75 +- 0.08 (E2 FIX1, 30 events; R2 0.69), 3 sigma; candidates: B* in NG (-7..-21 % at gamma*=2), Ds not ~ eta at gamma*=2, KL b-ratio only from CM reduced problem | v5: 10-event 3e-4 subset gives 0.96+-0.10 (sample-sensitive significance)"
+ },
+ "NG_validity": {
+  "odd_crossings": "b_odd Lambda ~ 1.8e4 (keV/Lambda)^3 (median event): classical NG fine below ~26 keV",
+  "even_crossings": "b_even < 1/Lambda from a few keV but no first-order impulse: irrelevant for Ds_B",
+  "replacement_of_cutoff": "L -> ln(l_max Lambda) + K'' (unknown O(1)) when b_odd < 1/Lambda; response becomes linear in B",
+  "model_uncertainty_on_DsB": {
+   "<=10keV": "0",
+   "30keV": "3-8 %",
+   "100keV": "10-25 %"
+  },
+  "status": "ESTIMATE"
+ },
+ "assumptions": [
+  "classical Nambu-Goto string with massive point endpoints, equal masses, charges +-q, uniform constant lab B (DERIVED framework)",
+  "first order in the field except at odd crossings, where the non-linear inner region is matched (DERIVED)",
+  "E*_par effects second order; B* inert in the LINEAR dynamics (relative motion, torque, b_odd) (DERIVED); not inert for the rotation eta (inner region, ESTIMATE)",
+  "rotation localised at the odd crossing for the accumulation model (ESTIMATE; fails at gamma* >~ 2)",
+  "non-secular first-order offsets (b_odd, static tilt) neglected in the accumulation model (ESTIMATE; matters at Lambda <~ 0.6 keV)",
+  "population numbers use the T3 event sample (LO DY+ISR, |eta_pair|<1), 150 events per mass (ESTIMATE)",
+  "no material, no multiple scattering, truth-level hits at the 10 Phase-2 barrel radii",
+  "relativistic K(gamma*) from exact causal-NG numerics (T2_propagator.CausalNullString), not analytic (ESTIMATE)",
+  "v3: B* is NOT inert for the rotation (inner region); predictions P-4/P-10..P-14 use K from the pure-E* problem and therefore omit Delta K_B* (population effect ~ +-0.5 % on c, up to 9 % in the gamma*>1.35 tail) [v5: superseded: population c uncertainty from the 1 keV agreement (<=1.5 %); B* effect non-monotonic, see B_star_effect_v3.v4]"
+ ],
+ "open_after_E2": [
+  "above ~5 keV the B0 law is not numerically verified: unmeasured, unattributed systematic of order +-5 % on Ds_B (population), tens of % in c per event for k_B>~10; B* at real oscillation numbers unmeasured; floor must be removed first (decisive floor tests)",
+  "per-period half of the 3 keV excess attributed to the precision floor (ESTIMATE: eps_perp^-2 shape matches; amplitude 3.8-3.9x CM coefficient, not shown)",
+  "c14 per-period B* pattern in full-event subsets (minor)",
+  "B* inner-region effect: no analytic theory; per-event c unreliable for k_B >~ 5",
+  "Li/causal thickness ratio at gamma*=2: FAILED (0.50 vs 0.75+-0.08)",
+  "analytic MS contribution: future work outside P1 (scope decision (b))",
+  "proposed edits outside analytic/: PROPOSED_CHANGES.md (not applied)"
+ ],
+ "changelog": [
+  {
+   "date": "2026-10-10",
+   "version": "v2",
+   "changes": [
+    "No v1 value changed or refitted.",
+    "response_per_unit_B: B/1000 (1 keV) and B/80, B/1000 (3 keV) marked NOT TESTABLE (precision floor); v1 comparison with S_Bscan 1.83 withdrawn.",
+    "c and response at 3 keV: status set to FAILED/open (pred 0.085 vs E2 0.093 +- 0.002).",
+    "Added post-hoc DERIVED items: vacuum law A_hat, kappa, KL A_hat (implied by v1 force law), K_vac,NR = 3ln2-2, NR odd/even split, TP-to-TP transfer.",
+    "Wording: the log impulse is a rotation near the crossing; TP-to-TP transfer has no log. Even crossings: no near-miss impulse but a smooth +1.6 eps_perp torque rotation (already inside K).",
+    "Added E2 comparison fields and open_after_E2."
+   ]
+  },
+  {
+   "date": "2026-10-10",
+   "version": "v3",
+   "changes": [
+    "No v1 value changed or refitted.",
+    "c at 3 keV: status FAILED (v2) -> CONSISTENT at k=2 with step-converged E2 FU1 (pulls 1.4, -0.5); k=20 marked numerically unreliable.",
+    "K_vac(NR) = 3ln2-2 confirmed by E2 FU2 (0.0791 +- 0.0003).",
+    "Claim \"B* inert at first order\" restricted to linear dynamics/b_odd; added B_star_effect_v3 (measured with c12): first-order, B*-even, gamma*-dependent change of eta via the inner region; explains FU3 high-gamma* residual; replaces the v2 estimate \"-1 to -2 % on c\".",
+    "Added sensitive_dependence_v3 (interpretation of E2 FU1b) and its consequences for quoting c."
+   ]
+  },
+  {
+   "date": "2026-10-10",
+   "version": "v4",
+   "changes": [
+    "No v1 numerical value changed or refitted.",
+    "Headline restated as Ds_B ~ eps_B[ln(1/eps_B) + C] (C = 0.43/1.23/1.62); c = local log slope; literal \"1 + c ln(Lambda^2/qB)\" form withdrawn (B exponent 0.944).",
+    "c at 3 keV: k_f = 2 consistent, k_f >= 4 OPEN; round-off attribution, \"verified to 2-3 %\", \"Lambda dependence confirmed\", clean-ratio criterion withdrawn.",
+    "B*: inert only in linear dynamics; effect on eta non-monotonic in k_B and eps-dependent; \"enters K, not G\" withdrawn; per-event c fails by +17..+36 % at k_B = 8-12; fractions of events added.",
+    "Tags: c_ev DERIVED under rotating-yo-yo assumption; reduction exact for linear dynamics; \"exactly linear\" -> \"linear (first order exact before the first crossing)\".",
+    "Round-off numbers corrected to FU.json values.",
+    "Added: thickness_law_v4, angle_dependence_v4, charge_and_spin_v4, accuracy_per_gamma_bin_v4, in_vs_out_of_plane_v4.",
+    "Final v4 (after E2 FIX1): A1 = B* effect, explained qualitatively, size open; impact at B0 ~ -1 %. Li/exact at gamma*=2 marked FAILED (0.50 vs 0.75+-0.08). T3 median offset closed (event draws). Low-gamma* residual closed (numerical)."
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "version": "v5 (interim)",
+   "changes": [
+    "No v1 numerical value changed or refitted.",
+    "N1: 3 keV weak-field excess restated as origin OPEN (v4 B* attribution withdrawn); c14 documented with its actual (non-reproducing) result.",
+    "N2: scale-free equivalence derived (c15); v4 \"only weak-field affected\" withdrawn; provisional impact on the B0 law at 5-13 keV; scope of P-9/P-11 restricted.",
+    "N3: C Lambda-independence stated as by construction; measured support quoted (1.13+-0.18; two-solver 1.15 for k_B<6.5); m-dependence wording.",
+    "N4: in/out-of-plane check rescoped (not clean).",
+    "C items: Knapen Eq.9 read as v_cm/v^2 (6.5e-6); Li c within 3 % scoped to gamma*<=1.3; |q|=2 VERIFIED-NUM; k_B label/error fixes; tag mapping; v3 remnants flagged."
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "version": "v5 (final)",
+   "changes": [
+    "No v1 numerical value changed or refitted.",
+    "E2 FIX2 merged: 3 keV weak-field excess = (i) physical cumulative B* part (k_B>~5, grows with N_osc) + (ii) per-period precision-floor part (ESTIMATE); c14 tension partly explained (3-period runs cannot see the cumulative part).",
+    "N2 final: adopted B*-driven systematic +2-5 % on Ds_B above ~5 keV, tens of % in c per event for k_B>~10; headline-law scope set (verified ~1 keV, consistent to 5 keV).",
+    "P1 scope decision (user, 2026-10-11): option (b); title changed to \"Crossing-generated plane thickness of quirk pairs in a solenoid ...\"; MS as measured floor only; MS conjecture moved to open issues as future work."
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "version": "v5.1",
+   "changes": [
+    "Edited in place from v5 (v5 not kept separately). No v1 numerical value changed or refitted.",
+    "R3-B1: \"+2-5 % B*-driven systematic above 5 keV\" withdrawn as a B* magnitude; restated as unmeasured, unattributed, provisional, order +-5 % on Ds_B; B* at real oscillation numbers unmeasured; floor content of direct B0 runs quoted.",
+    "Cleanest B* evidence quoted: k_B>=5 Delta c(4) on-off +0.0136+-0.0039 / +0.0125+-0.0038 (s=1), ~0 at s=1/9.",
+    "C items: floor amplitude 3.8-3.9x CM coefficient with eps_perp^-2 shape (C1); \"half\" scoped by mass (C2); M2b +18 % (C3); N-independence within errors (C4); stale §12 rows, §11 title, predictions remnants, PROPOSED_CHANGES items 2, 6, 15, 16.",
+    "Decisive floor tests recorded (not run)."
+   ]
+  }
+ ],
+ "B_star_effect_v3": {
+  "v1_claim": "B* inert at first order (relative motion, torque)",
+  "v3_status": "correct for linear dynamics and b_odd; WRONG for the rotation eta, which is generated in the non-linear inner region",
+  "measured": "exact causal string, pair at rest, E* perp n plus B*: B* || n no effect (<=3e-5); B* perp n, q|B*|/sigma = 4 eps_perp: d eta/eta = +3e-5 (g*=1.05), -0.2..-0.4 % (1.3), -4..-7 % (2); eps-independent, even in B*; g*=2 strength scan 1/2/4/8/16 eps_perp: -0.18/-1.9/-6.8/-13.8/-21 %",
+  "interpretation": "enters K (Delta K_B* = (d eta/eta)(L+K) <= 0), not G; explains E2 FU3 high-gamma* residual (-4 %, -9 % of psi_pair); population c change ~ +-0.5 %; +4..+9 % on c in the gamma*>1.35 tail",
+  "status": "ESTIMATE (c12 numerics); mechanism (B*-driven motion enlarges the inner cut-off) CONJECTURE; analytic Delta K_B* not derived",
+  "source": [
+   "checks/c12_Bstar_test_out.txt",
+   "checks/c12_Bstar_kBscan_out.txt",
+   "numerics/results/FU.json (FU3)"
+  ],
+  "v4": {
+   "characterisation": "even in B*, vanishes as gamma*->1, NON-MONOTONIC in k_B, eps-dependent with k_B-dependent slope; NOT a constant Delta K (\"enters K, not G\" withdrawn)",
+   "table": {
+    "g1.3": "k_B 1/2/4/8/16: -0.02/-0.16/-0.22/-2.6/-2.4 % (eps=1e-5); k_B=8 at eps=1e-4: -0.68 % (reviewer)",
+    "g2.0": "k_B 1/2/4/8/16: -0.18/-1.9/-6.8/-13.8/-21 % (eps=1e-5); eps=1e-4: -3.4 % (k_B=2, reviewer), -7.3 % (4), -12.0 % (8, reviewer)"
+   },
+   "per_event_c": "k_B <= 6.5: within +-0.009 of c_ev; k_B = 8.4-12: +17..+36 % (reviewer, 16 events, gamma*=1.28, 1 keV)",
+   "fractions_kB": "f(k_B>6) = 0.05/0.29/0.43, f(k_B>8) = 0.03/0.16/0.29 at m = 200/500/1000 GeV (checks/c13_population_out.txt)",
+   "population_c_uncertainty": "from empirical 1 keV agreement, <= 1.5 %",
+   "c14_Bstar_on_c_k": "see checks/c14_Bstar_cscan_out.txt and NEAR_MISS §9.3"
+  }
+ },
+ "sensitive_dependence_v3": {
+  "measured_E2": "v4 corrected from FU.json: rel sd of Ds median 0.147/0.236/0.441/0.739 % at f=1,1/2,1/4,1/20 (3 keV), p90 1.14/0.75/1.31/4.81 %; per-event c sd median 0.0060/0.0038/0.0044, p90 0.0178/0.0119/0.0226; <=3.5e-4 at 1 keV",
+  "interpretation": "v4: numerical round-off realisations (deterministic propagation would give ~1e-10), not chaos; negligible at nominal B; does NOT explain the 3 keV k_f>=4 excess (second-order bias ~1e-5)",
+  "consequence": "v4: \"c verified to 2-3 % at 3 keV\" and the clean-ratio criterion withdrawn",
+  "physical_analogue": "flux-tube randomisation of even crossings at b < 1/Lambda gives noise of the same order (CONJECTURE)",
+  "status": "ESTIMATE"
+ },
+ "thickness_law_v4": {
+  "formula": "Ds_B = (qBR/sigma) F [ln(1/eps_B) + C],  C = -ln(gamma_cm beta_T,cm sin alpha) + ln[(gamma*-1)/(gamma*-asinh rho/rho)] + K(gamma*)",
+  "C_population": {
+   "m200": 0.43,
+   "m500": 1.23,
+   "m1000": 1.62,
+   "Lambda_independence": "v5: holds BY CONSTRUCTION (median of the per-event formula; +-0.01 = rounding of c); not a measurement",
+   "source": "checks/c07_predictions_out.txt (C = 1/c_median - ln(1/eps_B))"
+  },
+  "status": "scaling DERIVED under the rotating-yo-yo assumption; C ESTIMATE",
+  "replaces": "v1-v3 c.meaning \"Ds ~ eps_B [1 + c ln(Lambda^2/qB)]\" (literal form gives B exponent 0.944 at 1 keV, inconsistent with 0.911; withdrawn)",
+  "C_measured_v5": "E2 c(1 keV)=0.105+-0.002 -> C = 1.13+-0.18 (model 1.23); S1-R2 two-solver 16 events: C = 1.145/1.147 for k_B<6.5 vs 1.228, ~0 vs 2.14 for k_B>=6.5; 3 keV only at B0/2 (shift -0.24+-0.3); above 5 keV see scale_free_v5",
+  "m_dependence_v5": "F independent of m and gamma_cm beta_T; C m-dependent via -ln(p_T/M) (+13 % in Ds from 200 to 1000 GeV at fixed p_T), compensated by the gamma* spectrum; medians flat within errors"
+ },
+ "angle_dependence_v4": {
+  "formula": "transverse pair, B || z: sin alpha = sqrt(1 - sin^2 theta* cos^2 phi*); eps_perp = eps_B gamma_cm beta_T sin alpha; out-of-plane share f_N = |sin phi*|/sin alpha; eta_N = eps_B gamma_cm beta_T |sin phi*| G [L_eta + K]",
+  "numbers": "model, 500 GeV, 1 keV: median Ds/median = 0.11/0.46/0.43/1.05/1.38 for f_N bins [0,.25)/[.25,.5)/[.5,.75)/[.75,.9)/[.9,1]; vs sin alpha 0.29/0.40/1.16/1.16/1.31",
+  "status": "DERIVED (formula), ESTIMATE (numbers, c13)"
+ },
+ "charge_and_spin_v4": {
+  "charge": "Ds(q)/Ds(1) = q[1 - ln q/(ln(1/eps_B)+C)] = 1.86 for |q|=2; c(q) = 1/(ln(1/eps_B)+C-ln q) = 0.112 (1 keV, 500 GeV); model 57.8 vs 31.1 um (1 keV), 7.84 vs 4.18 um (3 keV)",
+  "scalar": "same per-event law; scalar DY gives median gamma* 1.39 vs 1.23, f(gamma*>1.6) 0.32 vs 0.16; model Ds 36 vs 31 um (1 keV), 4.83 vs 4.18 um (3 keV); c 0.103 vs 0.104; ~2x model uncertainty",
+  "status": "DERIVED per event; ESTIMATE population (c13)",
+  "charge_check_v5": "|q|=2 == B -> 2B exactly; E2 M3 f=2: per-event Ds(2B0)/Ds(B0) = 1.849/1.857 vs 2[1-c ln2] = 1.857/1.863, ratio 0.9989+-0.0007 / 0.9994+-0.0004: VERIFIED-NUM"
+ },
+ "accuracy_per_gamma_bin_v4": {
+  "bins": "1.0-1.1/1.1-1.2/1.2-1.35/1.35-1.6/1.6-2/>2",
+  "model_over_causal": "0.968/0.988/0.988/1.003/1.014/1.173",
+  "fractions_m200": "0.13/0.16/0.24/0.13/0.18/0.16",
+  "fractions_m500": "0.22/0.21/0.24/0.17/0.09/0.07",
+  "fractions_m1000": "0.31/0.29/0.19/0.17/0.03/0.00",
+  "source": "checks/c13_population_out.txt"
+ },
+ "in_vs_out_of_plane_v4": "v5 (S1-R2 N4): NOT a clean test. PS/2S at 500 GeV consistent within 1 % (1.145/1.150, 1.306/1.325 vs 1.139/1.319); IT 500 GeV R(1/20)=1.222, 1 TeV IT 1.015/1.074, PS 1.109/1.253 vs 1.147/1.308 (3-30 % lower); rphi contains linear CM bending",
+ "scale_free_v5": {
+  "statement": "S[lam x; m, sigma, qB] = lam S[x; m, lam sigma, lam qB]: per oscillation the motion depends only on eps_B = qB/sigma and velocities; (Lambda sqrt k, B) == (Lambda, B/k) with N_osc x k",
+  "status": "DERIVED (checks/c15_scaling)",
+  "consequence": "3 keV B scan B0/2, B0/4, B0/20 = per oscillation the B0 law at 4.2, 6.0, 13.4 keV; v4 \"only weak-field response affected\" withdrawn",
+  "provisional_impact": "superseded by FIX2",
+  "scope": "verified ~1 keV (c 1-2 %, C 0.1-0.2); 3 keV at B0/2 (all) and B0/4 (k_B<5); consistent at 5 keV (<~1 % on Ds_B(5)/Ds_B(3), floor-free); not verified above ~5 keV",
+  "impact_FIX2": "direct B0 runs (one solver, max_boost 1e-3), k_f=2: implied Ds_B(Lambda)/Ds_B(3 keV) shift +0.3/+1.3/+2.8/+4.5 % at 5/7/10/13 keV (500 GeV), +0.2/+0.4/+3.4 % (1 TeV); JSON-propagated stat errors +-0.4/+-1.0/+-2.0/+-2.8 % (500) and +-0.4/+-0.8/+-4.2 % (1 TeV); step non-convergence above ~7 keV not quantified; predicted floor part of Delta c(2): +0.0025/+0.0105/+0.039 at 7/10/13 keV (500 GeV) vs measured +0.025/+0.017/+0.044",
+  "adopted_systematic": "v5.1 (S1-R3 B1): UNMEASURED, UNATTRIBUTED, provisional systematic of order +-5 % on Ds_B (population, sign expected positive) above ~5 keV; up to tens of % in c per event for k_B >~ 10. v5 \"B*-driven +2-5 %\" withdrawn as a B* magnitude. B* at the real oscillation numbers above 5 keV: UNMEASURED."
+ },
+ "decisive_floor_tests_v5.1": {
+  "a": "double-double or mpmath (>=30 digits) step map, 3-5 smallest-eps_perp events, detector scale s=1/27, B0 and B0/20; prediction if floor: Delta c(20) from +0.01-0.02 to <~0.001; cost < ~1 CPU-h",
+  "b": "44-bit mantissa emulation of every Minkowski product (u ~ 64 u_double); prediction if floor: same Delta c distribution at 8x larger eps_perp (3 keV, B0/2.5), eps_perp^-2 shape",
+  "status": "specified by S1-R3; NOT RUN"
+ }
+}

@@ -1,0 +1,39 @@
+=== A. sigma from event weights ===
+E-INC_m500: N_LHE=100000 kept=58945 w!=0=46504 sum(w)=2.507 fb  sigma_LHE=5.3889  accept(w-sum)=0.4652 accept(count)=0.4650  chunks sigma_LHE=[5.39682576 5.39682576 5.39682576 5.39682576 5.39682576 5.39682576
+ 5.3810355  5.3810355  5.3810355  5.3810355  5.3810355  5.3810355 ]  w>0 all=True  distinct |w| (rel spread)=0.00148
+   quirk masses after shower: p_qp 500.000-500.000, p_qm 500.000-500.000 (mq=500.0); m_pair min=1000.17; hard-vs-showered m_pair max|d|=0.171
+E-TRG_m500: N_LHE=100000 kept=53945 w!=0=42325 sum(w)=0.51413 fb  sigma_LHE=1.2125  accept(w-sum)=0.4240 accept(count)=0.4233  chunks sigma_LHE=[1.21025059 1.21025059 1.21025059 1.21025059 1.21025059 1.21025059
+ 1.21480957 1.21480957 1.21480957 1.21480957 1.21480957 1.21480957]  w>0 all=True  distinct |w| (rel spread)=0.0018
+   quirk masses after shower: p_qp 500.000-500.000, p_qm 500.000-500.000 (mq=500.0); m_pair min=1000.56; hard-vs-showered m_pair max|d|=0.403
+E-LOPS_m500: N_LHE=50000 kept=50000 w!=0=50000 sum(w)=2.4536 fb  sigma_LHE=2.4536  accept(w-sum)=1.0000 accept(count)=1.0000  chunks sigma_LHE=[2.45361 2.45361 2.45361 2.45361 2.45361 2.45361]  w>0 all=True  distinct |w| (rel spread)=2.39e-16
+   quirk masses after shower: p_qp 500.000-500.000, p_qm 500.000-500.000 (mq=500.0); m_pair min=1000.07; hard-vs-showered m_pair max|d|=0.956
+E-INC_m1000: N_LHE=100000 kept=54699 w!=0=42410 sum(w)=0.075945 fb  sigma_LHE=0.17901  accept(w-sum)=0.4242 accept(count)=0.4241  chunks sigma_LHE=[0.17917116 0.17917116 0.17917116 0.17917116 0.17917116 0.17917116
+ 0.17885829 0.17885829 0.17885829 0.17885829 0.17885829 0.17885829]  w>0 all=True  distinct |w| (rel spread)=0.000936
+   quirk masses after shower: p_qp 1000.000-1000.000, p_qm 1000.000-1000.000 (mq=1000.0); m_pair min=2000.23; hard-vs-showered m_pair max|d|=0.0764
+S-INC_m500: N_LHE=50000 kept=29053 w!=0=22797 sum(w)=0.18864 fb  sigma_LHE=0.41354  accept(w-sum)=0.4562 accept(count)=0.4559  chunks sigma_LHE=[0.41354143 0.41354143 0.41354143 0.41354143 0.41354143 0.41354143]  w>0 all=True  distinct |w| (rel spread)=0.000176
+   quirk masses after shower: p_qp 500.000-500.000, p_qm 500.000-500.000 (mq=500.0); m_pair min=1002.24; hard-vs-showered m_pair max|d|=0.782
+E-INC_m1500: N_LHE=20000 kept=10697 w!=0=8217 sum(w)=0.0051986 fb  sigma_LHE=0.01265  accept(w-sum)=0.4110 accept(count)=0.4108  chunks sigma_LHE=[0.01265017 0.01265017 0.01265017 0.01265017 0.01265017 0.01265017]  w>0 all=True  distinct |w| (rel spread)=0.000206
+   quirk masses after shower: p_qp 1500.000-1500.000, p_qm 1500.000-1500.000 (mq=1500.0); m_pair min=3000.79; hard-vs-showered m_pair max|d|=0.381
+E-TRG_m1500: N_LHE=40000 kept=20788 w!=0=16333 sum(w)=0.0014678 fb  sigma_LHE=0.0035904  accept(w-sum)=0.4088 accept(count)=0.4083  chunks sigma_LHE=[0.00359036 0.00359036 0.00359036 0.00359036 0.00359036 0.00359036]  w>0 all=True  distinct |w| (rel spread)=0.000454
+   quirk masses after shower: p_qp 1500.000-1500.000, p_qm 1500.000-1500.000 (mq=1500.0); m_pair min=3000.41; hard-vs-showered m_pair max|d|=0.192
+
+=== B. ME-cut closure and TRGS stitching (E/S 200/500/1000) ===
+E200: TRG/INC=0.950±0.020  gen-cut closure=0.989  INC tail frac pT_ME<100=3.91±0.38%  TRGS/INC(pT>200)=0.989  TRG events with pT_ME<100: 0 (min pT_ME 100.00)  TRGS sigma frac from INC=3.95%  <w_INC>/<w_TRG>=6.56
+E500: TRG/INC=0.927±0.015  gen-cut closure=0.998  INC tail frac pT_ME<100=7.07±0.38%  TRGS/INC(pT>200)=0.998  TRG events with pT_ME<100: 1 (min pT_ME 99.97)  TRGS sigma frac from INC=7.08%  <w_INC>/<w_TRG>=4.44
+E1000: TRG/INC=0.937±0.013  gen-cut closure=0.997  INC tail frac pT_ME<100=6.06±0.31%  TRGS/INC(pT>200)=0.997  TRG events with pT_ME<100: 0 (min pT_ME 100.00)  TRGS sigma frac from INC=6.08%  <w_INC>/<w_TRG>=3.73
+S200: TRG/INC=0.973±0.027  gen-cut closure=1.029  INC tail frac pT_ME<100=5.45±0.60%  TRGS/INC(pT>200)=1.027  TRG events with pT_ME<100: 0 (min pT_ME 100.00)  TRGS sigma frac from INC=5.31%  <w_INC>/<w_TRG>=5.96
+S500: TRG/INC=0.955±0.021  gen-cut closure=1.015  INC tail frac pT_ME<100=5.92±0.48%  TRGS/INC(pT>200)=1.014  TRG events with pT_ME<100: 0 (min pT_ME 100.00)  TRGS sigma frac from INC=5.84%  <w_INC>/<w_TRG>=4.24
+S1000: TRG/INC=0.959±0.019  gen-cut closure=1.026  INC tail frac pT_ME<100=6.60±0.46%  TRGS/INC(pT>200)=1.025  TRG events with pT_ME<100: 0 (min pT_ME 100.00)  TRGS sigma frac from INC=6.44%  <w_INC>/<w_TRG>=3.65
+
+=== C. TRGS file order vs iter_events "first N" usage (tail, |eta|<2.5) ===
+E200: selected=14464, INC-origin events=88 (weight share 3.9%), position of first INC-origin event in iter_events order = 14376  -> first 14376 events are TRG-only
+E500: selected=16606, INC-origin events=290 (weight share 7.3%), position of first INC-origin event in iter_events order = 16316  -> first 16316 events are TRG-only
+E1000: selected=17219, INC-origin events=292 (weight share 6.0%), position of first INC-origin event in iter_events order = 16927  -> first 16927 events are TRG-only
+S200: selected=7561, INC-origin events=66 (weight share 5.0%), position of first INC-origin event in iter_events order = 7495  -> first 7495 events are TRG-only
+S500: selected=8533, INC-origin events=110 (weight share 5.3%), position of first INC-origin event in iter_events order = 8423  -> first 8423 events are TRG-only
+S1000: selected=8733, INC-origin events=147 (weight share 5.9%), position of first INC-origin event in iter_events order = 8586  -> first 8586 events are TRG-only
+
+=== D. median l_max bias, recomputed (E 500, S 200) ===
+E500: ref median 2(g*-1) TRGS=0.5451; (i) fixed-pT/old incl=0.4919 -> bias -9.8%; (ii) T2 V*+jet=0.5479 -> +0.5%; (iii) LOPS=0.5514 -> +1.1%; raw TRG=0.5453 -> +0.0%;  old isr cache min pT=200.0, max|y-gen| check: max|eta| among pT>200 = 2.50
+E200: ref median 2(g*-1) TRGS=0.8166; (i) fixed-pT/old incl=0.6074 -> bias -25.6%; (ii) T2 V*+jet=0.7787 -> -4.6%; (iii) LOPS=0.8068 -> -1.2%; raw TRG=0.8192 -> +0.3%;  old isr cache min pT=200.0, max|y-gen| check: max|eta| among pT>200 = 2.50
+S200: ref median 2(g*-1) TRGS=1.3933; (i) fixed-pT/old incl=1.0902 -> bias -21.8%; (ii) T2 V*+jet=1.3381 -> -4.0%; (iii) LOPS=1.3269 -> -4.8%; raw TRG=1.3896 -> -0.3%;  old isr cache min pT=200.0, max|y-gen| check: max|eta| among pT>200 = 2.50

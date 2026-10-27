@@ -1,0 +1,1094 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/probes/t1_import.mg
+The import format was not given, so we guess it as command
+import model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE-no_b_mass
+INFO: load particles 
+INFO: load vertices 
+INFO: Restrict model /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/models/quirkE-no_b_mass with file models/quirkE/restrict_no_b_mass.dat . 
+INFO: Run "set stdout_level DEBUG" before import for more information. 
+INFO: Change particles name to pass to MG5 convention 
+Defined multiparticle p = g u c d s u~ c~ d~ s~
+Defined multiparticle j = g u c d s u~ c~ d~ s~
+Defined multiparticle l+ = e+ mu+
+Defined multiparticle l- = e- mu-
+Defined multiparticle vl = ve vm vt
+Defined multiparticle vl~ = ve~ vm~ vt~
+[1;34mPass the definition of 'j' and 'p' to 5 flavour scheme.[0m
+Defined multiparticle all = g u c d s b u~ c~ d~ s~ b~ a ve vm vt e- mu- ve~ vm~ vt~ e+ mu+ t t~ z w+ h sxe- w- sxe+ ta- xe- ta+ xe+
+display particles
+Current model contains 19 particles:
+w+/w- ve/ve~ vm/vm~ vt/vt~ u/u~ c/c~ t/t~ d/d~ s/s~ b/b~ e-/e+ mu-/mu+ ta-/ta+ xe-/xe+ sxe-/sxe+ 
+a z g h 
+display parameters
+Current model contains 51 parameters
+
+parameter type: ('external',)
+        aEWM1 = 132.507
+        mdl_Gf = 1.16639e-05
+        aS = 0.118
+        mdl_ymt = 173.0
+        mdl_ymtau = 1.777
+        mdl_MZ = 91.188
+        mdl_MT = 173.0
+        mdl_MH = 125.0
+        mdl_MTA = 1.777
+        mdl_WZ = 2.441404
+        mdl_WW = 2.0476
+        mdl_WT = 1.4915
+        mdl_WH = 0.00638233934
+        mdl_MXE = 500.0
+        mdl_MSXE = 501.0
+
+parameter type: ()
+        mdl_CKM3x3 = 1.0
+        mdl_QXE__exp__2 = 1.0
+        mdl_conjg__CKM1x1 = 1.0
+        mdl_conjg__CKM3x3 = 1.0
+        ZERO = 0.0 = 0j
+        mdl_complexi = complex(0,1) = 1j
+        mdl_MZ__exp__2 = mdl_MZ**2 = (8315.251344+0j)
+        mdl_MZ__exp__4 = mdl_MZ**4 = (69143404.91389382+0j)
+        mdl_sqrt__2 =  cmath.sqrt(2)  = (1.4142135623730951+0j)
+        mdl_MH__exp__2 = mdl_MH**2 = (15625+0j)
+        mdl_QXE = -1. = (-1+0j)
+
+parameter type: ('aEWM1',)
+        mdl_aEW = 1/aEWM1 = (0.0075467711139788835+0j)
+        mdl_MW = cmath.sqrt(mdl_MZ__exp__2/2. + cmath.sqrt(mdl_MZ__exp__4/4. - (mdl_aEW*cmath.pi*mdl_MZ__exp__2)/(mdl_Gf*mdl_sqrt__2))) = (80.41900244575616+0j)
+        mdl_sqrt__aEW =  cmath.sqrt(mdl_aEW)  = (0.08687215384678156+0j)
+        mdl_ee = 2*mdl_sqrt__aEW*cmath.sqrt(cmath.pi) = (0.3079537672443688+0j)
+        mdl_MW__exp__2 = mdl_MW**2 = (6467.215954370536+0j)
+        mdl_sw2 = 1 - mdl_MW__exp__2/mdl_MZ__exp__2 = (0.22224648578577766+0j)
+        mdl_cw = cmath.sqrt(1 - mdl_sw2) = (0.8819033474333922+0j)
+        mdl_sqrt__sw2 =  cmath.sqrt(mdl_sw2)  = (0.4714302554840723+0j)
+        mdl_sw = mdl_sqrt__sw2 = (0.4714302554840723+0j)
+        mdl_g1 = mdl_ee/mdl_cw = (0.349192196787333+0j)
+        mdl_gw = mdl_ee/mdl_sw = (0.6532329303475799+0j)
+        mdl_vev = (2*mdl_MW*mdl_sw)/mdl_ee = (246.21845810181637+0j)
+        mdl_vev__exp__2 = mdl_vev**2 = (60623.5291100359+0j)
+        mdl_lam = mdl_MH__exp__2/(2.*mdl_vev__exp__2) = (0.12886910601690263+0j)
+        mdl_yt = (mdl_ymt*mdl_sqrt__2)/mdl_vev = (0.9936661458150062+0j)
+        mdl_ytau = (mdl_ymtau*mdl_sqrt__2)/mdl_vev = (0.010206617000654717+0j)
+        mdl_muH = cmath.sqrt(mdl_lam*mdl_vev__exp__2) = (88.38834764831843+0j)
+        mdl_I2x33 = mdl_yt*mdl_conjg__CKM3x3 = (0.9936661458150062+0j)
+        mdl_I3x33 = mdl_CKM3x3*mdl_yt = (0.9936661458150062+0j)
+        mdl_ee__exp__2 = mdl_ee**2 = (0.09483552275999887+0j)
+        mdl_sw__exp__2 = mdl_sw**2 = (0.2222464857857777+0j)
+        mdl_cw__exp__2 = mdl_cw**2 = (0.7777535142142225+0j)
+
+parameter type: ('aS',)
+        mdl_sqrt__aS =  cmath.sqrt(aS)  = (0.34351128074635334+0j)
+        G = 2*mdl_sqrt__aS*cmath.sqrt(cmath.pi) = (1.2177157847767195+0j)
+        mdl_G__exp__2 = G**2 = (1.4828317324943818+0j)
+display interactions xe-
+56 : xe+ xe- a 
+57 : xe+ xe- z 
+
+Interactions 56 : xe+ xe- a  has the following property:
+{
+    'id': 72,
+    'particles': [-9000011,9000011,22],
+    'color': [1 ],
+    'lorentz': ['FFV1'],
+    'couplings': {(0, 0): 'GC_3'},
+    'orders': {'QED': 1},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+
+Interactions 57 : xe+ xe- z  has the following property:
+{
+    'id': 73,
+    'particles': [-9000011,9000011,23],
+    'color': [1 ],
+    'lorentz': ['FFV1'],
+    'couplings': {(0, 0): 'GC_XEZ'},
+    'orders': {'QED': 1},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+display interactions sxe-
+58 : a sxe- sxe+ 
+59 : z sxe- sxe+ 
+60 : a a sxe- sxe+ 
+61 : a z sxe- sxe+ 
+62 : z z sxe- sxe+ 
+
+Interactions 58 : a sxe- sxe+  has the following property:
+{
+    'id': 74,
+    'particles': [22,9000013,-9000013],
+    'color': [1 ],
+    'lorentz': ['VSS1'],
+    'couplings': {(0, 0): 'GC_3'},
+    'orders': {'QED': 1},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+
+Interactions 59 : z sxe- sxe+  has the following property:
+{
+    'id': 75,
+    'particles': [23,9000013,-9000013],
+    'color': [1 ],
+    'lorentz': ['VSS1'],
+    'couplings': {(0, 0): 'GC_XEZ'},
+    'orders': {'QED': 1},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+
+Interactions 60 : a a sxe- sxe+  has the following property:
+{
+    'id': 76,
+    'particles': [22,22,9000013,-9000013],
+    'color': [1 ],
+    'lorentz': ['VVSS1'],
+    'couplings': {(0, 0): 'GC_XEAA'},
+    'orders': {'QED': 2},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+
+Interactions 61 : a z sxe- sxe+  has the following property:
+{
+    'id': 77,
+    'particles': [22,23,9000013,-9000013],
+    'color': [1 ],
+    'lorentz': ['VVSS1'],
+    'couplings': {(0, 0): 'GC_XEAZ'},
+    'orders': {'QED': 2},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+
+Interactions 62 : z z sxe- sxe+  has the following property:
+{
+    'id': 78,
+    'particles': [23,23,9000013,-9000013],
+    'color': [1 ],
+    'lorentz': ['VVSS1'],
+    'couplings': {(0, 0): 'GC_XEZZ'},
+    'orders': {'QED': 2},
+    'loop_particles': None,
+    'type': 'base',
+    'perturbation_type': None
+}
+check gauge p p > xe+ xe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process g g > xe+ xe- in unitary gauge 
+root: No diagrams for process: g g > xe+ xe-
+INFO: Checking process g u > xe+ xe- in unitary gauge 
+root: No diagrams for process: g u > xe+ xe-
+INFO: Checking process g c > xe+ xe- in unitary gauge 
+root: No diagrams for process: g c > xe+ xe-
+INFO: Checking process g d > xe+ xe- in unitary gauge 
+root: No diagrams for process: g d > xe+ xe-
+INFO: Checking process g s > xe+ xe- in unitary gauge 
+root: No diagrams for process: g s > xe+ xe-
+INFO: Checking process g u~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: g u~ > xe+ xe-
+INFO: Checking process g c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: g c~ > xe+ xe-
+INFO: Checking process g d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: g d~ > xe+ xe-
+INFO: Checking process g s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: g s~ > xe+ xe-
+INFO: Checking process g b > xe+ xe- in unitary gauge 
+root: No diagrams for process: g b > xe+ xe-
+INFO: Checking process g b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: g b~ > xe+ xe-
+INFO: Checking process u u > xe+ xe- in unitary gauge 
+root: No diagrams for process: u u > xe+ xe-
+INFO: Checking process u c > xe+ xe- in unitary gauge 
+root: No diagrams for process: u c > xe+ xe-
+INFO: Checking process u d > xe+ xe- in unitary gauge 
+root: No diagrams for process: u d > xe+ xe-
+INFO: Checking process u s > xe+ xe- in unitary gauge 
+root: No diagrams for process: u s > xe+ xe-
+INFO: Checking process u u~ > xe+ xe- in unitary gauge 
+INFO: Checking process u c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u c~ > xe+ xe-
+INFO: Checking process u d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u d~ > xe+ xe-
+INFO: Checking process u s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u s~ > xe+ xe-
+INFO: Checking process u b > xe+ xe- in unitary gauge 
+root: No diagrams for process: u b > xe+ xe-
+INFO: Checking process u b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u b~ > xe+ xe-
+INFO: Checking process c c > xe+ xe- in unitary gauge 
+root: No diagrams for process: c c > xe+ xe-
+INFO: Checking process c d > xe+ xe- in unitary gauge 
+root: No diagrams for process: c d > xe+ xe-
+INFO: Checking process c s > xe+ xe- in unitary gauge 
+root: No diagrams for process: c s > xe+ xe-
+INFO: Checking process c u~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c u~ > xe+ xe-
+INFO: Checking process c c~ > xe+ xe- in unitary gauge 
+INFO: Checking process c d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c d~ > xe+ xe-
+INFO: Checking process c s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c s~ > xe+ xe-
+INFO: Checking process c b > xe+ xe- in unitary gauge 
+root: No diagrams for process: c b > xe+ xe-
+INFO: Checking process c b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c b~ > xe+ xe-
+INFO: Checking process d d > xe+ xe- in unitary gauge 
+root: No diagrams for process: d d > xe+ xe-
+INFO: Checking process d s > xe+ xe- in unitary gauge 
+root: No diagrams for process: d s > xe+ xe-
+INFO: Checking process d u~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d u~ > xe+ xe-
+INFO: Checking process d c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d c~ > xe+ xe-
+INFO: Checking process d d~ > xe+ xe- in unitary gauge 
+INFO: Checking process d s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d s~ > xe+ xe-
+INFO: Checking process d b > xe+ xe- in unitary gauge 
+root: No diagrams for process: d b > xe+ xe-
+INFO: Checking process d b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d b~ > xe+ xe-
+INFO: Checking process s s > xe+ xe- in unitary gauge 
+root: No diagrams for process: s s > xe+ xe-
+INFO: Checking process s u~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s u~ > xe+ xe-
+INFO: Checking process s c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s c~ > xe+ xe-
+INFO: Checking process s d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s d~ > xe+ xe-
+INFO: Checking process s s~ > xe+ xe- in unitary gauge 
+INFO: Checking process s b > xe+ xe- in unitary gauge 
+root: No diagrams for process: s b > xe+ xe-
+INFO: Checking process s b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s b~ > xe+ xe-
+INFO: Checking process u~ u~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ u~ > xe+ xe-
+INFO: Checking process u~ c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ c~ > xe+ xe-
+INFO: Checking process u~ d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ d~ > xe+ xe-
+INFO: Checking process u~ s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ s~ > xe+ xe-
+INFO: Checking process u~ b > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ b > xe+ xe-
+INFO: Checking process u~ b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: u~ b~ > xe+ xe-
+INFO: Checking process c~ c~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c~ c~ > xe+ xe-
+INFO: Checking process c~ d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c~ d~ > xe+ xe-
+INFO: Checking process c~ s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c~ s~ > xe+ xe-
+INFO: Checking process c~ b > xe+ xe- in unitary gauge 
+root: No diagrams for process: c~ b > xe+ xe-
+INFO: Checking process c~ b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: c~ b~ > xe+ xe-
+INFO: Checking process d~ d~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d~ d~ > xe+ xe-
+INFO: Checking process d~ s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d~ s~ > xe+ xe-
+INFO: Checking process d~ b > xe+ xe- in unitary gauge 
+root: No diagrams for process: d~ b > xe+ xe-
+INFO: Checking process d~ b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: d~ b~ > xe+ xe-
+INFO: Checking process s~ s~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s~ s~ > xe+ xe-
+INFO: Checking process s~ b > xe+ xe- in unitary gauge 
+root: No diagrams for process: s~ b > xe+ xe-
+INFO: Checking process s~ b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: s~ b~ > xe+ xe-
+INFO: Checking process b b > xe+ xe- in unitary gauge 
+root: No diagrams for process: b b > xe+ xe-
+INFO: Checking process b b~ > xe+ xe- in unitary gauge 
+INFO: Checking process b~ b~ > xe+ xe- in unitary gauge 
+root: No diagrams for process: b~ b~ > xe+ xe-
+INFO: Checking process u u~ > xe+ xe- in feynman gauge 
+INFO: Checking process c c~ > xe+ xe- in feynman gauge 
+INFO: Checking process d d~ > xe+ xe- in feynman gauge 
+INFO: Checking process s s~ > xe+ xe- in feynman gauge 
+INFO: Checking process b b~ > xe+ xe- in feynman gauge 
+check: 6 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+u u~ > xe+ xe-   2.0745548768e-03  2.0745548768e-03  0.0000000000e+00  Passed
+c c~ > xe+ xe-   2.1046945753e-03  2.1046945753e-03  0.0000000000e+00  Passed
+d d~ > xe+ xe-   5.8980497006e-04  5.8980497006e-04  0.0000000000e+00  Passed
+s s~ > xe+ xe-   5.9497010088e-04  5.9497010088e-04  0.0000000000e+00  Passed
+b b~ > xe+ xe-   6.6480368315e-04  6.6480368315e-04  0.0000000000e+00  Passed
+Summary: 5/5 passed, 0/5 failed
+ 
+check gauge p p > sxe+ sxe-
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking process g g > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g g > sxe+ sxe-
+INFO: Checking process g u > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g u > sxe+ sxe-
+INFO: Checking process g c > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g c > sxe+ sxe-
+INFO: Checking process g d > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g d > sxe+ sxe-
+INFO: Checking process g s > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g s > sxe+ sxe-
+INFO: Checking process g u~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g u~ > sxe+ sxe-
+INFO: Checking process g c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g c~ > sxe+ sxe-
+INFO: Checking process g d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g d~ > sxe+ sxe-
+INFO: Checking process g s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g s~ > sxe+ sxe-
+INFO: Checking process g b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g b > sxe+ sxe-
+INFO: Checking process g b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: g b~ > sxe+ sxe-
+INFO: Checking process u u > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u u > sxe+ sxe-
+INFO: Checking process u c > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u c > sxe+ sxe-
+INFO: Checking process u d > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u d > sxe+ sxe-
+INFO: Checking process u s > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u s > sxe+ sxe-
+INFO: Checking process u u~ > sxe+ sxe- in unitary gauge 
+INFO: Checking process u c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u c~ > sxe+ sxe-
+INFO: Checking process u d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u d~ > sxe+ sxe-
+INFO: Checking process u s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u s~ > sxe+ sxe-
+INFO: Checking process u b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u b > sxe+ sxe-
+INFO: Checking process u b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u b~ > sxe+ sxe-
+INFO: Checking process c c > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c c > sxe+ sxe-
+INFO: Checking process c d > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c d > sxe+ sxe-
+INFO: Checking process c s > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c s > sxe+ sxe-
+INFO: Checking process c u~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c u~ > sxe+ sxe-
+INFO: Checking process c c~ > sxe+ sxe- in unitary gauge 
+INFO: Checking process c d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c d~ > sxe+ sxe-
+INFO: Checking process c s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c s~ > sxe+ sxe-
+INFO: Checking process c b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c b > sxe+ sxe-
+INFO: Checking process c b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c b~ > sxe+ sxe-
+INFO: Checking process d d > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d d > sxe+ sxe-
+INFO: Checking process d s > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d s > sxe+ sxe-
+INFO: Checking process d u~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d u~ > sxe+ sxe-
+INFO: Checking process d c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d c~ > sxe+ sxe-
+INFO: Checking process d d~ > sxe+ sxe- in unitary gauge 
+INFO: Checking process d s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d s~ > sxe+ sxe-
+INFO: Checking process d b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d b > sxe+ sxe-
+INFO: Checking process d b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d b~ > sxe+ sxe-
+INFO: Checking process s s > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s s > sxe+ sxe-
+INFO: Checking process s u~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s u~ > sxe+ sxe-
+INFO: Checking process s c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s c~ > sxe+ sxe-
+INFO: Checking process s d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s d~ > sxe+ sxe-
+INFO: Checking process s s~ > sxe+ sxe- in unitary gauge 
+INFO: Checking process s b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s b > sxe+ sxe-
+INFO: Checking process s b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s b~ > sxe+ sxe-
+INFO: Checking process u~ u~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ u~ > sxe+ sxe-
+INFO: Checking process u~ c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ c~ > sxe+ sxe-
+INFO: Checking process u~ d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ d~ > sxe+ sxe-
+INFO: Checking process u~ s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ s~ > sxe+ sxe-
+INFO: Checking process u~ b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ b > sxe+ sxe-
+INFO: Checking process u~ b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: u~ b~ > sxe+ sxe-
+INFO: Checking process c~ c~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c~ c~ > sxe+ sxe-
+INFO: Checking process c~ d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c~ d~ > sxe+ sxe-
+INFO: Checking process c~ s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c~ s~ > sxe+ sxe-
+INFO: Checking process c~ b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c~ b > sxe+ sxe-
+INFO: Checking process c~ b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: c~ b~ > sxe+ sxe-
+INFO: Checking process d~ d~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d~ d~ > sxe+ sxe-
+INFO: Checking process d~ s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d~ s~ > sxe+ sxe-
+INFO: Checking process d~ b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d~ b > sxe+ sxe-
+INFO: Checking process d~ b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: d~ b~ > sxe+ sxe-
+INFO: Checking process s~ s~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s~ s~ > sxe+ sxe-
+INFO: Checking process s~ b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s~ b > sxe+ sxe-
+INFO: Checking process s~ b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: s~ b~ > sxe+ sxe-
+INFO: Checking process b b > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: b b > sxe+ sxe-
+INFO: Checking process b b~ > sxe+ sxe- in unitary gauge 
+INFO: Checking process b~ b~ > sxe+ sxe- in unitary gauge 
+root: No diagrams for process: b~ b~ > sxe+ sxe-
+INFO: Checking process u u~ > sxe+ sxe- in feynman gauge 
+INFO: Checking process c c~ > sxe+ sxe- in feynman gauge 
+INFO: Checking process d d~ > sxe+ sxe- in feynman gauge 
+INFO: Checking process s s~ > sxe+ sxe- in feynman gauge 
+INFO: Checking process b b~ > sxe+ sxe- in feynman gauge 
+check: 6 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Gauge results (switching between Unitary/Feynman/axial gauge):
+Process          Unitary           Feynman           Relative diff.    Result
+u u~ > sxe+ sxe- 7.6186716449e-05  7.6186716449e-05  0.0000000000e+00  Passed
+c c~ > sxe+ sxe- 1.2897373821e-05  1.2897373821e-05  0.0000000000e+00  Passed
+d d~ > sxe+ sxe- 9.3816633337e-06  9.3816633337e-06  0.0000000000e+00  Passed
+s s~ > sxe+ sxe- 5.1174478090e-05  5.1174478090e-05  0.0000000000e+00  Passed
+b b~ > sxe+ sxe- 2.0622054134e-05  2.0622054134e-05  0.0000000000e+00  Passed
+Summary: 5/5 passed, 0/5 failed
+ 
+check lorentz p p > xe+ xe- j
+check: Samurai not available on your system; it will be skipped.[0m
+INFO: Set All width to zero for non complex mass scheme checks 
+INFO: Checking lorentz transformations for process g g > xe+ xe- g 
+root: No diagrams for process: g g > xe+ xe- g
+INFO: Checking lorentz transformations for process g g > xe+ xe- u 
+root: No diagrams for process: g g > xe+ xe- u
+INFO: Checking lorentz transformations for process g g > xe+ xe- c 
+root: No diagrams for process: g g > xe+ xe- c
+INFO: Checking lorentz transformations for process g g > xe+ xe- d 
+root: No diagrams for process: g g > xe+ xe- d
+INFO: Checking lorentz transformations for process g g > xe+ xe- s 
+root: No diagrams for process: g g > xe+ xe- s
+INFO: Checking lorentz transformations for process g g > xe+ xe- b 
+root: No diagrams for process: g g > xe+ xe- b
+INFO: Checking lorentz transformations for process g g > xe+ xe- u~ 
+root: No diagrams for process: g g > xe+ xe- u~
+INFO: Checking lorentz transformations for process g g > xe+ xe- c~ 
+root: No diagrams for process: g g > xe+ xe- c~
+INFO: Checking lorentz transformations for process g g > xe+ xe- d~ 
+root: No diagrams for process: g g > xe+ xe- d~
+INFO: Checking lorentz transformations for process g g > xe+ xe- s~ 
+root: No diagrams for process: g g > xe+ xe- s~
+INFO: Checking lorentz transformations for process g g > xe+ xe- b~ 
+root: No diagrams for process: g g > xe+ xe- b~
+INFO: Checking lorentz transformations for process g u > xe+ xe- u 
+INFO: Checking lorentz transformations for process g u > xe+ xe- c 
+root: No diagrams for process: g u > xe+ xe- c
+INFO: Checking lorentz transformations for process g u > xe+ xe- d 
+root: No diagrams for process: g u > xe+ xe- d
+INFO: Checking lorentz transformations for process g u > xe+ xe- s 
+root: No diagrams for process: g u > xe+ xe- s
+INFO: Checking lorentz transformations for process g u > xe+ xe- b 
+root: No diagrams for process: g u > xe+ xe- b
+INFO: Checking lorentz transformations for process g u > xe+ xe- u~ 
+root: No diagrams for process: g u > xe+ xe- u~
+INFO: Checking lorentz transformations for process g u > xe+ xe- c~ 
+root: No diagrams for process: g u > xe+ xe- c~
+INFO: Checking lorentz transformations for process g u > xe+ xe- d~ 
+root: No diagrams for process: g u > xe+ xe- d~
+INFO: Checking lorentz transformations for process g u > xe+ xe- s~ 
+root: No diagrams for process: g u > xe+ xe- s~
+INFO: Checking lorentz transformations for process g u > xe+ xe- b~ 
+root: No diagrams for process: g u > xe+ xe- b~
+INFO: Checking lorentz transformations for process g c > xe+ xe- u 
+root: No diagrams for process: g c > xe+ xe- u
+INFO: Checking lorentz transformations for process g c > xe+ xe- c 
+INFO: Skipping Process: g c > xe+ xe- c, identical matrix element already tested 
+INFO: Checking lorentz transformations for process g c > xe+ xe- d 
+root: No diagrams for process: g c > xe+ xe- d
+INFO: Checking lorentz transformations for process g c > xe+ xe- s 
+root: No diagrams for process: g c > xe+ xe- s
+INFO: Checking lorentz transformations for process g c > xe+ xe- b 
+root: No diagrams for process: g c > xe+ xe- b
+INFO: Checking lorentz transformations for process g c > xe+ xe- c~ 
+root: No diagrams for process: g c > xe+ xe- c~
+INFO: Checking lorentz transformations for process g c > xe+ xe- d~ 
+root: No diagrams for process: g c > xe+ xe- d~
+INFO: Checking lorentz transformations for process g c > xe+ xe- s~ 
+root: No diagrams for process: g c > xe+ xe- s~
+INFO: Checking lorentz transformations for process g c > xe+ xe- b~ 
+root: No diagrams for process: g c > xe+ xe- b~
+INFO: Checking lorentz transformations for process g d > xe+ xe- u 
+root: No diagrams for process: g d > xe+ xe- u
+INFO: Checking lorentz transformations for process g d > xe+ xe- c 
+root: No diagrams for process: g d > xe+ xe- c
+INFO: Checking lorentz transformations for process g d > xe+ xe- d 
+INFO: Checking lorentz transformations for process g d > xe+ xe- s 
+root: No diagrams for process: g d > xe+ xe- s
+INFO: Checking lorentz transformations for process g d > xe+ xe- b 
+root: No diagrams for process: g d > xe+ xe- b
+INFO: Checking lorentz transformations for process g d > xe+ xe- d~ 
+root: No diagrams for process: g d > xe+ xe- d~
+INFO: Checking lorentz transformations for process g d > xe+ xe- s~ 
+root: No diagrams for process: g d > xe+ xe- s~
+INFO: Checking lorentz transformations for process g d > xe+ xe- b~ 
+root: No diagrams for process: g d > xe+ xe- b~
+INFO: Checking lorentz transformations for process g s > xe+ xe- u 
+root: No diagrams for process: g s > xe+ xe- u
+INFO: Checking lorentz transformations for process g s > xe+ xe- c 
+root: No diagrams for process: g s > xe+ xe- c
+INFO: Checking lorentz transformations for process g s > xe+ xe- d 
+root: No diagrams for process: g s > xe+ xe- d
+INFO: Checking lorentz transformations for process g s > xe+ xe- s 
+INFO: Skipping Process: g s > xe+ xe- s, identical matrix element already tested 
+INFO: Checking lorentz transformations for process g s > xe+ xe- b 
+root: No diagrams for process: g s > xe+ xe- b
+INFO: Checking lorentz transformations for process g s > xe+ xe- s~ 
+root: No diagrams for process: g s > xe+ xe- s~
+INFO: Checking lorentz transformations for process g s > xe+ xe- b~ 
+root: No diagrams for process: g s > xe+ xe- b~
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- u 
+root: No diagrams for process: g u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- c 
+root: No diagrams for process: g u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- d 
+root: No diagrams for process: g u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- s 
+root: No diagrams for process: g u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- b 
+root: No diagrams for process: g u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process g u~ > xe+ xe- b~ 
+root: No diagrams for process: g u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process g c~ > xe+ xe- c 
+root: No diagrams for process: g c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process g c~ > xe+ xe- d 
+root: No diagrams for process: g c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process g c~ > xe+ xe- s 
+root: No diagrams for process: g c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process g c~ > xe+ xe- b 
+root: No diagrams for process: g c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process g c~ > xe+ xe- b~ 
+root: No diagrams for process: g c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process g d~ > xe+ xe- d 
+root: No diagrams for process: g d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process g d~ > xe+ xe- s 
+root: No diagrams for process: g d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process g d~ > xe+ xe- b 
+root: No diagrams for process: g d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process g d~ > xe+ xe- b~ 
+root: No diagrams for process: g d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process g s~ > xe+ xe- s 
+root: No diagrams for process: g s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process g s~ > xe+ xe- b 
+root: No diagrams for process: g s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process g s~ > xe+ xe- b~ 
+root: No diagrams for process: g s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process g b > xe+ xe- b 
+INFO: Skipping Process: g b > xe+ xe- b, identical matrix element already tested 
+INFO: Checking lorentz transformations for process g b > xe+ xe- b~ 
+root: No diagrams for process: g b > xe+ xe- b~
+INFO: Checking lorentz transformations for process g b~ > xe+ xe- b 
+root: No diagrams for process: g b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u u > xe+ xe- u 
+root: No diagrams for process: u u > xe+ xe- u
+INFO: Checking lorentz transformations for process u u > xe+ xe- c 
+root: No diagrams for process: u u > xe+ xe- c
+INFO: Checking lorentz transformations for process u u > xe+ xe- d 
+root: No diagrams for process: u u > xe+ xe- d
+INFO: Checking lorentz transformations for process u u > xe+ xe- s 
+root: No diagrams for process: u u > xe+ xe- s
+INFO: Checking lorentz transformations for process u u > xe+ xe- b 
+root: No diagrams for process: u u > xe+ xe- b
+INFO: Checking lorentz transformations for process u u > xe+ xe- u~ 
+root: No diagrams for process: u u > xe+ xe- u~
+INFO: Checking lorentz transformations for process u u > xe+ xe- c~ 
+root: No diagrams for process: u u > xe+ xe- c~
+INFO: Checking lorentz transformations for process u u > xe+ xe- d~ 
+root: No diagrams for process: u u > xe+ xe- d~
+INFO: Checking lorentz transformations for process u u > xe+ xe- s~ 
+root: No diagrams for process: u u > xe+ xe- s~
+INFO: Checking lorentz transformations for process u u > xe+ xe- b~ 
+root: No diagrams for process: u u > xe+ xe- b~
+INFO: Checking lorentz transformations for process u c > xe+ xe- u 
+root: No diagrams for process: u c > xe+ xe- u
+INFO: Checking lorentz transformations for process u c > xe+ xe- c 
+root: No diagrams for process: u c > xe+ xe- c
+INFO: Checking lorentz transformations for process u c > xe+ xe- d 
+root: No diagrams for process: u c > xe+ xe- d
+INFO: Checking lorentz transformations for process u c > xe+ xe- s 
+root: No diagrams for process: u c > xe+ xe- s
+INFO: Checking lorentz transformations for process u c > xe+ xe- b 
+root: No diagrams for process: u c > xe+ xe- b
+INFO: Checking lorentz transformations for process u c > xe+ xe- c~ 
+root: No diagrams for process: u c > xe+ xe- c~
+INFO: Checking lorentz transformations for process u c > xe+ xe- d~ 
+root: No diagrams for process: u c > xe+ xe- d~
+INFO: Checking lorentz transformations for process u c > xe+ xe- s~ 
+root: No diagrams for process: u c > xe+ xe- s~
+INFO: Checking lorentz transformations for process u c > xe+ xe- b~ 
+root: No diagrams for process: u c > xe+ xe- b~
+INFO: Checking lorentz transformations for process u d > xe+ xe- u 
+root: No diagrams for process: u d > xe+ xe- u
+INFO: Checking lorentz transformations for process u d > xe+ xe- c 
+root: No diagrams for process: u d > xe+ xe- c
+INFO: Checking lorentz transformations for process u d > xe+ xe- d 
+root: No diagrams for process: u d > xe+ xe- d
+INFO: Checking lorentz transformations for process u d > xe+ xe- s 
+root: No diagrams for process: u d > xe+ xe- s
+INFO: Checking lorentz transformations for process u d > xe+ xe- b 
+root: No diagrams for process: u d > xe+ xe- b
+INFO: Checking lorentz transformations for process u d > xe+ xe- d~ 
+root: No diagrams for process: u d > xe+ xe- d~
+INFO: Checking lorentz transformations for process u d > xe+ xe- s~ 
+root: No diagrams for process: u d > xe+ xe- s~
+INFO: Checking lorentz transformations for process u d > xe+ xe- b~ 
+root: No diagrams for process: u d > xe+ xe- b~
+INFO: Checking lorentz transformations for process u s > xe+ xe- u 
+root: No diagrams for process: u s > xe+ xe- u
+INFO: Checking lorentz transformations for process u s > xe+ xe- c 
+root: No diagrams for process: u s > xe+ xe- c
+INFO: Checking lorentz transformations for process u s > xe+ xe- d 
+root: No diagrams for process: u s > xe+ xe- d
+INFO: Checking lorentz transformations for process u s > xe+ xe- s 
+root: No diagrams for process: u s > xe+ xe- s
+INFO: Checking lorentz transformations for process u s > xe+ xe- b 
+root: No diagrams for process: u s > xe+ xe- b
+INFO: Checking lorentz transformations for process u s > xe+ xe- s~ 
+root: No diagrams for process: u s > xe+ xe- s~
+INFO: Checking lorentz transformations for process u s > xe+ xe- b~ 
+root: No diagrams for process: u s > xe+ xe- b~
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- u 
+root: No diagrams for process: u u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- c 
+root: No diagrams for process: u u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- d 
+root: No diagrams for process: u u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- s 
+root: No diagrams for process: u u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- b 
+root: No diagrams for process: u u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u u~ > xe+ xe- b~ 
+root: No diagrams for process: u u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u c~ > xe+ xe- c 
+root: No diagrams for process: u c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process u c~ > xe+ xe- d 
+root: No diagrams for process: u c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u c~ > xe+ xe- s 
+root: No diagrams for process: u c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u c~ > xe+ xe- b 
+root: No diagrams for process: u c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u c~ > xe+ xe- b~ 
+root: No diagrams for process: u c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u d~ > xe+ xe- d 
+root: No diagrams for process: u d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u d~ > xe+ xe- s 
+root: No diagrams for process: u d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u d~ > xe+ xe- b 
+root: No diagrams for process: u d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u d~ > xe+ xe- b~ 
+root: No diagrams for process: u d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u s~ > xe+ xe- s 
+root: No diagrams for process: u s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u s~ > xe+ xe- b 
+root: No diagrams for process: u s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u s~ > xe+ xe- b~ 
+root: No diagrams for process: u s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u b > xe+ xe- b 
+root: No diagrams for process: u b > xe+ xe- b
+INFO: Checking lorentz transformations for process u b > xe+ xe- b~ 
+root: No diagrams for process: u b > xe+ xe- b~
+INFO: Checking lorentz transformations for process u b~ > xe+ xe- b 
+root: No diagrams for process: u b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c c > xe+ xe- u 
+root: No diagrams for process: c c > xe+ xe- u
+INFO: Checking lorentz transformations for process c c > xe+ xe- c 
+root: No diagrams for process: c c > xe+ xe- c
+INFO: Checking lorentz transformations for process c c > xe+ xe- d 
+root: No diagrams for process: c c > xe+ xe- d
+INFO: Checking lorentz transformations for process c c > xe+ xe- s 
+root: No diagrams for process: c c > xe+ xe- s
+INFO: Checking lorentz transformations for process c c > xe+ xe- b 
+root: No diagrams for process: c c > xe+ xe- b
+INFO: Checking lorentz transformations for process c c > xe+ xe- c~ 
+root: No diagrams for process: c c > xe+ xe- c~
+INFO: Checking lorentz transformations for process c c > xe+ xe- d~ 
+root: No diagrams for process: c c > xe+ xe- d~
+INFO: Checking lorentz transformations for process c c > xe+ xe- s~ 
+root: No diagrams for process: c c > xe+ xe- s~
+INFO: Checking lorentz transformations for process c c > xe+ xe- b~ 
+root: No diagrams for process: c c > xe+ xe- b~
+INFO: Checking lorentz transformations for process c d > xe+ xe- u 
+root: No diagrams for process: c d > xe+ xe- u
+INFO: Checking lorentz transformations for process c d > xe+ xe- c 
+root: No diagrams for process: c d > xe+ xe- c
+INFO: Checking lorentz transformations for process c d > xe+ xe- d 
+root: No diagrams for process: c d > xe+ xe- d
+INFO: Checking lorentz transformations for process c d > xe+ xe- s 
+root: No diagrams for process: c d > xe+ xe- s
+INFO: Checking lorentz transformations for process c d > xe+ xe- b 
+root: No diagrams for process: c d > xe+ xe- b
+INFO: Checking lorentz transformations for process c d > xe+ xe- d~ 
+root: No diagrams for process: c d > xe+ xe- d~
+INFO: Checking lorentz transformations for process c d > xe+ xe- s~ 
+root: No diagrams for process: c d > xe+ xe- s~
+INFO: Checking lorentz transformations for process c d > xe+ xe- b~ 
+root: No diagrams for process: c d > xe+ xe- b~
+INFO: Checking lorentz transformations for process c s > xe+ xe- u 
+root: No diagrams for process: c s > xe+ xe- u
+INFO: Checking lorentz transformations for process c s > xe+ xe- c 
+root: No diagrams for process: c s > xe+ xe- c
+INFO: Checking lorentz transformations for process c s > xe+ xe- d 
+root: No diagrams for process: c s > xe+ xe- d
+INFO: Checking lorentz transformations for process c s > xe+ xe- s 
+root: No diagrams for process: c s > xe+ xe- s
+INFO: Checking lorentz transformations for process c s > xe+ xe- b 
+root: No diagrams for process: c s > xe+ xe- b
+INFO: Checking lorentz transformations for process c s > xe+ xe- s~ 
+root: No diagrams for process: c s > xe+ xe- s~
+INFO: Checking lorentz transformations for process c s > xe+ xe- b~ 
+root: No diagrams for process: c s > xe+ xe- b~
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- u 
+root: No diagrams for process: c u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- c 
+root: No diagrams for process: c u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- d 
+root: No diagrams for process: c u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- s 
+root: No diagrams for process: c u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- b 
+root: No diagrams for process: c u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c u~ > xe+ xe- b~ 
+root: No diagrams for process: c u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c c~ > xe+ xe- c 
+root: No diagrams for process: c c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process c c~ > xe+ xe- d 
+root: No diagrams for process: c c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process c c~ > xe+ xe- s 
+root: No diagrams for process: c c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c c~ > xe+ xe- b 
+root: No diagrams for process: c c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c c~ > xe+ xe- b~ 
+root: No diagrams for process: c c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c d~ > xe+ xe- d 
+root: No diagrams for process: c d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process c d~ > xe+ xe- s 
+root: No diagrams for process: c d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c d~ > xe+ xe- b 
+root: No diagrams for process: c d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c d~ > xe+ xe- b~ 
+root: No diagrams for process: c d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c s~ > xe+ xe- s 
+root: No diagrams for process: c s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c s~ > xe+ xe- b 
+root: No diagrams for process: c s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c s~ > xe+ xe- b~ 
+root: No diagrams for process: c s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c b > xe+ xe- b 
+root: No diagrams for process: c b > xe+ xe- b
+INFO: Checking lorentz transformations for process c b > xe+ xe- b~ 
+root: No diagrams for process: c b > xe+ xe- b~
+INFO: Checking lorentz transformations for process c b~ > xe+ xe- b 
+root: No diagrams for process: c b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d d > xe+ xe- u 
+root: No diagrams for process: d d > xe+ xe- u
+INFO: Checking lorentz transformations for process d d > xe+ xe- c 
+root: No diagrams for process: d d > xe+ xe- c
+INFO: Checking lorentz transformations for process d d > xe+ xe- d 
+root: No diagrams for process: d d > xe+ xe- d
+INFO: Checking lorentz transformations for process d d > xe+ xe- s 
+root: No diagrams for process: d d > xe+ xe- s
+INFO: Checking lorentz transformations for process d d > xe+ xe- b 
+root: No diagrams for process: d d > xe+ xe- b
+INFO: Checking lorentz transformations for process d d > xe+ xe- d~ 
+root: No diagrams for process: d d > xe+ xe- d~
+INFO: Checking lorentz transformations for process d d > xe+ xe- s~ 
+root: No diagrams for process: d d > xe+ xe- s~
+INFO: Checking lorentz transformations for process d d > xe+ xe- b~ 
+root: No diagrams for process: d d > xe+ xe- b~
+INFO: Checking lorentz transformations for process d s > xe+ xe- u 
+root: No diagrams for process: d s > xe+ xe- u
+INFO: Checking lorentz transformations for process d s > xe+ xe- c 
+root: No diagrams for process: d s > xe+ xe- c
+INFO: Checking lorentz transformations for process d s > xe+ xe- d 
+root: No diagrams for process: d s > xe+ xe- d
+INFO: Checking lorentz transformations for process d s > xe+ xe- s 
+root: No diagrams for process: d s > xe+ xe- s
+INFO: Checking lorentz transformations for process d s > xe+ xe- b 
+root: No diagrams for process: d s > xe+ xe- b
+INFO: Checking lorentz transformations for process d s > xe+ xe- s~ 
+root: No diagrams for process: d s > xe+ xe- s~
+INFO: Checking lorentz transformations for process d s > xe+ xe- b~ 
+root: No diagrams for process: d s > xe+ xe- b~
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- u 
+root: No diagrams for process: d u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- c 
+root: No diagrams for process: d u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- d 
+root: No diagrams for process: d u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- s 
+root: No diagrams for process: d u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- b 
+root: No diagrams for process: d u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d u~ > xe+ xe- b~ 
+root: No diagrams for process: d u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d c~ > xe+ xe- c 
+root: No diagrams for process: d c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process d c~ > xe+ xe- d 
+root: No diagrams for process: d c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process d c~ > xe+ xe- s 
+root: No diagrams for process: d c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d c~ > xe+ xe- b 
+root: No diagrams for process: d c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d c~ > xe+ xe- b~ 
+root: No diagrams for process: d c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d d~ > xe+ xe- d 
+root: No diagrams for process: d d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process d d~ > xe+ xe- s 
+root: No diagrams for process: d d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d d~ > xe+ xe- b 
+root: No diagrams for process: d d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d d~ > xe+ xe- b~ 
+root: No diagrams for process: d d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d s~ > xe+ xe- s 
+root: No diagrams for process: d s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d s~ > xe+ xe- b 
+root: No diagrams for process: d s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d s~ > xe+ xe- b~ 
+root: No diagrams for process: d s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d b > xe+ xe- b 
+root: No diagrams for process: d b > xe+ xe- b
+INFO: Checking lorentz transformations for process d b > xe+ xe- b~ 
+root: No diagrams for process: d b > xe+ xe- b~
+INFO: Checking lorentz transformations for process d b~ > xe+ xe- b 
+root: No diagrams for process: d b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s s > xe+ xe- u 
+root: No diagrams for process: s s > xe+ xe- u
+INFO: Checking lorentz transformations for process s s > xe+ xe- c 
+root: No diagrams for process: s s > xe+ xe- c
+INFO: Checking lorentz transformations for process s s > xe+ xe- d 
+root: No diagrams for process: s s > xe+ xe- d
+INFO: Checking lorentz transformations for process s s > xe+ xe- s 
+root: No diagrams for process: s s > xe+ xe- s
+INFO: Checking lorentz transformations for process s s > xe+ xe- b 
+root: No diagrams for process: s s > xe+ xe- b
+INFO: Checking lorentz transformations for process s s > xe+ xe- s~ 
+root: No diagrams for process: s s > xe+ xe- s~
+INFO: Checking lorentz transformations for process s s > xe+ xe- b~ 
+root: No diagrams for process: s s > xe+ xe- b~
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- u 
+root: No diagrams for process: s u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- c 
+root: No diagrams for process: s u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- d 
+root: No diagrams for process: s u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- s 
+root: No diagrams for process: s u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- b 
+root: No diagrams for process: s u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s u~ > xe+ xe- b~ 
+root: No diagrams for process: s u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process s c~ > xe+ xe- c 
+root: No diagrams for process: s c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process s c~ > xe+ xe- d 
+root: No diagrams for process: s c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process s c~ > xe+ xe- s 
+root: No diagrams for process: s c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process s c~ > xe+ xe- b 
+root: No diagrams for process: s c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s c~ > xe+ xe- b~ 
+root: No diagrams for process: s c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process s d~ > xe+ xe- d 
+root: No diagrams for process: s d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process s d~ > xe+ xe- s 
+root: No diagrams for process: s d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process s d~ > xe+ xe- b 
+root: No diagrams for process: s d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s d~ > xe+ xe- b~ 
+root: No diagrams for process: s d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process s s~ > xe+ xe- s 
+root: No diagrams for process: s s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process s s~ > xe+ xe- b 
+root: No diagrams for process: s s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s s~ > xe+ xe- b~ 
+root: No diagrams for process: s s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process s b > xe+ xe- b 
+root: No diagrams for process: s b > xe+ xe- b
+INFO: Checking lorentz transformations for process s b > xe+ xe- b~ 
+root: No diagrams for process: s b > xe+ xe- b~
+INFO: Checking lorentz transformations for process s b~ > xe+ xe- b 
+root: No diagrams for process: s b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- u 
+root: No diagrams for process: u~ u~ > xe+ xe- u
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- c 
+root: No diagrams for process: u~ u~ > xe+ xe- c
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- d 
+root: No diagrams for process: u~ u~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- s 
+root: No diagrams for process: u~ u~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- b 
+root: No diagrams for process: u~ u~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ u~ > xe+ xe- b~ 
+root: No diagrams for process: u~ u~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u~ c~ > xe+ xe- c 
+root: No diagrams for process: u~ c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process u~ c~ > xe+ xe- d 
+root: No diagrams for process: u~ c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u~ c~ > xe+ xe- s 
+root: No diagrams for process: u~ c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u~ c~ > xe+ xe- b 
+root: No diagrams for process: u~ c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ c~ > xe+ xe- b~ 
+root: No diagrams for process: u~ c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u~ d~ > xe+ xe- d 
+root: No diagrams for process: u~ d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process u~ d~ > xe+ xe- s 
+root: No diagrams for process: u~ d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u~ d~ > xe+ xe- b 
+root: No diagrams for process: u~ d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ d~ > xe+ xe- b~ 
+root: No diagrams for process: u~ d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u~ s~ > xe+ xe- s 
+root: No diagrams for process: u~ s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process u~ s~ > xe+ xe- b 
+root: No diagrams for process: u~ s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ s~ > xe+ xe- b~ 
+root: No diagrams for process: u~ s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process u~ b > xe+ xe- b 
+root: No diagrams for process: u~ b > xe+ xe- b
+INFO: Checking lorentz transformations for process u~ b > xe+ xe- b~ 
+root: No diagrams for process: u~ b > xe+ xe- b~
+INFO: Checking lorentz transformations for process u~ b~ > xe+ xe- b 
+root: No diagrams for process: u~ b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c~ c~ > xe+ xe- c 
+root: No diagrams for process: c~ c~ > xe+ xe- c
+INFO: Checking lorentz transformations for process c~ c~ > xe+ xe- d 
+root: No diagrams for process: c~ c~ > xe+ xe- d
+INFO: Checking lorentz transformations for process c~ c~ > xe+ xe- s 
+root: No diagrams for process: c~ c~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c~ c~ > xe+ xe- b 
+root: No diagrams for process: c~ c~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c~ c~ > xe+ xe- b~ 
+root: No diagrams for process: c~ c~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c~ d~ > xe+ xe- d 
+root: No diagrams for process: c~ d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process c~ d~ > xe+ xe- s 
+root: No diagrams for process: c~ d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c~ d~ > xe+ xe- b 
+root: No diagrams for process: c~ d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c~ d~ > xe+ xe- b~ 
+root: No diagrams for process: c~ d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c~ s~ > xe+ xe- s 
+root: No diagrams for process: c~ s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process c~ s~ > xe+ xe- b 
+root: No diagrams for process: c~ s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process c~ s~ > xe+ xe- b~ 
+root: No diagrams for process: c~ s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process c~ b > xe+ xe- b 
+root: No diagrams for process: c~ b > xe+ xe- b
+INFO: Checking lorentz transformations for process c~ b > xe+ xe- b~ 
+root: No diagrams for process: c~ b > xe+ xe- b~
+INFO: Checking lorentz transformations for process c~ b~ > xe+ xe- b 
+root: No diagrams for process: c~ b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d~ d~ > xe+ xe- d 
+root: No diagrams for process: d~ d~ > xe+ xe- d
+INFO: Checking lorentz transformations for process d~ d~ > xe+ xe- s 
+root: No diagrams for process: d~ d~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d~ d~ > xe+ xe- b 
+root: No diagrams for process: d~ d~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d~ d~ > xe+ xe- b~ 
+root: No diagrams for process: d~ d~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d~ s~ > xe+ xe- s 
+root: No diagrams for process: d~ s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process d~ s~ > xe+ xe- b 
+root: No diagrams for process: d~ s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process d~ s~ > xe+ xe- b~ 
+root: No diagrams for process: d~ s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process d~ b > xe+ xe- b 
+root: No diagrams for process: d~ b > xe+ xe- b
+INFO: Checking lorentz transformations for process d~ b > xe+ xe- b~ 
+root: No diagrams for process: d~ b > xe+ xe- b~
+INFO: Checking lorentz transformations for process d~ b~ > xe+ xe- b 
+root: No diagrams for process: d~ b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s~ s~ > xe+ xe- s 
+root: No diagrams for process: s~ s~ > xe+ xe- s
+INFO: Checking lorentz transformations for process s~ s~ > xe+ xe- b 
+root: No diagrams for process: s~ s~ > xe+ xe- b
+INFO: Checking lorentz transformations for process s~ s~ > xe+ xe- b~ 
+root: No diagrams for process: s~ s~ > xe+ xe- b~
+INFO: Checking lorentz transformations for process s~ b > xe+ xe- b 
+root: No diagrams for process: s~ b > xe+ xe- b
+INFO: Checking lorentz transformations for process s~ b > xe+ xe- b~ 
+root: No diagrams for process: s~ b > xe+ xe- b~
+INFO: Checking lorentz transformations for process s~ b~ > xe+ xe- b 
+root: No diagrams for process: s~ b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process b b > xe+ xe- b 
+root: No diagrams for process: b b > xe+ xe- b
+INFO: Checking lorentz transformations for process b b > xe+ xe- b~ 
+root: No diagrams for process: b b > xe+ xe- b~
+INFO: Checking lorentz transformations for process b b~ > xe+ xe- b 
+root: No diagrams for process: b b~ > xe+ xe- b
+INFO: Checking lorentz transformations for process b~ b~ > xe+ xe- b 
+root: No diagrams for process: b~ b~ > xe+ xe- b
+check: 5 check performed in 0 second
+INFO: Note That all width have been set to zero for those checks
+
+Lorentz invariance results:
+Process          Min element       Max element       Relative diff.    Result
+g u > xe+ xe- u  1.6154286567e-08  1.6154286567e-08  2.6626611875e-15  Passed
+g d > xe+ xe- d  4.3696332930e-09  4.3696332930e-09  9.2758012623e-15  Passed
+Summary: 2/2 passed, 0/2 failed
+Not checked processes: g c > xe+ xe- c, g s > xe+ xe- s, g b > xe+ xe- b
+ 
+exit
+quit

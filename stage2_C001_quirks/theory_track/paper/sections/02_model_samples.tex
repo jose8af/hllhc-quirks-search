@@ -1,0 +1,87 @@
+\section{Quirk model, production and signal samples}\label{sec:model}
+
+This section defines the benchmark, the generated samples and the cross-section normalisation used for every yield in
+this note. Full detail is in the Stage-2 reports \rep{sim/VALIDATION.md} and \rep{sim/SAMPLES.md}.
+
+\subsection{Benchmark and kinematic scales}\label{sec:model:bench}
+The benchmark quirk $E$ is a vector-like Dirac fermion in the representation $(1,1)_{-1}$ of the SM gauge group and in
+the fundamental of SU(2)$_{\rm IC}$ ($N_{\rm IC}=2$); $\Etil$ is a complex scalar with the same quantum numbers. Both
+are produced in pairs by Drell--Yan through $\gamma^*/Z^*$, and are stable on detector time scales. The infracolour
+force enters only through the string tension $\sigma=\Lam^2$; all string results below are independent of $N_{\rm
+IC}$ and of the infracolour representation once $\sigma$ is fixed, and $N_{\rm IC}$ enters only the cross section.
+
+In the pair rest frame (``CM frame'') each quirk has momentum $p^*$, Lorentz factor $\gst$ and speed $\bst$. The string
+decelerates each end by the constant force $\sigma$, so the motion is a one-dimensional ``yo-yo'' with half-period
+$T_h=2p^*/\sigma$ and maximum separation~\cite{Kang:2008ea}
+\begin{equation}
+  \lmax = 2(\gst-1)\,\lzero,\qquad \lzero\equiv\frac{\mQ}{\sigma}
+  = 1.97\cm\,\frac{\mQ}{100\GeV}\left(\frac{\keV}{\Lam}\right)^2 .
+  \label{eq:lmax}
+\end{equation}
+The number of oscillations within a tracker of radius $R$ is $\Nosc=\sigma R/(2\bst p_T)$ for a pair of transverse
+momentum $p_T$ (project estimate, \rep{analytic/NEAR_MISS_IMPULSE.md} \S5.2); for the triggered samples below its median is $\approx11$--$12\,(\Lam/\keV)^2$ for
+the fermion, independent of $\mQ$ (\EST{}, Stage-3 plan). Half of the triggered pairs make fewer than one oscillation in
+the tracker at $\Lam\approx0.3\keV$, which sets the lower end of the coplanar regime.
+
+\subsection{Event generation}\label{sec:model:gen}
+Events are generated at leading order with MadGraph5\_aMC@NLO 2.9.22~\cite{Alwall:2014hca} with a hand-written UFO model
+(cross-checked against a FeynRules model to $+0.12\%$ for $E$ and $-0.11\%$ for $\Etil$), the CT18NLO
+PDFs~\cite{Hou:2019efy} and the dynamical scale choice of MadGraph. Up to two additional partons are merged with the MLM
+scheme~\cite{Alwall:2007fs} (\texttt{xqcut} $30\GeV$, $q_{\rm cut}=45\GeV$), and the events are showered and hadronised
+by Pythia~8.313~\cite{Bierlich:2022pfr} with the CMS CP5 tune~\cite{CMS:2019csb}, multiple parton interactions on and
+the quirks stable. Fourteen fermion masses $\mQ=200$--$1500\GeV$ in $100\GeV$ steps and scalar masses
+$200,500,1000\GeV$ are produced at $\sqrt s=14\TeV$; with validation variants (merging scale, jet multiplicity, tune, MPI,
+shower) the campaign has 47 points and $\approx2.41\times10^6$ LHE events. Because the search triggers on
+initial-state-radiation recoil, trigger-enriched samples with a matrix-element cut $p_T(Q\bar Q)>100\GeV$ are stitched
+with the inclusive ones and carry event weights. Every event keeps 107 merged scale, PDF and merging-scale weights and a
+template/toy split flag; templates and pseudo-data are always taken from different halves.
+
+\subsection{Normalisation}\label{sec:model:xsec}
+The yield normalisation is
+\begin{equation}
+  \sigma_{\rm norm} = N_{\rm IC}\times K_{\rm QCD}(\mQ)\times \sigma_{\rm LO}(\alpha=1/127.9),
+  \label{eq:signorm}
+\end{equation}
+where $\sigma_{\rm LO}$ is the MadGraph LO cross section evaluated with $\alpha=1/127.9$ and $K_{\rm QCD}$ is the QCD $K$-factor
+extracted from the LHC SUSY cross-section working-group right-handed selectron tables (NNLO$_{\rm approx}$+NNLL,
+Resummino~\cite{Fuks:2013vua}) at $13.6\TeV$, applied at $14\TeV$ under the assumption that the Drell--Yan QCD
+correction is spin-independent (the $K_{\rm QCD}$ values are transcribed, \UNV{}; beyond $1.2\TeV$ they are linearly
+extrapolated, $\pm2\%$). Equation~\eqref{eq:signorm} reproduces the project's reference cross-section table to
+$-0.36\ldots+0.15\%$. A $\pm5\%$ nuisance covers the $K_{\rm QCD}$ transfer and the electroweak scheme. Not included, all positive
+except the last: photon fusion ($+4\%$, \EST{}), the infracolour Sommerfeld/threshold factor ($+5$ to $+15\%$, \EST{},
+no calculation exists) and NLO electroweak corrections (a few per cent negative, \UNV{}).
+Table~\ref{tab:xsec} lists the normalisation and the fraction of events with $p_T(Q\bar Q)>200\GeV$, the region that
+the missing-transverse-momentum trigger selects (Section~\ref{sec:strategy:trig}).
+
+\begin{table}[htbp]
+\centering
+\caption{Signal normalisation for the fermion benchmark $E$ (Stage 2, \rep{sim/VALIDATION.md} \S1.2). $K_{\rm QCD}$ is the QCD
+$K$-factor of Eq.~\eqref{eq:signorm}; $f_{200}$ is the fraction of events with $p_T(Q\bar Q)>200\GeV$ and $|\eta_{\rm pair}|<4$ (LO-MLM, CP5;
+statistical error 0.7--1.7\%); $N_{200}$ is the number of such events in $3\abinv$ with $|\eta_{\rm pair}|<2.5$,
+before any detector efficiency, from the Stage-2 sample; it differs by $-2$ to $+4\%$ from $\sigma_{\rm norm}f_{200}L\,\Eff_{\rm fid}$
+of Table~\ref{tab:acc}, whose $\Eff_{\rm fid}$ comes from the Stage-3 template half, and is not used in any limit. For the scalar $\Etil$, $\sigma_{\rm norm}=19.2/0.458/0.0118\fb$ at
+$200/500/1000\GeV$.}
+\label{tab:xsec}
+\begin{tabular}{rcccr}
+\toprule
+$\mQ$ [GeV] & $K_{\rm QCD}$ & $\sigma_{\rm norm}$ [fb] & $f_{200}$ & $N_{200}$ ($3\abinv$)\\
+\midrule
+200  & 1.110 & 219.2  & 0.048 & $2.71\times10^4$\\
+300  & 1.127 & 48.98  & 0.070 & $8.64\times10^3$\\
+500  & 1.158 & 6.11   & 0.104 & $1.56\times10^3$\\
+700  & 1.192 & 1.287  & 0.125 & 381\\
+1000 & 1.254 & 0.1967 & 0.146 & 67.3\\
+1200 & 1.292 & 0.0657 & 0.156 & 23.7\\
+1500 & 1.349 (extrap.) & 0.0144 & 0.169 & 5.56\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Modelling uncertainties of the signal kinematics}\label{sec:model:syst}
+Three modelling effects matter for the string observables. (i) The rate of the recoil tail, $f_{200}$, carries
+$+12\ldots+15\%/-11\ldots-13\%$ from the matrix-element emission $\alpha_s$, the merging scale and the shower (largest
+at $200\GeV$; LO+PS is 9--10\% below MLM); an NLO-merged point is deferred. (ii) The shape of the CM kinematics is
+stable: the medians of $\lmax$ and $\gst$ in the tail move by $\lesssim\pm5\%$ under all variations. An older
+fixed-$p_T$ recoil prescription would bias the median $\lmax$ by $-26/-13/-8\%$ at $200/500/1000\GeV$, which is why
+merged samples are used. (iii) QED final-state radiation off the quirks is absent from the samples (Pythia's setting
+does not act on them); by user decision it is carried as a one-sided $\lmax$ systematic of $-1.1\pm0.8\%$ (stat.).

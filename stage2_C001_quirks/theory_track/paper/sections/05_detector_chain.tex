@@ -1,0 +1,124 @@
+\section{Detector model and simulation chain (P2)}\label{sec:detector}
+
+The P2 study asks what survives of the truth-level quirk patterns in a realistic tracker at pile-up 200. This section
+describes the detector model, the pile-up overlay, the digitisation and the standard tracking that removes helical tracks.
+Everything is built from public information: the CMS Phase-2 Tracker~\cite{CMS:2017lum}, MIP Timing
+Detector~\cite{Butler:2019rpu} and Level-1 Trigger~\cite{Zabi:2020gjd} Technical Design Reports of the CMS
+detector~\cite{CMS:2008xjf} and the public tkLayout
+geometry. The design is in \rep{acts/stage4/plan.md} (reviewed in nine rounds), the frozen definitions in
+\rep{acts/stage4/WP_RULE.md}, and the validation in the G1, G1b and G3 reports under \rep{acts/stage4/}.
+
+\subsection{Chain overview}\label{sec:detector:chain}
+The Stage-3 truth hits (configuration with field and nominal material, smeared luminous-region vertex, all surfaces,
+$|\eta_{\rm pair}|<4$ propagated) are injected, one ACTS event per physics event, into a pile-up event simulated on the
+same surfaces with ACTS~\cite{Ai:2021ghi} (pyacts 48.0.0) and its fast simulation Fatras. Quirk and pile-up hits are then
+digitised together, a standard combinatorial Kalman filter (CKF) finds helical tracks, and a dedicated finder searches
+the remaining hits for planes through the primary vertex (Section~\ref{sec:strategy}). Pile-up events are not stored:
+each is regenerated bit for bit from the job seed and the event index.
+
+\subsection{Geometry and material}\label{sec:detector:geo}
+Each of the 83 physical Stage-3 surfaces except the endcap timing layer (ETL) becomes a sensitive ACTS surface at its nominal position in the D111 layout:
+cylinders for the barrel (four IT pixel layers TBPX, three PS layers TBPS, three 2S layers TB2S, the barrel timing layer
+BTL) and discs for the endcaps. The Stage-3 material per layer (Section~\ref{sec:p1:prop}) is attached as surface
+material; stacked layers split it over their two sensors. Every cylinder and disc is divided into 32 azimuthal sectors of
+the same geometric surface, which leaves the hit positions unchanged and brings the CKF from 23--60\,s to 1.6--3.4\,s per event. The
+ETL could not be included in the ACTS geometry (a volume-stacking limitation); no finder variable uses it. A muon gun gives the full
+17-hit central pattern with every hit on its surface to $<0.1\um$, and the Fatras scattering angle behind the first pixel
+layer agrees with the Highland formula~\cite{Highland:1975pq} (ratio 0.93 with the PDG definition). Two Fatras pitfalls
+were found and fixed: the default minimum momentum of $0.5\GeV$ drops every low-momentum looper (set to $30\MeV$), and
+the JSON material density must be given in ACTS-native units.
+
+\subsection{Pile-up overlay and density normalisation}\label{sec:detector:pu}
+Minimum-bias interactions are generated with Pythia~8.312~\cite{Bierlich:2022pfr} (CP5~\cite{CMS:2019csb},
+$\sqrt s=14\TeV$, $\sigma_{\rm inel}=78.9$\,mb), with a Poisson number of mean 200 per event and vertices drawn from the
+luminous region ($\sigma_z=45\mm$, $\sigma_t=190\ps$~\cite{Butler:2019rpu}; $\sigma_{xy}=5\um$, \EST{}).
+$K^0_S$, $\Lambda^0$ and other hyperons are decayed by Pythia; charged particles and photons with $p_T>50\MeV$ and $|\eta|<4$
+are passed to Fatras with multiple scattering, ionisation, bremsstrahlung and photon conversions. Fatras has no hadronic
+interactions and does no decays in flight, and out-of-time pile-up is not simulated.
+
+The resulting in-time density, $1.33\times10^5$ hits per event, is \emph{below} the Tracker TDR occupancies (which
+include out-of-time pile-up and secondaries~\cite[Sec.~6.2.1, Fig.~6.3]{CMS:2017lum}) by a factor 2.3--3.7 in the IT
+(the IT cluster size is not given in the TDR, \EST{}), 2.5--4.3 in the PS and 4.0--7.3 in the 2S layers, rising with
+radius. Since a fake-rate estimate at too low a density would be optimistic, every pile-up event is \textbf{topped up}
+per layer to the TDR occupancy (user decision, Appendix~\ref{app:limits}): $({\rm ratio}-1)$ times the event's own Fatras crossings are added
+on each layer, with $z$ resampled from the layer's hits and uniform $\phi$; on stacked layers they are added as in/out
+pairs, the conservative choice for the per-crossing counts. Each added crossing counts as its own interaction in the
+pile-up extrapolation (Section~\ref{sec:bkg:pu}). The lower and upper ends of the ratio ranges are a systematic.
+
+\subsection{Digitisation, merging, timing and efficiency}\label{sec:detector:digi}
+Hits are digitised by Gaussian smearing with binary resolutions (pitch$/\sqrt{12}$, as the TDR confirms for the
+OT~\cite[Sec.~12.2]{CMS:2017lum}), with ACTS cluster merging switched off; two measurements on the same sensor are merged
+at analysis level when they lie within one pitch in both local directions (user decision, Appendix~\ref{app:limits}), with the mean
+position, an error of $\max(\sigma,|\Delta|/\sqrt{12})$ and summed energy. This sets the hit-level merging of the two
+quirks at high $\Lam$. Table~\ref{tab:digi} lists the resolutions. Quirk hits arriving later than $\Delta t_{\rm
+acc}=25\ns$ after a prompt particle would (one bunch crossing, following Ref.~\cite[Sec.~IV]{Knapen:2017kly}; variation
+$12.5\ns$) are dropped, and a flat 99\% hit efficiency is applied (\UNV{}; variation 97\%).
+
+\begin{table}[htbp]
+\centering
+\caption{Digitisation model (binary resolution, pitch$/\sqrt{12}$; \rep{plan.md} \S1.5). Pitches from the Tracker
+TDR~\cite{CMS:2017lum} and the public D111 module table; BTL from the MTD TDR~\cite{Butler:2019rpu}.}
+\label{tab:digi}
+\small
+\begin{tabularx}{\linewidth}{lccc>{\raggedright\arraybackslash}X}
+\toprule
+module & pitch & $\sigma_{r\phi}$ & $\sigma_{\rm long}$ & variation\\
+\midrule
+IT pixel & $25\times100\,\mu$m$^2$ & $7.2\um$ & $28.9\um$ & charge-sharing 3--6 / 11--24$\um$\\
+PS (strip/macro-pixel) & $100\um\times1.467\mm$ & $28.9\um$ & $423\um$ & $\pm20\%$\\
+2S (strips) & $90\um\times50.27\mm$ & $26.0\um$ & $14.5\mm$ & uniform smearer\\
+BTL (timing) & bars $57\mm\times3.12\mm$ & $16\mm$ (\EST{}) & $0.9\mm$ & $\sigma_t=35\ps$; 60\,ps end of life\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Standard tracking and hit removal}\label{sec:detector:ckf}
+Quirk tracks are not helices, so the CKF is used only to remove the hits of helical tracks before the quirk finder runs:
+seeds from triplets of IT space points with $p_T>0.9\GeV$, $|z_0|<200\mm$, tracks with $\ge7$ measurements, $\le2$ holes
+and $|d_0|<4\mm$, following the ``unassociated hits'' logic of Ref.~\cite[Sec.~III.D]{Knapen:2017kly}. In the production chain 13.9\% of all
+measurements (19.5\% of the barrel hits, $\approx1540$ tracks per event) are removed; low-$p_T$ pile-up hits stay and form the combinatorial background. The fraction $f_{\rm CKF}$
+of a candidate's band hits that sit on CKF tracks is a selection variable (Section~\ref{sec:strategy:finder}); on the probe
+samples no quirk measurement was taken by a CKF track (0 of 208).
+
+\subsection{Primary vertex, MET and trigger model}\label{sec:detector:pvmet}
+The primary vertex is the true hard-scatter vertex smeared by $(\sigma_{xy},\sigma_z)=(10,15)\um$ with a 93\%
+identification efficiency at pile-up 200 (graphical readings of the Tracker TDR~\cite{CMS:2017lum}, \UNV{}). The missing
+transverse momentum is the truth $p_T(Q\bar Q)$ (the quirks deposit $\lesssim5\GeV$ in the calorimeters, carried as a
+one-sided $\lesssim2\%$ bias) smeared by $\sigma_\perp=25\GeV$ per component (15 and $35\GeV$ variations; the PUPPI MET
+resolution at pile-up 200 is \UNV{}). The trigger and preselection model is part of the selection and is given in
+Section~\ref{sec:strategy:trig}.
+
+\subsection{Samples}\label{sec:detector:samples}
+Table~\ref{tab:samples} lists the detector-level samples. Production ran on one laptop (Apple M3, 8 cores) in three
+campaigns of about one day each (C1a, C1b, C2B) plus a full-chain re-run of nine signal points (A2FC): 2295 jobs, no job
+errors, $\approx382$ CPU-hours. About 0.14\% of pile-up events hit an ACTS navigation assertion at the $\phi$-sector
+boundaries; they are replaced deterministically by a re-seeded event and recorded (three G3 pilot jobs that failed this way
+before the fix were left out).
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Detector-level samples (\rep{acts/stage4/C1_LAUNCH.md}, \rep{G1B_REPORT.md}, \rep{A2FC_REPORT.md}).
+$\rho$ is the pile-up density in units of a normalised PU-200 event (Section~\ref{sec:bkg:pu}).}
+\label{tab:samples}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+sample & content and purpose\\
+\midrule
+A1 & signal without pile-up: finder-efficiency calibration and the window/tolerance variations\\
+A2 & signal + PU 200 on five (species, mass) points ($E$ 200, 500, 1000, 1500; $\Etil$ 500) $\times$ 8 $\Lam$ values, run row-major
+     (the same pile-up event for every $\Lam$ of a row), $\Lam=0.45,0.6,0.85,1,1.5,2,3,5\keV$, 180--200 template events
+     per point\\
+A5 & five (species, mass) points at $\Lam=1\keV$ through the full ACTS chain with dumps (closure of the fast signal path)\\
+A2FC & full-chain re-run of the nine A2 points where the fast signal path was not validated (pre-registered revert rule)\\
+B1 & pile-up only, $\rho=1$, four MET roads per event: 12\,000 events, 48\,000 trials\\
+B2 & pile-up only, $\rho=2$ (superposition of two normalised events): 3000 events, 6000 trials\\
+dens & $\rho=1$ re-runs of a B1 subset with the top-up at its lower and upper ratio (density systematic)\\
+SM & Pythia~8 $Z(\nu\nu)$+jet, $W(\ell\nu)$+jet (incl.\ $\tau$ split by decay class), $t\bar t$, with PU 200 and truth MET$>200\GeV$;
+     2000 events per sample\\
+C$'_0$, C$'_{\rm PU}$ & guns and toys for single-interaction topologies (photon conversions, $V^0$, vertex pairs, loopers,
+     nuclear interactions, decays in flight): $3\times10^4$--$10^5$ per gun or toy without pile-up, 500 per topology (8 topologies) with
+     pile-up\\
+\bottomrule
+\end{tabularx}
+\end{table}

@@ -1,0 +1,36 @@
+{
+ "figure": "D10_sepit_calibration",
+ "files": [
+  "D10_sepit_calibration.pdf",
+  "D10_sepit_calibration.png"
+ ],
+ "created": "2026-10-16T14:22:51",
+ "stamps": [],
+ "label": {
+  "left": "Private work (simulation)",
+  "right": "sqrt(s) = 14 TeV, PU 200, 3 ab^-1",
+  "truth_level_tag": false,
+  "experiment_name_or_logo": false
+ },
+ "inputs": {
+  "data/acts_stage4/analysis/C12FC_v1/sep_it_det.json": "31666c1132604200ff7d898f796bbd0e35b71fb782314552353e21cc9cee229f"
+ },
+ "inputs_missing": [],
+ "code_sha256": {
+  "stage5/plotting.py": "f9c35e9ea114ee77b07a2f467085e4d29c93ddf9d75f976e756e27ba9bf3474e",
+  "stage5/make_figures.py": "d2d8dbbf3c875355ff195151aaee0341933dffdad5e9e2222f15d5dea6286a20"
+ },
+ "env": {
+  "python": "3.12.15",
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "nice": 19
+ },
+ "meta": {
+  "level": "detector",
+  "pu200_measurable": false,
+  "pu200_note": "PU-200 (A2/A5) values flagged NOT MEASURABLE per point; only the A1 (no PU) values are a detector-level sep_IT^det",
+  "n_A1_drawn": 77,
+  "n_pu200_not_measurable": 45
+ }
+}

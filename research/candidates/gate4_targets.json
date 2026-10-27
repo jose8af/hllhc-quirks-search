@@ -1,0 +1,545 @@
+{
+ "C005": {
+  "name": "Emerging jets and dark showers (GeV dark pions, Higgs portal, triggers)",
+  "frameworks": [
+   "Dark QCD (hidden valley), bifundamental mediators, Higgs-portal dark showers",
+   "Dark QCD / semi-visible jets",
+   "QCD-like dark sector / scalar portal",
+   "confining dark sector with vector-like dark quarks charged under SU(2)L (Drell-Yan production)"
+  ],
+  "ideas": [
+   "Snowmass dark-shower report states parameter space is largely unconstrained for dark pion masses above a few GeV in both prompt and long-lived regimes. Existing CMS searches target low-mass (dimuon) or emerging jets; intermediate masses with hadronic displaced decays and soft multiplicity are less covered.",
+   "EW pair production of heavy dark quarks Q_u Q_d (W exchange) yields dark showers plus leptons/MET with cross section not suppressed by QCD colour; HL-LHC may reach ~1 TeV mediators. Existing emerging-jet search assumes QCD-coloured mediators.",
+   "Emerging-jet taggers have been developed for QCD-produced t-channel mediators; Higgs-portal production (ggF, VBF, VH) offers cleaner triggers and is not a target of the CMS EJ analysis per the HL-LHC-oriented study.",
+   "Current triggers define which parts of dark-QCD parameter space are visible; Phase-2 L1 tracking, L1 scouting and timing may open regions. Study of trigger choices indicates blind spots."
+  ],
+  "signature_hypotheses": [
+   "Displaced multi-track vertices / jets with high track multiplicity from boosted dark showers; trackless displaced jets; ML anomaly tagging of dark-shower jets",
+   "Displaced/emerging-jet-like activity plus isolated lepton or MET in EW-like production; track-multiplicity vertex tagging with Drell-Yan topologies",
+   "VBF/VH-tagged Higgs with displaced multi-vertex jets; two displaced-vertex jets with m_jj ~ 125 GeV; HL-LHC with MTD timing",
+   "Displaced-track/vertex-based L1/HLT trigger for emerging jets; L1 and HLT scouting streams; low-pT multi-muon triggers"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:hep-ph/0604261",
+    "title": "Echoes of a hidden valley at hadron colliders",
+    "year": 2006
+   },
+   {
+    "id": "arXiv:2203.09503",
+    "title": "Theory, phenomenology, and experimental avenues for dark showers: a Snowmass 2021 report",
+    "year": 2022
+   },
+   {
+    "id": "arXiv:2103.01238",
+    "title": "Perturbative benchmark models for a dark shower search program",
+    "year": 2021
+   },
+   {
+    "id": "arXiv:2110.10691",
+    "title": "A theory of dark pions",
+    "year": 2021,
+    "why": "Sec. 7 EW production of dark quark mediators; HL-LHC reach"
+   },
+   {
+    "id": "arXiv:1502.05409",
+    "title": "Emerging Jets",
+    "year": 2015
+   },
+   {
+    "id": "arXiv:hep-ph/0604261",
+    "title": "Echoes of a hidden valley at hadron colliders",
+    "year": 2006
+   },
+   {
+    "id": "arXiv:1312.4992",
+    "title": "Exotic decays of the 125 GeV Higgs boson",
+    "year": 2013
+   },
+   {
+    "id": "arXiv:2103.08620",
+    "title": "Triggering on emerging jets",
+    "year": 2021
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "CMS-side (ATLAS already preparing one) Higgs-portal (ggF/VBF/VH) emerging-jet/dark-shower search with hadronically decaying dark mesons of ~2-20 GeV at short proper decay lengths (~1-100 mm, in the tracker), where CMS muon-detector-shower limits (2402.01898) lose sensitivity and CMS displaced-jet searches (2409.10806) are interpreted only for H->SS (two LLPs), using multi-displaced-vertex counting and Phase-2 displaced L1/HLT tracking. A pheno HL-LHC projection already exists (2512.24814), so the residual novelty is experimental implementation only.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C003": {
+  "name": "Soft unclustered energy patterns (SUEP / soft bombs)",
+  "frameworks": [
+   "Strongly coupled hidden valley; large-N / AdS-like multiplicity; soft bombs"
+  ],
+  "ideas": [
+   "The original soft-bomb paper defers displaced decays and non-resonant/pair-production cases. Forward citations show CMS (ggF, W/Z-associated, scouting) and ATLAS (muons) SUEP searches; displaced SUEP and other production modes were not found in these queries."
+  ],
+  "signature_hypotheses": [
+   "High-multiplicity isotropic soft tracks, with displaced vertices or pair-produced mediators; trigger via scouting or L1 tracking at HL-LHC"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:1612.00850",
+    "title": "Triggering Soft Bombs at the LHC",
+    "year": 2016,
+    "why": "defines SUEP signature"
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "Displaced, hadronically-decaying, isotropic (non-jet-like) SUEP with dark-meson c*tau ~ mm-m from ggF/VH-produced mediators, i.e. high-multiplicity soft displaced-track/vertex spray not passing emerging-jet jet requirements and not muon-rich; plus an HL-LHC (Phase-2 L1-track/scouting) projection of the prompt program. Pair-produced/non-resonant SUEP survives only as theory-explored-untested with no worked benchmark.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C015": {
+  "name": "Long-lived and flavour-violating ALPs from top/Higgs decays",
+  "frameworks": [
+   "ALP EFT with flavour-violating quark couplings",
+   "ALP effective theory with flavour-violating/top couplings; Higgs->aa",
+   "ALP with top/flavour-violating couplings; c tau in cm-m range"
+  ],
+  "ideas": [
+   "Top decays t -> c/u + a with GeV-mass ALPs give displaced decays; single-top searches leave the intermediate-lifetime region largely unconstrained.",
+   "ALP couplings g_{3i} induce t -> a q and single-top+ALP, complementary to meson-decay constraints.",
+   "ALPs from top decays or exotic Higgs decays, long-lived for few-GeV masses; searches with displaced dimuon scouting, DV, muon system; displaced calorimeter deposits unstudied for HL-LHC."
+  ],
+  "signature_hypotheses": [
+   "lepton+jets top event with displaced vertex/jets/dimuon from ALP; timing for displaced photons at HL-LHC",
+   "t -> q a with a -> gamma gamma, mu mu, jj; associated t+a production",
+   "t->a q, a->mu mu/hadrons displaced; h->aa displaced jets."
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:2202.09371",
+    "title": "The ALPs from the top: searching for long lived axion-like particles from exotic top decays",
+    "year": 2022,
+    "why": "LLP ALPs from exotic top decays"
+   },
+   {
+    "id": "arXiv:1611.09355",
+    "title": "Searching for Axionlike Particles in Flavor-Changing Neutral Current Processes",
+    "year": 2016,
+    "why": "ALPs in FCNC processes"
+   },
+   {
+    "id": "arXiv:2110.10698",
+    "title": "Flavor probes of axion-like particles",
+    "year": 2021,
+    "why": "flavour probes of ALPs"
+   },
+   {
+    "id": "arXiv:1611.09355",
+    "title": "Searching for Axionlike Particles in Flavor-Changing Neutral Current Processes",
+    "year": 2016
+   },
+   {
+    "id": "arXiv:2202.09371",
+    "title": "The ALPs from the top: searching for long lived axion-like particles from exotic top decays",
+    "year": 2022,
+    "why": "ALPs from exotic top decays"
+   },
+   {
+    "id": "arXiv:1704.08207",
+    "title": "LHC as an Axion Factory: Probing an Axion Explanation for $(g-2)_\\mu$ with Exotic Higgs Decays",
+    "year": 2017,
+    "why": "LHC as an axion factory"
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "Long-lived t->q a with LIGHT ALPs (m_a ~ 1-35 GeV, the 2202.09371 benchmarks m_a = 2 and 10 GeV) decaying in the HCAL or muon system (c tau ~ 0.01-10 m) in lepton-triggered ttbar events. The leptonic ALP decays (displaced mu mu / gamma gamma) from top decays are also open. ATLAS has already done the ID-DV version for 40-55 GeV (2403.15332). The Higgs part (c) and generic h->aa long-lived searches are well covered. The prompt part (b) is narrowed to a->gamma gamma / mu mu from top decay (t->qX with X->bb is covered by ATLAS 2301.03902). Much of what survives could be met by adding top-decay signal interpretations to existing ATLAS CalRatio W/Z+LLP and CMS muon-detector-shower analyses. A wholly new analysis is not needed.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C019": {
+  "name": "Doubly charged scalars: compressed, displaced, tau/W cascades",
+  "frameworks": [
+   "Type-II seesaw (Higgs triplet) / left-right models",
+   "Type-II seesaw / Georgi-Machacek triplet scalars",
+   "Type-II seesaw / Higgs triplet / Georgi-Machacek / LR models",
+   "Type-II seesaw/Georgi-Machacek/left-right triplet scalars"
+  ],
+  "ideas": [
+   "Compressed H++/H+ spectra (Delta m ~ O(10) GeV) produce soft same-sign leptons with low invariant mass; tiny vev leads to displaced-vertex doubly-charged scalar decays. Recent work revises exclusions and tests robustness of models.",
+   "Fermiophobic or weak-Yukawa H++ (decaying to W+W+ or l+l+) can have cτ from 0.1 mm to 100 mm where prompt multilepton and HSCP searches lose sensitivity. Proposes displaced-vertex searches at HL-LHC.",
+   "Doubly charged scalars decaying to same-sign W or leptons with small mass splitting may be long-lived; regions in m-ctau plane remain unconstrained and calls for dedicated search (HSCP/kink/DT mix).",
+   "ATLAS full Run-2 H++ search uses only e/mu final states; tau-rich benchmarks, W+W+ decays (small triplet vev, large vev) and H++ -> H+ W+* cascades from Akeroyd et al. open channels with different backgrounds."
+  ],
+  "signature_hypotheses": [
+   "Soft same-sign lepton pair with low m_ll, displaced same-sign leptons, H++ -> W+W+ with compressed H+",
+   "Displaced vertex with same-sign tracks/leptons or W*W* decays; displaced showers in muon system; low-mass (100-150 GeV) in Yukawa case",
+   "Doubly charged tracks (large dE/dx), kinked/disappearing tracks, delayed decays.",
+   "Same-sign dilepton + MET + jets (WW), same-sign taus, 3-4 lepton cascades with charged Higgs, in pp->H++H--, H++H-."
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:hep-ph/0506176",
+    "title": "Single and pair production of doubly charged Higgs bosons at hadron colliders",
+    "year": 2005,
+    "why": "H++ production at hadron colliders"
+   },
+   {
+    "id": "INSPIRE:214561",
+    "title": "DOUBLY CHARGED HIGGS BOSONS",
+    "year": 1985,
+    "why": "doubly charged Higgs bosons"
+   },
+   {
+    "id": "arXiv:hep-ph/0506176",
+    "title": "Single and pair production of doubly charged Higgs bosons",
+    "year": 2005
+   },
+   {
+    "id": "arXiv:1710.09748",
+    "title": "ATLAS doubly charged Higgs multilepton",
+    "year": 2017
+   },
+   {
+    "id": "arXiv:0909.4419",
+    "title": "Doubly charged Higgs bosons and three-lepton signatures in the Higgs Triplet Model",
+    "year": 2009
+   },
+   {
+    "id": "arXiv:1105.2209",
+    "title": "Production of doubly charged scalars from the decay of singly charged scalars in the Higgs Triplet Model",
+    "year": 2011
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "(i) Fermiophobic H++ -> W+W+ with c*tau ~0.1-100 mm (m ~150 GeV to ~TeV): same-sign / charged-parent displaced-vertex search (no CMS/ATLAS result found; the ATLAS displaced-dilepton-vertex search requires opposite charge). (ii) Compressed triplet (Delta M ~1-30 GeV, H0/A0 -> nu nu) with soft low-m_ll same-sign leptons + ISR: phenomenology only, and existing compressed-electroweakino searches were shown by a recast to be insensitive. (iii) Hadronic-tau H++ final states with full Run 2/Run 3/HL data: CMS has only a 12.9 fb-1 PAS, ATLAS uses e/mu only. The prompt W+W+ channel and stable/HSCP regime are DEAD (covered).",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C001": {
+  "name": "Quirks / quirkonium (infracolor strings, stopped, soft-pion showers)",
+  "frameworks": [
+   "Folded SUSY / quirks (infracolor), natural quirks",
+   "Quirk / infraparticle models with long strings",
+   "Quirks / folded SUSY / quirky little Higgs / vector-like confinement with Lambda_IC << m_Q",
+   "Quirks with Lambda_IC ~ 1-10 GeV (infracolor pions); SUEP-like final states from quirk annihilation"
+  ],
+  "ideas": [
+   "Quirks lose energy and annihilate out-of-time; existing out-of-time R-hadron search recast; regime with long strings left for future work.",
+   "Quirks with EW charge and masses of a few hundred GeV are unconstrained; signals include non-helical tracks, soft unclustered energy patterns and trigger-dependent muon signals. First collider-experiment quirk search came from FASER (2026).",
+   "Electroweakly charged quirks with long strings give non-standard tracks/deposits (soft unclustered energy, displaced/curved tracks); Run-2 style searches did not cover regions even after HL-LHC according to authors.",
+   "Heavy quarks charged under both SM and a confining hidden gauge group stay connected by a macroscopic string; pairs oscillate, lose energy in matter and annihilate late, giving non-standard tracks (bending, ionisation, out-of-time decays). Theory papers 2008-2018 proposed several strategies; the 2026 FASER result is the only LHC-experiment quirk search I found, none from ATLAS/CMS in my INSPIRE query."
+  ],
+  "signature_hypotheses": [
+   "out-of-time energy deposits, anomalous ionisation, bent tracks",
+   "Non-helical/ anomalous tracks with ionisation, SUEP-like soft energy from quirk annihilation, large-radius muon-trigger events",
+   "Soft unclustered energy patterns with MET, highly-ionising or non-pointing tracks, delayed quirk pair tracks (timing).",
+   "Highly ionising, non-helical tracks and out-of-time/delayed calorimeter or muon-system deposits from annihilating quirkonium; stopped-quirk decays in the empty-bunch window; delayed tracks in forward detectors."
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:0805.4642",
+    "title": "Macroscopic Strings and 'Quirks' at Colliders",
+    "year": 2008,
+    "why": "macroscopic strings and quirks"
+   },
+   {
+    "id": "arXiv:1106.2569",
+    "title": "Quirks at the Tevatron and Beyond",
+    "year": 2011,
+    "why": "quirks at Tevatron and beyond"
+   },
+   {
+    "id": "arXiv:1708.02243",
+    "title": "Tracking down Quirks at the Large Hadron Collider",
+    "year": 2017
+   },
+   {
+    "id": "arXiv:1512.05782",
+    "title": "A Quirky Probe of Neutral Naturalness",
+    "year": 2015
+   },
+   {
+    "id": "arXiv:1501.05310",
+    "title": "Naturalness in the Dark at the LHC",
+    "year": 2015
+   },
+   {
+    "id": "arXiv:1812.08173",
+    "title": "Discovering the Twin Higgs Boson with Displaced Decays",
+    "year": 2018,
+    "why": "(neutral-naturalness context) displaced decays"
+   },
+   {
+    "id": "arXiv:2504.02940",
+    "title": "Visible collider signals of natural quirks",
+    "year": 2025,
+    "why": "Visible collider signals of natural quirks"
+   },
+   {
+    "id": "arXiv:0805.4642",
+    "title": "Macroscopic Strings and 'Quirks' at Colliders",
+    "year": 2008
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "A dedicated central-detector (ATLAS/CMS) coplanar non-helical-hit search for colour-neutral EW-charged quirks with mQ above the FASER reach (FASER excludes up to ~179 GeV at Lambda=10 keV, 2607.26195 Fig.5) in the mesoscopic regime Lambda ~ 0.1-100 keV, i.e. the gap between reinterpreted HSCP/OoT (low Lambda) and monojet (high Lambda) limits; requires custom (non-helix) Phase-2 tracking/HLT. Secondary: quirkonium dijet/diboson resonance + low-pT track excess (2506.11192) is open but its HL-LHC viability under 200 PU is unproven; Wgamma/WZ resonance + displaced glueball vertex (2504.02940 Sec.4) is open but low-rate.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C044": {
+  "name": "VLQ exotic decays to S/ALP (5/3 top partners, hadronic 6b, recasts)",
+  "frameworks": [
+   "Composite Higgs / extended Higgs with singlet S; VLQ simplified models",
+   "Composite Higgs / partial compositeness with light pNGB singlet (ALP)",
+   "Vector-like quark simplified models",
+   "Vector-like quarks with decays to light dark/exotic scalars"
+  ],
+  "ideas": [
+   "Top partners (X5/3, T2/3) can decay via a light composite pseudoscalar a into t a, with a to photons or W+W-, giving same-sign dilepton + photon or multi-top final states. The authors recast Run-2 SSL searches and say a dedicated SSL+photon search is needed.",
+   "Roadmap paper states VLQ -> t/b + S (S sub-TeV singlet) has not been explored experimentally; since then ATLAS (diphoton) and CMS (bb, single production) appeared. Other S decay modes (gg, WW, ZZ, tautau, long-lived S) remain open.",
+   "Pair-produced B with exotic decays into jets and b-jets leads to a 4j+2b/6b topology absent from dedicated searches; authors estimate HL-LHC reach from a dedicated search in this channel.",
+   "Systematic recast of public ATLAS/CMS searches shows large parameter space in VLQ branching fractions (exotic decays) is only indirectly bounded. A dedicated search for the tt-rich channel is argued to reach beyond 1.5 TeV."
+  ],
+  "signature_hypotheses": [
+   "Same-sign dileptons + hard photon(s) + b-jets; 3t3tbar-like multi-top; resonant a->gamma gamma inside high-ST events",
+   "VLQ pair/single production with boosted S reconstructed as large-R jet or resonance; S->WW, ZZ, gg, tautau; displaced S",
+   "High-multiplicity jets with 2-6 b-tags, boosted jet substructure tagging, resonance in pairs of jet systems",
+   "VLQ pair -> t t-bar + extra objects, multi-b, high jet multiplicity"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:1907.05894",
+    "title": "Exotic decays of top partners with charge 5/3: bounds and opportunities",
+    "year": 2019,
+    "why": "exotic charge-5/3 top-partner decays, HL-LHC recast"
+   },
+   {
+    "id": "arXiv:1211.5663",
+    "title": "A First Top Partner Hunter's Guide",
+    "year": 2012,
+    "why": "top partner decay/hunter guide baseline"
+   },
+   {
+    "id": "arXiv:1506.05110",
+    "title": "Beyond the Minimal Top Partner Decay",
+    "year": 2015,
+    "why": "beyond minimal top partner decays"
+   },
+   {
+    "id": "arXiv:2203.13753",
+    "title": "Roadmap to explore vectorlike quarks decaying to a new scalar or pseudoscalar",
+    "year": 2022,
+    "why": "roadmap for VLQ -> S q"
+   },
+   {
+    "id": "arXiv:1907.05929",
+    "title": "Signatures of vector-like top partners decaying into new neutral scalar or pseudoscalar bosons",
+    "year": 2019,
+    "why": "VLQ -> t S phenomenology"
+   },
+   {
+    "id": "arXiv:2112.03742",
+    "title": "Broad toplike vector quarks at LHC and HL-LHC",
+    "year": 2021,
+    "why": "broad toplike VLQs LHC/HL-LHC"
+   },
+   {
+    "id": "arXiv:2203.13753",
+    "title": "Roadmap to explore vectorlike quarks decaying to a new scalar or pseudoscalar",
+    "year": 2022
+   },
+   {
+    "id": "arXiv:1211.5663",
+    "title": "A First Top Partner Hunter's Guide",
+    "year": 2012
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "(1) Dedicated pair-production search for T T -> (t S0)(t S0) -> 6 top (or tS0 + tZ/th mixed), which the 2026 recasting atlas states has no direct search yet and recasts already to ~1.65 TeV at BR=100% - a high-ST multi-lepton/multi-b search; HL-LHC suitable. (2) X5/3 -> t phi+ -> t W+ gamma (SSL + hard photon): not targeted; the CMS X5/3 single-lepton search (CMS-PAS-B2G-24-005) covers only X5/3 -> t H+(-> tb). (3) T -> t S with S -> gg/WW (no S->gamma gamma/bb) and B -> b Phi(gg/bb) with Phi mass away from 125 GeV: no VLQ interpretation found, but final states are partially covered by stealth/RPV multijet searches (tt + many light jets; pair-produced trijet resonances) and by B -> bH fully hadronic - a reinterpretation-first gap. Status overall: searched-limited-regime / indirectly-covered.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C008": {
+  "name": "Enriched semi-visible jets (ISR, leptons, photons, taus)",
+  "frameworks": [
+   "hidden valley with Z' / t-channel mediators; dark hadrons with Higgs-like or Z-like visible decays"
+  ],
+  "ideas": [
+   "Visible dark-hadron decays within SVJs give leptons/photons/taus; ISR gives a recoil handle to reconstruct the invisible fraction. Dedicated hadronic SVJ searches are one to two orders of magnitude less sensitive than lepton-enriched ones in the simulated benchmark."
+  ],
+  "signature_hypotheses": [
+   "MET aligned with jet plus leptons/photons in SVJ; ISR photon + SVJ; s- and t-channel; HL-LHC extrapolation"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:1503.00009",
+    "title": "Semivisible Jets: Dark Matter Undercover at the LHC",
+    "year": 2015
+   },
+   {
+    "id": "arXiv:1712.07160",
+    "title": "Collider phenomenology of Hidden Valley mediators of spin 0 or 1/2 with semivisible jets",
+    "year": 2017
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "(i) Photon-enriched SVJs (prompt non-isolated photons inside SVJs, high neutral-EM-fraction jets that fail standard jet ID) from s-channel Z' - proposed-not-searched (pheno only, 2407.08276); (ii) photon-ISR-tagged low-mass (~200-700 GeV) Z' -> SVJ SVJ - proposed-not-searched (2409.04741). Jet-ISR boosted SVJ appears to be in preparation at CMS (thesis INSPIRE 2751239), so only the photon-ISR variant is clean. Lepton- and tau-enriched SVJ are taken.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C066": {
+  "name": "Resonant single-LQ and third-generation LQ (b tau, mono-top, tau-philic, vector U1)",
+  "frameworks": [
+   "Gauge/vector LQ (4321, Pati-Salam), beta_R coupling, kappa_Y (Yang-Mills vs minimal)",
+   "Indirect/photon-initiated LQ production; photon PDF",
+   "LQ with O(1)-O(3) Yukawas (B anomalies, g-2); NLO+PS",
+   "Scalar/vector LQ with lepton content of the proton (LUXlep photon-induced lepton PDFs)"
+  ],
+  "ideas": [
+   "Lepton-quark fusion gives single-LQ production that scales with the Yukawa squared and probes large masses at modest couplings. The first LHC searches cover e/mu + light-jet/b-jet and tau+b; extensions (charm/strange tagging, top-containing final states, vector LQ, LQ with LFV couplings, HL-LHC reach) are not obviously covered.",
+   "Haisch et al. map the 5-parameter space of resonant third-generation LQ production and single out b+tau, mono-top and mono-jet signatures whose LHC sensitivity had not been studied. Dedicated mono-top/mono-jet interpretations in resonant LQ mode need checking in current ATLAS/CMS results.",
+   "Baker et al. show the right-handed coupling, neglected earlier, changes which high-pT signature dominates (tau tau tails vs coloron). Experimental interpretations typically cover a few kappa/beta_R benchmarks; the mapping to b-b-tau-tau, b tau nu and tt+tautau topologies at HL-LHC for the full (beta_L, beta_R, kappa) space is not obviously done.",
+   "Experiments scan fixed-lambda and treat pair, single and t-channel separately; theory shows interference/overlap matters at large lambda and for S1 interference."
+  ],
+  "signature_hypotheses": [
+   "Lepton + jet(flavour-tagged: c, b, t-jet) resonance in m(l j); LFV variants (mu-tau, e-mu with q) as lepton+jet resonances; high-mass tails at 13.6 TeV and HL-LHC",
+   "b-jet + hadronic tau resonance (m_T or m_vis); mono-top (t + MET) and mono-jet with LQ->q nu from b-quark / charm initial states",
+   "High-pT tau tau tails with b-tag, b tau nu, t-channel vs. resonant U1; pair production bb tau tau with kappa-dependent cross sections",
+   "Joint LQ (pair + single + non-resonant) fit in l l j j / l l b b final states with lambda scan"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:2005.06475",
+    "title": "Lepton-Quark Collisions at the Large Hadron Collider",
+    "year": 2020,
+    "why": "proposes the resonant single-LQ search strategy via lepton PDFs"
+   },
+   {
+    "id": "arXiv:2005.06477",
+    "title": "Leptons in the proton",
+    "year": 2020,
+    "why": "lepton PDF (LUXlep) used for the signal"
+   },
+   {
+    "id": "arXiv:2012.11474",
+    "title": "Resonant third-generation leptoquark signatures at the Large Hadron Collider",
+    "year": 2020,
+    "why": "defines the signatures and parameter space"
+   },
+   {
+    "id": "arXiv:1708.08450",
+    "title": "Gauge leptoquark as the origin of B-physics anomalies",
+    "year": 2017
+   },
+   {
+    "id": "arXiv:1901.10480",
+    "title": "High-pT signatures in vector-leptoquark models",
+    "year": 2019,
+    "why": "beta_R and coloron constraints"
+   },
+   {
+    "id": "arXiv:1801.07641",
+    "title": "Leptoquark toolbox for precision collider studies",
+    "year": 2018
+   },
+   {
+    "id": "arXiv:1811.03561",
+    "title": "R_D(*) motivated S1 leptoquark scenarios: impact of interference on the exclusion limits",
+    "year": 2018
+   },
+   {
+    "id": "arXiv:2308.07826",
+    "title": "CMS: third-gen LQ coupled to tau and b via single, pair and nonresonant production",
+    "year": 2023
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "The only clean experimental remnant is resonant lepton-PDF single-LQ production with charm-tagged jets (e/mu + c-jet), and possibly vector-LQ or e-mu-LFV interpretations of the lepton+jet resonance. ATLAS (2507.03650) and CMS (2608.28377, mu only) use light-jet and b-jet categories without c-tagging; the ATLAS+CMS review 2505.08738 (Sec. 4) lists e/mu + light- or charm-flavoured jets as remaining opportunities. A collaboration-level HL-LHC projection of the resonant lepton-quark channel is also missing, but a pheno HL projection exists (2005.06475 Figs. 3-4: HL reach to ~5.7 (4.2) TeV for the u (d) couplings) and 2005.06475 states that s/c couplings are harder to constrain because of PDF suppression. Sub-ideas (b), (c), (e) and (f) DIE. (d) is reduced to reinterpretation level.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C051": {
+  "name": "High-mass DY angular coefficients (Lam-Tung, T-odd A5-A7) and A_FB/sin2theta running",
+  "frameworks": [
+   "SMEFT dim-6 (dipole, scalar/tensor four-fermion) and dim-8",
+   "SMEFT dim-8 CP-odd semileptonic four-fermion + gluon field strength; dim-6 EW x chromomagnetic dipole interference",
+   "SMEFT four-fermion operators, SM EW running, off-peak A_FB"
+  ],
+  "ideas": [
+   "Chirality-breaking operators (dipoles, scalar/tensor four-fermion) do not interfere with the SM in unpolarised rates but break the Lam-Tung relation A0=A2 in the Collins-Soper angular decomposition. Existing angular-coefficient measurements are at the Z peak; the energy-growing region (high m_ll, high pT_ll) has not been unfolded.",
+   "A5-A7 vanish at tree level in the SM and are loop-suppressed; dim-8 CP-odd operators with a gluon field strength, and O(1/Lambda^4) EW-dipole x chromomagnetic-dipole interference, populate them in the high mass / high pT region.",
+   "Off-peak A_FB(m_ll) provides both SMEFT four-fermion sensitivity (growth with m_ll^2/Lambda^2) and a test of the time-like running of the weak mixing angle above m_Z, which has not been probed."
+  ],
+  "signature_hypotheses": [
+   "Unfolded A0-A7 (esp. A0-A2) double-differential in m_ll (>200 GeV) and pT_ll, e and mu channels, at 13/13.6 TeV and HL-LHC",
+   "A6 and A7 (and A5) vs m_ll and pT_ll above Z peak; sign-sensitive asymmetries in cos(theta)sin(phi)",
+   "A_FB and A4 in m_ll up to several TeV, e and mu, vs rapidity, HL-LHC; MSbar sin2theta_W(mu) running extraction"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:2003.11615",
+    "title": "Novel angular dependence in Drell-Yan lepton production via dimension-8 operators",
+    "year": 2020,
+    "why": "Introduces extended angular basis for dim-8 effects at high m_ll"
+   },
+   {
+    "id": "arXiv:1609.08157",
+    "title": "Energy helps accuracy: electroweak precision tests at hadron colliders",
+    "year": 2016,
+    "why": "Energy-growing logic for DY EW tests"
+   },
+   {
+    "id": "arXiv:2511.19617",
+    "title": "Naive T-odd Drell-Yan angular coefficients as a probe of the SMEFT",
+    "year": 2025,
+    "why": "Proposes A6,A7 for dim-8 CP-odd operators"
+   },
+   {
+    "id": "arXiv:2302.10782",
+    "title": "Probing the weak mixing angle at high energies at the LHC and HL-LHC",
+    "year": 2023
+   },
+   {
+    "id": "arXiv:1609.08157",
+    "title": "Energy helps accuracy",
+    "year": 2016
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "(1) A full (phi-dependent) unfolded A0-A7 measurement, in particular A2 and A0-A2, double-differential in m_ll (>~170-200 GeV) and pT_ll - not done by CMS/ATLAS (A0 alone vs mass, pT/y-integrated, template-level, exists in CMS 2202.12327). (2) A5-A7 above the Z peak: no measurement found (survives, but SM ~0 and statistics at high m & high pT are small). (3) A_FB at high mass is ALREADY MEASURED (CMS 2202.12327, m>170 GeV up to >1 TeV, 138 fb-1) and used in SMEFT fits -> that part DIES; only an experimental extraction of MSbar sin2theta_W(mu) running from high-mass NC DY survives (no CMS/ATLAS result found; theory HL-LHC projections exist in 2302.10782).",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ },
+ "C040": {
+  "name": "Stau coannihilation corridor, light sleptons, g-2 motivated, Z'-mediated sleptons",
+  "frameworks": [
+   "B-L supersymmetric SM with Z' portal to sleptons and sneutrinos",
+   "MSSM stau-neutralino coannihilation / compressed staus",
+   "MSSM with light sleptons and winos/higgsinos for g-2 and DM",
+   "Natural SUSY with light higgsinos and light right staus"
+  ],
+  "ideas": [
+   "LHC lacks sensitivity to direct stau production in the corridor m_tau < Delta m < ~60 GeV, where coannihilation is relevant for relic density; soft hadronic taus, large backgrounds, trigger limits.",
+   "Light right staus embedded in natural SUSY with higgsinos; HL-LHC study of stau pairs. The experimental HL projections (CMS Phase-2) assume wino-like or simplified production.",
+   "After the Fermilab g-2 result, small-mu SUSY and slepton scenarios invite combined searches; HL-LHC discovery reach studies mostly phenomenology, with CMS combined EW search 2402.01888 covering Run 2.",
+   "Z' decays to charged sleptons/right-handed sneutrinos yield dilepton + MET or displaced signatures; HL-LHC BDT study; no collaboration search for Z' -> slepton found."
+  ],
+  "signature_hypotheses": [
+   "soft hadronic tau(s) + ISR jet + MET, VBF-tagged compressed stau; displaced/soft track signatures",
+   "hadronic tau pairs + MET, stau from higgsino cascades",
+   "2-3 leptons + MET, soft leptons, taus; compressed slepton corridor",
+   "Z' -> slepton pair/ sneutrino pair; dilepton + MET resonance-like edges"
+  ],
+  "seminal_refs": [
+   {
+    "id": "arXiv:2601.06358",
+    "title": "Rare and Experimentally Challenging Supersymmetry Signatures",
+    "year": 2026,
+    "why": "review stating the gap"
+   },
+   {
+    "id": "arXiv:1110.6926",
+    "title": "Natural SUSY Endures",
+    "year": 2011
+   },
+   {
+    "id": "arXiv:2002.04429",
+    "title": "Natural supersymmetry: status and prospects",
+    "year": 2020
+   },
+   {
+    "id": "arXiv:2104.03839",
+    "title": "What the Fermilab muon g-2 experiment tells us about discovering SUSY at HL-LHC",
+    "year": 2021
+   },
+   {
+    "id": "arXiv:2104.03302",
+    "title": "The tiny (g-2) muon wobble from small-mu supersymmetry",
+    "year": 2021
+   },
+   {
+    "id": "arXiv:2608.18321",
+    "title": "Z'-Mediated Slepton and Sneutrino Signatures at HL-LHC",
+    "year": 2026
+   }
+  ],
+  "proposed_analysis_target_to_evaluate": "(a) only: a collaboration-level HL-LHC/Phase-2 projection (and eventual Phase-2 analysis) for DIRECT stau pair production with Delta m(stau, chi0_1) ~ 5-60 GeV using ISR/VBF recoil + soft tau_h (Phase-2 tau trigger/ID, e.g. low-pT tau_h at L1). Run-2/3 searches exist but are weak there: ATLAS 2609.37215 (ISR channel excludes only up to m(stau)=115 GeV at Delta m=30 GeV; combined: no exclusion); CMS 1910.01185 (77 fb-1, interpreted for chargino/neutralino with intermediate stau). The HL-LHC YR stau projections are sensitive only for Delta m > 100 GeV. Status: searched-limited-regime + LHC-not-projected-to-HL. Phenomenology projections for this corridor already exist (e.g. 1704.04669, 2308.05723, 2403.18991), so novelty is experimental-analysis/projection only.",
+  "note": "The proposed target is a hypothesis to be tested, not an established gap. Evaluate it independently from primary sources."
+ }
+}

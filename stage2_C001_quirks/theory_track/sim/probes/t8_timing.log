@@ -1,0 +1,303 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/probes/t8_timing.mg
+The import format was not given, so we guess it as command
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm_pt150 -n E_m1000_pt150_lheonly
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm_pt150/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm_pt150/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events E_m1000_pt150_lheonly
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 1000
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 1000.0 [0m
+set iseed 15
+[1mINFO: modify parameter iseed of the run_card.dat to 15 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 1000 events with run name E_m1000_pt150_lheonly
+survey  E_m1000_pt150_lheonly 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 15
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/7. 
+INFO:     P2_gg_xepxemqq  
+INFO: Compiling for process 2/7. 
+INFO:     P2_gq_xepxemgq  
+INFO: Compiling for process 3/7. 
+INFO:     P2_qq_xepxemqq  
+INFO: Compiling for process 4/7. 
+INFO:     P2_qq_xepxemgg  
+INFO: Compiling for process 5/7. 
+INFO:     P1_gq_xepxemq  
+INFO: Compiling for process 6/7. 
+INFO:     P1_qq_xepxemg  
+INFO: Compiling for process 7/7. 
+INFO:     P0_qq_xepxem  
+INFO:     P2_gg_xepxemqq  
+INFO:     P2_gq_xepxemgq  
+INFO:     P2_qq_xepxemqq  
+INFO:     P2_qq_xepxemgg  
+INFO:     P1_gq_xepxemq  
+INFO:     P1_qq_xepxemg  
+INFO:     P0_qq_xepxem  
+INFO:  Idle: 1,  Running: 6,  Completed: 22 [ current time: 01h32 ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 23 [  0.035s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  7.1s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  7.1s  ] 
+INFO: End survey 
+refine 1000
+Creating Jobs
+INFO: Refine results to 1000 
+INFO: Generating 1000.0 unweighted events. 
+sum of cpu time of last step: 40 seconds
+INFO: Effective Luminosity 37209950.550784186 pb^-1 
+INFO: need to improve 0 channels 
+- Current estimate of cross-section: 3.224943818085e-05 +- 1.522286045613702e-07
+    P2_gg_xepxemqq 
+    P2_gq_xepxemgq 
+    P2_qq_xepxemqq 
+    P2_qq_xepxemgg 
+    P1_gq_xepxemq 
+    P1_qq_xepxemg 
+    P0_qq_xepxem 
+INFO:  Idle: 0,  Running: 0,  Completed: 0 [ current time: 01h32 ] 
+INFO: Combining runs 
+sum of cpu time of last step: 40 seconds
+INFO: finish refine 
+refine 1000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 1.9308030605316162 s 
+  === Results Summary for run: E_m1000_pt150_lheonly tag: tag_1 ===
+
+     Cross-section :   3.225e-05 +- 1.522e-07 pb
+     Nb of events :  1000
+ 
+INFO: Running Systematics computation 
+INFO: # events generated with PDF: CT18NLO (14400) 
+INFO: #Will Compute 44 weights per event. 
+INFO: # currently at event 0 [elapsed time: 0.0012 s] 
+INFO: #***************************************************************************
+#
+# original cross-section: 3.224943799999969e-05
+#     scale variation: +10.2% -8.68%
+#     central scheme variation: + 0% -11.1%
+#
+# dynamical scheme # 1 : 3.04581e-05 +9.65% -8.3% # \sum ET
+# dynamical scheme # 2 : 2.92005e-05 +9.34% -8.08% # \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 3 : 3.19283e-05 +10% -8.54% # 0.5 \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 4 : 2.86575e-05 +9.2% -7.97% # \sqrt{\hat s}
+#***************************************************************************
+ 
+INFO: End of systematics computation 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm_pt150/index.html
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm -n E_m200_lheonly
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events E_m200_lheonly
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 200
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 200.0 [0m
+set iseed 16
+[1mINFO: modify parameter iseed of the run_card.dat to 16 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 1000 events with run name E_m200_lheonly
+survey  E_m200_lheonly 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 16
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/7. 
+INFO:     P2_gg_xepxemqq  
+INFO: Compiling for process 2/7. 
+INFO:     P2_gq_xepxemgq  
+INFO: Compiling for process 3/7. 
+INFO:     P2_qq_xepxemqq  
+INFO: Compiling for process 4/7. 
+INFO:     P2_qq_xepxemgg  
+INFO: Compiling for process 5/7. 
+INFO:     P1_gq_xepxemq  
+INFO: Compiling for process 6/7. 
+INFO:     P1_qq_xepxemg  
+INFO: Compiling for process 7/7. 
+INFO:     P0_qq_xepxem  
+INFO:     P2_gg_xepxemqq  
+INFO:     P2_gq_xepxemgq  
+INFO:     P2_qq_xepxemqq  
+INFO:     P2_qq_xepxemgg  
+INFO:     P1_gq_xepxemq  
+INFO:     P1_qq_xepxemg  
+INFO:     P0_qq_xepxem  
+INFO:  Idle: 2,  Running: 6,  Completed: 21 [ current time: 01h32 ] 
+INFO:  Idle: 1,  Running: 6,  Completed: 22 [  0.022s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  0.67s  ] 
+INFO: End survey 
+refine 1000
+Creating Jobs
+INFO: Refine results to 1000 
+INFO: Generating 1000.0 unweighted events. 
+sum of cpu time of last step: 34 seconds
+INFO: Effective Luminosity 7102.524389813818 pb^-1 
+INFO: need to improve 1 channels 
+- Current estimate of cross-section: 0.168954013269 +- 0.0005690139252918643
+    P2_gg_xepxemqq 
+    P2_gq_xepxemgq 
+    P2_qq_xepxemqq 
+    P2_qq_xepxemgg 
+    P1_gq_xepxemq 
+    P1_qq_xepxemg 
+    P0_qq_xepxem 
+INFO:  Idle: 1,  Running: 0,  Completed: 0 [ current time: 01h32 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 1 [  0.39s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 34 seconds
+INFO: finish refine 
+refine 1000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 1.7701351642608643 s 
+  === Results Summary for run: E_m200_lheonly tag: tag_1 ===
+
+     Cross-section :   0.1688 +- 0.0004883 pb
+     Nb of events :  1000
+ 
+INFO: Running Systematics computation 
+INFO: # events generated with PDF: CT18NLO (14400) 
+INFO: #Will Compute 44 weights per event. 
+INFO: # currently at event 0 [elapsed time: 0.0014 s] 
+INFO: #***************************************************************************
+#
+# original cross-section: 0.1687570099999992
+#     scale variation: +0.542% -0.834%
+#     central scheme variation: +0.252% -0.89%
+#
+# dynamical scheme # 1 : 0.168047 +0.389% -0.736% # \sum ET
+# dynamical scheme # 2 : 0.167994 +0.707% -0.967% # \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 3 : 0.169182 +0.442% -0.702% # 0.5 \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 4 : 0.167255 +0.738% -0.987% # \sqrt{\hat s}
+#***************************************************************************
+ 
+INFO: End of systematics computation 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/probe_E_mlm/index.html
+quit

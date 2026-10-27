@@ -1,0 +1,21 @@
+[workspace]
+name = "acts-wheel-probe"
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[dependencies]
+python = "3.12.*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+mplhep = "*"
+uproot = "*"
+pythia8 = "*"
+pyhepmc = "*"
+numba = "*"
+
+[pypi-dependencies]
+pyacts = "==48.0.0"
+
+[system-requirements]
+macos = "26.0"

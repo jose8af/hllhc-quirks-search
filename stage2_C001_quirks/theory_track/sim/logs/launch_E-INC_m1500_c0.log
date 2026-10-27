@@ -1,0 +1,175 @@
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from ../../../../../8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+set lhapdf to lhapdf-config
+set lhapdf to /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+[1;34mWARNING: launching caffeinate to prevent idle sleep when MG5aMC is running. Run './bin/mg5_aMC -s' to prevent this. [0m
+import /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/logs/launch_E-INC_m1500_c0.mg
+The import format was not given, so we guess it as command
+launch /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC -n E-INC_m1500_c0
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 2.9.22                2024-11-29         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC/Cards/me5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/8A/MadGraph/MG5_aMC_v2_9_22/input/mg5_configuration.txt  
+INFO: load configuration from /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+generate_events E-INC_m1500_c0
+stty: stdin isn't a terminal
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [31mOFF[0m               |
+| 2. Choose the detector simulation program    [1mdetector[0m = [01mNot Avail.[0m        |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [01mNot Avail.[0m        |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [31mOFF[0m               |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=Pythia8' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set MXE 1500
+[1mINFO: modify param_card information BLOCK mass with id (9000011,) set to 1500.0 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 20000 events with run name E-INC_m1500_c0
+survey  E-INC_m1500_c0 
+INFO: compile directory 
+INFO: Using LHAPDF v6.5.5 interface for PDFs 
+compile Source Directory
+Using random number seed offset = 64115001
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/7. 
+INFO:     P2_gg_xepxemqq  
+INFO: Compiling for process 2/7. 
+INFO:     P2_gq_xepxemgq  
+INFO: Compiling for process 3/7. 
+INFO:     P2_qq_xepxemqq  
+INFO: Compiling for process 4/7. 
+INFO:     P2_qq_xepxemgg  
+INFO: Compiling for process 5/7. 
+INFO:     P1_gq_xepxemq  
+INFO: Compiling for process 6/7. 
+INFO:     P1_qq_xepxemg  
+INFO: Compiling for process 7/7. 
+INFO:     P0_qq_xepxem  
+INFO:     P2_gg_xepxemqq  
+INFO:     P2_gq_xepxemgq  
+INFO:     P2_qq_xepxemqq  
+INFO:     P2_qq_xepxemgg  
+INFO:     P1_gq_xepxemq  
+INFO:     P1_qq_xepxemg  
+INFO:     P0_qq_xepxem  
+INFO:  Idle: 1,  Running: 4,  Completed: 24 [ current time: 05h31 ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 24 [ current time: 05h31 ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 29 [  0.55s  ] 
+INFO: End survey 
+refine 20000
+Creating Jobs
+INFO: Refine results to 20000 
+INFO: Generating 20000.0 unweighted events. 
+sum of cpu time of last step: 33 seconds
+INFO: Effective Luminosity 1894957372.9640687 pb^-1 
+INFO: need to improve 10 channels 
+- Current estimate of cross-section: 1.2665192548611e-05 +- 6.326147365585806e-08
+    P2_gg_xepxemqq 
+    P2_gq_xepxemgq 
+    P2_qq_xepxemqq 
+    P2_qq_xepxemgg 
+    P1_gq_xepxemq 
+    P1_qq_xepxemg 
+    P0_qq_xepxem 
+INFO:  Idle: 22,  Running: 6,  Completed: 0 [ current time: 05h31 ] 
+INFO:  Idle: 11,  Running: 6,  Completed: 11 [  2.2s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 27 [  5.3s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 28 [  5.3s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 47 seconds
+INFO: finish refine 
+refine 20000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+combination of events done in 6.790587902069092 s 
+  === Results Summary for run: E-INC_m1500_c0 tag: tag_1 ===
+
+     Cross-section :   1.265e-05 +- 2.454e-08 pb
+     Nb of events :  20000
+ 
+INFO: Running Systematics computation 
+INFO:  Idle: 6,  Running: 0,  Completed: 0 [ current time: 05h31 ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 1 [  6.2s  ] 
+INFO: # events generated with PDF: CT18NLO (14400) 
+INFO: #Will Compute 104 weights per event. 
+INFO: #***************************************************************************
+#
+# original cross-section: 1.2647004406959761e-05
+#     scale variation: +12.5% -10.4%
+#     central scheme variation: +2.73% -9.22%
+# PDF variation: +10.3% -10.8%
+#
+# dynamical scheme # 1 : 1.24375e-05 +12.2% -10.2% # \sum ET
+# dynamical scheme # 2 : 1.16359e-05 +11.7% -9.88% # \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 3 : 1.29922e-05 +12.5% -10.4% # 0.5 \sum\sqrt{m^2+pt^2}
+# dynamical scheme # 4 : 1.1481e-05 +11.6% -9.81% # \sqrt{\hat s}
+# PDF 247000 : 1.4198631988936483e-05
+#***************************************************************************
+ 
+INFO: End of systematics computation 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: storing files of previous run 
+INFO: Done 
+quit
+INFO:  
+more information in /Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/sim/mg_out/prod_F_INC/index.html
+exit
+quit

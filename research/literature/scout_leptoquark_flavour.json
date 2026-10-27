@@ -1,0 +1,2664 @@
+{
+ "cluster": "leptoquark_flavour",
+ "queries_run": [
+  "search | t leptoquark and topcite 100+ | 25 | mostcited",
+  "search | t leptoquark and date > 2020 and topcite 50+ | 20 | mostcited",
+  "search | t leptoquark and date < 2012 | 10 | mostcited",
+  "search | t leptoquark and tc r | 12 | mostcited",
+  "search | t leptoquark and date > 2017 and (t LHC or t collider or t signatures) and topcite 20+ | 25 | mostrecent",
+  "search | t leptoquark and (t t-channel or t \"Drell-Yan\" or t \"high-pT\" or t tails) | 20 | mostcited",
+  "search | t leptoquark and t single production | 15 | mostcited",
+  "search | t diquark and date > 2010 and topcite 30+ | 12 | mostcited",
+  "search | t \"flavor-changing\" and t top and t Higgs and topcite 50+ | 10 | mostcited",
+  "search | t \"composite\" and t leptoquark | 10 | mostcited",
+  "search | t \"lepton flavour universality\" and t LHC and date > 2018 and topcite 30+ | 15 | mostcited",
+  "search | t leptoquark and collaboration:CMS and date > 2018 | 25 | mostrecent",
+  "search | t leptoquark and collaboration:ATLAS and date > 2018 | 25 | mostrecent",
+  "search | t leptoquark and collaboration:LHCb | 10 | mostrecent",
+  "search | t \"lepton flavor violating\" and (t leptoquark or t \"lepton flavour violating\") and date > 2019 | 15 | mostcited",
+  "search | t \"vector-like\" and t leptoquark | 8 | mostcited",
+  "search | t leptoquark and (t \"dark matter\" or t neutrino or t \"right-handed neutrino\") and date > 2018 and topcite 15+ | 12 | mostcited",
+  "search | t leptoquark and (t \"high luminosity\" or t HL-LHC or t \"future collider\" or t FCC) | 15 | mostcited",
+  "search | t leptoquark and \"HL-LHC\" | 12 | mostcited",
+  "search | t leptoquark and \"same-sign\" / \"long-lived\" / \"unexplored\" / \"has not been\" / \"overlooked\" / \"boosted\" / \"charm\" / \"polarization\" (8 gap-phrase queries) | 10 | mostcited",
+  "cites | 2505.08738 | 15 | mostrecent",
+  "cites | 2005.06475 | 15/12 | mostrecent/mostcited",
+  "cites | 1901.10480 | 15 | mostrecent",
+  "refs | 2505.08738 | 40",
+  "cites | 1706.05033 | 12 | mostrecent",
+  "search | t \"Drell-Yan tails\" or (t \"Drell-Yan\" and t flavor and t SMEFT) | 10 | mostcited",
+  "search | t diquark and (t LHC or t collider) and date > 2012 | 12 | mostcited",
+  "search | t \"top quark\" and (t \"lepton flavor violation\" or t \"lepton flavour violation\") and (t LHC or t EFT) | 12 | mostcited",
+  "search | t \"heavy Higgs\" and (t \"flavor violating\" or t \"flavour violating\" or t \"tc\" or t top-charm) and date > 2014 | 12 | mostcited",
+  "search | collaboration:ATLAS and t \"high-mass\" and t \"dilepton\" and date > 2018 | 8 | mostrecent",
+  "search | collaboration:CMS and t \"dilepton\" and t \"high mass\" and date > 2018 | 8 | mostrecent",
+  "search | collaboration:CMS and t \"dijet\" and t \"pairs\" | 8 | mostrecent",
+  "search | collaboration:CMS and t \"heavy neutrino\" and date > 2020 | 8 | mostrecent",
+  "search | collaboration:ATLAS and t \"lepton flavour violating\" or collaboration:ATLAS and t \"lepton-flavour-violating\" | 8 | mostrecent",
+  "search | collaboration:CMS and t \"top quark\" and t \"flavor-changing\" and date > 2019 | 8 | mostrecent",
+  "search | collaboration:ATLAS and t \"flavour-changing\" and t \"top\" and t Higgs and date > 2018 | 8 | mostrecent",
+  "search | collaboration:CMS and t leptoquarks and date > 2018 and tc p | 30 | mostrecent",
+  "search | collaboration:ATLAS and t leptoquarks and date > 2018 and tc p | 30 | mostrecent",
+  "cites | 2012.11474 / 1808.02063 / 1911.04455 / 1708.06350 / 1210.5622 / 2503.17031 / 2412.14162 | 10 | mostrecent",
+  "cites | 2207.10714 | 12 | mostcited",
+  "refs | 1901.10480 | 25",
+  "cites | 1801.07641 | 12 | mostcited",
+  "cites | 2308.07826 | 15 | mostrecent",
+  "search | t \"Physics of leptoquarks in precision experiments and at particle colliders\"",
+  "search | t \"third-family\" and t \"quark-lepton\" and topcite 20+",
+  "search | t \"Report on the Physics at the HL-LHC\"",
+  "search | t \"lepton flavour violation\" and t top ... (LFV top theory, 3 variants)",
+  "inspire.py get <recid> for ~30 ids (abstract verification)",
+  "arxiv_pdf.py --gaps on: 2005.06475 1901.10480 2012.11474 2207.10714 2412.14162 1801.07641 2108.11404 1808.02063 2210.13422 2011.02486 1911.04455 2106.07605 2503.17031 2301.01754 2104.05720 2505.08738 2603.01903 2412.19751 2501.07543 2507.18295 2601.11181 1210.5622 1603.04993 2004.01096 2602.15936 1906.08282 2505.05552 2209.02599 2209.12780 2311.04062 2206.11718 1305.2427 2410.17824 1811.03561 1808.04169",
+  "python3 tools/inspire.py get <recid> for ~25 ids (verification of abstracts)",
+  "arxiv_pdf.py --gaps run on: 2005.06475 1901.10480 2012.11474 2207.10714 2412.14162 1801.07641 2108.11404 1808.02063 2210.13422 2011.02486 1911.04455 2106.07605 2503.17031 2301.01754 2104.05720 2505.08738 2603.01903 2412.19751 2501.07543 2507.18295 2601.11181 1210.5622 1603.04993 2004.01096 2602.15936 1906.08282 2505.05552 2209.02599 2209.12780 2311.04062 2206.11718 1305.2427 2410.17824 1811.03561 1808.04169",
+  "cites (mostrecent/mostcited) for: 2505.08738 2005.06475 1901.10480 1706.05033 2012.11474 1808.02063 1911.04455 1708.06350 1210.5622 2503.17031 2412.14162 2207.10714 1801.07641 2308.07826",
+  "refs for: 2505.08738 1901.10480"
+ ],
+ "papers": [
+  {
+   "recid": 248169,
+   "arxiv": null,
+   "title": "Leptoquark Production in Hadron Colliders",
+   "authors": [
+    "Hewett, J.L.",
+    "Pakvasa, S."
+   ],
+   "year": 1987,
+   "cites": 146,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 358218,
+   "arxiv": "hep-ph/9309266",
+   "title": "A Comprehensive study of leptoquark bounds",
+   "authors": [
+    "Leurer, Miriam"
+   ],
+   "year": 1993,
+   "cites": 247,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 424861,
+   "arxiv": "hep-ph/9610408",
+   "title": "Leptoquark pair production in hadronic interactions",
+   "authors": [
+    "Blumlein, Johannes",
+    "Boos, Edward",
+    "Kryukov, Alexander"
+   ],
+   "year": 1996,
+   "cites": 208,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 676268,
+   "arxiv": "hep-ph/0502067",
+   "title": "Leptoquark single and pair production at LHC with CalcHEP/CompHEP in the complete model",
+   "authors": [
+    "Belyaev, Alexander",
+    "Leroy, Claude",
+    "Mehdiyev, Rashid",
+    "Pukhov, Alexander"
+   ],
+   "year": 2005,
+   "cites": 123,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1428667,
+   "arxiv": "1603.04993",
+   "title": "Physics of leptoquarks in precision experiments and at particle colliders",
+   "authors": [
+    "Doršner, I.",
+    "Fajfer, S.",
+    "Greljo, A.",
+    "Kamenik, J.F.",
+    "et al. (5)"
+   ],
+   "year": 2016,
+   "cites": 786,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1403180,
+   "arxiv": "1511.01900",
+   "title": "Minimal Leptoquark Explanation for the $R_{D^{(*)}}$ , $R_K$ , and $(g-2)_\\mu$ Anomalies",
+   "authors": [
+    "Bauer, Martin",
+    "Neubert, Matthias"
+   ],
+   "year": 2015,
+   "cites": 563,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1252083,
+   "arxiv": "1309.0301",
+   "title": "Testing leptoquark models in $\\bar B \\to D^{(*)} \\tau \\bar\\nu$",
+   "authors": [
+    "Sakaki, Yasuhito",
+    "Tanaka, Minoru",
+    "Tayduganov, Andrey",
+    "Watanabe, Ryoutaro"
+   ],
+   "year": 2013,
+   "cites": 458,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1620467,
+   "arxiv": "1708.08450",
+   "title": "Gauge leptoquark as the origin of B-physics anomalies",
+   "authors": [
+    "Di Luzio, Luca",
+    "Greljo, Admir",
+    "Nardecchia, Marco"
+   ],
+   "year": 2017,
+   "cites": 341,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1405434,
+   "arxiv": "1511.06024",
+   "title": "Vector leptoquark resolution of $R_K$ and $R_{D^{(*)}}$ puzzles",
+   "authors": [
+    "Fajfer, Svjetlana",
+    "Košnik, Nejc"
+   ],
+   "year": 2015,
+   "cites": 323,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1498114,
+   "arxiv": "1611.04930",
+   "title": "B-decay Anomalies in a Composite Leptoquark Model",
+   "authors": [
+    "Barbieri, Riccardo",
+    "Murphy, Christopher W.",
+    "Senia, Fabrizio"
+   ],
+   "year": 2016,
+   "cites": 238,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1618012,
+   "arxiv": "1708.06350",
+   "title": "Baryon Number and Lepton Universality Violation in Leptoquark and Diquark Models",
+   "authors": [
+    "Assad, Nima",
+    "Fornal, Bartosz",
+    "Grinstein, Benjamin"
+   ],
+   "year": 2017,
+   "cites": 224,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1484514,
+   "arxiv": "1608.08501",
+   "title": "Leptoquark model to explain the $B$-physics anomalies, $R_K$ and $R_D$",
+   "authors": [
+    "Bečirević, Damir",
+    "Fajfer, Svjetlana",
+    "Košnik, Nejc",
+    "Sumensari, Olcyr"
+   ],
+   "year": 2016,
+   "cites": 307,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1691247,
+   "arxiv": "1808.08179",
+   "title": "Closing the window on single leptoquark solutions to the $B$-physics anomalies",
+   "authors": [
+    "Angelescu, A.",
+    "Bečirević, Damir",
+    "Faroughy, D.A.",
+    "Sumensari, O."
+   ],
+   "year": 2018,
+   "cites": 316,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1853087,
+   "arxiv": "2103.12504",
+   "title": "Single leptoquark solutions to the B-physics anomalies",
+   "authors": [
+    "Angelescu, Andrei",
+    "Bečirević, Damir",
+    "Faroughy, Darius A.",
+    "Jaffredo, Florentin",
+    "et al. (5)"
+   ],
+   "year": 2021,
+   "cites": 231,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1726925,
+   "arxiv": "1903.11517",
+   "title": "Revisiting the vector leptoquark explanation of the B-physics anomalies",
+   "authors": [
+    "Cornella, Claudia",
+    "Fuentes-Martin, Javier",
+    "Isidori, Gino"
+   ],
+   "year": 2019,
+   "cites": 219,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1192050,
+   "arxiv": "1210.5622",
+   "title": "Lepton number violation at the LHC with leptoquark and diquark",
+   "authors": [
+    "Kohda, Masaya",
+    "Sugiyama, Hiroaki",
+    "Tsumura, Koji"
+   ],
+   "year": 2012,
+   "cites": 93,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1605569,
+   "arxiv": "1706.05033",
+   "title": "The leptoquark Hunter’s guide: Pair production",
+   "authors": [
+    "Diaz, Bastian",
+    "Schmaltz, Martin",
+    "Zhong, Yi-Ming"
+   ],
+   "year": 2017,
+   "cites": 186,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1649999,
+   "arxiv": "1801.07641",
+   "title": "Leptoquark toolbox for precision collider studies",
+   "authors": [
+    "Doršner, Ilja",
+    "Greljo, Admir"
+   ],
+   "year": 2018,
+   "cites": 156,
+   "role": "seminal",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2920686,
+   "arxiv": "2505.08738",
+   "title": "Leptoquark searches at ATLAS and CMS",
+   "authors": [
+    "Neutelings, Izaak"
+   ],
+   "year": 2025,
+   "cites": 1,
+   "role": "review",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1854533,
+   "arxiv": "2103.16558",
+   "title": "Reading the footprints of the B-meson flavor anomalies",
+   "authors": [
+    "Cornella, Claudia",
+    "Faroughy, Darius A.",
+    "Fuentes-Martin, Javier",
+    "Isidori, Gino",
+    "et al. (5)"
+   ],
+   "year": 2021,
+   "cites": 228,
+   "role": "review",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2620313,
+   "arxiv": "2301.01754",
+   "title": "Status of leptoquark models after LHC Run-2 and discovery prospects at future colliders",
+   "authors": [
+    "Desai, Nishita",
+    "Sengupta, Amartya"
+   ],
+   "year": 2023,
+   "cites": 16,
+   "role": "review",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2909588,
+   "arxiv": null,
+   "title": "Leptoquark summary plots for scalar or vector models",
+   "authors": [],
+   "year": 2025,
+   "cites": 6,
+   "role": "review",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1717696,
+   "arxiv": "1901.10480",
+   "title": "High- $p_T$ signatures in vector–leptoquark models",
+   "authors": [
+    "Baker, Michael J.",
+    "Fuentes-Martín, Javier",
+    "Isidori, Gino",
+    "König, Matthias"
+   ],
+   "year": 2019,
+   "cites": 144,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1796457,
+   "arxiv": "2005.06475",
+   "title": "Lepton-Quark Collisions at the Large Hadron Collider",
+   "authors": [
+    "Buonocore, Luca",
+    "Haisch, Ulrich",
+    "Nason, Paolo",
+    "Tramontano, Francesco",
+    "et al. (5)"
+   ],
+   "year": 2020,
+   "cites": 83,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1837611,
+   "arxiv": "2012.11474",
+   "title": "Resonant third-generation leptoquark signatures at the Large Hadron Collider",
+   "authors": [
+    "Haisch, Ulrich",
+    "Polesello, Giacomo"
+   ],
+   "year": 2020,
+   "cites": 39,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1912368,
+   "arxiv": "2108.11404",
+   "title": "Scalar leptoquark pair production at the LHC: precision predictions in the era of flavour anomalies",
+   "authors": [
+    "Borschensky, Christoph",
+    "Fuks, Benjamin",
+    "Kulesza, Anna",
+    "Schwartländer, Daniel"
+   ],
+   "year": 2021,
+   "cites": 24,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1685359,
+   "arxiv": "1808.02063",
+   "title": "A composite pNGB leptoquark at the LHC",
+   "authors": [
+    "Alvarez, Ezequiel",
+    "Da Rold, Leandro",
+    "Juste, Aurelio",
+    "Szewc, Manuel",
+    "et al. (5)"
+   ],
+   "year": 2018,
+   "cites": 18,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1764068,
+   "arxiv": "1911.04455",
+   "title": "Sensitivity of Future Hadron Colliders to Leptoquark Pair Production in the Di-Muon Di-Jets Channel",
+   "authors": [
+    "Allanach, B.C.",
+    "Corbett, Tyler",
+    "Madigan, Maeve"
+   ],
+   "year": 2019,
+   "cites": 37,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1868387,
+   "arxiv": "2106.07605",
+   "title": "Improving third-generation leptoquark searches with combined signals and boosted top quarks",
+   "authors": [
+    "Bhaskar, Arvind",
+    "Mandal, Tanumoy",
+    "Mitra, Subhadip",
+    "Sharma, Mohit"
+   ],
+   "year": 2021,
+   "cites": 33,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1789412,
+   "arxiv": "2004.01096",
+   "title": "Boosting vector leptoquark searches with boosted tops",
+   "authors": [
+    "Bhaskar, Arvind",
+    "Mandal, Tanumoy",
+    "Mitra, Subhadip"
+   ],
+   "year": 2020,
+   "cites": 26,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2121116,
+   "arxiv": "2207.10714",
+   "title": "Drell-Yan tails beyond the Standard Model",
+   "authors": [
+    "Allwicher, Lukas",
+    "Faroughy, Darius A.",
+    "Jaffredo, Florentin",
+    "Sumensari, Olcyr",
+    "et al. (5)"
+   ],
+   "year": 2022,
+   "cites": 132,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2121076,
+   "arxiv": "2207.10756",
+   "title": "HighPT: A tool for \nhigh-$p_T$\nDrell-Yan tails beyond the standard model",
+   "authors": [
+    "Allwicher, Lukas",
+    "Faroughy, Darius.A.",
+    "Jaffredo, Florentin",
+    "Sumensari, Olcyr",
+    "et al. (5)"
+   ],
+   "year": 2022,
+   "cites": 109,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2860939,
+   "arxiv": "2412.14162",
+   "title": "On the EFT validity for Drell–Yan tails at the LHC",
+   "authors": [
+    "Allwicher, Lukas",
+    "Faroughy, Darius A.",
+    "Martines, Matheus",
+    "Sumensari, Olcyr",
+    "et al. (5)"
+   ],
+   "year": 2024,
+   "cites": 15,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2169665,
+   "arxiv": "2210.13422",
+   "title": "Confronting the vector leptoquark hypothesis with new low- and high-energy data",
+   "authors": [
+    "Aebischer, Jason",
+    "Isidori, Gino",
+    "Pesut, Marko",
+    "Stefanek, Ben A.",
+    "et al. (5)"
+   ],
+   "year": 2022,
+   "cites": 66,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1828492,
+   "arxiv": "2011.02486",
+   "title": "Testing leptoquark/EFT in ${\\bar{B}} \\rightarrow {D^{(*)}}l{\\bar{\\nu }}$ at the LHC",
+   "authors": [
+    "Iguro, Syuhei",
+    "Takeuchi, Michihisa",
+    "Watanabe, Ryoutaro"
+   ],
+   "year": 2020,
+   "cites": 69,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2902809,
+   "arxiv": "2503.17031",
+   "title": "Ultraheavy diquark decaying into vectorlike quarks at the LHC",
+   "authors": [
+    "Duminica, Ioana",
+    "Alexa, Calin",
+    "Dinu, Ioan M.",
+    "Dobrescu, Bogdan A.",
+    "et al. (5)"
+   ],
+   "year": 2025,
+   "cites": 9,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3108535,
+   "arxiv": "2601.11181",
+   "title": "HL-LHC sensitivity to an ultraheavy Suu diquark in the uχ channel",
+   "authors": [
+    "Filip, Matei S.",
+    "Alexa, Calin",
+    "Costache, Daniel C.",
+    "Dinu, Anca M.",
+    "et al. (7)"
+   ],
+   "year": 2026,
+   "cites": 2,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3124713,
+   "arxiv": "2603.01903",
+   "title": "Exploring $\\widetilde{R}_2$ Leptoquarks and Majorana Neutrinos via same-sign dimuons at the HL-LHC",
+   "authors": [
+    "Saha, Subham",
+    "Bhaskar, Arvind",
+    "Mitra, Manimala"
+   ],
+   "year": 2026,
+   "cites": 2,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2863366,
+   "arxiv": "2412.19751",
+   "title": "Right-handed neutrino production through first-generation leptoquarks",
+   "authors": [
+    "Duraikandan, Gokul",
+    "Khanna, Rishabh",
+    "Mandal, Tanumoy",
+    "Mitra, Subhadip",
+    "et al. (5)"
+   ],
+   "year": 2024,
+   "cites": 4,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2867899,
+   "arxiv": "2501.07543",
+   "title": "A comprehensive search for leptoquarks decaying into top-τ final states at the future LHC",
+   "authors": [
+    "Sahoo, Debabrata",
+    "Sahu, Rameswar",
+    "Ghosh, Kirtiman"
+   ],
+   "year": 2025,
+   "cites": 3,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2954181,
+   "arxiv": "2507.18295",
+   "title": "Fresh look at the LHC limits on vector leptoquarks",
+   "authors": [
+    "Das, Arijit",
+    "Mandal, Tanumoy",
+    "Mitra, Subhadip",
+    "Sharma, Rachit"
+   ],
+   "year": 2025,
+   "cites": 2,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2910613,
+   "arxiv": null,
+   "title": "Third-Family Lepton-Quark Fusion",
+   "authors": [
+    "Korajac, Arman",
+    "Krack, Peter",
+    "Selimović, Nudžeim"
+   ],
+   "year": 2025,
+   "cites": 0,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3121353,
+   "arxiv": "2602.15936",
+   "title": "Probing baryon number with missing energy",
+   "authors": [
+    "Hiller, Gudrun",
+    "Rodríguez-Sánchez, Antonio",
+    "Wendler, Daniel"
+   ],
+   "year": 2026,
+   "cites": 8,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2919782,
+   "arxiv": "2505.05552",
+   "title": "Discriminating tauphilic leptoquark explanations of the B anomalies via K→πνν¯ and B→Kνν¯",
+   "authors": [
+    "Crivellin, Andreas",
+    "Iguro, Syuhei",
+    "Kitahara, Teppei"
+   ],
+   "year": 2025,
+   "cites": 15,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1315453,
+   "arxiv": "1409.2372",
+   "title": "Constraints on $t$ -channel leptoquark exchange from LHC contact interaction searches",
+   "authors": [
+    "Bessaa, Assia",
+    "Davidson, Sacha"
+   ],
+   "year": 2014,
+   "cites": 25,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2156660,
+   "arxiv": "2209.12780",
+   "title": "Drell-Yan production in third-generation gauge vector leptoquark models at NLO+PS in QCD",
+   "authors": [
+    "Haisch, Ulrich",
+    "Schnell, Luc",
+    "Schulte, Stefan"
+   ],
+   "year": 2022,
+   "cites": 22,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2147208,
+   "arxiv": "2209.02599",
+   "title": "Resonant leptoquark at NLO with POWHEG",
+   "authors": [
+    "Buonocore, Luca",
+    "Greljo, Admir",
+    "Krack, Peter",
+    "Nason, Paolo",
+    "et al. (7)"
+   ],
+   "year": 2022,
+   "cites": 26,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1858043,
+   "arxiv": "2104.05720",
+   "title": "Searching for leptoquarks at future muon colliders",
+   "authors": [
+    "Asadi, Pouya",
+    "Capdevilla, Rodolfo",
+    "Cesarotti, Cari",
+    "Homiller, Samuel"
+   ],
+   "year": 2021,
+   "cites": 90,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1702621,
+   "arxiv": "1811.03561",
+   "title": "$R_{D^{(*)}}$ motivated $\\mathcal{S}_1$ leptoquark scenarios: Impact of interference on the exclusion limits from LHC data",
+   "authors": [
+    "Mandal, Tanumoy",
+    "Mitra, Subhadip",
+    "Raz, Swapnil"
+   ],
+   "year": 2018,
+   "cites": 80,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2923944,
+   "arxiv": "2505.16328",
+   "title": "Jet substructure probe on scalar leptoquark models via top polarization",
+   "authors": [
+    "Ghosh, Anupam",
+    "Konar, Partha",
+    "Samui, Tousik",
+    "Singh, Ritesh K."
+   ],
+   "year": 2025,
+   "cites": 9,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3198424,
+   "arxiv": "2609.00270",
+   "title": "Two-Stage Machine Learning Strategy for Scalar and Vector Leptoquark Discrimination at the LHC",
+   "authors": [
+    "Arganda, Ernesto",
+    "de los Rios, Martín",
+    "Perez, Andres D.",
+    "Sandá Seoane, Rosa M.",
+    "et al. (5)"
+   ],
+   "year": 2026,
+   "cites": 0,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2719823,
+   "arxiv": "2311.04062",
+   "title": "The flavor of a minimal composite S$_{1}$ leptoquark and the $ b\\to c\\tau \\overline{\\nu} $ anomaly",
+   "authors": [
+    "Da Rold, Leandro"
+   ],
+   "year": 2023,
+   "cites": 3,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1738559,
+   "arxiv": "1906.01870",
+   "title": "A near-minimal leptoquark model for reconciling flavour anomalies and generating radiative neutrino masses",
+   "authors": [
+    "Bigaran, Innes",
+    "Gargalionis, John",
+    "Volkas, Raymond R."
+   ],
+   "year": 2019,
+   "cites": 92,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1969613,
+   "arxiv": "2111.08027",
+   "title": "Leptoquark manoeuvres in the dark: a simultaneous solution of the dark matter problem and the $ {R}_{D^{\\left(\\ast \\right)}} $ anomalies",
+   "authors": [
+    "Belanger, Geneviève",
+    "Bharucha, Aoife",
+    "Fuks, Benjamin",
+    "Goudelis, Andreas",
+    "et al. (13)"
+   ],
+   "year": 2021,
+   "cites": 45,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1791814,
+   "arxiv": "2004.09464",
+   "title": "Unified explanation of flavor anomalies, radiative neutrino masses, and ANITA anomalous events in a vector leptoquark model",
+   "authors": [
+    "Bhupal Dev, P.S.",
+    "Mohanta, Rukmani",
+    "Patra, Sudhanwa",
+    "Sahoo, Suchismita"
+   ],
+   "year": 2020,
+   "cites": 60,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2100072,
+   "arxiv": "2206.11718",
+   "title": "Collider signatures of a scalar leptoquark and vectorlike lepton in light of muon anomaly",
+   "authors": [
+    "Ghosh, Nivedita",
+    "Rai, Santosh Kumar",
+    "Samui, Tousik"
+   ],
+   "year": 2022,
+   "cites": 15,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1740681,
+   "arxiv": "1906.08282",
+   "title": "Model-independent search strategy for the lepton-flavor-violating heavy Higgs boson decay to $\\tau\\mu$ at the LHC",
+   "authors": [
+    "Arganda, Ernesto",
+    "Marcano, Xabier",
+    "Mileo, Nicolás I.",
+    "Morales, Roberto A.",
+    "et al. (5)"
+   ],
+   "year": 2019,
+   "cites": 11,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1233084,
+   "arxiv": "1305.2427",
+   "title": "Constraining the flavor changing Higgs couplings to the top-quark at the LHC",
+   "authors": [
+    "Atwood, David",
+    "Gupta, Sudhir Kumar",
+    "Soni, Amarjit"
+   ],
+   "year": 2013,
+   "cites": 53,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3076656,
+   "arxiv": "2511.02474",
+   "title": "Observability of an ultraheavy diquark decaying into vectorlike quarks at the LHC",
+   "authors": [
+    "Costache, Daniel C.",
+    "Alexa, Calin",
+    "Dinu, Anca M.",
+    "Dinu, Ioan M.",
+    "et al. (7)"
+   ],
+   "year": 2025,
+   "cites": 3,
+   "role": "followup",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2904423,
+   "arxiv": "2503.20023",
+   "title": "Search for $t$-channel scalar and vector leptoquark exchange in the high-mass dimuon and dielectron spectra in proton-proton collisions at $\\sqrt{s}$ = 13 TeV",
+   "authors": [
+    "Hayrapetyan, A.",
+    "Tumasyan, A.",
+    "Adam, W.",
+    "Andrejkovic, J.W.",
+    "et al. (2389)"
+   ],
+   "year": 2025,
+   "cites": 13,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2688366,
+   "arxiv": "2308.07826",
+   "title": "Search for a third-generation leptoquark coupled to a τ lepton and a b quark through single, pair, and nonresonant production in proton-proton collisions at $ \\sqrt{s} $ = 13 TeV",
+   "authors": [
+    "Hayrapetyan, Aram",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "et al. (2374)"
+   ],
+   "year": 2023,
+   "cites": 49,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2687527,
+   "arxiv": "2308.06143",
+   "title": "Search for Scalar Leptoquarks Produced via τ-Lepton–Quark Scattering in pp Collisions at s=13  TeV",
+   "authors": [
+    "Hayrapetyan, Aram",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "et al. (2371)"
+   ],
+   "year": 2023,
+   "cites": 28,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1835316,
+   "arxiv": "2012.04178",
+   "title": "Search for singly and pair-produced leptoquarks coupling to third-generation fermions in proton-proton collisions at s=13 TeV",
+   "authors": [
+    "Sirunyan, Albert M",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Bergauer, Thomas",
+    "et al. (2353)"
+   ],
+   "year": 2020,
+   "cites": 137,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2132368,
+   "arxiv": "2208.02717",
+   "title": "Searches for additional Higgs bosons and for vector leptoquarks in $\\tau\\tau$ final states in proton-proton collisions at $\\sqrt{s}$ = 13 TeV",
+   "authors": [
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "Bergauer, Thomas",
+    "et al. (2400)"
+   ],
+   "year": 2022,
+   "cites": 233,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2943627,
+   "arxiv": "2507.03650",
+   "title": "Search for resonant leptoquark production via lepton-jet signatures in pp collisions at $ \\sqrt{s}=13 $ TeV and $ \\sqrt{s}=13.6 $ TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2974)"
+   ],
+   "year": 2025,
+   "cites": 14,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3197611,
+   "arxiv": "2608.28377",
+   "title": "Search for scalar leptoquarks produced via muon-quark scattering in proton-proton collisions at $\\sqrt{s}$ = 13 TeV",
+   "authors": [
+    "Gevorgyan, Arzunik",
+    "Hayrapetyan, Aram",
+    "Makarenko, Vladimir",
+    "Tumasyan, Armen",
+    "et al. (2544)"
+   ],
+   "year": 2026,
+   "cites": 0,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3159754,
+   "arxiv": null,
+   "title": "Search for leptoquarks coupling to third-generation quarks and first- or second-generation leptons at $\\sqrt{s}=13.6$ TeV",
+   "authors": [],
+   "year": 2026,
+   "cites": 0,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3164547,
+   "arxiv": "2606.02067",
+   "title": "Search for a leptoquark in events with a hadronically decaying $τ$-lepton and missing transverse momentum using $pp$ collisions at $\\sqrt{s}=13$ TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2861)"
+   ],
+   "year": 2026,
+   "cites": 5,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2673386,
+   "arxiv": "2306.17642",
+   "title": "Search for leptoquark pair production decaying into $te^- \\bar{t}e^+$ or $t\\mu ^- \\bar{t}\\mu ^+$ in multi-lepton final states in pp collisions at $\\sqrt{s} = 13\\,\\textrm{TeV}$ with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abbott, Dale",
+    "Abeling, Kira",
+    "et al. (2974)"
+   ],
+   "year": 2023,
+   "cites": 25,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1843001,
+   "arxiv": "2101.11582",
+   "title": "Search for pair production of third-generation scalar leptoquarks decaying into a top quark and a $\\tau$-lepton in $pp$ collisions at $ \\sqrt{s} $ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abbott, Dale",
+    "Abed Abud, Adam",
+    "et al. (3029)"
+   ],
+   "year": 2021,
+   "cites": 128,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2758137,
+   "arxiv": "2402.08668",
+   "title": "Search for pair production of scalar and vector leptoquarks decaying to muons and bottom quarks in proton-proton collisions at s=13  TeV",
+   "authors": [
+    "Hayrapetyan, Aram",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "et al. (2326)"
+   ],
+   "year": 2024,
+   "cites": 25,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2662587,
+   "arxiv": "2305.15962",
+   "title": "Search for leptoquarks decaying into the bτ final state in $pp$ collisions at $ \\sqrt{\\textrm{s}} $ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "Abicht, Nils Julius",
+    "et al. (2968)"
+   ],
+   "year": 2023,
+   "cites": 41,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2750164,
+   "arxiv": "2401.11928",
+   "title": "Combination of searches for pair-produced leptoquarks at s=13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "et al. (2876)"
+   ],
+   "year": 2024,
+   "cites": 35,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1704960,
+   "arxiv": "1811.10151",
+   "title": "Search for dark matter in events with a leptoquark and missing transverse momentum in proton-proton collisions at 13 TeV",
+   "authors": [
+    "Sirunyan, Albert M",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Ambrogi, Federico",
+    "et al. (2292)"
+   ],
+   "year": 2018,
+   "cites": 23,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2812533,
+   "arxiv": null,
+   "title": "Search for nonresonant new physics in high-mass dilepton events in association with b-tagged jets",
+   "authors": [],
+   "year": 2024,
+   "cites": 2,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2935112,
+   "arxiv": "2506.13565",
+   "title": "Search for nonresonant new physics signals in high-mass dilepton events produced in association with b-tagged jets in proton-proton collisions at $\\sqrt{s}=13$ TeV",
+   "authors": [
+    "Chekhovsky, Vladimir",
+    "Hayrapetyan, Aram",
+    "Makarenko, Vladimir",
+    "Tumasyan, Armen",
+    "et al. (2411)"
+   ],
+   "year": 2025,
+   "cites": 4,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2677681,
+   "arxiv": "2307.08567",
+   "title": "Search for lepton-flavour violation in high-mass dilepton final states using 139 fb$^{−1}$ of pp collisions at $ \\sqrt{s} $ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "Abicht, Nils Julius",
+    "et al. (2963)"
+   ],
+   "year": 2023,
+   "cites": 22,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2767173,
+   "arxiv": "2403.06742",
+   "title": "Search for charged-lepton-flavor violating μτqt interactions in top-quark production and decay in pp collisions at s=13  TeV with the ATLAS detector at the LHC",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "et al. (2957)"
+   ],
+   "year": 2024,
+   "cites": 24,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2911292,
+   "arxiv": "2504.08532",
+   "title": "Search for charged-lepton flavour violation in top quark interactions with an up-type quark, a muon, and a τ lepton in proton-proton collisions at $\\sqrt{s}={13}$ TeV",
+   "authors": [
+    "Hayrapetyan, Aram",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "et al. (2399)"
+   ],
+   "year": 2025,
+   "cites": 7,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3210807,
+   "arxiv": "2610.01308",
+   "title": "Search for charged-lepton-flavour violating $eμtq$ interactions at $\\sqrt{s}=13$ TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2887)"
+   ],
+   "year": 2026,
+   "cites": 0,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1695181,
+   "arxiv": "1809.09048",
+   "title": "Search for charged lepton-flavour violation in top-quark decays at the LHC with the ATLAS detector",
+   "authors": [
+    "Gottardo, Carlo A."
+   ],
+   "year": 2018,
+   "cites": 12,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1766876,
+   "arxiv": "1911.10267",
+   "title": "Search for lepton flavour violating decays of a neutral heavy Higgs boson to $\\mu\\tau$ and e$\\tau$ in proton-proton collisions at $\\sqrt{s}=$ 13 TeV",
+   "authors": [
+    "Sirunyan, Albert M",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Ambrogi, Federico",
+    "et al. (2342)"
+   ],
+   "year": 2019,
+   "cites": 46,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2682353,
+   "arxiv": "2307.14759",
+   "title": "Search for heavy Higgs bosons with flavour-violating couplings in multi-lepton plus b-jets final states in pp collisions at 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "Abicht, Nils Julius",
+    "et al. (2961)"
+   ],
+   "year": 2023,
+   "cites": 35,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2098256,
+   "arxiv": "2206.09997",
+   "title": "Search for resonant and nonresonant production of pairs of dijet resonances in proton-proton collisions at $ \\sqrt{s} $ = 13 TeV",
+   "authors": [
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "Bergauer, Thomas",
+    "et al. (2393)"
+   ],
+   "year": 2022,
+   "cites": 76,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2954159,
+   "arxiv": "2507.17884",
+   "title": "Search for resonant production of pairs of dijet resonances through broad mediators in proton-proton collisions at $\\sqrt{s}$ = 13 TeV",
+   "authors": [
+    "Hayrapetyan, Aram",
+    "Makarenko, Vladimir",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "et al. (2423)"
+   ],
+   "year": 2025,
+   "cites": 9,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3205293,
+   "arxiv": "2609.21850",
+   "title": "Search for resonant and nonresonant production of pairs of dijet resonances with b jets in the final state in proton-proton collisions at $\\sqrt{s}$ = 13 TeV",
+   "authors": [
+    "Gevorgyan, Arzunik",
+    "Hayrapetyan, Aram",
+    "Makarenko, Vladimir",
+    "Tumasyan, Armen",
+    "et al. (2540)"
+   ],
+   "year": 2026,
+   "cites": 0,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1800410,
+   "arxiv": "2006.05872",
+   "title": "Search for pairs of scalar leptoquarks decaying into quarks and electrons or muons in $ \\sqrt{s} $ = 13 TeV $pp$ collisions with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Brad",
+    "Abbott, Dale Charles",
+    "Abed Abud, Adam",
+    "et al. (2947)"
+   ],
+   "year": 2020,
+   "cites": 185,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1821703,
+   "arxiv": "2010.02098",
+   "title": "Search for pair production of scalar leptoquarks decaying into first- or second-generation leptons and top quarks in proton–proton collisions at $\\sqrt{s}$ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Brad",
+    "Abbott, Dale Charles",
+    "Abed Abud, Adam",
+    "et al. (2937)"
+   ],
+   "year": 2020,
+   "cites": 84,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 3185626,
+   "arxiv": null,
+   "title": "Observation of lepton-lepton scattering in proton-proton collisions at $\\sqrt{s} = 13$ and 13.6 TeV",
+   "authors": [],
+   "year": 2026,
+   "cites": 0,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2111572,
+   "arxiv": "2111.02219",
+   "title": "Search for Flavor-Changing Neutral Current Interactions of the Top Quark and Higgs Boson in Final States with Two Photons in Proton-Proton Collisions at $\\sqrt{s}=13\\text{ }\\text{ }\\mathrm{TeV}$",
+   "authors": [
+    "Tumasyan, A.",
+    "Adam, W.",
+    "Andrejkovic, J.W.",
+    "Bergauer, T.",
+    "et al. (2363)"
+   ],
+   "year": 2021,
+   "cites": 63,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2773613,
+   "arxiv": "2404.02123",
+   "title": "Search for flavour-changing neutral-current couplings between the top quark and the Higgs boson in multi-lepton final states in 13 TeV pp collisions with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abeling, Kira",
+    "et al. (2956)"
+   ],
+   "year": 2024,
+   "cites": 39,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2905252,
+   "arxiv": "2503.19836",
+   "title": "A measurement of the high-mass $ \\tau \\overline{\\tau} $ production cross-section at $ \\sqrt{s}=13 $ TeV with the ATLAS detector and constraints on new particles and couplings",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2964)"
+   ],
+   "year": 2025,
+   "cites": 34,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2163275,
+   "arxiv": "2210.04517",
+   "title": "Search for pair-produced scalar and vector leptoquarks decaying into third-generation quarks and first- or second-generation leptons in pp collisions with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Abbott, Braden Keim",
+    "Abbott, D.C.",
+    "Abeling, Kira",
+    "et al. (2940)"
+   ],
+   "year": 2022,
+   "cites": 44,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1701635,
+   "arxiv": "1811.00806",
+   "title": "Search for heavy neutrinos and third-generation leptoquarks in hadronic states of two $\\tau$ leptons and two jets in proton-proton collisions at $\\sqrt{s} =$ 13 TeV",
+   "authors": [
+    "Sirunyan, Albert M",
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Ambrogi, Federico",
+    "et al. (2293)"
+   ],
+   "year": 2018,
+   "cites": 144,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1986733,
+   "arxiv": "2112.03949",
+   "title": "Search for a right-handed W boson and a heavy neutrino in proton-proton collisions at $ \\sqrt{s} $ = 13 TeV",
+   "authors": [
+    "Tumasyan, Armen",
+    "Adam, Wolfgang",
+    "Andrejkovic, Janik Walter",
+    "Bergauer, Thomas",
+    "et al. (2374)"
+   ],
+   "year": 2021,
+   "cites": 83,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2905977,
+   "arxiv": "2503.22581",
+   "title": "Search for electroweak production of vector-like leptons in $\\tau$-lepton and $b$-jet final states in $pp$ collisions at $\\sqrt{s}$ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2953)"
+   ],
+   "year": 2025,
+   "cites": 15,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 2842361,
+   "arxiv": "2410.17824",
+   "title": "Search for supersymmetry in final states with missing transverse momentum and charm-tagged jets using 139 fb$^{−1}$ of proton-proton collisions at $ \\sqrt{s} $ = 13 TeV with the ATLAS detector",
+   "authors": [
+    "Aad, Georges",
+    "Aakvaag, Erlend",
+    "Abbott, Braden Keim",
+    "Abdelhameed, Sara",
+    "et al. (2955)"
+   ],
+   "year": 2024,
+   "cites": 10,
+   "role": "experimental",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1710497,
+   "arxiv": null,
+   "title": "Prospects for exclusion or discovery of a third generation leptoquark decaying into a $\\tau$ lepton and a b quark with the upgraded CMS detector at the HL-LHC",
+   "authors": [],
+   "year": 2018,
+   "cites": 4,
+   "role": "projection",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1768569,
+   "arxiv": null,
+   "title": "Report on the Physics at the HL-LHC,and Perspectives for the HE-LHC",
+   "authors": [
+    "Dainese, Andrea",
+    "Mangano, Michelangelo",
+    "Meyer, Andreas B.",
+    "Nisati, Aleandro",
+    "et al. (6)"
+   ],
+   "year": 2019,
+   "cites": 148,
+   "role": "projection",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "recid": 1722300,
+   "arxiv": "1902.10229",
+   "title": "Addendum to the report on the physics at the HL-LHC, and perspectives for the HE-LHC: Collection of notes from ATLAS and CMS",
+   "authors": [],
+   "year": 2019,
+   "cites": 139,
+   "role": "projection",
+   "cluster": "leptoquark_flavour"
+  }
+ ],
+ "candidate_seeds": [
+  {
+   "name": "Resonant single-LQ via lepton-parton fusion: flavour/charge extensions beyond e/mu+jet",
+   "framework": "Scalar/vector LQ with lepton content of the proton (LUXlep photon-induced lepton PDFs)",
+   "idea": "Lepton-quark fusion gives single-LQ production that scales with the Yukawa squared and probes large masses at modest couplings. The first LHC searches cover e/mu + light-jet/b-jet and tau+b; extensions (charm/strange tagging, top-containing final states, vector LQ, LQ with LFV couplings, HL-LHC reach) are not obviously covered.",
+   "signature_hypothesis": "Lepton + jet(flavour-tagged: c, b, t-jet) resonance in m(l j); LFV variants (mu-tau, e-mu with q) as lepton+jet resonances; high-mass tails at 13.6 TeV and HL-LHC",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2005.06475",
+     "title": "Lepton-Quark Collisions at the Large Hadron Collider",
+     "year": 2020,
+     "why": "proposes the resonant single-LQ search strategy via lepton PDFs"
+    },
+    {
+     "id": "arXiv:2005.06477",
+     "title": "Leptons in the proton",
+     "year": 2020,
+     "why": "lepton PDF (LUXlep) used for the signal"
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2209.02599",
+     "title": "Resonant leptoquark at NLO with POWHEG",
+     "year": 2022
+    },
+    {
+     "id": "arXiv:2012.11474",
+     "title": "Resonant third-generation leptoquark signatures at the Large Hadron Collider",
+     "year": 2020
+    },
+    {
+     "id": "arXiv:2507.03650",
+     "title": "ATLAS resonant LQ via lepton-jet",
+     "year": 2025
+    },
+    {
+     "id": "arXiv:2608.28377",
+     "title": "CMS LQ via muon-quark scattering",
+     "year": 2026
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2005.06475",
+     "quote": "we urge the ATLAS and CMS collaborations to perform dedicated resonance searches in final states featuring a single electron or muon and a single light-flavour jet in future LHC runs",
+     "location": "Conclusions (two-column extraction, hyphenation repaired)"
+    },
+    {
+     "id": "arXiv:2505.08738",
+     "quote": "many opportunities remain such as finals states containing an electron or muon accompanied by light- or charm-flavored jets",
+     "location": "Sec. 2 (after Tables 1-4; hyphenation repaired, 'finals' sic)"
+    },
+    {
+     "id": "arXiv:2209.02599",
+     "quote": "This finding motivates a comprehensive projection study for future work.",
+     "location": "Sec. on FCC-hh resonant production (FCC-hh, not HL-LHC)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2507.03650",
+     "note": "ATLAS e/mu + light-jet / b-jet resonant LQ search (abstract: four orthogonal final states, first LHC search of resonantly produced LQs with lepton-content PDF)"
+    },
+    {
+     "id": "arXiv:2608.28377",
+     "note": "CMS first search for scalar LQs via muon-quark scattering (abstract)"
+    },
+    {
+     "id": "arXiv:2308.06143",
+     "note": "CMS tau-quark scattering LQ search"
+    }
+   ],
+   "gap_type_guess": "searched-limited-regime",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "cites arXiv:2005.06475 mostrecent",
+    "t leptoquark and t single production",
+    "collaboration:CMS and t \"muon-quark\" or collaboration:ATLAS and t \"lepton-jet\"",
+    "arxiv_pdf 2005.06475 --gaps"
+   ],
+   "confidence": "medium",
+   "notes": "Forward-citation check: the 2020 'we urge' was followed up by ATLAS 2507.03650 and CMS 2608.28377 (and tau: CMS 2308.06143). Remaining regime to check: charm/strange tags, top final states, vector LQ, LFV flavour combinations, HL-LHC projection. CMS e-quark was not found in INSPIRE listing (UNVERIFIED absence). CMS 3185626 (lepton-lepton scattering observation) shows lepton-PDF processes now measurable.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Third-generation resonant LQ in b+tau, mono-top and mono-jet channels",
+   "framework": "Third-family LQs (S1, U1, 4321/Pati-Salam-inspired) with resonant single production through b-tau / c-nu / b-nu couplings",
+   "idea": "Haisch et al. map the 5-parameter space of resonant third-generation LQ production and single out b+tau, mono-top and mono-jet signatures whose LHC sensitivity had not been studied. Dedicated mono-top/mono-jet interpretations in resonant LQ mode need checking in current ATLAS/CMS results.",
+   "signature_hypothesis": "b-jet + hadronic tau resonance (m_T or m_vis); mono-top (t + MET) and mono-jet with LQ->q nu from b-quark / charm initial states",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2012.11474",
+     "title": "Resonant third-generation leptoquark signatures at the Large Hadron Collider",
+     "year": 2020,
+     "why": "defines the signatures and parameter space"
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2308.07826",
+     "title": "CMS b-tau single/pair/nonresonant LQ search",
+     "year": 2023
+    },
+    {
+     "id": "arXiv:2606.02067",
+     "title": "ATLAS tau+MET LQ search (resonant and t-channel)",
+     "year": 2026
+    },
+    {
+     "id": "arXiv:2501.07543",
+     "title": "LQ -> top-tau at the future LHC (boosted ML)",
+     "year": 2025
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2012.11474",
+     "quote": "we will concentrate on the b + τ, mono-top and mono-jet signatures because the LHC sensitivity of these channels to the five-dimensional parameter space (3.1) has not yet been studied",
+     "location": "Sec. 3 (Collider signatures)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2308.07826",
+     "note": "CMS: tau+b-jets, single/pair/t-channel LQ -> b tau"
+    },
+    {
+     "id": "arXiv:2606.02067",
+     "note": "ATLAS: hadronic tau + MET, resonant and t-channel LQ (covers LQ -> tau nu / b-tau-nu type topologies)"
+    },
+    {
+     "id": "arXiv:2305.15962",
+     "note": "ATLAS: LQ -> b tau final state"
+    }
+   ],
+   "gap_type_guess": "one-observable-not-another",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "cites arXiv:2012.11474 mostrecent",
+    "t leptoquark and collaboration:CMS and date > 2018",
+    "arxiv_pdf 2012.11474 --gaps"
+   ],
+   "confidence": "medium",
+   "notes": "Forward check: the 10 most recent citing papers include CMS 3159754 (pair production) and theory; no resonant mono-top / mono-jet LQ experimental result was found among them (not exhaustive). ATLAS 2606.02067 overlaps for tau+MET. Need to inspect whether mono-top resonant LQ is covered by ATLAS/CMS stop-like searches.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Vector LQ U1 with right-handed coupling and non-minimal gluon coupling in high-pT",
+   "framework": "Gauge/vector LQ (4321, Pati-Salam), beta_R coupling, kappa_Y (Yang-Mills vs minimal)",
+   "idea": "Baker et al. show the right-handed coupling, neglected earlier, changes which high-pT signature dominates (tau tau tails vs coloron). Experimental interpretations typically cover a few kappa/beta_R benchmarks; the mapping to b-b-tau-tau, b tau nu and tt+tautau topologies at HL-LHC for the full (beta_L, beta_R, kappa) space is not obviously done.",
+   "signature_hypothesis": "High-pT tau tau tails with b-tag, b tau nu, t-channel vs. resonant U1; pair production bb tau tau with kappa-dependent cross sections",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1708.08450",
+     "title": "Gauge leptoquark as the origin of B-physics anomalies",
+     "year": 2017
+    },
+    {
+     "id": "arXiv:1901.10480",
+     "title": "High-pT signatures in vector-leptoquark models",
+     "year": 2019,
+     "why": "beta_R and coloron constraints"
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2507.18295",
+     "title": "Fresh look at the LHC limits on vector leptoquarks",
+     "year": 2025
+    },
+    {
+     "id": "arXiv:2209.12780",
+     "title": "Drell-Yan production in third-generation gauge vector LQ models at NLO+PS",
+     "year": 2022
+    },
+    {
+     "id": "arXiv:2210.13422",
+     "title": "Confronting the vector leptoquark hypothesis with new low- and high-energy data",
+     "year": 2022
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1901.10480",
+     "quote": "it is worth stressing the importance of the possible right-handed coupling of the U1 (neglected in previous analyses)",
+     "location": "Conclusions (formula symbols garbled in extraction)"
+    },
+    {
+     "id": "arXiv:2507.18295",
+     "quote": "A detailed study ... of the impact of the associated PDF uncertainties on the exclusion limits, including comparisons with photon PDFs from alternative PDF sets, is beyond the scope of the current work",
+     "location": "Sec. IV/V (two-column extraction interleaved)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2208.02717",
+     "note": "CMS tautau: vector LQ interpretation"
+    },
+    {
+     "id": "arXiv:2210.04517",
+     "note": "ATLAS pair-produced scalar and vector LQ -> third-gen quark + lepton"
+    },
+    {
+     "id": "arXiv:2503.19836",
+     "note": "ATLAS high-mass tautau cross-section measurement (kappa/beta_R reinterpretation possible)"
+    }
+   ],
+   "gap_type_guess": "constrained-but-region-open",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t leptoquark and (t t-channel or t \"Drell-Yan\" or t \"high-pT\" or t tails)",
+    "cites arXiv:1901.10480 mostrecent",
+    "refs arXiv:1901.10480",
+    "arxiv_pdf 1901.10480 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "Whether ATLAS/CMS scan beta_R and kappa jointly was not verified.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Mixed-decay third-gen LQ (S3 -> t tau / b nu; t mu) dedicated combos",
+   "framework": "S3 (triplet) and other LQs with several decay channels (t tau, b nu, t mu, b mu) from B-anomaly fits",
+   "idea": "For triplet LQs the charge-1/3 component has BR to t-tau and b-nu (and to b-mu / t-mu in the muon scenarios). Theorists suggest dedicated t-tau-b-nu and t-mu final-state analyses; experiments mostly interpret fixed branching ratios.",
+   "signature_hypothesis": "t tau + b nu mixed pair (tau + b-jets + MET + hadronic top); t mu / b mu mixed pair; BR scan combined across channels",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1808.02063",
+     "title": "A composite pNGB leptoquark at the LHC",
+     "year": 2018
+    },
+    {
+     "id": "arXiv:1911.04455",
+     "title": "Sensitivity of Future Hadron Colliders to Leptoquark Pair Production in the Di-Muon Di-Jets Channel",
+     "year": 2019
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2401.11928",
+     "title": "ATLAS combination of searches for pair-produced leptoquarks",
+     "year": 2024
+    },
+    {
+     "id": "arXiv:2306.17642",
+     "title": "ATLAS LQ pair -> t e / t mu",
+     "year": 2023
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1808.02063",
+     "quote": "In this case, a dedicated search targeting the tτ bν final state would be well motivated to further extend the sensitivity.",
+     "location": "Sec. on S3 LQ (extraction)"
+    },
+    {
+     "id": "arXiv:1911.04455",
+     "quote": "This mode is more complicated than the one we choose for analysis, and we leave it for future work.",
+     "location": "Sec. 2/3, S3 -> t mu (extraction)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2101.11582",
+     "note": "ATLAS pair production of third-gen scalar LQ -> top + tau"
+    },
+    {
+     "id": "arXiv:2306.17642",
+     "note": "ATLAS LQ pair -> t e / t mu"
+    },
+    {
+     "id": "recid:3159754",
+     "note": "CMS 2026 (13.6 TeV): third-gen quark + first/second-gen lepton pair production"
+    },
+    {
+     "id": "arXiv:2012.04178",
+     "note": "CMS single and pair third-gen LQ"
+    }
+   ],
+   "gap_type_guess": "searched-limited-regime",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "cites arXiv:1808.02063 mostrecent",
+    "cites arXiv:1911.04455 mostrecent",
+    "arxiv_pdf 1808.02063 --gaps",
+    "arxiv_pdf 1911.04455 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "Existing searches may already cover S3 mixed BRs through combinations (ATLAS 2401.11928); not checked for t-tau b-nu specifically. UNVERIFIED.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Single/resonant LQ in partial-compositeness (pNGB) frameworks",
+   "framework": "Composite Higgs with pNGB LQs; anarchic partial compositeness; flavour-structured couplings",
+   "idea": "Composite pNGB LQs predict a specific coupling pattern (y33, y32, in S3 and S1) and correlations with B anomalies; collider studies so far consider only QCD pair production, leaving single/resonant production under partial compositeness. Complement: B->K nu nu (Belle II) with pNGB LQ.",
+   "signature_hypothesis": "Pair + resonant single production with b tau, c nu, b nu / s nu; kinematics with flavour-structured Yukawas (1/3 and 2/3 charge LQ)",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1611.04930",
+     "title": "B-decay Anomalies in a Composite Leptoquark Model",
+     "year": 2016
+    },
+    {
+     "id": "arXiv:1808.02063",
+     "title": "A composite pNGB leptoquark at the LHC",
+     "year": 2018
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2311.04062",
+     "title": "The flavor of a minimal composite S1 leptoquark and the b -> c tau nu anomalies",
+     "year": 2023
+    },
+    {
+     "id": "arXiv:2106.15630",
+     "title": "From B-meson anomalies to Kaon physics with scalar leptoquarks",
+     "year": 2021
+    },
+    {
+     "id": "arXiv:1906.11666",
+     "title": "A vector leptoquark for the B-physics anomalies from a composite GUT",
+     "year": 2019
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1808.02063",
+     "quote": "Therefore, in this article we consider solely QCD-mediated leptoquark pair production and leave the investigation of single production within a partial compositeness framework for future work.",
+     "location": "Sec. 4 (LHC)"
+    },
+    {
+     "id": "arXiv:2311.04062",
+     "quote": "It would be interesting to study this excess in the context of pNGB leptoquarks with anarchic partial compositeness.",
+     "location": "Conclusions (excess = Belle II B->K nu nu)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2308.07826",
+     "note": "CMS single/pair/t-channel b-tau (covers coupling-agnostic single production)"
+    },
+    {
+     "id": "arXiv:2012.04178",
+     "note": "CMS third-gen single+pair LQ"
+    }
+   ],
+   "gap_type_guess": "theory-explored-untested",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t \"composite\" and t leptoquark",
+    "cites arXiv:1808.02063 mostrecent",
+    "arxiv_pdf 2311.04062 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "Likely subsumed by generic single-LQ searches; value is in flavour-structure-specific benchmarks.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Heavy-flavour (bb/bs/tau-tau) Drell-Yan tails: LQ t-channel and EFT validity at HL-LHC",
+   "framework": "SMEFT four-fermion operators (semileptonic) and t-channel LQ; HighPT; EFT validity",
+   "idea": "HighPT-type analyses show heavy-flavour-initiated operators are dominated by squared (dim-8-like) contributions and EFT validity is delicate; the multi-parameter three-generation analysis is left open. Experiments cover bb/bs-ll for e/mu and tau-tau measurements, but flavour-complete bs->tau tau, b mu tau, cu-type etc. with HL-LHC projection are less visible.",
+   "signature_hypothesis": "High-mass tau tau, mu tau, e tau with b-tag categories; bs-ll with b-tagged jets; non-resonant tails with LQ propagator (large lambda)",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2207.10714",
+     "title": "Drell-Yan tails beyond the Standard Model",
+     "year": 2022,
+     "why": "HighPT framework"
+    },
+    {
+     "id": "arXiv:1409.2372",
+     "title": "Constraints on t-channel leptoquark exchange from LHC contact interaction searches",
+     "year": 2014
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2412.14162",
+     "title": "On the EFT validity for Drell-Yan tails at the LHC",
+     "year": 2024
+    },
+    {
+     "id": "arXiv:2503.20023",
+     "title": "CMS t-channel scalar/vector LQ exchange in dimuon and dielectron",
+     "year": 2025
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2207.10714",
+     "quote": "We leave for future work a more thorough multi-parameter analysis of the SMEFT with all three generations and different flavor structure hypotheses [98].",
+     "location": "Sec. 4 (Summary)"
+    },
+    {
+     "id": "arXiv:2207.10714",
+     "quote": "in the case of heavy-flavor initial quarks these corrections completely drive the limits even when disposing of the last experimental bins of the differential distributions",
+     "location": "Sec. 4.4 / EFT validity"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "recid:2812533 (arXiv:2506.13565 published)",
+     "note": "CMS nonresonant high-mass dilepton + b-tagged jets, bbll and bsll EFT, ee and mumu only"
+    },
+    {
+     "id": "arXiv:2503.20023",
+     "note": "CMS t-channel LQ in dimuon/dielectron"
+    },
+    {
+     "id": "arXiv:2503.19836",
+     "note": "ATLAS high-mass tautau cross-section measurement"
+    },
+    {
+     "id": "arXiv:2308.07826",
+     "note": "CMS nonresonant tau tau through t-channel LQ"
+    }
+   ],
+   "gap_type_guess": "LHC-not-projected-to-HL",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t \"Drell-Yan tails\" or (t \"Drell-Yan\" and t flavor and t SMEFT)",
+    "cites arXiv:2207.10714 mostcited",
+    "arxiv_pdf 2207.10714 --gaps",
+    "arxiv_pdf 2412.14162 --gaps",
+    "collaboration:CMS and t \"dilepton\" and t \"high mass\" and date > 2018"
+   ],
+   "confidence": "medium",
+   "notes": "Tau-flavoured and lepton-flavour-violating tails with b-tagging are the less covered side. Needs a check on ATLAS bb-tautau tails.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "LFV t-channel LQ signatures in e-mu / mu-tau / e-tau high-mass tails with heavy flavours",
+   "framework": "LQ with off-diagonal lepton couplings; LFV dimension-6 semileptonic operators",
+   "idea": "LFV LQ couplings (from b->s l1 l2 fits) predict eμ, μτ, eτ high-mass dilepton tails with b/s-initiated production. ATLAS LFV high-mass search interprets Z', sneutrino, black holes; LQ-t-channel LFV interpretations and b-tag categories are not seen in what I found.",
+   "signature_hypothesis": "Opposite-sign different-flavour dileptons (e-mu, mu-tau, e-tau) in non-resonant tails, +/- b-tag; HL-LHC extrapolation",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1608.07583",
+     "title": "Palatable Leptoquark Scenarios for Lepton Flavor Violation in Exclusive b -> s l1 l2 modes",
+     "year": 2016
+    },
+    {
+     "id": "arXiv:1603.04993",
+     "title": "Physics of leptoquarks in precision experiments and at particle colliders",
+     "year": 2016
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2207.10714",
+     "title": "Drell-Yan tails beyond the Standard Model",
+     "year": 2022
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1603.04993",
+     "quote": "Currently no dedicated searches exist for such signatures, but a recent sensitivity study",
+     "location": "Sec. on LFV top decays / collider (statement of 2016, since followed up for tops)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2307.08567",
+     "note": "ATLAS LFV high-mass dilepton (e mu, e tau, mu tau) - Z', tau-sneutrino, quantum BH interpretations (abstract)"
+    },
+    {
+     "id": "arXiv:2403.06742",
+     "note": "ATLAS mu-tau-q-t interactions"
+    },
+    {
+     "id": "arXiv:2112.08090",
+     "note": "ATLAS e+mu- vs e-mu+ asymmetry"
+    }
+   ],
+   "gap_type_guess": "indirectly-covered",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t \"lepton flavor violating\" and (t leptoquark or t \"lepton flavour violating\") and date > 2019",
+    "collaboration:ATLAS and t \"high-mass\" and t \"dilepton\" and date > 2018"
+   ],
+   "confidence": "low",
+   "notes": "Need to verify whether the ATLAS LFV analysis reports contact-interaction/LQ limits (read PDF).",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "cLFV top interactions (e-mu-t-q, mu-tau-t-q): HL-LHC extrapolation and LQ-correlated benchmarks",
+   "framework": "Top-quark charged-lepton-flavour-violating SMEFT operators and LQ UV completions",
+   "idea": "Dorsner et al. noted the absence of dedicated searches for t -> l l' q; since then ATLAS and CMS have searched. Remaining: all lepton-flavour pairs in both collaborations, and HL-LHC projections with LQ-linked correlations.",
+   "signature_hypothesis": "Single top + opposite-sign different-flavour leptons (e mu, mu tau, e tau); ttbar with LFV decay; polarisation observables",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1603.04993",
+     "title": "Physics of leptoquarks in precision experiments and at particle colliders",
+     "year": 2016
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:1809.09048",
+     "title": "ATLAS: cLFV in top-quark decays (Gottardo)",
+     "year": 2018
+    },
+    {
+     "id": "arXiv:2403.06742",
+     "title": "ATLAS mu-tau-q-t",
+     "year": 2024
+    },
+    {
+     "id": "arXiv:2504.08532",
+     "title": "CMS mu-tau-t-u/c",
+     "year": 2025
+    },
+    {
+     "id": "arXiv:2610.01308",
+     "title": "ATLAS e-mu-t-q",
+     "year": 2026
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1603.04993",
+     "quote": "Currently no dedicated searches exist for such signatures, but a recent sensitivity study",
+     "location": "LFV top decays discussion"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2504.08532",
+     "note": "CMS mu-tau-t-q (Run 2, 138/fb)"
+    },
+    {
+     "id": "arXiv:2610.01308",
+     "note": "ATLAS e-mu-t-q (Run 2, 140/fb)"
+    },
+    {
+     "id": "arXiv:2403.06742",
+     "note": "ATLAS mu-tau-t-q"
+    },
+    {
+     "id": "arXiv:1809.09048",
+     "note": "ATLAS earlier top-LFV decay search"
+    }
+   ],
+   "gap_type_guess": "LHC-not-projected-to-HL",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t \"top quark\" and (t \"lepton flavor violation\" or t \"lepton flavour violation\") and (t LHC or t EFT)",
+    "collaboration:ATLAS and t \"lepton flavour violating\" or ...",
+    "collaboration:CMS and t \"lepton flavour violation\" and t top"
+   ],
+   "confidence": "medium",
+   "notes": "Gap statement of 2016 has been followed up (forward check): well-covered in Run 2; remaining HL-LHC/e-tau and CMS e-mu not verified.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Flavour-violating heavy Higgs / top-Higgs FCNC multi-lepton plus b-jets",
+   "framework": "Extended Higgs sectors with flavour-violating couplings (2HDM type-III, h->mu tau, A/H -> mu tau, H -> tc)",
+   "idea": "ATLAS and CMS search LFV decays of heavy Higgses and top-Higgs FCNC; the combined top-flavour plus lepton flavour structure (H -> t c, t u with lepton flavour) lacks combined interpretation and HL-LHC projection.",
+   "signature_hypothesis": "Multi-lepton + b-jets (H/A -> t q), tau mu resonance; tqH -> multilepton",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1305.2427",
+     "title": "Constraining the flavor changing Higgs couplings to the top-quark at the LHC",
+     "year": 2013
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:1906.08282",
+     "title": "Model-independent search strategy for the lepton-flavor-violating heavy Higgs boson decay to mu tau",
+     "year": 2019
+    }
+   ],
+   "gap_evidence": [],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2307.14759",
+     "note": "ATLAS heavy Higgs with flavour-violating couplings, multilepton + b-jets"
+    },
+    {
+     "id": "arXiv:1911.10267",
+     "note": "CMS neutral heavy Higgs -> mu tau / e tau"
+    },
+    {
+     "id": "arXiv:2404.02123",
+     "note": "ATLAS tqH FCNC"
+    },
+    {
+     "id": "arXiv:2111.02219",
+     "note": "CMS tqH FCNC"
+    }
+   ],
+   "gap_type_guess": "well-covered",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t \"flavor-changing\" and t top and t Higgs and topcite 50+",
+    "t \"heavy Higgs\" and (t \"flavor violating\" ...)",
+    "collaboration:ATLAS and t \"flavour-changing\" and t top and t Higgs and date > 2018"
+   ],
+   "confidence": "low",
+   "notes": "No verbatim gap sentence harvested; weak seed kept for breadth.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Ultraheavy diquark decaying via vector-like quark (q chi) at HL-LHC",
+   "framework": "Scalar diquark S_uu / S_dd with vector-like quark partner; baryon number violation context",
+   "idea": "Duminica et al. and Filip et al. study S_uu -> u chi with chi -> Wb/Zt/ht; HL-LHC sensitivity paper exists (theory). Experimental searches target dijet and paired dijet resonances but not this cascade.",
+   "signature_hypothesis": "Six-jet / boosted W/Z/top + jet final state from uu -> S -> u chi, chi -> W b",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1210.5622",
+     "title": "Lepton number violation at the LHC with leptoquark and diquark",
+     "year": 2012,
+     "why": "LNV through diquark+LQ"
+    },
+    {
+     "id": "arXiv:1708.06350",
+     "title": "Baryon Number and Lepton Universality Violation in Leptoquark and Diquark Models",
+     "year": 2017
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2503.17031",
+     "title": "Ultraheavy diquark decaying into vectorlike quarks at the LHC",
+     "year": 2025
+    },
+    {
+     "id": "arXiv:2601.11181",
+     "title": "HL-LHC sensitivity to an ultraheavy S_uu diquark in the u chi channel",
+     "year": 2026
+    },
+    {
+     "id": "arXiv:2511.02474",
+     "title": "Observability of an ultraheavy diquark decaying into vectorlike quarks at the LHC",
+     "year": 2025
+    }
+   ],
+   "gap_evidence": [],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2507.17884",
+     "note": "CMS pairs of dijet resonances via broad mediators"
+    },
+    {
+     "id": "arXiv:2206.09997",
+     "note": "CMS resonant and nonresonant production of pairs of dijet resonances"
+    },
+    {
+     "id": "arXiv:2609.21850",
+     "note": "CMS paired dijet resonances with b jets"
+    }
+   ],
+   "gap_type_guess": "theory-explored-untested",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t diquark and (t LHC or t collider) and date > 2012",
+    "cites arXiv:2503.17031 mostrecent",
+    "collaboration:CMS and t \"dijet\" and t \"pairs\""
+   ],
+   "confidence": "low",
+   "notes": "Diquark search lines are narrow; baryon-number-related (Hiller 2602.15936) leads to qqqN portals. Possibly outside 'flavour' scope.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "LQ -> RHN + jet: same-sign dimuon + multijet and heavy-neutrino-from-LQ signatures",
+   "framework": "Scalar LQ (R2~) coupled to right-handed neutrinos; LNV Majorana signatures; first-generation LQ enhanced RHN production",
+   "idea": "If the LQ decays to a Majorana RHN, same-sign dimuon + multijet signatures arise with low SM background. Authors claim regions not constrained by current searches; CMS/ATLAS heavy-neutrino searches use W_R / mixing models.",
+   "signature_hypothesis": "Same-sign dileptons (mu mu, e e, e mu) + >=3 jets (displaced option) with LQ -> N j, N -> l W*",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1210.5622",
+     "title": "Lepton number violation at the LHC with leptoquark and diquark",
+     "year": 2012
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2603.01903",
+     "title": "Exploring R2~ leptoquarks and Majorana neutrinos via same-sign dimuons at the HL-LHC",
+     "year": 2026
+    },
+    {
+     "id": "arXiv:2412.19751",
+     "title": "Right-handed neutrino production through first-generation leptoquarks",
+     "year": 2024
+    },
+    {
+     "id": "arXiv:1706.05033",
+     "title": "The leptoquark Hunter's guide: pair production",
+     "year": 2017
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2603.01903",
+     "quote": "channel provides a powerful and complementary probe of heavy sLQs coupled to Majorana RHNs, enabling access to regions of parameter space that remain unconstrained by existing searches",
+     "location": "Conclusions (two-column extraction)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2112.03949",
+     "note": "CMS right-handed W and heavy neutrino (closest LNV analysis)"
+    },
+    {
+     "id": "arXiv:1811.00806",
+     "note": "CMS heavy neutrinos and third-generation LQs in hadronic tau final states"
+    },
+    {
+     "id": "recid:2622762",
+     "note": "ATLAS thesis: boosted RH heavy neutrino and single LQ (no arXiv)"
+    }
+   ],
+   "gap_type_guess": "proposed-not-searched",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t leptoquark and (t \"dark matter\" or t neutrino or t \"right-handed neutrino\") and date > 2018 and topcite 15+",
+    "cites arXiv:1210.5622 mostrecent",
+    "arxiv_pdf 2603.01903 --gaps"
+   ],
+   "confidence": "medium",
+   "notes": "Explicitly HL-LHC; need to check displaced / long-lived variants.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Mono-LQ / LQ-mediated dark matter at HL-LHC",
+   "framework": "Scalar LQ as mediator between SM quarks/leptons and a dark sector",
+   "idea": "LQ + MET exists in CMS Run 2 (single). New models couple LQ to DM and RHN with flavour-structured couplings; NLO calculations for pair production plus DM exist.",
+   "signature_hypothesis": "LQ (lepton + jet) + MET; dijet + MET with t-channel DM; lepton + b-jet + MET",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1811.10151",
+     "title": "CMS search for dark matter in events with a leptoquark and missing transverse momentum",
+     "year": 2018
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2111.08027",
+     "title": "Leptoquark manoeuvres in the dark",
+     "year": 2021
+    },
+    {
+     "id": "arXiv:2509.02744",
+     "title": "Exploring fermionic dark matter in the presence of scalar leptoquarks",
+     "year": 2025
+    }
+   ],
+   "gap_evidence": [],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:1811.10151",
+     "note": "CMS LQ + MET (Run 2 partial dataset)"
+    },
+    {
+     "id": "recid:2162343",
+     "note": "CMS thesis: DM with LQ and MET"
+    }
+   ],
+   "gap_type_guess": "searched-limited-regime",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t leptoquark and collaboration:CMS and date > 2018",
+    "t leptoquark and (t \"dark matter\" ...)"
+   ],
+   "confidence": "low",
+   "notes": "Weak; not mainstream flavour.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Top polarisation / jet substructure to discriminate scalar vs vector LQ chirality",
+   "framework": "LQ -> t l decays; chirality structure of couplings; boosted tops",
+   "idea": "Boosted-top tagging and top polarisation improve third-gen LQ sensitivity and discriminate scalar/vector and chirality, but experimental searches do not use polarisation observables.",
+   "signature_hypothesis": "Boosted top + tau/lepton resonance; top-polarisation-sensitive observables (lepton energy fraction) in LQ pair/single production",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2004.01096",
+     "title": "Boosting vector leptoquark searches with boosted tops",
+     "year": 2020
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2106.07605",
+     "title": "Improving third-generation leptoquark searches with combined signals and boosted top quarks",
+     "year": 2021
+    },
+    {
+     "id": "arXiv:2505.16328",
+     "title": "Jet substructure probe on scalar leptoquark models via top polarization",
+     "year": 2025
+    },
+    {
+     "id": "arXiv:2609.00270",
+     "title": "Two-stage machine learning for scalar vs vector LQ discrimination",
+     "year": 2026
+    }
+   ],
+   "gap_evidence": [],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2101.11582",
+     "note": "ATLAS LQ -> t tau"
+    },
+    {
+     "id": "arXiv:2306.17642",
+     "note": "ATLAS LQ -> t l"
+    }
+   ],
+   "gap_type_guess": "one-observable-not-another",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t leptoquark and \"boosted\" and date > 2018",
+    "cites arXiv:1901.10480 mostrecent"
+   ],
+   "confidence": "low",
+   "notes": "No verbatim gap; inferred from the experimental table.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Large-coupling/ large-width LQ: interference of pair, single and t-channel contributions",
+   "framework": "LQ with O(1)-O(3) Yukawas (B anomalies, g-2); NLO+PS",
+   "idea": "Experiments scan fixed-lambda and treat pair, single and t-channel separately; theory shows interference/overlap matters at large lambda and for S1 interference.",
+   "signature_hypothesis": "Joint LQ (pair + single + non-resonant) fit in l l j j / l l b b final states with lambda scan",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1801.07641",
+     "title": "Leptoquark toolbox for precision collider studies",
+     "year": 2018
+    },
+    {
+     "id": "arXiv:1811.03561",
+     "title": "R_D(*) motivated S1 leptoquark scenarios: impact of interference on the exclusion limits",
+     "year": 2018
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2108.11404",
+     "title": "Scalar leptoquark pair production at the LHC: precision predictions in the era of flavour anomalies",
+     "year": 2021
+    },
+    {
+     "id": "arXiv:2209.02599",
+     "title": "Resonant leptoquark at NLO with POWHEG",
+     "year": 2022
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:1801.07641",
+     "quote": "Implementation of the benchmark UV realisations together with the NLO QCD corrections is left for future work.",
+     "location": "Sec. summary"
+    },
+    {
+     "id": "arXiv:2108.11404",
+     "quote": "We leave the corresponding detailed studies for future work.",
+     "location": "Sec. 5 (S1 example study, context UNVERIFIED)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2401.11928",
+     "note": "ATLAS combination of searches for pair-produced LQs"
+    },
+    {
+     "id": "arXiv:2308.07826",
+     "note": "CMS combined single, pair and nonresonant"
+    },
+    {
+     "id": "arXiv:2402.08668",
+     "note": "CMS pair production scalar and vector LQ -> mu b"
+    }
+   ],
+   "gap_type_guess": "indirectly-covered",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "cites arXiv:1801.07641 mostcited",
+    "arxiv_pdf 1801.07641 --gaps",
+    "arxiv_pdf 2108.11404 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "NLO follow-ups (2108.11404, 2209.02599) already exist; interference joint-fit is in CMS 2308.07826 for b-tau only.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Tau-philic LQ follow-up of the 2.8 sigma b-tau excess at HL-LHC",
+   "framework": "Third-family LQs with large b-tau coupling (S1, U1, R2) and t-channel tau tau",
+   "idea": "CMS b-tau analysis (single, pair, nonresonant) reported an excess up to 2.8 sigma local for m_LQ = 2 TeV, lambda = 2.5. Theory states discrimination between tauphilic models; ATLAS has b-tau and tau+MET searches. Needs HL-LHC projection and discriminating observables.",
+   "signature_hypothesis": "b + tau resonance + t-channel tau tau; mono-b tau; MET + tau; discrimination via tau polarisation / charge asymmetry",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2308.07826",
+     "title": "CMS: third-gen LQ coupled to tau and b via single, pair and nonresonant production",
+     "year": 2023
+    },
+    {
+     "id": "arXiv:2505.05552",
+     "title": "Discriminating tauphilic leptoquark explanations of the B-physics anomalies",
+     "year": 2025
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2606.02067",
+     "title": "ATLAS tau + MET LQ",
+     "year": 2026
+    },
+    {
+     "id": "arXiv:2305.15962",
+     "title": "ATLAS LQ -> b tau",
+     "year": 2023
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2308.07826",
+     "quote": "An excess is observed in the data with respect to the background expectation in the combined analysis of all search regions.",
+     "location": "Abstract"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2305.15962",
+     "note": "ATLAS b-tau LQ search"
+    },
+    {
+     "id": "arXiv:2606.02067",
+     "note": "ATLAS tau+MET resonant and non-resonant"
+    }
+   ],
+   "gap_type_guess": "LHC-not-projected-to-HL",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "cites arXiv:2308.07826 mostrecent",
+    "collaboration:ATLAS and t leptoquarks and date > 2018 and tc p"
+   ],
+   "confidence": "medium",
+   "notes": "Abstract-level only; excess significance from CMS abstract; check ATLAS follow-up in PDF.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Charm- and strange-flavoured LQ signatures (l + c-jet, c nu, s nu) and Belle II B->K nu nu",
+   "framework": "LQs coupled to 2nd-generation quarks and 3rd-generation leptons (B->K nu nu, Cabibbo angle, charm decays)",
+   "idea": "Neutelings notes e/mu + light/charm-jet finals as open; B->K nu nu LQ explanations point to s/b + nu or tau couplings. ATLAS has a c-tag + MET search; l+c-tag resonance and s-tag are not seen.",
+   "signature_hypothesis": "Lepton + c-tagged jet resonance (single and pair), c c nu nu, s-tagged jets with MET",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2505.08738",
+     "title": "Leptoquark searches at ATLAS and CMS",
+     "year": 2025,
+     "why": "coverage tables"
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2012.15847",
+     "title": "Exploring charm decays with missing energy in leptoquark models",
+     "year": 2020
+    },
+    {
+     "id": "arXiv:2106.15630",
+     "title": "From B-meson anomalies to Kaon physics with scalar leptoquarks",
+     "year": 2021
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2505.08738",
+     "quote": "many opportunities remain such as finals states containing an electron or muon accompanied by light- or charm-flavored jets",
+     "location": "Sec. 2"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2410.17824",
+     "note": "ATLAS charm-tag + MET (LQ -> c nu)"
+    },
+    {
+     "id": "arXiv:2006.05872",
+     "note": "ATLAS pair LQ -> e/mu + quark"
+    }
+   ],
+   "gap_type_guess": "searched-limited-regime",
+   "novelty_kind": "experimental-analysis",
+   "queries_used": [
+    "t leptoquark and \"charm\" and date > 2018 and topcite 10+",
+    "arxiv_pdf 2505.08738 (grep)"
+   ],
+   "confidence": "medium",
+   "notes": "2410.17824 note: lepton t-channel contributions neglected in cross sections (gap output of --gaps).",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Baryon-number / quark-portal MET signatures with displaced vertices",
+   "framework": "Quark-portal qqqN interactions, colour-triplet scalars (mesogenesis), diquark-like couplings",
+   "idea": "Hiller et al. constrain qqqN via MET+jet/top/bjet and suggest displaced vertices; HL-LHC window for mesogenesis colour-triplet scalars at few TeV with b and light quarks.",
+   "signature_hypothesis": "MET + b-jet, MET + top, displaced vertices from N -> qqq; resonant diquark-like scalars to b + light quark",
+   "seminal_refs": [
+    {
+     "id": "arXiv:1708.06350",
+     "title": "Baryon Number and Lepton Universality Violation in Leptoquark and Diquark Models",
+     "year": 2017
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2602.15936",
+     "title": "Probing baryon number with missing energy",
+     "year": 2026
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2602.15936",
+     "quote": "With increasing mass, or larger portal couplings, N becomes less long-lived, and gives clean displaced vertex signatures, which encourage dedicated searches.",
+     "location": "Abstract"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2107.13021",
+     "note": "CMS new particles with energetic jets and MET (monojet)"
+    },
+    {
+     "id": "arXiv:2609.21850",
+     "note": "CMS dijet pairs with b jets"
+    }
+   ],
+   "gap_type_guess": "proposed-not-searched",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "cites arXiv:1708.06350 mostrecent",
+    "arxiv_pdf 2602.15936 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "Likely outside strict flavour cluster; keep for breadth.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "LQ plus vector-like leptons/quarks cascades",
+   "framework": "Scalar LQ extended with VLL/VLQ (g-2, W-mass, flavour anomalies)",
+   "idea": "Models add VLL/VLQ to LQs; resonant LQ -> VLL + quark cascades give multi-tau/b-jet final states not targeted by LQ or VLL searches individually.",
+   "signature_hypothesis": "LQ -> q + VLL, VLL -> tau/Z/H/W + nu; many tau + b-jets",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2206.11718",
+     "title": "Collider signatures of a scalar leptoquark and vectorlike lepton in light of muon anomaly",
+     "year": 2022
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2309.07583",
+     "title": "Search for a leptoquark and vector-like lepton in a muon collider",
+     "year": 2023
+    }
+   ],
+   "gap_evidence": [],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2503.22581",
+     "note": "ATLAS vector-like leptons in tau + b-jet final states"
+    },
+    {
+     "id": "arXiv:2405.17605",
+     "note": "CMS review of VLQ, VLL and HNL searches"
+    }
+   ],
+   "gap_type_guess": "proposed-not-searched",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "t \"vector-like\" and t leptoquark"
+   ],
+   "confidence": "low",
+   "notes": "Weak; model-dependent.",
+   "cluster": "leptoquark_flavour"
+  },
+  {
+   "name": "Photon/QED-induced LQ production and PDF uncertainties for vector LQ",
+   "framework": "Indirect/photon-initiated LQ production; photon PDF",
+   "idea": "Vector LQ limits depend on indirect production and QCD+QED mixed pair production and photon PDFs; limits to be updated with PDF variation.",
+   "signature_hypothesis": "Pair production with QED mixed contributions; ll jj reinterpretation",
+   "seminal_refs": [
+    {
+     "id": "arXiv:2507.18295",
+     "title": "Fresh look at the LHC limits on vector leptoquarks",
+     "year": 2025
+    }
+   ],
+   "followup_refs": [
+    {
+     "id": "arXiv:2005.06477",
+     "title": "Leptons in the proton",
+     "year": 2020
+    }
+   ],
+   "gap_evidence": [
+    {
+     "id": "arXiv:2507.18295",
+     "quote": "A detailed study ... of the impact of the associated PDF uncertainties on the exclusion limits, including comparisons with photon PDFs from alternative PDF sets, is beyond the scope of the current work",
+     "location": "Sec. V (two-column extraction interleaved)"
+    }
+   ],
+   "exp_coverage_seen": [
+    {
+     "id": "arXiv:2401.11928",
+     "note": "ATLAS combination of pair-produced LQs"
+    },
+    {
+     "id": "arXiv:2006.05872",
+     "note": "ATLAS pair LQ e/mu + quark"
+    }
+   ],
+   "gap_type_guess": "constrained-but-region-open",
+   "novelty_kind": "phenomenology",
+   "queries_used": [
+    "cites arXiv:2005.06475 mostrecent",
+    "arxiv_pdf 2507.18295 --gaps"
+   ],
+   "confidence": "low",
+   "notes": "Mostly theory systematics; low promise.",
+   "cluster": "leptoquark_flavour"
+  }
+ ]
+}

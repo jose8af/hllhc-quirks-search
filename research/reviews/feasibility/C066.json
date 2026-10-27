@@ -1,0 +1,27 @@
+{
+ "cand_id": "C066",
+ "xsec_sources": [
+  "arXiv:2012.02092 Tables 1-2 (NLO QCD+QED resonant LQ xsec, 13 TeV, y=1): c+mu 7.16e-4/5.43e-5/2.33e-6 pb at 1.6/2.5/4.0 TeV; u+mu 1.36e-2/1.50e-3/7.14e-5 pb; s+mu 1.37e-3/9.53e-5/2.81e-6 pb; c+l PDF unc 24/42/63%",
+  "14 TeV xsec: UNVERIFIED (not computed)"
+ ],
+ "yield_estimate": "ESTIMATE (13 TeV xsec as conservative proxy, 3000 fb-1): c+mu M=2.5 TeV y=1 -> ~160 produced (~40 at y=0.5); M=4 TeV y=1 -> ~7 produced; times c-tag eff ~0.3 (2211.16345, ttbar regime; TeV-pT UNVERIFIED) times lepton/jet eff. c-channel rate ~1/28 of u-channel at 2.5 TeV.",
+ "backgrounds": "W+jets (1L), Z+jets (2L), top (b-categories), fake/non-prompt e (2507.03650 Sec.6); W-+j dominant and multijet 28/84/142% of other bkg at 1/3/5 TeV (2005.06475 p2). c-tag removes W+light but keeps W+c and part of W+b (b rejection ~9).",
+ "trigger": "Single-lepton triggers at plateau (CMS mu pT>50 GeV non-isolated, >90% eff, 2608.28377 Sec.4; ATLAS e/mu 20-140 GeV thresholds, 2507.03650 Sec.3); signal leptons ~M/2 >> Phase-2 L1 thresholds (Phase-2 values UNVERIFIED). Not an obstacle.",
+ "pileup": "Negligible for TeV lepton/jet; affects low-MET requirement and sub-leading jet veto (30 GeV in 2005.06475) and SV-based c-tagging; mitigation via pileup-jet ID / MTD-HGTD timing (performance UNVERIFIED).",
+ "detector_upgrades": "ATLAS ITk + GN2: up to x40 light-jet rejection at high pT vs Run-3 tune (INSPIRE recid 3130572 abstract; c-tag gain UNVERIFIED). Muon TeV resolution (6.7/12/17% at 1/3/5 TeV vs e 2.3/1.7/1.6%, 2005.06475 p3) favours e channel for narrow peak.",
+ "systematics": "Searches statistics-limited (ATLAS syst effect on mass reach <5%, 2507.03650 Sec.7; CMS signal syst 3-4x below bkg-fit stat, 2608.28377 Sec.8). New: c-tag SF at TeV pT (calibrations 10-20% for light/charm in standard pT, recid 1860177; TeV UNVERIFIED); signal PDF unc for c+l 24-63% (2012.02092 Tab.1).",
+ "projection_docs": [
+  "arXiv:2005.06475 Figs.3-4 (pheno, 3 ab-1 14 TeV; 5.7/4.2 TeV is the mass up to which HL limits on lambda_eu/lambda_ed surpass Q_W bounds, not a generic reach; s/c couplings 'more difficult to constrain')",
+  "No ATLAS/CMS HL-LHC projection of resonant lepton-quark channel found (forward citations of 2005.06475 checked to Aug 2026)"
+ ],
+ "hl_specific_advantage": "~20x Run-2 luminosity in a statistics-limited, near-background-free (high-mass) bump hunt; ITk/Phase-2 tracker high-pT flavour tagging may make a TeV c/b-tag category usable. Most valuable deliverable: collaboration HL projection of existing light/b channels plus c-coupling reinterpretation.",
+ "main_obstacle": "c-quark x lepton PDF rate ~28x below u at 2.5 TeV (2012.02092): matching u-reach needs y_c >~3 (Gamma/M~0.2, broad, near perturbative edge); TeV-pT c-tagging low efficiency/poorly calibrated; and existing b-veto light-jet categories already accept c-jets (ATLAS 2507.03650 Sec.1 explicitly allows u/c reinterpretation), so incremental gain of c-tag category is small.",
+ "feasibility_rating": 3,
+ "confidence": "medium",
+ "caveats": [
+  "Rating splits: dedicated c-tag channel ~2/5 in physics gain; HL projection + reinterpretation ~4/5",
+  "14 TeV cross sections and TeV-pT c-tag performance not verified",
+  "Review 2505.08738 'opportunity' statement predates 2507.03650 and 2608.28377",
+  "Vector-LQ resonant cross sections not checked; vector and e-mu LFV variants are reinterpretations of existing l+j final states"
+ ]
+}
