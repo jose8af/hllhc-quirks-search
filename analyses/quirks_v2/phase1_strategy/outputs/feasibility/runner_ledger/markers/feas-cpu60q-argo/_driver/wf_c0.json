@@ -2,19 +2,18 @@
  "apiVersion": "argoproj.io/v1alpha1",
  "kind": "Workflow",
  "metadata": {
-  "name": "jdochoa-qv2-feas-mini-argo-c0-landau-ffuxz",
+  "name": "jdochoa-qv2-feas-cpu60q-argo-c0-31ohd",
   "namespace": "argo",
   "labels": {
    "owner": "jdochoa",
    "study": "quirks-v2",
-   "qv2-campaign": "feas-mini-argo",
-   "qv2-chunk": "0",
-   "qv2-node": "landau"
+   "qv2-campaign": "feas-cpu60q-argo",
+   "qv2-chunk": "0"
   }
  },
  "spec": {
   "entrypoint": "main",
-  "parallelism": 2,
+  "parallelism": 1,
   "podGC": {
    "strategy": "OnPodSuccess"
   },
@@ -25,9 +24,8 @@
    "labels": {
     "owner": "jdochoa",
     "study": "quirks-v2",
-    "qv2-campaign": "feas-mini-argo",
-    "qv2-chunk": "0",
-    "qv2-node": "landau"
+    "qv2-campaign": "feas-cpu60q-argo",
+    "qv2-chunk": "0"
    }
   },
   "securityContext": {
@@ -74,30 +72,9 @@
         ]
        },
        "withItems": [
-        "mini-argo-000",
-        "mini-argo-001",
-        "mini-argo-002",
-        "mini-argo-003",
-        "mini-argo-004",
-        "mini-argo-005",
-        "mini-argo-006",
-        "mini-argo-007",
-        "mini-argo-008",
-        "mini-argo-009",
-        "mini-argo-010",
-        "mini-argo-011",
-        "mini-argo-012",
-        "mini-argo-013",
-        "mini-argo-014",
-        "mini-argo-015",
-        "mini-argo-016",
-        "mini-argo-017",
-        "mini-argo-018",
-        "mini-argo-019",
-        "mini-argo-020",
-        "mini-argo-021",
-        "mini-argo-022",
-        "mini-argo-023"
+        "cpu60q-argo-r1",
+        "cpu60q-argo-r2",
+        "cpu60q-argo-r3"
        ]
       }
      ]
@@ -121,9 +98,8 @@
      "labels": {
       "owner": "jdochoa",
       "study": "quirks-v2",
-      "qv2-campaign": "feas-mini-argo",
-      "qv2-chunk": "0",
-      "qv2-node": "landau"
+      "qv2-campaign": "feas-cpu60q-argo",
+      "qv2-chunk": "0"
      }
     },
     "container": {
@@ -137,7 +113,7 @@
       "-c"
      ],
      "args": [
-      "umask 022 && exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2-job --campaign /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/feas/feas-mini-argo.json --job {{inputs.parameters.job}} --mechanism argo"
+      "umask 022 && exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2-job --campaign /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/feas/feas-cpu60q-argo.json --job {{inputs.parameters.job}} --mechanism argo"
      ],
      "env": [
       {
@@ -181,8 +157,24 @@
       }
      ]
     },
-    "nodeSelector": {
-     "kubernetes.io/hostname": "landau"
+    "affinity": {
+     "nodeAffinity": {
+      "requiredDuringSchedulingIgnoredDuringExecution": {
+       "nodeSelectorTerms": [
+        {
+         "matchExpressions": [
+          {
+           "key": "kubernetes.io/hostname",
+           "operator": "In",
+           "values": [
+            "landau"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
     }
    }
   ]

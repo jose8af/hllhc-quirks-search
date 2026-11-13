@@ -51,11 +51,25 @@ def driver_alive(camp):
         os.close(fd)
 
 
-def write_state(camp, **kw):
+_last = {"key": None, "t": 0.0}
+HEARTBEAT_S = 60
+
+
+def write_state(camp, force=False, **kw):
+    """driver.json on /home: rewritten only when the state changes or once per HEARTBEAT_S (NFS-home write budget).
+
+    `heartbeat` (epoch) lets a tiny watcher on einstein detect a dead driver without locks or marker scans.
+    """
     kw.setdefault("host", socket.gethostname())
     kw.setdefault("pid", os.getpid())
+    key = json.dumps(kw, sort_keys=True, default=str)
+    now = time.time()
+    if not force and key == _last["key"] and now - _last["t"] < HEARTBEAT_S:
+        return
+    kw["heartbeat"] = int(now)
     kw["updated"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
-    write_atomic(camp.state_dir() / "driver.json", json.dumps(kw, indent=1, sort_keys=True) + "\n")
+    write_atomic(camp.state_dir() / "driver.json", json.dumps(kw, indent=1, sort_keys=True, default=str) + "\n")
+    _last.update(key=key, t=now)
 
 
 def read_state(camp):

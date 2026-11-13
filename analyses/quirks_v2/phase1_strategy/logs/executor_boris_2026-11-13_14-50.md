@@ -18,3 +18,14 @@
   NFS during Python import, each up to 0.1-0.2 s. einstein load 11, all 8 nfsd threads + jbd2/sda4 in D state,
   vmstat wa 8-19%: the /home NFS server is I/O-bound (not caused by the runner; concurrent installs/builds likely).
 - 15:06 bundle tool tested to data/feasibility/runner/backup_test (73.0 MB, verified), test bundles removed.
+- 15:12 KILLED by einstein OOM (all agents). Resumed 15:38 under new rules: nothing heavy on einstein; tests on landau.
+- 15:40 Quiet-server start-up 0.07-0.84 s; node-local interpreter cache in bin/qv2-job: /home metadata calls 687 -> 28.
+- 15:42 Wrapper: I/O back-off (480 s budget), stash resume, test pause hooks; markers O_APPEND+fsync; 21 unit tests OK on landau.
+- 15:44 kill -9 at 4 stages: all converge (scenario_kill_stages.sh). Driver: heartbeat file, incremental marker
+  reads, runs on a worker (--on NODE); bash watcher bin/qv2-watch.
+- 15:55 SSH mini scenario PASS (scenario_mini_ssh.log). 15:46-48 memory tests PASS after Argo OOM reconciliation fix. 15:48 marker latency (R6).
+- 16:02 Argo mini scenario PASS; 16:04 pod-deletion test PASS (OnError retry). pyhf campaign launched on landau 16:04.
+- 16:15 pyhf benchmark done (R9). cpu60q re-measurement started on landau.
+- 16:23 quiet-server Argo vs SSH re-measured: overhead 16.8 s vs 2.4 s per job, CPU identical.
+- 16:30 FEAS_C_runner_boris.md final (JFC sections + orchestrator guide); benchmarks_runner.json regenerated on
+  landau. 0 workflows left; no runner processes left on landau. Session end.

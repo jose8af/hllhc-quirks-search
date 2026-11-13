@@ -6,9 +6,12 @@ import json
 import math
 import random
 import string
+import os
 import subprocess
 import sys
 import time
+
+os.environ.setdefault("KUBECONFIG", "/etc/kubernetes/student.conf")  # unset in non-interactive ssh
 
 from . import markers, nodes, paths
 from .driver import DriverLock, write_state
@@ -169,18 +172,44 @@ def delete(name):
     subprocess.run(["argo", "delete", "-n", "argo", name], capture_output=True, text=True, timeout=120)
 
 
-def mark_lost(camp, cjobs):
-    """With no active workflow, a `started` marker without an end line belongs to a dead pod: mark it lost."""
-    if any(wf_phase(w) in ("Pending", "Running") for w in our_workflows(camp)):
+def reconcile(camp, cjobs):
+    """After our workflows of this campaign end: a job whose marker still says `started` died with its pod.
+
+    Kubernetes kills the whole container on OOM (wrapper included), so the wrapper cannot write the line itself:
+    OOMKilled -> terminal `oom` (the request was wrong; never retried), any other pod end -> `lost` (retryable).
+    """
+    wfs = our_workflows(camp)
+    if any(wf_phase(w) in ("Pending", "Running") for w in wfs):
         return
+    pod_end = {}
+    for w in wfs:
+        for n in (w.get("status") or {}).get("nodes", {}).values():
+            if n.get("type") != "Pod":
+                continue
+            jid = next((p.get("value") for p in (n.get("inputs") or {}).get("parameters", []) if p["name"] == "job"),
+                       None)
+            if jid:
+                pod_end.setdefault(jid, []).append((n.get("finishedAt") or "", n.get("phase"), n.get("message", "")))
     st = job_states(camp)
     for j in cjobs:
         s, last, _ = st[j.id]
-        if s == "running" and last.get("mechanism") == "argo":
-            markers.append(camp.marker_path(j), {"job_id": j.id, "campaign": camp.name, "mechanism": "argo",
-                                                 "node": last.get("node", ""), "status": "lost",
-                                                 "reason": "no active workflow; pod gone without end line"})
-            log(f"{j.id}: marked lost")
+        if s != "running" or last.get("mechanism") != "argo":
+            continue
+        ends = sorted(pod_end.get(j.id, []))
+        msg = ends[-1][2] if ends else ""
+        status = "oom" if "OOMKilled" in msg else "lost"
+        markers.append(camp.marker_path(j), {"job_id": j.id, "campaign": camp.name, "mechanism": "argo",
+                                             "node": last.get("node", ""), "status": status,
+                                             "reason": msg or "no active workflow; pod gone without end line",
+                                             "mem_limit_mb": last.get("mem_limit_mb")})
+        log(f"{j.id}: marked {status} ({msg or 'pod gone'})")
+        node = last.get("node")
+        if node in paths.WORKERS:  # the wrapper died with its container: remove its scratch dir on that node
+            try:
+                subprocess.run(nodes.SSH + [node, f"rm -rf {paths.SCRATCH}/{j.id}"], capture_output=True,
+                               timeout=60)
+            except (OSError, subprocess.TimeoutExpired):
+                log(f"{j.id}: could not clean scratch on {node}")
 
 
 def launch(camp, node_list, max_parallel=None, keep=False, resubmit_rounds=1):
@@ -196,7 +225,7 @@ def launch(camp, node_list, max_parallel=None, keep=False, resubmit_rounds=1):
                     log(f"chunk {k}: waiting for running workflow(s) {names}")
                     write_state(camp, backend="argo", status="running", chunk=k, workflows=names)
                     wait(names)
-                mark_lost(camp, cjobs)
+                reconcile(camp, cjobs)
                 st = job_states(camp)
                 todo =[j for j in cjobs if st[j.id][0] in ("pending", "retryable")]
                 failed = [j.id for j in cjobs if st[j.id][0] == "failed"]
@@ -207,7 +236,7 @@ def launch(camp, node_list, max_parallel=None, keep=False, resubmit_rounds=1):
                 p = plan(camp, node_list, max_parallel)
                 if p["mode"] == "none":
                     log("no capacity; stopping")
-                    write_state(camp, backend="argo", status="no_capacity")
+                    write_state(camp, backend="argo", status="no_capacity", force=True)
                     return 2
                 names = []
                 if p["mode"] == "pooled":
@@ -230,9 +259,11 @@ def launch(camp, node_list, max_parallel=None, keep=False, resubmit_rounds=1):
                 for w in our_workflows(camp, k):
                     if wf_phase(w) == "Succeeded" and not keep:
                         delete(w["metadata"]["name"])
+        for cjobs in chunks(camp):
+            reconcile(camp, cjobs)
         st = job_states(camp)
         bad = [j for j, (s, _, _) in st.items() if s != "done"]
-        write_state(camp, backend="argo", status="finished", ok=not bad, failed=bad)
+        write_state(camp, backend="argo", status="finished", ok=not bad, failed=bad, force=True)
         log(f"campaign finished: {'all done' if not bad else f'{len(bad)} not done: {bad[:10]}'}")
         return 0 if not bad else 2
     finally:

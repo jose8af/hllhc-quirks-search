@@ -30,6 +30,25 @@ def _detach(args, backend):
     return 0
 
 
+def _remote(args, backend):
+    """Start the driver detached on a worker (light, standard library, ~20 MB): keeps einstein free."""
+    import shlex
+    camp = _camp(args.campaign)
+    argv = [a for a in sys.argv[1:] if a not in ("--detach",)]
+    i = argv.index("--on")
+    node = argv[i + 1]
+    del argv[i:i + 2]
+    logp = f"{paths.SCRATCH}/drivers/{camp.name}.{backend}.log"
+    cmd = " ".join(shlex.quote(x) for x in [str(paths.RUNNER / "bin" / "qv2run")] + argv)
+    remote = (f"mkdir -p {paths.SCRATCH}/drivers || exit 1; setsid nohup nice -n 10 {cmd} >> {logp} 2>&1 "
+              f"< /dev/null & echo $!")
+    r = subprocess.run(["ssh", "-x", "-o", "BatchMode=yes", node, remote], capture_output=True, text=True,
+                       timeout=60)
+    sys.stdout.write(f"{backend} driver started on {node}, pid {r.stdout.strip()}, log {node}:{logp}\n"
+                     f"watch: {paths.RUNNER / 'bin' / 'qv2-watch'} {camp.source}\n")
+    return r.returncode
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="qv2run")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -47,6 +66,7 @@ def main(argv=None):
         if name == "status":
             q.add_argument("-v", "--verbose", action="count", default=0)
             q.add_argument("--json", action="store_true")
+            q.add_argument("--live", action="store_true", help="check that 'running' jobs are really alive")
         if name == "manifest":
             q.add_argument("--verify", action="store_true")
         if name == "watch":
@@ -76,7 +96,8 @@ def main(argv=None):
         lq = bs.add_parser("launch")
         lq.add_argument("campaign")
         lq.add_argument("--nodes", default=",".join(paths.WORKERS))
-        lq.add_argument("--detach", action="store_true")
+        lq.add_argument("--detach", action="store_true", help="run detached on this host")
+        lq.add_argument("--on", default=None, help="run the driver detached on this worker (recommended)")
         if backend == "ssh":
             lq.add_argument("--max-per-node", type=int, default=None)
             lq.add_argument("--retries", type=int, default=2)
@@ -102,7 +123,7 @@ def main(argv=None):
             cnt, st = ledger.summary(camp)
             sys.stdout.write(json.dumps({"campaign": camp.name, "counts": dict(cnt), "jobs": len(camp.jobs)}) + "\n")
             return 0
-        ledger.print_status(camp, verbose=a.verbose)
+        ledger.print_status(camp, verbose=a.verbose, live=a.live)
         return 0
     if a.cmd == "verify":
         from . import ledger
@@ -135,6 +156,8 @@ def main(argv=None):
         tc = nodes.time_cap(expected_hours=a.expected_hours)
         sys.stdout.write(f"time cap {tc}; sum of node caps {sum(i['cap'] for i in info.values())}\n")
         return 0
+    if a.cmd in ("ssh", "argo") and getattr(a, "on", None):
+        return _remote(a, a.cmd)
     if a.cmd == "ssh":
         if a.detach:
             return _detach(a, "ssh")

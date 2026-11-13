@@ -11,7 +11,7 @@ from .fsops import makedirs_final
 
 TERMINAL_OK = ("done",)
 TERMINAL_FAIL = ("failed", "timeout", "oom", "verify_failed", "setup_error")
-RETRYABLE = ("killed", "lost", "corrupt")  # infrastructure-like: the runner may retry (Argo OnError analogue)
+RETRYABLE = ("killed", "lost", "corrupt", "io_error")  # infrastructure-like: the runner may retry (Argo OnError analogue)
 
 
 def read(path):

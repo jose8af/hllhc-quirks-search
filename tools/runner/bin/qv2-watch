@@ -1,0 +1,35 @@
+#!/bin/bash
+# Tiny blocking watcher (bash, a few MB): waits on the campaign driver's heartbeat file, never scans markers or
+# calls the cluster.  Usage:  qv2-watch CAMPAIGN.json [interval_s=60] [stale_s=300]
+# Exit: 0 campaign complete; 2 finished with failures / no capacity; 4 driver dead (heartbeat older than stale_s:
+# resume with `qv2run <backend> launch ... --on <node>`); 5 bad arguments / no driver state after stale_s.
+f=${1:?campaign file}; iv=${2:-60}; stale=${3:-300}
+REPO=/home/users/jdochoa/hllhc-quirks-search
+name=$(sed -n 's/^ *"campaign": *"\([^"]*\)".*/\1/p' "$f" | head -1)
+led=$(sed -n 's/^ *"ledger": *"\([^"]*\)".*/\1/p' "$f" | head -1)
+[ -z "$led" ] && led=analyses/quirks_v2/ledger/markers
+case $led in /*) ;; *) led=$REPO/$led;; esac
+s=$led/$name/_driver/driver.json
+[ -n "$name" ] || { echo "qv2-watch: no campaign name in $f"; exit 5; }
+t0=$(date +%s); last=""
+while :; do
+  now=$(date +%s)
+  if [ -r "$s" ]; then
+    st=$(sed -n 's/^ *"status": *"\([^"]*\)".*/\1/p' "$s")
+    ok=$(sed -n 's/^ *"ok": *\([a-z]*\).*/\1/p' "$s")
+    hb=$(sed -n 's/^ *"heartbeat": *\([0-9]*\).*/\1/p' "$s")
+    line="$st done=$(sed -n 's/^ *"done": *\([0-9]*\).*/\1/p' "$s") todo=$(sed -n 's/^ *"todo": *\([0-9]*\).*/\1/p' "$s")"
+    [ "$line" != "$last" ] && { echo "[qv2-watch $(date +%H:%M:%S)] $name: $line"; last=$line; }
+    case $st in
+      finished) [ "$ok" = true ] && { echo "[qv2-watch] $name COMPLETE"; exit 0; }
+                echo "[qv2-watch] $name FINISHED WITH FAILURES"; exit 2;;
+      no_capacity) echo "[qv2-watch] $name: driver found no capacity"; exit 2;;
+    esac
+    if [ -n "$hb" ] && [ $((now - hb)) -gt "$stale" ]; then
+      echo "[qv2-watch] $name: driver heartbeat $((now - hb)) s old -> driver dead; resume it"; exit 4
+    fi
+  elif [ $((now - t0)) -gt "$stale" ]; then
+    echo "[qv2-watch] $name: no driver state at $s after ${stale} s"; exit 5
+  fi
+  sleep "$iv"
+done

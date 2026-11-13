@@ -1,0 +1,26 @@
+{
+ "campaign": "feas-podkill",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "podkill-1",
+   "outputs": [
+    "podkill-1.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --sleep 40 --hash-mib 500 --out podkill-1.dat"
+  },
+  {
+   "id": "podkill-2",
+   "outputs": [
+    "podkill-2.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --sleep 40 --hash-mib 500 --out podkill-2.dat"
+  }
+ ]
+}

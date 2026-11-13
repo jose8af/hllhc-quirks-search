@@ -58,11 +58,40 @@ def summary(camp):
     return Counter(s for s, _, _ in st.values()), st
 
 
-def print_status(camp, verbose=False, out=sys.stdout):
+def liveness(camp, st):
+    """For jobs whose marker says running: {job_id: True/False/None} (None = could not check)."""
+    from . import ssh as ssh_mod
+    res, by_node = {}, {}
+    for jid, (s, last, _) in st.items():
+        if s != "running":
+            continue
+        if last.get("mechanism") == "argo" and last.get("pod"):
+            import subprocess
+            r = subprocess.run(["kubectl", "-n", "argo", "get", "pod", last["pod"], "-o",
+                                "jsonpath={.status.phase}"], capture_output=True, text=True, timeout=60)
+            res[jid] = (r.stdout.strip() in ("Pending", "Running")) if r.returncode in (0, 1) else None
+        else:
+            by_node.setdefault(last.get("node"), []).append(last)
+    for node, recs in by_node.items():
+        alive = ssh_mod.alive_on(node, recs)
+        for r in recs:
+            res[r["job_id"]] = None if alive is None else (r["job_id"] in alive)
+    return res
+
+
+def print_status(camp, verbose=False, out=sys.stdout, live=False):
     cnt, st = summary(camp)
+    if live:
+        lv = liveness(camp, st)
+        dead = [j for j, v in lv.items() if v is False]
+        cnt["running"] -= len(dead)
+        cnt["dead"] = len(dead)
+        for j in dead:
+            st[j] = ("dead", st[j][1], st[j][2])
     tot = len(camp.jobs)
     out.write(f"campaign {camp.name}: {tot} jobs | done {cnt['done']} | failed {cnt['failed']} | "
-              f"running {cnt['running']} | retryable {cnt['retryable']} | pending {cnt['pending']}\n")
+              f"running {cnt['running']} | retryable {cnt['retryable']} | pending {cnt['pending']}"
+              + (f" | dead {cnt['dead']} (resume the driver to retry them)" if live else "") + "\n")
     if verbose:
         for jid, (s, last, att) in st.items():
             if s != "done" or verbose > 1:

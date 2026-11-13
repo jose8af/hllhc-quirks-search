@@ -1,7 +1,10 @@
 """Pre-launch node checks shared by both backends (brief 5.1, 5.3): load, `who`, our own jobs on each worker."""
 import datetime as dt
 import json
+import os
 import subprocess
+
+os.environ.setdefault("KUBECONFIG", "/etc/kubernetes/student.conf")  # unset in non-interactive ssh
 
 from . import paths
 

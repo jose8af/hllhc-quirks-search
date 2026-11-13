@@ -67,10 +67,10 @@ def write_atomic(path, data, mode=0o644):
     atomic_rename_file(part, path)
 
 
-def copy_to_part_and_rename(src, final, mode=0o644):
-    """Copy src (scratch) to final.part in the final directory, fsync, rename, re-read and return (sha256, bytes).
+def copy_to_part_and_rename(src, final, mode=0o644, before_rename=None):
+    """Copy src (scratch) to final.part in the final directory, fsync, rename, re-read.
 
-    The sha256 is computed on the bytes read back from `final` after the rename (verification on the server copy).
+    Returns (sha256 written, sha256 read back from `final` after the rename, bytes written, size on server).
     """
     final = Path(final)
     part = final.with_name(final.name + ".part")
@@ -90,6 +90,8 @@ def copy_to_part_and_rename(src, final, mode=0o644):
         finally:
             os.close(fd)
     os.chmod(part, mode)
+    if before_rename:
+        before_rename(part)
     atomic_rename_file(part, final)
     fsync_dir(final.parent)
     # Verify after the rename. PREFLIGHT history: one ESTALE on first open after rename (fixed by the admin);

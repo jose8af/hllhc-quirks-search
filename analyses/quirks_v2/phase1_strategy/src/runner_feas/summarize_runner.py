@@ -76,14 +76,14 @@ def sd(xs):
     return round(stats.stdev(xs), 2) if len(xs) > 1 else None
 
 
-def cpu60(mech, t_launch=None, t_end=None):
-    rows = job_rows(f"feas-cpu60-{mech}")
+def cpu60(mech, t_launch=None, t_end=None, tag="cpu60"):
+    rows = job_rows(f"feas-{tag}-{mech}")
     res = {"jobs": rows, "cpu_s_mean": mean([r["cpu_s"] for r in rows]), "cpu_s_sd": sd([r["cpu_s"] for r in rows]),
            "cmd_wall_s_mean": mean([r["cmd_wall_s"] for r in rows]),
            "max_rss_mb_mean": mean([r["max_rss_mb"] for r in rows]),
            "wrapper_startup_s_mean": mean([r["startup_s"] for r in rows])}
     if mech == "argo":
-        pp, wfs = pods("feas-cpu60-argo")
+        pp, wfs = pods(f"feas-{tag}-argo")
         res["pods"] = pp
         res["workflows"] = wfs
         w = wfs[0]
@@ -108,13 +108,15 @@ def cpu60(mech, t_launch=None, t_end=None):
 def main():
     out = {"label": "TEST ONLY — Phase-1 runner validation (session Boris, 2026-11-13); no physics",
            "node": "landau (i5-7500, 4 cores)", "generated": dt.datetime.now().isoformat(timespec="seconds")}
-    times = {}
-    f = DATA / "cpu60_driver_times.json"
-    if f.exists():
-        times = json.loads(f.read_text())
-    out["cpu60"] = {"argo": cpu60("argo"), "ssh": cpu60("ssh", times.get("ssh_start"), times.get("ssh_end"))}
+    for tag, note in (("cpu60", "NFS server saturated (14:59-15:09)"), ("cpu60q", "quiet server, node-local cache")):
+        f = DATA / f"{tag}_driver_times.json"
+        times = json.loads(f.read_text()) if f.exists() else {}
+        if not recs(f"feas-{tag}-ssh"):
+            continue
+        out[tag] = {"note": note, "argo": cpu60("argo", tag=tag),
+                    "ssh": cpu60("ssh", times.get("ssh_start"), times.get("ssh_end"), tag=tag)}
     for c in ("feas-acct-ssh", "feas-acct-argo", "feas-mini-ssh", "feas-mini-argo", "feas-mem-ssh",
-              "feas-mem-argo"):
+              "feas-mem-argo", "feas-kill", "feas-podkill"):
         rr = recs(c)
         if rr:
             out[c] = {"jobs": len(rr), "done": len(job_rows(c)),
@@ -130,6 +132,11 @@ def main():
         pyhf[Path(p).stem] = json.loads(Path(p).read_text())
     if pyhf:
         out["pyhf"] = {"outputs": pyhf, "jobs": job_rows("feas-pyhf")}
+    lat = DATA / "marker_latency.jsonl"
+    if lat.exists():
+        rows = [json.loads(ln) for ln in lat.read_text().splitlines() if ln.strip()]
+        out["marker_latency"] = {"note": "first row taken at 15:12 during the einstein incident: not used",
+                                 "rows": rows}
     OUT.write_text(json.dumps(out, indent=1) + "\n")
 
 

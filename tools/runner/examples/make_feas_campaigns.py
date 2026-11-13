@@ -21,7 +21,9 @@ def camp(name, jobs, **kw):
          "description": "Phase-1 runner validation (TEST ONLY, no physics)", "defaults": {"max_rss_mb": 100}}
     d.update(kw)
     d["jobs"] = jobs
-    (OUT / f"{name}.json").write_text(json.dumps(d, indent=1) + "\n")
+    tmp = OUT / f".{name}.json.tmp"
+    tmp.write_text(json.dumps(d, indent=1) + "\n")
+    tmp.replace(OUT / f"{name}.json")  # atomic: running jobs may be reading campaign files
 
 
 def payload(args):
@@ -31,6 +33,9 @@ def payload(args):
 def main():
     OUT.mkdir(exist_ok=True)
     for mech in ("argo", "ssh"):
+        camp(f"feas-cpu60q-{mech}", [{"id": f"cpu60q-{mech}-r{i}", "outputs": [f"cpu60q-{mech}-r{i}.dat"],
+                                      "command": payload(f"--hash-mib {CPU60_MIB} --pad-kib 1024 --out cpu60q-{mech}-r{i}.dat")}
+                                     for i in (1, 2, 3)])
         camp(f"feas-cpu60-{mech}", [{"id": f"cpu60-{mech}-r{i}", "outputs": [f"cpu60-{mech}-r{i}.dat"],
                                      "command": payload(f"--hash-mib {CPU60_MIB} --pad-kib 1024 --out cpu60-{mech}-r{i}.dat")}
                                     for i in (1, 2, 3)])
@@ -44,7 +49,13 @@ def main():
                                     "command": "(ls -l /usr/bin/time || echo NO_USR_BIN_TIME; command -v python3 || echo NO_PYTHON3; "
                                                "cat /proc/self/cgroup; nice) && "
                                                + payload(f"--mem-mib 300 --hold 0 --hash-mib 4000 --out acct-{mech}.dat")}])
-    camp("feas-pyhf", [{"id": f"pyhf-{part}", "max_rss_mb": 1500, "outputs": [f"pyhf-{part}.json"],
+    camp("feas-kill", [{"id": f"kill-{st.replace('_', '-')}", "outputs": [f"kill-{st}.dat"],
+                        "command": payload(f"--hash-mib 1000 --pad-kib 4096 --out kill-{st}.dat"
+                                           + (" --sleep 20" if st == "during_cmd" else ""))}
+                       for st in ("during_cmd", "before_copy", "during_copy", "after_rename")])
+    camp("feas-podkill", [{"id": f"podkill-{i}", "outputs": [f"podkill-{i}.dat"],
+                           "command": payload(f"--sleep 40 --hash-mib 500 --out podkill-{i}.dat")} for i in (1, 2)])
+    camp("feas-pyhf", [{"id": f"pyhf-{part}", "max_rss_mb": 400, "outputs": [f"pyhf-{part}.json"],
                         "command": f"cd {PYHF} && .pixi/envs/default/bin/python bench_pyhf.py --part {part} "
                                    f"--out $QV2_OUT_DIR/pyhf-{part}.json"}
                        for part in ("fit", "toys")])

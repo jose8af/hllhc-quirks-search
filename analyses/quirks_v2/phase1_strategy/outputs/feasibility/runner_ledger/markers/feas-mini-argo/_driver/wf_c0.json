@@ -2,19 +2,18 @@
  "apiVersion": "argoproj.io/v1alpha1",
  "kind": "Workflow",
  "metadata": {
-  "name": "jdochoa-qv2-feas-acct-argo-c0-landau-9cs86",
+  "name": "jdochoa-qv2-feas-mini-argo-c0-eypyd",
   "namespace": "argo",
   "labels": {
    "owner": "jdochoa",
    "study": "quirks-v2",
-   "qv2-campaign": "feas-acct-argo",
-   "qv2-chunk": "0",
-   "qv2-node": "landau"
+   "qv2-campaign": "feas-mini-argo",
+   "qv2-chunk": "0"
   }
  },
  "spec": {
   "entrypoint": "main",
-  "parallelism": 1,
+  "parallelism": 2,
   "podGC": {
    "strategy": "OnPodSuccess"
   },
@@ -25,9 +24,8 @@
    "labels": {
     "owner": "jdochoa",
     "study": "quirks-v2",
-    "qv2-campaign": "feas-acct-argo",
-    "qv2-chunk": "0",
-    "qv2-node": "landau"
+    "qv2-campaign": "feas-mini-argo",
+    "qv2-chunk": "0"
    }
   },
   "securityContext": {
@@ -63,47 +61,29 @@
     "steps": [
      [
       {
-       "name": "run",
-       "template": "job",
+       "name": "run-r0",
+       "template": "job-r0",
        "arguments": {
         "parameters": [
          {
           "name": "job",
-          "value": "{{item.job}}"
-         },
-         {
-          "name": "mreq",
-          "value": "{{item.mreq}}"
-         },
-         {
-          "name": "mlim",
-          "value": "{{item.mlim}}"
+          "value": "{{item}}"
          }
         ]
        },
        "withItems": [
-        {
-         "job": "acct-argo",
-         "mreq": "400Mi",
-         "mlim": "600Mi"
-        }
+        "mini-argo-013"
        ]
       }
      ]
     ]
    },
    {
-    "name": "job",
+    "name": "job-r0",
     "inputs": {
      "parameters": [
       {
        "name": "job"
-      },
-      {
-       "name": "mreq"
-      },
-      {
-       "name": "mlim"
       }
      ]
     },
@@ -116,9 +96,8 @@
      "labels": {
       "owner": "jdochoa",
       "study": "quirks-v2",
-      "qv2-campaign": "feas-acct-argo",
-      "qv2-chunk": "0",
-      "qv2-node": "landau"
+      "qv2-campaign": "feas-mini-argo",
+      "qv2-chunk": "0"
      }
     },
     "container": {
@@ -132,7 +111,7 @@
       "-c"
      ],
      "args": [
-      "umask 022 && exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2-job --campaign /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/feas/feas-acct-argo.json --job {{inputs.parameters.job}} --mechanism argo"
+      "umask 022 && exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2-job --campaign /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/feas/feas-mini-argo.json --job {{inputs.parameters.job}} --mechanism argo"
      ],
      "env": [
       {
@@ -155,10 +134,10 @@
      "resources": {
       "requests": {
        "cpu": "1",
-       "memory": "{{inputs.parameters.mreq}}"
+       "memory": "100Mi"
       },
       "limits": {
-       "memory": "{{inputs.parameters.mlim}}"
+       "memory": "150Mi"
       }
      },
      "volumeMounts": [
@@ -176,8 +155,24 @@
       }
      ]
     },
-    "nodeSelector": {
-     "kubernetes.io/hostname": "landau"
+    "affinity": {
+     "nodeAffinity": {
+      "requiredDuringSchedulingIgnoredDuringExecution": {
+       "nodeSelectorTerms": [
+        {
+         "matchExpressions": [
+          {
+           "key": "kubernetes.io/hostname",
+           "operator": "In",
+           "values": [
+            "landau"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
     }
    }
   ]

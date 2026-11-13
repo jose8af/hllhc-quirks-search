@@ -195,6 +195,53 @@ class TestWrapper(unittest.TestCase):
         self.assertLess(r["max_rss_mb"], 120)
 
 
+class TestIOResilience(unittest.TestCase):
+    def setUp(self):
+        self.c = campaign.from_dict(camp_dict(campaign=f"ut-io-{self._testMethodName[-10:].replace('_', '-')}"))
+        self.orig = wrapper.copy_to_part_and_rename
+        self.budget, self.first = wrapper.IO_BUDGET_S, wrapper.IO_FIRST_WAIT_S
+        wrapper.IO_FIRST_WAIT_S = 0.05
+
+    def tearDown(self):
+        wrapper.copy_to_part_and_rename = self.orig
+        wrapper.IO_BUDGET_S, wrapper.IO_FIRST_WAIT_S = self.budget, self.first
+
+    def flaky(self, n_fail):
+        calls = {"n": 0}
+
+        def f(*a, **k):
+            calls["n"] += 1
+            if calls["n"] <= n_fail:
+                raise OSError(5, "Input/output error (simulated cajuela outage)")
+            return self.orig(*a, **k)
+        wrapper.copy_to_part_and_rename = f
+        return calls
+
+    def test_transient_outage_is_retried(self):
+        j = self.c.jobs[0]
+        wrapper.IO_BUDGET_S = 30
+        calls = self.flaky(2)
+        self.assertEqual(wrapper.Runner(self.c, j, "local", mem_limit_mb=0).run(), "done")
+        self.assertEqual(calls["n"], 3)
+
+    def test_long_outage_keeps_work_then_resumes_without_rerun(self):
+        j = self.c.jobs[1]
+        counter = ROOT / f"count-{j.id}"
+        j.command += f" && echo x >> {counter}"
+        wrapper.IO_BUDGET_S = 0.3
+        self.flaky(10**6)
+        self.assertEqual(wrapper.Runner(self.c, j, "local", mem_limit_mb=0).run(), "io_error")
+        self.assertTrue((self.c.scratch_dir(j) / wrapper.STASH).is_file(), "finished work must be kept")
+        self.assertEqual(markers.state(markers.read(self.c.marker_path(j)))[0], "retryable")
+        self.assertFalse(list(self.c.final_dir(j).glob("*.dat")), "no output may appear without a marker")
+        wrapper.copy_to_part_and_rename = self.orig
+        self.assertEqual(wrapper.Runner(self.c, j, "local", mem_limit_mb=0).run(), "done")
+        self.assertEqual(counter.read_text().count("x"), 1, "command must not run twice")
+        recs = markers.read(self.c.marker_path(j))
+        self.assertTrue(recs[-2]["resumed_from_stash"])
+        self.assertFalse(self.c.scratch_dir(j).exists())
+
+
 class TestLedgerManifest(unittest.TestCase):
     def test_rebuild_and_manifest(self):
         c = campaign.from_dict(camp_dict(campaign="ut-ledger", n=2))

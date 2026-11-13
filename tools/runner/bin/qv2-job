@@ -1,4 +1,39 @@
 #!/bin/bash
 # Job entry used by Argo pods and by the SSH backend:  qv2-job --campaign FILE --job ID --mechanism argo|ssh
+#
+# Start-up cost: importing Python from the NFS home costs ~714 metadata calls per job (0.1 s on a quiet server,
+# 10-25 s when the NFS server is saturated, measured 2026-11-13). So the runner interpreter (stdlib only) and the
+# qv2run package are copied ONCE per node and code version to node-local scratch:
+#   /home/scratch/jdochoa/cache/runner/<stamp>/{env,qv2run}
+# stamp = sha256(conda-meta/history + qv2run/*.py). Copy under flock, into a temp dir renamed into place (local
+# ext4, not cajuela). Any problem -> fall back to the interpreter on NFS. Pods see the same hostPath cache.
 umask 022
-exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2run job "$@"
+R=/home/users/jdochoa/hllhc-quirks-search/tools/runner
+E=$R/.pixi/envs/default
+C=/home/scratch/jdochoa/cache/runner
+PY=$E/bin/python3.12
+PP=$R
+if [ -z "${QV2_NO_CACHE:-}" ] && mkdir -p "$C" 2>/dev/null; then
+  stamp=$(cat "$E/conda-meta/history" "$R"/qv2run/*.py 2>/dev/null | sha256sum | cut -c1-16)
+  D=$C/$stamp
+  if [ ! -x "$D/env/bin/python3.12" ]; then
+    (
+      flock -w 300 9 || exit 0
+      [ -x "$D/env/bin/python3.12" ] && exit 0
+      tmp=$C/.tmp.$$
+      rm -rf "$tmp"; mkdir -p "$tmp/env"
+      tar -C "$E" --exclude=./include --exclude=./share --exclude=./conda-meta --exclude='./lib/*.a' \
+          --exclude='./lib/tcl*' --exclude='./lib/tk*' --exclude='./lib/libtcl*' --exclude='./lib/libtk*' \
+          --exclude=./lib/python3.12/test --exclude=./lib/python3.12/idlelib --exclude=./lib/python3.12/tkinter \
+          --exclude=./lib/python3.12/turtledemo --exclude=./lib/python3.12/ensurepip \
+          --exclude=./lib/python3.12/site-packages -cf - . | tar -C "$tmp/env" -xf - &&
+      cp -r "$R/qv2run" "$tmp/" && rm -rf "$tmp/qv2run/__pycache__" &&
+      "$tmp/env/bin/python3.12" -P -s -c "import sys; sys.path.insert(0, '$tmp'); import qv2run.wrapper, hashlib, json" &&
+      mv "$tmp" "$D" || rm -rf "$tmp"
+      ls -1dt "$C"/[0-9a-f]* 2>/dev/null | tail -n +4 | xargs -r rm -rf   # keep the 3 newest versions
+    ) 9>"$C/.lock"
+  fi
+  if [ -x "$D/env/bin/python3.12" ]; then PY=$D/env/bin/python3.12; PP=$D; fi
+fi
+export PYTHONPATH=$PP PYTHONDONTWRITEBYTECODE=1 QV2_RUNNER_PY=$PY
+exec "$PY" -P -s -m qv2run job "$@"

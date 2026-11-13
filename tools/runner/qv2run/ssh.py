@@ -85,10 +85,15 @@ def launch(camp, node_list, max_per_node=None, retries=2, poll_s=5, dry_run=Fals
             log("no capacity on any node; exiting")
             write_state(camp, backend="ssh", status="no_capacity", caps=caps)
             return 2
+        disp_dirty = False
         extra_fail = {}  # dispatch failures per job (counted as retries)
         last_live = 0.0
+        st = job_states(camp)  # full marker scan once; afterwards only active jobs are re-read (NFS read budget)
+        watch_ids = set()
         while True:
-            st = job_states(camp)
+            for jid in list(watch_ids) + list(dispatched):
+                st[jid] = markers.state(markers.read(camp.marker_path(camp.by_id[jid])))
+            watch_ids = {j for j, (s, _, _) in st.items() if s == "running"}
             now = time.time()
             # running jobs per node, with liveness check
             running = {}
@@ -111,11 +116,12 @@ def launch(camp, node_list, max_per_node=None, retries=2, poll_s=5, dry_run=Fals
                                 markers.append(mp, {"job_id": rec["job_id"], "campaign": camp.name,
                                                     "mechanism": "ssh", "node": n, "status": "lost",
                                                     "reason": "wrapper process not found (driver liveness check)"})
-                st = job_states(camp)
+                            st[rec["job_id"]] = markers.state(markers.read(mp))
             # dispatched but not started yet
             for jid, d in list(dispatched.items()):
                 if st[jid][0] != "pending" and st[jid][0] != "retryable":
                     dispatched.pop(jid)
+                    disp_dirty = True
                 elif now - d["t"] > DISPATCH_GRACE_S:
                     log(f"{jid}: no `started` line {DISPATCH_GRACE_S} s after dispatch to {d['node']}")
                     extra_fail[jid] = extra_fail.get(jid, 0) + 1
@@ -135,9 +141,10 @@ def launch(camp, node_list, max_per_node=None, retries=2, poll_s=5, dry_run=Fals
                 if s == "failed":
                     final_fail.append(j.id)
                     continue
-                n_retry = sum(1 for r in markers.read(camp.marker_path(j)) if r.get("status") in markers.RETRYABLE)
-                n_retry += extra_fail.get(j.id, 0)
-                if s == "retryable" and n_retry > retries:
+                n_retry = extra_fail.get(j.id, 0)
+                if s == "retryable":  # only then is the marker re-read (NFS read budget)
+                    n_retry += sum(1 for r in markers.read(camp.marker_path(j)) if r.get("status") in markers.RETRYABLE)
+                if n_retry > retries:
                     final_fail.append(j.id)
                     continue
                 todo.append(j)
@@ -147,7 +154,7 @@ def launch(camp, node_list, max_per_node=None, retries=2, poll_s=5, dry_run=Fals
             if not todo and n_run == 0:
                 ok = not final_fail
                 log(f"campaign finished: {'all done' if ok else f'{len(final_fail)} failed: {final_fail[:10]}'}")
-                write_state(camp, backend="ssh", status="finished", ok=ok, failed=final_fail)
+                write_state(camp, backend="ssh", status="finished", ok=ok, failed=final_fail, force=True)
                 return 0 if ok else 2
             for j in todo:
                 free = [n for n in caps if busy.get(n, 0) < caps[n]]
@@ -170,7 +177,10 @@ def launch(camp, node_list, max_per_node=None, retries=2, poll_s=5, dry_run=Fals
                 dispatched[j.id] = {"node": n, "t": time.time()}
                 busy[n] = busy.get(n, 0) + 1
                 log(f"dispatched {j.id} -> {n}")
-            write_atomic(disp_path, json.dumps(dispatched))
+                disp_dirty = True
+            if disp_dirty:
+                write_atomic(disp_path, json.dumps(dispatched))
+                disp_dirty = False
             if dry_run:
                 return 0
             time.sleep(poll_s)

@@ -1,0 +1,40 @@
+{
+ "campaign": "feas-kill",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "kill-during-cmd",
+   "outputs": [
+    "kill-during_cmd.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 1000 --pad-kib 4096 --out kill-during_cmd.dat --sleep 20"
+  },
+  {
+   "id": "kill-before-copy",
+   "outputs": [
+    "kill-before_copy.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 1000 --pad-kib 4096 --out kill-before_copy.dat"
+  },
+  {
+   "id": "kill-during-copy",
+   "outputs": [
+    "kill-during_copy.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 1000 --pad-kib 4096 --out kill-during_copy.dat"
+  },
+  {
+   "id": "kill-after-rename",
+   "outputs": [
+    "kill-after_rename.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 1000 --pad-kib 4096 --out kill-after_rename.dat"
+  }
+ ]
+}

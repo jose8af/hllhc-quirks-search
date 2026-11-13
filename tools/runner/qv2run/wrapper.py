@@ -25,8 +25,44 @@ from . import markers, paths
 from .fsops import copy_to_part_and_rename, makedirs_final, sha256_file, write_atomic
 
 EXIT = {"done": 0, "skip": 0, "failed": 1, "timeout": 2, "killed": 3, "verify_failed": 4, "setup_error": 5,
-        "busy": 6, "oom": 7}
+        "busy": 6, "oom": 7, "io_error": 8}
 KILL_GRACE_S = 30
+# Back-off for cajuela / NFS-home I/O errors (cluster incident 2026-11-13: cajuela gave EIO for 8 min). The budget
+# fits inside the pod deadline: command <= 1800 s + I/O budget 480 s < activeDeadlineSeconds 2400.
+IO_BUDGET_S = float(os.environ.get("QV2_IO_RETRY_S", "480"))
+IO_FIRST_WAIT_S = 5
+STASH = ".qv2_stash.json"
+
+
+class IOBudgetExceeded(RuntimeError):
+    pass
+
+
+def with_io_retry(fn, what, say, budget=None):
+    """Run fn(); on OSError wait 5, 10, 20, ... s (cap 120 s) until the budget is spent, then raise."""
+    budget = IO_BUDGET_S if budget is None else budget
+    t0, wait, n = time.time(), IO_FIRST_WAIT_S, 0
+    while True:
+        try:
+            return fn()
+        except OSError as e:
+            n += 1
+            left = budget - (time.time() - t0)
+            if left <= 0:
+                raise IOBudgetExceeded(f"{what}: {e!r} after {n} tries") from e
+            say(f"I/O error on {what} (try {n}): {e!r}; retrying in {min(wait, left):.0f} s")
+            time.sleep(min(wait, left))
+            wait = min(wait * 2, 120)
+
+
+def test_pause(stage, scratch):
+    """TEST ONLY: if QV2_TEST_PAUSE_AT == stage, flag it in scratch and sleep so a test can kill -9 the wrapper."""
+    if os.environ.get("QV2_TEST_PAUSE_AT") == stage:
+        try:
+            Path(scratch, f".qv2_paused_{stage}").write_text(str(os.getpid()))
+        except OSError:
+            pass
+        time.sleep(float(os.environ.get("QV2_TEST_PAUSE_S", "300")))
 
 
 def node_name():
@@ -148,7 +184,7 @@ class Runner:
             if self.mech == "argo" and os.environ.get(k):
                 rec["pod" if k == "HOSTNAME" else "workflow"] = os.environ[k]
         rec.update(kw)
-        return markers.append(self.marker, rec)
+        return with_io_retry(lambda: markers.append(self.marker, rec), f"marker {status}", self.say)
 
     # ---- process control --------------------------------------------------------------------------------------
     def _killpg(self, why):
@@ -201,10 +237,9 @@ class Runner:
     # ---- main -------------------------------------------------------------------------------------------------
     def run(self):
         recs = markers.read(self.marker)
-        prev = markers.last_done(recs)
         st, last, attempts = markers.state(recs)
         if st == "done" and not self.force:
-            ok, why = outputs_intact(self.c, self.j, last)
+            ok, why = with_io_retry(lambda: outputs_intact(self.c, self.j, last), "idempotency check", self.say)
             if ok:
                 self.say(f"skip: {self.j.id} already done and outputs verified")
                 return "skip"
@@ -228,48 +263,90 @@ class Runner:
             os.close(lockfd)
 
     def _cleanup(self):
-        shutil.rmtree(self.scratch, ignore_errors=True)
+        if not getattr(self, "keep_scratch", False):
+            shutil.rmtree(self.scratch, ignore_errors=True)
         for p in self.parts:
             try:
                 os.unlink(p)
-            except FileNotFoundError:
+            except OSError:  # gone already, or cajuela unavailable: the next attempt removes stale .part files
                 pass
 
     def _ship_log(self, attempt):
         try:
             self.logf.flush()
             ld = self.c.log_dir(self.j)
-            makedirs_final(ld)
             dst = ld / f"{self.j.id}.a{attempt}.log"
-            write_atomic(dst, (self.scratch / ".qv2_job.log").read_bytes())
+            data = (self.scratch / ".qv2_job.log").read_bytes()
+            with_io_retry(lambda: (makedirs_final(ld), write_atomic(dst, data)), "job log", self.say, budget=60)
             return str(dst)
-        except OSError as e:
+        except (OSError, IOBudgetExceeded) as e:
             sys.stderr.write(f"[qv2run] could not ship log: {e}\n")
             return ""
 
-    def _run_locked(self, attempt):
-        orphans = stop_orphan_scopes(self.j.id, self.say) if self.mech != "argo" else []
+    def _load_stash(self):
+        """A stash = command finished, outputs hashed, copy to cajuela not completed (killed or I/O error)."""
         try:
-            shutil.rmtree(self.scratch, ignore_errors=True)  # leftovers of a killed run
+            st = json.loads((self.scratch / STASH).read_text())
+        except (OSError, ValueError):
+            return None
+        if st.get("job_id") != self.j.id or set(st.get("outputs", {})) != set(self.j.outputs):
+            return None
+        for name, h in st["outputs"].items():
+            p = self.scratch / name
+            if not p.is_file() or sha256_file(p) != h:
+                return None
+        return st
+
+    def _run_locked(self, attempt):
+        self.keep_scratch = False
+        orphans = stop_orphan_scopes(self.j.id, self.say) if self.mech != "argo" else []
+        stash = self._load_stash()
+        try:
+            if stash is None:
+                shutil.rmtree(self.scratch, ignore_errors=True)  # leftovers of a killed run
             makedirs_final(self.scratch)
-            makedirs_final(self.final)
-            for name in self.j.outputs:  # stale .part of a killed run
-                p = self.final / (name + ".part")
-                if p.exists() and p.is_file():
-                    p.unlink()
+            for p in self.scratch.glob(".qv2_paused_*"):
+                p.unlink()
             self.logf = open(self.scratch / ".qv2_job.log", "ab", buffering=0)
             if orphans:
                 self.say(f"stopped orphan scope(s) of an earlier attempt: {orphans}")
+
+            def setup_final():
+                makedirs_final(self.final)
+                for name in self.j.outputs:  # stale .part of a killed run
+                    p = self.final / (name + ".part")
+                    if p.exists() and p.is_file():
+                        p.unlink()
+                        self.say(f"removed stale {p}")
+            with_io_retry(setup_final, "final dir on cajuela", self.say)
+        except IOBudgetExceeded as e:
+            self.keep_scratch = stash is not None
+            self.mark("io_error", attempt=attempt, error=str(e), stage="setup")
+            self._cleanup()
+            return "io_error"
         except OSError as e:
             self.mark("setup_error", attempt=attempt, error=str(e))
             self._cleanup()
             return "setup_error"
         t0 = time.time()
         self.mark("started", attempt=attempt, scratch=str(self.scratch), mem_limit_mb=self.mem_limit_mb,
-                  timeout_s=self.j.timeout_s, t_proc_start=proc_start_time(), t_wrapper=round(t0, 3))
-        self.say(f"job {self.j.id} attempt {attempt} mechanism {self.mech} in {self.scratch}")
+                  timeout_s=self.j.timeout_s, t_proc_start=proc_start_time(), t_wrapper=round(t0, 3),
+                  resumed_from_stash=stash is not None, runner_py=os.environ.get("QV2_RUNNER_PY", sys.executable))
+        self.say(f"job {self.j.id} attempt {attempt} mechanism {self.mech} in {self.scratch}"
+                 + (" (resuming from stash: command already finished)" if stash else ""))
         try:
-            result = self._execute(attempt, t0)
+            if stash:
+                result = self._publish(attempt, dict(stash["acct"], resumed_from_stash=True))
+            else:
+                result = self._execute(attempt, t0)
+        except IOBudgetExceeded as e:
+            self.say(f"giving up for now: {e}; scratch kept for the next attempt")
+            self.keep_scratch = (self.scratch / STASH).exists()
+            try:
+                self.mark("io_error", attempt=attempt, error=str(e), stash=self.keep_scratch)
+            except IOBudgetExceeded:
+                pass  # NFS home down too: the marker stays 'started'; liveness -> 'lost' -> retry
+            result = "io_error"
         except Exception as e:  # noqa: BLE001 - any wrapper bug must still leave a marker line and no debris
             self.say(f"wrapper error: {e!r}")
             self._killpg("signal")
@@ -366,8 +443,8 @@ class Runner:
             logp = self._ship_log(attempt)
             self.mark(status, log=logp, **acct)
             return status
-        # ---- outputs: scratch -> name.part -> fsync -> rename -> verify ---------------------------------------
-        outs = []
+        # ---- command succeeded: stash (local) so finished work survives a crash or a cajuela outage ---------
+        hashes = {}
         for name in self.j.outputs:
             src = self.scratch / name
             if not src.is_file():
@@ -375,18 +452,42 @@ class Runner:
                 logp = self._ship_log(attempt)
                 self.mark("failed", log=logp, reason=f"missing output {name}", **acct)
                 return "failed"
-            h_scratch = sha256_file(src)
-            dst = self.final / name
-            self.parts.append(dst.with_name(name + ".part"))
-            h_written, h_back, n, size = copy_to_part_and_rename(src, dst)
+            hashes[name] = sha256_file(src)
+        write_atomic(self.scratch / STASH, json.dumps({"job_id": self.j.id, "campaign": self.c.name,
+                                                       "outputs": hashes, "acct": acct}))
+        test_pause("before_copy", self.scratch)
+        return self._publish(attempt, acct)
+
+    def _publish(self, attempt, acct):
+        """scratch -> name.part -> fsync -> rename -> verify (with I/O back-off), then the `done` line."""
+        stash = json.loads((self.scratch / STASH).read_text())
+        outs = []
+        for name in self.j.outputs:
+            src, dst = self.scratch / name, self.final / name
+            part = dst.with_name(name + ".part")
+            self.parts.append(part)
+
+            def one():
+                try:
+                    return copy_to_part_and_rename(src, dst, before_rename=lambda p: test_pause("during_copy",
+                                                                                                 self.scratch))
+                except OSError:
+                    try:
+                        part.unlink()
+                    except OSError:
+                        pass
+                    raise
+            h_written, h_back, n, size = with_io_retry(one, f"copy {name} to cajuela", self.say)
+            h_scratch = stash["outputs"][name]
             if not (h_scratch == h_written == h_back) or n != size:
                 self.say(f"verification failed for {name}: {h_scratch[:12]} {h_written[:12]} {h_back[:12]}")
-                os.unlink(dst)
+                with_io_retry(lambda: os.unlink(dst), f"remove bad {name}", self.say)
                 logp = self._ship_log(attempt)
                 self.mark("verify_failed", log=logp, output=name, **acct)
                 return "verify_failed"
             outs.append({"name": name, "path": str(dst), "sha256": h_back, "bytes": size})
             self.say(f"output {dst} {size} B sha256 {h_back}")
+        test_pause("after_rename", self.scratch)
         acct["t_end"] = round(time.time(), 3)
         logp = self._ship_log(attempt)
         self.mark("done", log=logp, outputs=outs, **acct)
@@ -400,6 +501,10 @@ def main(args):
     except (campaign_mod.CampaignError, KeyError) as e:
         sys.stderr.write(f"[qv2run] setup error: {e}\n")
         return EXIT["setup_error"]
-    r = Runner(camp, job, args.mechanism, force=args.force, mem_limit_mb=args.mem_limit_mb).run()
+    try:
+        r = Runner(camp, job, args.mechanism, force=args.force, mem_limit_mb=args.mem_limit_mb).run()
+    except IOBudgetExceeded as e:  # NFS home or cajuela unavailable before any marker could be written
+        sys.stderr.write(f"[qv2run] io_error: {e}\n")
+        r = "io_error"
     sys.stderr.write(f"[qv2run] result {json.dumps(r)}\n")
     return EXIT[r]

@@ -1,0 +1,33 @@
+{
+ "campaign": "feas-cpu60q-ssh",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "cpu60q-ssh-r1",
+   "outputs": [
+    "cpu60q-ssh-r1.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 27000 --pad-kib 1024 --out cpu60q-ssh-r1.dat"
+  },
+  {
+   "id": "cpu60q-ssh-r2",
+   "outputs": [
+    "cpu60q-ssh-r2.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 27000 --pad-kib 1024 --out cpu60q-ssh-r2.dat"
+  },
+  {
+   "id": "cpu60q-ssh-r3",
+   "outputs": [
+    "cpu60q-ssh-r3.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --hash-mib 27000 --pad-kib 1024 --out cpu60q-ssh-r3.dat"
+  }
+ ]
+}
