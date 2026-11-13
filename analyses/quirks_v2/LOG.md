@@ -31,3 +31,12 @@ scaffolder needs only the standard library). Deviations V1–V11 recorded in `DE
 DECISION: vendor JFC as plain files instead of keeping a nested clone or a submodule.
 ALTERNATIVES: git-ignored clone (repo not self-contained); submodule (needs network at clone time, second repo).
 CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+
+### 15:20 — NFS home stalls under small-file installs from workers
+Found by Anselm: `pixi install` run over NFS from a worker wrote at ~1 MB/s, drove einstein's `/home` disk to 85–94 %
+busy with all 8 nfsd threads blocked, and slowed NFS for the whole lab (46/148 packages in 20 min from maxwell,
+against 5–27 s per environment when run on einstein locally). Cause: `sync` export of a rotational disk.
+Rule added to `AGENT_RULES.md`: many-small-files writes under `/home/users/jdochoa` run only on einstein, niced and
+`ionice -c3`, one at a time; workers compile on local disk and ship one tarball; jobs write one marker on NFS home.
+Basil's install on schrodinger was told to stop and rerun on einstein; Boris was told to measure marker-write
+latency under 12 concurrent jobs. Not a cluster fault and no admin action needed; it is a constraint on how we use it.

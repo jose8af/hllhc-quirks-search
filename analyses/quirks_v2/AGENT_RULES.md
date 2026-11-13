@@ -20,6 +20,15 @@ Start every shell with `. $REPO/tools/env.sh` (pixi, paths, umask).
   files (10 MB or more each), at most 10,000 entries per directory.
 - Stage large shared inputs into node-local scratch once; never let many jobs stream the same multi-GB file.
 
+## NFS home rule (added 2026-11-13 after a lab-wide stall)
+- `/home/users` is a `sync` NFS export from one rotational disk on einstein. **Never run `pixi install`, tarball
+  unpacking, `make install`, MG5 process output or any other many-small-files write under `/home/users/jdochoa` over
+  NFS from a worker.** Run those ON einstein, locally, one at a time: `nice -n 19 ionice -c3 …`.
+- Compile on a worker in `/var/tmp/jdochoa/` (local disk), pack the result into ONE tarball, copy that single file,
+  unpack on einstein under `sw/`.
+- Jobs on workers read software from NFS but write working files to `/home/scratch/jdochoa/<job_id>`; on NFS home a
+  job writes only its one marker file.
+
 ## Compute rules (shared lab machines)
 - `einstein` is the head node (NFS, LDAP, Kubernetes control plane): at most 3 light jobs in total across all agents,
   always `nice -n 19`, nothing I/O-heavy, build trees at most 50 GB and preferably on a worker instead.
