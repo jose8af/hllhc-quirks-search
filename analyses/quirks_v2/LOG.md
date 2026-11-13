@@ -78,3 +78,13 @@ Reconciliation (15:35–15:45, orchestrator):
    installs to einstein.)
 3. At most one pixi install at a time on the shared cache; keep heavy metadata work off `/home` while jobs run.
 
+
+### 16:00 — USER DECISION: Geant4 environment on each worker's local scratch
+The Geant4 pixi environment (~3.3 GB of small files) is installed per worker at `/home/scratch/jdochoa/envs/g4`
+(same absolute path on landau, maxwell, schrodinger and in pods through the scratch hostPath), not on the shared
+home. Reason: an install to NFS home runs at ~1 MB/s and slows NFS for the lab for about an hour. Consequences:
+the canonical `pixi.toml` + `pixi.lock` are tracked in the repo and each node installs `--frozen` from them with a
+node-local package cache (`/home/scratch/jdochoa/cache/rattler`), so the three copies are identical by lockfile;
+each install is verified (package file lists) and recorded with the lock sha256 in a per-node stamp file; the
+environment counts against the 150 GB per-node scratch budget; Geant4 jobs can only run on a node whose stamp
+matches the tracked lock. Deviation V13 from brief §5.2.

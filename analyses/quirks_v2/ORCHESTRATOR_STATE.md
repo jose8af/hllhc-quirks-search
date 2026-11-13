@@ -26,8 +26,9 @@ Investigators Ada, Agnes, Albert, Alfred, Amara, Andrzej: DONE, digests D1–D6 
 | Basil | feasibility B: MG5/Pythia/LHAPDF test generation and benchmarks, NLO K-factor route; Geant4 env reinstall LAST, only when told he holds the install slot | opus | schrodinger | resumed 15:50 | `…/FEAS_B_generators_basil.md`, `benchmarks_generators.json` |
 | Boris | feasibility C: finish runner validation (mini-campaign, kill/resume, memory test, marker latency, pyhf timings) | opus | landau | resumed 15:50 | `tools/runner/`, `…/FEAS_C_runner_boris.md` |
 
-Install slot (one pixi install at a time): FREE. Only pending install: `sw/envs/g4` (Geant4, ~3.3 GB), to be given
-to Basil after Anselm's and Boris's benchmarks have finished.
+Install slot for the shared home (one pixi install at a time): FREE, nothing pending.
+Geant4 env: per-worker local install at `/home/scratch/jdochoa/envs/g4` (user decision 16:00, V13). schrodinger: Basil, now.
+landau and maxwell: after Boris and Anselm finish their benchmarks there (Basil or a follow-up does it; check the stamp files).
 
 Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil, Boris. Next free: Brigitte.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.

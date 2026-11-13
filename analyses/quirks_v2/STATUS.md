@@ -23,8 +23,8 @@ cajuela was down until 15:20. State reconciled and committed; all environments v
 10 GB cap, nothing heavy on einstein, one pixi install at a time, at most 3 subagents.
 
 **Open risks**
-- Writing environments to the shared home from a worker is slow (~1 MB/s) and slows NFS for the lab; the Geant4
-  environment (3.3 GB) is the one large install left.
+- Writing environments to the shared home from a worker is slow (~1 MB/s) and slows NFS for the lab. By user
+  decision the Geant4 environment (3.3 GB) is installed on each worker's local scratch instead.
 - The chain has never run on Linux; pyacts 48 may need a source build on a worker.
 - Geant4 is not installed; route (conda-forge package or source build) decided by the feasibility executor.
 - Cluster capacity is 12 worker cores, shared with lab users; the plan's 3–8k CPU-h are M3 units, not yet converted.
