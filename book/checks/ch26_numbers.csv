@@ -1,0 +1,99 @@
+value,meaning,source_path:line
+3 of 200,"E 200 GeV at 0.45 keV reaching R04 (from Chapter 25)",TT:data/acts_stage4/analysis/C12FC_v1/signal_eff.json:a2.points.A2|F|200|0.45|BM.ladder.R04_IP2>=7
+218571,"events in the whole truth-level production; not the sample that tests the law",TT:paper/sections/04_truth_p1.tex:24;TT:data/sim_stage3/STAGE3_INDEX.json:points
+300; 200,"events per point and Lambda in the P1 grid that tests the law; at 7 and 10 keV",TT:paper/sections/04_truth_p1.tex:26-27;TT:sim/stage3/results/P1.json:points.F_m500.by_lambda.L1.n_events
+5 points; 6 Lambda up to 5 keV,"half-field runs: 9000 = 5 x 6 x 300; field-only at 7 and 10 keV at two points only",TT:data/sim_stage3/STAGE3_INDEX.json:points.p1/*
+about 30 um,"median field thickness at 1 keV (28.7 to 33.9 um over the five points)",TT:sim/stage3/results/P1.json:points.*.by_lambda.L1.Ds_B.median_um
+within 1% (0.990 to 1.002),"paired ratio, fermion at 500 GeV and above, 0.6-5 keV",TT:paper/sections/04_truth_p1.tex:35
+0.975,"lowest paired ratio at 200 GeV over 0.6-5 keV (the paper's 0.966 is the 0.45 keV row)",TT:sim/stage3/README.md:129-130
+0.947,"lowest paired ratio for the scalar",TT:paper/sections/04_truth_p1.tex:35
+0.8%; 2 to 4% low (0.96 to 0.98); 7 to 11% low (0.89 to 0.93),"ratio by gamma* (below 1.3; 1.3 to 1.6; above 1.6)",TT:paper/sections/04_truth_p1.tex:38
+10 to 35%,"rotating yo-yo against the exact string for gamma* > 2, controlled comparisons; ESTIMATE by the study",TT:paper/sections/03_string_dynamics.tex:139-140;chapters/ch18_thickness.tex:118
+1.5%,"pre-set test on the median c at 1 keV (FAILED at three of five points)",TT:sim/stage3/results/V2b.json:criteria
++0.7; +2.0; +1.1; +2.1; +3.2%,"excess of median c at 1 keV, five points, in figure",TT:paper/sections/04_truth_p1.tex:43
+14.6 cm,"outer pixel barrel radius R_IT",TT:paper/sections/04_truth_p1.tex:49
+10; 18 to 28 um,"material floor at 200 GeV and at 1500 GeV",TT:paper/sections/04_truth_p1.tex:110-111
+0.80 to 0.97,"median ratio to quadrature at 1-3 keV",TT:paper/sections/04_truth_p1.tex:120-121
+23 to 30 um,"detector out-of-plane resolution per event: ESTIMATE from the plan; never measured",TT:acts/stage4/plan.md:1520-1521;TT:paper/sections/12_limitations.tex:42;TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p1.detector_level;TT:outputs/THEORY_GAPS_SYNTHESIS_v4.md:296;314;713
+not measured,"the thickness at detector level; it enters only through the finder's tolerance",TT:paper/sections/04_truth_p1.tex:159-161
+30 um,"finder plane tolerance t_tol",TT:paper/sections/06_strategy_wp.tex:53-54
+-1.985 to -2.022,"log-log slope of the truth pair separation, 1-30 keV",TT:paper/sections/09_mass_lambda.tex:18
+38.5 mm; 95 um,"truth separation, E 1000 GeV at 1 and 20 keV",TT:paper/sections/09_mass_lambda.tex:20
+1.27,"median gamma* at E 500 GeV",TT:sim/stage3/results/P1.json:paired_model_by_gstar.F_m500.median_gstar
+1.43 cm; 7.0 mm,"median lmax and separation, E 500 GeV at 2 keV",TT:sim/stage3/results/P2_points.json:F_m500/L2
+0.28 to 0.33 keV,"one swing in the tracker",TT:paper/sections/09_mass_lambda.tex:28
+Table (Lcross),"crossover by point",TT:sim/stage3/results/P1.json:B_MS_crossover_keV
+Table (edges),"truth and detector edges by point",TT:data/acts_stage4/analysis/C12FC_v1/edges_det.json:points
+180 to 200,"rows per point in the denominator",TT:paper/sections/08_results_p2.tex:23
+0.3,"barrel ceiling on the efficiency",TT:paper/sections/08_results_p2.tex:23
+0.23 to 0.38,"fraction of the 200 template rows with |eta_pair|<1, at the nine points where it is stored (about 0.3)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:cited_investigations.a2fc_injob.points
+0.03,"binomial error of the 0.305 at E 500 GeV 3 keV (computed from 61/200)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|500|3|BM.eps_reporting_rungs.R_A
+0.9,"pre-registered finder efficiency check at 1-5 keV (PARTIAL)",TT:paper/sections/08_results_p2.tex:25
+0.90 to 0.96; 0.97; 0.75 to 0.90; 0.58 to 0.84,"finder efficiency at 1.5-2 keV; scalar at 3 keV; 1 keV; 5 keV (post-hoc match)",TT:acts/stage4/STAGE4_RESULTS.md:288-292;TT:acts/stage4/STAGE4_RESULTS.md:296
+0.64 to 0.77,"same with the end of counting required",TT:paper/sections/08_results_p2.tex:29
+1 mrad,"seed opening requirement: sin of the angle between the two seed hits' directions from the vertex above 1e-3",TT:paper/sections/08_results_p2.tex:31;TT:acts/stage4/finder/kernels.py:292;TT:acts/stage4/investigation/INV_SIGNAL_EFF.md:149
+0.085 to 0.31,"efficiency at end of counting, 1-5 keV, pile-up 200",TT:paper/sections/08_results_p2.tex:34
+0.6-0.85; 1.0-1.2 keV,"lower edge without and with pile-up",TT:paper/sections/09_mass_lambda.tex:62-64
+13.1 cm; 2.3,"median lmax and swings, E 200 GeV at 0.45 keV",TT:sim/stage3/results/P2_points.json:F_m200/L0.45
+0 to 0.080; seven,"fallback efficiency range and points with zero",TT:paper/sections/08_results_p2.tex:34-36
+30 to 70%; 27%,"late-hit share at >=500 GeV; at most at 200 GeV",TT:paper/sections/08_results_p2.tex:36-37
+861; 87; 3.4; 0.29,"largest selected yield per fermion mass",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.*.S_at_rfb
+20 of 40,"points with S>=3 even with no background",TT:paper/sections/08_results_p2.tex:83
+5%,"rerun threshold on stolen quirk hits, without pile-up; plan said with pile-up; 3 points checked",TT:acts/stage4/STAGE4_RESULTS.md:328-331
+1800; 9.7 CPU-h,"events and cost of the nine reruns",TT:acts/stage4/STAGE4_RESULTS.md:332
+5 to 30%,"full-chain loss at the end of counting",TT:paper/sections/08_results_p2.tex:44-45
+0.83; 0.87,"summed loss factors at end of counting and fallback, at the eight 3 and 5 keV points",TT:paper/sections/08_results_p2.tex:45-46
+7%; 1.5%,"E 200 GeV 0.45 keV at the end of counting without and with pile-up on the same 200 rows (14 rows; 3 rows; factor 4.7)",TT:data/acts_stage4/investigation/cmp_all.txt:1
+not run; partial,"independent finder cross-check; seed-threshold regression check",TT:paper/sections/12_limitations.tex:36-37
+84; 20; 1.6e-10,"discordant rows and sign-test p",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.paired_aggregate_other_8.R04
+46 of 83,"quirk hits taken by tracks in the confirmed event",TT:acts/stage4/STAGE4_RESULTS.md:383
+52; 37; 0.14,"discordant rows and p at fallback",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.paired_aggregate_other_8.r_fb
+25 to 50%,"passing rows flipped by redrawing the noise",TT:paper/sections/08_results_p2.tex:49
+0.145; 0.055,"fallback efficiency at E 500 GeV, 3 keV, before and after",TT:paper/sections/08_results_p2.tex:47
+22; 4 of 200,"R14 count before and after",TT:acts/stage4/STAGE4_RESULTS.md:356-357
+10 or 11 of 200,"fresh noise replicas at R14 (ESTIMATE; a slight lower bound; only the 34 rows passing R08 in either production were redrawn)",TT:acts/stage4/STAGE4_RESULTS.md:373-374
+1e-4 to 1e-3,"global p of the outlier, sign-test p times a look-elsewhere factor (ESTIMATE by the study)",TT:acts/stage4/STAGE4_RESULTS.md:379-380;TT:acts/stage4/investigation/INV_A2FC_E500.md:72-73
+0.431; 0.610; 0.709; 0.741; 0.773 keV,"smoothed Lambda_R used by the width cut: E 200; 500; 1000; 1500; scalar 500. Against the per-mass column these change k_adm at three of 40 points (computed)",TT:acts/stage4/WP_RULE.md:626;TT:acts/stage4/WP_RULE.md:835-850
+3 sigma; 2 to 2.5 sigma,"deviations of 22 and of 4",TT:acts/stage4/STAGE4_RESULTS.md:375-376
+1e-4 to 1e-3,"global p of the outlier (same value, second citation)",TT:acts/stage4/STAGE4_RESULTS.md:380
+31,"points that stay on the fast path",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.n_points_numpy_A2
+1/0.87,"possible overestimate on those points (ESTIMATE, not applied)",TT:paper/sections/08_results_p2.tex:50-51
+790; about 910 to 950,"best limit ratio without and with the systematic (ESTIMATE, not applied)",TT:paper/sections/08_results_p2.tex:80;TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.fullchain_eps_systematic
+1.4,"E 200 GeV lower edge against truth",TT:paper/sections/09_mass_lambda.tex:63
+2.7 to 3.5,"miss of the pre-declared upper comparator (NOT MET)",TT:paper/sections/09_mass_lambda.tex:66
+4.5 to 5.5 keV,"post-hoc merged-surface comparator",TT:paper/sections/09_mass_lambda.tex:68
+6.9; 7.0 mm,"measured and true separation, E 500 GeV at 2 keV without pile-up",TT:data/acts_stage4/analysis/C12FC_v1/sep_it_det.json:points.A1|F|500|2|BM
+20 to 45 mm,"saturation below 1 keV without pile-up",TT:paper/sections/09_mass_lambda.tex:72
+18 to 26 mm; 23 to 0.6 mm,"measured and true separation at pile-up 200, >=1.5 keV (NOT MEASURABLE)",TT:paper/sections/09_mass_lambda.tex:73-74
+10 to 12 mm,"w_core floor at pile-up 200",TT:paper/sections/09_mass_lambda.tex:105
+2.46; 9551; 1.5,"median M_est/m_Q, events, none below, without pile-up",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.mass_observables.M_est_over_mQ_pooled.values.A1
+2.26; 29%,"median M_est/m_Q and fraction below 1.5, pile-up 200",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.mass_observables.M_est_over_mQ_pooled.values.A2
+1.15 to 1.35,"sample median gamma*, fermions",TT:sim/stage3/results/P1.json:paired_model_by_gstar.*.median_gstar
+up to 41%,"candidates with M_est undefined",TT:paper/sections/09_mass_lambda.tex:100
+not printed; medians ordered,"median M_est by fermion mass, pile-up 200: 483; 1113; 2070; 3137 GeV",TT:paper/sections/09_mass_lambda.tex:101
+not printed; similar for every mass,"16% quantile of M_est: 155 to 332 GeV",TT:paper/sections/09_mass_lambda.tex:101
+0.33,"median beta_ToF at 500 GeV without pile-up",TT:acts/stage4/STAGE4_RESULTS.md:580;TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.mass_observables.A1.pooled_R04.F500.beta_tof.median
+1.36 m,"flight length in the followed event (from Chapter 25)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:btl
+1.8-7.1; 1.5-2.7,"truncated-mean ionisation in MIP without and with pile-up",TT:paper/sections/09_mass_lambda.tex:103
+5.955 to 24.035 ns,"late-hit window",TT:paper/sections/06_strategy_wp.tex:73
+6.6 cm; 7.5 cm,"half of the median lmax at E 200 GeV 0.45 keV (computed); window W_c",TT:sim/stage3/results/P2_points.json:F_m200/L0.45;TT:acts/stage4/frozen_inputs.json:w_c_mm
+0.47 mm (0.466),"largest same-sensor separation of the two quirks along n2 at the pixel and PS sensors of the followed event (computed)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+8 mrad (8.08),"tilt of the stored axis from the line through the quirk hits (computed; gives the largest quirk |u.n2| of 9.8 mm, not a width)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+0.15 mm,"rms of the pixel and PS quirk hits about that line (computed)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+367 GeV (366.6),"M_est of the followed event; below the physical 2 m_Q",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:M_est[16]
+10%; about 1.1; about 4 cm,"25 GeV MET smearing on 248 GeV; gamma* at most at +2 sigma; lmax = 2 (gamma*-1) l0 at that gamma*: ESTIMATE, ours (computed in checks/ch26_checks.py)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:M_est[16];TT:paper/sections/05_detector_chain.tex
+50; 33,"discordant rows at R14 summed over the same eight points",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.paired_aggregate_other_8.R14
+0.69 to 1.23; 8 to 21%,"measured over true separation without pile-up and its statistical error, five points of the figure at 1.5 to 3 keV (computed)",TT:data/acts_stage4/analysis/C12FC_v1/sep_it_det.json:points.A1|*|BM
+0.69 +- 0.12,"same ratio at E 1500 GeV, 1.5 keV (computed)",TT:data/acts_stage4/analysis/C12FC_v1/sep_it_det.json:points.A1|F|1500|1.5|BM
+about 10%,"the study's summary of that ratio; wider in its stored numbers",TT:paper/sections/09_mass_lambda.tex:71;TT:acts/stage4/STAGE4_RESULTS.md:565
+coincide,"fast path and full chain at the fallback, E 200 GeV, 3 keV: both 0.05128",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.points.A2|F|200|3|BM
+307,"grid points of the no-pile-up sample",TT:acts/stage4/plan.md:1497
+1245; 1163,"events reaching the end of counting on the same rows of the 40 points (8000 rows), without and with pile-up; sum of eps_A1_common and eps_A2_common times n_common (computed)",TT:data/acts_stage4/investigation/cmp_all.txt
+1051; 850,"the mass panel's sample at pile-up 200 (with the reruns and |eta_pair| < 2.5); those with M_est",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.mass_observables.M_est_over_mQ_pooled.values.A2
+0 of 200,"fallback passes at E 500, 0.45 keV",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|500|0.45|BM.k_rfb
+no value,"finder check for the scalar at 1.5 keV",TT:acts/stage4/STAGE4_RESULTS.md:289;TT:paper/sections/08_results_p2.tex:28
+2.52,"median M_est/m_Q without pile-up on the 40 points (2026 defined of 2443; computed with the selection of figure_src/ch26/handles.py restricted to their species, mass and Lambda)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a1.npz
+k up to 4,"range of k in the fallback's width cut",TT:acts/stage4/WP_RULE.md:625
+18 against 0; 7.6e-6,"rows passing R14 only on the fast path against only in the full chain at E 500 GeV, 3 keV; exact sign test",TT:acts/stage4/investigation/INV_A2FC_E500.md:41
+19 against 1; 4.0e-5,"the same at the fallback, FB3",TT:acts/stage4/investigation/INV_A2FC_E500.md:42
+9 to 30,"look-elsewhere factor the study allows (ESTIMATE by the study)",TT:acts/stage4/investigation/INV_A2FC_E500.md:72-73

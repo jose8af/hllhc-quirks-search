@@ -1,0 +1,112 @@
+value,meaning,source_path:line
+200 GeV,"mass of the fermion E in the followed event",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:m
+0.45 keV,"Lambda of the followed event",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:lam
+19.5 cm,"l0 = m/sigma at the event's point (computed; formula and coefficient)",TT:paper/sections/02_model_samples.tex:17-18
+11-12 (Lambda/keV)^2,"median oscillations in the tracker for the fermion; gives about 2 at 0.45 keV (ESTIMATE)",TT:paper/sections/02_model_samples.tex:22
+15 cm,"radius of the outer pixel layer (146.5 mm from the hit radii)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y
+219.2 fb,"sigma_norm at 200 GeV",TT:paper/sections/02_model_samples.tex:69
+0.0476,"f200 at 200 GeV (0.048 in the table)",TT:sim/results/xsec.json:trigger_yields_E.rows.200.f_pt200_TRG_over_INC
+0.504,"A at (200 GeV, 0.45 keV)",TT:data/acts_stage4/analysis/C12FC_v1/acceptance.json:points.A2|F|200|0.45|BM.A_trig_presel
+3 ab^-1,"integrated luminosity",TT:paper/sections/06_strategy_wp.tex:29
+3.1e4,"tail pairs in 3/ab",TT:sim/results/xsec.json:trigger_yields_E.rows.200.N_3iab_pt200
+1.6e4,"N_exp at the event's point (computed from the three inputs above)",TT:paper/sections/06_strategy_wp.tex:25
+2.41e6,"generated LHE events",TT:REPRODUCE.md:112
+23.5 CPU-h,"generation campaign, actually used",TT:REPRODUCE.md:112
+25 GeV,"MET smearing per component",TT:paper/sections/05_detector_chain.tex:87
+250 GeV,"offline MET cut",TT:paper/sections/06_strategy_wp.tex:17
+100 GeV; 2.4; 0.5,"preselection: jet pT and |eta|, and minimum azimuth from MET among leading four jets",TT:paper/sections/06_strategy_wp.tex:17
+0.594,"eta_pair of the event",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:eta_pair
+248.3 GeV,"reconstructed MET of the event",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:met
+93,"surfaces carrying hits in the propagator",TT:paper/sections/04_truth_p1.tex:13
+218571,"propagated events",TT:paper/sections/04_truth_p1.tex:24
+14,"first stored candidate to pass all of the first 14 rungs is the displayed event (index 16, row 12070; first key in the file)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:L;TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:label
+1.24e13,"propagator steps (sum of the two machines)",TT:data/sim_stage3/STAGE3_INDEX.json:totals.mac.steps;totals.pc.steps
+583 CPU-h,"string propagation",TT:REPRODUCE.md:113
+170 ns,"CPU per step (computed: 583 CPU-h over 1.24e13 steps)",TT:data/sim_stage3/STAGE3_INDEX.json:totals
+2.8,"power of Lambda fitted to string cost per event, 0.3-5 keV, 500 GeV fermion (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points.p2/F_m500/*_BM.chunks.cpu_s
+0.038 s,"string cost per event at the event's point (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points.p2/F_m200/L0.45_BM
+46,"hits per event at the event's point (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points.p2/F_m200/L0.45_BM.n_hits
+167 s,"string cost per event at 30 keV, 500 GeV (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points.p2_hi/F_m500/L30_BM
+0.001 and 0.01,"step parameter up to 5 keV and above",TT:sim/stage3/HANDOVER_STAGE4.md:267
+64% and 6%,"share of string CPU and events at Lambda >= 15 keV (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points
+200,"mean pile-up interactions",TT:paper/sections/05_detector_chain.tex:33
+45 mm,"luminous region sigma_z",TT:paper/sections/05_detector_chain.tex:34
+1.33e5,"in-time pile-up hits per event",TT:paper/sections/05_detector_chain.tex:39
+2.3 to 7.3,"ratio of published occupancy to the simulated density, over all layers",TT:paper/sections/05_detector_chain.tex:40-41
+7.2 um,"pixel resolution across",TT:paper/sections/05_detector_chain.tex:67
+28.9 and 26.0 um,"PS and 2S resolution across",TT:paper/sections/05_detector_chain.tex:68-69
+14.5 mm,"2S resolution along the strip",TT:paper/sections/05_detector_chain.tex:69
+1540,"tracks per event found and removed",TT:paper/sections/05_detector_chain.tex:79
+13.9%,"share of measurements removed by tracking",TT:paper/sections/05_detector_chain.tex:78
+10.2 s,"detector chain per pile-up event under seven-worker load",TT:acts/stage4/HASH_ADDENDUM.md:150
+8.02 s,"finder per road under load",TT:acts/stage4/HASH_ADDENDUM.md:149
+42 s,"pile-up event with four roads (computed from the two above)",TT:acts/stage4/HASH_ADDENDUM.md:149-150
+8 cores; about two and a half days,"production laptop; 57.4 h of wall clock, as in Chapter 28 (computed; the paper's three days rounds its campaigns up)",TT:paper/sections/05_detector_chain.tex:92-93;TT:LOG.md:271;TT:LOG.md:272;TT:LOG.md:279;TT:acts/stage4/C1_LAUNCH.md:35
+40,"points in the signal grid",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.n_points
+8,"Lambda values per generated pair",TT:paper/sections/05_detector_chain.tex:110
+56 s = 11.9 s + 8 x 5.5 s,"cost of one row of the signal grid under load in the timing test, at the old seed threshold T_seed 6 (road 5.52 s)",TT:acts/stage4/G1B_REPORT.md:152;TT:acts/stage4/run_stage4.py:63
+76.8 s,"cost of one row of the signal grid at the production setting T_seed 4 (computed: est_s of kind a2 over 1000 rows, 21.32 h; quoted as about 77 s; formula 10.2 + 8(0.1 + 8.02) gives 75.2 s)",TT:acts/stage4/jobs/C1a.json:jobs.est_s;TT:acts/stage4/run_stage4.py:61-63;TT:acts/stage4/run_stage4.py:99
+5,"masses at 1 keV through the full chain as a check",TT:paper/sections/05_detector_chain.tex:112
+5%,"threshold of the revert rule, measured without pile-up (A1)",TT:acts/stage4/investigation/V46_REVERT_SET.json:threshold
+9,"points reverted to the full chain",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:a2fc_revert.meta.n_revert
+0,"quirk hits lost to tracking at the event's point",TT:acts/stage4/investigation/V46_REVERT_SET.json:table[F;200;0.45].mean_f
+0.15 rad,"road half-width delta95",TT:acts/stage4/frozen_inputs.json:delta95
+75 mm,"window W_c",TT:acts/stage4/frozen_inputs.json:w_c_mm
+30 um,"plane tolerance t_tol",TT:acts/stage4/frozen_inputs.json:t_tol_mm
+0.1 mm and 37 mm,"band half-width either side of the plane at the pixels and 2S for this plane (computed from the normal and the resolutions)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal
+77; 28; 49,"hits in the band: all; quirk; pile-up",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:cls
+589,"N_IP2>=7 candidates per trial in the timing test (wider road; earlier seed setting)",TT:acts/stage4/G2A_REPORT.md:65
+5500 s; 211 s; 3.8 s,"reference finder as coded; with vectorised merge; rewritten, per trial",TT:acts/stage4/finder/README.md:5-6
+24,"equivalence test trials",TT:acts/stage4/finder/README.md:7
+382 CPU-h,"detector production",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:production.cpu_h_total
+23,"rungs",TT:paper/sections/06_strategy_wp.tex:77
+Table of thresholds,"ladder rungs R01-R23",TT:acts/stage4/WP_RULE.md:279-295
+3 layers; 0.15 rad; eta<1; 20%,"fixed cuts at every rung",TT:acts/stage4/WP_RULE.md:106
+5.955 to 24.035 ns,"late-hit window",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:srt_window_ns
+35 ps,"timing layer resolution",TT:paper/sections/05_detector_chain.tex:70
+0.06 rad,"axis to MET angle of the event (computed)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:axis;phimet_reco
+0.59,"eta of the event's axis",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:eta_axis
+2/79,"f_CKF of the candidate",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:f_ckf
+4.33 mm,"w_core of the candidate",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:w_core
+1.9e6 and 9.3e6,"h and o of the candidate",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:h;o
+1.84 MIP,"dE/dx of the candidate",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:dedx
+R22,"deepest rung passed by the candidate",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:L
+2.71 ns,"Delta t of the earliest in-band timing hit",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:dt_earliest
+1.36 m,"|u| of that timing hit (computed from the stored times)",TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:t_raw_in;t_pv;dt_earliest
+3; 1; 0 of 200,"rows reaching R04; R14; R23 at the event's point",TT:data/acts_stage4/analysis/C12FC_v1/signal_rows_a2.npz:A2|F|200|0.45|BM|L
+1.14/M,"zero-count entry (one-sided 68% Poisson bound)",TT:acts/stage4/WP_RULE.md:361
+sigma_ln=1,"log-normal width of the zero-count entry",TT:acts/stage4/WP_RULE.md:361
+0.11,"per-category budget",TT:acts/stage4/WP_RULE.md:374
+0.3 and 2.71,"combined budget and the combination factor at sigma_ln = 2.3",TT:acts/stage4/WP_RULE.md:377
+3 events,"background-free 95% limit that the 0.3 keeps near",TT:acts/stage4/plan.md:829
+20,"maximum distinct fallback selections",TT:acts/stage4/WP_RULE.md:682-683
+200,"events per point used in Example 25.2",TT:paper/sections/05_detector_chain.tex:110
+6 to 4,"seed requirement change after the pilot",TT:acts/stage4/HASH_ADDENDUM.md:131-133
+2 sigma,"pre-declared trigger of that change",TT:acts/stage4/WP_RULE.md:565
+about 1 in 700; 11,"navigation crash rate in early tests (UNVERIFIED for the whole production; the 0.14% overall is [U] in the source); events replaced in admitted jobs",TT:acts/stage4/G1B_REPORT.md:135;TT:acts/stage4/STAGE4_RESULTS.md:659-661
+1.23e6 at R09,"lowest B84 of either category",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:ladder.SR-T.min_B84
+7.05 decades,"lowest B84 over the 0.11 budget",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:ladder.SR-T.decades_over_0p11_at_min
+none,"working point in either category",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.wp_T;outcome.wp_G
+990,"production total (23.5 + 583 + 382, computed); shares 2%; 59%; 39%",TT:REPRODUCE.md:11-12
+4,"roads per pile-up event at rho=1; one road searched is a trial",TT:paper/sections/05_detector_chain.tex:114
+1.4826,"factor in the robust core width w_core (MAD over in-band pixel and PS hits)",TT:paper/sections/06_strategy_wp.tex:59
+2 per sensor; up to 4 per stacked layer,"quirk hits by layer in the displayed event; counts on stacked modules",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:cls;TT:paper/sections/06_strategy_wp.tex:57
+0.5 mm (0.466),"largest same-sensor separation of the two quirks along n2 at the pixel and PS sensors of the followed event (computed)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+8 mrad (8.08); 1 cm (9.8 mm),"tilt of the stored axis from the line through the quirk hits (computed); largest quirk |u.n2|, a distance from the axis and not a width",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+0.15 mm,"rms of the pixel and PS quirk hits about that line (computed)",TT:data/acts_stage4/analysis/C12FC_v1/event_display.npz:x;y;z;cls;TT:data/acts_stage4/analysis/C12FC_v1/signal_obs_a2.npz:normal;axis;pv
+13 cm (13.1),"median lmax of this sample",TT:sim/stage3/results/P2_points.json:F_m200/L0.45
+10 and 15 um; 93%,"vertex smearing across and along the beam; identification efficiency (UNVERIFIED, not applied)",TT:paper/sections/05_detector_chain.tex:84-85
+drawn independently,"pile-up-only trials draw a vertex from the luminous region",TT:paper/sections/07_backgrounds.tex:15
+0.56 mm; about 2; at most 2.3,"one vertex spacing (Chapter 19, computed); the shift projected on the normal over the full width of the pixel band, at our event's n_z and at n_z = 1 (ESTIMATE, computed in checks/ch25_checks.py)",book:chapters/ch19_colliders.tex:eq:19-poisson;TT:paper/sections/06_strategy_wp.tex:53-54
+1 keV only,"the check behind the rerun rule ran only at 1 keV, so the rule could not fire",TT:acts/stage4/investigation/INV_SIGNAL_EFF.md:28;TT:acts/stage4/investigation/INV_SIGNAL_EFF.md:219
+list fixed first,"revert set written before the manifest and launch; trigger was the investigation",TT:acts/stage4/A2FC_REPORT.md:3-5;TT:acts/stage4/A2FC_REPORT.md:11-14
+200 GeV; |eta_pair| < 4,"definition of f_200",TT:paper/sections/02_model_samples.tex:59
+1.28e8; 4.08e7; 14 October,"N_trig: the code's default, superseded by the count after preselection; final value; date of the decision. The rule gives only the formula",TT:LOG.md:257-261;TT:acts/stage4/WP_RULE.md:313
+1.9; 1.2 to 1.4,"K for ttbar, a conservative deviation; the rule's K-factor range",TT:LOG.md:258;TT:acts/stage4/WP_RULE.md:327;TT:acts/stage4/STAGE4_RESULTS.md:645
+orders of magnitude,"literal product over nested cuts of one variable anti-conservative; conservative reading A28 replaced it; no signal efficiency looked at",TT:LOG.md:255;TT:LOG.md:257
+x0.74 to 0.95; R07 to R20,"late looper fix, effect on B84",TT:acts/stage4/STAGE4_RESULTS.md:798
+x4 to 8; x50 to 60,"merge-population fix at the two loosest fallbacks, general and late-hit (computed: 2.7e8/6.4e7, 1.9e8/2.5e7; 1.7e8/3.5e6 = 49, 1.4e8/2.2e6 = 64)",TT:acts/stage4/STAGE4_RESULTS.md:116-117;TT:acts/stage4/STAGE4_RESULTS.md:794-795
+x36,"merge-population fix in the late-hit category at the third fallback (computed: 9.3e7/2.6e6)",TT:acts/stage4/STAGE4_RESULTS.md:796
+23 of 33,"points where the investigation expects the toy limits to fall: ESTIMATE by the study; classed there as a conservative bug",TT:acts/stage4/investigation/INV_STATS_BKG.md:22
+1.1e3 to 790,"best ratio before and after the fixes, both on the final normalisation (53 and 37.6 before that normalisation)",TT:acts/stage4/STAGE4_RESULTS.md:803
++16%; +37%,"change of the trial pass fraction at R06 between seed thresholds of six and four, at the two densities; both over 2 sigma (z = +3.16, +2.61)",TT:acts/stage4/g3/G3_REPORT.md:160;TT:acts/stage4/g3/G3_REPORT.md:163

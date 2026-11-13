@@ -1,0 +1,302 @@
+\chapter{Bottlenecks and the road ahead}\label{ch:28-bottlenecks}
+
+Chapter~\ref{ch:27-backgroundresults} ended seven decades short of a working point, and the practical questions come next: where the time went, whether computing is the critical factor, whether more of it could be procured, whether the background can come from data, and where exactly progress stops. This chapter answers them from the study's records.
+
+The short answers first. Event generation is not the bottleneck: MadGraph\index{MadGraph} and Pythia\index{Pythia} took $23.5$ CPU-hours, with a production run of under three hours of wall clock. The signal analysis needs more passing events: CPU would shrink the statistical error on its efficiency cheaply, but it would not lift the barrel ceiling or the low efficiency that set the yield, and at pile-up 200 the analysis cannot measure $\mQ$ or $\Lam$. The string propagator is the largest bill and was slow, yet it finished. The longest wait was the detector-chain production on the laptop, $57.4$\,h of wall clock (from the log), about two thirds of it pile-up samples by the job estimates ($241$ of $374$ hours), against $33.8$\,h for the string and under three hours for generation's production run. Progress stops at the background estimate, and it stops on method rather than CPU: a rate near $10^{-9}$ is being counted in simulated events, with no anchor in data.
+
+Each table and each headline number has a status. \emph{Measured} means computed from stored timings in tracked files. \emph{Logged} means written in the study's log or reports. \EST{} marks an estimate, ours unless we say that the study made it. Nothing was simulated for this chapter, and the study's raw data now sit on an external drive, so per-job records cannot be rechecked. The restrictions the study imposed and the plots that carry its message follow in Chapter~\ref{ch:29-account}.
+
+\section{The bill, stage by stage}\label{sec:28-hours}
+
+A quirk event passes through five programs in turn: a generator makes the pair, a propagator carries the string, a fast simulation adds pile-up and tracks, a finder searches for planes, and a frozen analysis turns counts into limits. Table~\ref{tab:28-stages} gives the bill and Fig.~\ref{fig:28-budget} its shares.\index{CPU budget}
+
+\begin{table}[!t]
+  \caption{The study's bill. String CPU is measured from stored chunk times. The detector chain is a logged sum of job walls. Development is our sum of the logged items.}
+  \label{tab:28-stages}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{38mm}r>{\raggedright\arraybackslash}p{16mm}>{\raggedright\arraybackslash}p{27mm}@{}}
+    \toprule
+    stage & CPU-h & wall clock & machine\\
+    \midrule
+    numerics for the thickness law & $10$ & not logged & not stated\\
+    generation & $23.5$ & $2$\,h $48$\,min from the restart; extras not logged & six parallel jobs\\
+    string propagation & $583$ & $33.8$\,h & laptop and PC\\
+    detector chain and finder & $382$ & $57.4$\,h & laptop, seven workers\\
+    development and pilot & $\approx50$ & pilot $5.8$\,h & laptop\\
+    frozen analysis, one run & $0.7$ & $42$\,min & laptop\\
+    \midrule
+    total & $\approx1050$ & &\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+  \includegraphics{ch28/cpu_budget}
+  \caption{Top: the production CPU-hours, without development. Middle: the string propagator's CPU and events by $\Lam$, where $6\%$ of the events took $64\%$ of the CPU. Bottom: the detector chain by sample, from the job estimates. Blue segments are background, and ``density'' is the reruns with the top-up of Chapter~\ref{ch:25-chain} at its two limits.}
+  \label{fig:28-budget}
+\end{figure}
+
+\paragraph{Event generation}
+The first attempt went through MadGraph's own shower step. Its first chunk of $50\,000$ events took $975$\,s, and MadGraph 2.9.22 rewrote the Pythia card so that the tune reset the parton distributions and the strong coupling, which changed the matching acceptance on the same events from $0.463$ to $0.421$. The study replaced that step with its own parallel Pythia jobs, deleted the earlier outputs and restarted; the time of the abandoned attempt was not logged. From that restart the production run made $2.07\times10^6$ events in $2$\,h $48$\,min, about $18$ CPU-hours (wall clock times cores, \EST, by the study), and later additions took about $5.5$, about $3.2$ of them top-up events at $200$ and $300\GeV$ with an interpolation check at $550\GeV$, the rest re-showers and tests: $2.41\times10^6$ events for $23.5$ CPU-hours against a budget of $35$, or $0.035$\,s per event.\marginnote{The one item that budget blocked: the quirks radiate no photons in the delivered samples (no QED final-state radiation), which $17\%$ of events would do in a test at $500\GeV$. A re-shower of about $15$ CPU-hours was replaced by a one-sided systematic of $-1.1\pm0.8\%$ on $\lmax$, the largest median shift.} This is $2\%$ of the bill, and nothing later waited on it.
+
+\paragraph{String propagation}
+The kernel is fast, $161$\,ns per step on the laptop and $173$\,ns on the PC.\index{string propagator} The cost is the number of steps, $1.24\times10^{13}$ for $218\,571$ events. At the production step, with material, an event costs $0.32$\,s at $1\keV$, $7.7$\,s at $3\keV$ and $31$\,s at $5\keV$ (measured, over all masses). Above $5\keV$ the step is ten times coarser, so the cost falls to $6.6$\,s at $7\keV$ and climbs again to $77$\,s at $20\keV$ and $182$\,s at $40\keV$.
+
+The points at $\Lam\ge15\keV$ took $371$ CPU-hours, $64\%$ of the string's bill, on $6\%$ of its events, all on the PC.\marginnote{The string's estimate moved from $330$ to $402$ to $498$ CPU-hours before production, with $583$ measured. One step, $+96$ hours for a finer step up to $5\keV$, had first been quoted as $+5$, a slip the log records.} They drew the truth-level map, including the merging edge at $13$ to $23\keV$ (Table~\ref{tab:26-window}), but they never reached the search: the finder's upper edge without pile-up is $4.7$ to $6.6\keV$, and the pile-up grid stops at $5\keV$. The $200$ rows per point overlaid with pile-up cost only $12$ CPU-hours, $2\%$ of the string's bill.
+
+This item exists because the standard chain has no string in it. A public Geant4 quirk extension does exist in the ATLAS software, and the study kept a copy for reference. Porting it to CMS software was costed at $1$ to $3$ person-months and a custom ACTS stepper at $6$ to $12$ weeks (both \EST, by the study). The study used its own propagator.
+
+\paragraph{Detector chain and background samples}
+The job estimates, in hours per worker under production load, sum to $374$: pile-up $241$, density reruns $39$, Standard Model $31$, single-interaction $23$, signal $39$. So $89\%$ is background. Measured walls exist only per run, because the per-job records were not tracked. A normal-density pile-up event costs $10.2$\,s of chain and $8.02$\,s for each of four roads, $42.3$\,s in all. A double-density event costs $119.8$\,s.\sidenote{A CPU-hour is not one unit here. On the PC, $375.5$ hours of process time stand for $290$ estimated laptop hours. In the detector chain, $382$ is a sum of job walls: the three main runs logged $373$ hours against about $197$ in single-process units (\EST). Read the totals as sizes.} These are the production script's per-worker constants, measured in the pilot under load; the $42.3$ and $119.8$\,s are sums of them. Pile-up is the whole leverage: a gun event without pile-up takes $1.5$ to $12$\,ms, and with pile-up $18.5$ to $20$\,s, over a thousand times more.
+
+\paragraph{The finder}
+It takes $277$ of the $374$ hours by the job formulas, or $74\%$. That share is after a large speed-up, and others follow below. The first finder took about $5500$\,s per trial as coded and $211$\,s with its merge step vectorised, and a rewrite took $3.76$\,s on an idle machine, with identical candidates on $24$ test trials. Under production load a trial took about $5.5$\,s, and the pre-declared change of seed threshold from six layers to four raised it to $8.02$\,s, a factor of $1.45$. The net gain on $211$\,s is a factor of $26$. The finder's speed report sees a further factor of $1.2$ to $1.3$ with more work, and no factor of $2$ without changing the selection.
+
+Other speed-ups were taken before production too, so the rest of the chain is not unoptimised. Track finding on whole cylinders took $23$ to $60$\,s per event, and dividing each surface into $32$ azimuthal sectors brought it to $1.6$ to $3.4$\,s; the sector boundaries are the cause of the navigation crash of Table~\ref{tab:25-moved}. The weights at double density went from $12$ to $21.5$\,ms per hit set by Monte Carlo to $4\,\upmu$s by an exact calculation. Replacing MadGraph's own shower step with parallel Pythia jobs took a chunk of $50\,000$ events from $975$\,s to about $4$\,min. The string recorder went from $142$ to $74$\,ns per step, and caching cut Pythia's start-up from $13.6$ to $0.1$\,s (all logged).
+
+\paragraph{Analysis}
+One frozen run takes $2497$\,s, the figures under $30$\,s of CPU, and the open-data note none. Analysis is not a CPU item. Its cost was in review: six review and fix rounds on the analysis code, four on the results, four on the paper, overlapping production, with no clock total in the log. That time was not wasted. A late review round found the normalisation error of Chapter~\ref{ch:27-backgroundresults}, which moved the best ratio from $37.6$ to $790$ (\EST, by the study).
+
+\section{The calendar: slow and stalled}\label{sec:28-calendar}
+
+The programme ran from 7 to 18 October 2026 (Fig.~\ref{fig:28-calendar}). Generation took the small hours of the 11th. String propagation started on the laptop at 14:19 that afternoon and ended on the PC at 00:07 on the 13th, $33.8$\,h later. The 13th was the crowded date: nine review rounds on the detector plan,\marginnote{The log's executors, reviewers and fixers are AI agents directed by the study's author, which is how nine review rounds fit into one date, and why account usage limits appear in the calendar.} the cap, the cloud option in and out, the deadline, the finder rewrite, and at 18:19 the frozen rule. Production ran from 00:29 on Wednesday the 14th to 08:55 on Friday the 16th, $56.4$\,h with no job errors (the span of the three main runs; the $57.4$\,h above sums the walls of those runs and the reruns). The full-chain reruns took $1.41$\,h, and the paper passed review at 15:00 that day.
+
+\begin{figure*}[!t]
+  \includegraphics{ch28/study_calendar}
+  \caption{The calendar as the log records it. Coloured and dark bars have clock times or a logged duration at both ends (the PC bar runs from its first to its last finished chunk). Light bars come from entries with dates or partial times only. Blue: pile-up and Standard Model samples. Vermillion: signal reruns. Green: signal grid with the gun samples. Triangles: agent usage limits (the stop on the 7th, the resets on the 8th). The moved deadline's ``afternoon'' is drawn at 15:00, our reading.}
+  \label{fig:28-calendar}
+\end{figure*}
+
+Take the window from the first scope decision, 16:12 on Tuesday the 13th, to the moved deadline, about $119$\,h. The speed tests, the trial production and the remaining development before production took $8.3$\,h ($7\%$), of which the pilot took $5.8$\,h against $2.5$ to $3$\,h expected. Production took $47\%$. The time from the end of production to the paper's pass took about $6$\,h ($5\%$), and about $48$\,h ($40\%$) were left after it, part of them used for a later version of the paper. Analysis and writing ran alongside production throughout. The plan had allowed $47$\,h of production with no margin, starting $9.5$\,h later than it did, and production still ended before the plan's stop at noon on Friday.
+
+Three things were actually waited for: machines, the agents' usage limits on 7 and 8 October with a warning on the 15th, and the author's checkpoints between stages, for which no waiting time is recorded. The warning led to an unattended chain that ran the first frozen analysis with no agent present. Generation and the finder rewrite held nothing up.
+
+Table~\ref{tab:28-slow} separates slow from stalled. Slow work finished at a price. Stalled work has no route forward inside the study, and more CPU alone would not finish it.\index{slow and stalled work}
+
+So the plain answer is this. MadGraph is not a bottleneck. The signal analysis is short of passing events: summed over all $40$ points only $263$ events pass the fallback, $28$ points have at most $10$ and $7$ have none. Ten times the rows would cut the statistical error on each efficiency by $3.2$ for about $300$ hours (Table~\ref{tab:28-buy}, \EST), but the expected yield would stay where it is, and the ratio's central value near $790$. The background estimate is where progress stops. We add one reading of our own. The extra Standard Model samples and the rest of the grid would have needed about $36$\,h of laptop wall, and about $51$\,h remained after the reruns. The log does not reopen them and gives no reason. They would not have produced a working point.
+
+\section{Computing as a limit}\label{sec:28-cpu}
+
+\begin{table}[!t]
+  \caption{Slow and stalled, as recorded. In the quotation, WP is the working point. The last row's reading is ours: the record shows only that the entries stop.}
+  \label{tab:28-slow}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{36mm}>{\raggedright\arraybackslash}p{71mm}@{}}
+    \toprule
+    \multicolumn{2}{@{}l}{\emph{Slow: finished, at a price}}\\
+    \midrule
+    String at high $\Lam$ & $155$ to $182$\,s per event at $30$ to $40\keV$\\
+    Pile-up events & $42.3$\,s per normal event, $119.8$\,s per double-density event\\
+    Finder & $8.02$\,s per trial after a factor of $26$; $74\%$ of the chain\\
+    Review loops & nine rounds on the plan alone; no clock total\\
+    \midrule
+    \multicolumn{2}{@{}l}{\emph{Stalled: no route forward inside the study}}\\
+    \midrule
+    Working point & ``no achievable statistics produce a WP with this ladder''\\
+    Deep-rung closure & factorisation test uninformative, degenerate by construction; the $\rho=3$ sample was deferred (Table~\ref{tab:28-buy}) and would extend closure, not supply that test\\
+    $\mQ$ and $\Lam$ at pile-up 200 & no measurement; separation handle not measurable\\
+    Endcap, merged and wide pairs & never started\\
+    Data anchor & nothing downloaded; policy and CMS-internal checks not recorded as done\\
+    CMS-based stream of the project & the project's first plan, a CMS analysis, from which this study branched on 7 October; no log entry after 8 October but the data move\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Four limits acted in practice.
+
+\paragraph{The machine}
+The detector chain ran on one MacBook Air M3: four performance and four efficiency cores, $24$\,GB of memory, seven workers.\marginnote{Over production, $382$ job hours in $57.4$\,h of wall clock mean $6.7$ of the seven workers busy on average, so the laptop was used about as hard as it could be.} ``One laptop'' does not describe the whole study, since the string used a Windows PC as well, for $64\%$ of its CPU.
+
+\paragraph{The cap}
+On 13 October the log records a ``new hard constraint'': production must take about $24$\,h of wall clock on the Mac. No reason is recorded. At seven workers that is about $168$ CPU-hours a day, and it forced the split into one-day runs. Later that day the author accepted $27$ to $30$\,h, and the runs took about $8.0$, $24.7$ and $23.3$\,h.
+
+\paragraph{The deadline}
+Set on 13 October for the night of Saturday the 17th, about $4.5$ laptop days, and moved on the 15th to Sunday afternoon, in the log entry that reports the usage-limit warning; the entry does not say that one caused the other. The first entry adds only that the author keeps a day for questions. For the date itself the log gives no reason. The author has since stated that it was a personal limit, set so that the work would not run on indefinitely. It drove the choices of 13 and 14 October, including the barrel-only selection and the deferred samples, but it did not bind at the end: the paper passed review about $48$\,h before the moved date. It no longer applies, so the restrictions taken under it can be reopened, those that touch the frozen rule through a new pre-registration.
+
+\paragraph{Memory and disk}
+A budget of $19$\,GB at $4$\,GB per double-density job allowed four such jobs at a time, which held the pilot's throughput to $2.84$ estimated CPU-seconds per second of wall clock, against $3.6$ to $3.8$ in its other phase. Keeping every candidate would have taken about $0.4$\,TB with $128$\,GB free, so only compact records were stored, and that has a physics price: the factorisation test at R05 needs records from R03, which do not exist.
+
+\medskip
+Table~\ref{tab:28-buy} sets out what more computing would buy, step by step, with costs at the $8$\,s per trial that production reached. The first rows are samples already defined in the frozen plan, with random-number seeds chosen so that they add to what exists. They would give coverage and better inputs, and they barely touch the seven decades.\index{deferred samples}
+
+\begin{table}
+  \caption{What each step of computing buys. Costs are hours per worker under load, and walls are for seven workers. Row 1 is from the job file. Rows 2 to 4 are the plan's table (\EST). Row 4 is the plan's cost for $2000$ events with one road each, taking a trial at $\rho=3$ to cost about $27$ normal trials, since the plan scales the finder as $\rho^3$; the speed test it had to pass first was never run. Row 5 is the plan's, at its faster finder. Row 6 is our estimate (\EST). In row 7 the gain assumes that the zeros persist (\EST).}
+  \label{tab:28-buy}
+  \small\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{35mm}>{\raggedright\arraybackslash}p{18mm}>{\raggedright\arraybackslash}p{53mm}@{}}
+    \toprule
+    step & cost & what it buys\\
+    \midrule
+    1. Two more $W$ samples, all five to $5000$ events & $99$\,h; $14$\,h wall & real samples for two proxies; Standard Model bounds down by at most $2.5$\\
+    \addlinespace
+    2. Pile-up to $2\times10^4$ and $5000$ events & $163$\,h; $23$\,h & thinning reach from $1.7\times10^{-10}$ to $10^{-10}$ per trial\\
+    \addlinespace
+    3. Rest of the grid, $20$ full-chain points, pile-up 140 & $157$\,h; $22$\,h & edges in $\ln m$ from $14$ masses, not $5$; limits between masses\\
+    \addlinespace
+    4. Sample at $\rho=3$ & $128$\,h; $18$\,h & a real lever arm for closure: about one decade of the pile-up term, by the study's estimate\\
+    \addlinespace
+    5. Pseudo-experiment samples, material variation & $1.0$ and $1.4$\,h wall & samples to test a mass fit, which does not exist and would have to be written first; material effect on $\Eff$\\
+    \addlinespace
+    6. Ten times the signal rows at the $40$ points & about $300$\,h; $2$ days & efficiency errors down by $3.2$\\
+    \addlinespace
+    7. Every background sample $\times100$ & $3.4\times10^4$\,h; $200$ days & two of the seven decades\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Row 6 deserves a word, since it is the cheapest place where CPU alone improves a physics result. The best limit rests on $9$ passing events of $200$, so its ratio of $790$ moves by a factor of about $1.5$ either way. The cost is small: $192$ more hours of the signal grid, which took $21$ of the $374$ hours of the detector bill, and $109$ of string for the extra rows. That is the fast path. The nine points kept on the full chain would add about $90$\,h if their errors are to shrink too, about $390$\,h in all (\EST).
+
+Row 7 is where computing stops helping. Each leading term at the deep rungs is a zero-count bound, and a zero-count bound knows only the size of its sample (Example~\ref{exa:27-dif}). If every sample grows by a factor $k$ and the zeros persist, we simply divide, starting from the lowest $\Beightyfour$ of the ladder:
+\begin{equation}
+  \Beightyfour(k)\approx\frac{1.23\times10^6}{k},\qquad
+  k_{\rm need}=\frac{1.23\times10^6}{0.11}=1.1\times10^7 .
+  \label{eq:28-k}
+\end{equation}
+\marginnote{The study's results report gives $\times1.4\times10^7$ at R08 and R09, for the bounded single-interaction and Standard Model terms. On our reading that figure belongs to the analysis run before a late correction to the looper term, whose minimum was $1.57\times10^6$; the same division on the final run gives $1.1\times10^7$. The report does not recompute it.}%
+A hundred times the CPU buys two decades. Figure~\ref{fig:28-more} adds the $21$ stored terms at R09 by the study's own recipe, with widths fixed, and puts cost on the axis (\EST). Today's $335$ hours of background samples would grow to about $4\times10^9$, five months of a million cores.\index{zero-count bound}
+
+\begin{figure}
+  \includegraphics{ch28/more_cpu}
+  \caption{$\Beightyfour$ at R09 against CPU on background samples, if every zero persists and all widths stay fixed (\EST; nothing rerun). The straight line is the optimistic case. The dashed curve stops at $2.3\times10^3$ events, where pile-up takes over.}
+  \label{fig:28-more}
+\end{figure}
+
+That line flatters the case in three ways. Enlarge only the Standard Model and single-interaction samples and the sum stops at the pile-up term, the dashed curve. The line assumes that the zeros persist, which is the very thing we want to know: by \eqref{eq:27-nature} the samples would by then exceed everything the LHC will produce of those processes. And some uncertainties do not fall with $N$. The trend and density widths of pile-up stay near $\sigma_{\ln}\approx1.7$, the factor $\times2.41$ stays a patch, and the factorisation stays untested: the systematic floors of Chapter~\ref{ch:24-rareevents}.
+
+\begin{example}[The limit of a faster finder]\label{exa:28-amdahl}
+Suppose the finder were ten times faster, say by rejecting early the planes that will fail the count (\EST; the study's own report saw no such factor without changing the selection). A pile-up event then costs $10.2+4\times0.80=13.4$\,s instead of $42.3$\,s, a factor of $3.2$, or half a decade. A perfect finder would stop at $4.1$, since the $10.2$\,s of chain remain. Compare a change of design. The study's no-pile-up gun samples hold $5.4\times10^5$ events for about $2$ hours with job overhead, against $4000$ with pile-up for $21$. Using them for the conditional factors would lower the single-interaction bounds by about two decades at almost no CPU (\EST, by the study).
+\end{example}
+
+Computing limited the study's scope and did not set its result. How much more of it could have been had is the subject of the next section.
+
+\section{Procuring more computing}\label{sec:28-procure}
+
+Table~\ref{tab:28-options} lists what the records show was considered. None of the costs was tested. Batch systems, such as CMS's grid tool CRAB, the HTCondor scheduler or CERN's lxplus service, do not appear in the study's log; the install check of 11 October notes lxplus once, as needing a CMS account.\index{batch system}
+
+\begin{table}
+  \caption{Computing options in the records. Prices and the cloud's capacity are the study's own \UNV{} figures.}
+  \label{tab:28-options}
+  \small\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{22mm}>{\raggedright\arraybackslash}p{47mm}>{\raggedright\arraybackslash}p{21mm}@{}}
+    \toprule
+    date & option & record & outcome\\
+    \midrule
+    7 Oct & CMS resources & access for the author's group \UNV; advice: partner group, then central production; $2.4$ to $3.4\times10^4$ core-hours (\EST) & decision left open\\
+    \addlinespace
+    11 Oct & Install routes & CERN's central software installations (LCG views on the CVMFS file system) are Linux only, ``use on lxplus only (CMS account)''; containers (Docker) were not running, and a source build inside one would take $1$ to $3$\,h (\EST, by the study) & prebuilt Python package of ACTS (a PyPI wheel) used on the Mac\\
+    \addlinespace
+    11 Oct & Second machine & Windows PC, $10$ then $15$ workers, results carried back by USB & used for the string\\
+    \addlinespace
+    13 Oct & PC under WSL2 (Linux on Windows) & no native Windows build; half a day of set-up; not bit-identical; $20$\,h instead of $47$\,h at $2$\,s per trial, the plan's speed; production reached $8$\,s (\EST) & not in the resource list\\
+    \addlinespace
+    13 Oct & Google Cloud free trial & $\$300$ for $90$ days, $8$ vCPU; about $110$ CPU-hours a day; $\$31$ to $\$120$ by scope & approved, then dropped that day\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The cloud line deserves care.\index{cloud computing} The log says ``Cloud dropped: Mac only'', and no account or machine was ever created. The same line sets the deadline, but the record does not link the two and gives no reason, so we do not supply one.
+
+\paragraph{What it would cost}
+Take rented machines at $3$ to $5$ US cents per vCPU-hour, a vCPU being one rented hardware thread, our round figure and not a quotation (\EST). The four sample rows of Table~\ref{tab:28-buy} sum to about $550$ hours: $80$\,h on the laptop, $5.5$\,h on $100$ cores, and about $\$20$.\marginnote{A public pile-up hit pool, ColliderML, with about $3.7\times10^4$ crossings at $\mu=200$, was listed in the first requirements document. It models another detector at $3\tesla$, and this study never used it, for no recorded reason.} All the production of the study would be a few tens of dollars more. A hundredfold background sample costs of order $\$1500$, and the $4\times10^9$ hours of Fig.~\ref{fig:28-more} of order $\$10^8$. A university or collaboration batch system costs no money but needs access, which for the author's group the records leave unverified.
+
+\paragraph{What would have to change}
+The detector chain has only ever run on macOS on Apple silicon, and a Linux port was never tested. A Linux build of the ACTS Python package was recorded in the plan and the log on 13 October, though the reproduction notes call it undocumented. The environment files must add the \texttt{linux-64} platform and be solved again, and macOS-only launch commands must go. The plan for the cloud adds the rest: a resumable runner with jobs under about $30$ minutes, a first measurement of speed per vCPU, about $30$\,GB of output moved back, and an equivalence test, because results will not be bit-identical across compilers. Double-density jobs need $4$\,GB of memory each. Rerunning the string is harder than it looks: the frozen analysis hashes the string index, which records machine names and CPU times, so a new index forces a re-freeze. Pile-up, Standard Model and single-interaction jobs do not read the string's output, so they need none of it. And the $46$\,GB of data must first come back from the external drive, whose location the study's data-location note leaves blank.
+
+\section{The background from data}\label{sec:28-data}
+
+Many searches do not simulate their instrumental backgrounds at all. They measure them, and Chapter~\ref{ch:22-signalbackground} gave the working examples: the invisible $Z$ weighed with $Z(\mu\mu)$, the fake tracks of the CMS disappearing-track search counted in a $d_0$ sideband, ABCD on two independent cuts, $\tau$ embedding. The reason is general.\index{background from data} A control sample in real collisions has the true detector and the true pile-up, its size grows with the luminosity like the signal region's, and nobody has to trust a simulated tail. Knapen and Lowette say so for fake tracks and vertices~\cite{Knapen:2022afb}. A background from data is therefore the right aim here, and it is the study's own first remedy. The method works under the four conditions of Section~\ref{sec:22-lore}: the same detector and conditions, the stored quantities the selection uses, a control region with the same background and no signal, and a transfer short enough to test.\index{control region}
+
+\paragraph{How it would be done here}
+This is a proposal that was not tried. A road searched far from $\MET$ sees the same pile-up but almost no quirk plane, since $95\%$ of signal pairs point within $0.15$\,rad of $\MET$. So rotate the road, keep every cut, and count: this measures fakes at the real pile-up in the real tracker, and it counts pile-up and single-interaction fakes together, with no term-by-term sum. Hits from out-of-time crossings offer a second control region of the same kind. A transfer factor\index{transfer factor} (Chapter~\ref{ch:22-signalbackground}) carries the count to the signal road, and the test of it is that the rate should not depend on the angle to $\MET$, which can be checked at R04 to R07 where counts are large. Backgrounds tied to the hard event, such as a $\tau$ close to $\MET$, are not flat in that angle and would need their own treatment (\EST).
+
+\begin{example}[A sideband of the right size]\label{exa:28-sideband}
+All numbers here are illustrative (\EST). A road admits plane axes over about $0.30$\,rad, so about $20$ roads with no axis in common remain away from $\MET$, and $T\approx1/20=0.05$.\marginnote{The study's pile-up-only jobs already treat four roads $\pi/2$ apart as separate trials (Chapter~\ref{ch:25-chain}).} Their hit wedges do overlap, because the wedge widens at small radius (Chapter~\ref{ch:25-chain}): a hit on the outer pixel layer falls in four or five of them. This $T$ is close to the flat-shape value $0.044$ in the CMS search, and far from the $8\times10^{-7}$ of Chapter~\ref{ch:22-signalbackground}, which carried a count down the ladder. The price is that the sideband count may be zero. With $4.08\times10^7$ triggered events, the $20$ roads give $8.2\times10^8$ trials, close to the $10^9$ that simulation would need and $1.7\times10^4$ times the study's sample. If none passes, the zero enters as $1.14$ with $\sigma_{\ln}=1$. Taking CMS's $0.47$ for the transfer gives $\sigma_{\ln}=1.105$, so
+\[
+  \Beightyfour=1.14\times0.05\times\ee^{1.105}=0.17 ,
+\]
+within a factor of $1.6$ of the budget $0.11$ (Exercise~\ref{ex:28-control} finds the $T$ that meets it). Sideband\index{sideband} and signal road grow together, so this does not change with luminosity. Signal in the sideband hardly matters: the $5\%$ outside the road contributes $0.05\,T\,S=0.0025\,S$ to the prediction. Searching $8.2\times10^8$ roads at $8$\,s each is $1.8\times10^6$ CPU-hours, large for one laptop and modest beside the $4\times10^9$ of Fig.~\ref{fig:28-more}. Two assumptions carry all of this: pile-up does not know where $\MET$ points, and roads in one event are independent although they share hits. Neither has been tested.
+\end{example}
+
+\paragraph{Why public open data does not supply it}
+CMS Open Data is another matter, and none of it was used: the study has only a feasibility note, with nothing downloaded or analysed.\index{open data} Three things stand in the way. The first is the format.\marginnote{RAW holds what the detector read out. AOD, MiniAOD and NanoAOD are successively smaller summaries made from it.} A fake plane is made of hits on no track, and the compact AOD, MiniAOD and NanoAOD formats keep no positions for such hits (from the software configuration; no file was opened). Only RAW data\index{RAW data}, reconstructed afresh, will do, say a $2017$ ZeroBias record of about $1$\,TB~\cite{CMS:ZeroBias2017E}.\marginnote{ZeroBias: events recorded on a bunch crossing alone, with no physics requirement. MinimumBias: nearly so. Both are in effect samples of pile-up. Run 1, 2 and 3: the LHC's data-taking periods before the High-Luminosity upgrade.} The second is the detector: the Run 1 and Run 2 tracker has other radii, material and pitch than Phase 2. The third is the worst. The pile-up is about 10 to 60 (\UNV), not 200, and a fake needing $n$ interactions (the $\nint$ of Chapter~\ref{ch:27-backgroundresults}) scales as $\mu^n$ (Fig.~\ref{fig:28-power}).
+
+\begin{example}[What a RAW record would say]\label{exa:28-terabyte}
+Take pile-up 30 and $n=10$ for illustration (\EST). The factor is $(200/30)^{10}=1.7\times10^8$, so the rate we must control at pile-up 200, $2.7\times10^{-10}$ per trial, becomes $1.6\times10^{-18}$. A RAW record of this general size, say the $2.7\times10^6$ events of the 2012 MinimumBias record ($307$\,GB; the 2017 record states no event count), with four roads gives $1.08\times10^7$ trials, so we expect $2\times10^{-11}$ fakes and see none. The zero-count bound is $1.14/(1.08\times10^7)=1.1\times10^{-7}$. Scaled back up, that is $18$ per trial at pile-up 200, over ten decades above the need. The study's reach estimate takes $\nint\approx20$, and the false planes of an early probe drew on $16$ to $23$ different collisions (Chapter~\ref{ch:22-signalbackground}), so $n=10$ is generous to open data: $n=20$ gives a factor of $3\times10^{16}$.
+\end{example}
+
+What open data can do is check inputs. The note ranks three tests (efforts \EST): vertex rates per interaction against radius, from AOD, in one to two weeks; cluster density and its slope with pile-up, from RAW, in three to five weeks, which tests the top-up of Chapter~\ref{ch:25-chain}; and a rough rate of cosmic muons, which may fail. None of this tests the string, the signal efficiency or the fake rate near $10^{-9}$, and no released sample holds a quirk-like signal to validate on. A policy check comes first: the portal's guide sends members of CMS to internal rules on open data, the study's author, a CMS member, must confirm them before any use, and the open licence does not remove them. We make no claim about what they allow.
+
+\begin{marginfigure}
+  \includegraphics{ch28/pu_power}
+  \caption{The factor $(200/\mu_{\rm d})^n$ from data at pile-up $\mu_{\rm d}$ to pile-up 200, for a fake that needs $n$ interactions. Dot: $n=10$ from 30 gives $1.7\times10^8$. One unit of $n$ is worth a factor of $3$ to $7$.}
+  \label{fig:28-power}
+\end{marginfigure}
+
+\paragraph{Who could do it}
+Only people with access to hit-level collision data, which for this detector means CMS members working under CMS rules. Pile-up 200 itself does not exist until the High-Luminosity LHC runs, so the first anchor would come at lower pile-up. The project's early strategy said exactly this: use Run 3 data, from events selected for large $\MET$ and from zero-bias triggers, to measure the random-plane background, because ``only data can anchor it''. It found cluster-level $\MET$ data selections defined in the CMS software, though whether they were produced is \UNV. It costed a Run 3 search at $2$ to $3$ full-time people for $2$ to $3$ years (\EST). The log records none of this as started, and the first step of that strategy, a check inside CMS for existing quirk work, is recorded as still open. Lower pile-up leaves the extrapolation of Fig.~\ref{fig:28-power}, now with a measured slope. Run 3 data also come from today's tracker, whose radii, material and pitch differ from Phase 2, so a Run 3 measurement tests the method and the slope, and its transfer needs a model (\EST). A measurement in the Phase-2 tracker itself has to wait for the High-Luminosity LHC's first running, at lower pile-up. Even the original proposal simulated its background at pile-up 50 with no collision data, and allowed that this might prove ``overly optimistic''~\cite{Knapen:2017kly}.
+
+The lore of Chapter~\ref{ch:22-signalbackground} is right about the destination and wrong about the source: the estimate must come from data, but from control regions in collisions at the relevant pile-up, first in today's tracker and then in the one that matters.
+
+\section{Solvable bottlenecks, ranked}\label{sec:28-rank}
+
+Table~\ref{tab:28-rank} gives our ranking,\index{bottleneck ranking} by one test: how much of the problem would go away if this alone were solved. The remedies are mostly the study's own, and the needs column says what each takes: code, CPU, data access, or a new pre-registration, since nothing can change in the frozen analysis without one.
+
+\begin{table}
+  \caption{Ranked bottlenecks (our judgement). The gains are the study's estimates except where marked \emph{ours}.}
+  \label{tab:28-rank}
+  \footnotesize\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{19mm}>{\raggedright\arraybackslash}p{28mm}>{\raggedright\arraybackslash}p{38mm}>{\raggedright\arraybackslash}p{18mm}@{}}
+    \toprule
+    bottleneck & evidence & next step and gain & needs\\
+    \midrule
+    1. No data anchor & Closure failed at $z=+52.8$; patch $\times2.41$; factorisation untested & Control regions in real data; replaces the thinning estimate, the decisive item & data, code, pre-registration, people\\
+    \addlinespace
+    2. Counting as the estimator & Bounds fall as $1/N$; one bound per term, so deep cuts earn nothing & Gun-sample conditionals, $2$ to $2.3$ decades on those bounds; late-hit credit, up to $4$ there; $\rho=3$, about $1$ & code, pre-registration; $128$\,h for $\rho=3$\\
+    \addlinespace
+    3. Signal yield & $\Eff\le0.08$ at the fallback; ceiling $\approx0.3$; $20$ of $40$ points reach three events with no background & Merging-tolerant rung (a merged-pair selection was costed at about a week); endcap finder with its own ladder, $\times3.2$ if as efficient as the barrel (ours); a lower cut on the seed's opening angle; more rows & code, pre-registration, CPU\\
+    \addlinespace
+    4. $\mQ$ and $\Lam$ at pile-up 200 & No measurement; handle not measurable & Pile-up-robust separation estimator; in-time-hit rejection for the time of flight & code, pre-registration\\
+    \addlinespace
+    5. Freeze and person time & Any change needs a new pre-registration & Decide rows 1 to 4 together, then freeze once & person time\\
+    \addlinespace
+    6. CPU and infrastructure & $\times100$ buys $2$ of $7$ decades; deferred samples fit in about $80$\,h & Linux port and a batch system; skip $\Lam\ge15\keV$ unless a merged-pair finder exists & CPU, code\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Row 1 cannot be skipped, and Fig.~\ref{fig:28-remedies} shows why. It scales the stored terms at R09 by the recorded gains and adds them by the study's recipe. Single-interaction conditionals alone stop near $6$ decades, because the Standard Model bounds, $4.6\times10^4$ events in the central value, are untouched. Giving those bounds the same factor reaches about $5$. In the late-hit category, full credit stops near $4.3$, on the pile-up term for candidates with no timing hit from the same crossing, a zero-count bound with no credit, and adding a deeper sample takes it to $3.8$, the row of the figure. In the general category, with every other term at zero, pile-up alone also stays at $4.3$ decades, and at $3.7$ with a deeper sample. That is $0.6$ of a decade at R09, against the study's ``about one decade'', which fits the deeper rungs: the same sum gives $0.8$ at R14 and $1.7$ at R23, where the trend is larger (\EST).
+
+\begin{figure}
+  \includegraphics{ch28/remedies}
+  \caption{Decades above the budget at R09 if the stored terms are scaled by the recorded gains (\EST; nothing rerun). Each ``and'' adds to the row above. The conditionals use the middle of the recorded range, and a deeper sample removes the closure factor and the trend and closure widths. The last row is the method of Example~\ref{exa:28-sideband}, a different kind of estimate that rests on its own untested assumptions.}
+  \label{fig:28-remedies}
+\end{figure}
+
+The study's own estimate is more hopeful. Its conclusions say that these simulation steps leave $0$ to $2$ decades in the late-hit category and $4$ to $5$ in the general one (\EST), from an earlier analysis run, and its results report flags that figure as stale. We can match the general figure only by treating the Standard Model bounds as well, and we cannot reproduce $0$ to $2$ from the final stored terms; the records do not show the calculation. The same report does agree on what remains of pile-up, saying that after a deeper sample ``the remaining $\approx3$--$4$ decades of PU need a stronger PU variable'', PU being pile-up. Either way the steps do not close the gap, and row 1 stays first.
+
+Row 2 holds the cheapest real gains. The conditionals need no new events, only a new rule and its closure test. The late-hit credit would give the prompt Standard Model and single-interaction terms, which now enter the late-hit category with no reduction for needing a late hit (Chapter~\ref{ch:27-backgroundresults}), the pile-up per-hit late fraction, about $10^{-4}$ per window edge: up to four decades, in that category only (\EST, by the study). Row 3 is the signal: the barrel caps the efficiency near $0.3$, and $69\%$ of pairs with $|\eta_{\rm pair}|<2.5$ lie at $|\eta_{\rm pair}|>1$. If they had the barrel's efficiency the signal would rise by $3.2$ (\EST), taking the best ratio from $790$ to about $250$, still no exclusion. No endcap number exists, since no endcap ladder was ever defined. Chapter~\ref{ch:29-account} gives the full account of that restriction.
+
+Some items sit outside the ranking because they are small and simply undone. The planned cross-check of the finder against an independent brute-force search, on $50$ signal-plus-pile-up events and $50$ pile-up trials, was not run, and the bit-for-bit check after the seed threshold changed is only partial. Those belong first in any continuation.
+
+We add four untested proposals of our own (\EST). Estimate band occupancy semi-analytically from per-layer hit maps, validated at R04 to R07, where counts exist. Build a mixing library of real hits, whose combinatorics grow with its size to the power $n$. Rerun only what is needed: detector work needs $12$ to $30$ CPU-hours of string, not $583$. And report the reach against an assumed background, rather than demand a simulated working point; Chapter~\ref{ch:29-account} shows that plot.
+
+\paragraph{An order of work}
+Anyone continuing the work could take these in order (our suggestion, \EST). Bring the data back and run the two undone checks. Settle the CMS questions, policy and existing work, since they decide who can do what. Write one new pre-registration holding the conditionals, the late-hit credit, the merging-tolerant rung and an endcap ladder, because each freeze costs more than each of those. Port to Linux and run the deferred samples with it, which is days of work and tens of dollars. Then measure the fake rate in a control region in real data, first at Run 3 pile-up on today's tracker, then in early Phase-2 data. Only the Phase-2 measurement can settle the question, and for this detector only someone inside CMS can take it.
+
+The study's limits on scope have come up one at a time in this chapter. Chapter~\ref{ch:29-account} sets them all out in one table, shows the plots that carry the study's message, and closes the account of what was established and what was not.
+
+\begin{chaptersummary}
+  \item Of about $1050$ CPU-hours, $2\%$ went to generation, $56\%$ to the string, mostly at $\Lam\ge15\keV$, and $36\%$ to the detector chain, $89\%$ of it background and $74\%$ of it finder.
+  \item MadGraph is not the bottleneck. The signal analysis does not stop the search, and more CPU would not lift its yield, but it has problems of its own: few passing events, a barrel ceiling, and at pile-up 200 no measurement of $\mQ$ or $\Lam$ and no selection for endcap, merged or wide pairs. The string, pile-up events and the finder were slow but finished; the longest wait was the detector chain, $57.4$\,h of laptop wall clock, about two thirds of it pile-up samples, against $33.8$\,h for the string and under three hours for generation's production run. The working point, deep-rung closure, the data anchor, $\mQ$ and $\Lam$ at pile-up 200, and the endcap, merged and wide-pair selections stalled. More CPU would extend closure through the deferred $\rho=3$ sample, worth about a decade of the pile-up term by the study's estimate and $0.6$ at R09 by ours (\EST), and would produce neither a working point nor an anchor.
+  \item One laptop, a self-set daily cap and the author's own deadline, which no longer applies, limited the scope. A factor of 100 in CPU buys two of the seven decades, and some floors do not scale. Computing does help the signal statistics and the grid.
+  \item More computing was cheap: a cloud trial was considered and dropped on the same date, with no reason recorded, and a Linux port was never tested. Rented hours for the deferred samples cost tens of dollars (\EST).
+  \item Backgrounds can come from data when the control sample shares the detector and conditions. Public data here has the wrong format, detector and pile-up, so a road sideband in real collisions is the route (on today's tracker a test of the method, in Phase-2 data the measurement), and for this detector only CMS members can take it.
+\end{chaptersummary}
+
+\begin{exercises}
+  \item\label{ex:28-wall} The first four rows of Table~\ref{tab:28-buy} use $99$, $163$, $157$ and $128$ hours per worker. How long do they take on seven workers, and on $100$ cores with one job per core? What do they cost at $4$ US cents per vCPU-hour, one vCPU per job?
+  \item\label{ex:28-amdahl} A pile-up event costs $t_{\rm c}+4t_{\rm f}/f$, with $t_{\rm c}=10.2$\,s, $t_{\rm f}=8.02$\,s and $f$ the finder's speed-up. Find the $f$ that makes the event twice as fast, and the largest possible gain. What is that largest gain if the chain also becomes twice as fast?
+  \item\label{ex:28-trials} For $n=10$ and a rate of $2.7\times10^{-10}$ per trial at pile-up 200, how many trials at pile-up 30 are needed to expect one fake? If a slope fitted up to pile-up 60 gives $n$ with an error of $\pm2$, by what factor is the rate scaled from pile-up 60 uncertain?
+  \item\label{ex:28-control} A data control region sees zero fakes, and a transfer factor $T$ with $\sigma_{\ln}=0.47$ takes it to the signal region. The zero enters as $1.14$ with $\sigma_{\ln}=1$. Find the largest $T$ with $\Beightyfour\le0.11$. If $T$ is one over the number of sideband roads, how many roads does that take, and what road half-width? Why is such a sideband easier to get than the far larger sample of \eqref{eq:27-nature}?
+  \item\label{ex:28-floor} By simulation, sum two independent log-normals, of medians $5\times10^5/k$ and $252$ and widths $1.1$ and $2.22$. Find the 84th percentile for $k=1$, $10^2$, $10^4$, $10^6$. At what $k$ is it twice the second's own? Why flat beyond?
+\end{exercises}

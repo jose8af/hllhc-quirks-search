@@ -1,0 +1,262 @@
+\chapter{From MadGraph to the plane finder}\label{ch:25-chain}
+
+You cannot ask a standard event generator for a quirk event. Generators know nothing of a string tens of
+centimetres long, and tracking code expects helices. So the study built a chain of programs, most of them
+standard and one written for the purpose. This chapter follows one simulated event down that chain and reads the
+bill at each link. It then takes up a harder problem: a selection with many thresholds can be adjusted until it says
+what its author hoped. The study's safeguard was a rule written down before any signal
+efficiency existed. All of this is a private study built from public information, with no collision data. It is
+not a CMS result.
+
+\section{Two simulation streams and one reference event}\label{sec:25-picture}
+
+The simulation has two separate parts: a rare pair of quirks, and the ordinary mess around it. They share only the last steps
+(Fig.~\ref{fig:25-chain}). A signal job generates a pair and carries its string through the tracker. A
+pile-up job simulates about two hundred soft collisions.\marginnote{Pile-up: the other proton collisions in the same
+bunch crossing (Chapter~\ref{ch:19-colliders}).} The hits are then blurred as in a real sensor, ordinary tracks are removed, and a finder looks for planes through the collision point.
+
+\begin{figure*}
+  \includegraphics{ch25/chain}
+  \caption{The chain (schematic). Vermillion: signal jobs. Blue: every job with pile-up. Grey: shared. Dashed: in the main signal grid the quirk hits are digitised by separate code and join after tracking.}
+  \label{fig:25-chain}
+\end{figure*}
+
+Our event is a real entry in the study's stored files: a pair of the fermion $E$ (Chapter~\ref{ch:16-quirks}) with
+$\mQ=200\GeV$, at $\Lam=0.45\keV$. Its natural length is $\lzero=\mQ/\sigma_{\rm str}=19.5\cm$, a little more than the
+$15\cm$ radius of the outermost pixel layer, and a typical triggered pair at this $\Lam$ swings about twice inside
+the tracker (\EST). This is not our usual pair. We have followed $500\GeV$ at $1\keV$ since Chapter~\ref{ch:00-overture}. This one has $200\GeV$ at $0.45\keV$, below the range where the finder works well, and its ribbon is very narrow. Its $\gst$ is not far above 1 (Chapter~\ref{ch:26-signalresults}), and $T_h=2\pst/\sigma_{\rm str}$ of Chapter~\ref{ch:15-strings} then shortens the period, so it swings more often than the typical pair, not less (\EST). We take it because, of the stored candidates, it is the first to pass the first 14 rungs of the ladder (Section~\ref{sec:25-ladder}), so it shows every link working.
+
+\section{Pair generation with MadGraph and Pythia}\label{sec:25-generation}
+
+The pair is produced when a quark and an antiquark annihilate through a virtual photon or $Z$ ($\gamma^*/Z^*$, not the Lorentz factor $\gst$), the Drell-Yan process
+of Chapter~\ref{ch:19-colliders}. MadGraph computes the leading-order matrix element with up to two extra
+partons~\cite{Alwall:2014hca}, Pythia adds the shower~\cite{Bierlich:2022pfr}, and MLM merging~\cite{Alwall:2007fs}
+stops the two from counting one jet twice. The string does not exist yet. The infracolour force enters only through $\NIC$
+in the cross section, so one sample serves all $\Lam$.
+
+The search triggers on recoil from initial-state radiation, so only pairs with $\pT(Q\bar Q)>200\GeV$ go further. The
+number of events we can hope to see is then a product of simple factors:
+\begin{equation}
+  N_{\rm exp}=\sigma_{\rm norm}\,f_{200}\,L\,A,\qquad S=N_{\rm exp}\,\Eff_{\rm sel}.
+  \label{eq:25-yield}
+\end{equation}
+Here $f_{200}$ is the fraction of pairs with $\pT(Q\bar Q)>200\GeV$ and $|\eta_{\rm pair}|<4$ (the paper's definition; the study's script applies no $\eta$ cut, a negligible difference, Table~\ref{tab:19-yield}), and $L=3\abinv$. The acceptance $A$ collects
+$|\eta_{\rm pair}|<2.5$, the trigger and the offline preselection, all at truth level, and $\Eff_{\rm sel}$ is the
+fraction that survives the detector-level selection. The preselection requires $\MET>250\GeV$; a jet with $\pT>100\GeV$, $|\eta|<2.4$; none of the leading four jets within $0.5$ of $\MET$ in azimuth; and no isolated lepton, hadronic $\tau$ or photon.\marginnote{Isolated: little other activity nearby. Hadronic $\tau$: a $\tau$ decaying to hadrons.} At $200\GeV$ the $219.2\fb$ gives $6.6\times10^5$ pairs,
+$f_{200}=0.048$ leaves $3.1\times10^4$, and $A=0.50$ leaves $N_{\rm exp}=1.6\times10^4$ (\EST). Here $A$ leaves out $f_{200}$, so the $\mathcal A$ of Chapter~\ref{ch:22-signalbackground} is $f_{200}A$.
+
+Generation is cheap: $2.41\times10^6$ events took $23.5$ CPU-hours, or $0.035$\,s each. Our pair has
+$\eta_{\rm pair}=0.59$. After smearing by $25\GeV$ per component its reconstructed $\MET$ is $248\GeV$, which is $2\GeV$ below the offline
+cut. A real analysis would throw it away. The simulation keeps it because \eqref{eq:25-yield} factorises: $A$ is an
+average, and $\Eff_{\rm sel}$ is measured with no $\MET$ cut, on the assumption, not tested, that the finder does not care about the
+recoil.\index{acceptance}
+
+\section{The string propagator}\label{sec:25-string}
+
+Carrying the string after the collision is the link no standard tool supplies. Each end feels the string tension and the
+magnetic force, loses energy by ionisation and scatters in the material. A change at one end reaches the other only at
+the speed of light, so the string is no rod. The propagator solves the Nambu-Goto dynamics of
+Chapter~\ref{ch:15-strings} causally: the string is a chain of straight pieces whose corners move along light rays, the
+construction of Artru and of the Lund model~\cite{Artru:1979ye,Andersson:1983ia}.\sidenote{The ATLAS Geant4 quirk code, credited to J. Black and T. Nelson and used by
+FASER~\cite{FASER:2026fsy}, uses the same construction according to the study's reading of its source and a Python port of its algorithm; the C++ itself was not run.} Each end adds Bethe loss with straggling, a Highland
+kick~\cite{Highland:1975pq} and the magnetic kick, and writes a hit on crossing any of 93 surfaces.\index{string propagator}
+
+The kernel is fast, about $170$\,ns per step, but $218\,571$ events took $1.24\times10^{13}$ steps.
+Figure~\ref{fig:25-cost}(a) shows the consequence: from $0.3$ to $5\keV$ the cost per event grows as $\Lam^{2.8}$. Two of
+those powers have a natural source, since the number of swings goes as $\sigma_{\rm str}=\Lam^2$; the rest we have only measured. Our point
+costs $0.038$\,s per event for $46$ hits, about the same as generating it, while $30\keV$ at $500\GeV$ costs $167$\,s with a step ten
+times coarser. So $\Lam\ge15\keV$ took $64\%$ of the string's CPU for $6\%$ of its events.
+
+\begin{figure}
+  \includegraphics{ch25/cost}
+  \caption{(a) CPU per event. Line: the string at $\mQ=500\GeV$, from stored timings; open points use the
+  coarser step above $5\keV$. Diamond: our event's point ($200\GeV$). Horizontal lines: generation, and one pile-up
+  event with and without four finder roads (Section~\ref{sec:25-finder}) on the loaded laptop. (b) Campaign totals. The string crosses every other cost
+  as $\Lam$ rises.}
+  \label{fig:25-cost}
+\end{figure}
+
+\section{Pile-up, digitisation and track removal}\label{sec:25-pileup}
+
+A pile-up job starts from the two hundred other collisions the tracker sees at once. Pythia supplies a Poisson number of soft
+interactions with mean 200, spread over the luminous region ($\sigma_z=45\mm$). Fatras\index{Fatras}, the fast simulation in the ACTS
+toolkit~\cite{Ai:2021ghi}, carries their particles through the surfaces and gives $1.33\times10^5$ hits per event. That
+is too few: $2.3$ to $7.3$ times below the published occupancies of the CMS tracker design~\cite{CMS:2017lum}, because
+there are no hadronic interactions and no out-of-time pile-up. A fake rate at too low a density would flatter the search, so each layer
+is \emph{topped up}\index{top-up} with extra crossings to the published value. This is a patch, and the
+range of the ratio is carried as a systematic.
+
+Each hit is then smeared to the binary resolution \eqref{eq:20-binary}: $7.2\um$ in the pixels and $26$ to
+$29\um$ in the two kinds of outer strip module, the middle PS and the outer 2S. Along a 2S strip the error is $14.5\mm$, so a 2S hit is really a line.
+Next, a combinatorial Kalman filter (Chapter~\ref{ch:21-tracking}) finds about 1540 helical tracks per event and removes their
+hits, $13.9\%$ of the total. Low-momentum pile-up stays as the combinatorial background. All this costs
+$10.2$\,s per event on a laptop running seven jobs.\sidenote{An Apple M3 with 8 cores ran the detector chain in about two and a half days. A CPU-hour here
+is an hour of a job on that loaded machine, so one process alone would need less.}
+
+The main signal grid, 40 points of about 200 events, takes a shortcut. One generated pair, a \emph{row} of the grid, is carried at all eight $\Lam$ values. Pile-up goes through ACTS once per row, and
+the quirk hits are digitised by separate code and added after tracking, with the same pile-up at all eight.
+A row cost $56$\,s in the timing test,\marginnote{That is $11.9$\,s plus $8\times5.5$\,s, before the finder's seeding changed (Table~\ref{tab:25-moved}).} and about $77$\,s by the job file at the production setting. The shortcut can mislead, because tracking might steal quirk hits, so the five
+masses at $1\keV$ were also run through the full chain. A rule fixed in advance also sent back any point where tracks took more than $5\%$ of the
+quirk hits. Nine of the 40 went back. Ours lost none and stayed.
+
+\section{The plane finder}\label{sec:25-finder}
+
+The finder is told which of the 200 vertices a plane goes through. It is handed the true vertex, smeared by $10$ and $15\um$ across and along the beam; the design report's $93\%$ identification efficiency (\UNV) is not applied, so a lost or wrong vertex is not modelled. Pile-up-only trials draw a vertex from the luminous region independently of the pile-up vertices. A wrong choice by one spacing moves the origin $0.56\mm$ along $z$, which moves the hits of a plane not containing the beam line off it by that shift times the $z$ component of the plane's normal: about $2$ full widths of the pixel band \eqref{eq:25-band} for a plane tilted as ours is, and at most $2.3$ (\EST), so a real search must choose the vertex by other means, for instance from the recoil jet (\EST).
+
+The finder's task is then to decide whether, among all those hits, a plane through the vertex has two crossings on every layer. As in
+Chapter~\ref{ch:21-tracking}, it works with $\vect u=\vect x-\vect x_{\rm PV}$, and with the plane's normal $\hat{\vect n}$, its axis
+$\hat{\vect n}_3$ and $\hat{\vect n}_2=\hat{\vect n}\times\hat{\vect n}_3$, which lies in the plane across the axis. Hits must lie in a road around
+$\MET$ of half-width $\delta_{95}=0.15$\,rad, widened at small radius, and within
+$|\vect u\cdot\hat{\vect n}_2|<W_{\rm c}=75\mm$. Pairs of hits on the outer pixel layers, confirmed on a third, propose a plane,
+which then collects hits inside a band,
+\begin{equation}
+  |\vect u\cdot\hat{\vect n}|<3\sigma_{\rm tot},\qquad \sigma_{\rm tot}^2=\sigma_n^2+t_{\rm tol}^2.
+  \label{eq:25-band}
+\end{equation}
+Here $\sigma_n$ is the hit error projected on the normal and $t_{\rm tol}=30\um$ allows for the plane's true
+thickness. For a plane tilted as ours is, the band reaches $0.1\mm$ either side of the plane in the pixels and $37\mm$ in the 2S layers.
+
+\begin{figure}
+  \includegraphics{ch25/event_view}
+  \caption{Our event: the 77 hits in the plane's band, 28 from the quirks (dots), 49 from pile-up (squares). (a) Position
+  in the plane, across its axis. (b) Distance from the plane, with the band \eqref{eq:25-band} per layer (bars). The ribbon in (a)
+  is narrow, and (b) shows how little the 2S layers test the plane.}
+  \label{fig:25-event}
+\end{figure}
+
+In Fig.~\ref{fig:25-event} the quirks trace a thin ribbon against scattered pile-up, with two hits per sensor, one per quirk, where a
+single track leaves one (the PS and 2S layers are stacked pairs of sensors, so they show up to four). The ribbon is narrow: at every pixel and PS sensor the two quirks lie within $0.5\mm$ of each other in the plane, across its axis, against a median $\lmax$ of $13\cm$ in this sample. The steady drift of the dots to $1\cm$ at the outer layers in Fig.~\ref{fig:25-event}(a) is not width: the stored axis lies $8$\,mrad off the line through the quirk hits. It is still a needle among false planes.
+A pile-up-only job has no recoil of its own, so each event at normal density is searched along four roads $\pi/2$ apart, and one road searched is a trial; a real event has one road.
+Each road
+costs $8$\,s, so a background event costs $42$\,s, and background jobs take most of the $382$ CPU-hours in
+Fig.~\ref{fig:25-cost}(b).
+
+An early speed test with a wider road shows what the finder has to deal with: one pile-up event and one road gave 589 candidates with two crossings on all seven pixel and PS layers. The first finder took about $5500$\,s per trial as coded, $211$\,s with its merge step vectorised. A rewrite took
+$3.8$\,s on an idle machine, with identical candidates on 24 test trials.
+
+\section{The ladder of cumulative cuts}\label{sec:25-ladder}
+
+To tell the needle from the false planes without deciding too soon how hard to cut, the study orders its cuts into a
+\emph{ladder}\index{ladder of cuts} of 23 cumulative rungs (Table~\ref{tab:25-ladder}). We call R04, the last counting rung, the \emph{end of counting}\index{end of counting}. Four cuts apply at every rung: three
+pixel layers with two crossings, a plane axis within $0.15$\,rad of $\MET$ with $|\eta|<1$ (so the search is barrel only), and under $20\%$ of
+band hits on ordinary tracks. The order came from background reasoning alone, with counting first because it is the base of the pile-up
+extrapolation of Chapter~\ref{ch:24-rareevents}. Each candidate walks one of two copies. A slow pair
+arrives nanoseconds late, which pile-up from the same crossing does not, and the timing layer resolves $35\ps$. The \emph{late-hit}\index{late-hit category} category
+therefore needs the earliest in-band hit in the barrel timing layer~\cite{Butler:2019rpu} to have $\Delta t=t_{\rm timing}-t_{\rm PV}-|\vect u|$ between $5.955$
+and $24.035\ns$, a window set from pile-up alone. All others are \emph{general}.
+
+\begin{table}
+  \caption{The ladder. $N_{\rm IT2}$, $N_{\rm IP2}$, $N_{\rm 2S2}$ count pixel, pixel-plus-PS and 2S layers with two
+  crossings; $w_{\rm core}$ is a robust width of the in-band pixel and PS hits, $1.4826$ times the median absolute deviation of $\vect u\cdot\hat{\vect n}_2$; the core is those within $2.5\,w_{\rm core}$ of their median, plus 2S hits in that interval widened by their own error; $h$ is the best helix fit's $\chi^2$ per degree of freedom, $o$ the
+  same for two arms opening linearly; MIP is a fast muon's ionisation.}
+  \label{tab:25-ladder}
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    rungs & family & requirement added\\
+    \midrule
+    R01--R04 & counting & $N_{\rm IT2}\ge3$ and $N_{\rm IP2}\ge4,5,6,7$\\
+    R05--R08 & width & $w_{\rm core}<37.5,\ 18.75,\ 9.4,\ 4.7\mm$\\
+    R09--R11 & plane fit & core $\chi^2$ probability $>10^{-3},\ 0.01,\ 0.05$\\
+    R12--R14 & outer layers & $N_{\rm 2S2}\ge1,2,3$\\
+    R15--R17 & not a helix & $h>2,3,5$\\
+    R18--R20 & not two lines & $o>2,3,5$\\
+    R21--R23 & ionisation & $\dd E/\dd x>1.3,\ 1.6,\ 2.0$ MIP\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{example}[One event climbs the ladder]\label{exa:25-event}
+Our axis is $0.06$\,rad from $\MET$ with $\eta=0.59$, and 2 of 79 hits lie on ordinary tracks, so the fixed cuts pass. Every pixel and PS
+sensor has two quirk hits, and $w_{\rm core}=4.33\mm$ clears the tightest width. That number comes from the tilt of the axis and the pile-up hits in the band: the pixel and PS quirk hits lie within $0.15\mm$ (rms) of their own line. On the two outermost 2S layers only one quirk hit per sensor
+is left, and the wide band lets pile-up supply the second crossing, so $N_{\rm 2S2}=3$ owes something to luck. The helix test gives
+$h=1.9\times10^6$ and the opening test $o=9.3\times10^6$. Ionisation gives $1.84$\,MIP, which clears $1.6$ but not $2.0$, so the climb ends at
+R22. The earliest in-band timing hit has $\Delta t=2.71\ns$, so this is a general event.
+
+Here 3 of the 200 events reach R04, one reaches R14 and none reaches R23. This event is the best
+of its sample, not a typical one, and Chapter~\ref{ch:26-signalresults} explains why.
+\end{example}
+
+\section{The working-point rule}\label{sec:25-rule}
+
+The background alone decides which rung is used. For each category and rung the study adds up the expected
+fakes in $3\abinv$: pile-up alone, hard-scatter events, single-interaction topologies such as photon conversions, cosmic rays and beam
+halo (Chapter~\ref{ch:27-backgroundresults}). Each term is a product of measured factors with a log-normal uncertainty, and a factor
+with zero counts in a population $M$ enters once per term as $1.14/M$, never as zero \eqref{eq:23-zero}. Then
+$\Beightyfour$\index{B84@$\Beightyfour$} is the 84th percentile of the sum. It describes our knowledge of the background and is not a
+confidence level on any signal. The rule that picks the \emph{working point}\index{working point} is
+\begin{equation}
+  \keyresult{\begin{aligned}r^*={}&\text{the loosest rung with }\Beightyfour(r')\le0.11\\&\text{for }r'=r^*\text{ and for every tighter rung }r'.\end{aligned}}
+  \label{eq:25-rule}
+\end{equation}
+The threshold $0.11$ comes from a budget. A total of $0.3$ events keeps the $95\%$ limit near the background-free three events, and
+two independent categories at $\sigma_{\ln}=2.3$ combine to $2.71$ times the per-category $\Beightyfour$, so
+$0.3/2.71=0.11$. No signal enters this. The clause about tighter rungs is there because the true background can only fall along
+a cumulative ladder while its estimate can rise, and a lucky dip must not count.
+
+If no rung qualifies, a \emph{fallback}\index{fallback selection} fixed in advance takes over. It gives each hypothesis one selection,
+built from truth-level quantities so that it never cuts away the hypothesis under test, and it keeps its large background.
+
+\section{Pre-registration and the freeze}\label{sec:25-freeze}
+
+A selection chosen after looking at everything is partly chosen on noise. Example~\ref{exa:25-bestof} gives the size of the effect.
+
+\begin{example}[What picking the best is worth]\label{exa:25-bestof}
+Let 20 selections all have a true efficiency of $5\%$, each measured on 200 events, the size of the signal grid. Each count has mean 10
+and spread $3.1$. Report the best of the 20 and on average you read $8.1\%$, which is $60\%$ too high, from nothing at all.
+Real selections are correlated, which reduces the effect but does not remove it. The fallback list holds up to 20 selections;
+picking the best point by point is forbidden.
+\end{example}
+
+The study therefore \emph{pre-registered}\index{pre-registration}. It fixed the finder, the ladder, the background method, the rule and the fallback before the first signal efficiency, and digital fingerprints make a later change show. The only signal-derived inputs were generator- or truth-level numbers such as $\delta_{95}$.
+
+A freeze is not purity. The width rungs themselves were prompted by a look at some probe signal rows, which were then excluded from the efficiencies. Table~\ref{tab:25-moved} gives what moved afterwards, each change logged.
+\begin{table}
+  \caption{The record after the freeze.}
+  \label{tab:25-moved}
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{32mm}>{\raggedright\arraybackslash}p{74mm}@{}}
+    \toprule
+    what moved & why\\
+    \midrule
+    Seed: six layers to four (the threshold of Chapter~\ref{ch:21-tracking}, layers with two crossings in the seed's band) & The one action set in advance: a small trial production, the pilot, showed pass fractions differing by over $2\sigma$ between the two at R06 ($+16\%$ and $+37\%$ at the two densities).\\
+    \addlinespace
+    Recovery added & A navigation crash at the azimuthal sector boundaries that speed up tracking (Chapter~\ref{ch:28-bottlenecks}), about 1 event in 700 in early tests (\UNV{} for the whole production); $11$ events in admitted jobs were replaced.\\
+    \addlinespace
+    Late-hit window & The frozen one was empty once hits from the next bunch crossing were included.\\
+    \addlinespace
+    Number of triggered events, $\Ntrig$ & The rule gives only the formula. On 14 October it was set to count events after preselection, replacing the code's default $1.28\times10^8$; it reached $4.08\times10^7$. This and the next row came before any signal efficiency was looked at.\\
+    \addlinespace
+    Background normalisation and nested cuts & $K_{t\bar t}=1.9$, against the rule's $1.2$ to $1.4$, a conservative departure. The literal product over nested cuts of one variable ran low by orders of magnitude, so a conservative reading replaced it.\\
+    \addlinespace
+    Analysis fixes after the first results & A late fix to the looper term moved $\Beightyfour$ by $\times0.74$ to $0.95$ at R07 to R20. A bug in merging the tail of one variable into one factor, found from the first results, had kept $\Beightyfour$ too high; the fix lowered it at the two loosest fallback selections by factors of $4$ to $8$ in the general category and $50$ to $60$ in the late-hit one, and by $36$ in the late-hit category at the next. The study's investigation estimated that the toy limits fall at $23$ of $33$ points (\EST). On the final normalisation, the best ratio of limit to prediction (Chapter~\ref{ch:27-backgroundresults}) went from $1.1\times10^3$ in the run before these fixes to $790$ in the final run. No selection moved.\\
+    \addlinespace
+    Rule sending points to the full chain & It could not fire as first placed, since its check ran only at $1\keV$. Found after the first analysis. The nine reruns applied the threshold to the no-pile-up sample, with the list fixed before any rerun.\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+No rung may be added or moved, whatever the outcome. The outcome was that no rung qualifies in either
+category: the lowest $\Beightyfour$ is $1.2\times10^6$ events, at R09, seven decades over budget. The study did not rescue itself, and
+nothing was excluded. Chapter~\ref{ch:27-backgroundresults} shows why. First, Chapter~\ref{ch:26-signalresults} shows what the signal
+looks like at the end of it.
+
+\begin{chaptersummary}
+  \item Of about 990 production CPU-hours, generation took $2\%$, the purpose-built string propagator $59\%$ and the detector chain $39\%$.
+  \item Signal yields factorise as $N_{\rm exp}\Eff_{\rm sel}$, which assumes, untested, that the finder is independent of the preselection.
+  \item The working point is the loosest of 23 cumulative rungs with $\Beightyfour\le0.11$ there and at every tighter rung, with a
+  fixed fallback if none exists.
+  \item Freezing the rule before any signal efficiency guards against choosing on noise, and it means the failure to find a working point stands.
+\end{chaptersummary}
+
+\begin{exercises}
+  \item\label{ex:25-yield} From $\sigma_{\rm norm}=219.2\fb$, $f_{200}=0.0476$, $L=3\abinv$ and $A=0.504$, find $N_{\rm exp}$. At the end of counting $\Eff_{\rm sel}=3/200$. How many selected events is that,
+  and what is the relative error on $\Eff_{\rm sel}$ from the 200 events alone?
+  \item\label{ex:25-guard} Along five rungs the estimated $\Beightyfour$ is $5$, $0.09$, $0.2$, $0.07$, $0.05$. Which rung does \eqref{eq:25-rule} pick, and which ``the first
+  below $0.11$''? Can the true background rise from rung 2 to rung 3? What does the rise mean?
+  \item\label{ex:25-tof} Show that speed $\beta$ on a straight path gives $\Delta t=|\vect u|(1/\beta-1)$. Our candidate has $|\vect u|=1.36$\,m and
+  $\Delta t=2.71\ns$. Find $\beta$. What range of $\beta$ falls in the late-hit window?
+  \item\label{ex:25-lognormal} Show that $1.14/M$ with $\sigma_{\ln}=1$ has $\Beightyfour=3.1/M$. By simulation, find the ratio of combined to single $\Beightyfour$ for two categories of equal
+  $\Beightyfour$ at $\sigma_{\ln}=2.3$, independent. What is it if they are fully correlated?
+  \item\label{ex:25-best} Extend Example~\ref{exa:25-bestof} by simulation: how many independent selections does the best need to double the true $5\%$? Why so many?
+\end{exercises}

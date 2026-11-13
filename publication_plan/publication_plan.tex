@@ -1,0 +1,550 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlist{itemsep=2pt,topsep=3pt}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\EST}{\textsuperscript{\textsf{est}}}
+\newcommand{\keV}{\,\mathrm{keV}}
+\newcommand{\GeV}{\,\mathrm{GeV}}
+\newcommand{\TeV}{\,\mathrm{TeV}}
+\newcommand{\abinv}{\,\mathrm{ab}^{-1}}
+\newcommand{\fbinv}{\,\mathrm{fb}^{-1}}
+\newcommand{\Bef}{B_{84}}
+\newcommand{\must}{\textsf{\textbf{Must}}}
+\newcommand{\should}{\textsf{Should}}
+\newcommand{\could}{\textsf{Could}}
+
+\title{\textbf{One publishable paper on electroweak quirks at the HL-LHC}\\[4pt]
+\large A plan: what already stands, what to fix, and how to answer the referees}
+\author{Planning document for the HL-LHC quirks study (paper v0.4)}
+\date{12 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+The study now ends in ``no working point, best expected limit 790 times the prediction, nothing excluded''. That result is
+correct for its frozen rule, but it is not a publishable headline. The number measures the size of the simulated
+background samples, not the physics of the search. This plan turns study and paper v0.4 into \emph{one} paper that covers
+the whole work: the plane-thickness law, the detector-level search at pile-up 200, and a background \emph{estimate}
+rather than a stack of zero-count bounds. Brute-force CPU does not solve the problem, since a hundred times more buys two
+of the seven decades. The plan therefore spends effort on the bottlenecks that can actually be removed: the estimator,
+the missing physics in the background model, the statistical treatment, signal statistics and acceptance, and the
+paper's framing. Cloud computing is used only where it buys calendar time or disk, for an estimated total of a few
+hundred US dollars. Everything stays open, with public tools and geometry and no CMS data.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Conventions.} Numbers without a mark are read from the study's tracked files, the paper v0.4 or the book
+\emph{From Fields to Quirks}. A superscript \EST{} marks an estimate made for this plan, which nobody has run. Costs are
+person-days (pd) and CPU-hours (CPU-h). Cloud prices assume 3 to 5 US cents per vCPU-hour, a round figure and not a
+quotation. Priorities: \must{} (needed for a credible paper), \should{} (strongly improves it), \could{} (optional).
+
+\tableofcontents
+\newpage
+
+%=====================================================================
+\section{Where the study stands}
+
+\subsection{The result in one paragraph}
+A working point (WP) is the final selection used for the limit. The frozen rule takes the loosest of 23 cumulative cut
+rungs (R01 to R23) whose 84th-percentile background $\Bef$ in $3\abinv$ is at most $0.11$ events, at that rung and at
+every tighter one. A budget of $0.11$ means ``background-free'', and with $N_{\rm trig}=4.08\times10^7$ triggered events
+it requires a fake rate near $2.7\times10^{-10}$ per trial. The lowest $\Bef$ on the ladder is $1.23\times10^6$ at R09,
+$7.05$ decades too high, so no WP exists. With the pre-registered fallback selections, the best expected limit is 790
+times the predicted cross section ($E$, $m_Q=200\GeV$, $\Lambda=1.5\keV$, efficiency $9/200$). Nothing is excluded, and the
+existing bounds, all below about $180\GeV$ in this $\Lambda$ range, are not extended.
+
+\subsection{Why that is not a physics statement}
+\begin{itemize}
+  \item From R08 on, every leading background term is a \textbf{zero-count bound}: no simulated event passes, so the term
+        enters as $1.14/M$ with $M=500$ to $2000$, multiplied by the number of such events nature produces ($10^7$ to
+        $10^9$). Such a bound depends only on the sample size, and tighter cuts earn nothing.
+  \item The leading term at R09 is \textbf{decays in flight}, from a hand-made generator with estimated prong counts,
+        because Fatras has no hadronic interactions and no decays in flight.
+  \item The \textbf{pile-up estimate} by thinning failed its pre-registered closure test (ratio $1.50$ and $1.61$ at R04
+        and R05, $z=+52.8$ and $+59.4$). It was patched by $\times2.41$, and beyond R06/R07 it rests on an untested
+        factorisation, a factor-117 ambiguity between two ways of chaining the factors (``routes''), and an extrapolated
+        trend width.
+  \item As a result, \textbf{$\Bef$ rises past R09} as the cuts tighten, which no real background can do. Only the doubt
+        grows.
+\end{itemize}
+So the study did not find a large background. It showed that counting simulated events cannot show the background is
+small. That is the one fact the paper must fix or clearly frame.
+
+\subsection{What brute force would cost}
+Table~\ref{tab:brute} collects the study's own numbers. They are the reason this plan does not buy CPU for its own sake.
+
+\begin{table}[h]
+\centering\small
+\caption{What raw statistics would cost (book, Ch.~27--28).}\label{tab:brute}
+\begin{tabularx}{\linewidth}{@{}P{58mm}L@{}}
+\toprule
+step & effect \\
+\midrule
+Every background sample $\times100$ & $3.4\times10^4$ CPU-h, about \$1500\EST; two of the seven decades \\
+Pile-up to budget by counting & about $10^9$ trials against $4.8\times10^4$; $3\times10^6$ CPU-h \\
+Zero-count bound at budget, decays in flight & 35 times more events than the LHC will ever make of the process \\
+Everything, if the zeros persist & $k_{\rm need}=1.1\times10^7$; about $4\times10^9$ CPU-h \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{What a measured background would give}
+The book's reach against an \emph{assumed} background (Ch.~29, \EST, best $\Lambda$ per mass, barrel only, $3\abinv$)
+shows that the search does not need zero background. It needs a background that is \emph{estimated with a stated
+width}:
+
+\begin{table}[h]
+\centering\small
+\caption{Reach in GeV against an assumed background $B$ with log-normal width $\sigma_{\ln}$ (book Table 29.2, \EST).
+Existing bounds in this range lie below about $180\GeV$; a dash means below $200\GeV$.}\label{tab:reach}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+$B$ & 0 & 1 & 10 & 30 & 100 & $10^3$ & $10^4$ & $10^5$\\
+\midrule
+$\sigma_{\ln}=0$   & 1026 & 971 & 866 & 799 & 717 & 548 & 393 & 243\\
+$\sigma_{\ln}=0.2$ & 1026 & 970 & 854 & 760 & 622 & 325 & --  & -- \\
+$\sigma_{\ln}=1$   & 1026 & 965 & 796 & 662 & 495 & --  & --  & -- \\
+endcap, $g=1$      & 1265 & 1200 & 1062 & 979 & 897 & 729 & 554 & 396\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{The central target of this plan} follows from that table. Turn every leading zero-count bound into an estimate,
+and bring the total background width to $\sigma_{\ln}\lesssim1$. A background of up to about $10^2$ events known to within
+a factor of $e$ would then still give an expected exclusion well above the existing bounds (\EST).
+
+%=====================================================================
+\section{What is already publishable}
+Table~\ref{tab:assets} lists the results that already stand, with the clean-up each needs. Together they are already
+most of a paper. What is missing is a defensible background number.
+
+\begin{longtable}{@{}P{34mm}P{61mm}P{59mm}@{}}
+\caption{Results that already stand, with the clean-up each needs. N1 to N8 refer to the study's novelty audit
+(\texttt{P2\_NOVELTY\_AUDIT.md}).}\label{tab:assets}\\
+\toprule
+result & what stands & clean-up before publication\\
+\midrule\endfirsthead
+\toprule
+result & what stands & clean-up\\
+\midrule\endhead
+Plane-thickness law (P1, truth level) &
+Analytic mechanism: the solenoid field acts as an electric field in the pair frame, the ends miss by $b_{\rm odd}$, and
+the axis rotation carries $\ln(\ell_{\max}/b_{\rm odd})$. Law $\Delta s_B\propto\epsilon_B[\ln(1/\epsilon_B)+C]$, local
+slope $c\simeq0.104$ at $1\keV$, $500\GeV$; blind numerics $0.105\pm0.002$; holds per event on $2.2\times10^5$ events;
+multiple-scattering floor $10$--$28\,\mu$m, dominant above $1.2$--$1.9\keV$. It gives an analytic form of the rotation
+that Li et al.\ found numerically. &
+State the window as measured: there is a $+6.5\%$ departure inside the ``safe'' window at $5\keV$, and the law is followed
+in 9 of 30 cells at 1--3\,keV, not ``at 1--3\,keV''. Report the failed $1.5\%$ population gate ($+2$--$3\%$) and the
+failed straight-string ratio at $\gamma^*=2$ as such. Run the floor tests (under 1 CPU-h each) and the $B^*$-off test.
+Fix the ``verified'' labels (P1 in \S\ref{sec:work}).\\
+Hit-level chain at pile-up 200 (N1) &
+First quirk ribbons through a full tracking-toolkit chain (ACTS/Fatras, digitisation, merging, CKF) of a public
+Phase-2-like geometry at PU 200 normalised to TDR occupancies. Earlier studies used PU 50 or none. &
+Detector-model robustness (B6). Linux reproducibility (C1). Public release of the configuration.\\
+Signal efficiency and $\Lambda$ window (N6) &
+Barrel $\varepsilon=0.085$--$0.31$ at the end of counting at $1$--$5\keV$; tracking loss factor $0.83$; $\Lambda$ window
+lower edge $1.0$--$1.2\keV$ at PU 200, upper edge $4.7$--$6.6\keV$ without pile-up. &
+More signal rows, the full chain at all 40 points (S1); the independent finder cross-check (C2); an endcap ladder (S3).\\
+Background anatomy (N3) &
+Random planes measured down 4.9 decades from R04 to R07 by direct count. First treatment of single-interaction
+topologies (PV pairs, decays in flight, loopers, nuclear interactions, $V^0$) and 12 SM processes as quirk-plane
+backgrounds. &
+Replace bounds by estimates (B1--B4). Correct the attribution to Knapen et al., who name only beam-pipe conversions.\\
+The simulation-statistics barrier (N4) &
+Quantified: background-freedom needs $10^8$--$3\times10^9$ events per process, 2 to 35 times nature's own count. &
+Keep it as a short section. It explains why the estimator in \S\ref{sec:work} is needed, and it is a useful warning for
+every $B=0$ projection.\\
+Timing category and ToF mass proxy (N7) &
+Late-hit category; $M_{\rm est}$ median $2.26\,m_Q$ at PU 200, with 19\% below $0.5\,m_Q$ from in-time pile-up hits. &
+Present it as a proxy, not a mass measurement.\\
+Negative detector-level results (N8) &
+The $\Lambda^{-2}$ separation handle is not measurable at PU 200, and the out-of-plane resolution ($23$--$30\,\mu$m)
+equals the multiple-scattering floor. &
+Keep them; they are honest and new.\\
+Recast and reach &
+At $B=0$: $1026\GeV$ in $3\abinv$. In $300\fbinv$: 3-event reach $665\GeV$ and 5-event reach $586\GeV$, against
+$650\GeV$ for Knapen et al.\ in their set-up. &
+Move it to the front, as validation that the signal side agrees with the literature.\\
+Pre-registration (N5) &
+Rule, ladder and fallback were frozen before any signal efficiency. &
+Keep v1 as the frozen record; pre-register v2 before any rerun (\S\ref{sec:prereg}).\\
+\bottomrule
+\end{longtable}
+
+%=====================================================================
+\section{The one paper}\label{sec:paper}
+
+\subsection{Message and title}
+\textbf{Message.} \emph{A plane search for electroweak quirks in a Phase-2-like tracker at pile-up 200 works on the
+signal side. With a background estimated, not bounded, it reaches $X$\,GeV, well beyond existing limits. We give the
+thickness law that sets the ribbon width, the full background anatomy, and a data-driven recipe any experiment can apply.}
+
+Working title: \emph{Electroweak quirks in a Phase-2 tracker at pile-up 200: plane thickness, detector-level search and
+background-limited reach.}
+
+Target: JHEP or Phys.\ Rev.\ D, about 35 to 45 pages with appendices, with a Zenodo record holding the code, configurations,
+efficiency tables and likelihoods. SciPost Physics is a good open-access alternative.
+
+\subsection{Structure}
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Introduction.} The quirk signature, existing bounds, what is new, and the main result and figure, stated on
+        page 1. Paper v0.4 buries its most meaningful sentence in \S10.
+  \item \textbf{Model, samples and cross sections.} $E=(1,1)_{-1}$ and its scalar partner, $N_{\rm IC}=2$; NLO $K$-factors
+        at 14\,TeV, and the $f_{200}$ uncertainty propagated (S2).
+  \item \textbf{String dynamics and the thickness law (P1).} A compact main text; the derivation in an appendix.
+  \item \textbf{Detector model.} Public geometry, pile-up overlay and top-up, timing layer, and robustness variations (B6).
+  \item \textbf{Plane finder and selection.} Barrel ladder; endcap ladder if S3 is done; independent finder cross-check (C2).
+  \item \textbf{Backgrounds.} Anatomy; why counting fails (N4, short); the estimators (B1--B4); closure tests; uncertainty
+        model.
+  \item \textbf{Results.} Efficiencies, the background ladder (v1 bounds against v2 estimates), expected limits on the
+        $(m_Q,\Lambda)$ grid, and reach against background.
+  \item \textbf{A data-driven background method for the experiments.} The road-rotation sideband, closed in simulation (B5).
+  \item \textbf{Comparison} with Knapen et al., Li et al., FASER, D0 and the recasts.
+  \item \textbf{Limitations,} stated plainly.
+  \item \textbf{Conclusions.}
+\end{enumerate}
+Appendices: the thickness derivation; the pre-registration record (v1 frozen result, v2 changes and why); reproduction;
+the limitation index; efficiency tables for recasting.
+
+\subsection{Figures that must carry the message}
+\begin{enumerate}
+  \item An event display of a quirk ribbon at PU 200, labelled as the best of its sample.
+  \item The thickness law with the multiple-scattering floor and the crossover.
+  \item The efficiency map on the $(m_Q,\Lambda)$ grid, with the $\Lambda$ window.
+  \item The background ladder: v1 zero-count bounds and v2 estimates with bands, against the budget.
+  \item Closure plots for every estimator, at the rungs where direct counts exist.
+  \item The expected limit against mass, with existing bounds overlaid.
+  \item The reach against an assumed background (Table~\ref{tab:reach} as a curve), with the v2 estimate marked on it.
+\end{enumerate}
+
+\subsection{Writing clean-ups (W1)}
+\begin{itemize}
+  \item Remove internal labels that a referee cannot read: V4-3, C2-C, C4$'$, D13, A2FC, and \verb|\rep{...}| pointers to
+        internal reports. Replace them with public supplementary material or plain words.
+  \item Fix the known errors listed in \texttt{book/review/UNRESOLVED.md}:
+    \begin{itemize}
+      \item the $|\eta|<4$ cut stated for $f_{200}$, which the script does not apply;
+      \item a 93\% vertex efficiency that the acceptance does not use;
+      \item 0.966 quoted as the low end of the range, when it is the $0.45\keV$ entry (the low end at 0.6--5\,keV is 0.975);
+      \item $0.105$ against $0.104$ called verified within 1.5\%, though the two come from different samples and on the
+            same events the median is $+2.4\%$ high;
+      \item $K_{\rm vac}$ listed among the blind numerics;
+      \item ``linear in the endpoint proper time'', against the study's own audit;
+      \item the attribution of a topology list to Knapen et al.
+    \end{itemize}
+  \item Tag every number as measured, estimated or unverified, as the book does. Keep negative results in the abstract.
+  \item Disclose the AI-agent workflow, and the author's CMS membership together with the statement that only public
+        information was used. Keep figures free of any CMS name or logo.
+\end{itemize}
+
+%=====================================================================
+\section{Work plan: the bottlenecks that can be solved}\label{sec:work}
+
+Each item states what it is, why it helps, its cost, and an \emph{acceptance criterion} fixed in advance in the v2
+pre-registration. An item that misses its criterion is reported as failed and is not patched.
+
+\subsection{Foundations}
+\begin{description}[leftmargin=0pt,style=unboxed]
+\item[C1 \must{} Restore and port.] Bring the 46\,GB of data back from the external drive and record where it lives.
+  Port to Linux: add \texttt{linux-64} to the environments, remove macOS-only launchers, use a resumable runner with jobs
+  under 30 minutes, and build a container. Reproduce the v1 numbers on Linux within statistics; results will not be
+  bit-identical across compilers. \emph{Why:} without this no cloud or batch run is possible, and reproducibility is a
+  referee question. \emph{Cost:} 3--5\,pd\EST. \emph{Criterion:} the v1 ladder reproduced within its statistical errors.
+\item[C2 \must{} Finder cross-checks.] Run the planned independent brute-force search (V4-5) on 50 signal-plus-pile-up
+  events and 50 pile-up trials, and complete the seed-threshold regression (V4-4). \emph{Why:} ``is your finder right?''
+  is the first question a referee asks. \emph{Cost:} 2--3\,pd, under 50 CPU-h\EST.
+\item[C3 \must{} Paper corrections.] The list in W1. \emph{Cost:} 2\,pd.
+\end{description}
+
+\subsection{Background: from bounds to estimates (the core)}
+\begin{description}[leftmargin=0pt,style=unboxed]
+\item[B1 \must{} Single-interaction topologies with real hadronic physics and a factorised estimator.]
+  This is the leading term at the deep rungs.
+  \begin{enumerate}
+    \item \emph{Physics.} Use Geant4 for nuclear interactions in the material and for decays in flight ($\pi$, $K$ kinks,
+          $V^0$), on a GDML or DD4hep description of the same cylinders, discs and material slabs as the ACTS geometry.
+          Recommended hybrid: Geant4 produces the secondary vertices and their products, and Fatras propagates them, so
+          the finder sees the same detector model as everywhere else. This replaces the hand-made generator with
+          estimated prong counts.
+    \item \emph{Estimator.} Write $P({\rm pass}\mid t)=P_{\rm geo}(t)\times C_{\rm PU}(t)$. $P_{\rm geo}$ is measured on large
+          no-pile-up samples, which cost 1.5--12\,ms per event. $C_{\rm PU}$, how pile-up hits complete or spoil the
+          candidate, is measured by overlaying those candidates on many pile-up events, at loose rungs where both
+          factors have counts.
+    \item \emph{Biased generation.} Only stiff configurations can pass a ribbon width of $4.7$--$9.4$\,mm, so generate
+          the stiff tail with known weights and treat the soft bulk with an analytic sagitta bound that is validated
+          where counts exist (\EST).
+    \item \emph{Credit for purpose-built cuts.} See B3.
+  \end{enumerate}
+  \emph{Why:} it removes the decay-in-flight floor ($1.7\times10^5$ events from one bound in 500 events) and the
+  referee's strongest objection, the missing hadronic physics. Gain 4--6 decades on these terms\EST{} if the zeros persist
+  in the large samples. If they do not, the paper reports the first measured irreducible quirk-plane background, which is
+  also a result. \emph{Cost:} 10--15\,pd; 1--5k CPU-h\EST, the one place where cloud is clearly useful.
+  \emph{Criterion:} the factorised prediction closes against full pile-up samples at R05--R07 within a factor fixed in
+  advance, and the Geant4 rates are cross-checked against the generator rates that v1 used.
+
+\item[B2 \must{} Pile-up: repair the thinning closure and add an independent estimator.]
+  Two independent routes to the same term:
+  \begin{enumerate}
+    \item \emph{Repair.} The study traced the closure failure to candidate merging, where candidates sharing at least half
+          their hits count as one and merge too often at double density. Store the \emph{pre-merge} candidates at
+          $\rho=2$ and re-apply merging per thinned subset, or define a density-independent candidate count. This needs
+          about 0.4\,TB of storage, which the laptop (128\,GB free) could not hold: here money helps, through an external
+          disk or cloud storage costing tens of dollars. It also supplies the R03 records that the R05 factorisation test
+          needs and that do not exist.
+    \item \emph{Independent estimator.} A semi-analytic occupancy model: per layer, the probability of at least two
+          unassociated hits in a ribbon of the given width, measured to per-cent precision from existing events, combined
+          with measured layer-pair correlations ($f_{\rm corr}=1.196$ exists) and closed against direct counts at
+          R04--R07, a lever arm of 4.9 decades.
+  \end{enumerate}
+  \emph{Why:} it replaces the $\times2.41$ patch, the factor-117 route spread and the extrapolated trend width
+  (2 to 6.3) with a tested estimate. \emph{Cost:} 10--15\,pd; about 500 CPU-h\EST.
+  \emph{Criterion:} both estimators reproduce the direct counts at R04--R07 within the pre-set tolerance, and agree with
+  each other at the deeper rungs within the quoted width.
+
+\item[B3 \must{} Let the cuts act on what they were built for.] The rungs ``not a helix'' and ``not two straight lines''
+  (R15--R20) reject exactly the prompt pairs and kinks that dominate the single-interaction terms, yet they earn no credit,
+  because the one allowed bound per term is spent earlier. Add a displaced-vertex veto: a two-prong vertex at radius
+  $>0$ removes conversions, $V^0$ and nuclear interactions. Measure each conditional on the large no-pile-up samples of B1,
+  with its own closure test. \emph{Cost:} 3--5\,pd\EST.
+
+\item[B4 \must{} Complete the Standard Model background.]
+  Three steps:
+  \begin{itemize}
+    \item Produce hit-level samples for the eight processes now carried by proxies ($W(e\nu)$, $W(\mu\nu)$, dileptonic
+          $t\bar t$, $t$-channel top, $tW$, $WW$, $WZ$, $ZZ$), which hold 15--45\% of the SM term.
+    \item Add $Z(\tau\tau)$, lost-lepton $Z(\ell\ell)$ and multijets with fake missing energy at PU 200. They are absent
+          now, and the multijets are the most exposed.
+    \item Treat the hard-scatter tracks with the B1/B3 estimator instead of zero-count bounds.
+  \end{itemize}
+  \emph{Cost:} 5--8\,pd; about 300 CPU-h\EST.
+
+\item[B5 \should{} The data-driven recipe, closed in simulation.] Rotate the road away from the missing-energy direction
+  and keep every cut. Test, at R04--R07 on pile-up and SM samples with 20 roads per event, the two assumptions that have
+  never been tested: the fake rate is flat in the angle to the missing energy, and roads in one event are independent.
+  Quantify the part that is not flat, such as hadronic $\tau$ near the missing energy. \emph{Why:} the paper then gives
+  the experiments a validated method, and the systematic floor of this method (the book's estimate is $\Bef\approx0.17$
+  for an empty sideband) becomes the width used in the reach. \emph{Cost:} 5--8\,pd; about 500 CPU-h\EST.
+
+\item[B6 \should{} Detector-model robustness.] Vary the hit resolution ($\times1.5$), the hit inefficiency, the material
+  ($\times0.5$ and $\times2$; the material-variation sample takes 1.4\,h of wall clock) and the top-up limits, and
+  propagate them to efficiency and background. \emph{Why:} it answers ``cylinders, not modules; Gaussian smearing;
+  top-up $\times2.3$--$7.3$''. \emph{Cost:} 3--5\,pd; 100--200 CPU-h\EST.
+
+\item[B7 \should{} Cosmics and beam halo.] Replace ``argued negligible'' with a number: public cosmic and halo rate
+  measurements, combined with pointing to the primary vertex and timing. \emph{Cost:} 2\,pd\EST.
+\end{description}
+
+\subsection{Statistics}
+\begin{description}[leftmargin=0pt,style=unboxed]
+\item[T1 \must{} A proper likelihood.] Build a pyhf workspace (open) in which each background term is constrained by a
+  Poisson auxiliary measurement of its simulated count. Zero counts are then handled by a Gamma constraint in the manner
+  of Barlow and Beeston, not by $1.14/M$ entered as a log-normal. Correlate the shared nuisances across terms and
+  categories, which v1 left uncorrelated. Remove the double counting in which the larger route is the central value and
+  $\ln 117$ also enters the width. Replace the extrapolated trend width by the closure-derived systematics of B2. Publish
+  the workspace. \emph{Why:} the sum of 21 separate 68\% bounds over-covers, and referees know it. \emph{Cost:} 5\,pd\EST.
+\item[T2 \must{} A new selection rule.] Pre-register a choice among a few declared selections that optimises expected
+  sensitivity, using an optimisation half and an evaluation half of the signal sample, so that the choice is not made on
+  noise. Keep ``$\Bef\le0.11$'' as a reported \emph{background-free} flag, not as a requirement. \emph{Why:} the 0.11
+  budget with $\sigma_{\ln}=2.3$ demands a median of 0.011 events. That is needed only to claim zero background, which
+  nobody needs: $B=10$ costs 160\,GeV of reach (Table~\ref{tab:reach}). \emph{Cost:} 2\,pd.
+\end{description}
+
+\subsection{Signal}
+\begin{description}[leftmargin=0pt,style=unboxed]
+\item[S1 \must{} Signal statistics and one chain.] Ten times the rows at the 40 points, and the full chain at all of
+  them. That retires the fast path, which may overestimate the efficiency by up to $1/0.87$. The best point now rests on
+  9 events of 200. \emph{Cost:} about 400--600 CPU-h\EST, about \$20--30.
+\item[S2 \must{} Theory inputs.] Compute NLO $K$-factors at 14\,TeV instead of transcribing them. Propagate the $f_{200}$
+  uncertainty ($+12$--15\%, $-11$--13\%) into the limits. Re-shower with QED final-state radiation off the quirks, about
+  15\,CPU-h, which was dropped only for budget. \emph{Cost:} 3\,pd.
+\item[S3 \should{} Endcap finder and ladder.] 69\% of pairs with $|\eta_{\rm pair}|<2.5$ lie outside the barrel. Build
+  endcap and mixed seeds and a separate endcap ladder with its own background from the B1/B2 estimators, frozen before its
+  efficiency is seen. \emph{Gain:} signal $\times1.5$ to $3.2$\EST; reach at $B=10$ from 866 to 1062\,GeV for $g=1$.
+  \emph{Caveats:} neither seed family has three layers at $1.0<|\eta|<1.3$, and the timing layer stops near
+  $|\eta|\approx1.5$. \emph{Cost:} 15--25\,pd; 400--800 CPU-h\EST.
+\item[S4 \could{} More efficiency.] A merging-tolerant rung for $\Lambda\gtrsim3\keV$, which was costed at about a week,
+  and a lower cut on the seed's opening angle.
+\item[S5 \could{} $m_Q$ and $\Lambda$ at PU 200.] A pile-up-robust separation estimator and rejection of in-time hits for
+  the time of flight. Not required for the paper: state the negative result instead.
+\end{description}
+
+\subsection{P1 clean-ups}
+\begin{description}[leftmargin=0pt,style=unboxed]
+\item[P1 \must{}] Run the floor tests and the $B^*$-off test (under 1\,CPU-h each). Define the population estimator for
+  $c$ in advance and report the failed gate as failed. State the validity window as measured. Keep the failed
+  straight-string prediction visible. \emph{Cost:} 3--5\,pd.
+\end{description}
+
+%=====================================================================
+\section{The v2 pre-registration}\label{sec:prereg}
+Changing a rule after seeing a result looks like moving the goalposts, and referees will check for it. The defence is the
+same discipline the study already practised.
+\begin{enumerate}
+  \item The v1 frozen result (no WP, 790$\times$) is kept and reported in an appendix with its hash, as the record of what
+        pure counting gives.
+  \item The v2 document is written and hashed \emph{before} any v2 sample is produced. It holds the estimators (B1--B4),
+        their closure criteria, the likelihood (T1), the selection rule (T2), the endcap ladder (S3) if included, and what
+        happens when a test fails.
+  \item Every change is motivated by a background-method or physics argument stated in the document, never by a signal
+        efficiency.
+  \item Signal efficiencies stay blind until the background estimators have passed or failed their closure tests.
+  \item Rows 1 to 4 of the book's ranking go into one freeze, because each freeze costs more than each change.
+\end{enumerate}
+
+%=====================================================================
+\section{Compute: what to pay for and what not}
+\begin{table}[h]
+\centering\small
+\caption{Compute for the plan (\EST). The laptop gives about 168 CPU-h per day at seven workers. A laptop CPU-h and a
+cloud vCPU-hour are not the same unit, so read the totals as sizes.}\label{tab:cpu}
+\begin{tabularx}{\linewidth}{@{}P{55mm}rL@{}}
+\toprule
+item & CPU-h & note\\
+\midrule
+B1 Geant4 vertices and no-PU tails & 1000--5000 & the main cloud item \\
+B2 pile-up repair and occupancy & about 500 & plus 0.4--1\,TB of storage \\
+B4 SM samples & about 300 & \\
+B5 sideband, 20 roads & about 500 & \\
+B6 robustness & 100--200 & \\
+S1 signal $\times10$, full chain & 400--600 & \\
+S3 endcap (if done) & 400--800 & \\
+\midrule
+total & about 3--8k & laptop: 3--7 weeks; 100 vCPU: 1.5--3.5 days; \$100--400 plus \$20--50 storage \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Worth paying for.} Cloud time for B1 and S1/S3, because it turns weeks of laptop wall clock into days. Disk for B2,
+because the missing pre-merge records are a physics limitation that storage alone removes. A Linux container (C1) is the
+prerequisite for both.
+
+\textbf{Not worth paying for.}
+\begin{itemize}
+  \item Brute-force growth of the existing samples ($\times100$ for two decades).
+  \item $10^9$ pile-up trials ($3\times10^6$ CPU-h).
+  \item Rerunning the string at $\Lambda\ge15\keV$. It took 371 CPU-h, 64\% of the string's bill, and never reached the
+        search; detector work needs 12--30 CPU-h of string.
+  \item The $\rho=3$ sample: 128\,h for about 0.6 decade at R09, superseded by B2.
+\end{itemize}
+
+\textbf{Discarded by decision.} Pile-up scans (``background-free up to $\mu=X$'') and any use of CMS Open Data. Both are
+outside the paper.
+
+%=====================================================================
+\section{Referee questions and the planned answers}
+\small
+\begin{longtable}{@{}P{4mm}P{54mm}P{36mm}P{56mm}@{}}
+\toprule
+\# & likely question & status in v0.4 & planned answer (item)\\
+\midrule\endfirsthead
+\toprule
+\# & likely question & status in v0.4 & planned answer\\
+\midrule\endhead
+1 & Your background is a stack of zero-count bounds. What does the limit mean? & admitted; 790 is the reach of the set-up &
+Estimators with closure tests; bounds kept only as the v1 record (B1--B4, T1).\\
+2 & Fatras has no hadronic interactions; the leading background comes from a toy generator. & stated limitation &
+Geant4 vertices fed into the same chain (B1).\\
+3 & The thinning closure failed. Why trust any pile-up number? & patched $\times2.41$ &
+Merging fixed and the closure re-tested; an independent occupancy estimator; both close at R04--R07 (B2).\\
+4 & Factorisation across kinds of cut is untested. & degenerate test &
+Conditionals measured on large samples, each with its own closure; correlations measured (B1--B3).\\
+5 & Multijets with fake missing energy, $Z(\tau\tau)$ and lost-lepton $Z$ are missing. & not included & Added (B4).\\
+6 & Eight SM processes are proxies. & 15--45\% of the SM term & Real samples (B4).\\
+7 & The occupancy is topped up by $\times2.3$--$7.3$ over Fatras. & density systematic only & Robustness scan and propagation (B6).\\
+8 & Cylinders, not modules; Gaussian smearing; no cluster merging. & stated & Resolution and inefficiency variations (B6); stated limits.\\
+9 & Is the finder correct and near optimal? & cross-check not run & Brute-force comparison (C2).\\
+10 & The best point rests on 9 events, and 31 points use a fast path. & stated & $\times10$ rows, full chain everywhere (S1).\\
+11 & Why barrel only? & deadline decision & Endcap ladder (S3), or an explicit statement with the scaled gain if S3 is not done.\\
+12 & You changed the rules after seeing the result. & v1 frozen & v2 hashed before any rerun; v1 in the appendix (\S\ref{sec:prereg}).\\
+13 & Summed 68\% bounds over-cover; categories are uncorrelated. & simplified & pyhf likelihood with correlated nuisances and Gamma constraints (T1).\\
+14 & Why a budget of 0.11? Nobody needs zero background. & frozen rule & Sensitivity-based rule; background-free reported as a flag (T2).\\
+15 & Cosmics and beam halo? & argued, not simulated & Numerical estimate from public rates with pointing and timing (B7).\\
+16 & Can the trigger fire on these events at Phase 2? & parametrised turn-on & Public L1/HLT turn-on curves, with a systematic (S2).\\
+17 & $K$-factors and $f_{200}$ uncertainty? & transcribed; not propagated & NLO at 14\,TeV; propagated (S2).\\
+18 & Classical Nambu--Goto string, $J=0$, no infracolour radiation? & stated assumption & Cite the validity regime; give the $\Lambda$ range where the assumptions hold.\\
+19 & The thickness law's validity and its failed gate. & window overstated & Window as measured; failed gate and the failed ratio reported (P1).\\
+20 & You cannot test the law at detector level. & stated (N8) & Keep it as a negative result: resolution equals the floor.\\
+21 & Can you measure $m_Q$ or $\Lambda$? & no, at PU 200 & State the negative result; S5 optional.\\
+22 & How does this compare with Knapen et al.\ and Li et al.? & recast agrees at $B=0$ & Comparison section: where the background-free assumption fails and what it costs.\\
+23 & Is a data-driven estimate possible? & proposal only & Sideband closed in simulation (B5).\\
+24 & Can I reproduce or recast this? & internal reports cited & Zenodo: code, container, configs, efficiency tables, pyhf workspace (C1, W1).\\
+25 & Is this a CMS result? Was AI used? & labelling done & Disclosure paragraph; public information only (W1).\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+%=====================================================================
+\section{Outcomes and decision points}
+\begin{table}[h]
+\centering\small
+\caption{Possible outcomes after v2 (\EST; reach from Table~\ref{tab:reach}, barrel, best $\Lambda$ per mass).}
+\begin{tabularx}{\linewidth}{@{}P{30mm}P{62mm}L@{}}
+\toprule
+case & what happens & the paper\\
+\midrule
+Good & Leading terms become estimates of order 1--10 events, $\sigma_{\ln}\lesssim1$ & expected exclusion near 800\,GeV;
+a strong pheno paper\\
+Middle & Pile-up stays at $10^2$--$10^3$; single-interaction terms resolved & about 500\,GeV at $B=100$, $\sigma_{\ln}=1$:
+still well above existing bounds\\
+Real background & Large samples show passing events & the first measured irreducible quirk-plane background; the
+reach at that $B$; the sideband recipe as the way out\\
+Closure fails & An estimator misses its criterion & reported as failed; the paper becomes a method and anatomy paper
+with P1 and the efficiencies, which is still publishable but less strong\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Decision points.}
+\begin{enumerate}
+  \item After C1 and C2: is the v1 chain reproducible on Linux, and does the finder pass its cross-check?
+  \item After the B1 and B2 development, before the freeze: do the estimators close on existing samples at loose rungs? If
+        not, redesign before freezing rather than after.
+  \item After v2 production: unblind the background, then the signal.
+  \item Include S3 (endcap) only if B1 and B2 are on schedule. Otherwise state the barrel restriction and its scaled gain.
+\end{enumerate}
+
+%=====================================================================
+\section{Timeline}
+\begin{table}[h]
+\centering\small
+\caption{Timeline (\EST). Calendar weeks assume one person, cloud for the heavy runs and laptop for the rest.}
+\begin{tabularx}{\linewidth}{@{}P{34mm}P{20mm}L@{}}
+\toprule
+phase & weeks & content\\
+\midrule
+0 Foundations & 1--2 & C1, C2, C3; v1 reproduced on Linux\\
+1 Method development & 3--4 & B1--B3 designs, closure on existing samples; T1; P1 tests; endcap prototype; signal blind\\
+2 Freeze & 1 & v2 pre-registration written, reviewed, hashed\\
+3 Production & 1--2 & B1, B2, B4, B5, B6, S1 (and S3) on the cloud, about \$100--400\\
+4 Unblinding & 1 & background closure verdicts, then the signal; limits and reach\\
+5 Paper & 2--3 & rewrite to the structure of \S\ref{sec:paper}; adversarial internal review against the referee table; Zenodo release\\
+\midrule
+total & 9--13 & core (without S3): about 8--10 weeks\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Sources}
+Study paper v0.4 (\texttt{stage2\_C001\_quirks/theory\_track/paper/sections/}, chiefly \S\S0, 10, 12, 13 and App.~C);
+novelty audit \texttt{P2\_NOVELTY\_AUDIT.md}; book chapters 25--29 (\texttt{book/chapters/}); the paper corrections in
+\texttt{book/review/UNRESOLVED.md}; a brainstorm by a second model, whose suggestions are marked \EST{} here. Nothing was
+rerun for this plan.
+
+\end{document}

@@ -1,0 +1,169 @@
+\chapter{What the signal looks like}\label{ch:26-signalresults}
+
+Chapter~\ref{ch:25-chain} gave away the ending: no selection qualified, and nothing was excluded. Before we see why, we describe what the search was hoping to catch. A quirk pair is a striking object, two tracks crossing and recrossing on a thin plane in a pattern no helix can make. Yet in the sample of our event, at one low corner of the grid, only three of 200 pairs reached the end of counting, and across $1$ to $5\keV$ the fraction is $0.085$ to $0.31$. This chapter accounts for that loss, and then sets out how little could be said about a candidate if one did turn up.
+
+We remove the idealisations one at a time: true hits and perfect sensors, then the detector, then pile-up.
+
+\section{Plane thickness at truth level}\label{sec:26-truth}
+
+This section sets the two parts of the plane's thickness with true hits, the field part and the floor from scattering, against the detector's resolution. Chapter~\ref{ch:18-thickness} told how the law fared. The median event-by-event ratio of the thickness to its rotating yo-yo model stays near one from $0.6$ to $5\keV$. The law's slope agrees in the median over events only at $1$ to $3\keV$ and inside a window of $\lmax/\RIT$ and $\kB$, and its median failed a test fixed in advance at three of five points. Figure~\ref{fig:26-thickness} collects those results, for the law \eqref{eq:18-law} and its slope $c$ of \eqref{eq:18-c}. What we need here is one comparison, which Chapter~\ref{ch:18-thickness} could only mention.
+
+These runs are at \emph{truth level}:\index{truth level} true hit positions, known hit-to-quirk assignment, no pile-up, no sensor resolution. They lie on a grid inside the production's $218\,571$ events: five points, $300$ events per point and $\Lam$ ($200$ at $7$ and $10\keV$). The grid's pairs have $|\eta_{\rm pair}|<1$ and the vertex at the origin. Up to $5\keV$ each event was run with the field alone, at full and half strength to get $c$, with material alone, and with both.
+
+\begin{figure}
+  \includegraphics{ch26/thickness}
+  \caption{Truth level. (a) $E$ at $500\GeV$: median thickness. The field part follows the model over two decades; the material part is a floor; the
+  grey band is the detector's estimated out-of-plane resolution (not measured). (b) Excess of the median $c$ over its prediction, by mass in GeV. Grey band: the pre-set test, set at $1\keV$ only. Three points lie above it there, and the excess climbs at $5\keV$. Points are offset sideways for clarity.}
+  \label{fig:26-thickness}
+\end{figure}
+
+Scattering sets a floor\marginnote{$\RIT\approx14.6\cm$ is the outer pixel radius, $\kB$ the ratio of magnetic to electric field in the pair frame. Table~\ref{tab:18-edges} has the cases where the law stops.} that barely depends on $\Lam$: about $10\um$ at $200\GeV$, rising to $18$ to $28\um$
+at $1500\GeV$, because heavier pairs are slower and scatter more. Field and floor are equal at $\Lcross$ (Table~\ref{tab:26-window}), and near there they combine below quadrature, with no fitted rule. The ratio of measured to model thickness is within $0.8\%$ of one for $\gst<1.3$, $2$ to $4\%$ low at $\gst=1.3$ to $1.6$, and $7$ to $11\%$ low in the median above that. Chapter~\ref{ch:18-thickness}'s $10$ to $35\%$ is for $\gst>2$, from controlled comparisons.
+
+Three numbers settle the comparison: the field part is $30\um$ at $1\keV$, the floor is $10$ to $28\um$, and the detector's out-of-plane resolution, a planning estimate never measured,
+is $23$ to $30\um$ (\EST). All are the same size, and above $\Lcross$ the field part is the smallest. We would therefore not expect this detector to read off the effect of
+Chapter~\ref{ch:18-thickness} at or above about $1\keV$ (\EST). The study did not try. Rungs R09 to R11 ask whether the core hits are compatible with a plane, with $t_{\rm tol}$ in their weights, but no measurement of the thickness or test of the law was made at detector level; the thickness enters only through that tolerance, set from field and floor together.
+
+\section{Ribbon width and the search window}\label{sec:26-handles}
+
+Besides its thickness the ribbon has a width, which gives a ruler for the string, and the string in turn sets the window in which the search can work. Take every pixel surface hit by both quirks and take their separation. The median
+per event, and then over events, is $s_{\rm IT}$. From $1$ to $30\keV$ it falls with log-log slope near $-2$ at
+every point, a clean ruler for $\lzero=\mQ/\Lam^2$. Take $E$ at $500\GeV$ with $\Lam=2\keV$: then $\lzero=2.47\cm$, and a median $\gst\approx1.27$ in
+\eqref{eq:15-lmax} gives $\lmax=2(\gst-1)\lzero=1.3\cm$, near the stored $1.43\cm$; $s_{\rm IT}$ is $7.0\mm$, about half.
+
+One ruler fixes only $\mQ/\Lam^2$, but at truth level there is a second number. Below $\Lcross$ the thickness depends on
+$\Lam$ alone and is flat in $\mQ$, so together they would separate mass and tension without using the recoil (\EST).
+
+\begin{table}[!t]
+  \caption{The window in $\Lam$, in keV. Truth: where the field equals the floor, where median $\lmax=\RIT$, and where half the pairs have
+  $s_{\rm IT}<100\um$. Detector: half-maximum edges of $\Eff$ at the end of counting. Edges without pile-up use that whole sample, at all $\eta$. At pile-up 200 no upper edge exists below $5\keV$, where the grid ends.}
+  \label{tab:26-window}
+  \small\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lcccccc}
+    \toprule
+    & \multicolumn{2}{c}{truth, lower} & \multicolumn{2}{c}{lower edge} & upper & truth\\
+    point & $\Lcross$ & $\lmax{=}\RIT$ & no pile-up & pile-up 200 & no pile-up & merge\\
+    \midrule
+    $E$ 200 & 1.91 & 0.43 & 0.61 & 1.05 & 4.70 & 12.8\\
+    $E$ 500 & 1.50 & 0.63 & 0.65 & 1.03 & 5.38 & 16.4\\
+    $E$ 1000 & 1.25 & 0.68 & 0.76 & 1.05 & 5.89 & 19.4\\
+    $E$ 1500 & 1.16 & 0.78 & 0.71 & 1.10 & 6.05 & 19.8\\
+    $\Etil$ 500 & 1.59 & 0.78 & 0.85 & 1.22 & 6.60 & 22.9\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The string also sets a search window (Table~\ref{tab:26-window}). At low $\Lam$ the ribbon is wider than the pixel detector: the median pair
+makes one swing in the tracker at $0.28$ to $0.33\keV$. At high $\Lam$ the quirks merge into one hit.
+
+\section{Signal efficiency with and without pile-up}\label{sec:26-eff}
+
+The signal efficiency $\Eff$, the $\Eff_{\rm sel}$ of Chapter~\ref{ch:25-chain}, is the fraction of pairs the finder recovers. An event counts\index{signal efficiency} if a candidate passes the selection, has under $20\%$ of its band hits on ordinary tracks, and is
+matched: quirk hits are at least half of its core, and at least three hits on three layers.\sidenote{At the
+counting rungs $\Eff$ is a lower bound, since matching uses stored hit records only.} The denominator is all pairs
+with $|\eta_{\rm pair}|<2.5$, $180$ to $200$ per point. Every rung demands a plane axis with $|\eta|<1$, and only about $0.3$ of these pairs are that central ($0.23$ to $0.38$ at the nine points where it is stored, counting $|\eta_{\rm pair}|<1$), so the selection is capped near $0.3$.
+
+The first check is the finder with no pile-up. The plan asked for $0.9$ at $1$ to $5\keV$. It gets there at $1.5$ to $2\keV$ ($0.90$ to $0.96$; the scalar has no value at $1.5\keV$), and for the scalar also at $3\keV$ ($0.97$), and only for pairs in the barrel with a looser match defined after the first comparison failed. At $1\keV$ it reaches $0.75$ to $0.90$ and at $5\keV$ only $0.58$ to $0.84$. Requiring the end of counting as well gives $0.64$ to $0.77$ at $1.5$ to $2\keV$. The check is therefore only partly met. The losses are understood: the seed needs an opening angle of at least $1$\,mrad, so its two hits on the outer pixel layers must lie that far apart as seen from the vertex, since nearly parallel directions fix no plane, and a nearly merged pair can fail this; tracking steals quirk hits; and the end of counting needs two crossings on all seven layers, so one merged pair kills it. Two further planned checks, with an independent finder and of bit-for-bit reproduction, were not completed (Chapter~\ref{ch:28-bottlenecks}).
+
+\begin{figure}[!t]
+  \includegraphics{ch26/efficiency}
+  \caption{(a) $E$ at $500\GeV$: $\Eff$ at the end of counting with and without pile-up on the same 200 rows, and at the fallback selection (68\% intervals). Points at $3$ and $5\keV$ are the full-chain reruns of Section~\ref{sec:26-fullchain}; the fallback dip at $3\keV$ is the outlier discussed there. At $0.45\keV$ the fallback has no passes. Above about $2\keV$ pile-up
+  \emph{helps}. (b) $\Eff$ along the ladder at pile-up 200, each a count out of 200. Width and plane fit cost the most; d$E$ means ionisation.}
+  \label{fig:26-eff}
+\end{figure}
+
+With pile-up 200 the efficiency at the end of counting is $0.085$ to $0.31$\marginnote{The $0.31$, at $3\keV$, has a binomial error of $0.03$.} at $1$ to $5\keV$ (Fig.~\ref{fig:26-eff}a), and the lower edge climbs from $0.6$--$0.85$
+to $1.0$--$1.2\keV$, since wide ribbons lose to pile-up. Our event of Chapter~\ref{ch:25-chain} has
+$\mQ=200\GeV$ and $\Lam=0.45\keV$, far below the edge. Its sample has a median $\lmax$ of $13.1\cm$, almost the pixel radius, and a median of $2.3$ swings in the tracker.
+Each quirk then reaches about $6.6\cm$ from the pair's centre, close to the $7.5\cm$ window of Chapter~\ref{ch:25-chain}, so the wider part of the sample is not sought at all (\EST), and the barrel ceiling of $0.3$ applies on top. Our event got through with a ribbon about half a millimetre wide: in the plane, across its axis, the two quirks are at most $0.47\mm$ apart at every pixel and PS sensor.
+Window and ceiling account for part of the loss: on the same 200 rows, without pile-up $7\%$ reach the end of counting (14 rows). With pile-up it is $1.5\%$, three rows, and the study's records name no finer mechanism for that last factor of about five.
+
+Above about $2\keV$ the effect reverses: pile-up \emph{raises} the efficiency, on the same rows. Where the pair has merged, pile-up
+hits complete the layer count and seed the plane, so these candidates are partly pile-up's work.
+
+Since no working point exists (Chapter~\ref{ch:27-backgroundresults}), the selection that matters is the fallback. It keeps counting, plane fit, outer layers and the shape tests
+$h>5$ and $o>5$, and adds a width cut only if that cannot remove the hypothesis. The width scales as $\Lam^{-2}$, so halving the cut needs a factor $\sqrt2$ in $\Lam$: the cut $W_{\rm c}/2^k$, for $k$ up to $4$, is allowed when $\Lam\ge\Lam_R2^{(k+1)/2}$, where $\Lam_R$ is the $\Lam$ of median $\lmax=\RIT$, smoothed over mass: $0.431$, $0.610$, $0.709$, $0.741$ and $0.773\keV$ for $E$ at $200$, $500$, $1000$, $1500\GeV$ and the scalar. These lie within $5\%$ of the $\lmax{=}\RIT$ column in Table~\ref{tab:26-window}, which is still enough to change the cut at three points. Two heavy points at $5\keV$ add an ionisation cut. The efficiency at this selection is $0$ to $0.080$ over all 40
+points, and zero at seven.\index{fallback selection}\marginnote{The late-hit category typically takes $30$ to $70\%$ of it at $500\GeV$ and above, and at most $27\%$ at $200\GeV$, where pairs are fast.}
+The yield $S=N_{\rm exp}\Eff$ peaks at $861$ events at $200\GeV$ (\EST) and $87$ at $500\GeV$, but only $3.4$ at $1000\GeV$ and $0.29$ at $1500\GeV$. Even with no background, only 20 of the 40 points give three events.
+
+\section{Full-chain reruns as a test of the fast path}\label{sec:26-fullchain}
+
+Rerunning points through the full chain tests the fast path, and shows a real tracking loss at the end of counting. The fast path of Chapter~\ref{ch:25-chain} never sends quirk hits through tracking, so nothing steals them. The rule fixed in advance, applied late as Chapter~\ref{ch:25-chain} records, sent back any point where, without pile-up, tracks took
+over $5\%$ of the quirk hits. The plan said with pile-up; at the 3 points checked that way the fraction was no higher. Nine went back: all fermion masses at $3$ and $5\keV$, and the scalar at $5\keV$. They took $1800$ events and $9.7$ CPU-hours, with the same rows and
+seeds and the measurement noise redrawn.\index{full chain}
+
+\begin{figure}[!t]
+  \includegraphics{ch26/fullchain}
+  \caption{The nine reruns, same rows; labels give mass in GeV and $\Lam$ in keV. Bars are 68\% intervals on the full chain. (a) At the end of counting all nine fall. (b) At the
+  fallback the shifts are noisier, and $E$ at $500\GeV$, $3\keV$ stands out. At $E$ $200\GeV$, $3\keV$ the two coincide in (b).}
+  \label{fig:26-fullchain}
+\end{figure}
+
+At the end of counting the full chain is $5$ to $30\%$ lower at all nine (Fig.~\ref{fig:26-fullchain}a). Summed over eight points, leaving out the outlier below, the
+loss is a factor $0.83$ there and $0.87$ at the fallback.
+
+\begin{example}[A sign test of the tracking loss]\label{exa:26-sign}
+Compare the same rows and ignore those that agree: this is a \emph{sign test}.\index{sign test} At the end of counting 84 rows pass only on the fast path and 20 only in the full chain. If the two paths were equivalent, each of
+those 104 rows would fall either way with probability $\frac12$, so $p=2\sum_{k\ge84}\binom{104}{k}2^{-104}=1.6\times10^{-10}$, or roughly $(84-52)/\sqrt{26}=6.3$ standard deviations. The loss is real. Hit stealing by tracking is confirmed in one event at the outlier point below, which lost 46 of 83 quirk hits, and inferred for the rest. At the fallback the same arithmetic on 52 against 37 gives $p=0.14$. The
+ratio is similar, but the test has no power, because redrawing the noise flips $25$ to $50\%$ of the passing rows at the deep rungs. Only the end of counting is truly paired.
+\end{example}
+
+One point is an outlier. At $E$, $500\GeV$, $3\keV$ the fallback efficiency fell from $0.145$ to $0.055$ (Fig.~\ref{fig:26-fullchain}b), and at R14 the count fell from 22 to 4 of
+200. An investigation found identical inputs and noise model. Fresh noise draws, made only for the 34 rows that passed R08 in either production, gave 10 or 11 of 200, a slight lower bound (\EST), so 22 is about $3\sigma$ high and 4 about $2$ to $2.5\sigma$ low. By the sign test above, $18$ rows pass R14 only on the fast path and none only in the full chain, $p=2\times2^{-18}=7.6\times10^{-6}$, and at the fallback it is $19$ against $1$, $p=4.0\times10^{-5}$. This is the most extreme of the nine points, so the study allows a look-elsewhere factor of about $9$ to $30$ for the other places such a jump could have appeared, which gives a global $p$ of about $10^{-4}$ to $10^{-3}$ (\EST, by the study). No mechanism was found, and only one of the two noise draws could be replicated, so ``statistics'' is a
+conclusion by exclusion. The full chain stays as the reference, because averaging would be chosen after seeing the answer.
+
+The other 31 points stay on the fast path. They may overestimate $\Eff$ by up to about $1/0.87$ (\EST, not applied), and probably by less at $2\keV$ and
+below: a separate full-chain sample at $1\keV$ agrees with the fast path within binomial errors. The best limit of Chapter~\ref{ch:27-backgroundresults}
+would move from $790$ to about $910$ to $950$ times the prediction, which changes no conclusion.
+
+\section{Measuring the tension and the mass}\label{sec:26-measure}
+
+Had a signal appeared, the next task would be to measure its tension and its mass. The handles for both work without pile-up and fail with it. We take $\Lam$ first. Without pile-up the lower edge matches the truth value within about $10\%$, except at $200\GeV$, where it sits $1.4$ times higher
+(Table~\ref{tab:26-window}). The upper edge is another matter. The comparator declared in advance was the truth merging edge, and \emph{it was not met}: the measured edge is $2.7$ to $3.5$ times lower.
+A comparator derived afterwards does agree within about $1\keV$: the $\Lam$ at which half the pairs have a merged hit on some inner surface, since the end of counting needs every surface unmerged. That is sensible, and it is post hoc.
+
+\begin{figure}[!t]
+  \includegraphics{ch26/handles}
+  \caption{(a) Measured against true separation: one marker per mass and $\Lam$ at the five mass points, each a median over at least 10 candidates. Without pile-up it follows the diagonal from about 2 to $20\mm$; with pile-up 200 it is flat. (b) The mass proxy, each sample pooled over all its points: $9551$ events from the $307$ grid points without pile-up, $850$ from the $40$ with it. The totals reflect the sizes of the samples, not a loss: on the same rows of those $40$ points, $1245$ events reach the end of counting without pile-up and $1163$ with it (fast path, all $200$ rows; the panel's sample, with the reruns and the cut $|\eta_{\rm pair}|<2.5$, is $1051$, of which $850$ have $M_{\rm est}$). The low cluster comes from prompt timing hits.}
+  \label{fig:26-handles}
+\end{figure}
+
+Without pile-up the ruler survives: the measured separation, a median over the core hits, follows the truth at $1.5$ to $3\keV$: at $E$ $500\GeV$, $2\keV$ it is $6.9$ against $7.0\mm$. Over the five points of Fig.~\ref{fig:26-handles} the ratio to the truth runs from $0.69$ to $1.23$, each with a statistical error of $8$ to $21\%$, and heavy pairs are already low at $1.5\keV$ ($0.69\pm0.12$ at $1500\GeV$). The study's summary says about $10\%$; its stored numbers are wider than that.
+\emph{At pile-up 200 it is not measurable} (Fig.~\ref{fig:26-handles}a). The median stays at
+$18$ to $26\mm$ for $\Lam\ge1.5\keV$ as the truth falls from $23$ to $0.6\mm$, since pile-up hits define the plane; $w_{\rm core}$ flattens too.
+
+Now the mass. The recoil gives the pair's transverse momentum and the plane's axis its direction, so $\MET\cosh\eta$ is its momentum. Time of flight\index{time of flight} to the timing layer gives its speed. Momentum over
+$\beta\gamma$ is a mass:
+\begin{equation}
+  M_{\rm est}=\frac{\MET\cosh\eta_{\rm axis}}{(\beta\gamma)_{\rm ToF}},\qquad \beta_{\rm ToF}=\frac{|\vect u|}{t_{\rm hit}-t_{\rm PV}} .
+  \label{eq:26-Mest}
+\end{equation}
+This estimates the mass of the \emph{pair},\index{pair mass} $M_{Q\bar Q}=2\gst\mQ\ge2\mQ$, and not $\mQ$. Without pile-up the median is $2.46\,\mQ$, which means $\gst\approx1.23$, close to the sample medians of $1.15$ to
+$1.35$ for the fermions. Our event of Chapter~\ref{ch:25-chain} gives $367\GeV$, below the physical $2\mQ$. The $25\GeV$ smearing of $\MET$ alone is a $10\%$ error on it, so $\gst$ is at most about $1.1$ (\EST), which allows a swing up to about $4\cm$. Its ribbon of $0.47\mm$ measures separation across the axis only, so it means either a far smaller swing or one along the axis, and no hit times are stored to decide. Not one of $9551$ events falls below $1.5\,\mQ$. At pile-up 200 the median is $2.26\,\mQ$, against $2.52\,\mQ$ without pile-up on the same $40$ points, but $29\%$ fall below $1.5\,\mQ$ (Fig.~\ref{fig:26-handles}b),
+and $M_{\rm est}$ is undefined for up to $41\%$ of candidates. The medians order the masses, but the 16th percentiles are similar.
+
+\begin{example}[How a prompt hit fakes a light pair]\label{exa:26-prompt}
+A quirk at $\beta_{\rm ToF}=0.33$, the median at $500\GeV$ without pile-up, reaches $|\vect u|=1.36$\,m after $13.7\ns$. But the earliest in-band hit is what counts, and a pile-up particle arrives near light speed,
+at $4.5\ns$. Take a delay of $0.2\ns$. Then $\beta\gamma=3.3$, and $\MET\cosh\eta=300\GeV$ gives $M_{\rm est}=90\GeV$, or $0.18\,\mQ$: tenfold too low.
+\end{example}
+
+\emph{At pile-up 200 this set-up measures neither $\mQ$ nor $\Lam$.} It orders the masses
+and brackets $\Lam$ by the efficiency window, and no mass fit was run. Ionisation fares no better: pile-up dilutes it from $1.8$--$7.1$ to $1.5$--$2.7$ times a fast muon's. Getting the handles back would need a pile-up-robust separation estimator and a timing cut against in-time hits, neither tested.
+
+The signal is rare and cannot be weighed. Chapter~\ref{ch:27-backgroundresults} takes up what else looks like it.
+
+\begin{chaptersummary}
+  \item At truth level the median ratio of measured to model thickness is within $1$ to $5\%$ of one at each point, and $7$ to $11\%$ low for $\gst\ge1.6$, but the median slope $c$ failed a pre-set $1.5\%$ test at three of five points.
+  \item Field thickness, floor and detector resolution are similar in size, so we do not expect this tracker to test the law at or above about $1\keV$ (\EST); no test was made.
+  \item The barrel selection caps $\Eff$ near $0.3$. At pile-up 200 it is $0.085$ to $0.31$ at the end of counting at $1$ to $5\keV$, and $0$ to $0.08$ at the fallback.
+  \item Full-chain reruns show a real tracking loss: a factor $0.83$ at counting, summed over eight of the nine $3$ and $5\keV$ points tested.
+  \item The handles for $\Lam$ and $\mQ$ work without pile-up and fail at pile-up 200.
+\end{chaptersummary}
+
+\begin{exercises}
+  \item\label{ex:26-median} By simulation: let $c_{\rm ev}=0.1\,\ee^{0.2g}$ with $g$ a unit normal, and $c=c_{\rm ev}+\delta$ with $\delta$ normal of width $0.02$. Find the relative shift of the median of $c$ from that of
+  $c_{\rm ev}$. What if $c_{\rm ev}$ is symmetric?
+  \item\label{ex:26-cp} The exact $68\%$ interval for $k$ passes in $n$ runs from the $0.1587$ quantile of a beta distribution $(k,n-k+1)$ to the $0.8413$ quantile of $(k+1,n-k)$. Evaluate it for $9/200$. If $N_{\rm exp}=1.58\times10^4$, what range of $S$ does it allow?
+  \item\label{ex:26-tails} Repeat the sign test for 50 against 33, the same rows at R14 summed over the same eight points. Taking $0.0525$ as the true efficiency on 200 rows, find $P(k\ge22)$ and $P(k\le4)$ as one-sided Gaussian equivalents.
+  \item\label{ex:26-tof} With $\MET\cosh\eta=300\GeV$ and $|\vect u|=1.36$\,m, what delay $\Delta t$ makes $M_{\rm est}=2\mQ$ at $\mQ=500\GeV$? Is it inside the late-hit window of Chapter~\ref{ch:25-chain}?
+\end{exercises}

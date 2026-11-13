@@ -48,3 +48,18 @@ __pycache__/
 .numba_cache/
 *.nbi
 *.nbc
+
+# Book: only the study part (Part VI, ch25-29) and what the publication plan cites are tracked.
+# The full book workspace (other chapters, figures, reviews, build/) stays local.
+book/*
+!book/README.md
+!book/partVI_the_study.pdf
+!book/chapters/
+book/chapters/*
+!book/chapters/ch2[5-9]_*.tex
+!book/checks/
+book/checks/*
+!book/checks/ch2[5-9]_*
+!book/review/
+book/review/*
+!book/review/UNRESOLVED.md

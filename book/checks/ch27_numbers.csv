@@ -1,0 +1,124 @@
+value,meaning,source_path:line
+0.11,"per-category B84 budget",TT:paper/sections/06_strategy_wp.tex:118
+1e5,"hits per event at pile-up 200, order of magnitude",TT:paper/sections/07_backgrounds.tex:4
+4.08e7,"N_trig, SM events after trigger and preselection",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:n_trig.value
+2.5e7,"Z(nunu)+jet part of N_trig",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:n_trig.breakdown.Znunu_j.N_trig
+4e8,"one fake in about this many triggered events (computed N_trig/0.11)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:n_trig.value
+2.3,"reference sigma_ln in the rule",TT:paper/sections/06_strategy_wp.tex:119
+0.011,"median allowed at sigma_ln 2.3 (computed)",TT:acts/stage4/STAGE4_RESULTS.md:262
+2.7e-10,"pile-up fakes per trial if pile-up took the whole budget",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2.requirement_if_PU_takes_SRG_budget
+172,"direct fakes per trial at R04",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[3].B1_per_trial
+11.8,"decades from 172 to 2.7e-10 (computed)",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[3].B1_per_trial
+48000,"direct pile-up trials",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:samples.B1_trials
+35,"direct count at R07",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[6].B1_groups
+6000,"trials at rho=2",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:samples.B2_trials
+1.7e-10,"thinning reach per trial, estimate",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2.value
+20,"interactions assumed in the reach, 2^-20 about 1e-6",TT:acts/stage4/STAGE4_RESULTS.md:261
+R06,"deepest rung with ten counts at rho=2",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.reach.deepest_reachable_rho2
+R07,"deepest rung with ten direct counts",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.reach.deepest_B1_ge10
+|z|<2,"pre-registered closure criterion",TT:paper/sections/07_backgrounds.tex:37
+8234601,"direct count at R04",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.T1.N_obs
+5489513,"thinning prediction at R04",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.T1.N_pred
+1.500,"closure ratio at R04",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.T1.ratio
++52.8,"closure z at R04",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.T1.z
+1.606,"closure ratio at R05",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.T1w.ratio
++59.4,"closure z at R05",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.T1w.z
+2.41,"compounded closure factor from R05 on",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.compounded_ge_R05
+0.63,"closure ratio at R06 (exp ln_r)",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.trend.points[2].ln_r
+0.39,"closure ratio at R07 (exp ln_r)",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.trend.points[3].ln_r
+1.985,"trend intercept",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.trend.intercept_at_x0
+-0.361,"trend slope per rung",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.trend_slope
+about 1%; 17%,"errors on ln r at R04 to R06 and at R07, weights of the fit (0.0077 0.0080 0.0110 0.170)",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.trend.points[].sig;TT:acts/stage4/WP_RULE.md:531-534
+1.26,"trend sigma_ln at R09",TT:acts/stage4/STAGE4_RESULTS.md:162
+6.31,"trend sigma_ln at R23",TT:acts/stage4/STAGE4_RESULTS.md:166
+550,"exp(6.31) (computed)",TT:acts/stage4/STAGE4_RESULTS.md:166
+1.196,"factorisation correlation factor f_corr (test on layer pairs and triples, WP_RULE.md:537-539)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.c_factor
+2000; 375 and 1625,"events per SM sample; the split of W(tau nu) by tau decay, leptonic and hadronic",TT:acts/stage4/investigation/INV_STATS_BKG.md:230-232;TT:LOG.md:258
+15 to 45%,"share of proxies in the SM term",TT:acts/stage4/STAGE4_RESULTS.md:642
+1.9e9,"SM term at R04",TT:paper/sections/07_backgrounds.tex:72-73
+500,"events per single-interaction topology with pile-up",TT:paper/sections/07_backgrounds.tex:86
+30.3,"vertex pairs per triggered event in the road",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:cprime.pvpair.rate_t
+1.59,"decays in flight per triggered event in the road",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:cprime.dif.rate_t
+0.38,"photons per triggered event in the road",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:cprime.gamma.rate_t
+1.14,"zero-count bound coefficient (one-sided 68%)",TT:paper/sections/06_strategy_wp.tex:115-116
+0.949,"fraction of decay-in-flight generator events passing the hit-level requirement, f_pre",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:cprime.dif.f_pre;TT:acts/stage4/WP_RULE.md:591-592,604-606
+81,"candidates of 500 at R05 for decays in flight",TT:paper/sections/07_backgrounds.tex:87-88
+6.5e7; 6.2e7,"decays in flight, before and after that requirement (computed)",TT:acts/stage4/investigation/INV_STATS_BKG.md:225
+35; 2/35; 126; 32/126; 12/32; 0/35,"plane-fit counts of the two routes at R11: main route R09 on R07's 35, R10 and R11 on the 126 of R06 and R09; factorisation route R11 in one step on its 35",TT:acts/stage4/investigation/INV_STATS_BKG.md:158-167
+one bound per term; a zero set to 1,"a zero entered as 1 credits less rejection than one or two counts on the same candidates",TT:acts/stage4/investigation/INV_STATS_BKG.md:175-176
+1.7e5,"decay-in-flight bound at R09",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3.C' dif.central
+"table, rows R04 to R23","pile-up central, sigma_ln, B84 late-hit, B84 general, largest term",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.{T|G}[r].B84 and terms; TT:paper/sections/07_backgrounds.tex:117-123
+(0.6-3)e4,"late-hit pile-up reduction, up to R06",TT:acts/stage4/STAGE4_RESULTS.md:185
+4.9,"decades of pile-up, R04 to R07",TT:paper/sections/07_backgrounds.tex:100-101
+1.23e6,"minimum B84, both categories, at R09",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:ladder.SR-G.min_B84
+7.05,"decades over 0.11",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:ladder.SR-G.decades_over_0p11_at_min
+8.0e2,"pile-up central at R23",TT:acts/stage4/STAGE4_RESULTS.md:166
+8.12,"pile-up sigma_ln at R23",TT:acts/stage4/STAGE4_RESULTS.md:166
+2.7e6,"pile-up alone at the 84th percentile at R23 (computed 803 exp 8.12)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G[22].terms[0]
+117,"ratio of the two extrapolation routes at R11 (not a measured effect: a legitimate model difference)",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[10].P_fact/P_main;TT:acts/stage4/investigation/INV_STATS_BKG.md:152-167
+0.0054; 1,"plane-fit rejection credited by the main route; by the other route",TT:acts/stage4/investigation/INV_STATS_BKG.md:161
+six,"helix and opening rungs R15 to R20 that earn no credit",TT:paper/sections/07_backgrounds.tex:54
+2.2e9,"events to bring decays in flight alone to 0.11",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3.C' dif.events_needed_alone
+1.05,"sigma_ln of decays in flight at R09",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3.C' dif.sigma_ln
+35,"needed over nature for decays in flight (computed; INV_STATS_BKG gives about 36)",TT:acts/stage4/investigation/INV_STATS_BKG.md:225
+2,"needed over nature for vertex pairs (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3.C' pvpair.events_needed_alone
+7 to 25,"needed over nature for conversions 7.1, Z(nunu) 14, pile-up 25 (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3
+2.3e3,"pile-up alone B84 at R09",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach.R09_p>1e-3.PU_alone_B84
+4.3,"decades over budget, pile-up alone",TT:acts/stage4/STAGE4_RESULTS.md:232
+1e9,"trials needed for pile-up alone",TT:acts/stage4/STAGE4_RESULTS.md:226
+4.8e4,"trials now",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:samples.B1_trials
+42 s,"pile-up event with four roads (Chapter 25)",TT:acts/stage4/HASH_ADDENDUM.md:149-150
+3e6,"CPU-hours for 1e9 trials (computed, estimate)",TT:acts/stage4/HASH_ADDENDUM.md:149-150
+990,"production CPU-hours (Chapter 25)",repo:REPRODUCE.md:11-12
+1.7,"irreducible trend and density sigma_ln",TT:acts/stage4/STAGE4_RESULTS.md:226
+0.02,"median needed at sigma_ln 1.7",TT:acts/stage4/STAGE4_RESULTS.md:226
+40,"hypotheses",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.n_points
+2.0e6,"lowest fallback B84 (9.4 mm width cut)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_B.FB3&h>5&o>5
+6.4e7,"highest fallback B84 (no width cut), general category; late-hit 3.5e6",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_B.FB0&h>5&o>5;TT:acts/stage4/STAGE4_RESULTS.md:794
+5000,"hybrid toys per point",TT:paper/sections/06_strategy_wp.tex:149
+790,"best mu95/N_exp, E 200 GeV at 1.5 keV",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.best_mu95_over_Nexp.value
+18.75 mm,"fallback width cut at the best point",TT:acts/stage4/STAGE4_RESULTS.md:202
+9/200,"fallback efficiency at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.k_rfb
+710,"selected signal events at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.S_at_rfb
+1.25e7,"mu95 from toys at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.mu95_toys_events
+"[8.6e5, 1.9e8]","toy one-sigma band",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.mu95_toys_band1s
+1.58e4,"N_exp at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.N_exp_3ab
+1.7e5 fb,"sigma95 at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.sigma95_fb
+219 fb,"sigma_norm at the best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.sigma_norm_fb
+37.6,"ratio before the tail-fraction fix",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.best_mu95_over_Nexp.value_before_fix_r3_norm
+820,"second-best ratio, E 200 GeV at 2 keV",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|2|BM.mu95_over_Nexp
+6e7,"worst ratio, E 1500 GeV at 0.85 keV",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|1500|0.85|BM.mu95_over_Nexp
+7 and 33,"points with zero efficiency and with a limit",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:outcome.n_points_eps0_both_bins
+5.91e5,"median background, general, best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.B_median_rfb.G
+8.87e6,"B84, general, best point",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.B84_rfb.G
+2.71,"ln(B84/median) at the best point (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM
+1.31e7,"formula for mu95, and stored asymptotic value",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.mu95_asymptotic_events
+"[8.6e5, 2.0e8]","formula for the band (computed in checks/ch27_checks.py)",checks/ch27_checks.py
+830,"B_m over S at the best point (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM
+"[0.030, 0.065]","68% interval on the efficiency",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM.eps_rfb_cp68
+1.5,"factor on the ratio from the efficiency interval",TT:paper/sections/08_results_p2.tex:77-78
+36,"efficiency an exclusion would need",TT:paper/sections/08_results_p2.tex:79
+910 to 950,"ratio with the full-chain loss, estimate, not applied",TT:paper/sections/08_results_p2.tex:79-80
+23,"points with signal in both categories",TT:paper/sections/08_results_p2.tex:131
+8e2,"background an exclusion at the best point would need, estimate",TT:paper/sections/10_bounds.tex:23-24
+6e5,"median background at the best point",TT:paper/sections/10_bounds.tex:24-25
+1 TeV,"exclusion reach of E with zero background, estimate",TT:paper/sections/10_bounds.tex:19-21
+3.59e7,"stored mu95 for E 200 GeV at 1 keV (exercise)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1|BM.mu95_toys_events
+8.12e5,"median background, general, E 200 GeV at 1 keV (exercise)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1|BM.B_median_rfb.G
+2.54e7,"B84, general, E 200 GeV at 1 keV (exercise)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1|BM.B84_rfb.G
+4/188,"fallback efficiency, E 200 GeV at 1 keV (exercise)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1|BM.k_rfb
+19 s; 1300 CPU-years,"single-interaction event with pile-up, middle of 18.5 to 20 s (exercise); 2.2e9 events at that cost (computed)",TT:acts/stage4/G1B_REPORT.md:154;TT:acts/stage4/G1B_REPORT.md:155
++50%; two steps,"pre-declared remedy for an anti-conservative closure, declined",TT:acts/stage4/WP_RULE.md:542-544;TT:acts/stage4/STAGE4_RESULTS.md:716
+4.76,"model spread from R11 on; ln(117)",TT:paper/sections/07_backgrounds.tex:53-54
+0.47,"largest closure part of sigma_ln, not drawn in Fig. 27.2b; normalisation 0.26",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G[*].terms[0].comps
+2,"largest ratio of late-hit to general B84 past R13 (computed: 1.97 at R20)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder
+35/48000; 1.14/35; 1,"factorisation route at R11: direct start; bound; plane-fit tie",TT:acts/stage4/investigation/INV_STATS_BKG.md:158-159
+2/35; 32/126; 12/32,"main route plane-fit counts at R11",TT:acts/stage4/investigation/INV_STATS_BKG.md:159-160
+2.84e-5; 2.44e-7,"P_fact and P_main per trial at R11",TT:acts/stage4/investigation/INV_STATS_BKG.md:153;TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[10]
+2.8e3 (2796),"general category pile-up term at R11",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G[10].terms[0];TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_end_state.end_state.R11_p>0.05.B
+toys; estimated prong counts,"nuclear interactions and decays in flight are not in Fatras and are modelled by toys, with and without pile-up (ESTIMATE on prongs)",TT:paper/sections/07_backgrounds.tex:79-82;chapters/ch20_matter.tex:91
+5%,"veto loss assumed in N_trig; N_trig is generator-level Pythia and an ESTIMATE as physics",TT:paper/sections/07_backgrounds.tex:65;TT:acts/stage4/STAGE4_RESULTS.md:644;TT:acts/stage4/STAGE4_RESULTS.md:647-648
+0.389,"main route's start at R06: the thinned rate per trial",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[10].main_factors[0]
+35/11858; 1.14/35,"main route's next two factors at R11",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[10].main_factors[1:2]
+1.15e-3; 7.3e-4,"main route at R07 (computed 0.389 x 35/11858); the direct count there, 35/48000",TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[10].main_factors;columns[10].fact_factors[0]
+R01 to R03; from R04,"candidate (union) counts with no merging; distinct hit sets, governing for the closure test",TT:acts/stage4/WP_RULE.md:254-264;TT:data/acts_stage4/analysis/C12FC_v1/background.json:columns[0:6]

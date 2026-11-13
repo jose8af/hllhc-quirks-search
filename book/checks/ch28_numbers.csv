@@ -1,0 +1,148 @@
+value,meaning,source_path:line
+7.05 decades,"lowest B84 over the budget 0.11",TT:paper/sections/13_conclusions.tex:22
+23.5 CPU-h; budget 35,"event generation, actually used",TT:REPRODUCE.md:112;TT:sim/plan.md:359
+2.07e6 events; 2 h 48 min; 18 CPU-h,"generation production run; 18 is wall x cores (ESTIMATE)",TT:sim/plan.md:209;TT:sim/E4_session_log.md:21
+2.41e6 events; 5.5 CPU-h,"all LHE events; later additions, itemised on the next line",TT:REPRODUCE.md:112;TT:LOG.md:131;TT:sim/VALIDATION.md:624-625
+3.2; 1.2; 0.5; 0.2; 0.2 CPU-h,"the about 5.5 itemised, each part approximate (they sum to 5.3): top-ups at 200 and 300 GeV with the interpolation check at 550 GeV; re-showers; QED and regeneration tests; alps weights; probes",TT:sim/VALIDATION.md:622-625
+0.035 s,"generation per event (computed: 23.5 h / 2.41e6)",TT:REPRODUCE.md:112
+about 15 CPU-h; -1.1 +- 0.8 %,"QED re-shower not run; one-sided systematic on l_max",TT:sim/DEFERRED.md:21;TT:LOG.md:133
+583 CPU-h,"string propagation (recomputed from chunk times)",TT:data/sim_stage3/STAGE3_INDEX.json:points.*.chunks.cpu_s
+33.8 h; 00:07 on the 13th,"laptop launch to last PC chunk (computed; created_utc at -05)",TT:LOG.md:137;TT:data/sim_stage3/STAGE3_INDEX.json:points.*.chunks.created_utc
+161 ns; 173 ns,"per step, laptop and PC (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:totals
+1.24e13; 218 571,"steps and events of the string",TT:data/sim_stage3/STAGE3_INDEX.json:totals
+330; 402; 498; +96 not +5,"string CPU estimates before production; step change",TT:LOG.md:134;TT:LOG.md:136;TT:LOG.md:137
+0.32; 7.7; 31; 6.6; 77; 155; 182 s,"string CPU per event at 1; 3; 5; 7; 20; 30; 40 keV at the production step (computed; p2 BM points)",TT:data/sim_stage3/STAGE3_INDEX.json:points
+371 CPU-h; 64%; 6%,"string CPU and events at Lambda >= 15 keV; all on the PC (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:points
+13 to 23 keV,"truth merging edge: 12.8 to 22.9 (book Table 26)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.edges_A1_R04.*.truth_merge100_median
+4.7 to 6.6 keV,"finder upper edge without pile-up",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:p2_detector.edges_A1_R04.*.upper
+5 keV,"top of the pile-up signal grid",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points
+12 CPU-h,"string cost of the 200 rows at the 40 grid points (computed: 12.1)",TT:data/sim_stage3/STAGE3_INDEX.json:points;TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points
+1 to 3 person-months; 6 to 12 weeks,"CMSSW Geant4 port; custom ACTS stepper: ESTIMATE by the study",repo:stage2_C001_quirks/phase1_strategy/outputs/OPEN_QUESTIONS.md:34;TT:LOG.md:125
+382 CPU-h,"detector chain production; sum of job walls",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:production.cpu_h_total
+57.4 h,"detector chain wall: 8.0 + 24.7 + 23.3 + 1.41 (first run computed from start and C1b length)",TT:LOG.md:271;TT:LOG.md:272;TT:LOG.md:279;TT:acts/stage4/C1_LAUNCH.md:35
+10 CPU-h,"numerics for the thickness law",TT:REPRODUCE.md:114
+about 50 CPU-h,"development and pilot (computed sum of 3.5; 1.3; 1.2; 1.0; 30.4 + 3; 5.5 + 0.22; 1.3 + 1.1 + 1.6; 0.2)",sources/constraints_audit.txt:326
+5.8 h; 2.5 to 3 h,"pilot wall; expected",TT:acts/stage4/g3/G3_REPORT.md:198;TT:LOG.md:196
+2497 s,"frozen analysis, one run",TT:acts/stage4/STAGE4_RESULTS.md:781
+under 30 s,"figures CPU",TT:stage5/FIGURES_FINAL.md:12
+374; 241; 39; 31; 23; 39 h,"job estimates per worker under load: total; pile-up; density; SM; single-interaction; signal (computed; val placeholder excluded)",TT:acts/stage4/jobs/C1a.json;TT:acts/stage4/jobs/C1b.json;TT:acts/stage4/jobs/C2B.json;TT:acts/stage4/jobs/A2FC.json
+89%,"background share of those estimates (computed)",TT:acts/stage4/jobs/C1a.json;TT:acts/stage4/jobs/C1b.json;TT:acts/stage4/jobs/C2B.json;TT:acts/stage4/jobs/A2FC.json
+about two thirds (241 of 374 h),"pile-up share of the job estimates, in the statement of the longest wait (computed)",TT:acts/stage4/jobs/C1a.json;TT:acts/stage4/jobs/C1b.json;TT:acts/stage4/jobs/C2B.json;TT:acts/stage4/jobs/A2FC.json
+10.2 s; 8.02 s; 42.3 s; 119.8 s,"chain; road; pile-up event at rho 1; event at rho 2 (computed from the runner constants; per-worker constants under the seven-worker load, measured in the pilot; the two totals are sums)",TT:acts/stage4/run_stage4.py:58-64;TT:acts/stage4/run_stage4.py:172
+277 h; 74%,"finder share of the job estimates (computed from the job formulas)",TT:acts/stage4/run_stage4.py:99-108;TT:acts/stage4/run_stage4.py:172-192
+1.5 to 12 ms; 18.5 to 20 s,"gun event without and with pile-up, loaded",TT:acts/stage4/G1B_REPORT.md:154;TT:acts/stage4/G1B_REPORT.md:155
+375.5 h; 290 h,"PC process time; estimated laptop hours",TT:data/sim_stage3/STAGE3_INDEX.json:totals.pc
+373 hours,"three main runs logged (computed: 55.5 + 172.1 + 145.0)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:production.cpu_h_by_campaign
+197 hours,"same in one-process units: ESTIMATE",TT:acts/stage4/C1_LAUNCH.md:59-61
+5500 s; 211 s; 3.76 s; 24 trials,"finder per trial: as coded; vectorised merge; rewrite; equivalence set",TT:acts/stage4/G2A_REPORT.md:9-14
+5.5 s; 8.02 s; 1.45,"finder per trial under load at T_seed 6 and 4",TT:acts/stage4/g3/G3_REPORT.md:171
+1.2 to 1.3; no factor 2,"further finder speed-up in the report",TT:acts/stage4/G2A_REPORT.md:106-108
+six; four; four,"review and fix rounds on analysis code; results; paper",TT:LOG.md:275;TT:LOG.md:323;TT:LOG.md:326
+37.6 to 790,"best ratio before and after the normalisation fix",TT:LOG.md:322
+nine rounds,"plan reviews R1 to R9 on one date",TT:LOG.md:147-175
+14:19; 18:19; 00:29; 08:55; 15:00,"string start; rule frozen; production start; production end; paper pass",TT:LOG.md:137;TT:LOG.md:195;TT:acts/stage4/C1_LAUNCH.md:35;TT:LOG.md:272;TT:LOG.md:326
+56.4 h,"production span (computed)",TT:acts/stage4/C1_LAUNCH.md:35;TT:LOG.md:272
+1.41 h,"full-chain reruns",TT:acts/stage4/A2FC_REPORT.md:46;TT:LOG.md:279
+119 h; 8.3 h 7%; 47%; 6 h 5%; 48 h 40%,"window from 16:12 on the 13th to 15:00 on the 18th; gates; production; to paper pass; left (computed; 15:00 is our reading of afternoon)",TT:LOG.md:178;TT:LOG.md:267;TT:LOG.md:326
+47 h; 9.5 h; noon Friday,"plan's production window; head start on Wed 10:00; plan's stop",TT:acts/stage4/plan.md:2003;TT:acts/stage4/plan.md:2017
+263; 28; 7,"events passing the fallback over the 40 points; points with at most 10; with none (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.*.k_rfb
+36 h; 51 h,"wall for two deferred samples (14 + 22); time left after the reruns: our reading",TT:acts/stage4/jobs/C2.json;TT:acts/stage4/plan.md:1651;TT:acts/stage4/A2FC_REPORT.md:46;TT:LOG.md:267
+24 GB; seven workers,"laptop memory and workers",TT:REPRODUCE.md:24;TT:acts/stage4/C1_LAUNCH.md:39
+64%,"PC share of string CPU (computed)",TT:data/sim_stage3/STAGE3_INDEX.json:totals
+24 h; 168 CPU-h; 27 to 30 h,"cap; capacity per day; later acceptance",TT:LOG.md:155;TT:acts/stage4/plan.md:1621;TT:LOG.md:198
+8.0; 24.7; 23.3 h,"three main runs; the first computed",TT:LOG.md:271;TT:LOG.md:272;TT:acts/stage4/C1_LAUNCH.md:35
+17 Oct; 4.5 days; moved to 18 Oct,"deadline; the first entry adds that the author keeps a day for questions; the move sits in the entry on the usage limit, with no stated link",TT:LOG.md:160;TT:LOG.md:266-267;sources/constraints_audit.txt:108-109
+19 GB; 4 GB; 2.84; 3.6 to 3.8,"memory budget; per double-density job; pilot throughput",TT:acts/stage4/g3/G3_REPORT.md:200-201
+0.4 TB; 128 GB,"all candidates; free disk",TT:acts/stage4/G2A_REPORT.md:113-114;TT:acts/stage4/WP_RULE.md:773
+R03 records,"not stored, so no factorisation test at R05",TT:acts/stage4/g3/G3_REPORT.md:144
+99 h; 14 h,"two more W samples, all five to 5000 (computed, sm jobs)",TT:acts/stage4/jobs/C2.json;TT:acts/stage4/plan.md:1630
+163 h 23 h; 157 h 22 h; 128 h 18 h,"plan table at t1 = 8 s: deeper pile-up; rest of grid; rho = 3: ESTIMATE",TT:acts/stage4/plan.md:1651
+1.7e-10; 1e-10,"thinning reach now and with more pile-up",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2;TT:acts/stage4/plan.md:1667
+14 masses against 5,"edges in ln m",TT:acts/stage4/plan.md:1669
+1.0 h; 1.4 h,"mass-fit toys; material variation; wall at the plan's 2 s per trial",TT:acts/stage4/plan.md:2044
+about 1 decade,"deeper pile-up: ESTIMATE by the study",TT:paper/sections/13_conclusions.tex:34
+192 h; 109 h; 300 h; 3.2,"ten times the signal rows: ESTIMATE, ours (9 x 21.3; 9 x 12.1)",TT:acts/stage4/jobs/C1a.json;TT:data/sim_stage3/STAGE3_INDEX.json:points
+9 of 200; factor 1.5,"best point; 68% interval",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points.A2|F|200|1.5|BM
+3.4e4 h; 200 days,"every background sample x100 (computed): ESTIMATE",TT:acts/stage4/jobs/C1a.json;TT:acts/stage4/jobs/C1b.json;TT:acts/stage4/jobs/C2B.json
+1.23e6,"lowest B84, at R09",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+0.11,"budget per category",TT:paper/sections/13_conclusions.tex:22
+1.1e7,"statistics factor to the budget at R09 (computed from 1.23e6/0.11; ESTIMATE, zero persists)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+21,"stored terms at R09, general category",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+335 h,"job estimates on background samples (computed)",TT:acts/stage4/jobs/C1a.json;TT:acts/stage4/jobs/C1b.json;TT:acts/stage4/jobs/C2B.json
+4e9 h,"335 x 1.1e7 (computed, ESTIMATE)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+2.3e3,"B84 of pile-up alone at R09",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:statistics_reach
+sigma_ln about 1.7,"trend and density widths left over for pile-up: ESTIMATE",TT:acts/stage4/STAGE4_RESULTS.md:235
+2.41,"closure factor",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:closure.compounded_ge_R05
+5.4e5 events; about 2 h,"no-pile-up gun samples",TT:acts/stage4/jobs/C1a.json:Cp0
+4000 events; 21 h,"single-interaction samples with pile-up",TT:acts/stage4/jobs/C1a.json:CpPU
+about 2 decades,"gun-sample conditionals on those bounds: ESTIMATE by the study",TT:paper/sections/13_conclusions.tex:35
+3.7e4 crossings; 3 T,"ColliderML pile-up pool",repo:stage2_C001_quirks/phase2_exploration/outputs/SAMPLE_REQUIREMENTS.md:36;repo:stage2_C001_quirks/phase2_exploration/outputs/SAMPLE_REQUIREMENTS.md:43
+2.4 to 3.4e4 core-hours,"CMS Phase-2 sample scale: ESTIMATE by the study",repo:stage2_C001_quirks/phase1_strategy/outputs/OPEN_QUESTIONS.md:41
+10 then 15 workers,"Windows PC for the string",TT:data/sim_stage3/STAGE3_INDEX.json:meta.machines
+half a day; 20 h against 47 h,"PC under WSL2: ESTIMATE by the study",TT:acts/stage4/plan.md:1724;TT:acts/stage4/plan.md:1731
+$300; 90 days; 8 vCPU; 110 CPU-h,"cloud free trial and capacity: UNVERIFIED",TT:LOG.md:157
+$31 to $120,"cloud cost by scope: UNVERIFIED",TT:acts/stage4/review/FIX_S4PLAN_R3.md:165
+3 to 5 cents per vCPU-hour,"rented rate: ESTIMATE, ours; not in the records",sources/constraints_audit.txt:385
+about 550 h; 80 h; 5.5 h; $20,"four sample rows; on seven workers; on 100 cores; rented (computed, ESTIMATE)",TT:acts/stage4/plan.md:1651;TT:acts/stage4/jobs/C2.json
+$1500; $1e8,"rented cost of x100 and of 4e9 h (computed, ESTIMATE)",sources/constraints_audit.txt:385
+30 minutes; 30 GB,"jobs and output volumes in the cloud plan",TT:acts/stage4/review/FIX_S4PLAN_R3.md:161-162
+46 GB,"raw data on the external drive",TT:DATA_LOCATION.md:3
+47%,"transfer uncertainty, disappearing tracks",sources/BOTTLENECK_NOTES.md:81
+95%; 0.15 rad,"quantile and half-width of the road: the pair's angle to MET",TT:paper/sections/06_strategy_wp.tex:45-46
+about 20 roads; T = 0.05,"sideband illustration: ESTIMATE, ours (2 pi / 0.30); roads with no plane axis in common",TT:paper/sections/06_strategy_wp.tex:45-46
+0.69 rad; 4.6 roads,"hit half-width of a road at r = 146.5 mm, 0.15 + arcsin(75/146.5); share of roads spaced 0.30 rad apart holding one such hit (computed)",TT:acts/stage4/finder/kernels.py:261;TT:acts/stage4/finder/kernels.py:280;book:chapters/ch21_tracking.tex:110
+0.044,"flat-shape transfer in the CMS search (book Chapter 22)",sources/BOTTLENECK_NOTES.md:81
+8e-7,"transfer from the direct count down the ladder (book Chapter 22)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+4.08e7,"triggered events",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:n_trig
+8.2e8; 1.7e4; 0.17; 1.6; 0.0025; 1.8e6,"sideband trials; over the study's trials; B84; over budget; signal leak; CPU-h: ESTIMATE, ours",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:n_trig;TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:samples.B1_trials
+1e9,"trials simulation would need for pile-up alone",TT:acts/stage4/STAGE4_RESULTS.md:226
+about 1 TB,"2017E ZeroBias RAW record",TT:opendata/STAGE6_FEASIBILITY.md:66
+10 to 60,"pile-up of released data: UNVERIFIED",TT:opendata/STAGE6_FEASIBILITY.md:90
+2.7e-10,"allowed fakes per trial if pile-up takes the budget",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2
+2.7e6 events; 307 GB,"2012B MinimumBias RAW record, used as a sample size",TT:opendata/STAGE6_FEASIBILITY.md:65
+none stated,"event count of the 2017 ZeroBias RAW record",TT:opendata/STAGE6_FEASIBILITY.md:66
+1.14,"zero-count factor at 68% (book Chapter 23)",TT:paper/sections/06_strategy_wp.tex:115-116
+one to two weeks; three to five weeks,"efforts of the open-data checks: ESTIMATE",TT:opendata/STAGE6_FEASIBILITY.md:113;TT:opendata/STAGE6_FEASIBILITY.md:119
+2 to 3 people for 2 to 3 years,"Run 3 search: ESTIMATE by the study",repo:stage2_C001_quirks/phase1_strategy/outputs/OPEN_QUESTIONS.md:18
+only data can anchor it,"quotation",repo:stage2_C001_quirks/phase1_strategy/outputs/OPEN_QUESTIONS.md:21
+Run 3 skims,"cluster-level MET skims defined; existence UNVERIFIED",repo:stage2_C001_quirks/phase1_strategy/outputs/STRATEGY_DRAFT.md:46;repo:stage2_C001_quirks/LOG.md:13
+still open,"CMS-internal check",TT:REPRODUCE.md:552
+50,"pile-up of the original background simulation",sources/BOTTLENECK_NOTES.md:80
+z = +52.8,"closure test at R04",TT:data/acts_stage4/analysis/C12FC_v1/background.json:closure.T1.z
+2 to 2.3 decades; up to 4 decades,"conditionals; time-tag credit: ESTIMATE by the study",TT:acts/stage4/STAGE4_RESULTS.md:747-750
+0.08; 0.3; 20 of 40,"fallback efficiency maximum; barrel ceiling; points with S >= 3",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:fallback_points;TT:paper/sections/13_conclusions.tex:38
+about a week,"merged-pair selection",TT:acts/stage4/plan.md:1849
+69%; 3.2; 250,"events beyond the barrel; gain if they had the barrel's efficiency; best ratio (3.2 and 250 are ESTIMATE, ours)",TT:acts/stage4/plan.md:1855
+about 6; about 5; 3.8; 4.3; 3.7 decades,"recorded gains applied to the stored R09 terms: ESTIMATE, ours (computed in checks/ch28_checks.py and figure_src/ch28/remedies.py)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G;ladder.T
+4.6e4,"Standard Model central value at R09 (computed)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G
+0 to 2 and 4 to 5 decades,"what remains after the simulation steps: ESTIMATE by the study, flagged stale",TT:paper/sections/13_conclusions.tex:39-40;TT:acts/stage4/STAGE4_RESULTS.md:759-761
+3 to 4 decades,"pile-up remainder after a deeper sample, quotation",TT:acts/stage4/STAGE4_RESULTS.md:745-746
+50 and 50,"planned independent finder check; not run; regression check partial",TT:acts/stage4/plan.md:1812;TT:paper/sections/12_limitations.tex:37
+12 to 30 CPU-h,"string needed for detector work only: 12.1 for 200 rows, 29.75 for those points in full; ESTIMATE, our proposal",TT:data/sim_stage3/STAGE3_INDEX.json:points;sources/BOTTLENECK_NOTES.md:74
+x100-200; middle 150,"conditionals on the single-interaction bounds (figure uses the middle)",TT:acts/stage4/investigation/INV_STATS_BKG.md:243-244
+2000 to 5000; 12000 to 20000,"sample sizes of the deferred campaigns: Standard Model; pile-up",TT:acts/stage4/plan.md:1510-1512
+7 October; 8 October,"this study branched from the CMS-based plan; last log entry of that stream before the data move",PH:LOG.md:4;PH:LOG.md:25-27
+23 to 60 s; 1.6 to 3.4 s; 32,"track finding per event on whole cylinders; with azimuthal sectors; number of sectors",TT:LOG.md:147;TT:paper/sections/05_detector_chain.tex:23-24
+1 in 700; sector boundaries,"navigation crash and its cause",TT:LOG.md:199-200;TT:paper/sections/05_detector_chain.tex:94
+12 and 21.5 ms; 4 us,"counting weights at double density per hit set, Monte Carlo; exact calculation",TT:LOG.md:176-177;TT:LOG.md:182
+975 s; about 4 min,"a chunk of 50000 events through MadGraph's own shower step; with parallel Pythia jobs",TT:sim/E4_session_log.md:16;TT:sim/E4_session_log.md:19
+142 to 74 ns,"string recorder per step",TT:LOG.md:136
+13.6 to 0.1 s,"Pythia start-up with cached initialisation",TT:LOG.md:185
+0.463; 0.421; MadGraph 2.9.22,"matching acceptance on the same events with the study's card and MadGraph's rewritten card; the version with the pitfall",TT:sim/E4_session_log.md:17
+restart; 2 h 48 min,"restart after the first attempt, outputs deleted; wall clock from the restart",TT:sim/E4_session_log.md:17-18;TT:sim/E4_session_log.md:21
+17%; -1.1 +- 0.8%; largest median shift; about 15 CPU-hours,"events with a photon from a quirk in a test at 500 GeV; one-sided systematic; re-shower",TT:sim/E4_session_log.md:24;TT:sim/DEFERRED.md:18-23
+1.4e7,"more statistics for all bounded single-interaction and Standard Model terms at R08 and R09, the study's report",TT:acts/stage4/STAGE4_RESULTS.md:229-231;TT:acts/stage4/investigation/INV_STATS_BKG.md:238
+1.57e6,"minimum B84 before the looper correction",TT:acts/stage4/investigation/INV_STATS_BKG.md:252;TT:acts/stage4/STAGE4_RESULTS.md:793
+lxplus; CMS account; Linux only; daemon not running; 1 to 3 h,"install routes of 11 October: LCG views and CVMFS, Docker, source build (ESTIMATE by the study); PyPI wheel used",TT:acts/INSTALL_CHECK.md:1;TT:acts/INSTALL_CHECK.md:38;TT:acts/INSTALL_CHECK.md:41-43
+27; 2000 events; one road,"rho=3 trial against a normal trial (t3 = 3.4 t2, t2 = 8 t1); C5 scope",TT:acts/stage4/plan.md:1581;TT:acts/stage4/plan.md:1636;TT:acts/stage4/plan.md:1642
+0.6; 0.8; 1.7,"decades a deeper sample takes off the pile-up term alone at R09; R14; R23: ESTIMATE, ours (closure factor and trend and closure widths removed; computed in checks/ch28_checks.py)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.G;TT:acts/stage4/STAGE4_RESULTS.md:248
+20,"n_int in the study's reach estimate (2^-20)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2
+16 to 23,"different collisions in the best false planes of an early probe, as in checks/ch22_numbers.csv:20",TT:acts/stage4/plan.md:679
+3e16,"(200/30)^20 (computed)",TT:data/acts_stage4/analysis/STAGE4_SUMMARY.json:pu_reach_per_trial_rho2
+1.08e7,"trials in the RAW example: 2.7e6 events x 4 roads (computed)",TT:opendata/STAGE6_FEASIBILITY.md:65
+about 90 h; about 390 h,"ten times the rows at the nine full-chain points (9 x 10.0, computed from A2FC); all of row 6 with them: ESTIMATE, ours",TT:acts/stage4/jobs/A2FC.json;TT:acts/stage4/jobs/C1a.json;TT:data/sim_stage3/STAGE3_INDEX.json:points
+21 of 374,"the signal grid's share of the job estimates; 9 x 21.3 = 192 (computed)",sources/BOTTLENECK_NOTES.md:34;TT:acts/stage4/jobs/C1a.json
+4.3; 3.8,"decades above budget in the late-hit category at R09: conditionals and full credit; with a deeper sample as well: ESTIMATE, ours (computed in checks/ch28_checks.py)",TT:data/acts_stage4/analysis/C12FC_v1/bsum_wp.json:ladder.T;TT:acts/stage4/STAGE4_RESULTS.md:749-750
+about 1e-4 per window edge; up to four decades,"late-hit credit: prompt Standard Model and single-interaction terms given the pile-up per-hit late fraction, late-hit category only (ESTIMATE by the study)",TT:acts/stage4/STAGE4_RESULTS.md:749-750
+8 s,"trial speed production reached, against the plan's 2 s behind the 20 h and 47 h",TT:acts/stage4/run_stage4.py;TT:acts/stage4/plan.md:1731
+with job overhead,"the 2 hours of gun samples include it: 0.012 s per event measured, 14 ms per event in the job estimate",TT:acts/stage4/G1B_REPORT.md:154;TT:acts/stage4/jobs/C1a.json

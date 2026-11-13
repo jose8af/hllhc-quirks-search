@@ -1,0 +1,252 @@
+\chapter{Constraints, money plots and the final account}\label{ch:29-account}
+
+\newcommand{\auditgroup}[1]{\multicolumn{4}{@{}l}{\rule{0pt}{11pt}\textit{#1}}\\*}
+
+Chapter~\ref{ch:28-bottlenecks} followed the hours. This chapter closes the study, and the book, with three things. The first is every restriction the study imposed, in one table, with the reason the records give, its cost where known, and what lifting it would take. The second is the set of plots that carry the study's message, each with what it says and what it does not, together with the one plot the study could not make and a substitute for it. The third is the account of what was established, what failed and what was not established.
+
+Nothing was simulated for this chapter. Every number is read from a tracked file of the study, and the new calculations, chiefly the reach against an assumed background and the estimate of the endcap gain, are ours and carry the tag \EST.
+
+\section{The constraint audit}\label{sec:29-audit}
+
+A restriction here is a choice that narrowed what the study looked at or how it looked: a region of the signal left out, a sample kept small, a tool accepted with a known gap. Table~\ref{tab:29-audit} lists them by kind. Together with the failed tests of Section~\ref{sec:29-account}, it covers every entry of the study's own limitation index and list of limitations. The column ``why'' gives the cause, mostly in one of six classes: time, computing, person-time, public information, tool limit, or a physics or design choice (``design''). ``None recorded'' means that we searched the log, plans and reports and found no stated reason, and we do not supply one. Costs and efforts are the study's unless marked \emph{ours}.\index{constraint audit}
+
+Three readings of the table come first, since it runs over several pages. Most rows cost coverage rather than the conclusion. The extra Standard Model samples would lower those bounds by at most $2.5$, more pile-up moves the thinning reach by $0.2$ of a decade, and neither touches the single-interaction bounds that lead at R09: no row of the group on sample sizes produces a working point (our reading).
+
+The rows that do bear on the conclusion are few: no background from data, background samples of $500$ to $2000$ events, untested factorisation. They sit in Chapter~\ref{ch:28-bottlenecks}'s ranking, and only the first can settle the question.
+
+And many rows share a date. The cap, the laptop-only decision, the deadline, the barrel cut, the top-up and the frozen rule were all settled on 13 October, with the rest of the grid dropped that evening once the pilot's throughput was known. For the cap and the dropping of the cloud, the records give no reason, and we leave that as it stands. The log gives none for the date of the deadline either, and its move to the 18th sits in the entry on the usage limit, with no stated link; the author has since stated that it was a personal limit, set so that the work would not run on indefinitely. The PC's restriction has a recorded reason: ACTS has no Windows build, and running it under WSL2 was not recommended.
+
+\noindent\refstepcounter{table}\label{tab:29-audit}\marginnote{\textsc{Table~\thetable.} The constraint audit. An estimate is tagged \EST, and it is the study's unless marked \emph{ours}. Hours per worker are under production load (Table~\ref{tab:28-buy}). Rungs and the fallback are defined in Chapter~\ref{ch:25-chain}, and $\rho=3$ is a pile-up sample at three times normal density.}%
+The audit itself, group by group, is Table~\thetable.
+
+\begingroup\footnotesize
+\setlength{\tabcolsep}{3pt}\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{30mm}>{\raggedright\arraybackslash}p{16mm}>{\raggedright\arraybackslash}p{34mm}>{\raggedright\arraybackslash}p{25.6mm}@{}}
+\toprule
+restricted & why & cost, if known & to lift it\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\auditgroup{Signal regions left out}
+Barrel only: plane axis $|\eta|<1$ at every rung; no endcap finder or endcap ladder & time (the deadline) & Ceiling on $\Eff$ near $0.3$; $69\%$ of pairs with $|\eta_{\rm pair}|<2.5$ outside; signal $\times3.2$ if pairs outside had the barrel's efficiency (\EST, \emph{ours}) & Endcap and mixed seeds, an own ladder frozen first, pile-up rerun, new pre-registration\\[2pt]
+A second family of seeds on pixel layers 1 to 3, for planes that miss the fourth layer & time (same decision) & Not measured & Finder code, new freeze\\[2pt]
+Merged pairs: no selection & design, person-time & Upper edge $4.7$ to $6.6\keV$ without pile-up; $371$ CPU-hours at $\Lam\ge15\keV$ served only truth maps and no-pile-up samples & Merging-tolerant rung or a separate selection for merged pairs that look like one line, about a week\\[2pt]
+Wide pairs, $\lmax>\RIT$: two curved tracks, outside the finder & person-time, computing; the decision promised after the finder check is not recorded & Lower edge $0.6$ to $0.85\keV$, or $1.0$ to $1.2\keV$ at pile-up 200; $\Eff=0$ at $7$ of $40$ points, all at low $\Lam$ & New topology, own ladder, pile-up rerun: a week and $40$ CPU-hours (\EST, at the plan's faster finder)\\[2pt]
+No detector-level measurement of the thickness & design: resolution $23$ to $30\um$ equals the floor & Only the truth-level result exists; the law is untested in the detector & Better out-of-plane resolution; no plan recorded\\[2pt]
+Trigger on $\MET$ alone; no track trigger; hits over $25\ns$ late dropped & design & At $E$ 1500 only $26$ to $30\%$ have a timing hit in $1$ to $25\ns$; readout windows \UNV & Readout proposal, within CMS\\[2pt]
+One benchmark set: $E$ and $\Etil$, $\NIC=2$, charge $1$, $14\TeV$ & design & Not measured; another $\NIC$ rescales ratios by $2/\NIC$ & Model variants\\[2pt]
+\auditgroup{Grid and sample sizes}
+$40$ of the $307$ grid points at pile-up 200 & time, computing & Edges from $5$ masses, not $14$; one scalar mass; no limits between masses & $157$\,h per worker, $22$\,h on seven (\EST)\\[2pt]
+$200$ rows per signal point ($180$ to $200$ counted) & design: the programme's minimum & $263$ passes over $40$ points; the best ratio rests on $9/200$, a factor of $1.5$ either way; $25$ to $50\%$ of passing rows flip with redrawn noise & Ten times the rows, about $300$\,h (\emph{ours})\\[2pt]
+Background samples: $500$ per topology, $2000$ per Standard Model sample, pile-up $12\,000+3000$ events & computing under time & From R08 on every leading term is a zero-count bound, set by $N$ and not by the cut & $10^8$ to $3\times10^9$ events per term: not achievable\\[2pt]
+Deferred: more Standard Model events, more pile-up, material variation, pseudo-experiment samples, $\rho=3$ & time, computing; none recorded for the first & Two $W$ samples proxied; thinning reach $1.7\times10^{-10}$, not $10^{-10}$; no material effect on $\Eff$; no samples for testing a mass fit, though no fit exists either. No change to ``no working point'' (\emph{ours}) & $99$, $163$ and $128$\,h; pseudo-experiments and material $1.0$ and $1.4$\,h on seven, at the plan's faster finder\\[2pt]
+String samples at $\Lam\ge15\keV$: seven $E$ masses, three scalars, $200$ events, at two masses a second independent set of rows, meant for testing a fit & time & Merged-regime coverage only near $1\TeV$ & About $25$ CPU-hours per mass (\EST)\\[2pt]
+String step ten times coarser above $5\keV$ & design, computing & $31$\,s per event at $5\keV$, $6.6$\,s at $7\keV$: cost not monotonic in $\Lam$ & Finer step at $\ge7\keV$, about ten times the cost\\[2pt]
+Storage: hit records only past the end of counting and a loose shape cut; $1\%$ of loose candidates; no pile-up events & computing: $0.4$\,TB against $128$\,GB free & The factorisation test at R05 needs records from R03, which do not exist & More disk, new pre-registration (\emph{ours})\\[2pt]
+\auditgroup{Machine, calendar and people}
+Cap of about $24$\,h per production run & none recorded; self-imposed & Forced one-day runs of about $168$ CPU-hours; relaxed to $27$ to $30$\,h; runs took $8.0$, $24.7$ and $23.3$\,h & The author's decision\\[2pt]
+One laptop for the detector chain; cloud and PC dropped & PC: tool limit (no Windows build of ACTS; WSL2 not recommended). Cloud: none recorded & In the pilot, job walls were $1.85$ times the estimate (contention under load; the production's job estimates, $374$\,h, measured in the pilot under load, then matched its walls, $382$\,h, Section~\ref{sec:28-hours}); four double-density jobs at a time; with the PC $20$\,h, not $47$\,h, at $2$\,s per trial, the plan's speed; production reached $8$\,s (\EST) & Section~\ref{sec:28-procure}\\[2pt]
+Deadline: 17 October, moved to 18 October & the author's personal limit (stated later; no reason for the date in the log; the move sits in the entry on the usage limit) & $47$\,h of production with no margin; cited for the barrel cut and deferred samples; did not bind at the end (\emph{ours}) & None; it no longer applies\\[2pt]
+Agent usage limits & account usage limit & Hours lost on 7 and 8 October; a warning on the 15th led to an unattended run & Outside the study\\[2pt]
+Checkpoints at each stage; the author had a parallel project & person-time & No wait measured; undone items are costed in days and weeks in these rows & More people\\[2pt]
+Generation budget of about $35$ CPU-hours & computing; self-set & The quirks radiate no photons in the shower (no QED final-state radiation); a photon would take energy from the pair and shorten the swing slightly; one-sided $-1.1\pm0.8\%$ on $\lmax$, the largest median shift & A re-shower, about $15$ CPU-hours\\[2pt]
+A concise paper of $35$ pages; a long analysis note declined & time & Detail only in the stage reports & None needed\\[2pt]
+\auditgroup{Public information, detector model and tools}
+Public information only: no CMS software, data or internal geometry; not a CMS result & public information; no reason recorded for the choice & No calibration against CMS simulation or data; every detector number is a public-model estimate & Official samples; Geant4 port, $1$ to $3$ person-months; $2.4$ to $3.4\times10^4$ core-hours (\EST)\\[2pt]
+Per-layer material not public, \UNV, varied by $\times0.5$ and $\times2$ & public information & Sets the floor, $\DsMS\propto(x/X_0)^{0.36\ldots0.62}$; effect on $\Eff$ not run & CMS material budget; the material run\\[2pt]
+Full cylinders and discs, not $17\,092$ modules & person-time, design & Acceptance optimistic by a few per cent (\EST) & A change to how the string code records hits, then a rerun of the events the detector study uses\\[2pt]
+Digitisation by Gaussian smearing; no clusters, charge sharing or Lorentz drift & tool limit, design & Merged regime and ionisation approximate; the planned cross-check with hits clustered channel by channel was not done & Clustering channel by channel, which needs real modules first\\[2pt]
+Forward timing layer not in the ACTS geometry & tool limit & None on the barrel analysis & About half a day (\EST)\\[2pt]
+Fatras\index{Fatras}: no hadronic interactions, no decays in flight & tool limit & Small dedicated generators replace them. Decays in flight lead at R09; nuclear interactions do not, and carry a conservative factor $0.22$ (\EST) for a vertex on the line through the collision point, with no uncertainty attached & A Geant4 or ACTS source build: $1$ to $3$\,h, $2$\,GB, then days of integration\\[2pt]
+Out-of-time pile-up not simulated: per-layer top-up\index{top-up} to the published occupancy & tool limit & Fatras low by $2.3$ to $7.3$; density width $1.15$ to $1.89$ leads loose rungs; about $40$ times more seeds refitted per trial, which made finder speed critical; the late-hit window had to be redefined (Table~\ref{tab:25-moved}) & Real simulation or data; open-data check, $3$ to $5$ weeks\\[2pt]
+Trigger, vertex and $\MET$ parametrised; vertex identification not modelled & public information, tool limit & Variations not propagated; $\pm25\GeV$ on the trigger's midpoint & Official Phase-2 samples; no cost recorded\\[2pt]
+Eight Standard Model processes by proxy; $Z(\tau\tau)$, lost-lepton $Z$ and multijets left out; $5\%$ veto loss, $K_{t\bar t}=1.9$ assumed & computing, time for two; design for the rest & Proxies $15$ to $45\%$ of the Standard Model term, which does not lead at R09; left-out share \UNV & $99$\,h for two $W$ samples; no estimate for the rest\\[2pt]
+Leading-order merged signal; $K$-factors transcribed at $13.6\TeV$, applied at $14\TeV$ & person-time & Recoil tail $+12$ to $+15\%$, $-11$ to $-13\%$, not propagated & $1$ to $2$ person-days, $10$ to $20$ CPU-hours\\[2pt]
+Production terms left out: photon fusion, the enhancement of the cross section near threshold (Sommerfeld), electroweak NLO & design & $+4\%$; $+5$ to $+15\%$, with no calculation; a few per cent negative (\EST, \UNV) & New calculations; no estimate\\[2pt]
+Classical string: point ends, no spin at production, no infracolour radiation & design & Not measured & New theory (\emph{ours})\\[2pt]
+Multiple scattering as a measured floor, no analytic theory & design & No analytic form for the floor & An analytic theory of the floor: weeks\\[2pt]
+Thickness law above $5\keV$: approved test against the solvers' double-precision limit not run & person-time & Unattributed $\pm5\%$ there; excess at $3$ to $5\keV$ attributed by estimate; no effect on the detector study & $1$ CPU-hour, $1$ to $2$ person-days\\[2pt]
+\auditgroup{Background method and rule}
+No background from data at any point & public information, time; no dated decision & ``The decisive item''; simulation steps leave $0$ to $2$ and $4$ to $5$ decades (\EST, stale) & Control regions in real data; CMS access; new pre-registration\\[2pt]
+Rule and finder frozen: no new rung, no re-ordering, no best-of per point & design & Known remedies cannot be applied; fallback limits conservative only with respect to simulation statistics; factorisation can bias them either way & New pre-registration\\[2pt]
+Closure end state: $\times2.41$; more statistics declined; pilot not rerun at the new seed threshold & design; computing for the rerun & $\times2.41$ on pile-up from R05; trend and model widths lead from R11 & $\rho=3$ or a real lever arm, about a decade\\[2pt]
+Seed threshold from six layers to four, pre-declared & design & Finder $\times1.45$ slower & None: set by the rule\\[2pt]
+Factorisation untested beyond R06 & computing, design & Off either way by an unknown factor & A cross-variable test on a population deep enough to inform it; $\rho=3$ or a lever arm at R07 to R09, the record's remedy, extends closure and does not by itself supply this test (\emph{ours}, Table~\ref{tab:28-slow})\\[2pt]
+No late-hit credit for prompt terms; no correlation between categories; cosmics and halo argued, not simulated & design; none recorded for the correlation & Credit worth up to $4$ decades in that category; uncorrelated treatment optimistic at $23$ of $33$ points & New pre-registration\\[2pt]
+Late-hit window $5.955$ to $24.035\ns$, redefined after the freeze & design (points approved by the author, 14 October) & Keeps $\beta$ from $0.16$ to $0.43$ at $|\vect u|=1.36$\,m; variations of the vertex time resolution at $150$ and $230\ps$ enter the width & New pre-registration\\[2pt]
+One fixed fallback per hypothesis & design & Little exclusion expected at $\Lam\lesssim1\keV$ and at $E$ 200, by plan & New pre-registration\\[2pt]
+$\Ntrig$ from generator-level Pythia after the preselection & design & $4.08\times10^7$, an estimate as physics & Data or official samples (\emph{ours})\\[2pt]
+Total efficiency as acceptance times finder efficiency & design & Independence assumed, not tested & A joint measurement (\emph{ours})\\[2pt]
+\auditgroup{Checks and follow-up}
+Fast signal path at $31$ of $40$ points & computing & $\Eff$ high by up to $1/0.87$; best ratio $910$ to $950$ (\EST) & Full chain; nine points took $9.7$ CPU-hours\\[2pt]
+Independent finder cross-check not run; reproduction and finder-efficiency checks partial; the model cross-check at $200$ and $1000\GeV$, a second implementation made with FeynRules against the hand-written one, not delivered & none recorded & No independent check of the finder at all; the model check is low risk by the record, with $0.12\%$ agreement at $500\GeV$ & Brute force on $50+50$ events; no cost recorded\\[2pt]
+Declared variations not run or not propagated: hit resolution, merging threshold, pile-up 140, beam spot, time window, hit efficiency, tracking threshold, vertex, $\MET$, trigger & none recorded; partly the deferred samples (\emph{ours}) & Unknown; ``none of these can turn the null result into an exclusion'' & The plan's list of variations\\[2pt]
+No fit for $\mQ$; the time-of-flight estimator measures the pair mass, with a low cluster from prompt pile-up hits at pile-up 200; separation not measurable there & physics: pile-up dominates the core & No measurement of $\mQ$ or $\Lam$ & Robust estimator; in-time-hit rejection\\[2pt]
+Open data: a note only & time, CMS policy & Inputs unvalidated; could not test a rate near $10^{-9}$ in any case & $1$ to $5$ weeks per check; policy first\\[2pt]
+Public hit pool, ColliderML, listed and never used & none recorded & Unknown; another detector, at $3\tesla$ & Not costed\\[2pt]
+Bookkeeping: three pilot jobs left out, $11$ events replaced, one job admitted with $3$ of $145\,007$ hits unmeasured, a cosmetic bug left in frozen code & tool limit & Negligible, as stated & None needed\\[2pt]
+\end{longtable}
+\addtocounter{table}{-1}
+\endgroup
+
+\section{The barrel cut and the missing endcap finder}\label{sec:29-barrel}
+
+Only the barrel is analysed. Picture a plane whose axis leans more than $50^\circ$ out of the transverse plane.\marginnote{At $|\eta|=1$ the polar angle from the beam is $40.4^\circ$, so the axis is $49.6^\circ$ out of the transverse plane.} Its hits run through the barrel's end and on into the discs, where the finder does not look. Every rung of the ladder carries the fixed cut $|\eta(\hat{\vect n}_3)|<1$ on the plane's axis $\hat{\vect n}_3$, and the study claims nothing for $|\eta_{\rm pair}|\ge1$, for the transition at $1.0$ to $1.3$, or for the endcap.\index{barrel selection}\index{endcap}
+
+This was not the first plan. On 13 October the author approved endcap seeds from the start, at a stated cost of half a day, because $69\%$ of pairs with $|\eta_{\rm pair}|<2.5$ have $|\eta_{\rm pair}|>1$. The finder rewrite of that day rebuilt only the barrel prototype. The review of the draft rule then flagged the conflict and offered two routes: build the endcap and mixed triplets, that second seed family and an endcap ladder before production, with a slower finder, or re-decide. It recommended the second ``under the deadline'', and at 17:29 the author took it, with the endcap as documented future work. The half day covered seeds alone, and the ladder question came later.
+
+The value $1.0$ is pure geometry, with no signal input: the edge of the third 2S layer, the one R14 needs, at $0.94$, rounded up. The seeding layer ends at $1.12$.
+
+\paragraph{The effect on efficiency}
+Two fractions measure the cut, on different denominators, and they must not be mixed. Of all pairs in the no-pile-up sample, at any $\eta$, $0.19$ to $0.28$ lie in the barrel. Of pairs with $|\eta_{\rm pair}|<2.5$, about $0.31$ do. So the efficiency at every rung is capped near $0.3$ whatever the finder does, and at pile-up 200 it reaches $0.085$ to $0.31$ at the end of counting at $1$ to $5\keV$.
+
+Inside the barrel and without pile-up the finder holds at least half of the quirk hits in $0.90$ to $0.96$ of pairs at $1.5$ to $2\keV$, by the looser match of Chapter~\ref{ch:26-signalresults}. We read that as a cut that costs acceptance rather than finder quality. The study's total efficiency $f_{200}A\Eff$ is about $0.005$ at $E$ 500, against at most $0.021$ for Knapen et al.\ out to $|\eta|\lesssim1.8$; the factor of about four mixes the barrel cut and the deep cuts, and those authors used another detector.
+
+\begin{example}[What the endcaps might add]\label{exa:29-endcap}
+No endcap number exists: no efficiency, no background, no ladder. A scale does (\EST, ours). If pairs outside the barrel had a fraction $g$ of the barrel's efficiency, the signal would scale by $1+(0.69/0.31)\,g$, which for $g=1$ is $1/0.31=3.2$. With the background unchanged, the best ratio falls from $790$ to about $250$, still no exclusion. With the reach method of Section~\ref{sec:29-reach}, the reach at $B=0$ goes from $1026$ to $1265\GeV$, and at $B=100$ from $717$ to $897\GeV$.
+
+Four things suggest that the gain would be smaller, and none proves it, since an endcap ladder of its own could cut more loosely. Between $1.0$ and $1.3$ neither seed family has three layers. The timing layer behind the late-hit category stops at $|\eta|\lesssim1.5$, and the forward one is not in the geometry. The disc resolution in $\phi$ varies by $2.5$ across the radius. And a new category brings its own background, which nobody has measured. The only hard ceiling is every outside pair passing: at the best point, where $\Eff=0.045$, the signal would scale by $1+0.69/0.045=16$ ($g=6.9$) and the ratio would be about $48$, still no exclusion. Exercise~\ref{ex:29-endcap} takes a smaller fraction.
+\end{example}
+
+Part of the price is already paid. The string stage carried pairs out to $|\eta_{\rm pair}|<4$ through the discs, at about $15\%$ more CPU on the main production (\EST, by the study), and added disc material so that this tail had a floor. Those hits were never searched. Lifting the restriction takes finder code, for which the plan has a definition; a background-only ladder frozen before its first signal efficiency; a rerun of the pile-up samples; and a new pre-registration.
+
+\section{The money plots}\label{sec:29-money}
+
+A money plot is one a reader carries away after forgetting the rest. Three of them follow, each drawn at text width or larger from tracked files. Four others in this book belong on the list and need no second drawing, which makes seven. The plot the study could not make and our substitute for it have Section~\ref{sec:29-reach} to themselves. The event view of Fig.~\ref{fig:25-event} shows the pattern and how little the 2S layers test it; it is the best of its sample, at a point below the search window of Table~\ref{tab:26-window}, not a typical event. The failed closure of Fig.~\ref{fig:27-pileup} shows the test fixed in advance failing at R04 and R05; it says nothing of the deeper rungs, where no closure test informs the estimate, and its points change counting convention at R04. The handles of Fig.~\ref{fig:26-handles} show the ruler and the mass proxy working without pile-up and lost at pile-up 200; the mass panel is a proxy for the pair's mass, not $\mQ$, and no fit was run. The bill of Fig.~\ref{fig:28-budget} shows where the CPU went; its hours mix units (Chapter~\ref{ch:28-bottlenecks}), so read it for sizes, and it does not show the wall-clock wait. The study labelled its figures as private work and simulation, with no CMS name, and that holds for all of these.\index{money plots}
+
+\begin{figure}[!t]
+  \includegraphics{ch29/thickness_all}
+  \caption{Truth level, no pile-up. (a) Median thickness at all five points, from the field alone (filled) and from material alone (open), against the detector's estimated resolution, which was never measured. (b) Median per-event ratio of measured to model thickness, offset sideways for clarity. Above about $5\keV$ the law is not verified and a growing share of events is flagged as near the solvers' double-precision limit. The failed test on the slope $c$ is in Fig.~\ref{fig:26-thickness}. Above $5\keV$ only $E$ at $500$ and $1000\GeV$ have field-only runs.}
+  \label{fig:29-thickness}
+\end{figure}
+
+\paragraph{The thickness law}
+Figure~\ref{fig:29-thickness} carries the theory result. The filled points of four fermion masses lie within $14\%$ of each other at every $\Lam$, and the scalar within about $25\%$ of them, while the mass runs over a factor of $7.5$: the field part is nearly independent of $\mQ$, as the law of Chapter~\ref{ch:18-thickness} says.\index{thickness law}\marginnote{In scaling form, $\DsB\approx\Lam^{-1.8}B^{0.9}$, with $B$ here the field.} The open points show the floor from scattering, $10$ to $28\um$, and the two cross at $\Lcross=1.2$ to $1.9\keV$.
+
+It does not say that the law was tested in the detector. These are true hit positions with no pile-up, and the band shows why the study did not try: above $\Lcross$ the field part lies below both the floor and the resolution. Nor does it show the failed pre-set test on the median slope.
+
+\begin{figure}[!t]
+  \includegraphics{ch29/selection}
+  \caption{Signal and background in one unit. Left: pairs produced ($\sigma L$, with $\sigma$ the cross section here), those with pair $\pT>200\GeV$ ($f_{200}$), and those passing trigger and preselection ($A$). Shaded: $N_{\rm exp}\Eff$ at each rung for three hypotheses (at R01 to R04 a lower bound), and $\Beightyfour$ for both categories. Right: the fallback, with signal (circles) for the three points and $\Beightyfour$ of the general category (square): the first two points share one selection and the third lies almost on them. From R08 on the background is made of zero-count bounds. R01 to R03 use candidate counts and later rungs distinct hit sets, so the step at R04 is partly a change of counting.}
+  \label{fig:29-selection}
+\end{figure}
+
+\paragraph{Signal against background}
+Figure~\ref{fig:29-selection} is the search on one axis, and it adds to the ladder of Fig.~\ref{fig:27-ladder} what that plot leaves out, the signal. Follow $E$ at $200\GeV$ from the left. Of $6.6\times10^5$ pairs in $3\abinv$, $3.1\times10^4$ have the recoil,\marginnote{This is the tail fraction $f_{200}=0.048$. At $1500\GeV$ it is $0.17$.} $1.6\times10^4$ pass trigger and preselection, and at least $3.2\times10^3$ reach the first rung. That step, a factor of about $5$, is where the barrel ceiling acts, along with the matching. The background comes down far faster, by about seven decades, and then stops at $\Beightyfour=1.23\times10^6$ at R09, while the signal there is $394$ events, and the budget lies seven decades lower still. At no rung of any hypothesis does the signal reach the background, and at no rung does the background reach the budget.
+
+It does not say that the background is a million events. Every blue point from R08 on is a bound set by the size of a sample, and the deep rungs could be off either way. Signal and background are also different statistics, a central value against an 84th percentile.
+
+\begin{figure}[!t]
+  \includegraphics{ch29/map}
+  \caption{The fallback on the whole grid of the search. In each cell: the ratio $\mu_{95}/N_{\rm exp}$ (toy median) and the expected signal $S$. A shade is darker for a smaller ratio. A frame marks $S\ge3$, reachable with no background at all. An exclusion would need a ratio below one, and blank cells have $\Eff=0$. Published limits in this range of $\Lam$ lie below about $180\GeV$, left of the first column (Fig.~\ref{fig:16-bounds}). Masses are in GeV.}
+  \label{fig:29-map}
+\end{figure}
+
+\paragraph{Nothing excluded}
+Figure~\ref{fig:29-map} is the plain statement of the outcome. No cell comes near one.\index{fallback selection} The best is $790$ (\EST, by the study), at $E$ $200\GeV$ and $1.5\keV$, the next $820$, and the worst $6\times10^7$. The study therefore adds nothing to existing bounds. The frames give the other half of the message: only $20$ of $40$ points could yield three events even with no background, and $E$ at $1500\GeV$ never does.
+
+It does not map a physics reach. The background central values are zero-count bounds and would move with sample size, $31$ cells are on the fast path, and each cell has its own fallback selection, so neighbouring cells are not one analysis. The scalar has a single mass at pile-up 200, which is why no scalar mass plot exists.
+
+\section{Reach against an assumed background}\label{sec:29-reach}
+
+The plot a search hopes to end with is the limit on the cross section against mass, with a crossing at the excluded mass.\index{exclusion plot} The study could not make that plot in any useful sense. Figure~\ref{fig:29-exclusion}a draws the stored limit at the best-ratio $\Lam$ for each mass, and it stays $2.9$ to $6.6$ decades above the prediction. There is no crossing, so there is no excluded mass and no contour on the grid. The study's own three-event reach is null at every point, since it requires $\Beightyfour\le0.3$.\index{reach}
+
+What the stored efficiencies can do is answer a narrower question: if someone measured the background and found $B$ events, known to some width, how far would these efficiencies reach? This is arithmetic on stored numbers, with no new events. It is our calculation, in \rep{checks/ch29_checks.py}, and the tag is \EST.
+
+\begin{figure*}[!t]
+  \includegraphics{ch29/exclusion}
+  \caption{(a) Cross section against mass. Dark: the study's fallback limit at the best-ratio $\Lam$ per mass, with its toy $\pm1\sigma$ band; only four masses exist. Green: the limit for an assumed background $B$ with no uncertainty, at the $\Lam$ of largest stored signal per mass (\EST), crossing the prediction at the circles. (b) The reach against $B$ (\EST), with the endcap case $g=1$ of Example~\ref{exa:29-endcap} and the planning estimate discussed below. The tick $0$ stands for $B=0$, placed by hand on the logarithmic axis. Blue: the study's two stored medians at its best point. Curves stop at $200\GeV$, the lightest stored mass.}
+  \label{fig:29-exclusion}
+\end{figure*}
+
+Take one bin and one assumed background. The median experiment observes the median count $n$ of a Poisson of mean $B$. Allow the background a log-normal spread of width $\sigma_{\ln}$, with $z$ a unit normal, and ask for the signal $s$ at which the count $n$ becomes improbable by the rule of Chapter~\ref{ch:23-statistics}:\index{CLs@CL$_s$}
+\begin{equation}
+  {\rm CL}_s(s)=\frac{\big\langle P(N\le n\mid s+B\ee^{\sigma_{\ln}z})\big\rangle_z}{\big\langle P(N\le n\mid B\ee^{\sigma_{\ln}z})\big\rangle_z}=0.05 .
+  \label{eq:29-cls}
+\end{equation}
+The solution is $s_{95}(B,\sigma_{\ln})$, the expected limit on signal events. It has three limits worth knowing. With no background, $n=0$ and $s_{95}=-\ln0.05=3.00$. With a large background known exactly, $s_{95}\approx1.96\sqrt B$. With a large background whose width dominates, $s_{95}\approx B(1-\ee^{-1.96\sigma_{\ln}})$, the result \eqref{eq:27-s95}. The limit grows as $B$ itself: the signal is compared with the whole background, not with its Poisson fluctuation (Exercise~\ref{ex:29-limits}).
+
+The other input is the signal. For each mass take the largest stored $S$ over $\Lam$, and interpolate $\ln S$ linearly in $m$ between the stored masses. The reach is then the mass at which the signal meets the limit:
+\begin{equation}
+  S(m_{\rm reach})=s_{95}(B,\sigma_{\ln}) .
+  \label{eq:29-reach}
+\end{equation}
+Since $S$ falls about exponentially with mass, the reach falls about linearly in $\ln B$: $150$ to $170\GeV$ per decade of $B$ between $10$ and $10^5$, with no uncertainty.
+
+\begin{example}[One point of the reach]\label{exa:29-point}
+Take $B=10$ with no uncertainty, so $n=10$. Setting $P(N\le10\mid10+s)/P(N\le10\mid10)=0.05$ gives $s_{95}=8.08$. The stored signals at the best $\Lam$ are $S=87.2$ at $500\GeV$ and $3.40$ at $1000\GeV$, so $8.08$ falls between them, at
+\[
+  m=500+500\,\frac{\ln87.2-\ln8.08}{\ln87.2-\ln3.40}=867\GeV ,
+\]
+or $866\GeV$ with the unrounded stored values.
+Give the same background a width $\sigma_{\ln}=1$ and $s_{95}$ rises to $12.8$, and the reach falls to $796\GeV$. At $B=100$ the same width costs $222\GeV$, from $717$ to $495$. Knowing the background well matters as much as its being small.
+\end{example}
+
+\paragraph{Tests against what the study states}
+The calculation reproduces the numbers it can be compared with. The limits $s_{95}=3.00$, $8.08$, $12.55$, $26.56$, $44.69$ and $173.5$ at $B=0$, $10$, $30$, $160$, $480$ and $7680$ agree with the reach table of the project's early strategy document (Chapter~\ref{ch:28-bottlenecks}), $3.0$, $8.1$, $12.6$, $26.6$, $45.2$ and $174$. At $B=0$ the reach is $1026\GeV$ in $3\abinv$, against the $1.03\TeV$ recorded in the log. In $300\fbinv$ the three-event reach is $665\GeV$ and the five-event reach $586\GeV$, against the recorded $630$ to $665\GeV$ and $0.59\TeV$. With the stored background at the best point, \eqref{eq:29-cls} gives $\mu_{95}=1.31\times10^7$, which is the study's asymptotic value and $5\%$ above its toys. The largest background still excluded at that point, with $S=710$, is $1.31\times10^5$ for no uncertainty and $8.2\times10^2$ for $\sigma_{\ln}=1$, against the study's $1.35\times10^5$ and $8.3\times10^2$, which used $S=723$, and its other two tabulated points agree within $8\%$.
+
+\begin{table}
+  \caption{The reach in GeV against an assumed background in $3\abinv$ (\EST), from \eqref{eq:29-reach} at the best $\Lam$ per mass. A dash means that no stored mass reaches, so the reach would lie below $200\GeV$. The last row scales the signal by $3.2$, the case $g=1$ of Example~\ref{exa:29-endcap}, with $\sigma_{\ln}=0$.}
+  \label{tab:29-reach}
+  \small\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}lrrrrrrrr@{}}
+    \toprule
+    $B$ & $0$ & $1$ & $10$ & $30$ & $100$ & $10^3$ & $10^4$ & $10^5$\\
+    \midrule
+    $\sigma_{\ln}=0$ & $1026$ & $971$ & $866$ & $799$ & $717$ & $548$ & $393$ & $243$\\
+    $\sigma_{\ln}=0.2$ & $1026$ & $970$ & $854$ & $760$ & $622$ & $325$ & -- & --\\
+    $\sigma_{\ln}=1$ & $1026$ & $965$ & $796$ & $662$ & $495$ & -- & -- & --\\
+    \midrule
+    endcap, $g=1$ & $1265$ & $1200$ & $1062$ & $979$ & $897$ & $729$ & $554$ & $396$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{What it says}\index{assumed background}
+Table~\ref{tab:29-reach} and Fig.~\ref{fig:29-exclusion}b are the substitute for the plot that could not be made. They put the seven decades on one axis. The budget, $\Beightyfour\le0.11$, sits at the left and would leave the full $1026\GeV$. The study's stored bound at its best point sits far to the right, where these efficiencies reach no mass at all, and even the endcap case $g=1$ with no uncertainty reaches only about $280$ to $300\GeV$ (\EST). A background of $100$ events known to $20\%$ would leave $622\GeV$, well above every published limit in this range. The search does not need zero background. It needs a measured one.
+
+\paragraph{What it does not say}
+This is not a result of the study: no point on the curve is a measurement, and each rests on the assumed $B$. The same $B$ is used at every mass and $\Lam$, though each hypothesis has its own fallback selection, so the curve is not one analysis. The best $\Lam$ per mass is an envelope: at fixed $\Lam=1.5\keV$ the reach at $B=0$ is $923\GeV$. The signal rests on few events: $E$ at $1000\GeV$, $5\keV$ has $12$ of $195$, so $S$ lies between $2.4$ and $4.6$ at $68\%$, and the reach at $B=0$ between $972$ and $1079\GeV$. The $31$ fast-path points may be high by $1/0.87$, the recoil tail is known to about $\pm13\%$, and all of it holds for $\NIC=2$ and the barrel. The planning diamonds come from the project's early strategy document (Chapter~\ref{ch:28-bottlenecks}), written before any simulation: a single-bin estimate of this kind with a published efficiency, not the study's, for backgrounds of $0$, $30$ and $480$ events, so their higher reach at $B=0$ is no conflict.\marginnote{They are $1.2$, $0.97$ and $0.57\TeV$, at $\Lam=3\keV$, the last with $20\%$ uncertainty on its background. The efficiency, $0.018$, takes its reconstruction factor from Knapen et al.; the $30$ is that document's rate at pile-up 50 over $3\abinv$, and the $480$ assumes a factor of $16$ on it at pile-up 200.}
+
+\paragraph{Plots that cannot be drawn}
+No stored number exists for several plots a reader might expect, and we do not reconstruct them. An exclusion or discovery contour needs a crossing that does not occur. A scalar limit against mass needs more than one scalar mass. Thickness at detector level was not measured. Anything in the endcap has no input. A planned fit statistic against $\Lam$ was not produced by the frozen pipeline. Hit-level replots of the signal and pilot samples need per-event files that are not tracked. A plot of the efficiency's separate factors could be drawn, since the numbers are stored, but the study did not plan one and Fig.~\ref{fig:29-selection} gives the same steps in events.
+
+\section{The final account}\label{sec:29-account}\index{final account}
+
+\paragraph{Established at truth level}
+The field thickens the plane at the near-miss crossings, and the logarithm of the miss distance gives a law for the thickness, with local slope $c$. From $0.6$ to $5\keV$ the median per-event ratio of measured to model (rotating yo-yo) thickness is $0.990$ to $1.002$ for the fermion at $\mQ\ge500\GeV$, $0.975$ to $0.990$ at $200\GeV$ and $0.947$ to $0.986$ for the scalar, lower where $\gst$ is larger. The slope $c$ agrees with each event's prediction, in the median over events, at $1$ to $3\keV$ inside a window of median $\lmax/\RIT\lesssim0.6$ and $\kB\lesssim4$ (\EST{} as a boundary), but not at $5\keV$; at $0.45\keV$ the law fails and above $5\keV$ it is not verified. The study's novelty audit finds the near-miss mechanism and the resulting $B\ln(1/B)$ response to the field new against its recorded search (the logarithm itself is elementary orbit mechanics), giving an analytic form to a rotation that Li et al.\ fitted numerically~\cite{Li:2020aoq};\index{novelty audit} the framework is partly known, as are the exponents and the weak mass dependence, and the scale of the miss and a rotation $\propto B/\Lam^2$ are earlier work~\cite{Kang:2008ea,Knapen:2017kly}. Scattering sets a floor of $10$ to $28\um$, and the two parts cross at $1.2$ to $1.9\keV$.
+
+\paragraph{Established at detector level}
+At pile-up 200 the barrel selection reaches $\Eff=0.085$ to $0.31$ at the end of counting, at $1$ to $5\keV$, and $0$ to $0.08$ at the fallback. Tracking costs real efficiency, a factor of $0.83$ at the end of counting, summed over eight of the nine $3$ and $5\keV$ points tested. And counting simulated events cannot show this background to be below budget at any affordable size. All of this holds for a public-geometry model and is not CMS performance.
+
+\paragraph{What failed}
+The pre-set $1.5\%$ test on the median $c$, at three of five points;\index{pre-set test} the author then let production go ahead past it, recording it as a finding. The predicted fall of the median $c$ with $\Lam$ at $500\GeV$ is followed to $3\keV$, about $2\%$ high at $0.6$ and $1\keV$ ($2.3$ and $2.2$ standard deviations), and misses at $5\keV$ by about $8$ standard deviations; its attribution to the magnetic field in the pair's frame is an estimate (\EST), and the test against the solvers' double-precision limit (Chapter~\ref{ch:18-thickness}) that would decide it was not done. That is one mass: over all $30$ combinations of point and $\Lam$ the same criterion passes in $9$, and at $1000\GeV$, $3\keV$ the median $c$ is $7$ standard deviations high. Six lesser pre-set checks also failed as written (Chapter~\ref{ch:18-thickness}). The straight-string thickness ratio at $\gst=2$: predicted $0.50$, measured $0.75\pm0.08$. The thinning closure test, at $z=+52.8$, patched by $\times2.41$, which is not an understood effect. The declared comparator for the upper edge in $\Lam$. The finder-efficiency check and the bit-for-bit reproduction check after the seed threshold changed are only partial, and the planned cross-check with an independent finder was not run. The rule found no working point in either category.
+
+\paragraph{Not established}
+Nothing is excluded, and the study adds nothing to existing bounds, all below about $180\GeV$ in this range of $\Lam$. It does not show the background to be large: $1.23\times10^6$ is a figure set by small samples and untested factorisation, not a measurement and not a guaranteed ceiling, and the deep rungs could be off either way by an unknown factor. Earlier background-free projections are not shown wrong, only unconfirmed. At pile-up 200 neither $\mQ$ nor $\Lam$ is measured. It is all private simulation from public information, with no collision data, not a CMS result, and the restrictions of Table~\ref{tab:29-audit} apply to every line above.
+
+\bigskip
+We began this book with a very long string and a plain question: if quirks exist, could the High-Luminosity LHC find them? The honest answer is that we do not yet know, and we can now say exactly why.
+
+The pattern is there: hits on a thin plane through the collision point, in a ribbon no helix can make, and at truth level we understand the field's part of its thickness to a few per cent from $0.6$ to $5\keV$, with its slope confirmed only at $1$ to $3\keV$ inside a stated window, and have measured the floor from scattering that takes over above about $1.5\keV$. The signal is usable: if the fakes turn out to be negligible, the efficiencies here would exclude $E$ up to about $1\TeV$ at the best $\Lam$ (\EST), far above any published limit in this range. What stands between that number and a limit $790$ times the prediction is one fake rate near $10^{-9}$ per event, which simulation cannot count and which nobody has measured.
+
+That sentence took the whole book. Field theory told us what the pair is and how often it is made; confinement, why its string holds; the relativistic string, how it swings; the solenoid, how the plane thickens; silicon, what the pair leaves behind; and statistics, what a row of zeros does and does not mean. The study's failures are part of its result. A test fixed in advance that fails is worth more than a test chosen afterwards that passes, and we have told you about each one so that you can weigh the rest.
+
+If that measurement is made, it will be made in real collisions, by people who can read the hits, first at the pile-up the machine then delivers. You now know how to read it: ask what was fixed before the signal was seen, where the background came from, and what a zero was allowed to say. Nobody has seen a quirk, and nobody knows whether they exist. The question is still open, and it can now be asked precisely.
+
+\begin{chaptersummary}
+  \item The audit lists every restriction with its recorded cause. Most cost coverage, not the conclusion; those that bear on the conclusion are the missing data anchor, the small background samples and the untested factorisation. The records give no reason for the cap or for dropping the cloud. The deadline was the author's personal limit, as stated later, and no longer applies.
+  \item Only the barrel is analysed, by a decision of 13 October taken under the deadline. It caps the efficiency near $0.3$. No endcap number exists, and the gain in signal would be a factor of $3.2$ if pairs outside the barrel had its efficiency (\EST, ours).
+  \item The money plots show a thickness law nearly independent of mass at truth level, a background that stops seven decades above its budget, and no excluded cell on the grid.
+  \item The exclusion plot has no crossing. The reach against an assumed background, our own calculation (\EST), runs from $1026\GeV$ at $B=0$ through $717\GeV$ at $B=100$, and falls to $495\GeV$ if that background is uncertain by a factor of $\ee$.
+  \item The study established a partly new thickness law, efficiencies and a simulation limit. Some of its tests failed, it excluded nothing and it did not show a large background. The deciding measurement has not been made.
+\end{chaptersummary}
+
+\begin{exercises}
+  \item\label{ex:29-point} Show that $s_{95}=-\ln0.05$ for $B=0$. For $B=n=30$, solve \eqref{eq:29-cls} with $\sigma_{\ln}=0$ numerically, and find the reach with $S=87.2$ at $500\GeV$ and $3.40$ at $1000\GeV$.
+  \item\label{ex:29-lumi} With $S=87.2$, $3.40$ and $0.295$ at $500$, $1000$ and $1500\GeV$ in $3\abinv$, find the three-event reach in $3\abinv$ and the three- and five-event reaches in $300\fbinv$, with no background. Why does a factor of $10$ in luminosity move the reach by only about $360\GeV$?
+  \item\label{ex:29-endcap} Suppose pairs outside the barrel have a fraction $g$ of the barrel's efficiency. Show that the signal scales by $1+(0.69/0.31)\,g$. For $g=0.5$, what is the best ratio, with $790$ today and the background unchanged? What is the reach at $B=10$? What $g$ would bring the ratio to one, and what does that tell you?
+  \item\label{ex:29-stat} At $E$ $1000\GeV$, $5\keV$ the fallback passes $12$ of $195$ with $N_{\rm exp}=55.2$. Find the $68\%$ interval on $\Eff$ from Exercise~\ref{ex:26-cp}, the range of $S$, and the range of the reach at $B=0$, with the $500$ and $1500\GeV$ signals fixed as in Exercise~\ref{ex:29-lumi}.
+  \item\label{ex:29-limits} From \eqref{eq:29-cls}, derive $s_{95}\approx1.96\sqrt B$ for large $B$ and $\sigma_{\ln}=0$, and $s_{95}\approx B(1-\ee^{-1.96\sigma_{\ln}})$ when $\sigma_{\ln}\sqrt B\gg1$. For $S=710$, find the largest $B$ still excluded for $\sigma_{\ln}=0$, $0.2$ and $1$. Compare with a numerical solution, and explain why a modest width costs two decades.
+\end{exercises}

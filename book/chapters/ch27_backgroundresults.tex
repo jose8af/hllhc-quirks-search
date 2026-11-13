@@ -1,0 +1,196 @@
+\chapter{The background and the missing working point}\label{ch:27-backgroundresults}
+
+Chapter~\ref{ch:26-signalresults} left us with a signal of a few per cent of the pairs, partly found by pile-up and impossible to weigh. That
+could still do if nothing else looked like it. A search of this kind can afford about a tenth of a fake event in the whole life of the
+machine. This chapter asks whether a simulation can show that a background is that small.
+
+For this study it cannot. The lowest figure it could reach is an estimated upper bound of about a million events, an 84th percentile, from
+\emph{zero} events passing in samples of 500 to 2000. The rule fixed in advance therefore found no working point, and the
+limits exclude nothing.
+
+\section{The budget for fake planes}\label{sec:27-budget}
+
+A quirk plane is easy to fake. Any two straight lines through a point lie in one plane, so two prompt tracks from the collision
+already form a perfect quirk plane. Pile-up 200 also puts over $10^5$ hits in the tracker per event, and some of them line up by chance.
+The expected number of fakes in $3\abinv$ is a sum over the ways of making one:
+\begin{equation}
+  \Nbkg=\Ntrig\Big[P_{\rm PU}+P_{\rm SM}+\sum_t{\rm rate}_t\,P({\rm pass}\mid t)\Big]+N_{\rm cosmic}+N_{\rm halo}.
+  \label{eq:27-sum}
+\end{equation}
+Here $\Ntrig$\index{Ntrig@$\Ntrig$} counts the Standard Model (SM) events that survive the trigger and preselection. $P_{\rm PU}$ is the expected number of fake planes
+per event made of pile-up alone, and $P_{\rm SM}$ the number using a hit from the hard collision. The sum runs over single-interaction
+sources such as photon conversions, each with its rate per triggered event. Cosmic rays\index{cosmic rays} and beam halo\index{beam halo} are argued to be negligible and were not simulated
+(\EST). Here $\Ntrig=4.08\times10^7$ (\EST{} as physics: generator-level Pythia, with a $5\%$ veto loss assumed), with $2.5\times10^7$ from $Z(\nu\nu)$+jet. The rule
+of Chapter~\ref{ch:25-chain} demands $\Beightyfour\le0.11$ per category: one fake in about $4\times10^8$ events.
+
+Each term is a product of measured factors with a log-normal uncertainty of width $\sigma_{\ln}$, so a single term has $\Beightyfour=\Nbkg\,\ee^{\sigma_{\ln}}$.
+At the rule's reference width, $\sigma_{\ln}=2.3$, the median must be $0.011$ events. If pile-up took the whole budget it would be allowed
+$0.011/\Ntrig=2.7\times10^{-10}$ fakes per \emph{trial}.\sidenote{A trial is one pile-up event searched along one road. Each event gives four roads at $\rho=1$, two at $\rho=2$.}
+The actual rate is far above this. At the end of counting, rung R04, a direct count finds $172$ false planes per trial. That is $11.8$ decades too many, and the study has
+$48\,000$ trials to work with.
+
+\section{The pile-up term: counting, thinning and factorisation}\label{sec:27-pileup}
+
+The study estimates the pile-up term in three ways: by direct count while candidates survive, by thinning events of double density, and by factorising the ladder into conditional fractions. At normal density, $\rho=1$,\marginnote{$\rho$ is the density in units of a normalised pile-up-200 event, not a mass density.} the direct count lasts down to R07, where
+$35$ fakes remain. To reach smaller rates per trial, the study uses the idea of Chapter~\ref{ch:24-rareevents}. Take an event at double density, $\rho=2$, and keep each interaction with probability
+$q=\frac12$. What remains is normal pile-up, up to the caveat of Chapter~\ref{ch:24-rareevents} on top-up crossings, because a thinned Poisson process is again Poisson, with mean $200\rho q$. So a fake seen at $\rho=2$ tells us how often it
+would exist at $\rho=1$.\index{thinning} If its hits come from a set $I$ of interactions, it counts with the weight
+\begin{equation}
+  w_r=\sum_{J\subseteq I\ {\rm passes}\ r}q^{|J|}(1-q)^{|I|-|J|},\qquad q=\frac1\rho .
+  \label{eq:27-thin}
+\end{equation}
+Each subset $J$ survives with its binomial probability, and we add the subsets whose hits still pass rung $r$. A fake that needs $\nint$ particular interactions enters
+with $\rho^{-\nint}$, so every interaction it needs buys a factor of $\rho$ in reach, with no fitted exponent.
+
+\begin{example}[What a spare hit is worth]\label{exa:27-thin}
+Take a fake with two crossings on all seven layers, at $\rho=2$. If every crossing comes from its own interaction it needs all 14, so $w=2^{-14}=6.1\times10^{-5}$. Now give each layer a third crossing from a
+further interaction. A layer passes if at least two of its three crossings survive, with probability $3q^2(1-q)+q^3=\frac12$, so $w=2^{-7}=7.8\times10^{-3}$, 128 times larger. The fakes that survive thinning live on crowded layers.
+The study's estimate of its reach takes $\nint\approx20$: then $2^{-20}\approx10^{-6}$, and one fake among the $6000$ trials at $\rho=2$ stands for $1.7\times10^{-10}$ per trial (\EST), just below the $2.7\times10^{-10}$ we need. In practice a rung needs ten counts at $\rho=2$: R06.
+\end{example}
+
+\begin{figure}
+  \includegraphics{ch27/pileup}
+  \caption{(a) Pile-up fakes per trial. The study's estimate lies above the direct and thinned points because it takes the larger of two ways of chaining the factors and the closure factor; from R08 on it is a zero-count bound. The thinned point at R07 is the prediction used for the ratio in (b); that rung is past thinning's reach of ten counts at $\rho=2$, and the estimate there comes from factorisation. (b) The closure ratio, with the study's trend fit (dashed). From R04 it starts above one and falls: the extrapolation is first too low, then too high. R01 to R03 are candidate counts, with no merging, shown for orientation; from R04 on the counts are of distinct hit sets, so the step from R03 to R04 is partly a change of counting. The frozen test applies only from R04, which is why (b) starts there.}
+  \label{fig:27-pileup}
+\end{figure}
+
+The extrapolation can be tested at the rungs from R04 on, where both counts use distinct hit sets, by predicting the $\rho=1$ count from $\rho=2$. The criterion fixed in advance was $|z|<2$, where $z$ is $\ln(N_{\rm obs}/N_{\rm pred})$ over its error (Exercise~\ref{ex:24-z}), and \emph{the test failed}.\index{closure test}
+At R04 the direct count is $8\,234\,601$ where thinning predicts $5\,489\,513$, a ratio of $1.500$ with $z=+52.8$. At R05 the ratio is $1.606$ with $z=+59.4$ (Fig.~\ref{fig:27-pileup}b). These $z$ are large because the counts are enormous. The factor of $1.5$ is what matters.
+The prediction is too low, which is the dangerous direction. The study's reading, from its pilot run, is that candidates sharing at least half their hits count as one, and that at double density too many merge. The rule's first remedy was more statistics, at most two steps of $+50\%$. After a pilot failed the same way the study declined these and took the rule's end state: keep the method and multiply by what was observed. Each family of cuts has its own test, and the corrections compound along the ladder, which is conservative since the R05 ratio already includes part of R04's. So the pile-up estimate carries
+$1.500\times1.606=\times2.41$ at every rung from R05 on, applied once: a patch, not an understood effect.
+
+The ratio also falls along the ladder, to $0.63$ at R06 and $0.39$ at R07. So the prediction swings from too low to too high, and nobody knows what it does deeper. A falling ratio means that deep down the prediction runs too high. That is the safe direction, so the study does not correct for it and enters it only in the uncertainty. It fits a straight line, weighted by the errors, to $\ln(N_{\rm obs}/N_{\rm pred})$ against the rung number $r$ from R04 to R07, slope $-0.361$. The errors are about $1\%$ at R04 to R06 and $17\%$ at R07, so the first three rungs steer the fit. The study then extends the line and counts its height at each rung as one more part of $\sigma_{\ln}$:
+\begin{equation}
+  \sigma_{\rm trend}(r)=|1.985-0.361\,r| .
+  \label{eq:27-trend}
+\end{equation}
+This gives $1.26$ at R09 and $6.31$ at R23, the latter a factor of $550$. It is a reading fixed in advance, not a measurement.
+
+\emph{Beyond R06, or R07 for the direct count, the pile-up estimate rests on factorisation with no informative closure test.} Below the reach of both counts one tool is left, rung factorisation: conditional pass fractions, each measured on the tightest population with at least ten entries, multiplied together and by a correlation factor $f_{\rm corr}$. The factor, $f_{\rm corr}=1.196$, comes from a test fixed in advance, comparing pairs and triples of layers with the product of single layers on loose candidates, and it multiplies every factorised chain. It covers the layers only. The test across kinds of cut is degenerate, its prediction exact by construction, and the ionisation test has fewer than ten counts. Independence between different kinds of cut therefore cannot be tested here, so the estimate could be off either way by an unknown factor. A fake plane made of unrelated hits fits no helix and no pair of straight arms, so it passes those two tests just as a quirk does. Six rungs built to recognise a quirk therefore do nothing against pile-up and earn no credit.
+
+The width $\sigma_{\ln}$ of this term has four main parts, added in quadrature: statistics; the density, from rerunning with the top-up of Chapter~\ref{ch:25-chain} at its two limits; the trend; and the model spread between two chains of factors, the two \emph{routes}, one starting from the thinned count at R06 (the main route) and one from the direct count at R07 (the factorisation route), which is $\ln117=4.76$ from R11 on. The central value is the larger of the routes.
+
+\begin{example}[Two ways to chain the same cuts]\label{exa:27-routes}
+One trial at R11, general category. The factorisation route, from R07, has $(35/48\,000)(1.14/35)f_{\rm corr}=2.84\times10^{-5}$: the next width cut gives the bound. This route starts at R07 and has no looser population to fall back on, so it applies the tightest plane-fit cut, R11, in one step to its $35$ candidates; none passes, and that zero ties with the bound and enters as $1$. The main route starts from the thinned count at R06, $0.389$ per trial, takes the direct counts to R07, $35/11858$, and the same bound $1.14/35$. It applies R09 alone to the same $35$ candidates, giving $2/35$, and for R10 and R11 it may fall back on the looser $126$ candidates that pass R06 and R09, giving $32/126$ and $12/32$: a rejection of $0.0054$, and with $f_{\rm corr}$ gives $0.389\times(35/11858)\times(1.14/35)\times0.0054\times1.196=2.44\times10^{-7}$. The ratio is $117$, and $\ln117=4.76$ enters the width. It has two sources: the main route stands at $1.15\times10^{-3}$ at R07 against the direct $7.3\times10^{-4}$, and it credits the rejection $0.0054$, which the factorisation route enters as $1$. A zero set to $1$ by the rule of one bound per term credits less rejection than a measurement of one or two counts on the same candidates. The larger is the central value: $2.84\times10^{-5}\times4.08\times10^7\times2.41=2.8\times10^3$ events.
+\end{example}
+
+\section{Standard Model and single-interaction backgrounds}\label{sec:27-others}
+
+The remaining simulated terms of eqn~\eqref{eq:27-sum} come from hard-scatter events and from single-interaction topologies. Among hard-scatter events, a three-prong $\tau$ from $W\to\tau\nu$ or a lost lepton with a track can fake a plane if the tracks escape removal.\marginnote{Three-prong: a $\tau$ decaying to three charged hadrons. Lost lepton: one the detector fails to identify.} The study simulated $Z(\nu\nu)$+jet, $W(\tau\nu)$+jet and one-lepton $t\bar t$ with
+Pythia at pile-up 200, $2000$ events per sample, the $W(\tau\nu)$ sample splitting by $\tau$ decay into $375$ leptonic and $1625$ hadronic. Eight further processes have no hit-level sample and borrow the largest pass probability of their nearest relative. These proxies carry $15$ to $45\%$ of the SM term. $Z(\tau\tau)$, lost-lepton $Z$ and multijets are not in $\Ntrig$ (\UNV). The SM term is $1.9\times10^9$ events at R04.
+
+The single-interaction topologies supply the sum in that equation.\index{single-interaction backgrounds} A photon conversion in the beam pipe can fake a plane~\cite{Knapen:2017kly}. The study adds other topologies with the same geometry: a $K^0_S$ or $\Lambda^0$ decay,\marginnote{$K^0_S$ and $\Lambda^0$ are neutral hadrons that fly centimetres, then decay to two charged tracks. This $\Lambda^0$ is a particle, not the string scale $\Lam$.} a pair of tracks from the vertex, a looper, a nuclear interaction or a decay in flight. Each sends hits out from a point on a line through the vertex, so they can be exactly coplanar with it. Their pass probability comes from dedicated particle guns, simulations that fire only the particles of one topology, and small dedicated generators, 500 events per topology with pile-up, multiplied by a generator rate per triggered event in the road: $30.3$ for vertex pairs, $1.59$ for decays in flight\index{decay in flight}, $0.38$ for photons. Fatras has no hadronic interactions or decays in flight, so those two topologies come from these small generators, with estimated prong counts (\EST), run with and without pile-up; the others are particle guns through Fatras. None of these topologies gets a reduction for needing a late timing hit, so they enter both categories identically.
+
+A factor with no passes in a population $M$ is not set to zero. It enters as $1.14/M$, because $\ee^{-1.14}=0.32$ is the chance of none when $1.14$ are expected, as in \eqref{eq:23-zero}.\index{zero-count bound}
+
+\begin{example}[A bound that has forgotten $M$]\label{exa:27-dif}
+Follow decays in flight, a topology from one of those generators, to R09. The rate gives $4.08\times10^7\times1.59=6.5\times10^7$ decays. Of the generator's events, a fraction $0.949$ pass its hit-level requirement, three hits on three layers from at least two particles close to some plane through the vertex, leaving $6.2\times10^7$. This is not the event preselection, which $\Ntrig$ already holds. Of 500 simulated events, 81 candidates reach R05, and none of those 81 passes the width cut. So, with $f_{\rm corr}$ last,
+\[
+  \Nbkg=6.2\times10^7\times\frac{81}{500}\times\frac{1.14}{81}\times1.196=1.7\times10^5\ \text{events}.
+\]
+The 81 cancels. The bound depends only on the 500. It says nothing else about decays in flight, and only more events can lower it.
+\end{example}
+
+\section{The background ladder and its minimum at R09}\label{sec:27-ladder}
+
+\begin{table}[!t]
+  \caption{Background in $3\abinv$. The pile-up column and its width $\sigma_{\ln}$ are the general category's and include the closure factor; ``flight'' means decays in flight. From R08 on, pile-up and the largest term are zero-count bounds. $p$ is the core $\chi^2$ probability of Table~\ref{tab:25-ladder}.}
+  \label{tab:27-ladder}
+  \small\setlength{\tabcolsep}{4pt}
+  \begin{tabular}{llcclll}
+    \toprule
+    & & & & \multicolumn{2}{c}{$\Beightyfour$} & \\
+    rung & cut added & pile-up & $\sigma_{\ln}$ & late-hit & general & largest\\
+    \midrule
+    R04 & $N_{\rm IP2}\ge7$ & $1.1\times10^{10}$ & 1.94 & $2.6\times10^9$ & $7.5\times10^{10}$ & pile-up\\
+    R06 & $w_{\rm core}<18.75\mm$ & $3.8\times10^{7}$ & 1.36 & $3.8\times10^6$ & $1.5\times10^{8}$ & pile-up\\
+    R07 & $w_{\rm core}<9.4\mm$ & $1.4\times10^{5}$ & 1.53 & $1.4\times10^6$ & $2.0\times10^{6}$ & flight\\
+    R08 & $w_{\rm core}<4.7\mm$ & $4.4\times10^{3}$ & 1.92 & $1.4\times10^6$ & $1.4\times10^{6}$ & flight\\
+    R09 & $p>10^{-3}$ & $2.5\times10^{2}$ & 2.22 & $\mathbf{1.2\times10^6}$ & $\mathbf{1.2\times10^{6}}$ & flight\\
+    R14 & $N_{\rm 2S2}\ge3$ & $2.6\times10^{3}$ & 5.95 & $3.3\times10^6$ & $2.7\times10^{6}$ & flight\\
+    R23 & ${\rm d}E/{\rm d}x>2$ MIP & $8.0\times10^{2}$ & 8.12 & $8.7\times10^6$ & $6.3\times10^{6}$ & flight\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+  \includegraphics{ch27/ladder}
+  \caption{(a) $\Beightyfour$ for both categories, with the three central terms of the general category. The star marks the minimum. (b) The width of the pile-up term and its parts model (dotted), trend (dashed), density and stat; closure and normalisation, at most $0.47$, are not drawn. $\Beightyfour$ turns up after R09 while the largest central term stays flat: past that rung it follows (b). R01 to R03 use candidate counts and later rungs distinct hit sets, so the step at R04 is partly a change of counting.}
+  \label{fig:27-ladder}
+\end{figure}
+
+Table~\ref{tab:27-ladder} and Fig.~\ref{fig:27-ladder} assemble the terms rung by rung. Up to R06 the general category is pile-up, while the late-hit category has $(0.6$--$3)\times10^4$ times less of it, because a late timing hit is rare in a prompt fake, and is led by SM events. The width cuts do real work:
+pile-up falls $4.9$ decades from R04 to R07, because a random plane is wide and a ribbon is narrow. That part is measured. From R07 on the single-interaction terms lead, and from R08 on all the leading terms are zero-count bounds, so the two categories nearly agree. Past R13 the late-hit category is higher, by at most a factor of 2, because its sum has two pile-up terms, one for candidates with a timing hit from the same bunch crossing, which must itself be late, and one for candidates with no such hit, which become late only through a hit from a neighbouring bunch crossing, where the general category has one.
+
+The lowest point is $\Beightyfour=1.23\times10^6$ events at R09 in both categories, $7.05$ decades above $0.11$.\marginnote{The pile-up column need not fall along the ladder: its value depends on which zero carries the one allowed bound. So R09 sits below R08 and R11.} Past R09 the estimate gets worse as the cuts get harder, which no true background can do. The largest central term stays flat, because a zero-count bound ignores later cuts. What grows is the doubt. Pile-up has only $8.0\times10^2$ at R23, but with $\sigma_{\ln}=8.12$ that is $2.7\times10^6$ at the 84th percentile. Two things widen it: the trend \eqref{eq:27-trend}, which keeps climbing, and a factor of $117$ between two ways of chaining the factors, from R11 on. That factor is not a measured effect (Example~\ref{exa:27-routes}).
+
+By the rule \eqref{eq:25-rule}, therefore, \emph{no working point exists in either category}.\index{working point} The study did not find a million fake events. It found that its simulation cannot exclude them. The result is limited by simulation statistics and by the extrapolation, not by a measured background.
+
+\section{The cost of more simulation statistics}\label{sec:27-statistics}
+
+Each bound falls as one over the sample size, so in principle we can buy our way down. Figure~\ref{fig:27-reach} shows the price.
+
+\begin{figure}[!t]
+  \includegraphics{ch27/reach}
+  \caption{Five terms at R09, the two largest among them: events simulated, the same events in all of $3\abinv$ (\EST), and the number needed to bring that term alone to $\Beightyfour=0.11$ if the zero persists. The needed count lies beyond nature's on every row.}
+  \label{fig:27-reach}
+\end{figure}
+
+Every square lies to the right of its diamond, and that is no accident. If nature supplies $N_{\rm nat}$ events of a process, a sample of $N$ with no passes bounds it at about $1.14\,f_{\rm corr}N_{\rm nat}/N$. For decays in flight, with $\sigma_{\ln}=1.05$,
+\begin{equation}
+  \frac{N_{\rm need}}{N_{\rm nat}}=\frac{1.14\,f_{\rm corr}\ee^{\sigma_{\ln}}}{0.11}\approx35 .
+  \label{eq:27-nature}
+\end{equation}
+Even with $f_{\rm corr}=1$ and no spread the ratio would be $10$. If the zero comes at the first factor, you must simulate ten times everything the LHC will ever produce of it. For vertex pairs it is $2$, because a measured factor helps first, and the others take $7$ to $25$.
+
+Pile-up is worse. With every other term at zero it still has $\Beightyfour=2.3\times10^3$ at R09, $4.3$ decades over budget. Bringing it down takes about $10^9$ trials, against $4.8\times10^4$ now. At $42$\,s for four roads that is $3\times10^6$ CPU-hours (\EST), against $990$ for the study's whole production. Even then the trend and density parts do not shrink: with $\sigma_{\ln}\approx1.7$ left over, the median must reach $0.02$ events.
+So \emph{statistics alone cannot give a working point with this ladder}. That takes new handles, or a background estimate from data, and a new pre-registration. Data has the right size automatically, since a control sample carries the whole luminosity and need not trust the simulation.
+
+\section{Fallback selections and expected limits}\label{sec:27-limits}
+
+With no working point, each of the 40 hypotheses gets its one fixed fallback selection of Chapter~\ref{ch:25-chain}, with $\Beightyfour$ from $2.0\times10^6$ per category at a $9.4\mm$ width cut to $6.4\times10^7$ (general) with no width cut. We ask for the expected $95\%$ upper limit $\mu_{95}$\index{expected limit} on signal events in the acceptance, from a two-category count with one log-normal per category (a simplification: the sources shared between categories, listed in Chapter~\ref{ch:23-statistics}, are not correlated in the limits), by CL$_s$~\cite{Junk:1999kv,Read:2002hq} with 5000 hybrid toys per point. Comparing with the prediction \eqref{eq:25-yield} gives the key ratio:
+\begin{equation}
+  \keyresult{\frac{\sigma_{95}}{\sigma_{\rm norm}}=\frac{\mu_{95}}{N_{\rm exp}}\ge790\quad\text{wherever a limit exists.}}
+  \label{eq:27-ratio}
+\end{equation}
+The limit $\mu_{95}$ is read from the frozen run; $N_{\rm exp}$, and with it the ratio and $S$, are estimates (\EST), since $N_{\rm exp}$ rests on generator-level acceptance and transcribed $K$-factors. A ratio below one would be an exclusion. \emph{No point is excluded.} The best is $E$ at $\mQ=200\GeV$, $\Lam=1.5\keV$, where the fallback has a width cut of $18.75\mm$ and $\Eff=9/200=0.045$, so $S=710$ events are expected. The limit is $\mu_{95}=1.25\times10^7$, with a toy band of $[8.6\times10^5,1.9\times10^8]$, against $N_{\rm exp}=1.58\times10^4$. As cross sections, that is $1.7\times10^5\fb$ against $219\fb$.\sidenote{An earlier version of the analysis left out the tail fraction $f_{200}$ and quoted $37.6$. Comparing $N_{\rm exp}$ with the number of pairs before cuts caught it.}
+The next best is $820$ and the rest run up to $6\times10^7$ (Fig.~\ref{fig:27-limits}). Seven points have $\Eff=0$ and no limit, which leaves 33.
+
+\begin{figure}[!t]
+  \includegraphics{ch27/limits}
+  \caption{Expected limits at the fallback. (a) $E$ at $200\GeV$: toy median and $\pm1\sigma$ band against the prediction. Dots: the formula \eqref{eq:27-s95}, drawn where the late-hit category holds no signal. (b) The ratio at all 33 points, by mass in GeV. Nothing comes near one.}
+  \label{fig:27-limits}
+\end{figure}
+
+\begin{example}[Why the limit is the background over the efficiency]\label{exa:27-limit}
+At the best point the late-hit category has $\Eff=0$, so the general category's count $n$ alone decides. That background has median $b_{\rm m}=5.91\times10^5$ and $\Beightyfour=8.87\times10^6$, so $\sigma_{\ln}=\ln(\Beightyfour/b_{\rm m})=2.71$. The Poisson error, about $770$, is nothing beside a factor of $15$, so the count simply \emph{is} the background, and for a signal $s$
+\[
+  \mathrm{CL}_s=\frac{P(b+s\le n)}{P(b\le n)}=\frac{\Phi\big(\ln[(n-s)/b_{\rm m}]/\sigma_{\ln}\big)}{\Phi\big(\ln[n/b_{\rm m}]/\sigma_{\ln}\big)},
+\]
+with $\Phi$ the normal cumulative. The median experiment has $n=b_{\rm m}$. Setting $\mathrm{CL}_s=0.05$ gives $\Phi=0.025$, or
+\begin{equation}
+  s_{95}=n\left(1-\ee^{-1.96\,\sigma_{\ln}}\right)=0.995\,b_{\rm m}.
+  \label{eq:27-s95}
+\end{equation}
+So $\mu_{95}=s_{95}/\Eff=1.31\times10^7$ (\EST), equal to the study's asymptotic value and $5\%$ above its toys. Taking $n=b_{\rm m}\ee^{\pm\sigma_{\ln}}$ gives $[8.6\times10^5,2.0\times10^8]$, close to the toy band. When a background is uncertain by a factor of $15$, the data cannot say how much of the count is background, so the limit on signal is about the count itself. Hence $\mu_{95}/N_{\rm exp}\approx b_{\rm m}/S=830$: the headline ratio is background over signal.
+\end{example}
+
+The signal's uncertainties move the ratio of $790$ but cannot close the gap. The efficiency's $68\%$ interval, $[0.030,0.065]$, moves it by a factor of about $1.5$ either way. An exclusion needs $\Eff\approx36$, impossible. Chapter~\ref{ch:26-signalresults}'s full-chain loss would raise it to about $910$ to $950$ (\EST, not applied). Treating the two categories as uncorrelated is optimistic at the 23 points where both hold signal, but not at this one.
+
+The number $790$ measures the reach of this simulation set-up, not the physics reach of a search, because these limits use zero-count bounds as central backgrounds. More events would move them in proportion, and the untested factorisation can bias them either way. An exclusion at the best point would need a total background below about $8\times10^2$ events, by \eqref{eq:27-s95} with $\sigma_{\ln}=1$ (\EST). Our number is about $6\times10^5$, from bounds on sources that do not scale with pile-up. With zero background the same efficiencies would exclude $E$ up to about $1\TeV$ in $3\abinv$ (\EST). Earlier projections~\cite{Knapen:2017kly,Li:2019wce} assumed zero or small backgrounds. We do not show them wrong, only that at pile-up 200 their assumption cannot be confirmed by simulation alone.
+
+This simulation cannot show that the background is small, and no feasible one can by counting zeros. The deciding step is a background estimate from data, and Chapter~\ref{ch:28-bottlenecks} examines whether that is possible.
+
+\begin{chaptersummary}
+  \item Direct counting reaches R07 and thinning from double density R06. The closure test of thinning failed, with $z=+52.8$ at R04. The estimate carries $\times2.41$, and all that is deeper rests on untested factorisation.
+  \item No working point exists. The minimum is $\Beightyfour=1.23\times10^6$ at R09, $7.05$ decades over budget, set by zero-count bounds.
+  \item Statistics alone cannot fix this: a zero-count bound at a tenth of an event needs more events than nature makes, from twice as many for vertex pairs to $35$ times for decays in flight.
+  \item The fallback limits exclude nothing. The best is $790$ times the prediction.
+\end{chaptersummary}
+
+\begin{exercises}
+  \item\label{ex:27-bound} Find the expected count giving no events with probability $0.32$, and with $0.05$. Repeat Example~\ref{exa:27-dif} at $95\%$. What do $5000$ events give?
+  \item\label{ex:27-poisson} Show that thinning a Poisson($\lambda$) count with probability $q$ gives Poisson($q\lambda$). For $\nint=20$, how far per trial does one count reach in $6000$ trials at $\rho=3$?
+  \item\label{ex:27-limit} At $E$ $200\GeV$, $\Lam=1\keV$, the general category has $b_{\rm m}=8.12\times10^5$, $\Beightyfour=2.54\times10^7$ and $\Eff=4/188$. Use \eqref{eq:27-s95} to estimate $\mu_{95}$, and compare it with the stored $3.59\times10^7$. For $S=710$, $\sigma_{\ln}=1$, what $b_{\rm m}$ gives ratio one?
+  \item\label{ex:27-nature} Derive \eqref{eq:27-nature}. An event of this kind with pile-up costs about $19$\,s. How many CPU-years do $2.2\times10^9$ events take? What would you do instead?
+\end{exercises}
