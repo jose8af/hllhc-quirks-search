@@ -19,7 +19,8 @@ W=$QV2_SCRATCH/anselm_bench/${TAG}_r${REP}c${CONC}
 rm -rf "$W"; mkdir -p "$W"
 TTPY="pixi run --manifest-path $QV2/envs/tt/pixi.toml python"
 ACTSPY="pixi run --manifest-path $QV2/acts/pixi.toml python"
-B="python3 -I $SRC/bench_run.py --rep $REP --conc $CONC --workdir $W"
+export PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1
+B="python3 -I $SRC/bench_run.py --rep $REP --conc $CONC --workdir $W --note ${BENCH_NOTE:-warm}"
 case "$U" in
   s3)
     m=$1; lam=$2

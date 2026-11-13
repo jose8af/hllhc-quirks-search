@@ -13,3 +13,9 @@
 - 15:08 ACTS smoke_test (v1 install check) started on maxwell; cold start very slow (NFS, einstein sda saturated by a foreign writer).
 - 15:12 pyacts 48.0.0 linux-64 wheel: imports and all chain components present (Blueprint, CylinderContainer/Layer/Static/MaterialDesignator nodes, json.readDetectorElementsFromJson, Fatras, addDigitization, addSeeding with GridTriplet, addCKFTracks, HepMC3); pythia8 8.312 + pyhepmc. No source build needed (R3 not attempted). TT-side Stage-4 imports OK (numpy 2.5.4, numba 0.68.1).
 - 15:10 Stage-3 smoke now computing on maxwell after ~3 min cold start.
+- 15:40-16:30 (maxwell clock) resumed after the OOM. Item 1 done: smoke_test PASS x4 (37.2 s CPU vs 39.4 M3); M2 (numerics identical except one conformal N=256 run), M5 ev0 84.1 s vs 126.1 s M3. FEAS_A 4.1-4.1d written.
+- 16:05 Killed an orphaned M5 worker (pkill missed the spawned child). Stage-4 smoke PASS (3/3, RSS 1.46 GiB), markers written.
+- 16:10-16:45 PU-200 benchmarks: single N=3 (12.9 s/ev chain, 10.2 s/trial TT side), 4-concurrent N=4 (13.5, 11.7). Finder per trial 9.4/10.8 s. FEAS_A 4.2-4.3a written; benchmarks_chain.json refreshed.
+- 16:47 Stage-3 single-job benchmarks started (m500, L 1/3/5/10, 3 reps).
+- 17:14 Stage-3 benchmarks done (single N=3 and 4-concurrent N=3 at m500; m1000 one concurrent round). FEAS_A 4.4a-b written. No-PU gun benchmarks started (cp pvpair, gun mu, 2000/20000 events).
+- 17:50 No-PU guns done (pvpair 10.7 ms/ev, gun 14.1 ms/ev; RSS grows 13-17 kB/ev). Sizing table (src/job_sizing.py) merged into benchmarks_chain.json. FEAS_A rewritten in final JFC structure. Maxwell scratch cleaned (caches kept: /home/scratch/jdochoa/cache).

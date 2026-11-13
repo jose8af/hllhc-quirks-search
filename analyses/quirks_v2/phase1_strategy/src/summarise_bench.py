@@ -26,7 +26,7 @@ def ms(xs):
 def main():
     groups = defaultdict(list)
     for f in sorted(LOGS.glob('*.jsonl')):
-        if f.name == 's3_events.jsonl':
+        if f.name in ('s3_events.jsonl', 's4_trials.jsonl'):
             continue
         for line in f.read_text().splitlines():
             r = json.loads(line)
@@ -67,6 +67,17 @@ def main():
         out['stage3_kernel'].append(dict(m=m, lam=lam, conc=conc, n_reps=len(rs), n_events=rs[0]['n'],
                                          cpu_s_per_event_rep=ms(per_rep), bytes_per_event=ms([r['bytes'] / r['n'] for r in rs]),
                                          hits_per_event=rs[0]['n_hits'] / rs[0]['n'], status=rs[0]['status']))
+    out['finder_per_trial'] = []
+    p4 = LOGS / 's4_trials.jsonl'
+    if p4.exists():
+        T = [json.loads(line) for line in p4.read_text().splitlines()]
+        for conc in (1, 4):
+            sel = [t for t in T if t['file'].split('/')[0].endswith(f'c{conc}')]
+            if sel:
+                out['finder_per_trial'].append(dict(conc=conc, n_jobs=len(sel), n_trials=sum(t['n_trials'] for t in sel),
+                                                    find_s=ms([t['mean_per_trial']['find'] for t in sel]),
+                                                    all_cols_s=ms([t['sum_per_trial'] for t in sel]),
+                                                    p90_find_s=ms([t['p90_find'] for t in sel])))
     (FEAS / 'benchmarks_chain.json').write_text(json.dumps(out, indent=1) + '\n')
     for g in out['groups']:
         c, w, r = g['cpu_s'], g['wall_s'], g['max_rss_mb']

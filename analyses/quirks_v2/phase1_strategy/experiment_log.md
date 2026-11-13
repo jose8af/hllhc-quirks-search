@@ -77,3 +77,62 @@ FLAG FOR HUMAN: YES (NFS server nfsd thread count / load is an admin matter)
 
 ### [Orchestrator] 2026-11-13 15:12 INTERRUPTION (see ../LOG.md 15:12 entry)
 einstein OOM killed Anselm, Basil, Boris and the orchestrator; cajuela was down 15:12–15:20. All pixi envs verified complete except `sw/envs/g4` (deleted, to be reinstalled). The decision of 15:08 to run pixi installs on einstein is REVOKED by the user: no installs, solves, builds or benchmarks on einstein; one install at a time, from a worker, with no jobs running.
+
+### [Anselm] 2026-11-13 (resumed after the 15:12 einstein OOM) — rules acknowledged
+- Revoked by the user: my 15:08 decision to run pixi installs on einstein. From now on: einstein = edit/read/ssh only; all compute on maxwell.
+- Self-report: at ~15:11-15:12 I ran an import check on einstein (two Python processes importing the TT env + Stage-4 modules and the acts env, ~0.2-0.5 GB RSS each, 40-60 s). It was niced but it was heavy work on einstein and may have contributed to the memory pressure. Not repeated.
+- The Stage-3 smoke on maxwell finished before the crash (rc 0, 3 jobs, 5:02 wall incl. cold start, 210 s user, max RSS 311 MB).
+- [Basil] INTERRUPTED 15:12 (einstein OOM; LOG.md "15:12 — INTERRUPTION"). At that moment: `pixi install` of `sw/envs/g4`
+  was running from schrodinger (killed by me at ~15:10 on the orchestrator's NFS instruction; env later deleted by the
+  orchestrator), nothing was compiling. RESUMED 15:38 under the revised rules (nothing heavy on einstein; builds in
+  /var/tmp on schrodinger; install = one tarball unpacked from schrodinger with nice 19 ionice -c3; no pixi install
+  without the install slot). Re-verified: 4 tarballs sha256 identical to the recorded values; unpacked MG tree = tarball
+  listing (4071 files; differences only input/.autoupdate (rewritten by MG at start), input/mg5_configuration.txt
+  (my auto_update edit, -2 bytes) and Template/LO/Source/make_opts (created by MG at first start)); sw/lhapdf_data
+  CT18NLO 59 members = tarball sizes, NNPDF23 member 0 byte-identical.
+
+## [Boris] 2026-11-13 15:45 — runner changes after the 15:12 incident
+DECISION: node-local copy of the stdlib-only runner interpreter (bin/qv2-job) instead of PYTHONPYCACHEPREFIX or a
+bash-only wrapper. Measured: /home metadata calls per job start 687 -> 28; quiet start-up 0.7 s.
+DECISION: markers appended with O_APPEND + fsync (no .part/rename per event): fewer journal transactions on the sync
+/home export; torn last line tolerated. DECISION: cajuela/NFS I/O errors retried with back-off (480 s budget), then
+`io_error` (retryable) with the finished work stashed in scratch; no `done` line without a verified output.
+DECISION: drivers run detached on a worker (`--on landau`), heartbeat file every 60 s; einstein runs only the bash
+watcher `bin/qv2-watch`.
+CONFIDENCE: HIGH
+FLAG FOR HUMAN: NO
+- [Basil] Geant4 local install (user decision: node-local env) on schrodinger: tools/install/install_g4_local.sh, lock sha256 efedbc03…a5b4, 15:39:43→15:42:37 (≈3 min, node-local cache, nothing written to NFS except the stamp-free repo reads); conda-meta check 0 missing / 62788 files; Geant4 11.4.3 (noqt); data sets 2.2 GB, env 3.3 GB, local package cache 3.3 GB. sw/envs/g4 removed. FAILED ATTEMPT (MG): launching with LD_LIBRARY_PATH including the conda env lib dir makes MG's Fortran (compiled with system gfortran 13) load conda libgfortran 16, whose runtime rejects the '$' edit descriptor (symmetry.f l.233 '(I1$)': 'Missing comma between descriptors'); fix: never put the conda lib dir in LD_LIBRARY_PATH. FAILED ATTEMPT (MG): auto_update = 0 in input/mg5_configuration.txt is read as a string and crashes MG's exit hook (abs(str)); reverted to the release file; instead input/.autoupdate has last_check = 4102444800 (year 2100), so MG never prompts nor rewrites it.
+- [Anselm] M2 calibration: per-run time ratio maxwell/M3 = 3.35 (1 proc) for numba kernels, vs 1.3-1.4 for the compiled ACTS/Pythia parts of smoke_test.py; numerics identical to 1e-17 except one conformal N=256 run (2 vs 6 crossings). M5 30-event job stopped (would exceed 30 min at ~3.3x); calibrating on M5 event 0 (M3 126.1 s) x3 instead.
+- [Anselm] FAILED-STOP note: `pkill -f M5_li_blinearity` killed the M5 parent but left its spawned multiprocessing worker (ppid 1) running for 13 min. It overlapped the 3 M5 event-0 reps and the Stage-4 smoke (2 busy cores of 4 instead of 1). Killed at 16:05. Lesson for the runner: kill the process group (setsid + kill -- -PGID), not a name pattern. The M5 ev0 times (84.9/83.8/83.5 s) are therefore "2 jobs on 4 cores"; marked so in FEAS_A.
+- [Basil] FAILED ATTEMPT (PY8 interface, 1st build): compiled without Pythia's CXX_COMMON (-DGZIP) → "PYTHIA Abort from
+  BeamSetup::initFrame: Les Houches initialization failed" on events.lhe.gz, then an endless loop at 100 % CPU (killed
+  after 3 min). Fix: compile with Pythia's Makefile.inc CXX_COMMON.
+- [Basil] FAILED ATTEMPT (PY8 interface, 2nd build): without MG's HepMC2 named-weight patch (WeightContainer.{h,cc} from
+  HEPToolsInstaller V168, installHEPMC2.sh) and -DHEPMC2HACK the interface writes one HepMC file per weight: 20 files
+  × 190 MB for 1000 E-LOPS events (158 s CPU). Fix: the installer recipe (patch + -DHEPMC2HACK -DHEPMC2), as v1 must
+  have had (v1 HepMC carried named weights `..._MERGING=` in one file).
+- [Basil] DECISION: Pythia 8.313 built WITHOUT LHAPDF. ALTERNATIVES: HEPTools default (with LHAPDF 6). Reason: v1 never
+  used LHAPDF inside Pythia (CP5 = internal PDF:pSet 20; v1's HEPTools LHAPDF python bindings were unusable); fewer
+  files on NFS. CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+- [Basil] DECISION (G4 env): added conda-forge header packages expat, zlib, freetype to tools/install/g4/pixi.toml
+  (re-locked on schrodinger, each re-lock adds exactly one package; final lock sha256 edbcef24…7291), and configure
+  with -DCMAKE_IGNORE_PREFIX_PATH=/usr, because Geant4Config.cmake requires EXPAT ≥ 2.8.5, ZLIB ≥ 1.3.2, Freetype ≥ 2.14.3
+  and otherwise finds the older system headers (2.6.1, 1.3). CONFIDENCE: HIGH. FLAG FOR HUMAN: NO (orchestrator must
+  commit the changed tools/install/g4/pixi.{toml,lock}).
+- [Basil] FAILED ATTEMPT (NLO output): `output` of p p > xe+ xe- [QCD] made MG download HEPToolsInstaller V168 and start building OneLOop (for ninja) INSIDE the NFS install (HEPTools/oneloop, 198 files), against the NFS rules. Killed within ~1 min; the partial HEPTools/{oneloop,HEPToolsInstallers} removed. Fix: answer MadLoop's tool question with 'ninja/collier/golem noinstall' (CutTools + IREGI are built inside the local output dir).
+
+## [Boris] 2026-11-13 16:30 — feasibility C complete
+Argo vs SSH (landau, quiet): CPU identical; overhead/job 16.8 s vs 2.4 s. All fault-injection tests converge; memory
+limits enforced both ways. FINDING fixed: k8s OOM kills the whole container -> driver reconciles `oom` from pod status.
+FAILED ATTEMPT recorded: scenario pod-deletion step found no Running pod (empty selector) -> repeated as feas-podkill.
+Open: weekday parallelism not re-capped mid-run; stash reused only on the same node; payload envs still import from NFS.
+- [Basil] FAILED ATTEMPT (benchmark): copying a compiled MG process dir to another path breaks it: MG writes lib/libLHAPDF.a as a RELATIVE symlink (../../../../../users/jdochoa/sw/envs/mg/.pixi/envs/default/lib/libLHAPDF.a); at another depth it dangles, MG relinks against libLHAPDF.so and gensym fails ('libLHAPDF.so: cannot open shared object file' -> MG 'could not convert string to float: ./gensym:'). Consequence for production: create the process dir where it runs (or rewrite that symlink as absolute). Benchmarks redone as output + warm-up launch + timed launch. FAILED ATTEMPT (Geant4): first 20k-event g4sv run hung (>9 CPU-min): low-pT charged tracks with pz ~ 0 circle forever in the vacuum gaps in 3.8 T; fixed by killing tracks after 25 ns or 5 m path (counted as nkilled_loopers); also gun now energy-defined (no per-event G4ParticleGun warning, 1.5 MB of stdout before).
+- [Basil] RESULT (task 4): NLO QCD K-factor computable here. loop_quirkE (loop_sm + v1 quirk states) runs
+  p p > xe+ xe- [QCD] at fixed order: m_E = 200 GeV, CT18NLO, mu = H_T/2: LO 92.87 +- 0.14 fb, NLO 108.2 +- 0.14 fb,
+  K = 1.165 +- 0.002, ~2 CPU-min per mass point + 3 CPU-min one-off output. DECISION (proposal for STRATEGY/S2): compute
+  NLO QCD K(m) for E and Etilde with MG; take only the NNLL/NLO ratio from public tables, with its own systematic.
+  ALTERNATIVES: transcribe as v1 (UNVERIFIED); Resummino (Etilde only). CONFIDENCE: MEDIUM (model-identity test at a
+  fixed scale still to do). FLAG FOR HUMAN: YES (changes how sigma_norm is built).
+- [Basil] RESULT (task 5): Geant4 11.4.3 FTFP_BERT, pi+- gun on the v1 barrel slabs in 3.8 T: 0.134 ms/gun (primary-only
+  hand-over), 0.265 ms/gun (full), 71 MB; 5.3 % of guns give a vertex -> ~0.7 CPU-h per 1e6 vertex events (ESTIMATE).
+- [Anselm] 17:50 DONE. Final artifact outputs/feasibility/FEAS_A_chain_anselm.md, benchmarks_chain.json. Open: B2 (rho=2) RSS at production size (1.46 GiB at 1 event, v1 3.9 GB) — measure before production; finder frozen config absent; Stage 3 timed on toy kinematics only.

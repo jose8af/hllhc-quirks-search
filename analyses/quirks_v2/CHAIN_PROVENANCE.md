@@ -74,3 +74,8 @@ WP_RULE and its addenda, which some code hashes).
 **Freeze consequence.** Several edited files (`run_stage4.py`, `code/s4pu.py`, `code/s4sig.py`, `run_g1b.py`) are hashed
 in v1's `frozen_inputs.json` / `analysis_freeze.json` / `CODE_FILES`. Their sha256 now differ from v1; any v2 result
 needs the v2 re-freeze (REPRODUCE §5.1-4).
+
+### Later edits (same session, after the provenance above was first written)
+- `acts/scripts/smoke_test.py:35`: temp HepMC3 directory from `QV2_SMOKE_TMP` if set (else the v1 `acts/probe/smoke_tmp`).
+- `analytic/numerics/M2_single.py:198`: process-pool size from `QV2_NPROC` (default 7, as in v1).
+- The full list of port edits with reasons is in `phase1_strategy/outputs/feasibility/FEAS_A_chain_anselm.md` §2.4.
