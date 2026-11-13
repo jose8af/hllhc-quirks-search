@@ -1,0 +1,20 @@
+{
+ "campaign": "feas-mem-argo",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "mem-argo",
+   "max_rss_mb": 133.34,
+   "outputs": [
+    "mem-argo.dat"
+   ],
+   "command": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --mem-mib 400 --out mem-argo.dat"
+  }
+ ]
+}

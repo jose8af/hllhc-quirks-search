@@ -1,0 +1,28 @@
+# causal NG, pair at rest in uniform E*, m=500.0 GeV, Lambda=1.0 keV, gamma*=1.28, alpha=45.0 deg, max_boost=0.001, 4 periods
+# G(gamma*) = 1.2449
+# eps=qE/sigma | b_1..b_4 / b_odd_pred | eta per period (mean, std over periods) | eta/(eps_perp G) | ln(lmax/b_odd) | K = eta/(eps_perp G) - ln
+ 0.0e+00 | b = 7.61e-14 1.50e-13 4.12e-13 2.50e-13 cm | eta = 0.00e+00 (2 s)
+ 1.0e-06 | 1.0003 0.0003 1.0005 0.0004 | 1.2204e-05 +- 2.7e-09 | 13.8642 | 13.8997 | -0.0355  (4 s)
+ 3.0e-06 | 1.0003 0.0003 1.0002 0.0005 | 3.3695e-05 +- 1.1e-09 | 12.7592 | 12.8011 | -0.0419  (4 s)
+ 1.0e-05 | 1.0003 0.0004 1.0001 0.0006 | 1.0172e-04 +- 4.0e-09 | 11.5555 | 11.5971 | -0.0416  (4 s)
+ 3.0e-05 | 1.0003 0.0006 1.0001 0.0010 | 2.7638e-04 +- 1.1e-07 | 10.4654 | 10.4985 | -0.0331  (4 s)
+ 1.0e-04 | 1.0004 0.0012 1.0005 0.0022 | 8.1708e-04 +- 1.1e-06 | 9.2821 | 9.2946 | -0.0125  (5 s)
+ 3.0e-04 | 1.0006 0.0028 1.0009 0.0053 | 2.1716e-03 +- 7.3e-06 | 8.2230 | 8.1959 | +0.0271  (4 s)
+ 1.0e-03 | 1.0013 0.0075 1.0023 0.0148 | 6.2670e-03 +- 5.8e-05 | 7.1193 | 6.9920 | +0.1273  (3 s)
+# causal NG, pair at rest in uniform E*, m=500.0 GeV, Lambda=1.0 keV, gamma*=1.28, alpha=0.0 deg, max_boost=0.001, 3 periods
+# G(gamma*) = 1.2449
+# eps=qE/sigma | b_1..b_4 / b_odd_pred | eta per period (mean, std over periods) | eta/(eps_perp G) | ln(lmax/b_odd) | K = eta/(eps_perp G) - ln
+ 0.0e+00 | b = 7.61e-14 1.50e-13 4.12e-13 2.50e-13 cm | eta = 0.00e+00 (2 s)
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/analytic/checks/c03_causal_E.py:88: RuntimeWarning: invalid value encountered in scalar divide
+  ratio = np.mean(eta) / (epp * G_of(g))
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/analytic/checks/c03_causal_E.py:89: RuntimeWarning: divide by zero encountered in scalar divide
+  L = np.log(lmax / bp)
+/Users/jochoafl/FISICA_USFQ/hllhc_search/stage2_C001_quirks/theory_track/analytic/checks/c03_causal_E.py:90: RuntimeWarning: divide by zero encountered in scalar divide
+  print(f'{eps:8.1e} | ' + ' '.join(f'{x / bp:.4f}' for x in bs[:4]) +
+ 1.0e-06 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 3.0e-06 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 1.0e-05 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 3.0e-05 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 1.0e-04 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 3.0e-04 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)
+ 1.0e-03 | inf inf inf inf | 0.0000e+00 +- 0.0e+00 | nan | inf | +nan  (3 s)

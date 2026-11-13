@@ -20,18 +20,22 @@ Start every shell with `. $REPO/tools/env.sh` (pixi, paths, umask).
   files (10 MB or more each), at most 10,000 entries per directory.
 - Stage large shared inputs into node-local scratch once; never let many jobs stream the same multi-GB file.
 
-## NFS home rule (added 2026-11-13 after a lab-wide stall)
-- `/home/users` is a `sync` NFS export from one rotational disk on einstein. **Never run `pixi install`, tarball
-  unpacking, `make install`, MG5 process output or any other many-small-files write under `/home/users/jdochoa` over
-  NFS from a worker.** Run those ON einstein, locally, one at a time: `nice -n 19 ionice -c3 …`.
-- Compile on a worker in `/var/tmp/jdochoa/` (local disk), pack the result into ONE tarball, copy that single file,
-  unpack on einstein under `sw/`.
-- Jobs on workers read software from NFS but write working files to `/home/scratch/jdochoa/<job_id>`; on NFS home a
-  job writes only its one marker file.
+## einstein and NFS home rules (revised 2026-11-13 after the 15:12 out-of-memory incident; user decision)
+- **Nothing heavy on einstein, ever:** no `pixi install`, no `pixi` solve/lock, no builds, no benchmarks, no test
+  suites, no Python that imports the big environments. einstein is the head node, NFS server and Kubernetes control
+  plane, and the orchestrator and all agents share a 10 GB memory cap there. On einstein you edit files, read
+  files and launch `ssh -x <worker> '…'` / `argo …`. Run everything else on your assigned worker.
+- `/home/users` is a `sync` NFS export of one rotational disk: writing many small files to it is slow (~1 MB/s) and
+  slows the whole lab. So: **at most one `pixi install` at a time in the whole study**, started only when the
+  orchestrator has told you that you hold the install slot, from your worker, as `nice -n 19 ionice -c3 …`, and
+  never while benchmark jobs are running. Do not create new environments without asking the orchestrator; the
+  existing ones were verified complete after the incident (list in `LOG.md`, 15:12 entry).
+- Jobs on workers read software from NFS but write all working files to `/home/scratch/jdochoa/<job_id>` (local
+  disk); on NFS home a job writes only its one marker file. Compile in `/var/tmp/jdochoa/` on the worker.
+- Do not spawn sub-agents. Keep your own memory use small: no large files read into the conversation.
 
 ## Compute rules (shared lab machines)
-- `einstein` is the head node (NFS, LDAP, Kubernetes control plane): at most 3 light jobs in total across all agents,
-  always `nice -n 19`, nothing I/O-heavy, build trees at most 50 GB and preferably on a worker instead.
+- `einstein` is the head node (NFS, LDAP, Kubernetes control plane): editing and launching only (see above).
 - Workers `landau`, `maxwell`, `schrodinger`: 4 cores, 7.5 GiB, no swap. Use `ssh -x <node> 'cd … && nice -n 10 …'`.
   Use only the node(s) and job count the orchestrator assigned to you. Check `uptime` and `who` first.
 - Every job 30 minutes or less, idempotent, resumable. Measure CPU time and max RSS with `/usr/bin/time -v`.

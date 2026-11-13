@@ -1,0 +1,322 @@
+[
+ {
+  "id": "A01",
+  "item": "signal match needs the core = S4 hit record",
+  "reading": "eps at R01-R04 and N_L2 columns are LOWER BOUNDS (no hit record -> unmatched)"
+ },
+ {
+  "id": "A02",
+  "item": "quirk hit in a U-5b merged measurement",
+  "reading": "INT of the largest-dE member (frozen chain_inputs convention): quirk only if it dominates"
+ },
+ {
+  "id": "A03",
+  "item": "h fit details unspecified (errors, MS, 2S, free origin)",
+  "reading": "local errors s0 (r-phi) / s1 (z), no MS term; all in-band hits incl. 2S split by sign(u.n2 - c); free origin = PV + a n3 + b n2; a NON-EMPTY subset with < 3 hits -> undefined -> passes"
+ },
+ {
+  "id": "A04",
+  "item": "o separation, error and radius unspecified",
+  "reading": "s_l = |difference of the two cluster means along n2|; sigma_l = n2-projected hit errors / sqrt(n) per cluster; r_l = mean transverse radius from the PV; r_min = smallest r_l used"
+ },
+ {
+  "id": "A05",
+  "item": "B1 direct estimator (\u00a76.1 per-trial indicator vs expected count)",
+  "reading": "expected per-hit-set groups per trial (>= indicator): conservative; it is also the 'power law at rho = 1' model"
+ },
+ {
+  "id": "A06",
+  "item": "upper envelope {thinning, power law, factorisation}",
+  "reading": "power law = B1 direct where B1 >= 10 groups, else undefined; factorisation = from the deepest B1 rung with >= 10; envelope applied at every column once any family is anti-conservative"
+ },
+ {
+  "id": "A07",
+  "item": "compounding of family corrections",
+  "reading": "literal: T1 on every rung, T1w on width/chi2/2S/F1/FB, T1e on dE/dx (T1e untestable -> T3, no factor); double-counts R04 inside T1w (conservative, user-approved end state); missing lever arm -> x max(N_obs/N_pred, 1) with |ln| in sigma_ln (REVIEW R1 B-2); counting family: on a tie of readings A/B the larger ratio (C-8); T3 branch applied to every factorised column, degenerate T3 flagged 'T3 non-informative' (B-1)"
+ },
+ {
+  "id": "A08",
+  "item": "trend extrapolation index",
+  "reading": "sigma_ln,trend = |fitted ln r at the rung index| (G3 convention); R15-R20 use their own index; FB use 20 (no dE/dx) or 21-23; an anti-conservative trend would scale only the in-job column's central value (G3/C1 trend is conservative)"
+ },
+ {
+  "id": "A09",
+  "item": "factorisation conditionals: candidates or groups; population",
+  "reading": "per-hit-set groups; the cumulative partial selection, else a looser CUMULATIVE partial selection of the same chain (never looser than the chain's start rung; REVIEW R1 C-5 wording fix); none -> factor 1 with sigma_ln 1.0 (conservative)"
+ },
+ {
+  "id": "A10",
+  "item": "SR-T columns (r & BTL) beyond rho = 2 reach",
+  "reading": "conditionals measured on BTL-present B1 records (literal); smaller M -> larger zero-count bound -> B_T can exceed B_G at deep rungs. DECISION D5 -- fixed by R1 A-1/A-2 (D5)"
+ },
+ {
+  "id": "A11",
+  "item": "SR-G = 'everything else'",
+  "reading": "B_G = full B_PU column (no subtraction of SR-T candidates): conservative"
+ },
+ {
+  "id": "A12",
+  "item": "SM and C' terms per category",
+  "reading": "enter BOTH categories in full (no time-tag credit): conservative"
+ },
+ {
+  "id": "A13",
+  "item": "SM HS term counting and F1 factors",
+  "reading": "HS-tagged candidates per event (candidate counting, \u00a77 wording); F1 conditionals from B1 S4 (no SM-own F1 population at C1 statistics)"
+ },
+ {
+  "id": "A14",
+  "item": "N_trig value",
+  "reading": "not fixed by the rule; default 1.28e8 = p6 N_3ab 9.12e7 x K 1.4 (conservative) vs plan sizing 3.3e7. DECISION D1"
+ },
+ {
+  "id": "A15",
+  "item": "missing normalisation inputs",
+  "reading": "SM sigma (ttbar 1l, W tau) and C' rate_t absent -> term excluded and the B sum flagged INCOMPLETE (no WP claimed). DECISIONS D2, D3"
+ },
+ {
+  "id": "A16",
+  "item": "PC-19 timing sigma for non-ladder columns",
+  "reading": "own value if it qualifies, else the LARGEST carried ladder value R04-R14; none -> 1.0"
+ },
+ {
+  "id": "A17",
+  "item": "P(late), P_OOT measuring populations",
+  "reading": "tightest superset population with M_present >= 10 resp. M_not_present >= 10 (\u00a74.2)"
+ },
+ {
+  "id": "A18",
+  "item": "OOT hash string format of m",
+  "reading": "f'srt-oot|{spin}|{m:g}|{row}|{k}' ('500', not '500.0'). DECISION (fixes which B1 events are drawn)"
+ },
+ {
+  "id": "A19",
+  "item": "limit inputs",
+  "reading": "B per bin = one log-normal (median, sigma = ln(B84/B_median)); cross-category correlation not in the workspace; mu = events in trigger+presel acceptance (sigma x L x A in Stage 5); eps from A2core (A1 = optimistic bound, A5 = cross-check)"
+ },
+ {
+  "id": "A20",
+  "item": "asymptotic vs toys at B << 1",
+  "reading": "both reported; asymptotic -> 1.92 events, toys -> 3.0 at b -> 0. DECISION D4 (conservative = toys)"
+ },
+ {
+  "id": "A21",
+  "item": "signal eps denominator",
+  "reading": "every counting row not probe-excluded, all eta; Stage-3 status != 1 rows count as FAILURES (REVIEW R1 B-6, plan \u00a71.3); trials with no finder call count as failures"
+ },
+ {
+  "id": "A22",
+  "item": "signal SR-T",
+  "reading": "eps_T from PC-19 (window from C1 B1, OOT from assigned C1 B1 events); 'T_present' tables (in-job first factor) reported, never used for limits"
+ },
+ {
+  "id": "A23",
+  "item": "density sigma_ln nominal sample",
+  "reading": "the B1 jobs that are DENS sources (first 2 000 C1 B1 events), per-hit-set group rates; absent (G3) -> 1.0"
+ },
+ {
+  "id": "A24",
+  "item": "c factor of the independence test",
+  "reading": "the GLOBAL c_max over all bins/pairs/triples multiplies every factorised chain once (B1 PU, SM, C') whenever any c > 1 at 2 sigma (REVIEW R1 B-3)"
+ },
+ {
+  "id": "A25",
+  "item": "F1 density-bin correlation factor",
+  "reading": "applied iff c - 2 sigma_c > 1, sigma_c from binomial counts (approximate)"
+ },
+ {
+  "id": "A26",
+  "item": "FB and F0e columns",
+  "reading": "thinning where reachable at rho = 2 (>= 10 groups), else factorisation from the deepest reachable ladder rung whose requirements the column contains"
+ },
+ {
+  "id": "A28",
+  "item": "rung factorisation: substitute population for nested cuts of ONE variable",
+  "reading": "different variables are factorised; the same variable is conditioned on its previous cut, N(P & q)/N(P & q') with N(P & q') >= 10, else its whole tail beyond P is ONE joint factor N(P & q)/N(P). The literal per-step marginals on a common substitute population multiply nested tails of one variable (e.g. p > 1e-3, > 0.01, > 0.05 all on R06) and are anti-conservative by orders of magnitude (seen in the G3 dry run). D10 DECIDED: confirmed",
+  "fix_R6": "FIX R6 (INV_STATS_BKG item 2): the merged joint tail N(P & q)/N(P) is searched only among populations WITHOUT an added cut of the merged variable (pops[:first[v]]); the frozen search could return P & q_first and drop p(q_first | P) (C12 SR-T FB2 R06 & BTL & R09; SM Z(nunu)/W(tau_h)/tt 1l FB0/FB1/+e in C1 and C12)"
+ },
+ {
+  "id": "A27",
+  "item": "F1 conditionals on a large measuring population",
+  "reading": "h, o computed on a seeded random subsample of at most --f1-max (5 000) S4 records of the population (unbiased estimate of the conditional; statistical error carried by the bootstrap)"
+ },
+ {
+  "id": "A29",
+  "item": "closure corrections for the SR-T first-factor columns (r & BTL-present)",
+  "reading": "the T1/T1w/T1e branches and factors measured on the full columns are applied unchanged to the r & BTL columns (no separate T-column closure test is pre-registered)"
+ },
+ {
+  "id": "A30",
+  "item": "SR-T window edges with C2B",
+  "reading": "edges from C1 B1 (+ mixing) only (PC-19); P(late), P_OOT measured on the B1 union C1 + C2B"
+ },
+ {
+  "id": "D1",
+  "item": "N_trig value for B = N_trig x P (rule fixes the formula only)",
+  "reading": "N_trig counted AFTER the event-level preselection (trigger weight, MET_reco > 250, jet > 100, min dphi > 0.5, e/mu/gamma vetoes), generator-level Pythia per SM process (gen_d123.py nt -> normalise.py); SM terms on the same footing (per-event preselection weight from the regenerated hard scatter)",
+  "status": "DECIDED (USER 2026-10-14)"
+ },
+ {
+  "id": "D2",
+  "item": "rate_t per C' topology (Pythia generator level, per triggered event in the road)",
+  "reading": "rate_t at generator level per preselected event, road +-0.15 rad (frozen delta95, conservative); P(pass|t) = max(unweighted, gun pT reweighted to the Pythia spectrum); P_PV-line 0.22 applied to NI in wp.cp_terms; old NI 0.64-3.6 not used",
+  "status": "DECIDED (orchestrator 2026-10-14)"
+ },
+ {
+  "id": "D3",
+  "item": "SM cross sections: ttbar 1l (missing), W(tau nu) / W(tau_h nu) (ESTIMATE)",
+  "reading": "sigma = sigma_gen x N / (tries x (1 - failures/ATTEMPTS)), attempts = tries reaching forceHadronLevel (REVIEW R2 A-1: the earlier '/(1 - r)' per try was anti-conservative by x1.2-1.3 for W, tt); W(tau_l) = sigma(W tau nu) x N_lep/N, W(tau_h) = max(sigma(W tau nu), sigma(W tau_h sample)) x N_had/N, measured in the same run (no literals); K = 1.4, K_tt = 1.9 (CONSERVATIVE DEVIATION from the rule 1.2-1.4); W(e nu)/W(mu nu) conservative flagged proxy",
+  "status": "DECIDED (orchestrator 2026-10-14)"
+ },
+ {
+  "id": "D4",
+  "item": "expected limit at B << 1: asymptotic (pyhf default) vs toys",
+  "reading": "DECIDED (orchestrator 2026-10-14): toys PRIMARY (hybrid CLs, 5000 toys, seed 20261014, common random numbers); asymptotic reported as cross-check",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D5",
+  "item": "population of the SR-T column factorisation (BTL-present vs all, time independence)",
+  "reading": "DECIDED: literal BTL-present conditionals, with the R1 A-1 (no-BTL summand base = full column beyond rho = 2 reach) and A-2 (one bound per term) fixes",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D6",
+  "item": "pyhf in the theory_track env (pixi add pyhf) vs the in-house asymptotic CLs (validated vs pyhf 0.7.6)",
+  "reading": "DECIDED: no pixi env change; in-house CLs kept (asymptotic agrees with pyhf 0.7.6 to 1e-4 in an isolated, pre-existing scratch interpreter); workspaces are pyhf-schema JSON",
+  "status": "DECIDED",
+  "fix_R6": "FIX R6 (INV_STATS_BKG item 1): the in-house asymptotic NLL subtracts the saturated offset n - n ln n; the frozen version was unprofiled at b ~ 1e8 (asymptotic/toys 2.2e-4 at FB0/FB1); now 0.73-1.02 there (cross-check only; toys stay primary, D4). The 1e-4 pyhf agreement had been checked at small b only"
+ },
+ {
+  "id": "D7",
+  "item": "V4-3 W_c/t_tol variants stored only with the in-job (>= 50 % of written) match",
+  "reading": "DECIDED: V4-3 W_c/t_tol variants are a LABELLED DIAGNOSTIC (in-job >= 50 %-of-written match), not a rule input",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D8",
+  "item": "T3s (h/o recomputed on 200 rho = 2 S7 sets) not implemented",
+  "reading": "DECIDED: T3s required only if an h/o factor < 1 is credited; wp.f1_credited flags 'T3s REQUIRED' (B sum INCOMPLETE, limits refused) if that ever happens; G3 dry run: never credited (p = 1.000)",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D9",
+  "item": "signal match evaluable only on S4 records -> eps(R01-R04) lower bound",
+  "reading": "DECIDED: eps(R01-R04) and the N_L2 columns are labelled LOWER BOUNDS in signal_eff.json (lower_bound_label)",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D10",
+  "item": "A28 reading of the rung factorisation (same-variable nested cuts)",
+  "reading": "DECIDED: A28 confirmed -- the reading of WP_RULE \u00a76.2 step 3 / \u00a74.2 ('conditional measured on the tightest population with >= 10'); conservative, because the literal per-step product of marginals on a common substitute population is anti-conservative (multiplies nested tails of one variable)",
+  "status": "DECIDED"
+ },
+ {
+  "id": "A31",
+  "item": "generator-level preselection proxies (D1)",
+  "reading": "jets = SlowJet anti-kT 0.4 visible final state, smeared 10%/sqrt(E)+5 %; min dphi over leading 4 jets pT > 30; e/mu/gamma vetoed only if prompt AND isolated (dR 0.3, 0.2 pT); tau_h veto NOT applied (no ID proxy) -- each the looser choice; listed in normalisation.json n_trig.preselection_proxies"
+ },
+ {
+  "id": "A32",
+  "item": "N_trig process list",
+  "reading": "Z(nunu), W(tau nu) (tau_l + tau_h), W(e nu), W(mu nu), tt 1l generated; tt 2l, single top, VV (WP_RULE l.326) NOT generated (listed, not included)"
+ },
+ {
+  "id": "A33",
+  "item": "rate_t across SM processes",
+  "reading": "per topology the MAXIMUM over processes of the per-preselected-event rate (conservative); N_trig-weighted mean reported"
+ },
+ {
+  "id": "A34",
+  "item": "spectrum reweighting factor",
+  "reading": "R_t = [f_pre x P(attributed at the deepest C'_PU rung with >= 10)] with the gun pT reweighted to Pythia / unweighted; applied as max(1, R_t) at every rung; gun pT regenerated from the seeds, verified by the stored phi_MET"
+ },
+ {
+  "id": "A35",
+  "item": "SM preselection weighting",
+  "reading": "only the base (direct) count of the SM depth chain is preselection-weighted; the rung conditionals are measured on all HS-tagged candidates (preselection is an event-level property)"
+ },
+ {
+  "id": "A36",
+  "item": "events with truth MET < 200 GeV",
+  "reading": "not generated (production filter); their migration above MET_reco 250 (> 2 sigma of 25 GeV) is neglected"
+ },
+ {
+  "id": "A37",
+  "item": "N_trig-only processes (REVIEW R2 B-1)",
+  "reading": "tt 2l (K 1.9, tt-like), single top t-channel (K 1.4), WW/WZ/ZZ (K 1.4, rule top) generated with the same filter + preselection; s-channel single top NEGLIGIBLE (0.012 pb at generator level, 20-event smoke run, i.e. < 0.1 % of the summed SM sigma): not included; tW NOT in Pythia 8 -> FLAGGED ALLOWANCE 0.10 x N_trig(tt 1l + 2l) (UNVERIFIED ratio, rounded up); every one gets a flagged proxy B_SM = N_trig,p x max P(r | preselected) of the closest existing sample (tt-like -> tt 1l; WW -> W(tau); WZ -> W(tau), Z; ZZ -> Z) | tW allowance = ESTIMATE (UNVERIFIED inclusive ratio, not a high-MET tail ratio; implicitly K_tt 1.9): 0.26e6 = 0.6 % of N_trig; even x2 is +0.6 %, inside the 2 % stat"
+ },
+ {
+  "id": "A38",
+  "item": "lepton/photon veto efficiency (REVIEW R2 B-1 (ii))",
+  "reading": "neither plan nor WP_RULE defines a veto inefficiency: a flat 5 % per veto-able prompt isolated e/mu/gamma within acceptance (event weight x 0.05 per object), raising N_trig and B_SM; orchestrator instruction 2026-10-14 | ESTIMATE (UNVERIFIED): loose e/gamma veto inefficiencies at PU 200 can be 5-10 %; each extra 5 % adds ~ +4 % to N_trig (through W(e nu)/W(mu nu)); the vetoes are modelled as 95 % efficient (user told)"
+ },
+ {
+  "id": "A39",
+  "item": "PV-line sigma_ln (REVIEW R2 C-4)",
+  "reading": "NOT wired: WP_RULE l.319-320 names the variation (PV-line tolerance) but no magnitude; the central 0.22 is already an upper value (x15-35 above the per-NI fraction 0.006-0.014), so the variation can only lower B_NI; logged, user told"
+ },
+ {
+  "id": "A40",
+  "item": "approximations of the weighting (REVIEW R2 C-3)",
+  "reading": "SM preselection weights enter only the base count of the depth chain; the C' spectrum fold R_t is measured at one rung (deepest C'_PU rung with >= 10) times f_pre; both labelled"
+ },
+ {
+  "id": "A41",
+  "item": "SM road phi in the regenerated preselection (REVIEW R2 C-2)",
+  "reading": "min dphi uses the stored production road phi_MET (trials.phimet); the MET_reco magnitude uses an independent 25 GeV smearing (the production draw is not reproducible: its RNG is shared with the PU build)"
+ },
+ {
+  "id": "A42",
+  "item": "signal SR-T rows with a missing OOT B1 file (REVIEW R2 C-1)",
+  "reading": "no SR-T credit for that row (conservative); fraction reported in signal_srt.json oot_checks"
+ },
+ {
+  "id": "A43",
+  "item": "trigger + preselection acceptance A(m, Lambda, spin) (Stage-5 request)",
+  "reading": "TRUTH level from the Stage-3 records (pT(QQ) as MET, 4 truth jets smeared 10 %/sqrt(E)+5 %), the D1 preselection definition, template half, w-weighted, 20 MET-smearing replicas; eps_total = A x eps_finder assumes the finder eps independent of the preselection (factorised chain of plan \u00a73); eps_PV-ID = 1 (not modelled) | acceptance.json pairs A only with the A2 finder eps (same denominator; REVIEW R3 B-2)"
+ },
+ {
+  "id": "A44",
+  "item": "core recomputation tolerance",
+  "reading": "<= 1e-5 of the records may differ by float32 storage at the closed core boundary (A2: 2 / 620 118)"
+ },
+ {
+  "id": "A45",
+  "item": "detector edges (plan \u00a711 item 3, minimal)",
+  "reading": "half-maximum crossings of eps(Lambda) in ln Lambda at R04 and R14 (A1 no PU, A2 PU 200), row-level bootstrap jointly across Lambda; compared with the Stage-3 P2.json truth edges; no logistic fit (minimal output)"
+ },
+ {
+  "id": "A46",
+  "item": "sep_IT^det (plan \u00a711 item 4, minimal)",
+  "reading": "per matched candidate passing R04: per TBPX layer with two in-plane clusters the separation of the cluster means along n2, median over layers; per point the median over candidates vs the Stage-3 truth median sep_IT (median over candidates, f_CKF not applied; labelled)",
+  "fix_R6": "FIX R6 (INV_SIGNAL_EFF \u00a75): core hits only; PU-200 (A2/A5) values carry measurable = false and the flag 'NOT MEASURABLE AT PU 200' in sep_it_det.json (E500 A2: 41-46 mm all band hits -> 19-24 mm core-only vs 1-29 mm truth); A1 (no PU) values remain the detector-level sep_IT^det"
+ },
+ {
+  "id": "A47",
+  "item": "event display (plan \u00a711 Stage-5 list, minimal)",
+  "reading": "in-band hit dump of the A2 matched candidate passing the deepest ladder rung (cls 1 quirk / 0 PU) and of the B1 S4 candidate passing the deepest in-job ladder rung (cls 2), first 20 C1 B1 jobs"
+ },
+ {
+  "id": "A48",
+  "item": "processes outside the rule list (REVIEW R3 C-5)",
+  "reading": "Z(tau tau)+j, Z(ll)+j with both leptons lost, QCD multijet with fake MET are not in N_trig (UNVERIFIED, typically <~1-2 % each of monojet-like regions); composition Z 61 %, W 30 %, top 7 %, VV 1 %; K_V 1.4 at the rule top leaves headroom; user told"
+ },
+ {
+  "id": "D11",
+  "item": "C' dE/dx and h/o factors: from C'0 (literal WP_RULE \u00a77 'and the C'0 h/o/dE/dx factors') or measured inside the C'_PU chain / from the B1 F1 records (implemented reading)",
+  "reading": "DECIDED (orchestrator 2026-10-16, FIX R6): the CONSERVATIVE choice -- both readings are computed per C' row and the LARGER B is used (tie: the larger sigma_ln); both are recorded (background.json cprime rows 'dedx_readings'; wp terms 'ho_reading'). dE/dx: C'0 factor = p(e > x | tightest attributed-C'0 population with M >= 10), else 1 with sigma_ln 1 (no population). h/o: the C'0 outputs carry no S4 hit records, so the C'0 h/o factor is 1 (no rejection credited) and is always the larger. SIZE on C12_v1 inputs: 126 C' dE/dx rows, P(used)/P(C'_PU) = 1-173 (median 3.0; the C'0 populations have <= 23 attributed candidates, so mostly no population -> no dE/dx credit); ladder B84 R21-R23 x1.2-1.6 (G R23 3.9e6 -> 6.3e6); FB-e B84 x1.01-2.6, B_median x1.2-5.1; mu95 (toys) E1000 5 keV FB4e>1.3 3.7e7 -> 5.1e7, E1500 5 keV FB4e>1.6 2.4e7 -> 4.6e7; h/o: no change (B1 FB1 46/46 = 1)",
+  "status": "DECIDED"
+ },
+ {
+  "id": "D12",
+  "item": "V4-6 revert of row-major A2 points to the full chain (plan l.1254-1255, l.1813)",
+  "reading": "DECIDED (pre-registered rule; FIX R6): every (spin, m, Lambda) of investigation/V46_REVERT_SET.json (V4-6 > 5 % from the production A1 full chain: E200/E500/E1000/E1500 at 3 and 5 keV, E~500 at 5 keV) has its A2 entry REPLACED by the A2FC full-chain entry (campaign A2FC, a5 kind, same rows/seeds/PU; run_a2fc.py); the replacement must cover exactly the A2 rows; a revert point without complete A2FC outputs is REFUSED unless --dev; provenance in signal_eff.json a2.a2fc_revert",
+  "status": "DECIDED"
+ },
+ {
+  "id": "A49",
+  "item": "C' gun topology with < 10 passes at the loosest counting rung (WP_RULE \u00a77 'Low gun counts')",
+  "reading": "FIX R6 (INV_STATS_BKG \u00a75 (ii)): implemented literally -- a GUN topology (gamma, V0, PV pair, looper) with < 10 C'_PU events passing R01 takes its whole depth from the C'0 attributed candidates (P(R01) = N/N_C'0 under \u00a74.2); applies to the looper (0/500): R01-R14 P 2.3-2.7e-3 -> 1.1-1.4e-5; ladder B84 R08 1.59e6 -> 1.36e6, R09 1.57e6 -> 1.23e6 (C12_v1)"
+ }
+]

@@ -1,0 +1,760 @@
+{
+ "_note": "Normalisation inputs of the B sum (WP_RULE \u00a74.1). Every entry carries its source and tag. Entries with status 'DECISION NEEDED' are NOT fixed by the frozen rule; the values below are the conservative reading used by the pipeline until the orchestrator decides (ANALYSIS_DEV_REPORT \u00a75).",
+ "n_trig": {
+  "value": 40848447.93138061,
+  "rel_stat": 0.020248039884947434,
+  "tag": "ESTIMATE (generator-level Pythia + preselection proxies)",
+  "status": "USER DECISION D1 (2026-10-14): after the event-level preselection",
+  "breakdown": {
+   "Znunu_j": {
+    "N_trig": 25078824.816213824,
+    "sigma_pb": 14.272389138981586,
+    "K": 1.4,
+    "f_presel": 0.4183706531274743
+   },
+   "Wtau_l": {
+    "N_trig": 2257327.5858942475,
+    "sigma_pb": 2.5989946279546428,
+    "K": 1.4,
+    "f_presel": 0.2067949441840168
+   },
+   "Wtau_h": {
+    "N_trig": 5407122.7456445675,
+    "sigma_pb": 4.49562219084784,
+    "K": 1.4,
+    "f_presel": 0.28636974436048535
+   },
+   "Wenu_j": {
+    "N_trig": 2536644.13680414,
+    "sigma_pb": 5.206114339496827,
+    "K": 1.4,
+    "f_presel": 0.11601030064461564
+   },
+   "Wmunu_j": {
+    "N_trig": 2238036.608475332,
+    "sigma_pb": 5.267057559759486,
+    "K": 1.4,
+    "f_presel": 0.10116955304075433
+   },
+   "ttbar_1l": {
+    "N_trig": 2379799.044834303,
+    "sigma_pb": 3.50123267383535,
+    "K": 1.9,
+    "f_presel": 0.11924617506198025
+   },
+   "ttbar_2l": {
+    "N_trig": 212934.7771394413,
+    "sigma_pb": 0.612727657882946,
+    "K": 1.9,
+    "f_presel": 0.06096832412394971
+   },
+   "top_t": {
+    "N_trig": 110124.9320166795,
+    "sigma_pb": 0.2734900243799724,
+    "K": 1.4,
+    "f_presel": 0.09587268116333285
+   },
+   "WW": {
+    "N_trig": 126435.90509480618,
+    "sigma_pb": 0.16505350847129605,
+    "K": 1.4,
+    "f_presel": 0.18238804619272944
+   },
+   "WZ": {
+    "N_trig": 137419.52045204805,
+    "sigma_pb": 0.09402738695683686,
+    "K": 1.4,
+    "f_presel": 0.34797237804750863
+   },
+   "ZZ": {
+    "N_trig": 104504.47661384699,
+    "sigma_pb": 0.0633656366871991,
+    "K": 1.4,
+    "f_presel": 0.3926736878573606
+   },
+   "top_tW": {
+    "N_trig": 259273.38219737445,
+    "sigma_pb": null,
+    "K": null,
+    "f_presel": null
+   }
+  },
+  "not_included": "s-channel single top (negligible, 0.012 pb); Z(tau tau)+j, Z(ll)+j with lost leptons, QCD multijet fake MET (outside the rule list; UNVERIFIED <~1-2 % each)",
+  "preselection_proxies": [
+   "jets: SlowJet anti-kT R=0.4 on visible final state, pT>30, |eta|<4.7, smeared 10%/sqrt(E)+5% (plan \u00a73)",
+   "min dphi over the leading 4 jets (pT>30) and MET_reco",
+   "e/mu/gamma veto only for PROMPT (no hadron ancestor) and ISOLATED (sum visible pT in dR<0.3 < 0.2 pT) objects with |eta|<2.5; each such object passes the veto with a flat 5 % inefficiency allowance (weight x 0.05 per object; REVIEW R2 B-1 (ii), neither plan nor WP_RULE defines one)",
+   "tau_h veto NOT applied (no generator-level proxy for tau ID; looser)",
+   "MET_reco = neutrino MET + N(0, 25 GeV)/component; events with truth MET < 200 GeV are not generated (production filter): their migration above 250 GeV (> 2 sigma) is neglected",
+   "sigma_t,trig: eps_trig weight (plateau 0.98, T50 200, width 20 GeV; plan \u00a73 ESTIMATE)"
+  ],
+  "source": "data/acts_stage4/analysis/d123/gen_d123_r3.json",
+  "source_sha256": "04a65379831757ad40011f176bdaa474552298a343b381428201bc22e050c708",
+  "additional_sources": {
+   "data/acts_stage4/analysis/d123/gen_d123.json": "f5cadb769d794eab8ad44b4cb221dba087d773f3b18c4b43ed8d401a7b17f462"
+  },
+  "additional_sources_note": "minimum-bias block (minbias=) and/or statistics top-ups",
+  "previous_default": 127690000.0
+ },
+ "lumi_pb": 3000000.0,
+ "k_factor": 1.4,
+ "sigma_ln_normalisation": 0.2624,
+ "_sigma_ln_normalisation_source": "WP_RULE \u00a74.1 'Pythia sigma x K-factor with a +-30 % nuisance' -> ln(1.3)",
+ "sm_xsec_pb": {
+  "Znunu_j": {
+   "value": 14.272389138981586,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 (hadfail-corrected)"
+  },
+  "Wtau_l": {
+   "value": 2.5989946279546428,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "sigma(W tau nu) x N_lep/N = 0.366 (corrected run; tau_l events of the inclusive sample)"
+  },
+  "Wtau_h": {
+   "value": 4.49562219084784,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "max(sigma(W tau nu), sigma(W tau_h nu sample)) x N_had/N = 0.634; tau_h events pooled"
+  },
+  "Wenu_j": {
+   "value": 5.206114339496827,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 (hadfail-corrected)"
+  },
+  "Wmunu_j": {
+   "value": 5.267057559759486,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 (hadfail-corrected)"
+  },
+  "ttbar_1l": {
+   "value": 3.50123267383535,
+   "K": 1.9,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 (hadfail-corrected)"
+  },
+  "ttbar_2l": {
+   "value": 0.612727657882946,
+   "K": 1.9,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 R3 (per-attempt hadfail)"
+  },
+  "top_t": {
+   "value": 0.2734900243799724,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 R3 (per-attempt hadfail)"
+  },
+  "WW": {
+   "value": 0.16505350847129605,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 R3 (per-attempt hadfail)"
+  },
+  "WZ": {
+   "value": 0.09402738695683686,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 R3 (per-attempt hadfail)"
+  },
+  "ZZ": {
+   "value": 0.0633656366871991,
+   "K": 1.4,
+   "tag": "ESTIMATE",
+   "source": "gen_d123 R3 (per-attempt hadfail)"
+  },
+  "top_tW": {
+   "value": null,
+   "K": null,
+   "tag": "ESTIMATE",
+   "source": "FLAGGED ALLOWANCE: no gb->tW in Pythia 8; 0.10 x N_trig(tt 1l + 2l) (UNVERIFIED)"
+  }
+ },
+ "cprime_rates": {
+  "gamma": {
+   "value": 0.3786327036399709,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.23059926668409783,
+    "Wtaunu_j": 0.3262803426092087,
+    "Wtauhnu_j": 0.2749454827882322,
+    "Wenu_j": 0.2548464749201228,
+    "Wmunu_j": 0.22571986555492105,
+    "ttbar_1l": 0.3786327036399709,
+    "ttbar_2l": 0.2074057929996576,
+    "top_t": 0.33634090226246194,
+    "WW": 0.24447135719687685,
+    "WZ": 0.21762739440783643,
+    "ZZ": 0.17200693363200217
+   },
+   "nt_weighted_mean": 0.25518676537664065,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 1.0,
+   "note": "HS vertex only"
+  },
+  "v0": {
+   "value": 0.05238357365965292,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.026046330241034393,
+    "Wtaunu_j": 0.042939501743943134,
+    "Wtauhnu_j": 0.04863394017726775,
+    "Wenu_j": 0.04246551031394125,
+    "Wmunu_j": 0.03368261239146262,
+    "ttbar_1l": 0.05238357365965292,
+    "ttbar_2l": 0.03617305607478538,
+    "top_t": 0.048751167832485676,
+    "WW": 0.02049747685837175,
+    "WZ": 0.01840678423881896,
+    "ZZ": 0.034193013875463134
+   },
+   "nt_weighted_mean": 0.032699484733081645,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 1.0,
+   "note": "HS vertex only"
+  },
+  "pvpair": {
+   "value": 30.31173451595103,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 25.719197424975395,
+    "Wtaunu_j": 29.830427687232785,
+    "Wtauhnu_j": 29.41815800656281,
+    "Wenu_j": 30.31173451595103,
+    "Wmunu_j": 26.037171237795334,
+    "ttbar_1l": 29.233452355546007,
+    "ttbar_2l": 29.706285475759866,
+    "top_t": 20.297856124072784,
+    "WW": 24.6302294070993,
+    "WZ": 24.16528201919183,
+    "ZZ": 24.653646249075095
+   },
+   "nt_weighted_mean": 26.9734629083786,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 1.0,
+   "note": "HS vertex only"
+  },
+  "looper": {
+   "value": 0.3016621418844614,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.16044729895012522,
+    "Wtaunu_j": 0.20834909382162292,
+    "Wtauhnu_j": 0.1896457230939732,
+    "Wenu_j": 0.2175290885351241,
+    "Wmunu_j": 0.21080036137423266,
+    "ttbar_1l": 0.19319632943341336,
+    "ttbar_2l": 0.3016621418844614,
+    "top_t": 0.12332695604189452,
+    "WW": 0.1880129114790705,
+    "WZ": 0.1704551546903028,
+    "ZZ": 0.19395456850894827
+   },
+   "nt_weighted_mean": 0.1773568176431465,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 1.0,
+   "note": "HS vertex only"
+  },
+  "ni22": {
+   "value": 0.09822951053019847,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.09738131417965817,
+    "Wtaunu_j": 0.09748812321235996,
+    "Wtauhnu_j": 0.09759029264316782,
+    "Wenu_j": 0.09749675947046525,
+    "Wmunu_j": 0.09736632042597414,
+    "ttbar_1l": 0.09753260668313937,
+    "ttbar_2l": 0.09822951053019847,
+    "top_t": 0.09729717951969942,
+    "WW": 0.09728546528026878,
+    "WZ": 0.09734204384970159,
+    "ZZ": 0.09741631775073738
+   },
+   "nt_weighted_mean": 0.09742742683491584,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 0.22,
+   "note": "NIs per preselected event at r = (HS + 200 x min-bias) sum cosh(eta) x x/lambda_I; x 0.22 applied in wp.cp_terms"
+  },
+  "ni30": {
+   "value": 0.12407938172235596,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.123007975805884,
+    "Wtaunu_j": 0.12314289247877046,
+    "Wtauhnu_j": 0.12327194860189619,
+    "Wenu_j": 0.12315380143637715,
+    "Wmunu_j": 0.12298903632754628,
+    "ttbar_1l": 0.12319908212607078,
+    "ttbar_2l": 0.12407938172235596,
+    "top_t": 0.1229017004459361,
+    "WW": 0.12288690351191846,
+    "WZ": 0.1229583711785704,
+    "ZZ": 0.12305219084303667
+   },
+   "nt_weighted_mean": 0.12306622337042,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 0.22,
+   "note": "NIs per preselected event at r = (HS + 200 x min-bias) sum cosh(eta) x x/lambda_I; x 0.22 applied in wp.cp_terms"
+  },
+  "ni61": {
+   "value": 0.12407938172235596,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 0.123007975805884,
+    "Wtaunu_j": 0.12314289247877046,
+    "Wtauhnu_j": 0.12327194860189619,
+    "Wenu_j": 0.12315380143637715,
+    "Wmunu_j": 0.12298903632754628,
+    "ttbar_1l": 0.12319908212607078,
+    "ttbar_2l": 0.12407938172235596,
+    "top_t": 0.1229017004459361,
+    "WW": 0.12288690351191846,
+    "WZ": 0.1229583711785704,
+    "ZZ": 0.12305219084303667
+   },
+   "nt_weighted_mean": 0.12306622337042,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 0.22,
+   "note": "NIs per preselected event at r = (HS + 200 x min-bias) sum cosh(eta) x x/lambda_I; x 0.22 applied in wp.cp_terms"
+  },
+  "dif": {
+   "value": 1.5945006834439603,
+   "tag": "ESTIMATE (generator-level Pythia, gen_d123)",
+   "choice": "max over SM processes (conservative); N_trig-weighted mean reported",
+   "per_process": {
+    "Znunu_j": 1.5690742067481291,
+    "Wtaunu_j": 1.5728773051536244,
+    "Wtauhnu_j": 1.5721580099254138,
+    "Wenu_j": 1.572598741020163,
+    "Wmunu_j": 1.57224594806562,
+    "ttbar_1l": 1.5719147154830155,
+    "ttbar_2l": 1.5945006834439603,
+    "top_t": 1.5699330725582328,
+    "WW": 1.5731965106550818,
+    "WZ": 1.5687366542959889,
+    "ZZ": 1.5720734066298618
+   },
+   "nt_weighted_mean": 1.570461271586178,
+   "sigma_ln": 0.0,
+   "pv_line_factor": 1.0,
+   "note": "HS + 200 x min-bias, all K decay modes (BR 1)"
+  }
+ },
+ "sm_processes": {
+  "Znunu_j": {
+   "sigma_pb": 14.272389138981586,
+   "K": 1.4,
+   "f_presel": 0.4183706531274743,
+   "rel_stat": 0.031220946296990085,
+   "sigma_source": "gen_d123 (hadfail-corrected)",
+   "N_trig": 25078824.816213824
+  },
+  "Wtau_l": {
+   "sigma_pb": 2.5989946279546428,
+   "K": 1.4,
+   "f_presel": 0.2067949441840168,
+   "n": 1099,
+   "rel_stat": 0.05907774804110017,
+   "sigma_source": "sigma(W tau nu) x N_lep/N = 0.366 (corrected run; tau_l events of the inclusive sample)",
+   "N_trig": 2257327.5858942475
+  },
+  "Wtau_h": {
+   "sigma_pb": 4.49562219084784,
+   "K": 1.4,
+   "f_presel": 0.28636974436048535,
+   "n": 4901,
+   "rel_stat": 0.022549177749713274,
+   "sigma_source": "max(sigma(W tau nu), sigma(W tau_h nu sample)) x N_had/N = 0.634; tau_h events pooled",
+   "N_trig": 5407122.7456445675
+  },
+  "Wenu_j": {
+   "sigma_pb": 5.206114339496827,
+   "K": 1.4,
+   "f_presel": 0.11601030064461564,
+   "rel_stat": 0.044095753253309354,
+   "sigma_source": "gen_d123 (hadfail-corrected)",
+   "N_trig": 2536644.13680414,
+   "proxy": true,
+   "proxy_of": [
+    "Wtau_l",
+    "Wtau_h"
+   ]
+  },
+  "Wmunu_j": {
+   "sigma_pb": 5.267057559759486,
+   "K": 1.4,
+   "f_presel": 0.10116955304075433,
+   "rel_stat": 0.04686939319796381,
+   "sigma_source": "gen_d123 (hadfail-corrected)",
+   "N_trig": 2238036.608475332,
+   "proxy": true,
+   "proxy_of": [
+    "Wtau_l",
+    "Wtau_h"
+   ]
+  },
+  "ttbar_1l": {
+   "sigma_pb": 3.50123267383535,
+   "K": 1.9,
+   "f_presel": 0.11924617506198025,
+   "rel_stat": 0.04749274619156853,
+   "sigma_source": "gen_d123 (hadfail-corrected)",
+   "K_note": "K_tt = 1.9: CONSERVATIVE DEVIATION from the rule 1.2-1.4 (orchestrator D3)",
+   "N_trig": 2379799.044834303
+  },
+  "ttbar_2l": {
+   "sigma_pb": 0.612727657882946,
+   "K": 1.9,
+   "f_presel": 0.06096832412394971,
+   "rel_stat": 0.1932443854368095,
+   "sigma_source": "gen_d123 R3 (per-attempt hadfail)",
+   "proxy": true,
+   "proxy_of": [
+    "ttbar_1l"
+   ],
+   "K_note": "K_tt = 1.9 (tt-like, conservative deviation)",
+   "N_trig": 212934.7771394413
+  },
+  "top_t": {
+   "sigma_pb": 0.2734900243799724,
+   "K": 1.4,
+   "f_presel": 0.09587268116333285,
+   "rel_stat": 0.12859157151242945,
+   "sigma_source": "gen_d123 R3 (per-attempt hadfail)",
+   "proxy": true,
+   "proxy_of": [
+    "ttbar_1l"
+   ],
+   "K_note": "K = 1.4 (rule top)",
+   "N_trig": 110124.9320166795
+  },
+  "WW": {
+   "sigma_pb": 0.16505350847129605,
+   "K": 1.4,
+   "f_presel": 0.18238804619272944,
+   "rel_stat": 0.07988376210887847,
+   "sigma_source": "gen_d123 R3 (per-attempt hadfail)",
+   "proxy": true,
+   "proxy_of": [
+    "Wtau_l",
+    "Wtau_h"
+   ],
+   "K_note": "K = 1.4 (rule top)",
+   "N_trig": 126435.90509480618
+  },
+  "WZ": {
+   "sigma_pb": 0.09402738695683686,
+   "K": 1.4,
+   "f_presel": 0.34797237804750863,
+   "rel_stat": 0.05815349607433381,
+   "sigma_source": "gen_d123 R3 (per-attempt hadfail)",
+   "proxy": true,
+   "proxy_of": [
+    "Wtau_l",
+    "Wtau_h",
+    "Znunu_j"
+   ],
+   "K_note": "K = 1.4 (rule top)",
+   "N_trig": 137419.52045204805
+  },
+  "ZZ": {
+   "sigma_pb": 0.0633656366871991,
+   "K": 1.4,
+   "f_presel": 0.3926736878573606,
+   "rel_stat": 0.054402557063782775,
+   "sigma_source": "gen_d123 R3 (per-attempt hadfail)",
+   "proxy": true,
+   "proxy_of": [
+    "Znunu_j"
+   ],
+   "K_note": "K = 1.4 (rule top)",
+   "N_trig": 104504.47661384699
+  },
+  "top_tW": {
+   "sigma_pb": null,
+   "K": null,
+   "f_presel": null,
+   "rel_stat": 0.0,
+   "N_trig": 259273.38219737445,
+   "proxy": true,
+   "proxy_of": [
+    "ttbar_1l"
+   ],
+   "allowance": true,
+   "sigma_source": "FLAGGED ALLOWANCE: no gb->tW in Pythia 8; 0.10 x N_trig(tt 1l + 2l) (UNVERIFIED)"
+  }
+ },
+ "k_factor_tt": {
+  "value": 1.9,
+  "note": "conservative deviation from the rule range 1.2-1.4 (logged)"
+ },
+ "cprime_spectra": {
+  "bins": [
+   0.05,
+   0.05942511137185091,
+   0.0706268772311377,
+   0.08394020090612803,
+   0.09976311574844397,
+   0.11856868528308274,
+   0.14091914656322266,
+   0.1674827195789138,
+   0.1990535852767486,
+   0.23657562948074018,
+   0.2811706625951745,
+   0.3341719587843072,
+   0.39716411736214063,
+   0.4720304381429616,
+   0.5610092271509817,
+   0.6667607160816619,
+   0.7924465962305566,
+   0.9418245447449,
+   1.1193605692841693,
+   1.3303625298994048,
+   1.5811388300841895,
+   1.8791870214422204,
+   2.233417960754815,
+   2.6544222211549404,
+   3.1547867224009645,
+   3.7494710466622787,
+   4.456254690668727,
+   5.296268625886443,
+   6.294627058970836,
+   7.481178280472163,
+   8.891397050194612,
+   10.567445199183226,
+   12.559432157547896,
+   14.9269130945898,
+   17.740669461678763,
+   21.08482517142911,
+   25.059361681363594,
+   29.783107176450514,
+   35.3972892192069,
+   42.069757082259734,
+   50.0
+  ],
+  "hist": {
+   "gamma": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1410782.160808426,
+    2428004.305622902,
+    1394623.4042556935,
+    1364470.0748970192,
+    771538.4577595607,
+    695345.1052727827,
+    625806.7232713952,
+    374433.2227985655,
+    290940.00260685093,
+    229799.05277726363,
+    213253.32985249802,
+    95188.53871368564,
+    74883.64987179507,
+    49533.45983216802,
+    27920.437589752088,
+    29476.438790805456,
+    27644.962063002637,
+    31166.183474791673,
+    27637.80458280677,
+    6250.236139835902,
+    11782.954461395357,
+    5587.674275996928,
+    0.0,
+    581.4531629254786,
+    5587.725983268011,
+    0.0,
+    5587.674275996928
+   ],
+   "v0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    147132.04463146257,
+    123076.01832056197,
+    122620.29370250068,
+    136938.33617142358,
+    189784.2679251521,
+    77655.67114350473,
+    106604.38559006237,
+    134168.69919039294,
+    98728.49407753634,
+    38112.564469372446,
+    37928.697458119495,
+    74773.63246812888,
+    4050.3353599196703,
+    2154.8967806421388,
+    4060.2170746507873,
+    193.32709613173859,
+    363.89092799391096,
+    3570.7111349844067,
+    0.0,
+    3562.9977790233424,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "looper": [
+    41423.50762809148,
+    12414.357347533392,
+    49604.97234947199,
+    84029.26619145843,
+    225228.1417965957,
+    160205.79033785366,
+    197326.60449056176,
+    326320.49353988253,
+    548896.2856689653,
+    429672.2722600468,
+    914607.1637298757,
+    882157.1326083118,
+    1112040.4344718293,
+    973543.1488710593,
+    890772.9935168432,
+    205243.9614760616,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "ni": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    355251121.30755115,
+    343433708.38382953,
+    309355921.073291,
+    292407360.4749079,
+    226529286.2102976,
+    160411838.4114873,
+    151207984.23657104,
+    84383284.382178,
+    78352318.24755472,
+    35870227.59274842,
+    16176978.999494849,
+    16677018.03766753,
+    3583502.716383633,
+    98364.23141086024,
+    37562.14542674029,
+    4135575.75089081,
+    2880248.6533968756,
+    14001.157375138297,
+    0.0,
+    662.7680892498914,
+    0.0,
+    5894.109510399753,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "dif": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    15900516.121609475,
+    13040292.07895166,
+    11239480.93008722,
+    7896672.454441095,
+    5455119.701482442,
+    4686453.631853165,
+    2834989.4957297966,
+    1109531.2281828874,
+    882616.1384941185,
+    444007.7976377317,
+    185871.63534824012,
+    44215.03111584665,
+    477.50804329915707,
+    464.4910727856996,
+    454.4621944149417,
+    151.1698262398828,
+    5516.269818988144,
+    0.4680361156871813,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ }
+}

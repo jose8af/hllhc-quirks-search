@@ -1,0 +1,54 @@
+{
+ "note": "val_interp.py -- mass-interpolation closure test (review S2-R1 constructive B-7; fixer 2026-10-11).\nRun: pixi run -e ana python scripts/val_interp.py  ->  results/interp.json\nOff-grid point V-INTERP m = 550 GeV (E, 0-2j MLM INC, 50k LHE, same settings as E-INC) compared with the interpolation of the\ngrid neighbours 500 and 600 GeV:\n  sigma_matched           log-linear in m between E-INC 500 and E-INC 600;\n  f(pT > 200)             linear, TRGS/INC at 500 and 600;\n  median gamma*-1 (incl.) linear, E-INC 500 and 600;\n  median x = 2(gamma*-1) and median N_osc in the tail (pT > 200, |eta| < 2.5): linear, TRGS 500 and 600 (V-INTERP: INC tail).\nClosure = (off-grid - interpolated) / interpolated with the combined bootstrap error; PASS if |pull| < 2.\nTag: ESTIMATE (single generator).",
+ "points": {
+  "F_550": {
+   "sigma_matched_fb": {
+    "offgrid": 1.6356596410091535,
+    "interp": 1.6511770399552592,
+    "rel": -0.009397780232291875,
+    "err": 0.008769382134520609,
+    "pull": -1.0716581953131659,
+    "PASS": true
+   },
+   "f_pt200": {
+    "offgrid": 0.1084921932047502,
+    "interp": 0.10936391880810893,
+    "rel": -0.007970870218067638,
+    "err": 0.021490427729620686,
+    "pull": -0.37090328393423405,
+    "PASS": true
+   },
+   "gm1_incl": {
+    "offgrid": 0.23770300265345456,
+    "interp": 0.24079975713944513,
+    "at_500": 0.24598228592634452,
+    "at_600": 0.23561722835254573,
+    "rel": -0.012860289074948072,
+    "err": 0.010423711259823401,
+    "pull": -1.233753387290771,
+    "PASS": true
+   },
+   "x_tail": {
+    "offgrid": 0.502942749228315,
+    "interp": 0.5250227769598623,
+    "at_500": 0.5451409975133292,
+    "at_600": 0.5049045564063954,
+    "rel": -0.04205537112009028,
+    "err": 0.028234704267294804,
+    "pull": -1.48949217678913,
+    "PASS": true
+   },
+   "nosc_tail": {
+    "offgrid": 11.515815907548705,
+    "interp": 11.483552517548388,
+    "at_500": 11.533837741457983,
+    "at_600": 11.433267293638792,
+    "rel": 0.002809530408905525,
+    "err": 0.019813863342481756,
+    "pull": 0.14179619392457268,
+    "PASS": true
+   }
+  }
+ },
+ "n_tail_offgrid": 2031
+}

@@ -1,0 +1,55 @@
+INVESTIGATION D1-D3: Stage-4 analysis normalisation inputs (investigator, 2026-10-14)
+Details, provenance and line references: analysis/inputs/INVESTIGATION_D1_D3.json
+Read-only. The probes ran in the scratchpad only: nice 15, one process, about 9.5 CPU-min, no project file written.
+
+D1  N_trig
+- What the rule fixes: the formula (WP_RULE.md:313). N_trig covers all SM processes, including the tt 2l, single-top
+  and VV samples that "enter N_trig only" (l.326). The normalisation is Pythia sigma x K, with K 1.2-1.4 still to be
+  cited (l.327).
+- What it leaves open: the selection stage, i.e. trigger only vs trigger plus the offline preselection (plan §3).
+- 1.28e8 = p6 9.12e7 x K 1.4. The p6 number is Z+W with truth MET > 200 and no vetoes (VERIFIED as a Pythia number,
+  p6_xsec.json:14).
+- 3.3e7 is a planning number that was never computed. It equals 0.1 / 3e-9, the inverse of the planning target
+  (CRITICAL_REVIEW R1 l.291, REVIEW R3 l.341, f3r_campaigns.py:155). It stands for the plan's un-computed "3-5e7 after
+  vetoes and MET > 250" (plan.md:1062).
+- The ratio 3.87 between them = K 1.4 x 2.76, where 2.76 is the selection-stage difference.
+- The implementation weights the SM samples as truth-MET > 200 events with no preselection (background.py:662).
+  The consistent conservative reading is therefore (a): N_trig = L x K x sum sigma(MET > 200)
+  = 3e6 x 1.4 x (14.56 + 15.85 + tt 1l 2.76) = 1.39e8 (ESTIMATE). With K_tt ~ 1.9 it is 1.43e8.
+  This still excludes tt 2l, single top and VV, which are not computed yet.
+- 1.28e8 is therefore slightly anti-conservative under reading (a).
+- Reading (b), N_trig after the preselection, is about 3-5e7. It can be computed at generator level in < 0.5 CPU-h.
+- USER DECISION: which selection stage. B84 scales by up to about x4.
+
+D2  C' rate_t
+- No campaign was meant to produce it, and none does. It is defined as a generator-level Pythia count
+  (WP_RULE.md:316; plan.md:1295, 1471). It was never costed or scheduled. cp0/cppu give only P(pass|t).
+- The NI "0.64-3.64" in normalisation.json is not a rate. It already includes 0.22 x f_pre x P(R0), so using it would
+  count those factors twice.
+- The plan's 8/10/8 NIs per event is for a much wider acceptance than the toy (about x100).
+- Code gap: wp.py cp_terms has no P_PV-line 0.22 factor for NI (WP_RULE.md:318).
+- Probe ESTIMATEs per event, in the gun phase space (s4cp.py), phi_MET +- 0.1 rad:
+  - from the hard-scatter vertex only: gamma 0.17-0.64, V0 (x BR) 0.03-0.04, PV pairs 18-25, loopers 0.12-0.15;
+  - NI rate 0.073 / 0.092 / 0.092 at 22 / 30 / 61.5 mm (0.016 / 0.020 / 0.020 after x0.22);
+  - DIF 1.13 (mostly from PU).
+- MUST BE PRODUCED: < 0.5 CPU-h of generator-only Pythia (measured: 3.3 ms per min-bias interaction; 0.04-0.4 s per
+  accepted hard-scatter event).
+- Definitional choices: phi window +-0.1 vs +-0.15 (x1.5), and folding the gun pT spectrum to the Pythia spectrum.
+
+D3  SM cross sections (all samples are Pythia s4pu, not MadGraph; pT-hat > 150, truth MET > 200)
+- Bug: s4pu.HardScatter.generate counts a failed forceHadronLevel (about 24 % of attempts) as a try. As a result,
+  sigma_gen x N / sum(hs_tries) from the stored metadata is LOW by 23 % (Z), 7-8 % (W tau) and 1.4 % (tt).
+  Fix: divide by (1 - r) per sample, or count the failures from the stored seeds.
+- Values to use, in pb (LO; x K x L):
+  - Znunu_j: 14.56 (p6; reproduced at 14.58);
+  - Wtaunu_j: 5.37 (+-5 %);
+  - Wtauhnu_j: 3.56 = 5.49 x BR(tau_h) 0.648. Pythia sigmaGen does NOT include the forced tau BR (checked);
+    the current input of 5.28 is wrong;
+  - ttbar_1l: 2.76 (+-8 %; pT-hat truncation 7 +- 13 %; K_tt ~ 1.9, UNVERIFIED);
+  - Wenu_j / Wmunu_j: 5.28 each (p6/3). They enter N_trig only: no hit-level sample will exist because the user
+    dropped C2-C (LOG.md:209).
+- W(tau nu) 50/50 split ("correct weights", LOG.md:191): the current pipeline counts W(tau nu) twice.
+  Correct: sigma_taul 1.89 pb on the tau_l events of the inclusive sample, and sigma_tauh 3.48-3.56 pb on the pooled
+  tau_h events of both samples. This needs the tau class per event, about 3 CPU-min to regenerate from the stored seeds.
+  Fallback: use the inclusive sample alone.
+- Small decisions: per-process K (tt), and how to handle the missing W(e/mu nu) hard-scatter term.

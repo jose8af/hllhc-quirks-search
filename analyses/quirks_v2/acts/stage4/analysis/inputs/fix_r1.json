@@ -1,0 +1,188 @@
+{
+ "review": "acts/stage4/review/REVIEW_ANALYSIS_R1.md",
+ "date": "2026-10-14",
+ "fixer": "FIXER analysis R1",
+ "findings": [
+  {
+   "id": "A-1",
+   "finding": "SR-T no-BTL summand zeroed beyond rho=2 reach",
+   "change": "base = P(r)-P(r&BTL) only where both columns are reachable thinning estimates; else the full-column end state (and never 0)",
+   "where": "wp.py:73-112 (both_thin l.80-86); background.end_state carries reachable_rho2",
+   "test": "selftest A1_not_present_positive; G3 dry run: not-present summand > 0 at R08-R23 (7.8e4 ... 5.6 events)"
+  },
+  {
+   "id": "A-2",
+   "finding": "more than one zero bound per term (SR-T, SM, C')",
+   "change": "add_guarded: a zero factor appended to a term whose base already holds its bound enters as 1 (the pu_term guard, more conservative); SR-T summands, SM and C' rows x F1 each evaluated as one Term",
+   "where": "wp.py:40-48 (add_guarded), 73-112, 114-123 (_f1_on_row), 125-155",
+   "test": "selftest A2_one_bound_srt/_pu/_sm_cp/_bound_when_none"
+  },
+  {
+   "id": "A-3",
+   "finding": "SM and C' at fallback selections taken from R14",
+   "change": "rows for every COL_REQ column 0-36; depth starts at the deepest ladder rung whose requirement prefix is contained in the column",
+   "where": "background.py:635-660 (depth_term okd l.640), 693, 753; wp.py:129, 142 (rows[col])",
+   "test": "selftest A3_fb0_starts_at_R04, A3_fb0_differs_from_R14"
+  },
+  {
+   "id": "A-4",
+   "finding": "signal OOT lookups used the absolute event number",
+   "change": "c1_b1_event_index from the MANIFEST (job id, ev order, job-relative index), lookups B[btl[:,0] == e_rel]; check dict, refusal if no OOT hit is ever found",
+   "where": "srt.py:210-271; run_all.py:70, 82-85",
+   "test": "selftest A4_oot_hits_found (G3B1 stand-in: 289/300 lookups with BTL hits, 66 in-band OOT hits, 7 earliest-OOT), A4_relative_index"
+  },
+  {
+   "id": "B-1",
+   "finding": "T3 computed but not applied; degenerate",
+   "change": "t3_correction applied to every factorised column (anti: x ratio; conservative: |ln| in sigma_ln 'T3'); degenerate/untestable -> 'T3 non-informative' flagged per column",
+   "where": "background.py:448-461, 485-493; run_all.py:354",
+   "test": "selftest B1_T3_*; G3 dry run end_state[R08].T3 = 'T3 non-informative ... flagged'. USER to be told: no cross-variable closure test exists"
+  },
+  {
+   "id": "B-2",
+   "finding": "missing-lever-arm branch could lower B",
+   "change": "x max(r,1), |ln r| in sigma_ln",
+   "where": "background.py:123-124",
+   "test": "selftest B2_missing_lever_arm; G3 dry run T1w part: factor 1.424, sigma_ln 0.354"
+  },
+  {
+   "id": "B-3",
+   "finding": "c factor: global max; SM/C' chains",
+   "change": "global c_max when any c>1 at 2 sigma; depth_term multiplies SM and C' chains",
+   "where": "run_all.py:329-330; background.py:635 (c_factor), sm_term/cprime_term c_factor",
+   "test": "G3 dry run c_factor_applied 1.2675 (= global max)"
+  },
+  {
+   "id": "B-4",
+   "finding": "SR-T time-independence not run on production",
+   "change": "srt.time_independence (Rao-Scott, analyse_g3.indep_test; no file writes) on loose and R04 populations; failure -> c_time x P(late)",
+   "where": "srt.py:274-; run_all.py:393-397; wp.py srt_pu_term c_time",
+   "test": "G3 dry run: loose PASS, R04 PASS, c_time 1.0 (reproduces G3 report \u00a72)"
+  },
+  {
+   "id": "B-5",
+   "finding": "rho_dens refusal not implemented",
+   "change": "limits_stage refuses when background.json rho_dens.trigger; signal_eff records the pending check; docstring corrected",
+   "where": "run_all.py:121-126; admissibility.py docstring",
+   "test": "code path (trigger requires C1b S6 dumps)"
+  },
+  {
+   "id": "B-6",
+   "finding": "status != 1 rows dropped from the denominator",
+   "change": "kept as failures (flags zeroed), counted in status_ne1_counted_as_failure",
+   "where": "signal.py:14, 237-241, 268",
+   "test": "C1a A2 (89 files, --dev): self-checks PASS; key present"
+  },
+  {
+   "id": "B-7",
+   "finding": "C' special paths",
+   "change": "N_pre = 0 -> f_pre 1.14/N bound, conditional 1, term complete; V4-10 leak correction f_pre x (1+N_leak/N_attr,pre) with |ln| sigma_ln, flagged; C'_PU bootstrap clusters by source C'0 event",
+   "where": "background.py:729-733, 754-761, 768-772",
+   "test": "C1 Cp0 108/108: leak 0 (correction inactive); code path"
+  },
+  {
+   "id": "B-8",
+   "finding": "pre-registration hygiene",
+   "change": "freeze file inputs/analysis_freeze.json (sha256 of every analysis code + input file + imported frozen modules); run_all refuses signal/limits unless frozen or --dev (every output stamped DEV); limits refuse an incomplete B sum unless --dev; D4 calculator fixed; D1-D10 logged",
+   "where": "common.py:108-132; run_all.py:239-247, 135-139, 176-180; stats.py:207-245",
+   "test": "limits without --dev on the G3 dry run: REFUSED (incomplete B); with --dev: label 'DEV ...'; signal with code != freeze: REFUSED"
+  },
+  {
+   "id": "B-9",
+   "finding": "SR-T timing sigma independent per summand; retrend central factor",
+   "change": "srt_pv, srt_sigt (and T3) in SHARED; retrend scales the PU central value by f(x_rung)/f(x_col)",
+   "where": "stats.py:20; wp.py:176",
+   "test": "code path (G3 trend conservative: factor 1)"
+  },
+  {
+   "id": "C-1",
+   "finding": "cosmic/halo not flagged",
+   "change": "bsum_wp.json ladder.not_in_sum lists both as argument-only terms",
+   "where": "wp.py:226-228",
+   "test": "G3 dry run bsum_wp.json"
+  },
+  {
+   "id": "C-2",
+   "finding": "admission: frozen_inputs dict, changed file, missing A.3 files",
+   "change": "job meta.frozen_inputs must equal acts/stage4/frozen_inputs.json (2adc8f9d, refusal if the file changed); A.3 .py files must be recorded",
+   "where": "common.py:96-106, 172-180",
+   "test": "selftest C2_admission_C1_A2 True"
+  },
+  {
+   "id": "C-3",
+   "finding": "limits T_seed check passed with both manifests absent",
+   "change": "refuse unless both present and equal",
+   "where": "run_all.py:119",
+   "test": "code path"
+  },
+  {
+   "id": "C-4",
+   "finding": "toy CLs re-drew randoms per evaluation",
+   "change": "common random numbers (nuisances and b-only toys drawn once, s+b toys from one re-seeded stream)",
+   "where": "stats.py:211-245",
+   "test": "selftest D4_toys_b0_3events (deterministic, 3.0 +- 5 % at b -> 0)"
+  },
+  {
+   "id": "C-5",
+   "finding": "A09 wording",
+   "change": "ambiguities.json A09 corrected",
+   "where": "inputs/ambiguities.json",
+   "test": "-"
+  },
+  {
+   "id": "C-6",
+   "finding": "imported frozen modules not hashed",
+   "change": "manifest imported_frozen_sha256 (analyse_g3.py, srt_tmin_check.py); both in the freeze file",
+   "where": "common.py:112; run_all manifest",
+   "test": "manifest.json"
+  },
+  {
+   "id": "C-8",
+   "finding": "counting factor on a tie of readings",
+   "change": "the larger ratio of readings A/B with the governing branch",
+   "where": "background.py:142-146",
+   "test": "G3: same 1.319"
+  },
+  {
+   "id": "C-7",
+   "finding": "C' F1 factor from B1",
+   "change": "NOT CHANGED: p = 1 so nothing is credited; the D8 guard flags any credit",
+   "where": "-",
+   "test": "-"
+  },
+  {
+   "id": "C-9",
+   "finding": "trend dominance",
+   "change": "to be told to the user (approved end state)",
+   "where": "-",
+   "test": "G3: sigma_trend 2.9 (R14) - 5.8 (F0e)"
+  },
+  {
+   "id": "C-10",
+   "finding": "h/o give no PU rejection",
+   "change": "D8 guard (wp.f1_credited)",
+   "where": "wp.py:51-53, 186-187",
+   "test": "G3 dry run: T3s_required False"
+  }
+ ],
+ "decisions_implemented": {
+  "D4": "toys primary (5000, seed 20261014, CRN), asymptotic cross-check",
+  "D5": "literal BTL-present + A-1/A-2",
+  "D6": "no env change; in-house CLs",
+  "D7": "V4-3 labelled diagnostic",
+  "D8": "T3s guard implemented",
+  "D9": "lower-bound labels",
+  "D10": "A28 confirmed, logged as conservative reading"
+ },
+ "open": [
+  "D1 N_trig (default 1.28e8, configurable)",
+  "D2 C' rate_t",
+  "D3 SM sigma"
+ ],
+ "reruns": {
+  "selftest": "acts.stage4.analysis.selftest: PASS",
+  "g3_dry_run": "data/acts_stage4/analysis/dryrun_g3_tseed6 (613 s; no WP; B sum INCOMPLETE: SM, C' not provided)",
+  "signal_dev": "C1a A2 89 files, all self-checks PASS (no eps looked at)",
+  "limits_dev": "synthetic signal x G3 dry run: 40 points in 26 s; without --dev REFUSED (incomplete B)"
+ }
+}

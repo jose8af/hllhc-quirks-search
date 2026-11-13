@@ -1,0 +1,28 @@
+## (1) event fractions (T3 sample, 150 events per mass)
+m=200: gamma* bins [1.0, 1.1, 1.2, 1.35, 1.6, 2.0]+ : 0.127 0.160 0.240 0.133 0.180 0.160 | kB bins [0, 2, 4, 6, 8, 12]+ : 0.500 0.387 0.060 0.027 0.013 0.013 | median kB 1.99; f(kB>6) = 0.053; f(kB>8) = 0.027
+m=500: gamma* bins [1.0, 1.1, 1.2, 1.35, 1.6, 2.0]+ : 0.220 0.207 0.240 0.173 0.093 0.067 | kB bins [0, 2, 4, 6, 8, 12]+ : 0.247 0.240 0.220 0.133 0.073 0.087 | median kB 4.05; f(kB>6) = 0.293; f(kB>8) = 0.160
+m=1000: gamma* bins [1.0, 1.1, 1.2, 1.35, 1.6, 2.0]+ : 0.313 0.293 0.187 0.173 0.033 0.000 | kB bins [0, 2, 4, 6, 8, 12]+ : 0.127 0.220 0.227 0.133 0.160 0.133 | median kB 5.09; f(kB>6) = 0.427; f(kB>8) = 0.293
+
+## (2) rotating-yo-yo / causal Delta s per gamma* bin (c06 outputs, all masses and Lambda)
+gamma* 1.0-1.1 (0.6-3 keV): n=16  median ratio 0.968  range 0.877-1.005
+gamma* 1.0-1.1 (10 keV): n= 2  median ratio 0.977  range 0.976-0.978
+gamma* 1.1-1.2 (0.6-3 keV): n=18  median ratio 0.988  range 0.964-1.039
+gamma* 1.1-1.2 (10 keV): n= 4  median ratio 0.900  range 0.425-0.990
+gamma* 1.2-1.35 (0.6-3 keV): n=10  median ratio 0.988  range 0.962-1.005
+gamma* 1.35-1.6 (0.6-3 keV): n= 6  median ratio 1.003  range 0.995-1.123
+gamma* 1.6-2.0 (0.6-3 keV): n= 2  median ratio 1.014  range 1.009-1.018
+gamma* 2.0-10.0 (0.6-3 keV): n=12  median ratio 1.173  range 0.645-1.344
+gamma* 2.0-10.0 (10 keV): n= 2  median ratio 1.234  range 1.174-1.294
+
+## (3) angle dependence, rotating-yo-yo Delta s at 1 keV, 500 GeV, 150 events
+f_N = |e_perp.N|: [0,0.25): n=12, med Ds/med = 0.11; [0.25,0.5): n=18, med Ds/med = 0.46; [0.5,0.75): n=18, med Ds/med = 0.43; [0.75,0.9): n=21, med Ds/med = 1.05; [0.9,1.01): n=81, med Ds/med = 1.38
+sin alpha: [0,0.4): n=20, med Ds/med = 0.29; [0.4,0.6): n=12, med Ds/med = 0.40; [0.6,0.8): n=23, med Ds/med = 1.16; [0.8,0.9): n=28, med Ds/med = 1.16; [0.9,1.01): n=67, med Ds/med = 1.31
+correlation of Ds with f_N: Spearman-like rank corr = 0.69
+
+## (4) |q| = 2 (fermion E) and scalar E~ (spin S), m = 500 GeV, 150 events, B = 3.8112 T
+Lambda=1.0 fermion q=1: median Ds = 31.1 um, median c = 0.1039, median gamma* = 1.225, f(gamma*>1.6) = 0.16
+Lambda=1.0 fermion q=2: median Ds = 57.8 um, median c = 0.1120, median gamma* = 1.225, f(gamma*>1.6) = 0.16
+Lambda=1.0 scalar q=1: median Ds = 36 um, median c = 0.1028, median gamma* = 1.394, f(gamma*>1.6) = 0.32
+Lambda=3.0 fermion q=1: median Ds = 4.18 um, median c = 0.0846, median gamma* = 1.225, f(gamma*>1.6) = 0.16
+Lambda=3.0 fermion q=2: median Ds = 7.84 um, median c = 0.0899, median gamma* = 1.225, f(gamma*>1.6) = 0.16
+Lambda=3.0 scalar q=1: median Ds = 4.83 um, median c = 0.0839, median gamma* = 1.394, f(gamma*>1.6) = 0.32

@@ -1,0 +1,15 @@
+[workspace]
+name = "qv2-pyhf-bench"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+description = "Phase-1 pyhf timing benchmark (toy workspace only)."
+
+[dependencies]
+python = "3.12.*"
+numpy = "2.2.*"  # pyhf 0.7.6 toy CLs calls np.percentile(interpolation=...), removed in numpy >= 2.4
+scipy = "*"
+pyhf = "*"
+iminuit = "*"
+
+[tasks]
+bench = "python bench_pyhf.py"

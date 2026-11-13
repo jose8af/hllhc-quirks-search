@@ -1,0 +1,37 @@
+(* quirkE.fr -- independent FeynRules cross-check model (E4, 2026-10-11): SM (FeynRules SM.fr) + vector-like
+   SU(2)_L-singlet quirks with hypercharge Y = -1 (Q = T3 + Y = -1): Dirac fermion xe (PDG 9000011) and complex
+   scalar sxe (PDG 9000013).  Couplings come ONLY from the covariant derivative of SM.fr (U1Y charge Y), so they are
+   independent of the hand-written UFO in ../quirkE.  Infracolour SU(N_IC) is not modelled (multiply sigma by N_IC). *)
+
+M$ModelName = "quirkE_FR";
+
+M$ClassesDescription = {
+  F[100] == {
+    ClassName        -> xe,
+    SelfConjugate    -> False,
+    Mass             -> {MXE, 500.},
+    Width            -> {WXE, 0.},
+    QuantumNumbers   -> {Y -> -1, Q -> -1},
+    PropagatorLabel  -> "xe",
+    PropagatorType   -> Straight,
+    PropagatorArrow  -> Forward,
+    PDG              -> 9000011,
+    ParticleName     -> "xe-",
+    AntiParticleName -> "xe+",
+    FullName         -> "quirk E"
+  },
+  S[100] == {
+    ClassName        -> sxe,
+    SelfConjugate    -> False,
+    Mass             -> {MSXE, 501.},
+    Width            -> {WSXE, 0.},
+    QuantumNumbers   -> {Y -> -1, Q -> -1},
+    PropagatorLabel  -> "sxe",
+    PropagatorType   -> ScalarDash,
+    PropagatorArrow  -> Forward,
+    PDG              -> 9000013,
+    ParticleName     -> "sxe-",
+    AntiParticleName -> "sxe+",
+    FullName         -> "quirk Etilde"
+  }
+};

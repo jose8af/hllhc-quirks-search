@@ -40,3 +40,41 @@ Rule added to `AGENT_RULES.md`: many-small-files writes under `/home/users/jdoch
 `ionice -c3`, one at a time; workers compile on local disk and ship one tarball; jobs write one marker on NFS home.
 Basil's install on schrodinger was told to stop and rerun on einstein; Boris was told to measure marker-write
 latency under 12 concurrent jobs. Not a cluster fault and no admin action needed; it is a constraint on how we use it.
+
+### 15:12 — INTERRUPTION: einstein out of memory; orchestrator and all three executors killed
+Reported by the user. At 15:12 einstein ran out of memory and systemd-oomd killed the tmux session holding the
+orchestrator and the feasibility executors Anselm, Basil and Boris with their background jobs. In the same incident
+`/nfs/cajuela` returned I/O errors from 15:12 to 15:20; restored and verified on all nodes by the user. Nothing of the
+study survived in Kubernetes or on the workers; no `.part` files were left.
+
+Reconciliation (15:35–15:45, orchestrator):
+- Git: HEAD was `31a6974`; everything the executors wrote after it was uncommitted and is committed now as
+  "state at interruption" (code copies, runner, install scripts, partial feasibility outputs).
+- Workers: no process of ours on landau, maxwell or schrodinger; no Argo workflow of ours; cajuela reachable from all.
+  Leftovers: maxwell scratch `anselm_s3smoke/`, `anselm_smoke_acts/`, `cache/` (1 MB); schrodinger
+  `/var/tmp/jdochoa/dl` (100 MB of downloaded tarballs, to be re-verified by sha256 before use); einstein
+  `/var/tmp/jdochoa/{numba_einstein,pyhf_smoke,runner_tests}`.
+- pixi environments, checked file by file against their `conda-meta/*.json` and `dist-info/RECORD` lists:
+  complete, zero missing files, install marker written 90 s or more before the crash — JFC env (14:42), `tools/runner`
+  (14:45), `envs/tt` (14:58), `acts` (14:58), `sim` ana and mg (14:59), `pyhf_bench` (15:01), `sw/envs/mg` (15:09).
+  **`sw/envs/g4` was cut off** (90 conda packages linked, no install marker, last write 15:11:54): its `.pixi` was
+  deleted; it must be reinstalled from its lockfile, not trusted.
+- Ledger and markers: 2 markers (Anselm toy Stage-3 inputs, sha256 recorded) plus Boris test markers under
+  `phase1_strategy/outputs/feasibility/runner_ledger/`. Feasibility test data on cajuela: `data/feasibility/{chain,runner}`.
+- Unfinished at the interruption — Anselm: Stage-3 smoke done (3 jobs), ACTS smoke test was starting, no benchmark
+  table, `FEAS_A` is a stub. Basil: downloads done, MG5 2.9.22 unpacked, LHAPDF data dir built, `mg` env installed, g4
+  env cut off; no generation, no benchmark, no `FEAS_B`. Boris: runner package and 19 unit tests, accounting test,
+  Argo and SSH 60-s tests (3 each), bundle tool test done; mini-campaign, kill/resume, memory test, pyhf benchmark
+  timings and `FEAS_C` not done.
+- Found while reconciling: `PREFLIGHT.md` had stayed in `tools/` (the scaffold move failed silently); moved to
+  `analyses/quirks_v2/PREFLIGHT.md` now. A `__pycache__` written into the read-only `book/checks/` by an
+  investigator was removed.
+
+**New binding constraints from the user (supersede the 15:20 rule where they differ):**
+1. The orchestrator runs in a systemd service capped at 10 GB (`MemoryMax=10G`); every subagent counts against it.
+   Keep the number of concurrent subagents modest.
+2. einstein is head node, NFS server and Kubernetes control plane: **no pixi installs, solves, builds or benchmarks
+   on einstein.** They run on landau/maxwell/schrodinger or as Argo jobs. (This reverses the 15:20 rule that sent
+   installs to einstein.)
+3. At most one pixi install at a time on the shared cache; keep heavy metadata work off `/home` while jobs run.
+

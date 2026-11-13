@@ -1,0 +1,28 @@
+{
+ "campaign": "feas-pyhf",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "pyhf-fit",
+   "max_rss_mb": 1500,
+   "outputs": [
+    "pyhf-fit.json"
+   ],
+   "command": "cd /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench && .pixi/envs/default/bin/python bench_pyhf.py --part fit --out $QV2_OUT_DIR/pyhf-fit.json"
+  },
+  {
+   "id": "pyhf-toys",
+   "max_rss_mb": 1500,
+   "outputs": [
+    "pyhf-toys.json"
+   ],
+   "command": "cd /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench && .pixi/envs/default/bin/python bench_pyhf.py --part toys --out $QV2_OUT_DIR/pyhf-toys.json"
+  }
+ ]
+}

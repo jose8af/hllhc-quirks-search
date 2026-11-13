@@ -1,0 +1,10 @@
+#!/bin/bash
+# Entry point of the quirks-v2 runner. Works on hosts and inside pods (the pod image has no Python: the runner's
+# pixi env on the shared home provides it at the same absolute path everywhere).
+R=/home/users/jdochoa/hllhc-quirks-search/tools/runner
+PY=$R/.pixi/envs/default/bin/python
+[ -x "$PY" ] || PY=/usr/bin/python3
+umask 022
+export PYTHONPATH=$R${PYTHONPATH:+:$PYTHONPATH}
+export PYTHONDONTWRITEBYTECODE=1
+exec "$PY" -P -m qv2run "$@"

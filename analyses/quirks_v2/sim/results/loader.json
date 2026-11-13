@@ -1,0 +1,385 @@
+{
+ "note": "val_loader.py -- VALIDATION \u00a76: round trip of the Stage-2 samples through the theory-track propagator.\nRun from theory_track/ in the THEORY-TRACK env (needs code/ and numba):  pixi run python sim/scripts/val_loader.py\nChecks: (a) loader kinematics consistency (p1 + p2 vs stored pair observables; p1 = positive quirk);\n(b) iter_events determinism; (c) run_causal (B = 3.8 T, material on, Lambda = 1 keV) on 500 events per point drawn\nwith sample_events_mg (trig, pT > 200, |eta| < 2.5) vs the same number drawn from the old LO cache with\nT3_propagator.sample_events ('isr'); (d) legacy path: write_t2_compat_cache + T2_CACHE env + the unchanged\nT3_propagator.sample_events; (e) first-N regression check (review S2-R1 A1/A-1): for the stitched 'trig' files, the share\nof the selected weight carried by INC-origin rows and the weighted median of 2(gamma*-1) in the first N = 500/2000/5000\nselected events (file order, weighted) and in the first N unweighted events (iter_events(unweight=True)) must agree\nwith the full file within statistics (|pull| < 3, binomial/bootstrap error); also the template/toy split.\nOutput: sim/results/loader.json.",
+ "lambda_keV": 1.0,
+ "n_per_point": 500,
+ "points": {
+  "F_200": {
+   "max_rel_dev_kinematics": 1.021405182655144e-14,
+   "p1_is_positive_quirk": "p1 = p_qp (pid < 0: xe+/sxe+, charge +1) checked for all drawn events",
+   "iter_events_deterministic": true,
+   "n_selected": 28965,
+   "firstN_regression": {
+    "n_selected": 28965,
+    "inc_share_full": 0.039169750265691694,
+    "x_median_full": 0.8073727100482522,
+    "prefixes": {
+     "500": {
+      "inc_share": 0.08513451916412555,
+      "inc_share_pull": 2.2650470380397696,
+      "x_median": 0.8368497118378508,
+      "x_median_pull": 0.542027915347691
+     },
+     "2000": {
+      "inc_share": 0.06210484292768204,
+      "inc_share_pull": 2.168236810327769,
+      "x_median": 0.8209771158221155,
+      "x_median_pull": 0.487524990825816
+     },
+     "5000": {
+      "inc_share": 0.04660167594992332,
+      "inc_share_pull": 1.0967078648204363,
+      "x_median": 0.8080535026930407,
+      "x_median_pull": 0.039128605574128394
+     }
+    },
+    "unweighted": {
+     "n_accepted": 4577,
+     "efficiency": 0.15801829794579664,
+     "inc_count_share": 0.03910858641031243,
+     "x_median": 0.7921418616698408,
+     "first500": {
+      "inc_count_share": 0.046,
+      "pull": 0.7872684552122844,
+      "x_median": 0.7504818635611574,
+      "x_median_pull": -1.4078411497257761
+     },
+     "first2000": {
+      "inc_count_share": 0.0415,
+      "pull": 0.537178633271019,
+      "x_median": 0.7538353842427346,
+      "x_median_pull": -2.605339171814028
+     }
+    },
+    "split_template": {
+     "n": 14526,
+     "x_median": 0.7997732487460043
+    },
+    "split_toy": {
+     "n": 14439,
+     "x_median": 0.8132839173529427
+    },
+    "PASS": true
+   },
+   "new_MG": {
+    "status_counts": {
+     "1": 499,
+     "4": 1
+    },
+    "nhits_q": [
+     4.0,
+     14.0,
+     22.0
+    ],
+    "thickness_um_q": [
+     7.324152644240544,
+     21.003637005927033,
+     49.20375986643396
+    ],
+    "time_per_event_s": 0.018284324169158934
+   },
+   "old_LO_cache": {
+    "status_counts": {
+     "1": 500
+    },
+    "nhits_q": [
+     4.0,
+     14.0,
+     22.0
+    ],
+    "thickness_um_q": [
+     6.607495978488017,
+     19.567698863839844,
+     46.89701006237682
+    ],
+    "time_per_event_s": 0.017835761070251466
+   },
+   "gstar_median_new": 1.381238719438068,
+   "gstar_median_old": 1.401756546314013
+  },
+  "F_500": {
+   "max_rel_dev_kinematics": 1.5543122344752192e-15,
+   "p1_is_positive_quirk": "p1 = p_qp (pid < 0: xe+/sxe+, charge +1) checked for all drawn events",
+   "iter_events_deterministic": true,
+   "n_selected": 16606,
+   "firstN_regression": {
+    "n_selected": 16606,
+    "inc_share_full": 0.07312072941011474,
+    "x_median_full": 0.5451409975133292,
+    "prefixes": {
+     "500": {
+      "inc_share": 0.05929797200936781,
+      "inc_share_pull": -0.6268178254509674,
+      "x_median": 0.5671194872600656,
+      "x_median_pull": 0.714953966333283
+     },
+     "2000": {
+      "inc_share": 0.0653243277533627,
+      "inc_share_pull": -0.6889017703058816,
+      "x_median": 0.5195135318288231,
+      "x_median_pull": -1.5214356313624826
+     },
+     "5000": {
+      "inc_share": 0.0752505819463019,
+      "inc_share_pull": 0.28985107308192903,
+      "x_median": 0.5278493848584107,
+      "x_median_pull": -1.529949856590341
+     }
+    },
+    "unweighted": {
+     "n_accepted": 4006,
+     "efficiency": 0.24123810670841864,
+     "inc_count_share": 0.07239141288067898,
+     "x_median": 0.5397077133117565,
+     "first500": {
+      "inc_count_share": 0.064,
+      "pull": -0.7833984923655007,
+      "x_median": 0.5254569755933245,
+      "x_median_pull": -0.6796857350370755
+     },
+     "first2000": {
+      "inc_count_share": 0.074,
+      "pull": 0.15104477361943056,
+      "x_median": 0.5458706953456343,
+      "x_median_pull": 0.04613202510974983
+     }
+    },
+    "split_template": {
+     "n": 8312,
+     "x_median": 0.5475329765458845
+    },
+    "split_toy": {
+     "n": 8294,
+     "x_median": 0.542440931059307
+    },
+    "PASS": true
+   },
+   "new_MG": {
+    "status_counts": {
+     "1": 500
+    },
+    "nhits_q": [
+     4.0,
+     13.0,
+     22.159999999999968
+    ],
+    "thickness_um_q": [
+     7.063389110824889,
+     19.06077961613454,
+     43.797707796187524
+    ],
+    "time_per_event_s": 0.017342254161834717
+   },
+   "old_LO_cache": {
+    "status_counts": {
+     "1": 500
+    },
+    "nhits_q": [
+     4.0,
+     13.5,
+     22.0
+    ],
+    "thickness_um_q": [
+     7.15468083250131,
+     18.335078688030997,
+     46.02351378090618
+    ],
+    "time_per_event_s": 0.016737529754638672
+   },
+   "gstar_median_new": 1.288793558262573,
+   "gstar_median_old": 1.268720697509438
+  },
+  "F_1000": {
+   "max_rel_dev_kinematics": 7.771561172376096e-16,
+   "p1_is_positive_quirk": "p1 = p_qp (pid < 0: xe+/sxe+, charge +1) checked for all drawn events",
+   "iter_events_deterministic": true,
+   "n_selected": 17219,
+   "firstN_regression": {
+    "n_selected": 17219,
+    "inc_share_full": 0.06041808086168021,
+    "x_median_full": 0.389016933522794,
+    "prefixes": {
+     "500": {
+      "inc_share": 0.07737612160315231,
+      "inc_share_pull": 0.8344888690095634,
+      "x_median": 0.4485058562281141,
+      "x_median_pull": 2.7940328568401256
+     },
+     "2000": {
+      "inc_share": 0.06395664799448512,
+      "inc_share_pull": 0.33986004495197436,
+      "x_median": 0.39738846918518833,
+      "x_median_pull": 0.731976472866124
+     },
+     "5000": {
+      "inc_share": 0.05919357863249823,
+      "inc_share_pull": -0.19621407476795127,
+      "x_median": 0.39543212290350205,
+      "x_median_pull": 0.9099404794294813
+     }
+    },
+    "unweighted": {
+     "n_accepted": 4844,
+     "efficiency": 0.281317149660259,
+     "inc_count_share": 0.06028075970272502,
+     "x_median": 0.3882050604595224,
+     "first500": {
+      "inc_count_share": 0.062,
+      "pull": 0.14846308950849021,
+      "x_median": 0.3953260680128181,
+      "x_median_pull": 0.3096905413682142
+     },
+     "first2000": {
+      "inc_count_share": 0.059,
+      "pull": -0.2661737389706543,
+      "x_median": 0.3832263423900515,
+      "x_median_pull": -0.5497988593105791
+     }
+    },
+    "split_template": {
+     "n": 8631,
+     "x_median": 0.38933045178589065
+    },
+    "split_toy": {
+     "n": 8588,
+     "x_median": 0.38870799035410597
+    },
+    "PASS": true
+   },
+   "new_MG": {
+    "status_counts": {
+     "1": 499,
+     "4": 1
+    },
+    "nhits_q": [
+     5.0,
+     14.0,
+     26.0
+    ],
+    "thickness_um_q": [
+     6.033712712248733,
+     15.723304546601753,
+     44.42504013580479
+    ],
+    "time_per_event_s": 0.01592755651473999
+   },
+   "old_LO_cache": {
+    "status_counts": {
+     "1": 499,
+     "4": 1
+    },
+    "nhits_q": [
+     6.0,
+     15.0,
+     29.0
+    ],
+    "thickness_um_q": [
+     6.333047418616517,
+     18.374794418642335,
+     46.03239611471873
+    ],
+    "time_per_event_s": 0.01610426378250122
+   },
+   "gstar_median_new": 1.199125944464638,
+   "gstar_median_old": 1.2151945925751217
+  },
+  "S_500": {
+   "max_rel_dev_kinematics": 1.7763568394002505e-15,
+   "p1_is_positive_quirk": "p1 = p_qp (pid < 0: xe+/sxe+, charge +1) checked for all drawn events",
+   "iter_events_deterministic": true,
+   "n_selected": 8533,
+   "firstN_regression": {
+    "n_selected": 8533,
+    "inc_share_full": 0.05252132697527232,
+    "x_median_full": 0.958290484310111,
+    "prefixes": {
+     "500": {
+      "inc_share": 0.09451374664909917,
+      "inc_share_pull": 2.056843803344738,
+      "x_median": 0.9825797343193874,
+      "x_median_pull": 0.551549507952585
+     },
+     "2000": {
+      "inc_share": 0.075963792162156,
+      "inc_share_pull": 2.2941384194168455,
+      "x_median": 0.9599981436009237,
+      "x_median_pull": 0.07194474691103629
+     },
+     "5000": {
+      "inc_share": 0.05138227581939954,
+      "inc_share_pull": -0.1874586545559256,
+      "x_median": 0.951734859955701,
+      "x_median_pull": -0.47040774693509535
+     }
+    },
+    "unweighted": {
+     "n_accepted": 2138,
+     "efficiency": 0.2505566623696238,
+     "inc_count_share": 0.05144995322731525,
+     "x_median": 0.9692591108048898,
+     "first500": {
+      "inc_count_share": 0.074,
+      "pull": 2.152979438297887,
+      "x_median": 0.9380594245532206,
+      "x_median_pull": -0.5053433350822925
+     },
+     "first2000": {
+      "inc_count_share": 0.0505,
+      "pull": -0.40522758652994945,
+      "x_median": 0.968424678669922,
+      "x_median_pull": 0.5140529460324961
+     }
+    },
+    "split_template": {
+     "n": 4247,
+     "x_median": 0.9696637210897205
+    },
+    "split_toy": {
+     "n": 4286,
+     "x_median": 0.9482895552998785
+    },
+    "PASS": true
+   },
+   "new_MG": {
+    "status_counts": {
+     "1": 500
+    },
+    "nhits_q": [
+     5.0,
+     14.0,
+     28.0
+    ],
+    "thickness_um_q": [
+     7.8384488840432125,
+     18.172431878476367,
+     46.733129521476975
+    ],
+    "time_per_event_s": 0.014404555797576905
+   },
+   "old_LO_cache": {
+    "status_counts": {
+     "1": 500
+    },
+    "nhits_q": [
+     6.0,
+     16.0,
+     28.0
+    ],
+    "thickness_um_q": [
+     8.06759446480817,
+     20.86352948937379,
+     49.08642767324081
+    ],
+    "time_per_event_s": 0.016078372478485106
+   },
+   "gstar_median_new": 1.4833499700416906,
+   "gstar_median_old": 1.4557810765494161
+  }
+ },
+ "legacy_path": {
+  "file": "data/sim/npz/aux/T2compat_cache.npz",
+  "gstar_median_via_old_reader_mean_of_20x2000ev": 1.271342241876677,
+  "spread_of_one_2000ev_median": 0.00729353282848396,
+  "gstar_weighted_median_direct": 1.2725704987566646,
+  "note": "the old reader re-randomises azimuths; only (gamma*, cos theta*, beta gamma, eta) survive"
+ }
+}

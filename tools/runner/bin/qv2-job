@@ -1,0 +1,4 @@
+#!/bin/bash
+# Job entry used by Argo pods and by the SSH backend:  qv2-job --campaign FILE --job ID --mechanism argo|ssh
+umask 022
+exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2run job "$@"

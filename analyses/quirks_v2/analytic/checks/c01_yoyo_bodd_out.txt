@@ -1,0 +1,24 @@
+(1) x(0) = 0 ; x(T/2) = 0
+    x(T/4) = l_max = 2*l0*(gamma - 1)  (expect 2 l0 (gamma-1))
+    end speed at crossing = sqrt(gamma**2 - 1)/gamma  == beta* = True
+    dp/dt of each end (expect -1 = -sigma), numeric at (l0=1, gamma=1.28, t=0.1,0.5,1.2): [-1.0, -1.0, -1.0]
+(2) int x dt = 2*l0**2*(gamma*sqrt(gamma**2 - 1) - asinh(sqrt(gamma**2 - 1))) ;  claim 2 l0^2 (g rho - asinh rho); difference = 0
+    numeric gamma*=1.05: I/l0^2 = 0.042479 vs claim 0.042479
+    numeric gamma*=1.28: I/l0^2 = 0.581665 vs claim 0.581665
+    numeric gamma*=2.0: I/l0^2 = 4.294287 vs claim 4.294287
+    numeric gamma*=3.0: I/l0^2 = 13.445068 vs claim 13.445068
+(3) b_odd = J_odd/p* = 2*m*qE*(gamma*sqrt(gamma**2 - 1) - asinh(sqrt(gamma**2 - 1)))/(sigma**2*sqrt(gamma**2 - 1)) ; minus claim = 0
+    NR series of b_odd/(qE m/sigma^2) = 2*beta**2*(7*beta**2 + 10)/15  (expect 4/3 beta^2 + ...)
+    direct NR: J/(p*) = 4*beta**2*m*qE/(3*sigma**2)  (expect 4/3 qE m beta^2/sigma^2)
+    E->0 limit: 0 ; b_odd/l_max (m-independent at fixed gamma): qE*(gamma*sqrt(gamma**2 - 1) - asinh(sqrt(gamma**2 - 1)))/(sigma*(gamma - 1)*sqrt(gamma**2 - 1))
+(4) magnetic torque about CM = Matrix([[0, 0, 0]]) ; force on relative coord (F1-F2)/2 = Matrix([[0, 0, 0]])
+(5) gamma*=1.05: Li d_E / (exact b_odd/2) = 3.040
+(5) gamma*=1.28: Li d_E / (exact b_odd/2) = 3.213
+(5) gamma*=2.0: Li d_E / (exact b_odd/2) = 3.680
+(5) gamma*=3.0: Li d_E / (exact b_odd/2) = 4.195
+(6) G NR series: 4/3 - 8*beta**2/45
+    gamma*=1.05: beta*=0.3049, rho=0.3202, [g-asinh(rho)/rho]=0.0663, G=1.3159, ln((g-1)/(g-asinh(rho)/rho))=-0.2828
+    gamma*=1.28: beta*=0.6242, rho=0.7990, [g-asinh(rho)/rho]=0.3640, G=1.2449, ln((g-1)/(g-asinh(rho)/rho))=-0.2624
+    gamma*=1.6: beta*=0.7806, rho=1.2490, [g-asinh(rho)/rho]=0.7618, G=1.1651, ln((g-1)/(g-asinh(rho)/rho))=-0.2387
+    gamma*=2.0: beta*=0.8660, rho=1.7321, [g-asinh(rho)/rho]=1.2397, G=1.0869, ln((g-1)/(g-asinh(rho)/rho))=-0.2148
+    gamma*=3.0: beta*=0.9428, rho=2.8284, [g-asinh(rho)/rho]=2.3768, G=0.9534, ln((g-1)/(g-asinh(rho)/rho))=-0.1726

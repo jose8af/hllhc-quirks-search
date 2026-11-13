@@ -1,0 +1,24 @@
+! Copied 2026-10-11 by E5 from theory_track/sim/cards/pythia8_tune_CP5.dat (E4, verified vs arXiv:1903.12179 Table 3). Read-only copy.
+! ---- CMS tune CP5, every value from CMS, arXiv:1903.12179 (cache: research/cache/pdf/1903.12179.txt) ----
+!   Sec.3 bullet list (txt l.715-721): CP4 = NNPDF3.1 NNLO, alpha_s(mZ) = 0.118 for MPI, hard scattering, FSR, ISR,
+!   NLO running; CP5 = CP4 + rapidity-ordered ISR; hadronisation/beam remnants fixed to Monash; double-Gaussian
+!   overlap (l.721-726); MPI-based CR model (l.702).  Table 3 (txt l.897-918), column CP5.
+Tune:pp = 14                                   ! Monash base (hadronisation and beam remnants kept at Monash, l.720-721)
+PDF:pSet = 20                                  ! NNPDF3.1 QCD+LUXQED NNLO, a_s 0.118 (Pythia-internal; paper: NNPDF3.1 NNLO, Table 3)
+SpaceShower:rapidityOrder = on                 ! Table 3
+MultipartonInteractions:ecmRef = 7000.         ! Table 3 (EcmRef [GeV] 7000)
+SpaceShower:alphaSvalue = 0.118                ! Table 3 alpha_S^ISR 0.118/NLO
+SpaceShower:alphaSorder = 2
+TimeShower:alphaSvalue = 0.118                 ! Table 3 alpha_S^FSR 0.118/NLO
+TimeShower:alphaSorder = 2
+MultipartonInteractions:alphaSvalue = 0.118    ! Table 3 alpha_S^MPI 0.118/NLO
+MultipartonInteractions:alphaSorder = 2
+SigmaProcess:alphaSvalue = 0.118               ! Table 3 alpha_S^ME 0.118/NLO
+SigmaProcess:alphaSorder = 2
+MultipartonInteractions:pT0Ref = 1.41          ! Table 3
+MultipartonInteractions:ecmPow = 0.03          ! Table 3 (2 decimals as printed)
+MultipartonInteractions:bProfile = 2           ! double Gaussian (Sec.3, l.721-726)
+MultipartonInteractions:coreRadius = 0.76      ! Table 3
+MultipartonInteractions:coreFraction = 0.63    ! Table 3
+ColourReconnection:mode = 0                    ! MPI-based CR model (Sec.3, l.702)
+ColourReconnection:range = 5.18                ! Table 3

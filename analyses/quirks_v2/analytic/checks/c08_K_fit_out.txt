@@ -1,0 +1,7 @@
+K_NR = 0.079442; fit K = K_NR + (-0.5061) ln g + (-0.0767) ln^2 g
+  gamma*=1.05: K_num=+0.0563  K_fit=+0.0546
+  gamma*=1.28: K_num=-0.0490  K_fit=-0.0502
+  gamma*=1.6: K_num=-0.1754  K_fit=-0.1754
+  gamma*=2.0: K_num=-0.3095  K_fit=-0.3083
+  gamma*=3.0: K_num=-0.5688  K_fit=-0.5692
+compare: K_num - K_NR vs ln(beta*/artanh beta*): [-0.0232 -0.1284 -0.2548 -0.3889 -0.6482] [-0.0323 -0.1591 -0.2936 -0.4192 -0.6258]

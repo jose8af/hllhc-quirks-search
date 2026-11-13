@@ -1,0 +1,20 @@
+{
+ "campaign": "feas-acct-ssh",
+ "tier": "test",
+ "data_prefix": "feasibility/runner",
+ "ledger": "analyses/quirks_v2/phase1_strategy/outputs/feasibility/runner_ledger/markers",
+ "description": "Phase-1 runner validation (TEST ONLY, no physics)",
+ "defaults": {
+  "max_rss_mb": 100
+ },
+ "jobs": [
+  {
+   "id": "acct-ssh",
+   "max_rss_mb": 400,
+   "outputs": [
+    "acct-ssh.dat"
+   ],
+   "command": "(ls -l /usr/bin/time || echo NO_USR_BIN_TIME; command -v python3 || echo NO_PYTHON3; cat /proc/self/cgroup; nice) && /home/users/jdochoa/hllhc-quirks-search/tools/runner/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/payload.py --mem-mib 300 --hold 0 --hash-mib 4000 --out acct-ssh.dat"
+  }
+ ]
+}

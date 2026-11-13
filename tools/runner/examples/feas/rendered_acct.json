@@ -1,0 +1,185 @@
+{
+ "apiVersion": "argoproj.io/v1alpha1",
+ "kind": "Workflow",
+ "metadata": {
+  "name": "jdochoa-qv2-feas-acct-argo-c0-landau-9cs86",
+  "namespace": "argo",
+  "labels": {
+   "owner": "jdochoa",
+   "study": "quirks-v2",
+   "qv2-campaign": "feas-acct-argo",
+   "qv2-chunk": "0",
+   "qv2-node": "landau"
+  }
+ },
+ "spec": {
+  "entrypoint": "main",
+  "parallelism": 1,
+  "podGC": {
+   "strategy": "OnPodSuccess"
+  },
+  "ttlStrategy": {
+   "secondsAfterCompletion": 86400
+  },
+  "podMetadata": {
+   "labels": {
+    "owner": "jdochoa",
+    "study": "quirks-v2",
+    "qv2-campaign": "feas-acct-argo",
+    "qv2-chunk": "0",
+    "qv2-node": "landau"
+   }
+  },
+  "securityContext": {
+   "runAsUser": 10015,
+   "runAsGroup": 10000
+  },
+  "volumes": [
+   {
+    "name": "home",
+    "nfs": {
+     "server": "192.168.10.254",
+     "path": "/home/users/jdochoa"
+    }
+   },
+   {
+    "name": "data",
+    "nfs": {
+     "server": "192.168.10.254",
+     "path": "/mnt/cajuela/jdochoa/quirks_v2"
+    }
+   },
+   {
+    "name": "scratch",
+    "hostPath": {
+     "path": "/home/scratch/jdochoa",
+     "type": "Directory"
+    }
+   }
+  ],
+  "templates": [
+   {
+    "name": "main",
+    "steps": [
+     [
+      {
+       "name": "run",
+       "template": "job",
+       "arguments": {
+        "parameters": [
+         {
+          "name": "job",
+          "value": "{{item.job}}"
+         },
+         {
+          "name": "mreq",
+          "value": "{{item.mreq}}"
+         },
+         {
+          "name": "mlim",
+          "value": "{{item.mlim}}"
+         }
+        ]
+       },
+       "withItems": [
+        {
+         "job": "acct-argo",
+         "mreq": "400Mi",
+         "mlim": "600Mi"
+        }
+       ]
+      }
+     ]
+    ]
+   },
+   {
+    "name": "job",
+    "inputs": {
+     "parameters": [
+      {
+       "name": "job"
+      },
+      {
+       "name": "mreq"
+      },
+      {
+       "name": "mlim"
+      }
+     ]
+    },
+    "activeDeadlineSeconds": 2400,
+    "retryStrategy": {
+     "limit": 2,
+     "retryPolicy": "OnError"
+    },
+    "metadata": {
+     "labels": {
+      "owner": "jdochoa",
+      "study": "quirks-v2",
+      "qv2-campaign": "feas-acct-argo",
+      "qv2-chunk": "0",
+      "qv2-node": "landau"
+     }
+    },
+    "container": {
+     "image": "ubuntu@sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+     "imagePullPolicy": "IfNotPresent",
+     "command": [
+      "nice",
+      "-n",
+      "10",
+      "bash",
+      "-c"
+     ],
+     "args": [
+      "umask 022 && exec /home/users/jdochoa/hllhc-quirks-search/tools/runner/bin/qv2-job --campaign /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/feas/feas-acct-argo.json --job {{inputs.parameters.job}} --mechanism argo"
+     ],
+     "env": [
+      {
+       "name": "QV2_NODE",
+       "valueFrom": {
+        "fieldRef": {
+         "fieldPath": "spec.nodeName"
+        }
+       }
+      },
+      {
+       "name": "ARGO_WORKFLOW_NAME",
+       "value": "{{workflow.name}}"
+      },
+      {
+       "name": "HOME",
+       "value": "/home/users/jdochoa"
+      }
+     ],
+     "resources": {
+      "requests": {
+       "cpu": "1",
+       "memory": "{{inputs.parameters.mreq}}"
+      },
+      "limits": {
+       "memory": "{{inputs.parameters.mlim}}"
+      }
+     },
+     "volumeMounts": [
+      {
+       "name": "home",
+       "mountPath": "/home/users/jdochoa"
+      },
+      {
+       "name": "data",
+       "mountPath": "/nfs/cajuela/jdochoa/quirks_v2"
+      },
+      {
+       "name": "scratch",
+       "mountPath": "/home/scratch/jdochoa"
+      }
+     ]
+    },
+    "nodeSelector": {
+     "kubernetes.io/hostname": "landau"
+    }
+   }
+  ]
+ }
+}

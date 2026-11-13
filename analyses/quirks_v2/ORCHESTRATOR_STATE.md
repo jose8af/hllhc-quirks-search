@@ -2,7 +2,9 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-13 14:45 -05 · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy), step EXECUTE (investigation + feasibility)
+**Updated:** 2026-11-13 15:50 -05 · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy), step EXECUTE (feasibility, resumed after the 15:12 interruption)
+
+**Read `LOG.md` entry "15:12 — INTERRUPTION" first: it holds the constraints now in force (10 GB cap, nothing heavy on einstein, one pixi install at a time, modest number of subagents).**
 
 ## Phase tracker
 - [x] Preflight — PASS on re-run after the cajuela fix (`PREFLIGHT.md`)
@@ -15,21 +17,20 @@ A fresh session reads `prompt.md` (the brief), then this file, then resumes at "
 - [ ] Phase 4c: evaluation half — executor + note writer + 1-bot (escalate to 4-bot per JFC 06 §6.4)
 - [ ] Phase 5: AN + journal paper + Zenodo-ready package — executor + note writer + typesetter + 5-bot + adversarial 25-question review → GATE C (human)
 
-## Active subagents (session name · role · output)
-| name | role | model | writes |
-|---|---|---|---|
-| Ada | investigator: repo, READMEs, REPRODUCE | opus | `phase1_strategy/outputs/digests/D1_reproduce_ada.md` |
-| Agnes | investigator: paper v0.4, novelty audit, ISSUES + bird's-eye framing | opus | `…/digests/D2_paper_agnes.md`, `…/outputs/FRAMING.md` |
-| Albert | investigator: UNRESOLVED.md, book Part VI, checks | opus | `…/digests/D3_corrections_albert.md` |
-| Alfred | investigator: v1 frozen record | opus | `…/digests/D4_v1_record_alfred.md` |
-| Amara | investigator: stage documents (analytic, sim, stage3, acts) | opus | `…/digests/D5_stages_amara.md` |
-| Andrzej | investigator: decision-history logs (grep digest) | sonnet | `…/digests/D6_history_andrzej.md` |
-| Anselm | feasibility executor A: linux-64 port of the chain, pyacts, chain benchmarks (node: maxwell, 4 jobs) | opus | `…/outputs/feasibility/FEAS_A_chain_anselm.md` |
-| Basil | feasibility executor B: MG5_aMC + Pythia 8 + LHAPDF, Geant4 route, generator benchmarks (node: schrodinger, 3 jobs) | opus | `…/outputs/feasibility/FEAS_B_generators_basil.md` |
-| Boris | feasibility executor C: resumable runner, ledger, Argo pod template vs SSH overhead, pyhf benchmark (node: landau, 2 jobs) | opus | `tools/runner/`, `…/outputs/feasibility/FEAS_C_runner_boris.md` |
+## Active subagents (at most 3 at a time; each uses one worker; nothing heavy on einstein)
+Investigators Ada, Agnes, Albert, Alfred, Amara, Andrzej: DONE, digests D1–D6 and `FRAMING.md` committed (`980d207`).
+
+| name | role | model | worker | state | writes |
+|---|---|---|---|---|---|
+| Anselm | feasibility A: chain smoke tests and benchmarks (envs and port edits are done) | opus | maxwell | resumed 15:50 | `phase1_strategy/outputs/feasibility/FEAS_A_chain_anselm.md`, `benchmarks_chain.json` |
+| Basil | feasibility B: MG5/Pythia/LHAPDF test generation and benchmarks, NLO K-factor route; Geant4 env reinstall LAST, only when told he holds the install slot | opus | schrodinger | resumed 15:50 | `…/FEAS_B_generators_basil.md`, `benchmarks_generators.json` |
+| Boris | feasibility C: finish runner validation (mini-campaign, kill/resume, memory test, marker latency, pyhf timings) | opus | landau | resumed 15:50 | `tools/runner/`, `…/FEAS_C_runner_boris.md` |
+
+Install slot (one pixi install at a time): FREE. Only pending install: `sw/envs/g4` (Geant4, ~3.3 GB), to be given
+to Basil after Anselm's and Boris's benchmarks have finished.
 
 Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil, Boris. Next free: Brigitte.
-pixi 0.84.2 is installed at `~/.pixi/bin` (by the orchestrator, infrastructure); every shell sources `tools/env.sh`.
+pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
 None. No production before Gate A.
