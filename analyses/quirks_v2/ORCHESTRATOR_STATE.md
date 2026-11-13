@@ -24,10 +24,12 @@ A fresh session reads `prompt.md` (the brief), then this file, then resumes at "
 | Alfred | investigator: v1 frozen record | opus | `…/digests/D4_v1_record_alfred.md` |
 | Amara | investigator: stage documents (analytic, sim, stage3, acts) | opus | `…/digests/D5_stages_amara.md` |
 | Andrzej | investigator: decision-history logs (grep digest) | sonnet | `…/digests/D6_history_andrzej.md` |
-| Anselm | feasibility executor A: pixi, linux-64 port, pyacts, runner, pod template, chain benchmarks | opus | `…/outputs/feasibility/FEAS_A_env_anselm.md` |
-| Basil | feasibility executor B: MG5_aMC + Pythia 8 + LHAPDF, Geant4 route, generator benchmarks | opus | `…/outputs/feasibility/FEAS_B_generators_basil.md` |
+| Anselm | feasibility executor A: linux-64 port of the chain, pyacts, chain benchmarks (node: maxwell, 4 jobs) | opus | `…/outputs/feasibility/FEAS_A_chain_anselm.md` |
+| Basil | feasibility executor B: MG5_aMC + Pythia 8 + LHAPDF, Geant4 route, generator benchmarks (node: schrodinger, 3 jobs) | opus | `…/outputs/feasibility/FEAS_B_generators_basil.md` |
+| Boris | feasibility executor C: resumable runner, ledger, Argo pod template vs SSH overhead, pyhf benchmark (node: landau, 2 jobs) | opus | `tools/runner/`, `…/outputs/feasibility/FEAS_C_runner_boris.md` |
 
-Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil. Next free: Boris.
+Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil, Boris. Next free: Brigitte.
+pixi 0.84.2 is installed at `~/.pixi/bin` (by the orchestrator, infrastructure); every shell sources `tools/env.sh`.
 
 ## Campaigns running
 None. No production before Gate A.
@@ -38,8 +40,8 @@ None.
 ## Next action
 1. When all digests and both feasibility reports are on disk: read them (summaries only), commit.
 2. If a feasibility item failed: escalate model/effort for the retry (brief §4), log in `MODEL_LEDGER.md`.
-3. Read `agents/executor.md` (done), spawn the strategy executor (Boris, model fable: schedule + acceptance
-   criteria are error-prone) → `phase1_strategy/outputs/STRATEGY_boris_<date>.md`, `COMMITMENTS.md` filled.
+3. Read `agents/executor.md` (done), spawn the strategy executor (Brigitte, model fable: schedule + acceptance
+   criteria are error-prone) → `phase1_strategy/outputs/STRATEGY_brigitte_<date>.md`, `COMMITMENTS.md` filled.
 4. Read `agents/{physics,critical,constructive}_reviewer.md`, `arbiter.md`; run the 4-bot panel; iterate to PASS.
 5. Write `gates/GATE_A.md` (3 pages or less), bundle, notify the user, **stop for Gate A**.
 
