@@ -47,7 +47,7 @@ struct Cyl { std::string name; double r, hz, xx0; };
 static std::vector<Cyl> gCyl;
 static std::ofstream gOut;
 static bool gPrimaryOnly = false;
-static long gNvtx = 0, gNdecay = 0, gNinel = 0;
+static long gNvtx = 0, gNdecay = 0, gNinel = 0, gNloop = 0;
 
 class Det : public G4VUserDetectorConstruction {
  public:
@@ -85,8 +85,12 @@ class Gun : public G4VUserPrimaryGeneratorAction {
     double pt = std::exp(lpt) * GeV;
     double eta = (2 * G4UniformRand() - 1) * gEtaMax, phi = 2 * M_PI * G4UniformRand();
     int sgn = G4UniformRand() < 0.5 ? 1 : -1;
-    gun.SetParticleDefinition(G4ParticleTable::GetParticleTable()->FindParticle(sgn * gPdg));
-    gun.SetParticleMomentum(G4ThreeVector(pt * std::cos(phi), pt * std::sin(phi), pt * std::sinh(eta)));
+    auto def = G4ParticleTable::GetParticleTable()->FindParticle(sgn * gPdg);
+    gun.SetParticleDefinition(def);
+    G4ThreeVector p(pt * std::cos(phi), pt * std::sin(phi), pt * std::sinh(eta));
+    double m = def->GetPDGMass();
+    gun.SetParticleMomentumDirection(p.unit());          // energy-based definition: no per-event G4ParticleGun warning
+    gun.SetParticleEnergy(std::sqrt(p.mag2() + m * m) - m);
     gun.SetParticlePosition({0, 0, 0});
     gun.GeneratePrimaryVertex(ev);
   }
@@ -99,6 +103,10 @@ class Step : public G4UserSteppingAction {
  public:
   void UserSteppingAction(const G4Step* s) override {
     auto tr = s->GetTrack();
+    // Looper protection: in the vacuum between the slabs a low-pT charged track with pz ~ 0 circles in 3.8 T forever
+    // (first 20k-event run hung, 2026-11-13). Kill any track after 25 ns or 5 m of path (a prompt track crosses the
+    // barrel, r < 1.1 m, in < 4 ns); the products of the PRIMARY's vertices are recorded before any of this applies.
+    if (tr->GetGlobalTime() > 25 * ns || tr->GetTrackLength() > 5 * m) { tr->SetTrackStatus(fStopAndKill); ++gNloop; }
     if (tr->GetParentID() != 0) return;
     auto pp = s->GetPostStepPoint();
     auto proc = pp->GetProcessDefinedStep();
@@ -169,7 +177,7 @@ int main(int argc, char** argv) {
   G4cout << "G4SV nev=" << nev << " mode=" << argv[4] << " init_cpu_s=" << double(c1 - c0) / CLOCKS_PER_SEC
          << " event_cpu_s=" << double(c2 - c1) / CLOCKS_PER_SEC << " cpu_ms_per_event="
          << 1e3 * double(c2 - c1) / CLOCKS_PER_SEC / nev << " nvtx=" << gNvtx << " ninel=" << gNinel
-         << " ndecay=" << gNdecay << G4endl;
+         << " ndecay=" << gNdecay << " nkilled_loopers=" << gNloop << G4endl;
   gOut.close();
   delete rm;
   return 0;

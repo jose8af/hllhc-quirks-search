@@ -1,0 +1,783 @@
+{
+ "producer": "executor Basil, quirks v2 Phase 1 feasibility B, 2026-11-13",
+ "node": "schrodinger (i5-7500, 4 cores, 7.5 GiB, Ubuntu 24.04)",
+ "software": {
+  "mg5_amc": {
+   "version": "2.9.22",
+   "path": "/home/users/jdochoa/sw/mg5/MG5_aMC_v2_9_22",
+   "tarball_sha256": "c15fac434458cc3c1d0637afc351889b7203f12a8b6e5b4b1545a93393198092",
+   "files": 4071
+  },
+  "pythia8": {
+   "version": "8.313",
+   "path": "/home/users/jdochoa/sw/mg5/MG5_aMC_v2_9_22/HEPTools/pythia8",
+   "tarball_sha256": "d07e801501c4dcb76d948dc63285375f597453c1d6ec65e71287603dc776718c",
+   "lhapdf": false,
+   "gzip": true
+  },
+  "mg5amc_py8_interface": {
+   "version": "V1.3",
+   "hepmc": "2.06.09 static, MG named-weight patch, -DHEPMC2HACK",
+   "binary_sha256": "e9f878d9e83a38e8 (prefix)"
+  },
+  "heptools_install_tarball_sha256": "38185d6bdf664478b346e27266ebc95a650e2f6d48b5af8ceaa0db36b1a2912c",
+  "mg_python_env": {
+   "path": "/home/users/jdochoa/sw/envs/mg",
+   "python": "3.9",
+   "lhapdf": "6.5.5 (conda-forge)",
+   "numpy": "1.26"
+  },
+  "lhapdf_data": {
+   "path": "/home/users/jdochoa/sw/lhapdf_data",
+   "sets": [
+    "CT18NLO (59 members, lhaid 14400)",
+    "NNPDF23_lo_as_0130_qed member 0 (lhaid 247000)"
+   ],
+   "patched_info": "v1 tracked .info files (AlphaS_FlavorScheme, AlphaS_NumFlavors, AlphaS_Lambda4/5 added)"
+  },
+  "geant4": {
+   "version": "11.4.3 (conda-forge noqt)",
+   "path": "/home/scratch/jdochoa/envs/g4 (node-local, schrodinger only so far)",
+   "lock": "tools/install/g4/pixi.lock",
+   "lock_sha256": "edbcef2450615c1db45dc9cbed8000faca9a21f4b0164f8541dd4a76dfe07291",
+   "datasets_gb": 2.2,
+   "env_gb": 3.3,
+   "local_pkg_cache_gb": 3.3,
+   "install_wall_s": 174
+  }
+ },
+ "disk_nfs_sw_total_mb": 580,
+ "disk_nfs_sw_note": "VERIFIED du -sh /home/users/jdochoa/sw (MG+HEPTools 268M, envs/mg 244M, lhapdf_data 69M); Geant4 is node-local (6.6 GB per worker incl. cache)",
+ "xsec": {
+  "E_LOPS_m200": {
+   "v2_fb": 92.33,
+   "v2_err_fb": 0.0675,
+   "v2_events": 20000,
+   "v2_seed": 21902101,
+   "v1_fb": 92.26,
+   "v1_err_fb": 0.0372,
+   "v1_source": "TT/sim/logs/launch_E-LOPS_m200_c0.log l.118 (0.09226 +- 3.72e-05 pb)",
+   "z": 0.91,
+   "v2_1k_sample_fb": 92.65,
+   "v2_1k_sample_err_fb": 0.267,
+   "z_1k": 1.45
+  },
+  "ZNN_J_met200": {
+   "v2_pb": 12.21,
+   "v2_err_pb": 0.0277,
+   "v2_events": 20000,
+   "v2_generator": "MG LO p p > vl vl~ j, misset 200, ptj 20, CT18NLO, dyn -1",
+   "v1_pb": 14.6,
+   "v1_source": "TT/acts/stage4/plan.md l.1060 (Pythia 2->2, pThat>150, truth MET>200, CP5 internal PDF)",
+   "ratio_v2_over_v1": 0.836,
+   "note": "different generators, PDFs and scales: ESTIMATE, not a validation"
+  }
+ },
+ "nlo_fixed_order_E_m200": {
+  "model": "loop_quirkE = MG loop_sm + v1 quirk states (make_loop_quirkE.py)",
+  "process": "p p > xe+ xe- [QCD]",
+  "scale": "dynamical_scale_choice -1 (H_T/2)",
+  "pdf": "CT18NLO",
+  "lo_fb": 92.87,
+  "lo_err_fb": 0.14,
+  "lo_scale_env_pct": [
+   0.0,
+   -0.5
+  ],
+  "nlo_fb": 108.2,
+  "nlo_err_fb": 0.14,
+  "nlo_scale_env_pct": [
+   1.6,
+   -1.1
+  ],
+  "K_nlo_over_lo": 1.165,
+  "K_err": 0.0024,
+  "cpu_s": {
+   "output_one_off": 168.7,
+   "output_wall_s": 299,
+   "output_max_rss_mb": 993,
+   "lo_run_incl_compile": 92.0,
+   "nlo_run": 35.6
+  },
+  "note": "VERIFIED single runs (no repeats); EW scheme G_mu (alpha = 1/132.507)"
+ },
+ "output_sizes": {
+  "note": "VERIFIED file sizes of the task-2 test samples (1000 events each) and of one v1-converter run",
+  "E_LOPS_m200": {
+   "lhe_gz_kB_per_event": 0.718,
+   "hepmc_kB_per_event": 193.4,
+   "hepmc_gz6_kB_per_event": 67.8,
+   "particles_per_event": 1184,
+   "npz_v1_format_kB_per_event": 1.05,
+   "npz_converter_cpu_ms_per_event": 10.9,
+   "npz_note": "TT/sim/scripts/convert_hepmc.py run once in the v2 sim ana env (209 weight columns)"
+  },
+  "ZNN_J": {
+   "lhe_gz_kB_per_event": 0.83,
+   "hepmc_gz6_kB_per_event": 79.1
+  },
+  "minbias": "v1 kept PU in memory (numpy arrays, no file); selected particles per interaction 96-105 (pT > 50 MeV, |eta| < 4, charged + photons)"
+ },
+ "derived": {
+  "note": "ESTIMATE: arithmetic on the VERIFIED benchmark means (single jobs)",
+  "mg_E_compile_s": "mg_first_E - mg_warm_gen1k_E timed step - mg_output_E = 16.84 - 8.71 - 2.56 = 5.6 CPU s",
+  "mg_E_fixed_s_per_launch": 6.6,
+  "mg_E_marginal_ms_per_event": 2.11,
+  "mg_Z_per_1k_s": 14.9,
+  "py8_shower_ms_per_event": {
+   "E_LOPS_m200": 21.2,
+   "ZNN_J": 23.4,
+   "E_LOPS_m200_qedfsr": 21.1
+  },
+  "qedfsr_reshower_v1_samples_cpu_h": "2.41e6 LHE events x 21.1 ms = 14.1 CPU-h (v1 DEFERRED: ~15 CPU-h on the M3)",
+  "pythia_minbias_ms_per_interaction": "2.0-2.5 (event loop), plus 11.0 s MPI init per job (removable with v1 reuseInit)",
+  "pu200_generation_s_per_event": "200 x 2.3 ms = 0.46 CPU s (Pythia only; Fatras not included)",
+  "signal_LO_chunk50k_ms_per_event": "(6.6 + 2.11*50 + 21.2*50 + 10.9*50) s / 50000 = 34 ms (MG + PY8 + v1 conversion)",
+  "m3_to_schrodinger_py8": "v1 E-LOPS m200 c0: 50k events showered by 6 parallel jobs in 122 s wall (TT/sim/logs/produce.log l.190) = 14.6 ms/event if 6 cores busy (UNVERIFIED CPU); schrodinger 21.2 ms -> factor ~1.45 (ESTIMATE)",
+  "g4_vertex_fraction_per_gun": 0.0526,
+  "g4_vertex_fraction_note": "1052 / 20000 vertices of the primary (mean of 3 primary-mode runs; 0.041 inelastic, 0.011 decay) for pi+- pT 1-10 GeV log-uniform, |eta| < 1, v1 barrel slabs",
+  "g4_cpu_h_per_1e6_vertex_events": {
+   "primary_mode": 0.71,
+   "full_mode": 1.4,
+   "formula": "1e6 / 0.0526 guns x (0.134 | 0.265) ms per gun",
+   "note": "unbiased guns; Geant4 only (no Fatras, no PU overlay); biasing reduces it further"
+  }
+ },
+ "benchmarks": {
+  "g4_full_20k": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 5.43,
+     "min": 5.38,
+     "max": 5.52
+    },
+    "wall_s": {
+     "mean": 5.433,
+     "min": 5.39,
+     "max": 5.52
+    },
+    "max_rss_mb": {
+     "mean": 70.958,
+     "min": 70.75,
+     "max": 71.125
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 5.557,
+     "min": 5.51,
+     "max": 5.6
+    },
+    "wall_s": {
+     "mean": 5.577,
+     "min": 5.53,
+     "max": 5.62
+    },
+    "max_rss_mb": {
+     "mean": 70.792,
+     "min": 70.75,
+     "max": 70.875
+    }
+   }
+  },
+  "g4_primary_20k": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 2.86,
+     "min": 2.84,
+     "max": 2.89
+    },
+    "wall_s": {
+     "mean": 2.867,
+     "min": 2.84,
+     "max": 2.9
+    },
+    "max_rss_mb": {
+     "mean": 70.708,
+     "min": 70.625,
+     "max": 70.875
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 2.927,
+     "min": 2.91,
+     "max": 2.95
+    },
+    "wall_s": {
+     "mean": 2.957,
+     "min": 2.94,
+     "max": 2.97
+    },
+    "max_rss_mb": {
+     "mean": 69.792,
+     "min": 69.25,
+     "max": 70.5
+    }
+   }
+  },
+  "mg_first_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 16.837,
+     "min": 16.77,
+     "max": 16.91
+    },
+    "wall_s": {
+     "mean": 17.36,
+     "min": 17.03,
+     "max": 17.66
+    },
+    "max_rss_mb": {
+     "mean": 212.827,
+     "min": 212.66,
+     "max": 213.027
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 18.017,
+     "min": 17.99,
+     "max": 18.05
+    },
+    "wall_s": {
+     "mean": 18.79,
+     "min": 18.7,
+     "max": 18.84
+    },
+    "max_rss_mb": {
+     "mean": 213.089,
+     "min": 212.988,
+     "max": 213.211
+    }
+   }
+  },
+  "mg_first_Z": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 24.74,
+     "min": 24.65,
+     "max": 24.8
+    },
+    "wall_s": {
+     "mean": 25.087,
+     "min": 24.88,
+     "max": 25.2
+    },
+    "max_rss_mb": {
+     "mean": 212.452,
+     "min": 212.293,
+     "max": 212.57
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 26.517,
+     "min": 26.42,
+     "max": 26.57
+    },
+    "wall_s": {
+     "mean": 27.417,
+     "min": 27.33,
+     "max": 27.52
+    },
+    "max_rss_mb": {
+     "mean": 212.415,
+     "min": 212.367,
+     "max": 212.477
+    }
+   }
+  },
+  "mg_output_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 2.56,
+     "min": 2.43,
+     "max": 2.78
+    },
+    "wall_s": {
+     "mean": 2.99,
+     "min": 2.6,
+     "max": 3.76
+    },
+    "max_rss_mb": {
+     "mean": 49.909,
+     "min": 49.816,
+     "max": 49.957
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 2.56,
+     "min": 2.55,
+     "max": 2.57
+    },
+    "wall_s": {
+     "mean": 2.873,
+     "min": 2.8,
+     "max": 2.92
+    },
+    "max_rss_mb": {
+     "mean": 53.887,
+     "min": 53.781,
+     "max": 53.973
+    }
+   }
+  },
+  "mg_output_Z": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 3.81,
+     "min": 3.78,
+     "max": 3.83
+    },
+    "wall_s": {
+     "mean": 3.953,
+     "min": 3.94,
+     "max": 3.97
+    },
+    "max_rss_mb": {
+     "mean": 51.056,
+     "min": 50.957,
+     "max": 51.152
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 4.003,
+     "min": 3.99,
+     "max": 4.02
+    },
+    "wall_s": {
+     "mean": 4.327,
+     "min": 4.28,
+     "max": 4.36
+    },
+    "max_rss_mb": {
+     "mean": 55.402,
+     "min": 55.32,
+     "max": 55.504
+    }
+   }
+  },
+  "mg_warm_gen10k_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 42.64,
+     "min": 42.62,
+     "max": 42.68
+    },
+    "wall_s": {
+     "mean": 43.087,
+     "min": 42.99,
+     "max": 43.24
+    },
+    "max_rss_mb": {
+     "mean": 212.635,
+     "min": 212.402,
+     "max": 212.832
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 45.283,
+     "min": 45.21,
+     "max": 45.43
+    },
+    "wall_s": {
+     "mean": 46.21,
+     "min": 45.96,
+     "max": 46.44
+    },
+    "max_rss_mb": {
+     "mean": 212.938,
+     "min": 212.859,
+     "max": 213.004
+    }
+   },
+   "single_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 27.7,
+     "min": 27.68,
+     "max": 27.73
+    },
+    "wall_s": {
+     "mean": 27.85,
+     "min": 27.78,
+     "max": 27.93
+    },
+    "max_rss_mb": {
+     "mean": 212.635,
+     "min": 212.402,
+     "max": 212.832
+    }
+   },
+   "conc_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 29.31,
+     "min": 29.23,
+     "max": 29.45
+    },
+    "wall_s": {
+     "mean": 29.597,
+     "min": 29.49,
+     "max": 29.77
+    },
+    "max_rss_mb": {
+     "mean": 212.934,
+     "min": 212.848,
+     "max": 213.004
+    }
+   }
+  },
+  "mg_warm_gen1k_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 23.617,
+     "min": 23.44,
+     "max": 23.91
+    },
+    "wall_s": {
+     "mean": 24.037,
+     "min": 23.73,
+     "max": 24.26
+    },
+    "max_rss_mb": {
+     "mean": 212.688,
+     "min": 212.477,
+     "max": 212.992
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 25.363,
+     "min": 25.19,
+     "max": 25.67
+    },
+    "wall_s": {
+     "mean": 26.093,
+     "min": 25.87,
+     "max": 26.44
+    },
+    "max_rss_mb": {
+     "mean": 212.841,
+     "min": 212.73,
+     "max": 212.988
+    }
+   },
+   "single_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 8.71,
+     "min": 8.49,
+     "max": 9.07
+    },
+    "wall_s": {
+     "mean": 8.81,
+     "min": 8.57,
+     "max": 9.19
+    },
+    "max_rss_mb": {
+     "mean": 212.201,
+     "min": 212.164,
+     "max": 212.258
+    }
+   },
+   "conc_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 9.373,
+     "min": 9.2,
+     "max": 9.69
+    },
+    "wall_s": {
+     "mean": 9.563,
+     "min": 9.38,
+     "max": 9.93
+    },
+    "max_rss_mb": {
+     "mean": 212.553,
+     "min": 212.305,
+     "max": 212.805
+    }
+   }
+  },
+  "mg_warm_gen1k_Z": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 36.98,
+     "min": 36.5,
+     "max": 37.45
+    },
+    "wall_s": {
+     "mean": 37.443,
+     "min": 37.1,
+     "max": 37.92
+    },
+    "max_rss_mb": {
+     "mean": 212.585,
+     "min": 212.516,
+     "max": 212.676
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 39.57,
+     "min": 39.1,
+     "max": 40.03
+    },
+    "wall_s": {
+     "mean": 41.013,
+     "min": 40.81,
+     "max": 41.4
+    },
+    "max_rss_mb": {
+     "mean": 212.887,
+     "min": 212.703,
+     "max": 213.07
+    }
+   },
+   "single_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 14.857,
+     "min": 14.39,
+     "max": 15.33
+    },
+    "wall_s": {
+     "mean": 14.99,
+     "min": 14.64,
+     "max": 15.41
+    },
+    "max_rss_mb": {
+     "mean": 212.501,
+     "min": 212.426,
+     "max": 212.562
+    }
+   },
+   "conc_timed_step": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 15.94,
+     "min": 15.41,
+     "max": 16.41
+    },
+    "wall_s": {
+     "mean": 16.323,
+     "min": 15.8,
+     "max": 16.67
+    },
+    "max_rss_mb": {
+     "mean": 212.641,
+     "min": 212.469,
+     "max": 212.727
+    }
+   }
+  },
+  "py8_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 21.177,
+     "min": 20.51,
+     "max": 21.63
+    },
+    "wall_s": {
+     "mean": 21.383,
+     "min": 20.52,
+     "max": 22.22
+    },
+    "max_rss_mb": {
+     "mean": 28.374,
+     "min": 27.73,
+     "max": 29.141
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 21.88,
+     "min": 21.23,
+     "max": 22.28
+    },
+    "wall_s": {
+     "mean": 22.037,
+     "min": 21.42,
+     "max": 22.42
+    },
+    "max_rss_mb": {
+     "mean": 28.613,
+     "min": 28.164,
+     "max": 29.359
+    }
+   }
+  },
+  "py8_Z": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 23.41,
+     "min": 22.39,
+     "max": 23.95
+    },
+    "wall_s": {
+     "mean": 23.423,
+     "min": 22.4,
+     "max": 23.96
+    },
+    "max_rss_mb": {
+     "mean": 28.49,
+     "min": 28.426,
+     "max": 28.574
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 24.25,
+     "min": 23.25,
+     "max": 24.76
+    },
+    "wall_s": {
+     "mean": 24.353,
+     "min": 23.33,
+     "max": 24.92
+    },
+    "max_rss_mb": {
+     "mean": 28.322,
+     "min": 28.074,
+     "max": 28.695
+    }
+   }
+  },
+  "py8_qed_E": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 21.127,
+     "min": 20.7,
+     "max": 21.63
+    },
+    "wall_s": {
+     "mean": 21.153,
+     "min": 20.72,
+     "max": 21.67
+    },
+    "max_rss_mb": {
+     "mean": 28.945,
+     "min": 28.727,
+     "max": 29.375
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 21.93,
+     "min": 21.52,
+     "max": 22.45
+    },
+    "wall_s": {
+     "mean": 22.003,
+     "min": 21.62,
+     "max": 22.52
+    },
+    "max_rss_mb": {
+     "mean": 28.828,
+     "min": 28.551,
+     "max": 29.324
+    }
+   }
+  },
+  "py8mb_1k": {
+   "single": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 13.033,
+     "min": 12.87,
+     "max": 13.18
+    },
+    "wall_s": {
+     "mean": 13.06,
+     "min": 12.89,
+     "max": 13.19
+    },
+    "max_rss_mb": {
+     "mean": 24.353,
+     "min": 24.258,
+     "max": 24.496
+    }
+   },
+   "conc": {
+    "N": 3,
+    "failed": 0,
+    "cpu_s": {
+     "mean": 13.367,
+     "min": 13.2,
+     "max": 13.53
+    },
+    "wall_s": {
+     "mean": 13.43,
+     "min": 13.25,
+     "max": 13.57
+    },
+    "max_rss_mb": {
+     "mean": 24.228,
+     "min": 24.18,
+     "max": 24.258
+    }
+   }
+  }
+ },
+ "benchmarks_note": "VERIFIED: /usr/bin/time -v on schrodinger (i5-7500), nice 10, node-local scratch; cpu = user + sys including waited children; single = 3 sequential runs, conc = 3 at once; mean/min/max over N. Raw: <scratch>/basil_bench/<name>/results.tsv, copied to phase1_strategy/outputs/feasibility/bench_raw/."
+}

@@ -26,8 +26,9 @@ LHAPDF_CONFIG = os.path.join(ENV, 'bin', 'lhapdf-config')
 LHAPDF_DATA = os.path.join(SW, 'lhapdf_data')
 TT = '/home/users/jdochoa/hllhc-quirks-search/stage2_C001_quirks/theory_track'
 CARDS = os.path.join(TT, 'sim', 'cards')          # v1 cards, read-only
-MODEL = os.path.join(HERE, 'models', 'quirkE-no_b_mass')   # copy of v1 TT/sim/models/quirkE (imported with restriction)
-LOOPMODEL = os.path.join(HERE, 'models', 'loop_quirkE-no_b_mass')
+MODELS = os.environ.get('QV2_MODELS', os.path.join(HERE, 'models'))   # copy to local scratch before running
+MODEL = os.path.join(MODELS, 'quirkE-no_b_mass')   # copy of v1 TT/sim/models/quirkE (imported with restriction)
+LOOPMODEL = os.path.join(MODELS, 'loop_quirkE-no_b_mass')
 SYST = "['--mur=0.5,1,2', '--muf=0.5,1,2', '--dyn=-1,1,2,3,4', '--pdf=CT18NLO,NNPDF23_lo_as_0130_qed@0']"
 
 PROCS = {
@@ -47,7 +48,10 @@ def env():
     e['LHAPDF_DATA_PATH'] = LHAPDF_DATA
     e['PYTHONDONTWRITEBYTECODE'] = '1'
     e['PATH'] = os.path.join(ENV, 'bin') + ':' + e.get('PATH', '')
-    e['LD_LIBRARY_PATH'] = os.path.join(MG, 'HEPTools', 'lib') + ':' + os.path.join(ENV, 'lib') + ':' + e.get('LD_LIBRARY_PATH', '')
+    # NOT the conda env lib dir: it holds libgfortran 16, whose runtime rejects the '$' edit descriptor that MG 2.9.22
+    # Fortran uses (symmetry.f l.233 "(I1$)" -> "Missing comma between descriptors"); MG code is compiled with the
+    # system gfortran 13 and must run with its runtime.
+    e.pop('LD_LIBRARY_PATH', None)
     return e
 
 
@@ -92,7 +96,13 @@ def cmd_output(proc, outdir):
     if os.path.exists(outdir):
         shutil.rmtree(outdir)
     cwd = os.path.dirname(outdir)
-    mg(gen + f'output {outdir}{" -nojpeg" if kind == "lo" else ""}\nexit\n', f'output_{proc}', cwd)
+    # NLO: MadLoop asks which loop-reduction tools to install into the MG install (on NFS). Answer: CutTools + IREGI only
+    # (built inside the local output dir); no ninja / collier / OneLOop (enough for a 2 -> 2 DY-like process).
+    # The install's input/mg5_configuration.txt now has ninja/collier/golem = None (install_generators.sh), so MG no
+    # longer asks; set them here too only if the question would still come.
+    cfg = open(os.path.join(MG, 'input', 'mg5_configuration.txt')).read()
+    ans = '' if kind == 'lo' or re.search(r'^ninja = None', cfg, re.M) else 'ninja noinstall\ncollier noinstall\ngolem noinstall\ndone\n'
+    mg(gen + f'output {outdir}{" -nojpeg" if kind == "lo" else ""}\n{ans}exit\n', f'output_{proc}', cwd)
     conf = {'lhapdf': LHAPDF_CONFIG, 'lhapdf_py3': LHAPDF_CONFIG, 'pythia8_path': os.path.join(MG, 'HEPTools', 'pythia8'),
             'mg5amc_py8_interface_path': os.path.join(MG, 'HEPTools', 'MG5aMC_PY8_interface'),
             'run_mode': '0', 'nb_core': '1', 'automatic_html_opening': 'False', 'notification_center': 'False',
@@ -108,15 +118,17 @@ def cmd_launch(outdir, run, nev, seed, mass=None):
     outdir = os.path.abspath(outdir)
     kind = open(os.path.join(outdir, 'KIND')).read().strip()
     set_run(os.path.join(outdir, 'Cards', 'run_card.dat'), {'nevents': str(nev), 'iseed': str(seed)})
+    if kind == 'nlo':   # fixed-order: target 0.2 % MC accuracy, scale band by reweighting (no extra runs)
+        set_run(os.path.join(outdir, 'Cards', 'run_card.dat'), {'req_acc_FO': '0.002', 'reweight_scale': 'True'})
     rd = os.path.join(outdir, 'Events', run)
     if os.path.exists(rd):
         shutil.rmtree(rd)
     s = f'launch {outdir} -n {run}\n'
     if kind == 'lo':
-        s += 'shower=OFF\n'
+        s += 'shower=OFF\n' if os.path.isdir(os.path.join(MG, 'HEPTools', 'pythia8')) else ''
     else:
-        s += 'fixed_order=ON\nshower=OFF\nmadspin=OFF\nreweight=OFF\n'
-    s += 'done\n'
+        s += 'fixed_order=ON\n' + ('order=LO\n' if run.endswith('_LO') else 'order=NLO\n')
+    s += 'done\n'                      # end of the switch question; the card-edit question follows
     if mass:
         s += f'set MXE {mass}\n'
     s += 'done\nexit\n'
