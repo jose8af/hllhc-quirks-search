@@ -1,0 +1,66 @@
+# Preflight for the §5.3 pod template: one pod per worker (also pre-pulls the pinned image).
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: jdochoa-qv2-preflight-
+  namespace: argo
+  labels: {owner: jdochoa, study: quirks-v2}
+spec:
+  entrypoint: fanout
+  parallelism: 3
+  activeDeadlineSeconds: 2400
+  podGC: {strategy: OnPodSuccess}
+  ttlStrategy: {secondsAfterCompletion: 86400}
+  podMetadata:
+    labels: {owner: jdochoa, study: quirks-v2}
+  securityContext: {runAsUser: 10015, runAsGroup: 10000}
+  volumes:
+  - name: home
+    nfs: {server: 192.168.10.254, path: /home/users/jdochoa}
+  - name: data
+    nfs: {server: 192.168.10.254, path: /mnt/cajuela/jdochoa/quirks_v2}
+  - name: scratch
+    hostPath: {path: /home/scratch/jdochoa, type: Directory}
+  templates:
+  - name: fanout
+    steps:
+    - - name: probe
+        template: probe
+        arguments: {parameters: [{name: node, value: "{{item}}"}]}
+        withItems: [landau, maxwell, schrodinger]
+  - name: probe
+    inputs: {parameters: [{name: node}]}
+    nodeSelector: {kubernetes.io/hostname: "{{inputs.parameters.node}}"}
+    retryStrategy: {limit: 2, retryPolicy: OnError}
+    script:
+      image: ubuntu@sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5
+      imagePullPolicy: IfNotPresent
+      command: [nice, -n, "10", bash]
+      resources:
+        requests: {cpu: "1", memory: 64Mi}
+        limits: {memory: 96Mi}
+      volumeMounts:
+      - {name: home, mountPath: /home/users/jdochoa}
+      - {name: data, mountPath: /nfs/cajuela/jdochoa/quirks_v2}
+      - {name: scratch, mountPath: /home/scratch/jdochoa}
+      source: |
+        set -euo pipefail
+        umask 022
+        n={{inputs.parameters.node}}
+        d=/nfs/cajuela/jdochoa/quirks_v2/logs
+        s=/home/scratch/jdochoa/preflight_pod_$n
+        echo "pod $n uid=$(id -u) gid=$(id -g) $(date -Is)" > $s
+        sum=$(sha256sum $s | cut -d' ' -f1)
+        cp $s $d/preflight_pod_$n.txt.part && sync $d/preflight_pod_$n.txt.part
+        mv $d/preflight_pod_$n.txt.part $d/preflight_pod_$n.txt
+        # known issue: first open after rename on cajuela returns ESTALE once
+        stale=0; back=""
+        for i in 1 2 3; do
+          if back=$(sha256sum $d/preflight_pod_$n.txt 2>/dev/null | cut -d' ' -f1) && [ -n "$back" ]; then break; fi
+          stale=$((stale+1)); sleep 1
+        done
+        [ "$back" = "$sum" ]
+        rm $s
+        m=/home/users/jdochoa/hllhc-quirks-search/tools/preflight/markers/pod_$n.marker
+        echo "$n uid=$(id -u) gid=$(id -g) nice=$(nice) sha256=$sum stale_retries=$stale os=$(. /etc/os-release; echo $VERSION_ID)" > $m.part
+        mv $m.part $m; cat $m

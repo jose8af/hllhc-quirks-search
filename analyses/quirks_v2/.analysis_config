@@ -1,0 +1,14 @@
+# Isolation config for analyses/quirks_v2 (JFC). Bulk data lives on cajuela; see DATA_MANIFEST.md.
+analysis_type=search
+data_dir=/nfs/cajuela/jdochoa/quirks_v2/data
+# Read-only reference: the v1 study (brief D10). Never write there.
+allow=/home/users/jdochoa/hllhc-quirks-search/stage2_C001_quirks
+allow=/home/users/jdochoa/hllhc-quirks-search/research
+allow=/home/users/jdochoa/hllhc-quirks-search/book
+allow=/home/users/jdochoa/hllhc-quirks-search/publication_plan
+allow=/home/users/jdochoa/hllhc-quirks-search/tools
+# Writable outside the repo (brief 5.2)
+allow=/nfs/cajuela/jdochoa/quirks_v2
+allow=/home/users/jdochoa/sw
+allow=/home/scratch/jdochoa
+allow=/var/tmp/jdochoa
