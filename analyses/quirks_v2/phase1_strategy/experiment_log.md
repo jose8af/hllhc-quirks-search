@@ -136,3 +136,83 @@ Open: weekday parallelism not re-capped mid-run; stash reused only on the same n
 - [Basil] RESULT (task 5): Geant4 11.4.3 FTFP_BERT, pi+- gun on the v1 barrel slabs in 3.8 T: 0.134 ms/gun (primary-only
   hand-over), 0.265 ms/gun (full), 71 MB; 5.3 % of guns give a vertex -> ~0.7 CPU-h per 1e6 vertex events (ESTIMATE).
 - [Anselm] 17:50 DONE. Final artifact outputs/feasibility/FEAS_A_chain_anselm.md, benchmarks_chain.json. Open: B2 (rho=2) RSS at production size (1.46 GiB at 1 event, v1 3.9 GB) — measure before production; finder frozen config absent; Stage 3 timed on toy kinematics only.
+
+## [Brigitte] 2026-11-13 17:55-21:00 — Phase-1 strategy executor
+Artifact: outputs/STRATEGY_brigitte_2026-11-13_17-55.md; plan: outputs/plan_brigitte_2026-11-13_17-55.md; arithmetic:
+src/strategy_budget.py (stdlib, run with python3 -I on einstein; no heavy work, no environment, no sub-agent).
+
+- [Brigitte] FINDING (corrects D4 §5.1): C1 cannot be paired or bit-level. The Stage-2 events must be regenerated
+  (v1 LHE lost) and ACTS random streams differ across platforms (FEAS_A §3.2), so "the same 200 rows" does not exist.
+  All C1 comparisons are statistical and unpaired.
+- [Brigitte] FINDING: counting the declared C1 comparisons gives 41, not the "about 30" of D4 §5.3.
+- [Brigitte] FINDING: the acceptance A of v1 is built from generator-level factors (C12FC_v1/acceptance.json:
+  fiducial x trigger x preselection). Stage 3 for S1 therefore needs only the events inside |eta_pair| < 2.5:
+  10,000 events x 95.6 s = 266 CPU-h instead of about 2.4 times that.
+- [Brigitte] FINDING: the plan's "0.4 TB" is 8e4 loose candidates x 5 MB per rho = 1 trial without hit lists
+  (G2A_REPORT.md l.113-114), not the rho = 2 pre-merge store. Redone: 21-86 GB for 6,000 trials at N_IP2 >= 6
+  (ESTIMATE; the rho = 2 multiplicity factor 4-16 is a guess; to be measured on 10 events).
+- [Brigitte] FINDING: no-PU samples of 5.5e7 events cannot be stored in full (8.2 kB x 5.5e7 = 451 GB); jobs must
+  write per-event summaries.
+- [Brigitte] FINDING: total MUST compute 2,950 CPU-h; with reduced B5/B6 3,275; effective capacity about 160 core-h
+  per day; calendar about 6 weeks from Gate A. The 2-4 week target of brief D6 is not reachable at MUST statistics.
+- [Brigitte] FAILED LOOK-UPS (repo only, nothing taken from memory): public Phase-2 MET turn-on curve; jet response
+  parametrisation; slepton cross-section table values; K-factors for the SM backgrounds with a citation; cosmic and
+  halo rates for a tracker selection; HL-LHC luminosity uncertainty; timing-layer resolution source; vertex
+  identification efficiency source; FASER's statistical method and systematic table. All are listed as retrieval
+  tasks R-1 to R-11 in the strategy §6.4.
+
+DECISION: closure criteria "within a factor F" (F = 1.5 for pile-up, conditionals and the sideband; F = 2 for
+single-interaction and hard-scatter terms), each with a chi2 p > 0.05 test that includes the declared systematic,
+and that systematic capped at ln F.
+ALTERNATIVES: pure p > 0.05 without a model width (fails by construction at per-cent statistics); factor 3 (sigma_ln > 1).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+
+DECISION: C1 signal comparison at 400 rows per point, ten declared v1-rule counts, declared outside the blind; C1
+rows never enter S1; T2 list fixed before any C1 number exists.
+ALTERNATIVES: 1,000 rows per point (D4); no signal comparison.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+
+DECISION: the pile-up estimator counts distinct hit sets after grouping applied at the target density (re-grouping
+per thinned subset); union counts are a diagnostic.
+ALTERNATIVES: density-independent union count as the estimator (changes what the ladder counts for signal as well).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: NO
+
+DECISION: zero simulated counts enter the likelihood as observed auxiliary Poisson channels with a free rate, not as
+pyhf shapesys with a pseudo-count.
+ALTERNATIVES: shapesys with tau = 1 (cannot represent an observed zero); log-normal bound 1.14/M (v1).
+CONFIDENCE: HIGH
+FLAG FOR HUMAN: NO
+
+DECISION: T2 candidates = rungs R07, R08, R09, R11, R14, R17, R20 and the v1 fallback without dE/dx, each with and
+without the displaced-vertex veto (16); a selection is eligible only if the closure criteria of its leading terms
+passed; figure of merit = mean ln(mu95 expected) over the 20 window points on the optimisation half.
+ALTERNATIVES: best Lambda per mass reach as figure of merit (noisier); dE/dx rungs kept; eligibility not required.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+
+DECISION: sigma_norm from the NLO QCD cross section computed here after three validations; resummed tables as a
+cross-check. QED FSR on in the nominal signal.
+ALTERNATIVES: computed NLO x tabulated NNLL/NLO (Basil's proposal); v1 transcription.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+
+DECISION: time-tag (late-hit) conditional for prompt backgrounds included in B3 (missing from the plan, D3 §6.2).
+ALTERNATIVES: no credit as in v1.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+
+DECISION: no MVA as the primary selection ([DP3]); BDT cross-check at a directly counted background rate in Phase 4c.
+ALTERNATIVES: BDT score as a T2 candidate (no estimator can validate its background below about 1e-4 per trial).
+CONFIDENCE: HIGH
+FLAG FOR HUMAN: NO (reviewers validate)
+
+DECISION: propose reduced B5 ([DP1]) and B6 ([DP2]) and recommend against S4/S5 ([DP4]) at Gate A; do not propose
+any cut of MUST statistics, only list three levers.
+ALTERNATIVES: full B5/B6 (+522 CPU-h, about +2.6 days).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES
+- [Brigitte] CORRECTION (append-only log, so stated here): the header of my block above says "17:55-21:00"; by the
+  system clock the session ran 17:55-18:17 on 2026-11-13.

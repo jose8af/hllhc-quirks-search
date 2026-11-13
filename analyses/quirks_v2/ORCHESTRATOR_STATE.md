@@ -25,7 +25,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 |---|---|---|---|---|
 | Brigitte | Phase-1 strategy executor | fable | spawned 17:55 | `phase1_strategy/outputs/STRATEGY_brigitte_2026-11-13_17-55.md`, `COMMITMENTS.md` |
 
-Geant4 env (per-worker local, V13): schrodinger OK, landau OK (17:07), maxwell installing (background, 17:55).
+Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
 Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil, Boris, Brigitte. Next free: Casimir.
