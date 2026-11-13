@@ -88,3 +88,15 @@ node-local package cache (`/home/scratch/jdochoa/cache/rattler`), so the three c
 each install is verified (package file lists) and recorded with the lock sha256 in a per-node stamp file; the
 environment counts against the 150 GB per-node scratch budget; Geant4 jobs can only run on a node whose stamp
 matches the tracked lock. Deviation V13 from brief §5.2.
+
+### 19:25 — Phase 1 review cycle 1: ITERATE
+Panel: Casimir (physics; 5 A, 12 B, 8 C), Celeste (critical; 8 A, 16 B, 10 C), Cosima (constructive; 1 A, 16 B,
+11 C); arbiter Dagmar merged them into 11 A (M1–M11) and 24 B (M12–M35): `phase1_strategy/review/arbiter/
+STRATEGY_ARBITER_dagmar_2026-11-13_19-00.md`. Core problems: zero simulated counts drop out of the expected limit
+(M1); zero-count floors of ~141 (PV pairs) and ~47 (SM) events at the planned sample sizes (M6); closure tested on
+the rungs where corrections are derived, no extrapolation width (M3, M4); MUST criteria not evaluable at the planned
+statistics (M5); 6, not 3, of the C1 signal counts are efficiencies of v2 candidate selections (blinding); the brief's
+30 % stop-and-ask rule had been weakened to "report" (M10). The budget arithmetic was confirmed by the critical
+reviewer (26 of 28 spot checks; `strategy_budget.py` reproduces all totals). No regression (Phase 1 is the origin).
+Next: fixer Dmitri (fable: likelihood and closure redesign is the error-prone core) → STRATEGY v2 → re-review cycle 2
+with fresh reviewers.

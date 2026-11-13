@@ -23,12 +23,16 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Brigitte | Phase-1 strategy executor | fable | spawned 17:55 | `phase1_strategy/outputs/STRATEGY_brigitte_2026-11-13_17-55.md`, `COMMITMENTS.md` |
+| Dmitri | Phase-1 fixer, review cycle 1 → STRATEGY v2 | fable | spawned 19:25 | `phase1_strategy/outputs/STRATEGY_dmitri_2026-11-13_19-25.md`, `COMMITMENTS.md`, `phase1_strategy/outputs/FIX_REPORT_cycle1_dmitri.md` |
+
+Phase-1 review: cycle 1 = ITERATE (11 A, 24 B merged; arbiter Dagmar). STRATEGY v1 = `STRATEGY_brigitte_2026-11-13_17-55.md` (kept).
+Cycle 2 panel (fresh sessions): physics Dolores, critical Dorothea, constructive Edmund, arbiter Eloise → numbered
+re-review artifacts `STRATEGY_*_REVIEW_v2_*`. Iteration count so far: 1 (warn at 3, strong warn at 5, cap 10).
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada, Agnes, Albert, Alfred, Amara, Andrzej, Anselm, Basil, Boris, Brigitte. Next free: Casimir.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Reserved for cycle 2: Dolores, Dorothea, Edmund, Eloise. Next free: Emeric.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -38,12 +42,11 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Brigitte reports: read the summary, check `COMMITMENTS.md` covers every MUST/SHOULD item, commit.
-2. Read `agents/{physics_reviewer,critical_reviewer,constructive_reviewer,arbiter,fixer}.md`; run the 4-bot panel
-   (3 reviewers in parallel = the concurrency cap; then the arbiter, on fable if the panel is contentious);
-   iterate with a fixer and a fresh reviewer until PASS; numbered re-review artifacts.
-3. Run the regression checklist of the root CLAUDE.md myself.
-4. Write `gates/GATE_A.md` (3 pages or less), bundle (`gate-A`), update STATUS, notify the user, **stop for Gate A**.
+1. When Dmitri reports: commit; spawn cycle-2 reviewers (3 in parallel), each must verify every merged A/B finding
+   M1–M35 against STRATEGY v2 and look for new issues; then arbiter Eloise. Repeat until PASS.
+2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
+3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
+   `gate-A`, update STATUS, notify the user, **stop for Gate A**.
 
 ## Standing rules to remember
 - Never rename a directory on cajuela. Files: `.part` → rename → marker.
