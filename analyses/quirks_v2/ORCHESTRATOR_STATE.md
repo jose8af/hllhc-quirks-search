@@ -23,25 +23,26 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Leopold | Phase-1 fixer, review cycle 7 → STRATEGY v8 (family V1: script-printed day-15 table + text S2–S19 + 14 C items) | opus | DONE (4 B resolved, tables match arbiter, O3–O5 added; 32 hunks, 0 unattributed); cycle-8 panel Ludmila, Magnus, Marcel spawned 05:40 | `phase1_strategy/outputs/STRATEGY_leopold_2026-11-14_05-00.md`, `…/FIX_REPORT_cycle7_leopold.md`, `budget_stdout_v8.txt` |
+| Mireille | Phase-1 fixer, review cycle 8 → STRATEGY v9 (W1: rule-1 clarification, recomputed tables, self-test, text checker; verdict §3–§5 only) | opus | spawned 06:55 (14 Nov) | `phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md`, `src/strategy_budget.py`, `src/check_day15_text.py`, `budget_stdout_v9.txt`, `FIX_REPORT_cycle8_mireille.md` |
 
-Phase-1 review history: cycles 1–7 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena);
-A 11→4→1→0→0→0→0; B 24→14→15→5→3→1→4. Versions kept: v1 Brigitte … v7 Jules, v8 Leopold.
-Cycle 8 panel (fresh, narrow per Lena's verdict): physics Ludmila (recompute the day-15 table and the (c) grid),
-critical Magnus (v7→v8 diff, greps, script), constructive Marcel (Gate-A package against the table), arbiter Margaret.
-Iteration count: 7 done. **ESCALATION RULE: if cycle 9 does not PASS, stop and put the open list to the user (cap 10).**
-Settled per the cycle-7 arbiter: design, criteria, samples, budget 4,609 CPU-h / threshold 5,992 / 60 days, default
-(a), expected outcome. Open: only the human-facing description of the day-15 decision (family V1).
+Phase-1 review history: cycles 1–8 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena, Margaret);
+A 11→4→1→0→0→0→0→0; B 24→14→15→5→3→1→4→1. Versions kept: v1 Brigitte … v8 Leopold, v9 Mireille.
+Cycle 9 panel (fresh, per Margaret's verdict): physics Nadia (recompute tables from rule 1 independently: medians 1 %,
+factors 5 %; run self-test), critical Nikolai (v8→v9 diff, stdout sha256 0ca4af15…003433d, byte-identity outside the
+two tables, text checker), constructive Nora (final Gate-A package incl. 13 corrections), arbiter Odette.
+Iteration count: 8 done. **CYCLE 9 IS THE LAST: if it does not PASS, stop and put the open list to the user.**
+Settled: design, criteria, samples, budget 4,609 CPU-h / threshold 5,992 / 60 days, default (a), expected outcome.
+Root cause of cycles 4–8 (found in cycle 8): rule 1 was ambiguous about SM processes without a day-15 sample; pinned
+reading = all SM read through the Z(νν) pilot count; day-15 limit ≈ 12 Z(νν) pilot counts. This pinned reading must be
+shown to the user at Gate A as an overridable default.
 KEY FOR GATE A: expected outcome = background ≈ 0.7–1.0×10⁴ events (after CKF, as v1 counted) led by hard-scatter
-conversions; reach below 243 GeV with the 0.17 normalisation width (bounds ≈ 180 GeV); day-15 pause expected (reads
-before CKF, ×5–50 higher, on an assumed pair efficiency); no conversion rejection alone lifts the pause at v1's
-central decays-in-flight size (that term rests on 1–2 v1 counts). Q2 central. Gate-A candidate text: Klaus's review
-part 3 (1,499 words) + Lena's 11 corrections + the cycle-8 outcome.
+conversions; reach below 243 GeV with the 0.17 normalisation width (bounds ≈ 180 GeV); day-15 pause expected; no
+conversion rejection alone lifts it at v1's central decays-in-flight size (1–2 v1 counts). Q2 central.
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Isolde, Ivan, Jasper, Johanna, Jules. Katya, Kenji, Klaus, Lena, Leopold. Reserved for cycle 8: Ludmila, Magnus, Marcel, Margaret. Next free: Mireille.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Isolde, Ivan, Jasper, Johanna, Jules. Katya, Kenji, Klaus, Lena, Leopold. Ludmila, Magnus, Marcel, Margaret, Mireille. Reserved for cycle 9: Nadia, Nikolai, Nora, Odette. Next free: Oscar.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -51,8 +52,8 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Leopold reports: commit; spawn the cycle-8 narrow panel; then arbiter Margaret. PASS → steps 2–3.
-   ITERATE → one more fix + cycle 9; if cycle 9 does not pass → stop and ask the user.
+1. When Mireille reports: commit; spawn the cycle-9 panel; then arbiter Odette. PASS → steps 2–3.
+   Not PASS → stop and put the open list to the user (do not start cycle 10 without the user).
 2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
 3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
    `gate-A`, update STATUS, notify the user, **stop for Gate A**.

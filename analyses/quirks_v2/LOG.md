@@ -213,3 +213,23 @@ Family V1 fixed structurally: `strategy_budget.py` prints the day-15 table (bran
 value changed. Fixer's own sweep: 58 statements, all consistent. Orchestrator-ordered additions from the fixer's
 proposals: O3 basis label on §0 "590–980" (confirmed after-CKF from stdout lines 314/316 and 365–366), O4 a stale
 reference, O5 the runtime note (about 90 s). 32 hunks v7→v8, none unattributed.
+
+### 06:55 — Phase 1 review cycle 8: ITERATE (0 A, 1 B = W1); root cause found
+All three fresh reviewers (Ludmila, Magnus, Marcel) found the same single defect: the script-printed day-15 table
+and option-(c) grid ordered in cycle 7 used pool exposures, not the pilot exposures rule 1 and the captions state.
+Arbiter Margaret (fable; see MODEL_LEDGER): `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v8_margaret_2026-11-14_06-10.md`.
+**Root cause of cycles 4–8: rule 1 (§11.7) is itself ambiguous** — it never said what the thirteen SM processes and
+multijets without a day-15 sample contribute, so 15 Z(νν) pilot counts could read 242 (proceed) or 353 (pause).
+Pinned reading (to be shown to the user as an overridable default): every SM process is read through the single
+Z(νν) pilot count (18.1 events per count); no pool floor; option-(c) factors never multiply a zero-count floor.
+Consequence: the day-15 limit becomes about 12 Z(νν) pilot counts, not about 20. Key cells (arbiter's run): empty
+pilot 76; Z(νν) 11/12/13 counts → 281/300/317; decays in flight 3/4 counts → 266/331; (α1′) 3.2×10⁴–3.3×10⁵;
+required conversion rejection ×44 (×30 at the 0.255 photon rate) with decays in flight removed, ×75–150 at 1/4,
+×114 or none at e⁻¹, none at v1's central size. All three reviewers' numbers reproduced and reconciled. Fix: recompute
+(complete replacement code; expected stdout sha256 0ca4af15…003433d; Monte-Carlo draws raised to 20,000 because 3,000
+moved factors by up to 25 %), 18 exact text replacements, an 8-check self-test in the script, and a new text checker
+`check_day15_text.py` (45/45 on the arbiter's scratch v9; 42 mismatches on v8). Outside this family nothing is open:
+4,609 / 5,992 CPU-h, 60 days, defaults and expected outcome unchanged. History — A: 11→4→1→0→0→0→0→0; B:
+24→14→15→5→3→1→4→1.
+Note: the arbiter ran one read-only `git status` against its no-git instruction; no effect.
+Next: fixer Mireille (opus) applies the verdict's §3–§5 only → STRATEGY v9 → cycle 9 (last before escalation).
