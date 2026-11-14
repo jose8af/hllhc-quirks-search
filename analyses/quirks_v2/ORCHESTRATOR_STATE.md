@@ -23,20 +23,23 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Gunnar | Phase-1 fixer, review cycle 4 → STRATEGY v5 (R1–R5 only) | opus | DONE (R1–R5 resolved, 0 unattributed diff hunks); cycle-5 panel Hana, Hedwig, Hiroshi spawned 01:25 | `phase1_strategy/outputs/STRATEGY_gunnar_2026-11-14_00-50.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle4_gunnar.md` |
+| Ingrid | Phase-1 fixer, review cycle 5 → STRATEGY v6 (T1–T3 only) | opus | spawned 02:20 (14 Nov) | `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle5_ingrid.md` |
 
-Phase-1 review history: cycle 1 ITERATE (Dagmar, M1–M35); 2 ITERATE (Eloise, N1–N18); 3 ITERATE (Felix, P1–P16);
-4 ITERATE (Greta: 0 A, R1–R5 B). Versions kept: v1 Brigitte, v2 Dmitri, v3 Emeric, v4 Fiona, v5 Gunnar.
-Cycle 5 panel (fresh; scope = verify R1–R5 + adopted C items + v4→v5 diff check): physics Hana, critical Hedwig,
-constructive Hiroshi, arbiter Hugo → `STRATEGY_*_REVIEW_v5_*`. Iteration count: 4 done (STRONG WARN at 5, cap 10).
-KEY FOR GATE A: expected outcome of the default plan = background ~10⁴ events (conversions), reach ~270 GeV at the
-84 % edge on v1 placeholder efficiencies; day-15 pause expected. Q2 is the central decision. Gate-A draft text:
-Gertrude's review, last part (must be updated with R1 numbers from v5).
+Phase-1 review history: cycles 1–5 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo); merged A 11→4→1→0→0;
+cycle 5 left T1–T3 (B, text only). Versions kept: v1 Brigitte … v5 Gunnar, v6 Ingrid.
+Cycle 6 panel (fresh, narrow scopes per Hugo's verdict): physics Isolde (T1, T2), critical Ivan (v5→v6 diff, greps,
+T3 figures), constructive Jasper (Q2 and Q4 as the human reads them), arbiter Johanna → `STRATEGY_*_REVIEW_v6_*`.
+Iteration count: 5 done (STRONG WARN reached; cap 10).
+KEY FOR GATE A: expected outcome of the default plan = background ≈ 0.7–1.0×10⁴ events led by hard-scatter
+conversions; with the strategy's own 0.17 normalisation width the reach is below 243 GeV (existing bounds ≈ 180 GeV);
+day-15 pause expected even with a conversion veto alone (decays in flight 385–647 > 300). Q2 is the central decision
+(with optional rider: earlier decision at day 7, +7 CPU-h). Approve figure 4,609 CPU-h (4,616 with the rider),
+threshold 5,992 (6,001), calendar 60 days incl. the pause. Gate-A draft text: Hiroshi's review §5 (update with v6).
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Reserved for cycle 5: Hana, Hedwig, Hiroshi, Hugo. Next free: Ingrid.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Reserved for cycle 6: Isolde, Ivan, Jasper, Johanna. Next free: Jules.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -46,8 +49,7 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Gunnar reports: commit; spawn cycle-5 reviewers (3 in parallel) to verify R1–R5 against STRATEGY v5 with a
-   v4→v5 diff check; then arbiter Hugo. Repeat until PASS.
+1. When Ingrid reports: commit; spawn the cycle-6 narrow panel; then arbiter Johanna. Repeat until PASS.
 2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
 3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
    `gate-A`, update STATUS, notify the user, **stop for Gate A**.

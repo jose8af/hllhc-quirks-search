@@ -143,3 +143,20 @@ ask (default), or pre-authorise the "real background" paper, or pre-authorise a 
 All numbers of v4 were reproduced by all three reviewers. Iteration count: 4 (strong warning at 5).
 Next: fixer Gunnar (opus) → STRATEGY v5 limited to R1–R5 and the adopted C items → cycle-5 verification with a
 v4→v5 diff check.
+
+### 02:20 — Phase 1 review cycle 5: ITERATE (0 A, 3 B, all text; STRONG-WARNING level of JFC 06 §6.5 reached)
+STRATEGY v5 (fixer Gunnar) reviewed by fresh sessions Hana (physics), Hedwig (critical: no A or B at all, diff check
+clean, script output reproduced), Hiroshi (constructive); arbiter Hugo: `phase1_strategy/review/arbiter/
+STRATEGY_ARBITER_v5_hugo_2026-11-14_01-55.md`. R2–R5 resolved; R1 partial. Open: T1 the expected reach was quoted
+without the strategy's own normalisation width (0.17) — with it the expected branch has a reach below 243 GeV, at or
+near existing bounds (~180 GeV); the background range is ≈ 0.7–1.0×10⁴ events (weighted versus highest v1 conversion
+rate); T2 neither the first upside branch nor a conversion veto alone avoids the day-15 pause (B₅₀ 587–975; decays in
+flight alone 385–647, above the 300 threshold); T3 the Q4 calendar omitted the expected pause (60 days with it, 57.8
+without). H-C1 (ask Q2 at day 7 if B₅₀ ≥ 3,000; veto measured on pilot records; 1,000 γ overlays, +7 CPU-h) is not
+adopted as a schedule change but offered to the human as an optional rider on Q2. All ESTIMATES on v1 placeholder
+efficiencies. Merged Category A by cycle: 11 → 4 → 1 → 0 → 0.
+Orchestrator note on the warning level: the last three cycles changed no method, sample or criterion of a MUST
+item; they corrected how the expected outcome is stated to the human. That statement is the basis of Gate A, so the
+iterations are warranted; no ESCALATE is needed because nothing is blocked on the user before the gate.
+Next: fixer Ingrid (opus) → STRATEGY v6 (T1–T3 + listed C items) → cycle 6: three fresh reviewers with narrow scopes
+(physics: T1, T2; critical: v5→v6 diff, greps, T3 figures; constructive: Q2 and Q4 as the human reads them) + arbiter.
