@@ -1,10 +1,11 @@
 # Binding commitments
 
-Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_jules_2026-11-14_03-40.md`
-("STR" below; version 7, after review cycle 6). Earlier versions of this file referred to
+Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_leopold_2026-11-14_05-00.md`
+("STR" below; version 8, after review cycle 7). Earlier versions of this file referred to
 `STRATEGY_brigitte_2026-11-13_17-55.md` (version 1), `STRATEGY_dmitri_2026-11-13_19-25.md` (version 2),
-`STRATEGY_emeric_2026-11-13_21-10.md` (version 3), `STRATEGY_fiona_2026-11-13_23-05.md` (version 4) and
-`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5) and `STRATEGY_ingrid_2026-11-14_02-20.md` (version 6).
+`STRATEGY_emeric_2026-11-13_21-10.md` (version 3), `STRATEGY_fiona_2026-11-13_23-05.md` (version 4),
+`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5), `STRATEGY_ingrid_2026-11-14_02-20.md` (version 6) and
+`STRATEGY_jules_2026-11-14_03-40.md` (version 7).
 Every MUST and SHOULD item of the publication plan is a "will implement", except S3 (endcap), dropped by the user
 (brief D1) and carried as an EST outlook statement.
 A status changes only through a logged `[D]` entry (JFC 12) or a user decision; never silently.
@@ -26,6 +27,12 @@ quantity; cumulative and crossing test rungs) and every probability is censored 
 Rows marked (DP) carry a downscope proposal that the user decides at Gate A; until then the full form is the commitment.
 Rows marked (Q-n) depend on a question the user answers at Gate A, rows marked (Df-n) contain a default the user
 can override (STR §12.1); until then the default is a proposal.
+
+## Changes of rows in version 8 (2026-11-14, fixer Leopold, review cycle 7: V1; nothing removed)
+
+| identifier | what happened |
+|---|---|
+| TG-1 (Q2) | day-15 reading by branch stated from the script table (V1); (c) rejection bar corrected; the (c) test's treatment of a zero-survivor development fraction stated; no status changed |
 
 ## Changes of rows in version 7 (2026-11-14, fixer Jules, review cycle 6: U1; nothing removed)
 

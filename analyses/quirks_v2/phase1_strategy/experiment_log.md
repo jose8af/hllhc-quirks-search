@@ -453,3 +453,22 @@ FLAG FOR HUMAN: YES (Q4)
 [Jules] Outputs: outputs/STRATEGY_jules_2026-11-14_03-40.md (v7), outputs/budget_stdout_v7.txt, outputs/FIX_REPORT_cycle6_jules.md;
 [Jules]   COMMITMENTS.md header + version-7 row (TG-1). Diff v6 -> v7: 25 hunks, 0 unattributed. No default, number or criterion changed.
 [Jules] Orchestrator-ordered O1 (§4.4 point 4: C′_PU serves C1 and the rule-1 development estimate of a Q2 (c) redesign; no blinding, size or CPU-h change) and O2 (after-CKF basis label on the background size in §0 leading sentence and §12.5 point 3; 'credited' not used, the figure is the no-credit (α1′) row). Diff v6 -> v7 now 28 hunks, 0 unattributed; script not touched.
+
+[Leopold] 2026-11-14 05:00, fixer, review cycle 7 (verdict STRATEGY_ARBITER_v7_lena: ITERATE, 0 A, 4 B = family V1, 14 C items now).
+[Leopold] Item S: verdict block inserted verbatim in script [9b] after l.852 (day-15 table under rule 1 + Q2 (c) rejection grid);
+[Leopold]   l.911 label changed (S20). Run 1:30 wall, 35 MB. stdout v7 -> v8: 23 lines added, 1 label line changed; all v7 values unchanged.
+[Leopold]   Printed values equal the arbiter's: empty pilot 75 [38-148]; Z(nunu) pilot m=20 -> 300; (gamma) 104/180/255/294/331/448;
+[Leopold]   grid x34 (f_D=0), x52/x81 (1/4), x69/x235 (e^-1), x110/none (1/2), none (1); rate 0.255 x23 / x35-55 / x47-159 / x74.
+[Leopold]   Scratch check: DIF removed, conversions x31 -> B50 324 (V1-c confirmed).
+[Leopold] Text: S2-S19 applied in STRATEGY_leopold_2026-11-14_05-00.md (v8); both printed tables inserted verbatim with captions in Q2;
+[Leopold]   C (i) items applied (Ph C-1, C-2, C-4, C-5, C-6; Cr C1, C2, C3, C4, C6, C7; Co C1, C2, C4); COM pointer v8 + row; §13.7.
+[Leopold]   Diff v7 -> v8: 29 hunks, 0 unattributed. Sweep: 58 family statements, all consistent with the v8 table.
+[Leopold] DECISION: keep the S15 short table and add the verbatim printed block beneath it. ALTERNATIVES: verbatim block only
+[Leopold]   (departs from S15 text) or S15 only (departs from the orchestrator's verbatim instruction). CONFIDENCE: medium.
+[Leopold]   FLAG FOR HUMAN: no (orchestrator may drop one for the package).
+[Leopold] Not done, proposed: "after CKF" label on §0 item 3 "(projected B50 590-980; (α1))"; "v7 line" -> "U1 line"; runtime note.
+[Leopold] Orchestrator-ordered O3–O5 (beyond the verdict, from my own proposals), v8 edited in place: O3 §0 item 3 "(projected B50 590–980; (α1))"
+[Leopold]   labelled "after CKF, as v1 counted them" + pointer to the (α1) rows of the v8 table; basis confirmed from stdout v8 l.314/316
+[Leopold]   (Table 4.4c rows 587 / 975) and l.365–366 ("after CKF (Table 4.4c)"); no number changed. O4 "v7 line" -> "U1 line" (§11.7 rule 1,
+[Leopold]   Q2 stem). O5 code-reference runtime "about 90 seconds" (measured 1:30, 35 MB). §13.7 row added. Diff v7 -> v8: 32 hunks, 0 unattributed.
+[Leopold]   Script untouched; both Q2 tables kept as ordered.

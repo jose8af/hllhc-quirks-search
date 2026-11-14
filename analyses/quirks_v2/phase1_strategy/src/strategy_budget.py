@@ -850,6 +850,59 @@ U1_I = [pmf_pred(kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] * math.exp(-1) / K_D
 U1_II = {eps: [sum(k * (m + 0.67) for k, m in kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] / (1 - eps) / K_DIF), (kz, ALPHA[(t_, False)][1] / (1 - eps) / kz)]) + pu9 for t_ in ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", "alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)")] for eps in (0.8, 0.98)}
 print(f"    v7 (U1): (alpha1) conversions removed, DIF x e^-1 (both falls): B50 {U1_I[0]:.0f} / {U1_I[1]:.0f} (x339 / x201) -> {'at or below' if max(U1_I) <= 300 else 'above'} 300")
 print(f"    v7 (U1): (alpha1') on the day-15 own-hit basis, conversions and DIF x 1/(1 - eps_pair) at eps_pair = 0.8 / 0.98 (assumed, not measured; photon rate 0.379): B50 ≈ {U1_II[0.8][0]:.3g}-{U1_II[0.8][1]:.3g} / {U1_II[0.98][0]:.3g}-{U1_II[0.98][1]:.3g} (sum of medians)")
+# v8 (V1, verdict cycle 7 §4 item S): day-15 reading under §11.7 rule 1: every no-pile-up term at max(zero-count floor,
+# N_t x H) on all own hits, no S_CKF, no conditional, no credit that exists only after the freeze; pilot exposures for
+# the terms the pilot measures (Z(nunu) 2.3e6 events, DIF and each NI radius 1e6 events); every other term at its
+# Table 4.4a floor. Rows marked (c) are the Q2 (c) test only: conditional and S_CKF estimated on development samples (EST).
+PIL_N = {"Z(nunu)+j": PILOT_HS, "DIF": 1e6, "NI 22 mm": 1e6, "NI 30 mm": 1e6, "NI 61.5 mm": 1e6}
+K_PIL = {r[0]: max(r[4], r[1] / PIL_N[r[0]]) for r in rows if r[0] in PIL_N}
+kap_d15 = [(K_PIL.get(r[0], r[4]), 0) for r in rows] + [MJK]
+def _b50(gam):
+    return pmf_pred(gam, (PU9,))[1][1]
+def _cls(b):
+    return "below" if b <= 300 else "above"
+print("  v8 (V1): day-15 reading under §11.7 rule 1 (own hits before CKF, no S_CKF, no conditional, no post-freeze credit; class limit B50 <= 300)")
+print("  | branch | basis | B50 at day 15 | vs 300 |")
+pz = pmf_pred(kap_d15, (PU9,))[1]
+print(f"  | every pilot ceiling zero (DIF, NI, Z(nunu) at their pilot exposures; others at their floors) | rule 1 | {pz[1]:.0f} [16-84 %: {pz[0]:.0f}-{pz[2]:.0f}] | {_cls(pz[1])} |")
+kd15_noz = [(K_PIL.get(r[0], r[4]), 0) for r in rows if r[0] != "Z(nunu)+j"] + [MJK]
+kzp = K_PIL["Z(nunu)+j"]
+zr = [(mp, _b50(kd15_noz + [(kzp, mp)])) for mp in (5, 10, 15, 20, 25, 50)]
+print("  | Z(nunu) at its pilot ceiling count m (others as row 1), m = " + " / ".join(str(m) for m, _ in zr) + " | rule 1 | "
+      + " / ".join(f"{b:.0f}" for _, b in zr) + " | " + " / ".join(_cls(b) for _, b in zr) + " |")
+for mh in (10, 30, 50, 60, 70, 100):
+    gam_g = [(K_PIL.get(r[0], r[4]), 0) for r in rows if r[0] not in SMSET] + [(r[4], mh * r[2] / MZ) for r in rows if r[0] in SMSET] + [(MJ_PLAN / MJ_LOOSE, mh * MJ_LOOSE / MZ)]
+    b_ = _b50(gam_g)
+    print(f"  | (gamma) every SM ceiling at H per event as Z(nunu), m_H = {mh} pool counts (= {mh * PILOT_HS / MZ:.0f} pilot counts); DIF, NI empty at their pilot exposures | rule 1 | {b_:.0f} | {_cls(b_)} |")
+print("  | (beta) | not a day-15 branch: its Z(nunu) credit (B4-c) exists only after the freeze; at day 15 it is the (gamma) row with the same m_H | — | — |")
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    d_, g_ = ALPHA[(tag, False)]
+    own = [sum(k * (m + 0.67) for k, m in kap_nodif) + pu9 + (d_ + g_) / (1 - e_) for e_ in (0.8, 0.98)]
+    print(f"  | {tag}, no credit | after CKF (Table 4.4c) / own hits at eps_pair 0.8 / 0.98 | {pmf_cache[(tag, False)][1]:.0f} / ≈ {own[0]:.3g} / ≈ {own[1]:.3g} | above |")
+print(f"  | (alpha1'), no credit (expected branch) | own hits at eps_pair 0.8 / 0.98 | ≈ {U1_II[0.8][0]:.3g}-{U1_II[0.8][1]:.3g} / {U1_II[0.98][0]:.3g}-{U1_II[0.98][1]:.3g} | above |")
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    print(f"  | (c) only: {tag} with fit-probability credit on DIF and conversions (needs (c) to target DIF) | (c), EST | {pmf_cache[(tag, True)][1]:.0f} | below |")
+def _need(dfac, tag, fr=1.0):
+    d_ = ALPHA[(tag, False)][0] * dfac
+    base = kap_nodif + ([(K_DIF, d_ / K_DIF)] if d_ > 0 else [])
+    if _b50(base) > 300:
+        return None
+    lo, hi = 1.0, 1e4
+    for _ in range(16):
+        mid = math.sqrt(lo * hi)
+        if _b50(base + [(kz, G_A1P * fr / mid / kz)]) > 300:
+            lo = mid
+        else:
+            hi = mid
+    return hi
+print("  | (c) only (EST): conversion rejection needed for B50 <= 300, by the decays-in-flight size (factor f_D on v1's central size; (alpha1) DIF at fall x339 / x201) |")
+for fd_, fl_ in ((0.0, "0 (removed)"), (0.25, "1/4"), (math.exp(-1), "e^-1"), (0.5, "1/2"), (1.0, "1 (v1's central size)")):
+    cells = []
+    for fr_, rl_ in ((1.0, "0.379"), (F_GAM["N_trig-weighted rate 0.255"], "0.255")):
+        nn = [_need(fd_, t_, fr_) for t_ in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)")]
+        cells.append(f"photon rate {rl_}: " + " / ".join("none suffices" if x is None else f"x{x:.0f} ({1 - 1 / x:.1%})" for x in nn))
+    print(f"  |   f_D = {fl_} | " + "; ".join(cells) + " |")
+print("  |   (alpha1) conversion levels for comparison: x52.1 / x31.0 (98.1 % / 96.8 %); without an S_CKF estimate every factor is x1/(1 - eps_pair) larger (x5-50, assumed) |")
 # v5 (R1 (c)): the factor-e size uncertainty of (alpha1) as size rows B x e^(-1), B x e^(+1) (counted-ceiling reading), and the
 # log-normal reading (width e^1.06 / e^0.94 on DIF / conversions) that is shown but not used.
 for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
@@ -908,7 +961,7 @@ for eps in (0.8, 0.9, 0.98):
 GZ = 0.23059926668409783
 EV_GZ = NZ * GZ * (2 / 500.0) / 6.5
 print(f"  v5 (R1) P3/P14 EST with the conversions' own fall: Z(nunu) conversion part at R08 = {NZ:.3g} x {GZ:.4f} x (2/500) / 6.5 = {EV_GZ:.3g} events in 3 ab^-1;"
-      f" m_H = {EV_GZ / kz:.3g} in {MZ:.3g} pool events, {EV_GZ / kz * PILOT_HS / MZ:.3g} in the pilot's {PILOT_HS:.2g} events (day-15 class limit m_H = 125)")
+      f" m_H = {EV_GZ / kz:.3g} in {MZ:.3g} pool events, {EV_GZ / kz * PILOT_HS / MZ:.3g} in the pilot's {PILOT_HS:.2g} events (day-15 class limit: m_H = 125 in the pool for Z(nunu) alone, about 20 pilot counts: v8 table)")
 
 # ---- [10] zero-count likelihood: one-bin analytic checks (M1) ----------------------------------------------------------------------
 # One bin, one background term B = kappa * lambda, auxiliary count m = 0, lambda ~ Gamma(1) (flat prior).

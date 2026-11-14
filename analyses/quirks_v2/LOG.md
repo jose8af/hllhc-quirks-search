@@ -206,3 +206,10 @@ prose. The table computed by the script removes the mechanism. Escalation rule s
 stop and put the open list to the user instead of running to the cap of 10.
 Next: fixer Leopold (opus) → STRATEGY v8 → cycle 8 narrow panel (physics recomputes the table; critical checks the
 v7→v8 diff and greps; constructive checks the Gate-A package against the table) + arbiter.
+
+### 05:40 — STRATEGY v8 (fixer Leopold): script-printed day-15 table and option-(c) rejection grid
+Family V1 fixed structurally: `strategy_budget.py` prints the day-15 table (branch → B₅₀ under rule 1 → above/below
+300) and the rejection grid; the text cites them. Printed numbers equal the cycle-7 arbiter's in every cell; no v7
+value changed. Fixer's own sweep: 58 statements, all consistent. Orchestrator-ordered additions from the fixer's
+proposals: O3 basis label on §0 "590–980" (confirmed after-CKF from stdout lines 314/316 and 365–366), O4 a stale
+reference, O5 the runtime note (about 90 s). 32 hunks v7→v8, none unattributed.

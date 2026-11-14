@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Leopold | Phase-1 fixer, review cycle 7 → STRATEGY v8 (family V1: script-printed day-15 table + text S2–S19 + 14 C items) | opus | spawned 05:00 (14 Nov) | `phase1_strategy/outputs/STRATEGY_leopold_2026-11-14_05-00.md`, `…/FIX_REPORT_cycle7_leopold.md`, `budget_stdout_v8.txt` |
+| Leopold | Phase-1 fixer, review cycle 7 → STRATEGY v8 (family V1: script-printed day-15 table + text S2–S19 + 14 C items) | opus | DONE (4 B resolved, tables match arbiter, O3–O5 added; 32 hunks, 0 unattributed); cycle-8 panel Ludmila, Magnus, Marcel spawned 05:40 | `phase1_strategy/outputs/STRATEGY_leopold_2026-11-14_05-00.md`, `…/FIX_REPORT_cycle7_leopold.md`, `budget_stdout_v8.txt` |
 
 Phase-1 review history: cycles 1–7 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena);
 A 11→4→1→0→0→0→0; B 24→14→15→5→3→1→4. Versions kept: v1 Brigitte … v7 Jules, v8 Leopold.
