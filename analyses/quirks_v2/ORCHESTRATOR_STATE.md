@@ -23,17 +23,17 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Emeric | Phase-1 fixer, review cycle 2 → STRATEGY v3 | fable | DONE; cycle-3 reviewers Estelle, Fabian, Fabiola spawned 22:00 | `phase1_strategy/outputs/STRATEGY_emeric_2026-11-13_21-10.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle2_emeric.md` |
+| Fiona | Phase-1 fixer, review cycle 3 → STRATEGY v4 | opus | spawned 23:05 | `phase1_strategy/outputs/STRATEGY_fiona_2026-11-13_23-05.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle3_fiona.md` |
 
-Phase-1 review history: cycle 1 ITERATE (arbiter Dagmar, M1–M35); cycle 2 ITERATE (arbiter Eloise: 7 M partial, N1–N4 A,
-N5–N18 B; Gate A = 5 questions + 8 defaults). Versions: v1 Brigitte, v2 Dmitri, v3 Emeric (all kept).
-Cycle 3 panel (fresh): physics Estelle, critical Fabian, constructive Fabiola, arbiter Felix → `STRATEGY_*_REVIEW_v3_*`.
-Iteration count: 2 done (warn at 3, strong warn at 5, cap 10).
+Phase-1 review history: cycle 1 ITERATE (Dagmar, M1–M35); cycle 2 ITERATE (Eloise, N1–N18); cycle 3 ITERATE (Felix:
+P1 A, P2–P16 B; says cycle 4 = pure verification). Versions kept: v1 Brigitte, v2 Dmitri, v3 Emeric, v4 Fiona.
+Cycle 4 panel (fresh): physics Florence, critical Gerald, constructive Gertrude, arbiter Greta → `STRATEGY_*_REVIEW_v4_*`.
+Iteration count: 3 done (WARN level; strong warn at 5, cap 10). A draft Gate-A text exists in Fabiola's review, part 3.
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Reserved for cycle 3: Estelle, Fabian, Fabiola, Felix. Next free: Fiona.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Reserved for cycle 4: Florence, Gerald, Gertrude, Greta. Next free: Gunnar.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -43,8 +43,8 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Emeric reports: commit; spawn cycle-3 reviewers (3 in parallel) to verify the 7 partial M findings and
-   N1–N18 against STRATEGY v3 and look for new issues; then arbiter Felix. Repeat until PASS.
+1. When Fiona reports: commit; spawn cycle-4 reviewers (3 in parallel) to verify P1–P16 against STRATEGY v4;
+   then arbiter Greta. Repeat until PASS.
 2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
 3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
    `gate-A`, update STATUS, notify the user, **stop for Gate A**.

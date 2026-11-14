@@ -112,3 +112,16 @@ PV pairs double-counted with the SM hard-scatter term (confirmed in v1 code); v1
 nuclear interactions. All numbers of v2 were reproduced by two reviewers. Arbiter's rulings net about −96 CPU-h
 (ESTIMATE). Gate A reduced to 5 questions plus 8 overridable defaults. Iteration count: 2 (warn at 3).
 Next: fixer Emeric (fable) → STRATEGY v3 → cycle 3 as a verification pass with fresh reviewers.
+
+### 23:05 — Phase 1 review cycle 3: ITERATE (converging; iteration warning level reached)
+STRATEGY v3 (fixer Emeric) reviewed by fresh sessions Estelle (physics: 0 A, 6 B), Fabian (critical: 0 A, 7 B),
+Fabiola (constructive: 1 A, 6 B); arbiter Felix: `phase1_strategy/review/arbiter/
+STRATEGY_ARBITER_v3_felix_2026-11-13_22-40.md`. Merged: 1 A (P1: Z(ττ) and lost-lepton Z without a no-pile-up pool
+share) and 15 B (P2–P16), all text/table/script fixes, at most ~50 CPU-h of added samples, no redesign. All three
+reviewers reproduced v3's numbers (budget, floor 11.7, widths, false-fail rates, reach mapping). Trend of merged
+Category A: 11 → 4 → 1. JFC 06 §6.5 warning at 3 iterations noted: the arbiter judges that cycle 4 should be a pure
+verification of P1–P16; taste and Phase-2-measurement items are already settled as dated rules or Gate-A defaults.
+Headline correction ordered (P2): lead with the conservative reach (about 720 GeV, down to about 500–650 GeV under
+v1's own counts for decays in flight and conversions), 790 GeV only as the upper edge; the day-15 pause for a large
+background is a realistic branch.
+Next: fixer Fiona (opus: well-specified text/table/script work) → STRATEGY v4 → cycle-4 verification panel.
