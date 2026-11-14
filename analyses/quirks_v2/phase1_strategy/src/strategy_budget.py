@@ -296,7 +296,7 @@ TOYS_V3 = (5 + 3) * (NFT + NCHK) * 8 * TOYS1000 / H
 RESERVE2 = TOYS_V2 - TOYS_V3          # the CPU freed by C-1: the day-15 redirection reserve (Q2)
 # v4 (P13): the reserve is spent by default (rule 3 of STR §11.7), so it is inside the approved figure of every variant.
 APPROVED = {"MUST only": must + RESERVE2, "MUST + SHOULD reduced": must + shr + RESERVE2, "MUST + SHOULD full": must + shf + RESERVE2}
-print(f"  v4 approved figure = total + day-15 reserve {RESERVE2:.1f} CPU-h (P13):")
+print(f"  approved figure = total + day-15 reserve {RESERVE2:.1f} CPU-h (P13):")
 for k_, v_ in APPROVED.items():
     print(f"    {k_}: {v_ - RESERVE2:.1f} + {RESERVE2:.1f} = {v_:.1f} CPU-h; stop-and-ask threshold 1.3 x {v_:.0f} = {1.3 * v_:.0f}")
 V3 = {"MUST": 3945.0, "RED": 4378.0, "FULL": 4891.0, "THR": 5691.0, "DAYS": 56.6}
@@ -430,6 +430,19 @@ for name, cpu in [("MUST-only", prod_must_bkg), ("MUST + SHOULD reduced", prod_m
           f" S1 chain {prod_s1:.0f} + moved {MOVED[name]:.0f} + toys pass 1 {5 * (NFT + NCHK) * 8 * TOYS1000 / H:.0f} = {late + 5 * (NFT + NCHK) * 8 * TOYS1000 / H:.0f} CPU-h"
           f" run between the end of production and Gate B ({(nonprod - 5 - 12 - 4 - 3 - 4 - 2) * CAP_PROD:.0f} core-h available); total {nonprod + d:.1f} days = {(nonprod + d) / 7:.1f} weeks; at utilisation 0.50 in production: {nonprod + crit / CAP_DEV:.1f} days")
 print(f"  range: every review passes at once and MUST only: {CAL['MUST-only'] - 8:.1f} days; two ITERATE cycles per panel review: +8 days")
+# v6 (T3): under the recommended Q2 (a) the day-15 pause is the expected branch ("the study pauses and the user is asked",
+# STR §11.7 rule 1); it costs the Gate-B turnaround (2 d, FIXED above), so the approved calendar includes it.
+PAUSE15 = 2.0
+print(f"  v6 (T3): expected branch under Q2 (a): + {PAUSE15:.1f} d day-15 pause turnaround (the Gate-B turnaround) -> MUST + SHOULD reduced"
+      f" {CAL['MUST + SHOULD reduced'] + PAUSE15:.1f} d = {(CAL['MUST + SHOULD reduced'] + PAUSE15) / 7:.1f} weeks; MUST-only {CAL['MUST-only'] + PAUSE15:.1f};"
+      f" full {CAL['MUST + SHOULD full'] + PAUSE15:.1f} (without the pause: {CAL['MUST + SHOULD reduced']:.1f} / {CAL['MUST-only']:.1f} / {CAL['MUST + SHOULD full']:.1f})")
+# v6 (H-C1 rider, verdict §7): an optional Gate-A rider, not in the default figures. Part (3) is an addition: the 100 CPU-h
+# development allowance is already a booked MUST item.
+RIDER_H = 1000 * SIG / H
+print(f"  H-C1 rider (if accepted at Gate A): 1,000 gamma development overlays 1000 x {SIG:.1f} s = {RIDER_H:.1f} CPU-h, added: approved"
+      f" {APPROVED['MUST + SHOULD reduced'] + RIDER_H:.1f} CPU-h, threshold 1.3 x {APPROVED['MUST + SHOULD reduced'] + RIDER_H:.1f} = {1.3 * (APPROVED['MUST + SHOULD reduced'] + RIDER_H):.1f}"
+      f" (default {APPROVED['MUST + SHOULD reduced']:.1f} / {1.3 * APPROVED['MUST + SHOULD reduced']:.1f}); calendar unchanged (idle pre-freeze capacity"
+      f" {PRE * CAP_DEV - ph2_cpu - ph3_cpu:.0f} core-h); the veto measurement on the stored pilot records and the day-7 question 0 CPU-h")
 t4b, t4c = 5 * (NFT + NCHK) * 8 * TOYS1000 / H, 3 * (NFT + NCHK) * 8 * TOYS1000 / H
 print(f"  toys 4b {t4b:.1f} + 4c {t4c:.1f} = {t4b + t4c:.1f} CPU-h (v2: {TOYS_V2:.1f}); at {CAP_PROD:.0f}/day: {t4b / CAP_PROD:.1f} and {t4c / CAP_PROD:.1f} days (inside the 3-day windows)")
 print(f"  time-ordered checkpoints: decision point 1 and stop-rule checkpoint 1 at day 5; decision point 2 at day 15; freeze days 17-19; production from day {PRE};"
@@ -770,6 +783,66 @@ for (tag, credit), (d_, g_) in ALPHA.items():
             bfx = pmf_cache[(tag, credit)][1]
             print(f"    v5 (R1): the same at fixed B = B50 {bfx:.0f} (background known exactly): s95 {s95_fixed(bfx):.1f}, reach {rfmt(s95_fixed(bfx))} GeV")
 a1 = [pmf_cache[("alpha1 (pile-up fall x339)", False)], pmf_cache[("alpha1 (pile-up fall x201)", False)]]
+# v6 (T1): the (alpha1') no-credit row (i) counted, as above, and (ii) with the conversion term as a log-normal of median g and
+# width sqrt(w^2 + 1/(m + 1)), m = g / kz (count width (+) a normalisation width w); DIF counted, kap_nodif and PU9 unchanged.
+# Photon rate factor: background.json -> cprime.gamma.rate.nt_weighted_mean / .value = 0.25518676537664065 / 0.3786327036399709
+# (read this session; the script's RATE["gamma"] = 0.379 is the .value, "max over SM processes (conservative)").
+F_GAM = {"max rate 0.379": 1.0, "N_trig-weighted rate 0.255": 0.25518676537664065 / 0.3786327036399709}
+W_NORM = 0.17   # |ln 0.84|: normalisation width of the SM terms (generator difference, STR §4.7); K, luminosity, material not included
+S95_243 = MAPR[-1][0]
+
+
+def rfmt6(sv):
+    return rfmt(sv) + (" (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4)" if sv > S95_243 else "")
+
+
+print(f"  v6 (T1): (alpha1') no credit with a normalisation width on the conversion term (s95 = {S95_243:.1f} <-> 243 GeV, the last column of the plan's table):")
+A1P6 = {}
+for tag in ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", "alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)"):
+    d_, g0_ = ALPHA[(tag, False)]
+    for rk, fr in F_GAM.items():
+        g_ = g0_ * fr
+        m_ = g_ / kz
+        pm_, bq_ = pmf_pred(kap_nodif + [(K_DIF, d_ / K_DIF), (kz, m_)], (PU9,))
+        l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+        A1P6[(tag, rk, 0.0)] = (bq_[1],) + tuple(l_)
+        print(f"    {tag[-5:-1]}, {rk}: conversions {g_:.3g}; (i) counted: B16/B50/B84 {bq_[0]:.0f} / {bq_[1]:.0f} / {bq_[2]:.0f}, s95 median {l_[0]:.1f} [84 % {l_[1]:.1f}],"
+              f" reach {rfmt(l_[0])} [84 % edge {rfmt(l_[1])}] GeV; fixed B = B50: s95 {s95_fixed(bq_[1]):.1f}, reach {rfmt(s95_fixed(bq_[1]))} GeV")
+        for w in (0.03, 0.05, W_NORM):
+            pm_, bq_ = pmf_pred(kap_nodif + [(K_DIF, d_ / K_DIF)], (PU9, (g_, math.sqrt(w ** 2 + 1 / (m_ + 1)), None)))
+            l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+            A1P6[(tag, rk, w)] = (bq_[1],) + tuple(l_)
+            lw = (" = normalisation width of the SM terms, |ln 0.84| (generator difference, §4.7); K, luminosity and material not included"
+                  if w == W_NORM else "")
+            print(f"      (ii) w = {w:.2f}{lw}: B50 {bq_[1]:.0f}, s95 median {l_[0]:.1f} [84 % {l_[1]:.1f}], reach {rfmt6(l_[0])} [84 % edge {rfmt(l_[1])}] GeV")
+UP6 = []
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    d_, g_ = ALPHA[(tag, False)]
+    md_, mg_ = d_ / K_DIF, g_ / kz
+    pm_, bq_ = pmf_pred(kap_nodif, (PU9, (d_, math.sqrt(W_NORM ** 2 + 1 / (md_ + 1)), None), (g_, math.sqrt(W_NORM ** 2 + 1 / (mg_ + 1)), None)))
+    l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+    UP6.append((bq_[1],) + tuple(l_))
+    print(f"  v6 (T1) upside with w = {W_NORM}: {tag}, no credit, DIF and conversions log-normal of width sqrt(w^2 + 1/(m + 1)): B50 {bq_[1]:.0f},"
+          f" median reach {rfmt(l_[0])} [84 % edge {rfmt(l_[1])}] GeV (statistics-only rows above: {rfmt(pmf_cache[(tag, False)][4])} [{rfmt(pmf_cache[(tag, False)][5])}])")
+pm_, bq_ = pmf_pred(kap_noz, (PU9, (kz * 101, math.sqrt(W_NORM ** 2 + 1 / 101), None)))
+l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+Z100_6 = (bq_[1],) + tuple(l_)
+print(f"  v6 (T1) upside with w = {W_NORM}: R09-like, Z(nunu) ceiling m_H = 100 as a log-normal of width sqrt(w^2 + 1/(m + 1)) around kz (m + 1): B50 {bq_[1]:.0f},"
+      f" median reach {rfmt(l_[0])} [84 % edge {rfmt(l_[1])}] GeV (count width only: {rfmt(pmf_cache['Z100'][4])} [{rfmt(pmf_cache['Z100'][5])}])")
+# v6 (T2): does any (alpha) branch avoid the day-15 pause (class limit B50 <= 300)?
+G_A1P = ALPHA[("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", False)][1]
+A1P_CR = [pmf_cache[("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x%s)" % x, True)][1] for x in ("339", "201")]
+print(f"  v6 (T2) day-15 class limit B50 <= 300: (alpha1) no credit B50 {a1[0][1]:.0f} / {a1[1][1]:.0f} (x339 / x201) -> above; decays in flight alone"
+      f" DIF {ALPHA[('alpha1 (pile-up fall x339)', False)][0]:.0f} / {ALPHA[('alpha1 (pile-up fall x201)', False)][0]:.0f} events -> above")
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    d_ = ALPHA[(tag, False)][0]
+    pm_, bq_ = pmf_pred(kap_nodif + [(K_DIF, d_ / K_DIF)], (PU9,))
+    print(f"    {tag}, conversions removed entirely (floors + pile-up + DIF counted): B50 {bq_[1]:.0f} -> {'above' if bq_[1] > 300 else 'at or below'} 300")
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    g_ = ALPHA[(tag, False)][1]
+    print(f"    conversion rejection needed to reach the {tag} conversion level: {G_A1P:.0f} / {g_:.0f} = x{G_A1P / g_:.1f} ({1 - g_ / G_A1P:.1%}); not sufficient by itself (DIF above)")
+print(f"    avoided only with B50 <= 300: (alpha1) with fit-probability credit B50 {pmf_cache[('alpha1 (pile-up fall x339)', True)][1]:.0f} / {pmf_cache[('alpha1 (pile-up fall x201)', True)][1]:.0f};"
+      f" (alpha1') with credit {A1P_CR[0]:.0f} / {A1P_CR[1]:.0f} (above)")
 # v5 (R1 (c)): the factor-e size uncertainty of (alpha1) as size rows B x e^(-1), B x e^(+1) (counted-ceiling reading), and the
 # log-normal reading (width e^1.06 / e^0.94 on DIF / conversions) that is shown but not used.
 for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
@@ -793,6 +866,14 @@ print(f"  HEADLINE v5 (R1): (alpha1') no credit: B50 {a1p[0][1]:.0f}-{a1p[1][1]:
       f" fixed B {rfmt(s95_fixed(a1p[0][1]))}-{rfmt(s95_fixed(a1p[1][1]))}; (beta) m_H = 10 / 30 / 100: median {rfmt(pmf_cache['beta10'][4])} / {rfmt(pmf_cache['beta30'][4])} / {rfmt(pmf_cache['beta100'][4])},"
       f" 84 % edge {rfmt(pmf_cache['beta10'][5])} / {rfmt(pmf_cache['beta30'][5])} / {rfmt(pmf_cache['beta100'][5])}; Z(nunu) m_H = 1000 with the count width: B50 {pmf_cache['Z1000'][1]:.0f},"
       f" median reach {rfmt(pmf_cache['Z1000'][4])}")
+T6, R6 = ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", "alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)"), tuple(F_GAM)
+print(f"  HEADLINE v6 (T1): (alpha1') no credit, photon rate 0.255-0.379: B50 {A1P6[(T6[0], R6[1], 0.0)][0]:.0f}-{A1P6[(T6[1], R6[0], 0.0)][0]:.0f};"
+      f" with the normalisation width {W_NORM}: s95 median {min(A1P6[(t, r, W_NORM)][1] for t in T6 for r in R6):.0f}-{max(A1P6[(t, r, W_NORM)][1] for t in T6 for r in R6):.0f}"
+      f" -> reach {rfmt(min(A1P6[(t, r, W_NORM)][1] for t in T6 for r in R6))} GeV (already at w = 0.03: 84 % edge {rfmt(max(A1P6[(t, r, 0.03)][2] for t in T6 for r in R6))});"
+      f" statistics-only (count width): 84 % edge {rfmt(max(A1P6[(t, r, 0.0)][2] for t in T6 for r in R6))}-{rfmt(min(A1P6[(t, r, 0.0)][2] for t in T6 for r in R6))},"
+      f" median {rfmt(max(A1P6[(t, r, 0.0)][1] for t in T6 for r in R6))}-{rfmt(min(A1P6[(t, r, 0.0)][1] for t in T6 for r in R6))},"
+      f" fixed B {rfmt(s95_fixed(max(A1P6[(t, r, 0.0)][0] for t in T6 for r in R6)))}-{rfmt(s95_fixed(min(A1P6[(t, r, 0.0)][0] for t in T6 for r in R6)))};"
+      f" (alpha1) with w = {W_NORM}: 84 % edge {rfmt(UP6[1][2])}-{rfmt(UP6[0][2])}, median {rfmt(UP6[1][1])}-{rfmt(UP6[0][1])}; Z(nunu) m_H = 100 with w = {W_NORM}: 84 % edge {rfmt(Z100_6[2])}")
 print(f"  one-bin limit with every zero-count term dropped: {-math.log(0.05):.2f}; with the floors: {e0[4] if False else s95_pmf(pmf_pred(kap)[0], quant_pmf(pmf_pred(kap)[0], 0.5)):.1f}")
 for c_h in (C_POOL + RESERVE2, 2 * C_POOL):
     kp = [(r[4], 0) for r in floor_table(c_h)] + [MJK]

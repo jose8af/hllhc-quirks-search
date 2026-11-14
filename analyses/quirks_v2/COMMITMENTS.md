@@ -1,9 +1,10 @@
 # Binding commitments
 
-Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_gunnar_2026-11-14_00-50.md`
-("STR" below; version 5, after review cycle 4). Earlier versions of this file referred to
+Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`
+("STR" below; version 6, after review cycle 5). Earlier versions of this file referred to
 `STRATEGY_brigitte_2026-11-13_17-55.md` (version 1), `STRATEGY_dmitri_2026-11-13_19-25.md` (version 2),
-`STRATEGY_emeric_2026-11-13_21-10.md` (version 3) and `STRATEGY_fiona_2026-11-13_23-05.md` (version 4).
+`STRATEGY_emeric_2026-11-13_21-10.md` (version 3), `STRATEGY_fiona_2026-11-13_23-05.md` (version 4) and
+`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5).
 Every MUST and SHOULD item of the publication plan is a "will implement", except S3 (endcap), dropped by the user
 (brief D1) and carried as an EST outlook statement.
 A status changes only through a logged `[D]` entry (JFC 12) or a user decision; never silently.
@@ -25,6 +26,12 @@ quantity; cumulative and crossing test rungs) and every probability is censored 
 Rows marked (DP) carry a downscope proposal that the user decides at Gate A; until then the full form is the commitment.
 Rows marked (Q-n) depend on a question the user answers at Gate A, rows marked (Df-n) contain a default the user
 can override (STR §12.1); until then the default is a proposal.
+
+## Changes of rows in version 6 (2026-11-14, fixer Ingrid, review cycle 5: T1–T3 and adopted C items; nothing removed)
+
+| identifier | what happened |
+|---|---|
+| ST-1 | approved calendar 58 → 60 days: 57.8 days plus the ≈ 2-day turnaround of the expected day-15 pause under Q2 (a) (T3); CPU-h and threshold unchanged |
 
 ## Changes of rows in version 5 (2026-11-14, fixer Gunnar, review cycle 4: R1–R5 and adopted C items; nothing removed)
 
@@ -199,7 +206,7 @@ can override (STR §12.1); until then the default is a proposal.
 | FIG-1 | The seven flagship figures, the supporting figures and the seven diagrams of STR §9 | all present in the paper and the note | 4a–5 | 5 | open |
 | RQ-1 | The 25 referee questions answered with a pointer to the text (STR §10) | adversarial review at Phase 5 | 5 | 5 | open |
 | TG-1 (Q2) | Central target as a reported outcome: total σ_ln = ½ ln(B₈₄/B₁₆) per category, f₀, the term labels (no credit / bound / low count / estimate), the floor and projection tables and the outcome class (good / middle / real background / closure fails; estimated or bounded) | reported at the chosen selection with the pre-declared reading: "target met" only if σ_ln ≤ 1 in both categories **and** f₀ ≤ 0.5 **and** every leading term is labelled estimate; otherwise "target not met: width small, background bounded (f₀ = …)", naming the labels; "sample-size limited" if f₀ > 0.5, with the conservative (84 %) band edge quoted first. Each label printed with its s_tot. Expected reading: "target not met: sample-size limited" while the ceilings count few events, if the day-15 pause does not fire (by v1's conversion counts the expected branch is a measured background, STR §0, Q2) (STR §4.4, §4.11) | 4a / 4c | 4c | open |
-| ST-1 (Q4) | Stop rules of brief §7 and D6, as quoted in STR §11.6. Approved schedule (default): 4,609 CPU-h (4,453 + the 156 CPU-h day-15 reserve) and 58 days; threshold 1.3 × 4,609 = 5,992 CPU-h. Every overrun of the approved schedule reported, a draw on a conditional cost or on the contingency included; a projected compute overrun above 30 % stops the study and the user is asked; a MUST item infeasible after a real attempt stops the study; cajuela 2.0 TB / 1.0 TB free | re-projection with measured costs at day 5, at the freeze, weekly in production and when a conditional cost is drawn; decision-point-2 rules of STR §11.7 (rule 1 preliminary at day 7, binding at day 15); record in `STATUS.md` | 2–5 | 5 | open |
+| ST-1 (Q4) | Stop rules of brief §7 and D6, as quoted in STR §11.6. Approved schedule (default): 4,609 CPU-h (4,453 + the 156 CPU-h day-15 reserve) and 60 days (57.8 days plus the ≈ 2-day turnaround of the expected day-15 pause; a redesign under Q2 (c) is not included and is reported as an overrun); threshold 1.3 × 4,609 = 5,992 CPU-h. Every overrun of the approved schedule reported, a draw on a conditional cost or on the contingency included; a projected compute overrun above 30 % stops the study and the user is asked; a MUST item infeasible after a real attempt stops the study; cajuela 2.0 TB / 1.0 TB free | re-projection with measured costs at day 5, at the freeze, weekly in production and when a conditional cost is drawn; decision-point-2 rules of STR §11.7 (rule 1 preliminary at day 7, binding at day 15); record in `STATUS.md` | 2–5 | 5 | open |
 | INV-1 | Sample inventory with roles (development / derivation / test / production / reserve), seed streams and independence (STR §4.17) | every produced sample matches a row (including 13a, 18a, 18b; the 4a hit-level samples in two stages); no development sample enters a closure verdict; `DATA_MANIFEST.md` carries the stream names | 2–4a | 4a | open |
 | BL-1 | Complete list of signal quantities that exist before the closure verdicts: the C1 tier approved in Q1; A, f₂₀₀ and the migration fraction (selection-independent; A and m_mig computed once, after the MET model) | no other signal quantity in any artifact before the verdicts; B6 efficiency ratios and the tracker hit-time loss formed only after them (STR §4.1) | 2–4a | 4b | open |
 | FP-1 | Failure protocol after the freeze: ticket always; bug → dated addendum and one re-test on a fresh sample; no bug → reported as failed, [SD8] | each FAIL or INVESTIGATE closed along one of the three branches; fresh samples as named in STR §8 (second direct sample, test overlays, hit-level test halves, pool slice), each used at most once and reported as an overrun | 4a | 4a | open |

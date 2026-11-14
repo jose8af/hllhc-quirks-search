@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Ingrid | Phase-1 fixer, review cycle 5 → STRATEGY v6 (T1–T3 only) | opus | spawned 02:20 (14 Nov) | `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle5_ingrid.md` |
+| Ingrid | Phase-1 fixer, review cycle 5 → STRATEGY v6 (T1–T3 only) | opus | DONE (T1–T3 resolved, 0 unattributed hunks); cycle-6 panel Isolde, Ivan, Jasper spawned 02:50 | `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle5_ingrid.md` |
 
 Phase-1 review history: cycles 1–5 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo); merged A 11→4→1→0→0;
 cycle 5 left T1–T3 (B, text only). Versions kept: v1 Brigitte … v5 Gunnar, v6 Ingrid.

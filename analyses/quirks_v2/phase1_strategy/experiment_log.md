@@ -420,3 +420,25 @@ FLAG FOR HUMAN: YES (Q4)
   efficiencies" (orchestrator instruction; same tag). CONFIDENCE: high. FLAG FOR HUMAN: no.
 - [Gunnar] Not done, proposed: the "decades below v1" sentence of §4.4 does not list (alpha1') (needs a print line);
   code-reference runtime "about ten seconds" (now ~17 s). Nothing committed (no git by instruction).
+
+## [Ingrid] 2026-11-14 02:20 — fixer, review cycle 5 (verdict Hugo v5: ITERATE, 0 A, 3 B)
+- [Ingrid] Work list T1–T3, the C items of verdict §6.3 and the H-C1 rider (§7); output `outputs/STRATEGY_ingrid_2026-11-14_02-20.md`
+  (v6, cp of v5 then targeted edits), `COMMITMENTS.md` (ST-1), `src/strategy_budget.py`, `outputs/budget_stdout_v6.txt`;
+  report `outputs/FIX_REPORT_cycle5_ingrid.md`.
+- [Ingrid] T1: script [9b] v6 lines: (α1′) with the conversion term log-normal of width sqrt(w² + 1/(m+1)): w = 0.17
+  (|ln 0.84|, §4.7) gives s95 1,823–2,725 -> reach < 243 GeV at both photon rates (0.255 / 0.379, background.json
+  cprime.gamma.rate nt_weighted_mean / value); 84 % edge < 243 already at w = 0.03; statistics-only 84 % edge 270–297,
+  median 314–342, fixed B 392–419; B50 6,825–10,193. (α1) with w = 0.17: 84 % edge 312–372; Z(νν) m_H = 100: 454.
+  Leading sentence, §0, Table 4.4c, scenario text, Q2 stem and (b), §12.5 point 3 rewritten as ordered (ESTIMATE, v1
+  placeholder efficiencies).
+- [Ingrid] T2: (α1) no credit B50 587 / 975, DIF alone 385 / 647 (B50 with conversions removed 401 / 663) > 300; rejection
+  needed ×31–52 (96.8–98.1 %); §0 pause, §4.4, Q2 stem and (c) state that no (α) branch or veto alone avoids the pause.
+- [Ingrid] T3: [7] + 2.0 d pause turnaround: 59.8 / 58.9 / 60.1 d; §0, §11.2, §11.3, §11.6, Q4, COM ST-1 at 60 days.
+- [Ingrid] Rider (optional, not default): +7.0 CPU-h -> approved 4,616.4, threshold 6,001.3; default stays 4,609 / 5,992.
+- [Ingrid] Script values bind over the verdict draft: rate-0.255 B50 6,825 / 7,087 (draft 6,814 / 7,076), 84 % edge ×201
+  293 (draft 294); at rate 0.255, w = 0.03 the median is 281 / 280, so "already below 243 at 0.03" is written for the
+  84 % edge. All v5 printed values unchanged (diff: H-C9 label + added lines only).
+- [Ingrid] DECISION: §11.2 MUST-only and full rows also get "(58.9 / 60.1 with the expected day-15 pause)", for agreement
+  with the Q4 alternatives the verdict orders. ALTERNATIVES: proposed row only. CONFIDENCE: high. FLAG FOR HUMAN: no.
+- [Ingrid] Not done, proposed: code-reference runtime "about ten seconds" (now ≈ 38 s); (α1′) in the "decades below v1"
+  sentence. No git operation.
