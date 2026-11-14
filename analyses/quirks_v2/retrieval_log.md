@@ -11,3 +11,10 @@
 | 5 | cosmic and beam-halo rates | same file l.147, l.322 (arXiv:1801.00359 Table 4) | PARTIAL: 8.8 ± 3.1 cosmic and 2.6 ± 0.2 halo events in 586 h for a stopped-particle selection; no tracker-level rate → R-6 |
 | 6 | public Phase-2 MET trigger turn-on; jet response; timing-layer resolution; vertex identification efficiency; HL-LHC luminosity uncertainty; cited SM K-factors | grep over `research/`, `stage2_C001_quirks/research/`, digests D2, D5 | NOT FOUND with a usable number and page (v1 parameters are ESTIMATE or graphical readings) → R-2, R-3, R-5, R-7, R-8, R-9. Nothing was taken from memory |
 | 7 | Barbashov solution class; Knapen et al. Sec. III.D wording | digest D3 §1 items 9, 13; novelty audit §1.1 (p. 6: beam-pipe conversions) | PARTIAL: audit supports "beam-pipe conversions only"; exact corrected sentences need the papers → R-11 |
+
+## 2026-11-13 — Phase 1 strategy v2 (fixer Dmitri, review cycle 1). Repo look-ups only; nothing from the web or from memory.
+
+| # | query / need | where looked | result |
+|---|---|---|---|
+| 8 | per-process N_trig for the floor table and the no-pile-up allocation | `stage2_C001_quirks/theory_track/data/acts_stage4/analysis/C12FC_v1/bsum_wp.json` → `n_trig.value`, `n_trig.breakdown.*.N_trig` (read with `python3 -I`) | FOUND: total 4.0848e7; twelve processes, Z(nunu)+j 2.508e7 … ZZ 1.045e5 (values in `strategy_budget.py`). Single-interaction rates per triggered event taken from digests D4 l.395 and D2 l.69 (UNVERIFIED by me) |
+| 9 | public sizes for detector variations, timing tails, readout window, noise occupancy, MET performance at pile-up 200, infracolour Coulomb correction in the quirk literature, K/pi differences between hadronisation models, lepton-veto response to quirks, recent ATLAS/CMS quirk searches | not looked up in this session (head node, repo only) | NOT RETRIEVED → new retrieval tasks R-12 to R-20 in STRATEGY v2 §6.4; R-3 and R-7 extended. The formula and numbers quoted for the infracolour correction come from the physics review (P-B5) and the arbiter's re-derivation and are reproduced arithmetically in the script; they are not a literature value |

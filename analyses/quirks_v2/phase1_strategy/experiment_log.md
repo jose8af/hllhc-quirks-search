@@ -216,3 +216,69 @@ CONFIDENCE: MEDIUM
 FLAG FOR HUMAN: YES
 - [Brigitte] CORRECTION (append-only log, so stated here): the header of my block above says "17:55-21:00"; by the
   system clock the session ran 17:55-18:17 on 2026-11-13.
+
+## [Dmitri] 2026-11-13 (session label 19-25) — fixer, review cycle 1 of the strategy (arbiter: ITERATE, M1-M35)
+
+- [Dmitri] Wrote `outputs/STRATEGY_dmitri_2026-11-13_19-25.md` (v2) from a copy of v1, section by section; v1 file
+  not modified. Updated `COMMITMENTS.md` (one identifier set, old -> new table, all statuses open),
+  `src/strategy_budget.py` (rewritten; prints sections [1]-[13]), `retrieval_log.md` (entries 8, 9), and wrote
+  `outputs/FIX_REPORT_cycle1_dmitri.md`. Status of the 35 merged findings: 24 RESOLVED, 3 PARTIALLY RESOLVED
+  (M5, M11, M24), 8 DEFERRED TO GATE A with options (M2, M6, M13, M16, M20, M23, M28, M30), 0 CANNOT RESOLVE.
+- [Dmitri] Numbers: MUST 3,968 CPU-h; MUST + SHOULD reduced 4,401; full 4,915 (v1: 2,950 / 3,275 / 3,798).
+  Capacity 174 core-h/day in production with 10 off-hours slots. Calendar 55.5 / 57.9 / 60.8 days (v1: 42);
+  44 days are outside production. Storage 413 / 613 GB. Propagation: 91 instances of 26 numbers in 2 files.
+- [Dmitri] M1. What was wrong: with a free rate, a zero simulated count has its best fit at zero, so the term would
+  vanish from Asimov data and toys. Change: expected limits generated with each counted rate drawn from Gamma(m + 1)
+  (flat prior), auxiliary observations fixed; "one zero per term". Result (script [10], one bin, exact): at a
+  transfer factor of 35 events per unit rate the expected limit is 27.8 [9.4, 70.0] signal events, against 3.0 if
+  the term is dropped and 14.3 with a fixed 1.14 N/M; exact coverage 0.945-1.000.
+- [Dmitri] M6. Floors at the v1 sizes confirmed (150.5 + 46.5 events). One 600 CPU-h pool for all no-pile-up samples
+  allocated as sqrt(N/c) leaves a summed 68 % floor of 45.3 events (predictive median 35.8). The gain of biased
+  generation is NOT measured; a Phase-2 pilot (27 CPU-h) measures it. Expected outcome class at G = 1: "middle" in
+  size, "bounded" in kind. This goes to the user as GA-3.
+- [Dmitri] M3/M4/M5. Closure tests now have disjoint derivation and test rungs and samples, an evaluable-rung rule
+  (sigma_tot <= ln F / 3), four verdicts, and a width that grows with the distance from the last tested rung and is
+  always added. Expected at the planned statistics: gamma and V0 testable at R06; decays in flight with an
+  enrichment >= 1.5-3; PV pairs, NI and loopers NOT TESTED (no credit by default; GA-4).
+- [Dmitri] FAILED / CORRECTED ATTEMPTS during the fix (recorded so they are not repeated):
+  (1) I first let a term with a FAILED estimator enter at its no-credit value with the selection still eligible;
+  that is looser than v1's [SD8]. Restored: FAIL -> not eligible where the term is leading; only NOT TESTED /
+  NOT EVALUABLE -> no credit, eligible, flagged.
+  (2) I did not adopt "overlay random loose-rung failers at depth" as the promotion measurement: 2,000 overlays
+  bound the promoted rate at 1.14/2,000 per event, a floor above v1's. Replaced by near-pass classes f_k measured on
+  the large no-pile-up samples, a promotion probability from the occupancy model, and the ceiling H = P_geo + sum f_k.
+  (3) First Geant4 line kept v1's 1e8 guns; they give about 5e6 vertices for more than 2e7 events. Resized to one
+  distinct vertex per event (65 + 15 CPU-h).
+  (4) B6 nominal partner rows (needed so that eps_nom is not taken from an S1 half) were missing from the budget;
+  added (+18.5 reduced / +38 full CPU-h).
+
+DECISION: generation convention for zero counts = flat-prior posterior Gamma(m + 1), auxiliary observations fixed in
+the toys, one zero per term.
+ALTERNATIVES: fitted value (term vanishes); fixed 1.14/M; Jeffreys Gamma(m + 1/2); auxiliary counts redrawn in the toys.
+CONFIDENCE: MEDIUM-HIGH
+FLAG FOR HUMAN: YES
+
+DECISION: single-interaction estimator P_geo x S + sum_k f_k x pi_k with the directly measured ceiling H as no-credit
+value; S = 1 beyond its tested rungs; extrapolated factors carry s_tot^2 = s_model^2 + (b^2 + sigma_b^2) d_in^2 + (ln F)^2 d_out^2.
+ALTERNATIVES: P_geo x C_PU with C_PU carried from R07; width only for a significant slope; independent steps ln F x sqrt(d).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (GA-4)
+
+DECISION: one pool of 600 CPU-h for the no-pile-up samples, allocated as sqrt(N_t/c_t).
+ALTERNATIVES: 315 CPU-h (cost-neutral; floor 86 events); 1,200 CPU-h (floor 23 events).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (GA-3)
+
+DECISION: default for the C1 signal comparison = sealed tier (4 counts open, 6 as PASS/FAIL only until Gate B).
+ALTERNATIVES: all ten open with disclosure; R07 and fallback dropped; all ten sealed; 200 rows.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (GA-1; the exception to the blinding invariant needs the user's approval in every option)
+
+DECISION: detector variations with round-number sizes are robustness tests; a nuisance exists only with a public size.
+ALTERNATIVES: measured effect of the round-number variation as nuisance (not allowed by JFC).
+CONFIDENCE: HIGH
+FLAG FOR HUMAN: NO
+
+- [Dmitri] Not done, for the orchestrator: no retrieval from outside the repo (R-12 to R-20 are Phase-2 tasks);
+  no Herwig install attempt (needs a worker and the install slot); the Gate-A sheet in v2 §12.1 is about three
+  pages and should be condensed in `GATE_A.md`; not every [V] tag of the text kept from v1 was re-audited.

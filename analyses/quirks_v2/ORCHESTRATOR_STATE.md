@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Dmitri | Phase-1 fixer, review cycle 1 → STRATEGY v2 | fable | spawned 19:25 | `phase1_strategy/outputs/STRATEGY_dmitri_2026-11-13_19-25.md`, `COMMITMENTS.md`, `phase1_strategy/outputs/FIX_REPORT_cycle1_dmitri.md` |
+| Dmitri | Phase-1 fixer, review cycle 1 → STRATEGY v2 | fable | DONE; cycle-2 reviewers Dolores, Dorothea, Edmund spawned | `phase1_strategy/outputs/STRATEGY_dmitri_2026-11-13_19-25.md`, `COMMITMENTS.md`, `phase1_strategy/outputs/FIX_REPORT_cycle1_dmitri.md` |
 
 Phase-1 review: cycle 1 = ITERATE (11 A, 24 B merged; arbiter Dagmar). STRATEGY v1 = `STRATEGY_brigitte_2026-11-13_17-55.md` (kept).
 Cycle 2 panel (fresh sessions): physics Dolores, critical Dorothea, constructive Edmund, arbiter Eloise → numbered
