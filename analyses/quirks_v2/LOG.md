@@ -100,3 +100,15 @@ statistics (M5); 6, not 3, of the C1 signal counts are efficiencies of v2 candid
 reviewer (26 of 28 spot checks; `strategy_budget.py` reproduces all totals). No regression (Phase 1 is the origin).
 Next: fixer Dmitri (fable: likelihood and closure redesign is the error-prone core) → STRATEGY v2 → re-review cycle 2
 with fresh reviewers.
+
+### 21:10 — Phase 1 review cycle 2: ITERATE
+STRATEGY v2 (fixer Dmitri, `STRATEGY_dmitri_2026-11-13_19-25.md`) re-reviewed by fresh sessions Dolores (physics),
+Dorothea (critical), Edmund (constructive); arbiter Eloise: `phase1_strategy/review/arbiter/
+STRATEGY_ARBITER_v2_eloise_2026-11-13_20-45.md`. M1–M35: 20 resolved, 7 partial, 8 deferred to Gate A (accepted).
+New: 4 A (N1–N4), 14 B (N5–N18). Core: the ceiling H is never tested as a ceiling; MUST closures left NOT TESTED
+(brief D4); "target met" satisfiable by zero-count bounds alone; false-fail rates computed at zero model width
+(41–71 % for the battery at the declared widths, not 10 %); extrapolation widths contradict the strategy's own rule;
+PV pairs double-counted with the SM hard-scatter term (confirmed in v1 code); v1 already contained pile-up decays and
+nuclear interactions. All numbers of v2 were reproduced by two reviewers. Arbiter's rulings net about −96 CPU-h
+(ESTIMATE). Gate A reduced to 5 questions plus 8 overridable defaults. Iteration count: 2 (warn at 3).
+Next: fixer Emeric (fable) → STRATEGY v3 → cycle 3 as a verification pass with fresh reviewers.
