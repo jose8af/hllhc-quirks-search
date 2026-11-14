@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Gunnar | Phase-1 fixer, review cycle 4 → STRATEGY v5 (R1–R5 only) | opus | spawned 00:50 (14 Nov) | `phase1_strategy/outputs/STRATEGY_gunnar_2026-11-14_00-50.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle4_gunnar.md` |
+| Gunnar | Phase-1 fixer, review cycle 4 → STRATEGY v5 (R1–R5 only) | opus | DONE (R1–R5 resolved, 0 unattributed diff hunks); cycle-5 panel Hana, Hedwig, Hiroshi spawned 01:25 | `phase1_strategy/outputs/STRATEGY_gunnar_2026-11-14_00-50.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle4_gunnar.md` |
 
 Phase-1 review history: cycle 1 ITERATE (Dagmar, M1–M35); 2 ITERATE (Eloise, N1–N18); 3 ITERATE (Felix, P1–P16);
 4 ITERATE (Greta: 0 A, R1–R5 B). Versions kept: v1 Brigitte, v2 Dmitri, v3 Emeric, v4 Fiona, v5 Gunnar.

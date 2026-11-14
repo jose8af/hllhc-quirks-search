@@ -398,3 +398,25 @@ FLAG FOR HUMAN: YES (Q4)
 - [Fiona] Not done: the 2,500-line target (further cuts would touch content the verdict did not flag); no retrieval
   outside the repo; no git operation.
 - [Fiona] Correction to the entry above: v4 is 2,842 lines, not 2,840.
+
+## [Gunnar] 2026-11-14 00:50 — fixer, review cycle 4 (verdict Greta v4: ITERATE, 0 A, 5 B)
+- [Gunnar] Work list R1–R5 and the adopted C items of the verdict §6; output `outputs/STRATEGY_gunnar_2026-11-14_00-50.md`
+  (v5, cp of v4 then targeted edits), `COMMITMENTS.md`, `src/strategy_budget.py`; report `outputs/FIX_REPORT_cycle4_gunnar.md`.
+- [Gunnar] R1: script [9b] gets PLAN's 1e5 column (243 GeV), the conversion-fall test (P(>= 2 at R07 | pile-up-like
+  fall from 13) = 7.2e-4 / 2.0e-3), the (alpha1') rows (conversions at their own x6.5, DIF at the pile-up fall):
+  B50 9,929–10,193, reach median 317–314, 84 % edge 273–270, fixed B 394–392 GeV (EST, v1 placeholder efficiencies);
+  (alpha1) x e^(+-1) rows; log-normal reading (median 262 / < 243, not used); m_H = 1000 with the count width (415 GeV);
+  Z(nunu) conversion m_H 1.56e3 (pilot 326). §0, Table 4.4c, §11.7 rule 1, Q2 rewritten as the verdict orders: the
+  conversion-led branch leads and the day-15 pause is the expected branch.
+- [Gunnar] R2: annex routes 5, 6 and the B4-e size; R3: pilot keeps full no-PU records (51.7 GB, storage 417 -> 469 GB),
+  classified by day 7 / 12; R4: S_CKF samples; R5: +35.78 CPU-h paired passes (11,000 x 11.71 s): approved 4,573.6 ->
+  4,609.4, threshold 5,946 -> 5,992, calendar 57.6 -> 57.8 d (critical path 2,489 CPU-h = 14.3 d).
+- [Gunnar] All other printed script values identical to v4 (`outputs/budget_stdout_v4.txt` vs `_v5.txt`); every v4 -> v5
+  hunk of STR, COM and the script attributed to R1–R5 or an adopted C item (0 unattributed).
+- [Gunnar] DECISION: the day-7 pile-up input of §11.7 rule 1 stays the v1-based EST rows; the occupancy model's R04–R05
+  inputs are the Phase-2 rho = 1 C1 sample and are evaluated by day 14 at the latest (the verdict's per-k date).
+  ALTERNATIVES: a dated occupancy-model milestone inside channel (ii) (not in v4). CONFIDENCE: medium. FLAG FOR HUMAN: no.
+- [Gunnar] DECISION: "ESTIMATE, v1 placeholder efficiencies" written where the verdict text has "EST, v1 placeholder
+  efficiencies" (orchestrator instruction; same tag). CONFIDENCE: high. FLAG FOR HUMAN: no.
+- [Gunnar] Not done, proposed: the "decades below v1" sentence of §4.4 does not list (alpha1') (needs a print line);
+  code-reference runtime "about ten seconds" (now ~17 s). Nothing committed (no git by instruction).

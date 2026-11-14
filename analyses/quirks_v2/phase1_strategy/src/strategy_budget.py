@@ -4,7 +4,8 @@
 Standard library only; run as `python3 -I strategy_budget.py` (about ten seconds; allowed on einstein).
 History: v1 by Brigitte (17:55); rewritten by the fixer Dmitri for review cycle 1 (arbiter findings M1-M35);
 updated by the fixer Emeric for review cycle 2 (findings N1-N18 and the residuals of M4, M5, M11, M12, M15, M24, M26);
-updated by the fixer Fiona for review cycle 3 (findings P1-P16 and the adopted C items; "v4" lines below).
+updated by the fixer Fiona for review cycle 3 (findings P1-P16 and the adopted C items; "v4" lines below);
+updated by the fixer Gunnar for review cycle 4 (findings R1, R3, R5; "v5" lines below; STRATEGY_gunnar_2026-11-14_00-50.md).
 Every unit cost carries a provenance letter:
   M = measured in the feasibility phase (source in the comment);
   D = derived from measured parts, or measured on one event / toy inputs;
@@ -183,11 +184,13 @@ add("4a", "B1", "MUST", "overlays: DIF 9000 + NI 3 x 1500 + 4 sub-topologies x 1
 SCAN = 2e6
 add("4a", "B1", "MUST", "no-PU scan slice for the test overlays (disjoint seed stream), 2e6 events", SCAN * (NOPU + G4GUN / G4_DEC), "2e6 x (11.5 + 12.2) ms", "D", "N17")
 add("4a", "B2", "MUST", "crossing test rungs: re-analysis of the direct, overlay and hit-level samples", 5 * H, "", "G", "N5")
-N_PAIRED = 4 * 1000 + 4 * 1000   # unbiased B1 test overlays (DIF 1,000; NI 3 x 1,000) + 1,000 hit-level test-half events of each supplied B4 process
+N_PAIRED = 4 * 1000 + 4 * 1000 + 11 * 1000   # unbiased B1 test overlays (DIF 1,000; NI 3 x 1,000) + 1,000 hit-level test-half events of each of the fifteen SM processes (v5, R5)
 add("4a", "B1", "MUST", "paired pile-up-only finder pass (term hits removed) on the 4,000 unbiased B1 test overlays", 4000 * TRIAL,
     "4000 x 11.7 s", "M", "P5")
 add("4a", "B4", "MUST", "paired pile-up-only finder pass on 1,000 test-half events of each of the four supplied B4 processes", 4000 * TRIAL,
     "4000 x 11.7 s", "M", "P5")
+add("4a", "B4", "MUST", "paired pile-up-only finder pass on 1,000 test-half events of each of the eleven other SM processes (incl. Z(tautau), lost-lepton Z(ll), multijets)",
+    11000 * TRIAL, "11000 x 11.7 s", "M", "R5")
 add("4a", "B3", "MUST", "conditionals, vertex veto, stability across rungs, time-tag closure (re-analysis)", 25 * H, "20 + 5", "G", "M16")
 # N2: test half sized where v1 has a count: evaluable needs N_eff >= 24 at R06 (F = 2, s_P = 0.1); the sample is sized for an
 # expected count of 31, which gives at least 24 with probability 0.91 (Poisson; printed in [11]). v1 presel-weighted counts at R06
@@ -298,8 +301,12 @@ for k_, v_ in APPROVED.items():
     print(f"    {k_}: {v_ - RESERVE2:.1f} + {RESERVE2:.1f} = {v_:.1f} CPU-h; stop-and-ask threshold 1.3 x {v_:.0f} = {1.3 * v_:.0f}")
 V3 = {"MUST": 3945.0, "RED": 4378.0, "FULL": 4891.0, "THR": 5691.0, "DAYS": 56.6}
 P_ADD = sum(h for p, i, pr, lab, h, a, pv, f in items if f.startswith("P4") or f.startswith("P5"))
-print(f"  v3 -> v4: review additions (P4, P5, K-C10) {P_ADD:.1f} CPU-h; MUST {V3['MUST']:.0f} -> {must:.0f}; reduced {V3['RED']:.0f} -> {must + shr:.0f};"
-      f" full {V3['FULL']:.0f} -> {must + shf:.0f}; approved (reduced + reserve) {APPROVED['MUST + SHOULD reduced']:.0f}, threshold {V3['THR']:.0f} -> {1.3 * APPROVED['MUST + SHOULD reduced']:.0f}")
+R_ADD = sum(h for p, i, pr, lab, h, a, pv, f in items if f.startswith("R5"))   # v5 (R5): kept out of the v3 -> v4 history line
+print(f"  v3 -> v4: review additions (P4, P5, K-C10) {P_ADD:.1f} CPU-h; MUST {V3['MUST']:.0f} -> {must - R_ADD:.0f}; reduced {V3['RED']:.0f} -> {must - R_ADD + shr:.0f};"
+      f" full {V3['FULL']:.0f} -> {must - R_ADD + shf:.0f}; approved (reduced + reserve) {APPROVED['MUST + SHOULD reduced'] - R_ADD:.0f}, threshold {V3['THR']:.0f} -> {1.3 * (APPROVED['MUST + SHOULD reduced'] - R_ADD):.0f}")
+V4 = {"MUST": 3983.6, "RED": 4417.1, "FULL": 4930.4, "APP": 4573.6, "THR": 5946.0}   # v4 printed values (budget_stdout_v4.txt)
+print(f"  v4 -> v5: review addition (R5) {R_ADD:.2f} CPU-h; MUST {V4['MUST']:.1f} -> {must:.1f}; reduced {V4['RED']:.1f} -> {must + shr:.1f};"
+      f" full {V4['FULL']:.1f} -> {must + shf:.1f}; approved (reduced + reserve) {V4['APP']:.1f} -> {APPROVED['MUST + SHOULD reduced']:.1f}, threshold {V4['THR']:.0f} -> {1.3 * APPROVED['MUST + SHOULD reduced']:.0f}")
 
 # ---- [5] deltas v2 -> v3 per finding (cycle 2; history) -----------------------------------------------------------------
 V1 = {"MUST": 2950.0, "RED": 3275.0, "FULL": 3798.0}
@@ -333,6 +340,11 @@ for p, i, pr, lab, h, a, pv, f in items:
         print(f"  {h:+8.1f} CPU-h  {crit:+5.2f} d   {f}: {lab} (phase {p})")
 print(f"  {RESERVE2:+8.1f} CPU-h  {RESERVE2 / CAP_PROD:+5.2f} d   P13: day-15 reserve inside the approved figure, spent in 4a production by rule 3")
 print("  P1: Z(tautau) and lost-lepton Z(ll) get pool shares inside the same 665 CPU-h (0 CPU-h); S-1: B5 and the B6 signal arm out of the 4a window (0 CPU-h; days in [7])")
+print("\n[5''] deltas v4 -> v5, per finding (CPU-h; days on the Phase-4a critical path at the production capacity)")
+for p, i, pr, lab, h, a, pv, f in items:
+    if f.startswith("R5"):
+        print(f"  {h:+8.2f} CPU-h  {(h / CAP_PROD if p == '4a' else 0.0):+5.2f} d   {f}: {lab} (phase {p})")
+print("  R1, R2, R4: text, table and [9b] rows only (0 CPU-h); R3: the pilot keeps its no-pile-up hit records (0 CPU-h; storage in [8])")
 
 # ---- [6] contingency from provenance --------------------------------------------------------------------------------------
 FRAC = {"M": 0.10, "D": 0.30, "G": 1.00}
@@ -436,6 +448,7 @@ sto = {
     "hit dumps for 10,000 events (C2 700, B5 6,500, occupancy model and time tag 2,800; 2.4 MB each)": 10000 * 2.4 / 1024,
     "rho = 2 pre-merge candidates (planning value; cap 400)": 200.0,
     "no-PU samples as per-event summaries (%.3g x 50 B) + full records of R04 passers and near-pass events" % nopu_events: nopu_events * 50 / 1e9 + 25,
+    "v5 (R3): pilot no-PU full hit records, classified in Phase 3 ((4e6 + %.2g) x 8.2 kB; more for the hard-scatter events)" % PILOT_HS: (4e6 + PILOT_HS) * 8.2e3 / 1e9,
     "Stage 2: 1.75e6 LHE events, 5 shower variants": 1.75e6 * (0.72 + 5 * 1.05) / 1e6,
     "Stage 3 (8 kB x 85000 rows)": 85000 * 8 / 1e6,
     "Geant4 vertices, job logs, pyhf outputs, toy distributions": 8.0,
@@ -625,7 +638,7 @@ def s95_fixed(bfix):
     return s95_pmf(pmf, n)
 
 
-PLAN_REACH = [(0.0, 1026.0), (1.0, 971.0), (10.0, 866.0), (30.0, 799.0), (100.0, 717.0), (1e3, 548.0), (1e4, 393.0)]   # PLAN l.121, sigma_ln = 0 row (EST, v1 efficiencies)
+PLAN_REACH = [(0.0, 1026.0), (1.0, 971.0), (10.0, 866.0), (30.0, 799.0), (100.0, 717.0), (1e3, 548.0), (1e4, 393.0), (1e5, 243.0)]   # PLAN l.121, sigma_ln = 0 row (EST, v1 efficiencies); v5 (R1 (h)): 1e5 column added
 MAPR = [(s95_fixed(b), r) for b, r in PLAN_REACH]
 
 
@@ -681,10 +694,20 @@ GAM_R07 = NTRIG * RATE["gamma"] * 2 / 500.0
 W_DIF, W_GAM = math.sqrt(wm(1) ** 2 + math.log(2) ** 2), math.sqrt(wm(2) ** 2 + math.log(2) ** 2)
 print(f"  (alpha) inputs: R07 DIF {DIF_R07:.3g} (1 count in 500), conversions {GAM_R07:.3g} (2 in 500; R06: {NTRIG * RATE['gamma'] * 13 / 500:.3g});"
       f" uncertainty of the v1-based size: sqrt(w_m^2 + ln2^2) = factor e^{W_DIF:.2f} (DIF, m = 1), e^{W_GAM:.2f} (conversions, m = 2) [a projection uncertainty, not a width of the v2 term]")
+# v5 (R1): is v1's conversion fall pile-up-like? v1 counts per 500 events (background.json -> cprime.gamma.rows, cprime.dif.rows):
+# conversions 86 (R05) -> 13 (R06) -> 2 (R07); DIF 2 (R06) -> 1 (R07). Pile-up fall per width step x339 (R06->R07), x201 (R05->R06).
+FALL_PU = (0.2470 / r07, 49.72 / 0.2470)
+p_ge = lambda n, mu: sum(pois_pmf(k, mu) for k in range(n, n + 200))   # upper tail summed directly (no 1 - cdf cancellation)
+print(f"  v5 (R1) conversion fall test: v1 measured x{86 / 13:.1f} (R05->R06, 86 -> 13) and x{13 / 2:.1f} (R06->R07, 13 -> 2); with a pile-up-like fall from 13 at R06:"
+      f" mu(R07) = {13 / FALL_PU[0]:.3f} / {13 / FALL_PU[1]:.3f} counts (x339 / x201), P(>= 2) = {p_ge(2, 13 / FALL_PU[0]):.1e} / {p_ge(2, 13 / FALL_PU[1]):.1e};"
+      f" from 86 at R05: mu(R06) = {86 / FALL_PU[0]:.2f} / {86 / FALL_PU[1]:.2f}, P(>= 13) = {p_ge(13, 86 / FALL_PU[0]):.1e} / {p_ge(13, 86 / FALL_PU[1]):.1e};"
+      f" DIF from 2 at R06: P(>= 1 at R07) = {p_ge(1, 2 / FALL_PU[0]):.2%} / {p_ge(1, 2 / FALL_PU[1]):.2%}")
 kap_nodif = [(r[4], 0) for r in rows if r[0] != "DIF"] + [MJK]
 ALPHA = {}
 for tag, fd, fg in (("alpha1 (pile-up fall x339)", 0.2470 / r07, 0.2470 / r07), ("alpha1 (pile-up fall x201)", 49.72 / 0.2470, 49.72 / 0.2470),
-                    ("alpha2 (own R06->R07 fall: DIF x2, conversions x6.5)", 2.0, 13 / 2.0)):
+                    ("alpha2 (own R06->R07 fall: DIF x2, conversions x6.5)", 2.0, 13 / 2.0),
+                    ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", 0.2470 / r07, 13 / 2.0),   # v5 (R1)
+                    ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)", 49.72 / 0.2470, 13 / 2.0)):
     for credit in (False, True):
         c_ = CHI[0] if credit else 1.0
         ALPHA[(tag, credit)] = (DIF_R07 / fd * c_, GAM_R07 / fg * c_)
@@ -692,9 +715,9 @@ for tag, fd, fg in (("alpha1 (pile-up fall x339)", 0.2470 / r07, 0.2470 / r07), 
 pmf_cache = {}
 
 
-def row(lab, gam, lnn, store=None):
+def row(lab, gam, lnn, store=None, pred=False):
     med_sum = sum(k * (m + 0.67) for k, m in gam) + sum(x[0] for x in lnn)
-    if med_sum > 5000:
+    if med_sum > 5000 and not pred:   # v5 (R1): pred=True forces the predictive (counted-ceiling) branch
         b = med_sum
         sv = s95_fixed(b)
         print(f"  | {lab} | ≈ {b:.0f} (sum of medians; fixed-B limit, an upper edge of the reach) | | {sv:.0f} | {rfmt(sv)} |")
@@ -718,6 +741,8 @@ for mh in (3, 10, 30, 100):
         kap_noz + [(kz, mh)], (PU9,), "Z%d" % mh)
 b1000 = kz * 1001 + pu9 + sum(k for k, m in kap_noz)
 print(f"  m_H = 1000: B about {b1000:.0f}, fixed-B s95 = {s95_fixed(b1000):.0f}, reach {rfmt(s95_fixed(b1000))} GeV")
+row("v5 (Ph-C2): R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 1000 simulated ceiling counts (%.0f events), with the count width" % (kz * 1000),
+    kap_noz + [(kz, 1000)], (PU9,), "Z1000")
 MZ = alloc["Z(nunu)+j"]
 LATE = list(PROXY8) + list(ADD_PLAN)
 for mh in (10, 30, 100):
@@ -740,12 +765,34 @@ for (tag, credit), (d_, g_) in ALPHA.items():
     if credit:
         row(lab_, kap_nodif, (PU9, (d_, W_COND1, None), (g_, W_COND1, None)), (tag, credit))
     else:
-        row(lab_, kap_nodif + [(K_DIF, d_ / K_DIF), (kz, g_ / kz)], (PU9,), (tag, credit))
+        row(lab_, kap_nodif + [(K_DIF, d_ / K_DIF), (kz, g_ / kz)], (PU9,), (tag, credit), pred=tag.startswith("alpha1'"))
+        if tag.startswith("alpha1'"):
+            bfx = pmf_cache[(tag, credit)][1]
+            print(f"    v5 (R1): the same at fixed B = B50 {bfx:.0f} (background known exactly): s95 {s95_fixed(bfx):.1f}, reach {rfmt(s95_fixed(bfx))} GeV")
 a1 = [pmf_cache[("alpha1 (pile-up fall x339)", False)], pmf_cache[("alpha1 (pile-up fall x201)", False)]]
+# v5 (R1 (c)): the factor-e size uncertainty of (alpha1) as size rows B x e^(-1), B x e^(+1) (counted-ceiling reading), and the
+# log-normal reading (width e^1.06 / e^0.94 on DIF / conversions) that is shown but not used.
+for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
+    d_, g_ = ALPHA[(tag, False)]
+    out_ = []
+    for ex in (-1, 1):
+        pm_, bq_ = pmf_pred(kap_nodif + [(K_DIF, d_ * math.exp(ex) / K_DIF), (kz, g_ * math.exp(ex) / kz)], (PU9,))
+        l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+        out_.append(f"B x e^{ex:+d}: B50 {bq_[1]:.0f}, median reach {rfmt(l_[0])}, 84 % edge {rfmt(l_[1])}")
+    pm_, bq_ = pmf_pred(kap_nodif, (PU9, (d_, W_DIF, None), (g_, W_GAM, None)))
+    l_ = [s95_pmf(pm_, quant_pmf(pm_, f)) for f in (0.5, 0.84)]
+    print(f"  v5 (R1) {tag}, no credit: " + "; ".join(out_) + f"; log-normal reading (not used): B16/B50/B84 {bq_[0]:.0f} / {bq_[1]:.0f} / {bq_[2]:.0f},"
+          f" median reach {rfmt(l_[0])}, 84 % edge {rfmt(l_[1])} GeV")
 e0 = pmf_cache["R09"]
 print(f"  HEADLINE (P2): empty ceilings, R09-like: reach {rfmt(e0[5])} GeV at the 84 % edge, median {rfmt(e0[4])}; (alpha1) no credit: B50 {a1[0][1]:.0f}-{a1[1][1]:.0f},"
       f" median reach {rfmt(a1[1][4])}-{rfmt(a1[0][4])} GeV, 84 % edge {rfmt(a1[1][5])}-{rfmt(a1[0][5])}; (beta) m_H = 10: median {rfmt(pmf_cache['beta10'][4])}, 84 % edge {rfmt(pmf_cache['beta10'][5])};"
       f" negligible background 1026 GeV")
+a1p = [pmf_cache[("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", False)],
+       pmf_cache[("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)", False)]]
+print(f"  HEADLINE v5 (R1): (alpha1') no credit: B50 {a1p[0][1]:.0f}-{a1p[1][1]:.0f}, median reach {rfmt(a1p[0][4])}-{rfmt(a1p[1][4])} GeV, 84 % edge {rfmt(a1p[0][5])}-{rfmt(a1p[1][5])},"
+      f" fixed B {rfmt(s95_fixed(a1p[0][1]))}-{rfmt(s95_fixed(a1p[1][1]))}; (beta) m_H = 10 / 30 / 100: median {rfmt(pmf_cache['beta10'][4])} / {rfmt(pmf_cache['beta30'][4])} / {rfmt(pmf_cache['beta100'][4])},"
+      f" 84 % edge {rfmt(pmf_cache['beta10'][5])} / {rfmt(pmf_cache['beta30'][5])} / {rfmt(pmf_cache['beta100'][5])}; Z(nunu) m_H = 1000 with the count width: B50 {pmf_cache['Z1000'][1]:.0f},"
+      f" median reach {rfmt(pmf_cache['Z1000'][4])}")
 print(f"  one-bin limit with every zero-count term dropped: {-math.log(0.05):.2f}; with the floors: {e0[4] if False else s95_pmf(pmf_pred(kap)[0], quant_pmf(pmf_pred(kap)[0], 0.5)):.1f}")
 for c_h in (C_POOL + RESERVE2, 2 * C_POOL):
     kp = [(r[4], 0) for r in floor_table(c_h)] + [MJK]
@@ -768,6 +815,12 @@ print(f"  P3/P14 EST: H_CKF(R08) = {H_CKF[0]:.2g}-{H_CKF[1]:.2g} per event; m_H(
       f" pilot (2.3e6 events) expects {H_CKF[0] * PILOT_HS:.1f}-{H_CKF[1] * PILOT_HS:.1f} counts at R08")
 for eps in (0.8, 0.9, 0.98):
     print(f"    option (a), eps_pair = {eps}: m_H = {H_CKF[0] * MZ / (1 - eps):.0f}-{H_CKF[1] * MZ / (1 - eps):.0f}; pilot counts {H_CKF[0] * PILOT_HS / (1 - eps):.1f}-{H_CKF[1] * PILOT_HS / (1 - eps):.1f}")
+# v5 (R1, point 4): the same with the conversions' own fall (x6.5 per width step, v1's 13 -> 2) instead of the pile-up fall.
+# Z(nunu) photon rate per event: background.json -> cprime.gamma.rate.per_process.Znunu_j = 0.2306 (read this session).
+GZ = 0.23059926668409783
+EV_GZ = NZ * GZ * (2 / 500.0) / 6.5
+print(f"  v5 (R1) P3/P14 EST with the conversions' own fall: Z(nunu) conversion part at R08 = {NZ:.3g} x {GZ:.4f} x (2/500) / 6.5 = {EV_GZ:.3g} events in 3 ab^-1;"
+      f" m_H = {EV_GZ / kz:.3g} in {MZ:.3g} pool events, {EV_GZ / kz * PILOT_HS / MZ:.3g} in the pilot's {PILOT_HS:.2g} events (day-15 class limit m_H = 125)")
 
 # ---- [10] zero-count likelihood: one-bin analytic checks (M1) ----------------------------------------------------------------------
 # One bin, one background term B = kappa * lambda, auxiliary count m = 0, lambda ~ Gamma(1) (flat prior).
@@ -1231,4 +1284,4 @@ print("  infracolour correction with the vector-current threshold factor quoted 
 print(f"  T1-e per-nuisance reading: P(|pull| > 2) = {2 * Phi(-2):.3f}; on 200 pseudo-experiments its binomial error is {math.sqrt(2 * Phi(-2) * (1 - 2 * Phi(-2)) / 200):.3f}; threshold 0.10 is {(0.10 - 2 * Phi(-2)) / math.sqrt(2 * Phi(-2) * (1 - 2 * Phi(-2)) / 200):.1f} sigma above")
 print("  B1-g test, expected secondary-attributed counts in 4,000 trials at R04/R05/R06/R07 (rate 1.57 x v1 counts per 500): "
       + " / ".join(f"{4000 * 1.57 * c / 500:.0f}" for c in (166, 81, 2, 1)))
-print(f"  DIF rate per triggered event by process (background.json -> cprime.dif.rate.per_process): 1.569 (Z nunu) to 1.5945 (tt 2l): spread {1.5945 / 1.5691 - 1:.3f}")
+print(f"  DIF rate per triggered event by process (background.json -> cprime.dif.rate.per_process): 1.5687 (WZ; v5, G-C14) to 1.5945 (tt 2l): spread {1.5945 / 1.5687 - 1:.3f}")
