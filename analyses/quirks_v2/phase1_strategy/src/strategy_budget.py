@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Arithmetic behind the Phase-1 STRATEGY v4 (STRATEGY_fiona_2026-11-13_23-05.md).
+"""Arithmetic behind the Phase-1 STRATEGY (current version: see COMMITMENTS.md).
 
-Standard library only; run as `python3 -I strategy_budget.py` (about ten seconds; allowed on einstein).
+Standard library only; run as `python3 -I strategy_budget.py` (about 75 seconds; allowed on einstein).
 History: v1 by Brigitte (17:55); rewritten by the fixer Dmitri for review cycle 1 (arbiter findings M1-M35);
 updated by the fixer Emeric for review cycle 2 (findings N1-N18 and the residuals of M4, M5, M11, M12, M15, M24, M26);
 updated by the fixer Fiona for review cycle 3 (findings P1-P16 and the adopted C items; "v4" lines below);
@@ -850,59 +850,121 @@ U1_I = [pmf_pred(kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] * math.exp(-1) / K_D
 U1_II = {eps: [sum(k * (m + 0.67) for k, m in kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] / (1 - eps) / K_DIF), (kz, ALPHA[(t_, False)][1] / (1 - eps) / kz)]) + pu9 for t_ in ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", "alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)")] for eps in (0.8, 0.98)}
 print(f"    v7 (U1): (alpha1) conversions removed, DIF x e^-1 (both falls): B50 {U1_I[0]:.0f} / {U1_I[1]:.0f} (x339 / x201) -> {'at or below' if max(U1_I) <= 300 else 'above'} 300")
 print(f"    v7 (U1): (alpha1') on the day-15 own-hit basis, conversions and DIF x 1/(1 - eps_pair) at eps_pair = 0.8 / 0.98 (assumed, not measured; photon rate 0.379): B50 ≈ {U1_II[0.8][0]:.3g}-{U1_II[0.8][1]:.3g} / {U1_II[0.98][0]:.3g}-{U1_II[0.98][1]:.3g} (sum of medians)")
-# v8 (V1, verdict cycle 7 §4 item S): day-15 reading under §11.7 rule 1: every no-pile-up term at max(zero-count floor,
-# N_t x H) on all own hits, no S_CKF, no conditional, no credit that exists only after the freeze; pilot exposures for
-# the terms the pilot measures (Z(nunu) 2.3e6 events, DIF and each NI radius 1e6 events); every other term at its
-# Table 4.4a floor. Rows marked (c) are the Q2 (c) test only: conditional and S_CKF estimated on development samples (EST).
-PIL_N = {"Z(nunu)+j": PILOT_HS, "DIF": 1e6, "NI 22 mm": 1e6, "NI 30 mm": 1e6, "NI 61.5 mm": 1e6}
-K_PIL = {r[0]: max(r[4], r[1] / PIL_N[r[0]]) for r in rows if r[0] in PIL_N}
-kap_d15 = [(K_PIL.get(r[0], r[4]), 0) for r in rows] + [MJK]
-def _b50(gam):
-    return pmf_pred(gam, (PU9,))[1][1]
-def _cls(b):
-    return "below" if b <= 300 else "above"
-print("  v8 (V1): day-15 reading under §11.7 rule 1 (own hits before CKF, no S_CKF, no conditional, no post-freeze credit; class limit B50 <= 300)")
-print("  | branch | basis | B50 at day 15 | vs 300 |")
-pz = pmf_pred(kap_d15, (PU9,))[1]
-print(f"  | every pilot ceiling zero (DIF, NI, Z(nunu) at their pilot exposures; others at their floors) | rule 1 | {pz[1]:.0f} [16-84 %: {pz[0]:.0f}-{pz[2]:.0f}] | {_cls(pz[1])} |")
-kd15_noz = [(K_PIL.get(r[0], r[4]), 0) for r in rows if r[0] != "Z(nunu)+j"] + [MJK]
-kzp = K_PIL["Z(nunu)+j"]
-zr = [(mp, _b50(kd15_noz + [(kzp, mp)])) for mp in (5, 10, 15, 20, 25, 50)]
-print("  | Z(nunu) at its pilot ceiling count m (others as row 1), m = " + " / ".join(str(m) for m, _ in zr) + " | rule 1 | "
-      + " / ".join(f"{b:.0f}" for _, b in zr) + " | " + " / ".join(_cls(b) for _, b in zr) + " |")
-for mh in (10, 30, 50, 60, 70, 100):
-    gam_g = [(K_PIL.get(r[0], r[4]), 0) for r in rows if r[0] not in SMSET] + [(r[4], mh * r[2] / MZ) for r in rows if r[0] in SMSET] + [(MJ_PLAN / MJ_LOOSE, mh * MJ_LOOSE / MZ)]
-    b_ = _b50(gam_g)
-    print(f"  | (gamma) every SM ceiling at H per event as Z(nunu), m_H = {mh} pool counts (= {mh * PILOT_HS / MZ:.0f} pilot counts); DIF, NI empty at their pilot exposures | rule 1 | {b_:.0f} | {_cls(b_)} |")
-print("  | (beta) | not a day-15 branch: its Z(nunu) credit (B4-c) exists only after the freeze; at day 15 it is the (gamma) row with the same m_H | — | — |")
-for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
-    d_, g_ = ALPHA[(tag, False)]
-    own = [sum(k * (m + 0.67) for k, m in kap_nodif) + pu9 + (d_ + g_) / (1 - e_) for e_ in (0.8, 0.98)]
-    print(f"  | {tag}, no credit | after CKF (Table 4.4c) / own hits at eps_pair 0.8 / 0.98 | {pmf_cache[(tag, False)][1]:.0f} / ≈ {own[0]:.3g} / ≈ {own[1]:.3g} | above |")
-print(f"  | (alpha1'), no credit (expected branch) | own hits at eps_pair 0.8 / 0.98 | ≈ {U1_II[0.8][0]:.3g}-{U1_II[0.8][1]:.3g} / {U1_II[0.98][0]:.3g}-{U1_II[0.98][1]:.3g} | above |")
-for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
-    print(f"  | (c) only: {tag} with fit-probability credit on DIF and conversions (needs (c) to target DIF) | (c), EST | {pmf_cache[(tag, True)][1]:.0f} | below |")
-def _need(dfac, tag, fr=1.0):
-    d_ = ALPHA[(tag, False)][0] * dfac
-    base = kap_nodif + ([(K_DIF, d_ / K_DIF)] if d_ > 0 else [])
-    if _b50(base) > 300:
+# v9 (W1, verdict cycle 8): day-15 reading under §11.7 rule 1 as a function of the pilot counts alone. Samples that exist at
+# day 15: the pilot's 1e6 DIF events, 1e6 events per NI radius and PILOT_HS = 2.3e6 Z(nunu) events (no pool, no other SM sample).
+# Every term enters at (N_t / M_pilot) x Gamma(m + 1) of an own-hit count before CKF (m = 0: its zero-count floor on the sample
+# that exists at day 15): DIF and each NI radius on their own pilot sample; every SM hard-scatter process and the multijets at the
+# H per event of the Z(nunu) pilot (one count m_Z, one Gamma draw for all of them). No S_CKF, no conditional, no post-freeze credit,
+# no Table 4.4a pool floor. Pile-up: the R09 EST term PU9. B50 = median of D15_ND draws of pmf_pred's generator (seed 7); for the own-hit rows the
+# sum of medians sum kappa (m + 0.67) + pile-up median. Rows marked (c) are the Q2 (c) test only (EST): the leading terms after
+# S_CKF and the conditional, counted on the same pilot transfer factors, the zero-count floors kept without credit.
+D15_NI = ("NI 22 mm", "NI 30 mm", "NI 61.5 mm")
+D15_KD = NTRIG * RATE["DIF"] / 1e6
+D15_KNI = [NTRIG * RATE[t_] / 1e6 for t_ in D15_NI]
+D15_KSM = (sum(SM_NTRIG.values()) + MJ_PLAN) / PILOT_HS
+D15_KZ = NZ / PILOT_HS
+D15_GZ = 0.23059926668409783                            # v1 photon rate of Z(nunu)+j (= GZ below; background.json -> cprime.gamma.rate.per_process.Znunu_j)
+D15_ZCONV = NZ * D15_GZ * (2 / 500.0) / 6.5             # Z(nunu) conversions at R08 after CKF, own fall (= EV_GZ below)
+D15_ND = 20000                                          # draws per median (precision: about 0.5 % of a median, about 3 % of a rejection factor)
+D15_T1 = ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)")
+D15_G = (("0.379", G_A1P), ("0.255", G_A1P * F_GAM["N_trig-weighted rate 0.255"]), ("Z(nunu) 0.231 (the pilot's own)", D15_ZCONV * D15_KSM / D15_KZ))
+
+
+def d15_gam(m_z=0.0, m_dif=0.0, m_ni=(0.0, 0.0, 0.0)):
+    """rule-1 terms from the pilot counts: (transfer factor, count) for DIF, the three NI radii, all SM + multijets."""
+    return [(D15_KD, m_dif)] + [(k_, m_) for k_, m_ in zip(D15_KNI, m_ni)] + [(D15_KSM, m_z)]
+
+
+def d15_q(gam, nd=None, seed=7):
+    """16 %, 50 %, 84 % quantiles of sum kappa x Gamma(m + 1) + PU9: the draws of pmf_pred(gam, (PU9,), nd, seed) without its pmf."""
+    nd = D15_ND if nd is None else nd
+    rnd = random.Random(seed)
+    bs = []
+    for _ in range(nd):
+        b = sum(k * rnd.gammavariate(m + 1, 1.0) for k, m in gam)
+        x = PU9[0] * math.exp(PU9[1] * rnd.gauss(0, 1))
+        bs.append(b + min(x, -PU9[2] * rnd.expovariate(1.0)))
+    bs.sort()
+    return bs[int(0.16 * nd)], bs[nd // 2], bs[int(0.84 * nd)]
+
+
+def d15_b50(gam):
+    return d15_q(gam)[1]
+
+
+def d15_som(gam):
+    return sum(k * (m + 0.67) for k, m in gam) + pu9
+
+
+def d15_cls(b):
+    return "below" if b <= 297 else ("above" if b > 303 else "at the limit")   # within 1 % of 300: not resolved by the draws
+
+
+def d15_need(fd, tag, g, rmax=1e5):
+    """smallest integer conversion rejection R with B50 <= 300; None if B50 > 300 with the conversions removed entirely."""
+    md_ = ALPHA[(tag, False)][0] * fd / D15_KD
+    if d15_b50(d15_gam(0.0, md_)) > 300:
         return None
-    lo, hi = 1.0, 1e4
+    lo, hi = 1.0, rmax
     for _ in range(16):
         mid = math.sqrt(lo * hi)
-        if _b50(base + [(kz, G_A1P * fr / mid / kz)]) > 300:
+        if d15_b50(d15_gam(g / mid / D15_KSM, md_)) > 300:
             lo = mid
         else:
             hi = mid
-    return hi
-print("  | (c) only (EST): conversion rejection needed for B50 <= 300, by the decays-in-flight size (factor f_D on v1's central size; (alpha1) DIF at fall x339 / x201) |")
-for fd_, fl_ in ((0.0, "0 (removed)"), (0.25, "1/4"), (math.exp(-1), "e^-1"), (0.5, "1/2"), (1.0, "1 (v1's central size)")):
+    r_ = math.ceil(hi)
+    while d15_b50(d15_gam(g / r_ / D15_KSM, md_)) > 300:
+        r_ += 1
+    return r_
+
+
+D15 = {}
+print("  v9 (W1): day-15 reading under §11.7 rule 1, a function of the pilot counts alone (own hits before CKF, no S_CKF, no conditional, no post-freeze credit; the study pauses if B50 > 300)")
+print(f"  basis: events in 3 ab^-1 per pilot count: DIF {D15_KD:.1f} (1e6 events); NI {' / '.join(f'{k_:.2f}' for k_ in D15_KNI)} (1e6 events per radius); every SM hard-scatter process and the multijets"
+      f" through the Z(nunu) pilot count: {D15_KSM:.1f} (= (sum N_t + N_MJ) / {PILOT_HS:.2g} = {D15_KSM / D15_KZ:.2f} x Z(nunu)'s own {D15_KZ:.1f}); pile-up R09 EST median {pu9:.1f}; no pool floor enters; medians of {D15_ND} draws (seed 7)")
+print("  (the v6 (T2) and v7 (U1) lines above are on the Table 4.4c basis: pool floors, conversions of all processes at the photon rate 0.379; they are not the day-15 reading, which is this table)")
+print("  | pilot counts (branch) | B50 at day 15 | vs 300 |")
+D15["empty"] = d15_q(d15_gam())
+print(f"  | every pilot count zero | {D15['empty'][1]:.0f} [16-84 %: {D15['empty'][0]:.0f}-{D15['empty'][2]:.0f}] | {d15_cls(D15['empty'][1])} |")
+D15["mz"] = [(m_, d15_b50(d15_gam(m_))) for m_ in (2, 5, 8, 10, 11, 12, 13, 15, 20)]
+print("  | Z(nunu) pilot count m_Z, DIF and NI counts zero; m_Z = " + " / ".join(str(m_) for m_, _ in D15["mz"]) + " | "
+      + " / ".join(f"{b_:.0f}" for _, b_ in D15["mz"]) + " | " + " / ".join(d15_cls(b_) for _, b_ in D15["mz"]) + " |")
+D15["md"] = [(m_, d15_b50(d15_gam(0, m_))) for m_ in (1, 2, 3, 4, 5)]
+print("  | DIF pilot count m_D, Z(nunu) and NI counts zero; m_D = " + " / ".join(str(m_) for m_, _ in D15["md"]) + " | "
+      + " / ".join(f"{b_:.0f}" for _, b_ in D15["md"]) + " | " + " / ".join(d15_cls(b_) for _, b_ in D15["md"]) + " |")
+D15["gamma"] = [(mh_, mh_ * PILOT_HS / MZ, d15_b50(d15_gam(mh_ * PILOT_HS / MZ))) for mh_ in (10, 30, 60, 100)]
+print("  | (gamma), and (beta) at day 15 (its Z(nunu) credit exists only after the freeze): the Z(nunu)-count row; m_H = " + " / ".join(str(a_) for a_, _, _ in D15["gamma"])
+      + " pool-equivalent counts = m_Z " + " / ".join(f"{p_:.1f}" for _, p_, _ in D15["gamma"]) + " | " + " / ".join(f"{b_:.0f}" for _, _, b_ in D15["gamma"])
+      + " | " + " / ".join(d15_cls(b_) for _, _, b_ in D15["gamma"]) + " |")
+for key_, lab_, zc_ in (("a1", "(alpha1), no credit: decays in flight and conversions falling like pile-up", [D15_ZCONV * 6.5 / f_ for f_ in FALL_PU]),
+                        ("a1p", "(alpha1'), no credit (expected branch): conversions at their own fall", [D15_ZCONV, D15_ZCONV])):
     cells = []
-    for fr_, rl_ in ((1.0, "0.379"), (F_GAM["N_trig-weighted rate 0.255"], "0.255")):
-        nn = [_need(fd_, t_, fr_) for t_ in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)")]
-        cells.append(f"photon rate {rl_}: " + " / ".join("none suffices" if x is None else f"x{x:.0f} ({1 - 1 / x:.1%})" for x in nn))
-    print(f"  |   f_D = {fl_} | " + "; ".join(cells) + " |")
-print("  |   (alpha1) conversion levels for comparison: x52.1 / x31.0 (98.1 % / 96.8 %); without an S_CKF estimate every factor is x1/(1 - eps_pair) larger (x5-50, assumed) |")
+    for e_ in (0.8, 0.98):
+        v_ = [d15_som(d15_gam(z_ / (1 - e_) / D15_KZ, ALPHA[(t_, False)][0] / (1 - e_) / D15_KD)) for t_, z_ in zip(D15_T1, zc_)]
+        D15[(key_, e_)] = v_
+        cells.append(f"{v_[0]:.2g}-{v_[1]:.2g}")
+    mz_ = sorted({f"{z_ / 0.2 / D15_KZ:.0f}" for z_ in zc_}, key=float)
+    print(f"  | {lab_}; own hits at eps_pair 0.8 / 0.98 (assumed); expected pilot counts at 0.8: m_Z {'-'.join(mz_)},"
+          f" m_D {ALPHA[(D15_T1[0], False)][0] / 0.2 / D15_KD:.0f}-{ALPHA[(D15_T1[1], False)][0] / 0.2 / D15_KD:.0f} | ≈ {cells[0]} / {cells[1]} (sum of medians) | above |")
+D15["credit"] = [d15_b50(d15_gam(ALPHA[(t_, True)][1] / D15_KSM, ALPHA[(t_, True)][0] / D15_KD)) for t_ in D15_T1]
+print(f"  | (c) only (EST): (alpha1) with fit-probability credit 2/35 (v1's central pile-up fraction; the test takes its 68 % upper value) on decays in flight and conversions (photon rate 0.379), after CKF; x339 / x201"
+      f" | {D15['credit'][0]:.0f} / {D15['credit'][1]:.0f} | {d15_cls(D15['credit'][0])} / {d15_cls(D15['credit'][1])} |")
+print("  | (c) only (EST): smallest conversion rejection with B50 <= 300, by the decays-in-flight size f_D x v1's central size ((alpha1) DIF at fall x339 / x201), decays in flight and conversions after CKF"
+      " (S_CKF estimated), the zero-count floors kept; conversions at v1's photon rate; a factor is precise to about 3 % |")
+D15["grid"] = {}
+D15["base"] = {}
+for fd_, fl_ in ((0.0, "0 (pilot count zero)"), (0.25, "1/4"), (math.exp(-1), "e^-1"), (1.0, "1 (v1's central size)")):
+    D15["base"][fd_] = [d15_b50(d15_gam(0.0, ALPHA[(t_, False)][0] * fd_ / D15_KD)) for t_ in D15_T1]
+    cells = []
+    for gl_, g_ in D15_G:
+        nn = [d15_need(fd_, t_, g_) for t_ in D15_T1]
+        D15["grid"][(fd_, gl_)] = nn
+        cells.append(f"{gl_}: " + " / ".join("none suffices" if x is None else f"x{x:d} ({1 - 1 / x:.1%})" for x in nn))
+    print(f"  |   f_D = {fl_} | B50 with the conversions removed {D15['base'][fd_][0]:.0f} / {D15['base'][fd_][1]:.0f} | " + "; ".join(cells) + " |")
+D15["own"] = [d15_need(0.0, D15_T1[0], G_A1P / (1 - e_)) for e_ in (0.8, 0.98)]
+D15["own_dif"] = [d15_som(d15_gam(0.0, ALPHA[(D15_T1[0], False)][0] * 0.25 / (1 - 0.8) / D15_KD))]
+print(f"  |   without an S_CKF estimate (own hits; eps_pair 0.8 / 0.98, assumed): f_D = 0: x{D15['own'][0]:d} / x{D15['own'][1]:d} at 0.379; f_D >= 1/4: none suffices"
+      f" (decays in flight alone: B50 ≈ {D15['own_dif'][0]:.0f} or more) |")
 # v5 (R1 (c)): the factor-e size uncertainty of (alpha1) as size rows B x e^(-1), B x e^(+1) (counted-ceiling reading), and the
 # log-normal reading (width e^1.06 / e^0.94 on DIF / conversions) that is shown but not used.
 for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
@@ -961,7 +1023,73 @@ for eps in (0.8, 0.9, 0.98):
 GZ = 0.23059926668409783
 EV_GZ = NZ * GZ * (2 / 500.0) / 6.5
 print(f"  v5 (R1) P3/P14 EST with the conversions' own fall: Z(nunu) conversion part at R08 = {NZ:.3g} x {GZ:.4f} x (2/500) / 6.5 = {EV_GZ:.3g} events in 3 ab^-1;"
-      f" m_H = {EV_GZ / kz:.3g} in {MZ:.3g} pool events, {EV_GZ / kz * PILOT_HS / MZ:.3g} in the pilot's {PILOT_HS:.2g} events (day-15 class limit: m_H = 125 in the pool for Z(nunu) alone, about 20 pilot counts: v8 table)")
+      f" m_H = {EV_GZ / kz:.3g} in {MZ:.3g} pool events, {EV_GZ / kz * PILOT_HS / MZ:.3g} in the pilot's {PILOT_HS:.2g} events (class limit B50 = 300: m_H = 125 pool counts if Z(nunu) alone sat at its ceiling; the day-15 rule reads the pilot count for every SM process and is at the limit at 12 pilot counts: v9 table)")
+# v9 (W1) self-test of the day-15 table: every check recomputes from the raw inputs (NTRIG, RATE, SM_NTRIG, MJ_PLAN, the pilot sizes
+# written out) through d15_q (tied to pmf_pred by check 2) or an independent draw (seed 11), not through the table rows above.
+def d15_test():
+    ok = []
+
+    def chk(name, cond, info=""):
+        ok.append(bool(cond))
+        print(f"  v9 self-test {len(ok)}: {'PASS' if cond else 'FAIL'}: {name}" + (f" [{info}]" if info else ""))
+    nsm = sum(SM_NTRIG.values()) + MJ_PLAN
+    raw = lambda mz=0.0, md=0.0: [(4.0848e7 * 1.5945 / 1e6, md)] + [(NTRIG * RATE[t_] / 1e6, 0) for t_ in ("NI 22 mm", "NI 30 mm", "NI 61.5 mm")] + [(nsm / 2.3e6, mz)]
+    ref = lambda g: d15_q(g)[1]
+    # 1 basis: pilot exposures only, no pool transfer factor
+    pool = [r[4] for r in rows] + [MJK[0]]
+    used = [k for k, _ in d15_gam()]
+    chk("basis = pilot exposures (DIF, NI: N_t / 1e6; all SM + multijets: (sum N_t + N_MJ) / 2.3e6); no pool transfer factor used",
+        all(abs(a - b) < 1e-9 * b for a, b in zip(used, [k for k, _ in raw()])) and not any(abs(k - p) < 1e-9 * p for k in used for p in pool),
+        "kappa " + " / ".join(f"{k:.2f}" for k in used))
+    # 2 key cells against pmf_pred on the raw inputs
+    cells = [("empty", D15["empty"][1], raw())] + [(f"m_Z = {m}", b, raw(m)) for m, b in D15["mz"] if m in (11, 12, 13)] + [(f"m_D = {m}", b, raw(0, m)) for m, b in D15["md"] if m in (3, 4)]
+    dv = [(n, b, pmf_pred(g, (PU9,), nd=D15_ND)[1][1]) for n, b, g in cells if n in ("empty", "m_Z = 12", "m_D = 4")]
+    chk("key cells equal pmf_pred(raw inputs, (PU9,), nd = D15_ND)", len(dv) == 3 and all(abs(b - r) < 1e-6 for _, b, r in dv), "; ".join(f"{n}: {r:.1f}" for n, _, r in dv))
+    # 3 independent draw (seed 11, 100,000 draws): the table's medians within 2 %
+    hs = [(n, b, d15_q(g, nd=100000, seed=11)[1]) for n, b, g in cells]
+    chk("key cells within 2 % of an independent 100,000-draw median (seed 11)", all(abs(b - h) < 0.02 * h for _, b, h in hs), "; ".join(f"{n}: {h:.1f}" for n, _, h in hs))
+    # 4 monotonic in the counts
+    sz = [ref(raw(m)) for m in range(0, 22)]
+    sd = [ref(raw(0, m)) for m in range(0, 7)]
+    chk("B50 rises with the Z(nunu) count (0-21) and with the DIF count (0-6)", all(a < b for a, b in zip(sz, sz[1:])) and all(a < b for a, b in zip(sd, sd[1:])))
+    # 5 thresholds
+    chk("threshold: Z(nunu) count 11 below (<= 297), 12 at the limit (297-303), 13 above (> 303); DIF count 3 below, 4 above",
+        sz[11] <= 297 < sz[12] <= 303 < sz[13] and sd[3] <= 297 and sd[4] > 303, f"{sz[11]:.1f} / {sz[12]:.1f} / {sz[13]:.1f}; {sd[3]:.1f} / {sd[4]:.1f}")
+    # 6 no S_CKF and no conditional in the own-hit rows: (reading - empty sum of medians) x (1 - eps) = after-CKF level of all SM + DIF
+    t_ = []
+    for e_ in (0.8, 0.98):
+        for i_, tg_ in enumerate(D15_T1):
+            lev = EV_GZ * nsm / NZ + ALPHA[(tg_, False)][0]
+            t_.append(abs((D15[("a1p", e_)][i_] - d15_som(raw())) * (1 - e_) - lev) < 1e-6 * lev)
+            lev = EV_GZ * 6.5 / FALL_PU[i_] * nsm / NZ + ALPHA[(tg_, False)][0]
+            t_.append(abs((D15[("a1", e_)][i_] - d15_som(raw())) * (1 - e_) - lev) < 1e-6 * lev)
+    chk("own-hit rows = after-CKF level x 1/(1 - eps_pair) on top of the empty reading (no S_CKF, no conditional); Z(nunu) conversions = EV_GZ", all(t_) and abs(D15_ZCONV - EV_GZ) < 1e-9 * EV_GZ and D15_GZ == GZ and min(min(v) for k, v in D15.items() if isinstance(k, tuple)) > 300,
+        f"(alpha1') at 0.8: {D15[('a1p', 0.8)][0]:.4g}; smallest own-hit cell {min(min(v) for k, v in D15.items() if isinstance(k, tuple)):.4g}, above 300")
+    # 7 grid, on an independent draw (seed 11, 50,000 draws): 1.1 x the printed factor passes, the factor / 1.1 fails; "none" where the
+    # conversion-free reading is above 300
+    hsq = lambda g: d15_q(g, nd=50000, seed=11)[1]
+    g_ok = []
+    for (fd_, gl_), nn in D15["grid"].items():
+        g_ = dict(D15_G)[gl_]
+        for tg_, x in zip(D15_T1, nn):
+            md_ = ALPHA[(tg_, False)][0] * fd_ / (4.0848e7 * 1.5945 / 1e6)
+            if x is None:
+                g_ok.append(hsq(raw(0.0, md_)) > 300)
+            else:
+                g_ok.append(hsq(raw(g_ / (1.1 * x) / (nsm / 2.3e6), md_)) <= 300 < hsq(raw(g_ / (x / 1.1) / (nsm / 2.3e6), md_)))
+    chk(f"grid, independent draw: each of the {len(g_ok)} cells passes at 1.1 x its printed factor and fails at the factor / 1.1; 'none suffices' only where B50 > 300 with the conversions removed",
+        all(g_ok), f"{sum(g_ok)} of {len(g_ok)}")
+    # 8 grid ordering: the factor rises with f_D and with the photon rate
+    key = lambda x: 1e99 if x is None else x
+    fds = sorted({k[0] for k in D15["grid"]})
+    gls = [g[0] for g in D15_G]
+    chk("grid: the factor does not fall with f_D, nor from the pilot's own rate to 0.255 to 0.379",
+        all(key(D15["grid"][(a, gl)][i]) <= key(D15["grid"][(b, gl)][i]) for a, b in zip(fds, fds[1:]) for gl in gls for i in (0, 1))
+        and all(key(D15["grid"][(fd, gls[2])][i]) <= key(D15["grid"][(fd, gls[1])][i]) <= key(D15["grid"][(fd, gls[0])][i]) for fd in fds for i in (0, 1)))
+    print(f"  v9 self-test: {'ALL PASS' if all(ok) else 'FAILED'} ({sum(ok)} of {len(ok)})")
+
+
+d15_test()
 
 # ---- [10] zero-count likelihood: one-bin analytic checks (M1) ----------------------------------------------------------------------
 # One bin, one background term B = kappa * lambda, auxiliary count m = 0, lambda ~ Gamma(1) (flat prior).

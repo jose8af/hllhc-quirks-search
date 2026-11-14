@@ -1,11 +1,11 @@
 # Binding commitments
 
-Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_leopold_2026-11-14_05-00.md`
-("STR" below; version 8, after review cycle 7). Earlier versions of this file referred to
+Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md`
+("STR" below; version 9, after review cycle 8). Earlier versions of this file referred to
 `STRATEGY_brigitte_2026-11-13_17-55.md` (version 1), `STRATEGY_dmitri_2026-11-13_19-25.md` (version 2),
 `STRATEGY_emeric_2026-11-13_21-10.md` (version 3), `STRATEGY_fiona_2026-11-13_23-05.md` (version 4),
-`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5), `STRATEGY_ingrid_2026-11-14_02-20.md` (version 6) and
-`STRATEGY_jules_2026-11-14_03-40.md` (version 7).
+`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5), `STRATEGY_ingrid_2026-11-14_02-20.md` (version 6),
+`STRATEGY_jules_2026-11-14_03-40.md` (version 7) and `STRATEGY_leopold_2026-11-14_05-00.md` (version 8).
 Every MUST and SHOULD item of the publication plan is a "will implement", except S3 (endcap), dropped by the user
 (brief D1) and carried as an EST outlook statement.
 A status changes only through a logged `[D]` entry (JFC 12) or a user decision; never silently.
@@ -27,6 +27,13 @@ quantity; cumulative and crossing test rungs) and every probability is censored 
 Rows marked (DP) carry a downscope proposal that the user decides at Gate A; until then the full form is the commitment.
 Rows marked (Q-n) depend on a question the user answers at Gate A, rows marked (Df-n) contain a default the user
 can override (STR §12.1); until then the default is a proposal.
+
+## Changes of rows in version 9 (2026-11-14, fixer Mireille, review cycle 8: W1; nothing removed)
+
+| identifier | what happened |
+|---|---|
+| TG-1 (Q2) | §11.7 rule 1 made single-valued (W1): SM processes without a day-15 sample are read through the Z(νν) pilot count; day-15 limit ≈ 12 Z(νν) pilot counts; (c) factors do not multiply a zero-count floor; no status changed |
+| GA | eleven defaults: Df-11 (the reading of §11.7 rule 1 pinned in cycle 8, overridable) added (O6, orchestrator-ordered) |
 
 ## Changes of rows in version 8 (2026-11-14, fixer Leopold, review cycle 7: V1; nothing removed)
 
@@ -223,7 +230,7 @@ can override (STR §12.1); until then the default is a proposal.
 | INV-1 | Sample inventory with roles (development / derivation / test / production / reserve), seed streams and independence (STR §4.17) | every produced sample matches a row (including 13a, 18a, 18b; the 4a hit-level samples in two stages); no development sample enters a closure verdict; `DATA_MANIFEST.md` carries the stream names | 2–4a | 4a | open |
 | BL-1 | Complete list of signal quantities that exist before the closure verdicts: the C1 tier approved in Q1; A, f₂₀₀ and the migration fraction (selection-independent; A and m_mig computed once, after the MET model) | no other signal quantity in any artifact before the verdicts; B6 efficiency ratios and the tracker hit-time loss formed only after them (STR §4.1) | 2–4a | 4b | open |
 | FP-1 | Failure protocol after the freeze: ticket always; bug → dated addendum and one re-test on a fresh sample; no bug → reported as failed, [SD8] | each FAIL or INVESTIGATE closed along one of the three branches; fresh samples as named in STR §8 (second direct sample, test overlays, hit-level test halves, pool slice), each used at most once and reported as an overrun | 4a | 4a | open |
-| GA | The five questions (Q1–Q5) and the ten defaults (Df-1–Df-10) of Gate A (STR §12.1) | each question answered by the user and each override recorded in `LOG.md`; rows marked (Q-n) or (Df-n) updated by a logged entry | 1 | 1 | open |
+| GA | The five questions (Q1–Q5) and the eleven defaults (Df-1–Df-11) of Gate A (STR §12.1) | each question answered by the user and each override recorded in `LOG.md`; rows marked (Q-n) or (Df-n) updated by a logged entry | 1 | 1 | open |
 
 ## Systematic plan (STR §5; every "will implement")
 

@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Mireille | Phase-1 fixer, review cycle 8 → STRATEGY v9 (W1: rule-1 clarification, recomputed tables, self-test, text checker; verdict §3–§5 only) | opus | spawned 06:55 (14 Nov) | `phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md`, `src/strategy_budget.py`, `src/check_day15_text.py`, `budget_stdout_v9.txt`, `FIX_REPORT_cycle8_mireille.md` |
+| Mireille | Phase-1 fixer, review cycle 8 → STRATEGY v9 (W1: rule-1 clarification, recomputed tables, self-test, text checker; verdict §3–§5 only) | opus | DONE (sha256 equal to expected, self-test 8/8, text check 45/45, O6 = Df-11 row; 33 hunks, 0 unattributed); cycle-9 panel Nadia, Nikolai, Nora spawned 07:25 | `phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md`, `src/strategy_budget.py`, `src/check_day15_text.py`, `budget_stdout_v9.txt`, `FIX_REPORT_cycle8_mireille.md` |
 
 Phase-1 review history: cycles 1–8 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena, Margaret);
 A 11→4→1→0→0→0→0→0; B 24→14→15→5→3→1→4→1. Versions kept: v1 Brigitte … v8 Leopold, v9 Mireille.

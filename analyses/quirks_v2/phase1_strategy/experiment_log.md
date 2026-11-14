@@ -472,3 +472,15 @@ FLAG FOR HUMAN: YES (Q4)
 [Leopold]   (Table 4.4c rows 587 / 975) and l.365–366 ("after CKF (Table 4.4c)"); no number changed. O4 "v7 line" -> "U1 line" (§11.7 rule 1,
 [Leopold]   Q2 stem). O5 code-reference runtime "about 90 seconds" (measured 1:30, 35 MB). §13.7 row added. Diff v7 -> v8: 32 hunks, 0 unattributed.
 [Leopold]   Script untouched; both Q2 tables kept as ordered.
+
+[Mireille] 2026-11-14 06:55, fixer for review cycle 8 (verdict STRATEGY_ARBITER_v8_margaret: ITERATE, 0 A, 1 B = W1, root cause rule 1 ambiguous).
+[Mireille] Script: verdict §3.1 applied verbatim by a program that copies verdict l.225-339 (block A, replaces v8 l.853-905), the label of
+[Mireille]   l.964 (b), l.349-414 (block B, after l.964) and the docstring (C-5). check_day15_text.py = verdict l.480-627 byte for byte.
+[Mireille]   Run: 1 min 15 s, 36 MB; stdout 582 lines, sha256 0ca4af15f22d3025a5b338892b907a29f950b6af8af2050dd2cc5590e003433d = expected
+[Mireille]   (two runs). diff stdout v8 -> v9: hunks 354,376c354,370 and 396c390,399 only; cmp outside them identical. Self-test 8 of 8 PASS.
+[Mireille] STRATEGY v9 (STRATEGY_mireille_2026-11-14_06-55.md): T1-T18 applied by program (each old string unique; at the verdict's line
+[Mireille]   numbers), header, §13.8, code reference. Text check: ALL OK (45 of 45), no correction needed. COMMITMENTS.md: pointer, v9 row.
+[Mireille]   Diff v8 -> v9: 32 hunks, 0 unattributed. No departure from the verdict text. Gate-A package (§7) left to cycle 9 constructive.
+[Mireille] O6 (orchestrator-ordered, beyond verdict §3–§5): Df-11 row in §12.1 defaults (pinned rule-1 reading, worded from T10/T12; consequence by
+[Mireille]   reference to the v9 Z(nunu)-count row; override: see verdict §1); "ten" -> "eleven" defaults in v9 l.8, l.141 and COM GA row; §13.8 and COM
+[Mireille]   rows. Text check ALL OK (45 of 45). Diff v8 -> v9: 33 hunks, 0 unattributed. Script and stdout untouched.

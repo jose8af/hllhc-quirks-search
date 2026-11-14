@@ -233,3 +233,11 @@ moved factors by up to 25 %), 18 exact text replacements, an 8-check self-test i
 24→14→15→5→3→1→4→1.
 Note: the arbiter ran one read-only `git status` against its no-git instruction; no effect.
 Next: fixer Mireille (opus) applies the verdict's §3–§5 only → STRATEGY v9 → cycle 9 (last before escalation).
+
+### 07:25 — STRATEGY v9 (fixer Mireille): rule 1 clarified, tables recomputed on rule 1's own basis, mechanical guards
+Applied the cycle-8 verdict's §3–§5 with code and text copied programmatically from the verdict file. Script stdout
+sha256 equals the expected value (two runs); self-test 8/8 PASS; `check_day15_text.py` 45/45 on v9; outside the two
+tables, the label line and the self-test lines the script output is byte-identical to v8. Orchestrator-ordered
+addition O6: row Df-11 in the table of overridable defaults (the pinned reading of rule 1, citing the table row).
+Correction to the orchestrator's own brief for O6: the alternative reading with a pool floor is the *lenient* one
+per the verdict, not the stricter one; the fixer followed the verdict. 33 hunks v8→v9, none unattributed.
