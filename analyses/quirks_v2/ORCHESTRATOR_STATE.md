@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Jules | Phase-1 fixer, review cycle 6 → STRATEGY v7 (U1 + 10 C items) | opus | spawned 03:40 (14 Nov) | `phase1_strategy/outputs/STRATEGY_jules_2026-11-14_03-40.md`, `…/FIX_REPORT_cycle6_jules.md` |
+| Jules | Phase-1 fixer, review cycle 6 → STRATEGY v7 (U1 + 10 C items + O1, O2 orchestrator-ordered) | opus | DONE (28 hunks, 0 unattributed); cycle-7 panel Katya, Kenji, Klaus spawned 04:05 | `phase1_strategy/outputs/STRATEGY_jules_2026-11-14_03-40.md`, `…/FIX_REPORT_cycle6_jules.md` |
 
 Phase-1 review history: cycles 1–6 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna); merged A
 11→4→1→0→0→0; merged B 24→14→15→5→3→1 (U1). Versions kept: v1 Brigitte … v6 Ingrid, v7 Jules.

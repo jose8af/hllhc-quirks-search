@@ -1,0 +1,556 @@
+[1] unit costs
+  Stage 3: maxwell/M3 ratio at the 3 anchors = 2.14; sum over 8 Lambda = 95.6 s/event
+  per Lambda: {0.45: 0.08, 0.6: 0.17, 0.85: 0.45, 1: 0.65, 1.5: 2.29, 2: 5.41, 3: 18.8, 5: 67.8}
+  PU-200 row with one trial = 25.2 s; trial share of a B1-type event = 0.775
+
+[2] capacity
+  slot-h per week: 1625 with 10 off-hours slots (1851 with 12); per day 232.1
+  effective core-h per day: development 0.50 -> 116; average 0.60 -> 139; production 0.75 -> 174
+  if utilisation is 0.40: 93 per day
+
+[3] budget lines
+| phase | item | priority | what | CPU-h | arithmetic | prov. | finding |
+|---|---|---|---|---|---|---|---|
+| 2 | S2 | MUST | Stage 2: 5 species-masses, MLM, 250k LHE each | 17.4 | 1.25e6 x 50 ms | G |  |
+| 2 | S2 | MUST | NLO K(m): 18 masses + 2 process generations; same scan with PDF4LHC21 | 1.3 | 2 x 18 x 2 min + 2 x 3 min | M | C(P-C4) |
+| 2 | S2 | MUST | FxFx 0-1j points at 500 and 1500 GeV | 40.0 | 2 x 20 CPU-h (upper value of FEAS_B's 5-20) | G | C(P-C5) |
+| 2 | S2 | MUST | re-showers: QED FSR, qCut 30/60, Monash (4 variants) | 29.2 | 4 x 1.25e6 x 21 ms | M |  |
+| 2 | S1 | MUST | migration sample: generator cut lowered to 150 GeV, 5 x 100k LHE | 6.9 | 5e5 x 50 ms | G | M27 |
+| 2 | C1 | MUST | Stage 3 at the 3 C1 points | 3.6 | 463 x 2.3 + 463 x 5.4 + 492 x 18.8 s | D |  |
+| 3 | S1 | MUST | Stage 3 truth, 2000 rows x 5 species-masses x 8 Lambda (after A is fixed, N15) | 265.7 | 1e4 x 95.6 s | D | N15 |
+| 2 | P1 | MUST | B*-off paired, 970 events at 5 keV, on and off | 36.5 | 970 x 2 x 67.8 s (maxwell timing) | D | M19 |
+| 2 | P1 | MUST | floor tests, 1 keV B*-off and 5 x 300 new gate events, margin | 14.5 | 4 (floor) + 0.5 (1 keV) + 10 margin | G | M19 |
+| 2 | C1 | MUST | PU rho = 1, 4000 events x 4 roads | 67.1 | 4000 x 60.4 s | M |  |
+| 2 | C1 | MUST | PU rho = 2, 1000 events (pre-merge dump on) | 57.2 | 1000 x 206 s | D |  |
+| 2 | C1 | MUST | no-PU C'0, v1 sizes (5.4e5 events) | 1.7 | 5.4e5 x 11.5 ms | M |  |
+| 2 | C1 | MUST | C'_PU: 5000 events x 1 road | 35.1 | 5000 x 25.2 s | D |  |
+| 2 | C1 | MUST | SM Z(nunu) hit level, 2000 events x 1 road | 14.0 | 2000 x 25.2 s | D |  |
+| 2 | C1 | MUST | generator-level N_trig and rates | 5.0 |  | G |  |
+| 2 | C1 | MUST | signal: 3 points x 400 rows on the v1 path | 8.4 | 1200 x 25.2 s | D |  |
+| 2 | C1 | MUST | signal: full-chain twins of the two fast-path points | 5.6 | 800 x 25.2 s | D | M21 |
+| 2 | C2 | MUST | V4-5 brute force, 100 events | 30.0 | 100 x 0.3 CPU-h | G |  |
+| 2 | C2 | MUST | T_seed 4 -> 2 regression (500 rho=1 + 200 rho=2 events) | 44.2 | trials x 3 | G |  |
+| 2 | C2 | MUST | V4-4: 20 jobs x 2 reruns x 2 nodes | 6.7 | 80 x 5 min | M |  |
+| 2 | B2 | MUST | rho = 2 RSS, pre-merge size, thinning N_eff per rung, frozen-road timing | 10.0 |  | G |  |
+| 2 | B1 | MUST | enrichment pilot: 1e7 minimum-bias interactions at generator level | 6.9 | 1e7 x 2.5 ms | M | M6 |
+| 2 | B1 | MUST | enrichment pilot: 1e6 unbiased no-PU events each for DIF and the three NI radii (f_k, H, sagitta bound) | 12.8 | 4e6 x 11.5 ms | M | M6 |
+| 2 | B1 | MUST | Geant4 vertices of the pilot's unbiased DIF and NI events (one vertex per event) | 6.0 | 1e6 x 12.2 ms + 3e6 x 3.2 ms (gun yields 1.1 %, 4.2 %) | D | P4 (K-C10) |
+| 2 | B4 | MUST | pilot: N_t x H before the freeze for the largest term, 2.3e6 no-PU Z(nunu)+jets events | 28.8 | 2.3e6 x 45 ms | G | N1/N7 |
+| 2 | B1 | MUST | enrichment pilot: 1000 overlays of near-pass events | 7.0 | 1000 x 25.2 s | D | M3/M6 |
+| 2 | B3 | MUST | time-tag: hit-level late-hit density on the C1 events | 5.0 |  | G | M16 |
+| 2 | all | MUST | unit-cost timing jobs (no-PU hard scatter, signal row, MLM, 60-100-parameter workspace) | 5.0 |  | G | M19 |
+| 3 | B1 | MUST | Geant4 hand-over tests, small P_geo and overlay samples | 60.0 |  | G |  |
+| 3 | B1 | MUST | pile-up-vertex secondaries test: 1000 PU events with Geant4 secondaries | 17.5 | 1000 x (60.4 + 2.7) s | D | M26 |
+| 3 | B1 | MUST | development ceiling and completeness tests: 1000 unbiased Geant4 DIF overlays | 7.0 | 1000 x (25.2 s + 23.7 ms) | D | P4 |
+| 3 | B4 | MUST | MET model and its validation, biased multijet generation tests (no SM hit-level sample, P14) | 50.0 |  | G |  |
+| 3 | B3 | MUST | conditionals on development samples | 10.0 |  | G |  |
+| 3 | B2 | MUST | occupancy estimator on the Phase-2 PU samples | 10.0 |  | G |  |
+| 3 | T1 | MUST | workspace on v1 counts; zero-count tests (limiting case, large count, coverage); injection | 60.0 | 30 (v1) + 30 | G | M1/M7 |
+| 3 | dev | MUST | enlarged development closure samples (idle pre-freeze capacity) | 100.0 | about 5,960 B1-type events | G | C(N-C-6) |
+| 4a | B2 | MUST | PU rho = 1 direct, 24000 events x 4 roads | 402.7 | 24000 x 60.4 s | M |  |
+| 4a | B2 | MUST | PU rho = 2 with pre-merge candidates, 3000 events | 171.7 | 3000 x 206 s | D |  |
+| 4a | B1 | MUST | Geant4: realistic spectra, discs, I/O | 15.0 |  | G |  |
+| 4a | B1 | MUST | QGSP_BERT and composition variations: Geant4 + 5e6 no-PU events each | 51.9 | 2 x (10 CPU-h + 5e6 x 11.5 ms) | G | M19 |
+| 4a | B1 | MUST | no-PU pool, DIF and NI share: 3.61e+07 events, chain 115 + Geant4 vertices 92 CPU-h | 208.5 | 3.61e+07 x 11.5 ms + (2.44e+07 / 0.011 + 1.08e+07 / 0.042) guns x 0.134 ms | D | N8 |
+| 4a | B4 | MUST | no-PU pool, SM hard-scatter share: 3.65e+07 events | 456.6 | 3.65e+07 x 45 ms | G | N8 |
+| 4a | B1 | MUST | overlays: DIF 9000 + NI 3 x 1500 + 4 sub-topologies x 1000 unbiased events | 122.7 | 17500 x 25.2 s | D | N8/N2 |
+| 4a | B1 | MUST | no-PU scan slice for the test overlays (disjoint seed stream), 2e6 events | 13.2 | 2e6 x (11.5 + 12.2) ms | D | N17 |
+| 4a | B2 | MUST | crossing test rungs: re-analysis of the direct, overlay and hit-level samples | 5.0 |  | G | N5 |
+| 4a | B1 | MUST | paired pile-up-only finder pass (term hits removed) on the 4,000 unbiased B1 test overlays | 13.0 | 4000 x 11.7 s | M | P5 |
+| 4a | B4 | MUST | paired pile-up-only finder pass on 1,000 test-half events of each of the four supplied B4 processes | 13.0 | 4000 x 11.7 s | M | P5 |
+| 4a | B4 | MUST | paired pile-up-only finder pass on 1,000 test-half events of each of the eleven other SM processes (incl. Z(tautau), lost-lepton Z(ll), multijets) | 35.8 | 11000 x 11.7 s | M | R5 |
+| 4a | B3 | MUST | conditionals, vertex veto, stability across rungs, time-tag closure (re-analysis) | 25.0 | 20 + 5 | G | M16 |
+| 4a | B4 | MUST | hit level: 11 new processes x 2000 + Z(nunu) 10000 + 3 x 2000 (v2 sizes) | 266.4 | 38000 x 25.2 s | D |  |
+| 4a | B4 | MUST | hit level: W(tau_h) raised to 11250 events (test half evaluable at R06) | 64.9 | 9250 x 25.2 s | D | N2 |
+| 4a | B4 | MUST | hit level: W(tau_l) raised to 7662 events (test half evaluable at R06) | 39.7 | 5662 x 25.2 s | D | N2 |
+| 4a | B4 | MUST | hit level: tt 1l raised to 23880 events (test half evaluable at R06) | 153.4 | 21880 x 25.2 s | D | N2 |
+| 4a | B4 | MUST | multijet generator level, 1e7 biased events | 65.0 | 1e7 x 23.4 ms (shower alone) | D | M19 |
+| 4a | B4 | MUST | multijet loose population through the no-PU chain, 1e6 events | 12.5 | 1e6 x 45 ms | G | M33 |
+| 4a | S1 | MUST | signal full chain, 40 points x 2000 rows | 560.9 | 80000 x 25.2 s | D |  |
+| 4a | T1 | MUST | expected results with v1 placeholders | 20.0 |  | G |  |
+| 4a | T1 | MUST | coverage test: null distributions for m' = 0..6 at 2 points | 20.3 | 2 x 7 x 8 x 652 s | G | M1 |
+| 4a | B5 | SHOULD | FULL: 20 roads on 8000 SM + 500 PU events | 520.4 | (8000 x 19 + 500 x 16) x 11.7 s | M |  |
+| 4a | B5 | SHOULD-red | REDUCED: 8 roads on 6000 SM + 20 roads on 500 PU events | 162.6 | (6000 x 7 + 500 x 16) x 11.7 s | M |  |
+| 4a | B5 | SHOULD-both | hard-scatter T(dphi) on the no-PU samples (road rotation, inline in the pool jobs) | 10.0 |  | G | M31 |
+| 4a | B5 | SHOULD-both | sideband prototype (moved from Phase 3 into the production window) | 20.0 |  | G | N18 |
+| 4a | B6 | SHOULD-both | variation switches, PU-hit inefficiency (moved from Phase 3 into the production window) | 10.0 |  | G | N18 |
+| 4a | B6 | SHOULD | FULL: bkg 7 var x 1000 ev; signal 6 pts x 500 rows x 6 var; Stage-3 material | 293.0 | see text | D |  |
+| 4a | B6 | SHOULD-red | REDUCED: bkg 7 var x 600 ev; signal 4 pts x 300 rows x 6 var; Stage-3 material | 156.8 | points E200/1.5, E500/3, E500/5, E1000/3 | D | M13 |
+| 4a | B6 | SHOULD | FULL: nominal partners of the varied samples (1000 bkg events, 6 x 500 signal rows) | 37.8 | 1000 x 60.4 s + 3000 x 25.2 s | D | M17 |
+| 4a | B6 | SHOULD-red | REDUCED: nominal partners (600 bkg events, 4 x 300 signal rows) | 18.5 | 600 x 60.4 s + 1200 x 25.2 s | D | M17 |
+| 4a | B6 | SHOULD-both | variations propagated to single-interaction and SM terms: 4 x (2e6 + 5e5) no-PU events | 50.6 | 4 x (2e6 x 11.5 ms + 5e5 x 45 ms) | G | M12 |
+| 4a | B7 | SHOULD-both | toy acceptance for cosmics, halo, beam gas | 5.0 |  | G |  |
+| 4b | T2 | MUST | ranking: 16 selections x 40 points asymptotic | 1.9 | 640 x 10.4 s | D |  |
+| 4b | T2 | MUST | background-side bootstrap: 50 replicas x 5 selections x 20 points | 14.5 | 5000 x 10.4 s | D | M29 |
+| 4b | T1 | MUST | toys pass 1, parametrised in f_T: 5 selections x 11 f_T x 8 signal values x 1000 | 79.7 | 440 x 652 s | G | C-1 |
+| 4b | T1 | MUST | toys pass 1, exact-toy check: 5 selections x 3 points x 8 mu x 1000 | 21.7 | 120 x 652 s | G | C-1 |
+| 4c | T1 | MUST | toys pass 2, parametrised in f_T: 3 selections x 11 f_T x 8 signal values x 1000 | 47.8 | 264 x 652 s | G | C-1 |
+| 4c | T1 | MUST | toys pass 2, exact-toy check: 3 selections x 3 points x 8 mu x 1000 | 13.0 | 72 x 652 s | G | C-1 |
+| 4c | T1 | MUST | coverage at injected mu: 500 pseudo-experiments x 2 points x 16 fits | 0.5 | 16000 x 0.12 s | D | M8 |
+| 4c | MVA | MUST | BDT cross-check; dE/dx forgone-gain ratio | 7.0 | 5 + 2 | G | M30 |
+| 5 | figs | MUST | figures, reproduction package tests | 10.0 |  | G |  |
+
+[4] totals
+  phase 2: MUST 506 | SHOULD full 0 | SHOULD reduced 0
+  phase 3: MUST 580 | SHOULD full 0 | SHOULD reduced 0
+  phase 4a: MUST 2737 | SHOULD full 947 | SHOULD reduced 434
+  phase 4b: MUST 118 | SHOULD full 0 | SHOULD reduced 0
+  phase 4c: MUST 68 | SHOULD full 0 | SHOULD reduced 0
+  phase 5: MUST 10 | SHOULD full 0 | SHOULD reduced 0
+  MUST-only 4019; MUST + SHOULD reduced 4453; MUST + SHOULD full 4966
+  SHOULD reduced 434; SHOULD full 947; DP1 + DP2 saving 513
+  C1: MUST 198 | SHOULD full 0 | reduced 0
+  C2: MUST 81 | SHOULD full 0 | reduced 0
+  P1: MUST 51 | SHOULD full 0 | reduced 0
+  S1: MUST 834 | SHOULD full 0 | reduced 0
+  S2: MUST 88 | SHOULD full 0 | reduced 0
+  B1: MUST 542 | SHOULD full 0 | reduced 0
+  B2: MUST 599 | SHOULD full 0 | reduced 0
+  B3: MUST 40 | SHOULD full 0 | reduced 0
+  B4: MUST 1186 | SHOULD full 0 | reduced 0
+  T1: MUST 263 | SHOULD full 0 | reduced 0
+  T2: MUST 16 | SHOULD full 0 | reduced 0
+  MVA: MUST 7 | SHOULD full 0 | reduced 0
+  dev: MUST 100 | SHOULD full 0 | reduced 0
+  all: MUST 5 | SHOULD full 0 | reduced 0
+  figs: MUST 10 | SHOULD full 0 | reduced 0
+  B5: MUST 0 | SHOULD full 550 | reduced 193
+  B6: MUST 0 | SHOULD full 391 | reduced 236
+  B7: MUST 0 | SHOULD full 5 | reduced 5
+  Phase 4a: background and T1 MUST 2176; S1 chain 561; SHOULD reduced 434; SHOULD full 947
+  approved figure = total + day-15 reserve 156.5 CPU-h (P13):
+    MUST only: 4019.4 + 156.5 = 4175.9 CPU-h; stop-and-ask threshold 1.3 x 4176 = 5429
+    MUST + SHOULD reduced: 4452.9 + 156.5 = 4609.4 CPU-h; stop-and-ask threshold 1.3 x 4609 = 5992
+    MUST + SHOULD full: 4966.2 + 156.5 = 5122.7 CPU-h; stop-and-ask threshold 1.3 x 5123 = 6660
+  v3 -> v4: review additions (P4, P5, K-C10) 39.1 CPU-h; MUST 3945 -> 3984; reduced 4378 -> 4417; full 4891 -> 4930; approved (reduced + reserve) 4574, threshold 5691 -> 5946
+  v4 -> v5: review addition (R5) 35.78 CPU-h; MUST 3983.6 -> 4019.4; reduced 4417.1 -> 4452.9; full 4930.4 -> 4966.2; approved (reduced + reserve) 4573.6 -> 4609.4, threshold 5946 -> 5992
+
+[5] deltas v2 -> v3, per finding (CPU-h; days = effect on the Phase-4a critical path at the production capacity)
+     +28.8 CPU-h  +0.00 d   N1/N7 pilot: N_t x H of the largest term before the freeze (2.3e6 no-PU Z(nunu) events; idle pre-freeze capacity)
+     +64.9 CPU-h  +0.37 d   N2 hit level: W(tau_h) to 11250 events
+     +39.7 CPU-h  +0.23 d   N2 hit level: W(tau_l) to 7662 events
+    +153.4 CPU-h  +0.88 d   N2 hit level: tt 1l to 23880 events
+    -171.8 CPU-h  -0.99 d   N8/N2/C-2 overlays: 17500 events instead of 42,000
+     +13.2 CPU-h  +0.08 d   N17 no-PU scan slice for the test overlays
+      +5.0 CPU-h  +0.03 d   N5 crossing test rungs (re-analysis)
+      -0.0 CPU-h  -0.00 d   N8 pool: Geant4 vertices inside the pool envelope (600 + 65 = 665 CPU-h), allocation re-run
+    -156.5 CPU-h  +0.00 d   C-1 toys parametrised in f_T in both passes, with exact-toy checks (v2: 319)
+      +0.0 CPU-h  +0.00 d   N9 secondaries: truth-attributed counting on the same 17.5 CPU-h sample; N1 ceiling and completeness tests, N16 prompt-population time-tag closure: re-analysis
+      +0.0 CPU-h  +0.00 d   N15 S1 string propagation moved from Phase 2 to Phase 3 (after A is fixed)
+      +0.0 CPU-h  +0.17 d   N18 B5 and B6 prototypes moved from Phase 3 into the production window (SHOULD)
+  sum -23.4 CPU-h; critical path +0.77 d
+  calendar, non-production days: N18 Phase 3 from 9 to 12 days (+3); C-5 Phase 2 from 7 to 5 (-2) and Phase 5 from 7 to 4 (-3)
+  v1 -> v2 -> v3: MUST 2950 -> 3968 -> 3945; reduced 3275 -> 4401 -> 4378; full 3798 -> 4915 -> 4891 (v3 values; v4 in [4])
+  day-15 redirection reserve (CPU freed by C-1; v4: inside the approved figure, P13): 156 CPU-h = 0.9 production days
+
+[5'] deltas v3 -> v4, per finding (CPU-h; days on the Phase-4a critical path at the production capacity)
+      +6.0 CPU-h  +0.00 d   P4 (K-C10): Geant4 vertices of the pilot's unbiased DIF and NI events (one vertex per event) (phase 2)
+      +7.0 CPU-h  +0.00 d   P4: development ceiling and completeness tests: 1000 unbiased Geant4 DIF overlays (phase 3)
+     +13.0 CPU-h  +0.07 d   P5: paired pile-up-only finder pass (term hits removed) on the 4,000 unbiased B1 test overlays (phase 4a)
+     +13.0 CPU-h  +0.07 d   P5: paired pile-up-only finder pass on 1,000 test-half events of each of the four supplied B4 processes (phase 4a)
+    +156.5 CPU-h  +0.90 d   P13: day-15 reserve inside the approved figure, spent in 4a production by rule 3
+  P1: Z(tautau) and lost-lepton Z(ll) get pool shares inside the same 665 CPU-h (0 CPU-h); S-1: B5 and the B6 signal arm out of the 4a window (0 CPU-h; days in [7])
+
+[5''] deltas v4 -> v5, per finding (CPU-h; days on the Phase-4a critical path at the production capacity)
+    +35.78 CPU-h  +0.21 d   R5: paired pile-up-only finder pass on 1,000 test-half events of each of the eleven other SM processes (incl. Z(tautau), lost-lepton Z(ll), multijets) (phase 4a)
+  R1, R2, R4: text, table and [9b] rows only (0 CPU-h); R3: the pilot keeps its no-pile-up hit records (0 CPU-h; storage in [8])
+
+[6] provenance and contingency (reduced variant)
+  provenance M: 753 CPU-h, carried at 10% -> 75
+  provenance D: 2322 CPU-h, carried at 30% -> 697
+  provenance G: 1378 CPU-h, carried at 100% -> 1378
+  contingency from provenance 2150 CPU-h; fresh-sample reserve (one B2 direct sample) 403 CPU-h
+  approved figure (reduced + day-15 reserve) 4609 CPU-h; with contingency and the fresh-sample reserve: 7162; stop-and-ask threshold 1.3 x 4609 = 5992
+  thresholds for the other variants (each with the reserve): MUST only 1.3 x 4176 = 5429; full 1.3 x 5123 = 6660; envelope alternative (Q4): 4609 + 2150 = 6759, threshold 8787
+  if every guessed (G) unit cost doubled: 4609 + 1378 = 5987 CPU-h against the threshold 5992
+  K-C13: G-provenance CPU-h whose unit cost the day-5 timing jobs measure (45 ms no-PU event, MLM, FxFx, toy scaling): 870; the rest of the G total (allowances, Geant4 spectra and variations, development) is fixed only at checkpoint 2 or later
+  conditional draws (none is inside the approved figure; each is reported as an overrun when drawn and counts toward the threshold):
+       236 CPU-h  exact toys in both passes if the f_T check of pass 1 fails (upper value; the check toys are reused)
+        19 CPU-h  DIF test overlays raised to 7,750 unbiased events if the enrichment is below 1.7
+       403 CPU-h  second direct pile-up sample (INVESTIGATE or bug re-test)
+       123 CPU-h  fresh test overlays after a bug (all of sample 19)
+       163 CPU-h  fresh hit-level test halves of the four evaluable processes
+        69 CPU-h  fresh pool slice for a B3 conditional re-test: half the Z(nunu) sample
+        80 CPU-h    same, half the DIF sample
+  S1 at 4000 rows (GA-2): +827 CPU-h = 4.7 production days
+  S4 if requested: finder rerun on background samples = 736 CPU-h
+  Q5 alternative: Stage 2 and Stage 3 signal samples after the freeze: 312 CPU-h = 1.8 production days
+
+[7] calendar (days after Gate A)
+  Phase 2 CPU 506: 506 / 116 = 4.4 days of the 5 available
+  Phase 3 CPU 580 (of which the S1 string propagation 266, days 12-19); capacity in Phases 2 + 3 + freeze (21 days x 116) = 2438; idle 1351
+  v4 agent-slot table (P16; at most three agents at a time; executors + reviewers + drafter):
+    Phase 2, days 0-5: 3 concurrent slots; (i) C1 campaigns and C2; the sealed C1 comparison as a short separate session inside this slot, after the C1 counts [5 d]; (ii) S2, P1, retrievals R-2/R-3 first, Herwig install attempt [5 d]; (iii) pilot, T1 workspace builder on v1 counts, Geant4 geometry, B1-d scan, hand-over code [5 d]
+    Phase 3, days 5-17: 3 concurrent slots; (i) B1 + B3 development [12 d]; (ii) B2 development (days 5-16), then the one Phase-3 1-bot review of SELECTION.md (days 16-17) [12 d]; (iii) T1 + B4 development (days 5-12: MET model by day 10, A and m_mig day 12), then the PREREG_v2 drafter with the T2 script (days 12-17) [12 d]
+  Phase 3 channel-days: development 30 + PREREG drafting 5 + 1-bot review 1 = 36 = 3 x 12 (cap); PLAN estimates 35-50 person-days of development; each 3 channel-days more lengthen Phase 3 by one day (decision point 2 moves the freeze)
+     5.0 d  Phase 2 (three agents)
+    12.0 d  Phase 3 development (three channels; PREREG drafted in channel (iii) from day 12; one 1-bot review)
+     2.0 d  freeze: 4-bot review of PREREG_v2, hash
+     2.0 d  ITERATE allowance (freeze)
+     1.5 d  closure analysis of the last campaign, T1 expected results, note and PDF before the 4a review (N-C12; bought by S-1)
+     3.0 d  4a review (4-bot + bib)
+     2.0 d  ITERATE allowance (4a)
+     3.0 d  4b: T2, toys, 4-bot + bib
+     2.0 d  ITERATE allowance (4b)
+     2.0 d  Gate B turnaround
+     3.0 d  4c and 1-bot review
+     4.0 d  Phase 5 (sections 1-6, 8-10 drafted during 4a)
+     2.0 d  ITERATE allowance (5-bot)
+  non-production days: 43.5 (v3: 42; v2: 44) -> already above the 28 days of a 4-week target; without the four ITERATE allowances: 35.5
+  S-1: moved out of the 4a window: reduced 277 CPU-h (B5 163 + prototype 20 + B6 signal arm 95); full 737 CPU-h
+  MUST-only: 4a production on the critical path 2176 - 0 (S-1) + 156 (day-15 reserve, P13) = 2333 CPU-h = 13.4 days; S1 chain 561 + moved 0 + toys pass 1 101 = 662 CPU-h run between the end of production and Gate B (2350 core-h available); total 56.9 days = 8.1 weeks; at utilisation 0.50 in production: 63.6 days
+  MUST + SHOULD reduced: 4a production on the critical path 2610 - 277 (S-1) + 156 (day-15 reserve, P13) = 2489 CPU-h = 14.3 days; S1 chain 561 + moved 277 + toys pass 1 101 = 940 CPU-h run between the end of production and Gate B (2350 core-h available); total 57.8 days = 8.3 weeks; at utilisation 0.50 in production: 64.9 days
+  MUST + SHOULD full: 4a production on the critical path 3123 - 737 (S-1) + 156 (day-15 reserve, P13) = 2542 CPU-h = 14.6 days; S1 chain 561 + moved 737 + toys pass 1 101 = 1399 CPU-h run between the end of production and Gate B (2350 core-h available); total 58.1 days = 8.3 weeks; at utilisation 0.50 in production: 65.4 days
+  range: every review passes at once and MUST only: 48.9 days; two ITERATE cycles per panel review: +8 days
+  v6 (T3): expected branch under Q2 (a): + 2.0 d day-15 pause turnaround (the Gate-B turnaround) -> MUST + SHOULD reduced 59.8 d = 8.5 weeks; MUST-only 58.9; full 60.1 (without the pause: 57.8 / 56.9 / 58.1)
+  H-C1 rider (if accepted at Gate A): 1,000 gamma development overlays 1000 x 25.2 s = 7.0 CPU-h, added: approved 4616.4 CPU-h, threshold 1.3 x 4616.4 = 6001.3 (default 4609.4 / 5992.2); calendar unchanged (idle pre-freeze capacity 1351 core-h); the veto measurement on the stored pilot records and the day-7 question 0 CPU-h
+  toys 4b 101.4 + 4c 60.9 = 162.3 CPU-h (v2: 318.8); at 174/day: 0.6 and 0.3 days (inside the 3-day windows)
+  time-ordered checkpoints: decision point 1 and stop-rule checkpoint 1 at day 5; decision point 2 at day 15; freeze days 17-19; production from day 21; Gate B at about day 49; v4: rule 1 of decision point 2 computed preliminarily at day 7 from the finished pilot, binding at day 15
+  old T1-g if done with nested toys: 500 x 2 x 8 x 652 s = 1449 CPU-h (not done)
+
+[8] storage
+  PU-200 chain + trial records (230452 events x 0.52 MB): 117.0 GB
+  rho = 2 events with dumps (4200 x 4.0 MB): 16.4 GB
+  hit dumps for 10,000 events (C2 700, B5 6,500, occupancy model and time tag 2,800; 2.4 MB each): 23.4 GB
+  rho = 2 pre-merge candidates (planning value; cap 400): 200.0 GB
+  no-PU samples as per-event summaries (1.03e+08 x 50 B) + full records of R04 passers and near-pass events: 30.1 GB
+  v5 (R3): pilot no-PU full hit records, classified in Phase 3 ((4e6 + 2.3e+06) x 8.2 kB; more for the hard-scatter events): 51.7 GB
+  Stage 2: 1.75e6 LHE events, 5 shower variants: 10.4 GB
+  Stage 3 (8 kB x 85000 rows): 0.7 GB
+  Geant4 vertices, job logs, pyhf outputs, toy distributions: 8.0 GB
+  crossing-test variables (fit probability, 2S, shape) of the R05-R06 candidates: 49.72 x 96,000 x 64 B, x 3 for overlays, hit level, development: 0.9 GB
+  repo bundles (7 + gates): 10.0 GB
+  storage total 469 GB (with the pre-merge cap of 400 GB: 669 GB)
+  no-PU full records if kept (8.2 kB x 1.03e+08): 841 GB -> not kept
+  jobs: reduced total / 0.4 h per job = 11132; Argo overhead 17 s each = 53 slot-h
+
+[9] zero-count floors: events in 3 ab^-1 that a zero count still allows (before pile-up factors and conditionals)
+  convention: 68 % upper value 1.14 N_t / M_t (= -ln 0.32); predictive mean N_t / M_t
+  v1 plan (1e7 for four topologies, 1e6 per SM process):
+    {'PV pair': 141.07, 'DIF': 7.42, 'gamma': 1.76, 'V0': 0.24} sum 150.5; SM sum 46.5 (Z(nunu) 28.6)
+    same 4e7 events by sqrt(rate): sum 67.4
+  v2 routes (PV pairs, gamma, V0, loopers as gun terms beside the SM real events; pool 600 CPU-h + 65 Geant4): sum of floors 45.3, of which PV pairs 18.4, gamma + looper + V0 4.7
+  v4 routes (fourteen SM processes), pool 665 CPU-h (chain + Geant4 vertices): sum of floors 12.6 (DIF and NI 3.9, SM 8.6); sum of means 11.0
+  v4 routes (fourteen SM processes), pool 822 CPU-h (chain + Geant4 vertices): sum of floors 10.2 (DIF and NI 3.2, SM 7.0); sum of means 8.9
+  v4 routes (fourteen SM processes), pool 1330 CPU-h (chain + Geant4 vertices): sum of floors 6.3 (DIF and NI 2.0, SM 4.3); sum of means 5.5
+  v3 routes for comparison (twelve SM processes, NI at 0.11 x 0.22): sum of floors 11.70
+  | term | N_t in 3 ab^-1 | cost per event (ms) | M_t planned | transfer factor N_t/M_t | floor at 68 % (1.14 N/M) |   (pool 665 CPU-h)
+  | DIF | 6.51e+07 | 23.7 | 2.44e+07 | 2.67 | 3.04 |
+  | NI 22 mm | 8.83e+05 | 14.7 | 3.61e+06 | 0.24 | 0.28 |
+  | NI 30 mm | 1.12e+06 | 14.7 | 4.06e+06 | 0.27 | 0.31 |
+  | NI 61.5 mm | 1.12e+06 | 14.7 | 4.06e+06 | 0.27 | 0.31 |
+  | Z(nunu)+j | 2.51e+07 | 45.0 | 1.1e+07 | 2.28 | 2.60 |
+  | W(tau_h) | 5.41e+06 | 45.0 | 5.1e+06 | 1.06 | 1.21 |
+  | W(e nu) | 2.54e+06 | 45.0 | 3.5e+06 | 0.73 | 0.83 |
+  | tt 1l | 2.38e+06 | 45.0 | 3.39e+06 | 0.70 | 0.80 |
+  | W(tau_l) | 2.26e+06 | 45.0 | 3.3e+06 | 0.68 | 0.78 |
+  | W(mu nu) | 2.24e+06 | 45.0 | 3.28e+06 | 0.68 | 0.78 |
+  | tW | 2.59e+05 | 45.0 | 1.12e+06 | 0.23 | 0.26 |
+  | tt 2l | 2.13e+05 | 45.0 | 1.01e+06 | 0.21 | 0.24 |
+  | WZ | 1.37e+05 | 45.0 | 8.14e+05 | 0.17 | 0.19 |
+  | WW | 1.26e+05 | 45.0 | 7.8e+05 | 0.16 | 0.18 |
+  | t-channel | 1.1e+05 | 45.0 | 7.28e+05 | 0.15 | 0.17 |
+  | ZZ | 1.05e+05 | 45.0 | 7.1e+05 | 0.15 | 0.17 |
+  | Z(tautau) | 4.26e+05 | 45.0 | 1.43e+06 | 0.30 | 0.34 |
+  | Z(ll) lost | 2.98e+04 | 45.0 | 3.79e+05 | 0.08 | 0.09 |
+  events in the pool: DIF and NI 3.61e+07 (208 CPU-h), SM 3.65e+07 (457 CPU-h)
+  floors by group: DIF 3.04; NI (three) 0.91; the four SM processes with an evaluable closure 5.39; the eight proxied processes 2.82; the two pooled additions 0.43
+  N_trig share: four evaluable processes 0.860; eight proxied processes 0.140; the two additions at their planning N_trig 0.011 (N_trig itself is kept at v1's 4.0848e7; the additions raise it by 1.1% at day 12)
+  P1: Z(tautau) planning N_trig 4.26e+05 (range 1e5-1.3e6), lost-lepton Z(ll) 2.98e+04 (range 1e4-1e5) [E]
+    low: Z(tautau) M = 7.06e+05 (8.8 CPU-h), floor 0.16; Z(ll) M = 2.23e+05 (2.8 CPU-h), floor 0.05; summed pool floor 12.16; to keep 11.70 the pool needs 691 CPU-h (+26)
+      without a pool share (direct bound on 2,000 hit-level events, N_t x 1.14 / 2000): Z(tautau) 57, Z(ll) 6 events
+    planning: Z(tautau) M = 1.43e+06 (17.9 CPU-h), floor 0.34; Z(ll) M = 3.79e+05 (4.7 CPU-h), floor 0.09; summed pool floor 12.59; to keep 11.70 the pool needs 715 CPU-h (+50)
+      without a pool share (direct bound on 2,000 hit-level events, N_t x 1.14 / 2000): Z(tautau) 243, Z(ll) 17 events
+    high: Z(tautau) M = 2.44e+06 (30.5 CPU-h), floor 0.61; Z(ll) M = 6.76e+05 (8.5 CPU-h), floor 0.17; summed pool floor 13.25; to keep 11.70 the pool needs 753 CPU-h (+88)
+      without a pool share (direct bound on 2,000 hit-level events, N_t x 1.14 / 2000): Z(tautau) 741, Z(ll) 57 events
+  multijet floor through the factorisation (N_MJ x 1.14 / 1e6 loose events) [E]: 0.46 (range 0.05-4.56)
+  headline sum of 68 % floors: pool 12.59 + multijets 0.46 = 13.0 (range 12.6-17.1; with the additions at their low / high N_trig: 12.2 / 17.8)
+  if the no-PU hard-scatter event costs 90 ms instead of 45 (G provenance): SM pool floor 15.7 (now 8.6), summed pool floor 20.8
+  K-C6: if the inelastic gun yield per slab is a sixth of 4.2 % (c_NI = 30.6 ms), the summed pool floor is 13.40 (D provenance)
+  pilot: one H count in 2.3e6 Z(nunu) no-PU events = 10.9 events in 3 ab^-1; in 1e6 DIF events = 65
+  v1 best B84 against the v4 zero-count floor: log10(1.2346e6 / 12.6) = 4.99 decades
+  predictive distribution of the summed floor, pool terms and the multijet planning term (each N/M x Exp(1)): 16 % 7.7, median 10.8, 84 % 15.2, mean 11.4; sigma_ln = 0.5 ln(q84/q16) = 0.34
+  enrichment G needed to bring the summed 68 % floor to 10 / 1 / 0.11 events: 1.3 / 13 / 114
+  road-multiplicity ceiling for unoriented single interactions: 2 pi / 0.30 = 20.9
+  sd of ln(lambda) for lambda ~ Gamma(m + 1): {0: 1.28, 1: 0.8, 2: 0.63, 3: 0.53, 5: 0.43, 10: 0.31, 100: 0.1}
+  quantiles of Gamma(1) (m = 0): 16 % 0.174, median 0.693, 68 % 1.139, 84 % 1.833, 95 % 2.996
+
+[9b] projection per outcome: one-bin expected CLs limit on the signal yield and the reach read from the plan's table (EST)
+  mapping s95 -> reach (PLAN l.121, sigma_ln = 0 row; fixed B, median expected limit): [(3.0, 1026), (4.1, 971), (8.1, 866), (12.6, 799), (21.4, 717), (63.7, 548), (197.7, 393), (621.5, 243)]
+  EST pile-up medians from v1 numbers: R07 direct 2.98e+04; R08 88-148 (width-step fall x339 / x201); R09 5.0-8.5; R11 0.48-0.81; R14: no v1 number, at most the R11 value; no-credit value 485 (68 % upper value; mean 426; drawn as 426 x Exp(1) in the projection)
+    R08: B50 87.9-148; B84 = B50 x exp(0.43) = 135-227
+    R09: B50 5.02-8.46; B84 = B50 x exp(0.59) = 9.06-15.3
+    R11: B50 0.479-0.805; B84 = B50 x exp(1.29) = 1.74-2.93
+    R14: B50 0.479-0.805; B84 = B50 x exp(2.47) = 5.66-9.52 (2S crossing test PASS, s_tot 1.30: 1.76-2.95; v4, P7: no credit from the fit-probability and shape crossing comparisons)
+  check against the constructive review (v2 floors, all empty): s95 = 24.1 (review: 24.1)
+  (alpha) inputs: R07 DIF 1.3e+05 (1 count in 500), conversions 6.19e+04 (2 in 500; R06: 4.03e+05); uncertainty of the v1-based size: sqrt(w_m^2 + ln2^2) = factor e^1.06 (DIF, m = 1), e^0.94 (conversions, m = 2) [a projection uncertainty, not a width of the v2 term]
+  v5 (R1) conversion fall test: v1 measured x6.6 (R05->R06, 86 -> 13) and x6.5 (R06->R07, 13 -> 2); with a pile-up-like fall from 13 at R06: mu(R07) = 0.038 / 0.065 counts (x339 / x201), P(>= 2) = 7.2e-04 / 2.0e-03; from 86 at R05: mu(R06) = 0.25 / 0.43, P(>= 13) = 2.3e-18 / 1.7e-15; DIF from 2 at R06: P(>= 1 at R07) = 0.59% / 0.99%
+    alpha1 (pile-up fall x339), no fit-probability credit at R09: DIF 385, conversions 183
+    alpha1 (pile-up fall x339), with fit-probability credit at R09: DIF 22, conversions 10.4
+    alpha1 (pile-up fall x201), no fit-probability credit at R09: DIF 647, conversions 308
+    alpha1 (pile-up fall x201), with fit-probability credit at R09: DIF 37, conversions 17.6
+    alpha2 (own R06->R07 fall: DIF x2, conversions x6.5), no fit-probability credit at R09: DIF 6.51e+04, conversions 9.53e+03
+    alpha2 (own R06->R07 fall: DIF x2, conversions x6.5), with fit-probability credit at R09: DIF 3.72e+03, conversions 544
+    alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339), no fit-probability credit at R09: DIF 385, conversions 9.53e+03
+    alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339), with fit-probability credit at R09: DIF 22, conversions 544
+    alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201), no fit-probability credit at R09: DIF 647, conversions 9.53e+03
+    alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201), with fit-probability credit at R09: DIF 37, conversions 544
+  | outcome | B16 / B50 / B84 | sigma_ln = 0.5 ln(B84/B16) | s95 median [16 %, 84 %] | reach, EST (GeV): median [84 % edge, 16 % edge] |
+  | floors only (every count zero, every ceiling H empty, no pile-up term; multijets at their planning floor) | 8 / 11 / 15 | 0.33 | 10.2 [6.2, 15.2] | 830 [769, 907] |
+  | R09-like: floors + EST pile-up median 7 (s_tot 0.59) | 13 / 18 / 25 | 0.32 | 13.3 [8.6, 22.0] | 790 [712, 856] |
+  | R08-like: floors + EST pile-up median 118 (s_tot 0.43) | 67 / 113 / 172 | 0.47 | 93.3 [56.6, 145.3] | 496 [435, 566] |
+  | R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 3 simulated ceiling counts (7 events) | 19 / 25 / 33 | 0.28 | 16.1 [10.1, 25.5] | 761 [690, 832] |
+  | R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 10 simulated ceiling counts (23 events) | 33 / 41 / 51 | 0.23 | 21.0 [13.9, 31.8] | 720 [655, 783] |
+  | R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 30 simulated ceiling counts (68 events) | 73 / 87 / 101 | 0.16 | 31.5 [21.7, 46.8] | 657 [596, 715] |
+  | R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 100 simulated ceiling counts (228 events) | 224 / 245 / 269 | 0.09 | 53.2 [36.7, 76.2] | 576 [523, 633] |
+  m_H = 1000: B about 2300, fixed-B s95 = 96, reach 492 GeV
+  | v5 (Ph-C2): R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = 1000 simulated ceiling counts (2282 events), with the count width | 2229 / 2299 / 2373 | 0.03 | 168.1 [118.6, 236.7] | 415 [369, 463] |
+  | (beta) Z(nunu) tested and credited (at its floor); the eight proxied processes, the additions and multijets at H, H per event as Z(nunu) with m_H = 10 | 19 / 24 / 32 | 0.24 | 15.4 [10.2, 22.9] | 767 [706, 831] |
+  | (beta) Z(nunu) tested and credited (at its floor); the eight proxied processes, the additions and multijets at H, H per event as Z(nunu) with m_H = 30 | 30 / 36 / 44 | 0.19 | 17.4 [11.8, 26.4] | 749 [684, 809] |
+  | (beta) Z(nunu) tested and credited (at its floor); the eight proxied processes, the additions and multijets at H, H per event as Z(nunu) with m_H = 100 | 71 / 79 / 88 | 0.11 | 24.7 [16.8, 35.0] | 695 [641, 755] |
+  | (gamma) every SM ceiling at H per event as Z(nunu) (scales with N_trig, x1.66), m_H = 10 | 47 / 56 / 68 | 0.18 | 23.7 [16.1, 36.0] | 701 [636, 761] |
+  | (gamma) every SM ceiling at H per event as Z(nunu) (scales with N_trig, x1.66), m_H = 30 | 119 / 133 / 149 | 0.11 | 36.6 [25.3, 52.5] | 634 [578, 691] |
+  | (gamma) every SM ceiling at H per event as Z(nunu) (scales with N_trig, x1.66), m_H = 100 | 373 / 398 / 425 | 0.07 | 63.9 [44.9, 91.3] | 548 [499, 602] |
+  | alpha1 (pile-up fall x339), no credit (R09 = R08): DIF 385 + conversions 183 | 548 / 587 / 626 | 0.07 | 87.6 [59.9, 125.7] | 504 [455, 558] |
+  | alpha1 (pile-up fall x339), fit-probability credit at R09: DIF 22 + conversions 10.4 | 40 / 51 / 65 | 0.25 | 25.5 [15.9, 40.2] | 690 [619, 763] |
+  | alpha1 (pile-up fall x201), no credit (R09 = R08): DIF 647 + conversions 308 | 925 / 975 / 1025 | 0.05 | 113.6 [79.2, 161.5] | 469 [421, 518] |
+  | alpha1 (pile-up fall x201), fit-probability credit at R09: DIF 37 + conversions 17.6 | 57 / 74 / 97 | 0.27 | 35.4 [21.3, 58.2] | 639 [562, 717] |
+  | alpha2 (own R06->R07 fall: DIF x2, conversions x6.5), no credit (R09 = R08): DIF 6.51e+04 + conversions 9.53e+03 | ≈ 74675 (sum of medians; fixed-B limit, an upper edge of the reach) | | 537 | 262 |
+  | alpha2 (own R06->R07 fall: DIF x2, conversions x6.5), fit-probability credit at R09: DIF 3.72e+03 + conversions 544 | 3004 / 4407 / 6516 | 0.39 | 2231.5 [1146.2, 4179.3] | < 243.0 [< 243.0, < 243.0] |
+  | alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339), no credit (R09 = R08): DIF 385 + conversions 9.53e+03 | 9784 / 9929 / 10085 | 0.02 | 352.2 [251.6, 494.7] | 317 [273, 361] |
+    v5 (R1): the same at fixed B = B50 9929 (background known exactly): s95 196.6, reach 394 GeV
+  | alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339), fit-probability credit at R09: DIF 22 + conversions 544 | 391 / 580 / 874 | 0.40 | 314.4 [162.0, 587.7] | 332 [250, 420] |
+  | alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201), no credit (R09 = R08): DIF 647 + conversions 9.53e+03 | 10042 / 10193 / 10352 | 0.02 | 360.6 [258.2, 505.3] | 314 [270, 358] |
+    v5 (R1): the same at fixed B = B50 10193 (background known exactly): s95 199.3, reach 392 GeV
+  | alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201), fit-probability credit at R09: DIF 37 + conversions 544 | 407 / 599 / 892 | 0.39 | 317.5 [164.9, 589.1] | 331 [250, 418] |
+  v6 (T1): (alpha1') no credit with a normalisation width on the conversion term (s95 = 621.5 <-> 243 GeV, the last column of the plan's table):
+    x339, max rate 0.379: conversions 9.53e+03; (i) counted: B16/B50/B84 9784 / 9929 / 10085, s95 median 352.2 [84 % 494.7], reach 317 [84 % edge 273] GeV; fixed B = B50: s95 196.6, reach 394 GeV
+      (ii) w = 0.03: B50 9928, s95 median 641.1 [84 % 915.5], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.05: B50 9924, s95 median 944.4 [84 % 1366.7], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.17 = normalisation width of the SM terms, |ln 0.84| (generator difference, §4.7); K, luminosity and material not included: B50 9914, s95 median 2697.4 [84 % 4193.4], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+    x339, N_trig-weighted rate 0.255: conversions 6.42e+03; (i) counted: B16/B50/B84 6704 / 6825 / 6954, s95 median 292.1 [84 % 410.5], reach 342 [84 % edge 297] GeV; fixed B = B50: s95 163.7, reach 419 GeV
+      (ii) w = 0.03: B50 6823, s95 median 464.3 [84 % 662.9], reach 281 [84 % edge < 243.0] GeV
+      (ii) w = 0.05: B50 6823, s95 median 658.1 [84 % 953.5], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.17 = normalisation width of the SM terms, |ln 0.84| (generator difference, §4.7); K, luminosity and material not included: B50 6814, s95 median 1822.5 [84 % 2841.3], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+    x201, max rate 0.379: conversions 9.53e+03; (i) counted: B16/B50/B84 10042 / 10193 / 10352, s95 median 360.6 [84 % 505.3], reach 314 [84 % edge 270] GeV; fixed B = B50: s95 199.3, reach 392 GeV
+      (ii) w = 0.03: B50 10190, s95 median 644.3 [84 % 918.8], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.05: B50 10190, s95 median 948.4 [84 % 1369.4], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.17 = normalisation width of the SM terms, |ln 0.84| (generator difference, §4.7); K, luminosity and material not included: B50 10195, s95 median 2725.3 [84 % 4204.1], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+    x201, N_trig-weighted rate 0.255: conversions 6.42e+03; (i) counted: B16/B50/B84 6961 / 7087 / 7221, s95 median 300.3 [84 % 422.7], reach 338 [84 % edge 293] GeV; fixed B = B50: s95 166.6, reach 416 GeV
+      (ii) w = 0.03: B50 7085, s95 median 467.7 [84 % 667.4], reach 280 [84 % edge < 243.0] GeV
+      (ii) w = 0.05: B50 7084, s95 median 661.5 [84 % 956.3], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+      (ii) w = 0.17 = normalisation width of the SM terms, |ln 0.84| (generator difference, §4.7); K, luminosity and material not included: B50 7084, s95 median 1837.7 [84 % 2848.1], reach < 243.0 (beyond the plan's table; PLAN sigma_ln = 0.2 row: below 200 GeV at B = 1e4) [84 % edge < 243.0] GeV
+  v6 (T1) upside with w = 0.17: alpha1 (pile-up fall x339), no credit, DIF and conversions log-normal of width sqrt(w^2 + 1/(m + 1)): B50 589, median reach 429 [84 % edge 372] GeV (statistics-only rows above: 504 [455])
+  v6 (T1) upside with w = 0.17: alpha1 (pile-up fall x201), no credit, DIF and conversions log-normal of width sqrt(w^2 + 1/(m + 1)): B50 979, median reach 369 [84 % edge 312] GeV (statistics-only rows above: 469 [421])
+  v6 (T1) upside with w = 0.17: R09-like, Z(nunu) ceiling m_H = 100 as a log-normal of width sqrt(w^2 + 1/(m + 1)) around kz (m + 1): B50 248, median reach 513 [84 % edge 454] GeV (count width only: 576 [523])
+  v6 (T2) day-15 class limit B50 <= 300: (alpha1) no credit B50 587 / 975 (x339 / x201) -> above; decays in flight alone DIF 385 / 647 events -> above
+    alpha1 (pile-up fall x339), conversions removed entirely (floors + pile-up + DIF counted): B50 401 -> above 300
+    alpha1 (pile-up fall x201), conversions removed entirely (floors + pile-up + DIF counted): B50 663 -> above 300
+    conversion rejection needed to reach the alpha1 (pile-up fall x339) conversion level: 9527 / 183 = x52.1 (98.1%); not sufficient by itself (DIF above)
+    conversion rejection needed to reach the alpha1 (pile-up fall x201) conversion level: 9527 / 308 = x31.0 (96.8%); not sufficient by itself (DIF above)
+    avoided only with B50 <= 300: (alpha1) with fit-probability credit B50 51 / 74; (alpha1') with credit 580 / 599 (above)
+    v7 (U1): (alpha1) conversions removed, DIF x e^-1 (both falls): B50 159 / 256 (x339 / x201) -> at or below 300
+    v7 (U1): (alpha1') on the day-15 own-hit basis, conversions and DIF x 1/(1 - eps_pair) at eps_pair = 0.8 / 0.98 (assumed, not measured; photon rate 0.379): B50 ≈ 4.96e+04-5.09e+04 / 4.96e+05-5.09e+05 (sum of medians)
+  v5 (R1) alpha1 (pile-up fall x339), no credit: B x e^-1: B50 230, median reach 571, 84 % edge 519; B x e^+1: B50 1563, median reach 437, 84 % edge 390; log-normal reading (not used): B16/B50/B84 331 / 700 / 1584, median reach 262, 84 % edge < 243.0 GeV
+  v5 (R1) alpha1 (pile-up fall x201), no credit: B x e^-1: B50 373, median reach 535, 84 % edge 486; B x e^+1: B50 2615, median reach 400, 84 % edge 355; log-normal reading (not used): B16/B50/B84 543 / 1167 / 2656, median reach < 243.0, 84 % edge < 243.0 GeV
+  HEADLINE (P2): empty ceilings, R09-like: reach 712 GeV at the 84 % edge, median 790; (alpha1) no credit: B50 587-975, median reach 469-504 GeV, 84 % edge 421-455; (beta) m_H = 10: median 767, 84 % edge 706; negligible background 1026 GeV
+  HEADLINE v5 (R1): (alpha1') no credit: B50 9929-10193, median reach 317-314 GeV, 84 % edge 273-270, fixed B 394-392; (beta) m_H = 10 / 30 / 100: median 767 / 749 / 695, 84 % edge 706 / 684 / 641; Z(nunu) m_H = 1000 with the count width: B50 2299, median reach 415
+  HEADLINE v6 (T1): (alpha1') no credit, photon rate 0.255-0.379: B50 6825-10193; with the normalisation width 0.17: s95 median 1823-2725 -> reach < 243.0 GeV (already at w = 0.03: 84 % edge < 243.0); statistics-only (count width): 84 % edge 270-297, median 314-342, fixed B 392-419; (alpha1) with w = 0.17: 84 % edge 312-372, median 369-429; Z(nunu) m_H = 100 with w = 0.17: 84 % edge 454
+  one-bin limit with every zero-count term dropped: 3.00; with the floors: 10.2
+  R09-like with the pool at 822 CPU-h, ceilings empty: B50 16, s95 12.4, reach 800 GeV
+  R09-like with the pool at 1330 CPU-h, ceilings empty: B50 13, s95 11.3, reach 814 GeV
+  class limit of decision point 2 (B50 = 300 events): m_H = 120 gives B50 291, s95 58, reach 563 GeV
+  class limit of decision point 2 (B50 = 300 events): m_H = 125 gives B50 302, s95 59, reach 559 GeV
+  class limit of decision point 2 (B50 = 300 events): m_H = 130 gives B50 314, s95 60, reach 557 GeV
+  class limit of decision point 2 (B50 = 300 events): m_H = 135 gives B50 325, s95 61, reach 555 GeV
+  change of the bound against v1's best B84 of 1.2346e6: empty ceilings B84 = 25 -> 4.7 decades; Z(nunu) m_H = 100: B84 = 269 -> 3.7; (alpha1) no credit x201: B84 = 1025 -> 3.1
+  projection rule per term: max(zero-count floor, N_t x H); one counted ceiling event of Z(nunu) at the final sample size = 2.28 events in 3 ab^-1
+  R07-direct baseline, size from v1 counts: pile-up direct 2.98e+04 + DIF attributed 1/500 x N_t = 1.3e+05 events (order 1e5)
+  P3/P14 EST: H_CKF(R08) = 1.8e-07-1.6e-06 per event; m_H(CKF) in 1.1e+07 events = 2.0-17.8; pilot (2.3e6 events) expects 0.4-3.7 counts at R08
+    option (a), eps_pair = 0.8: m_H = 10-89; pilot counts 2.1-18.6
+    option (a), eps_pair = 0.9: m_H = 20-178; pilot counts 4.1-37.3
+    option (a), eps_pair = 0.98: m_H = 99-890; pilot counts 20.7-186.3
+  v5 (R1) P3/P14 EST with the conversions' own fall: Z(nunu) conversion part at R08 = 2.51e+07 x 0.2306 x (2/500) / 6.5 = 3.56e+03 events in 3 ab^-1; m_H = 1.56e+03 in 1.1e+07 pool events, 326 in the pilot's 2.3e+06 events (day-15 class limit m_H = 125)
+
+[10] one bin, one zero-count term with transfer factor kappa = N/M: expected 95 % CLs limit on the signal yield s
+  check of the marginal: sum_n kappa^n/(1+kappa)^(n+1) = 1 and mean = kappa: [(0.5, 1.0, 0.5), (10.0, 1.0, 10.0)]
+  | kappa | term dropped (lambda = 0) | fixed B = 1.14 kappa | hybrid Gamma(1): median [16 %, 84 %] | true lambda = 0.5 / 1.14 / 2 / 3: median limit of the same procedure |
+  | 0.1 | 3.00 | 3.0 | 3.0 [3.0, 3.0] | 3.0 / 3.0 / 3.0 / 3.0 |
+  | 1 | 3.00 | 4.1 | 3.0 [3.0, 5.7] | 3.0 / 4.4 / 5.7 / 7.1 |
+  | 10 | 3.00 | 8.2 | 10.8 [4.2, 23.9] | 8.6 / 15.1 / 25.0 / 36.1 |
+  | 35 | 3.00 | 14.3 | 27.8 [9.4, 70.0] | 20.6 / 44.2 / 75.2 / 111.7 |
+  | 124 | 3.00 | 24.9 | 88.0 [24.2, 229.9] | 64.3 / 142.6 / 250.0 / 375.7 |
+  coverage of the hybrid limit, one bin, true signal s = 10, simulation redone in every pseudo-experiment (exact sums):
+    kappa 1, true lambda 0.50: P(m = 0) = 0.61; coverage 0.945; given m = 0: 0.950
+    kappa 1, true lambda 1.14: P(m = 0) = 0.32; coverage 0.951; given m = 0: 0.965
+    kappa 1, true lambda 2.00: P(m = 0) = 0.14; coverage 0.954; given m = 0: 0.980
+    kappa 1, true lambda 3.00: P(m = 0) = 0.05; coverage 0.956; given m = 0: 0.989
+    kappa 10, true lambda 0.50: P(m = 0) = 0.61; coverage 0.982; given m = 0: 0.992
+    kappa 10, true lambda 1.14: P(m = 0) = 0.32; coverage 0.997; given m = 0: 1.000
+    kappa 10, true lambda 2.00: P(m = 0) = 0.14; coverage 1.000; given m = 0: 1.000
+    kappa 10, true lambda 3.00: P(m = 0) = 0.05; coverage 1.000; given m = 0: 1.000
+
+[11] closure criterion (a) |ln r| <= ln F evaluated only where sigma_tot = sqrt(1/N + s_P^2) <= ln F / 3
+  F = 1.5: ln F = 0.405, sigma limit 0.135; minimum direct count N for s_P = 0 / 0.05 / 0.10: 55 / 64 / 121
+    at the limit precision: P(fail | true ln r = 1.0 ln F) = 0.5000
+    at the limit precision: P(fail | true ln r = 1.5 ln F) = 0.9332
+    at the limit precision: P(fail | true ln r = 2.0 ln F) = 0.9987
+    false fail at r = 1: 0.0027
+  F = 2.0: ln F = 0.693, sigma limit 0.231; minimum direct count N for s_P = 0 / 0.05 / 0.10: 19 / 20 / 24
+    at the limit precision: P(fail | true ln r = 1.0 ln F) = 0.5000
+    at the limit precision: P(fail | true ln r = 1.5 ln F) = 0.9332
+    at the limit precision: P(fail | true ln r = 2.0 ln F) = 0.9987
+    false fail at r = 1: 0.0027
+  v1 criterion (N >= 20, s_P = 0.1) for comparison: false fail at r = 1, F = 1.5: 0.098 at N = 20, 0.051 at N = 30; F = 2 at N = 20: 0.0047
+  retroactive v1 thinning (ln r = [0.406, 0.474, -0.455, -0.954]): v2 criterion (a) at F = 1.5 fails at 4 of 4 rungs; diagonal chi2 with s_model = ln 1.5 = 9.2 on 4 dof, p = 0.056
+  the same under the v3 rule (sigma_tot about 0.01): rungs beyond ln 1.5 + 2 sigma = 0.425: 3 of 4; r.m.s. of ln r = 0.61 against the cap 0.135
+
+  N4: the finding reproduced. v2 criterion (a) at the v2 placeholder widths, P(|ln r| > ln F) for a correct-as-declared estimator:
+    F = 1.5, s_model = 0.2: 0.043 at sigma_tot = 0, 0.093 at the evaluable limit; over 12 tests 0.41 to 0.69; at s_model = ln F: 0.32
+    F = 2.0, s_model = 0.35: 0.048 at sigma_tot = 0, 0.098 at the evaluable limit; over 12 tests 0.44 to 0.71; at s_model = ln F: 0.32
+  N4: v3 rule. Cap (c): s_model <= ln F / 3 = 0.135 (F = 1.5), 0.231 (F = 2); a correct-as-declared estimator at the cap is outside the tolerance with probability 0.0027
+  K = 10: outright (b) threshold p < 0.0050, |z| > 2.807
+  per-test probabilities for a correct-as-declared estimator, one evaluable rung (direct PASS / INVESTIGATE / outright FAIL / final FAIL):
+    F = 1.5, s_model = 0.0 x cap = 0.000, sigma_tot = 0.5 x limit = 0.068: 0.9500 / 0.0450 / 0.0050 / 0.0052
+    F = 1.5, s_model = 0.0 x cap = 0.000, sigma_tot = 1.0 x limit = 0.135: 0.9500 / 0.0450 / 0.0050 / 0.0052
+    F = 1.5, s_model = 0.5 x cap = 0.068, sigma_tot = 0.5 x limit = 0.068: 0.9500 / 0.0450 / 0.0050 / 0.0062
+    F = 1.5, s_model = 0.5 x cap = 0.068, sigma_tot = 1.0 x limit = 0.135: 0.9500 / 0.0450 / 0.0050 / 0.0055
+    F = 1.5, s_model = 1.0 x cap = 0.135, sigma_tot = 0.5 x limit = 0.068: 0.9500 / 0.0450 / 0.0050 / 0.0086
+    F = 1.5, s_model = 1.0 x cap = 0.135, sigma_tot = 1.0 x limit = 0.135: 0.9500 / 0.0450 / 0.0050 / 0.0107
+    F = 2.0, s_model = 0.0 x cap = 0.000, sigma_tot = 0.5 x limit = 0.116: 0.9500 / 0.0450 / 0.0050 / 0.0052
+    F = 2.0, s_model = 0.0 x cap = 0.000, sigma_tot = 1.0 x limit = 0.231: 0.9500 / 0.0450 / 0.0050 / 0.0052
+    F = 2.0, s_model = 0.5 x cap = 0.116, sigma_tot = 0.5 x limit = 0.116: 0.9500 / 0.0450 / 0.0050 / 0.0062
+    F = 2.0, s_model = 0.5 x cap = 0.116, sigma_tot = 1.0 x limit = 0.231: 0.9500 / 0.0450 / 0.0050 / 0.0055
+    F = 2.0, s_model = 1.0 x cap = 0.231, sigma_tot = 0.5 x limit = 0.116: 0.9500 / 0.0450 / 0.0050 / 0.0086
+    F = 2.0, s_model = 1.0 x cap = 0.231, sigma_tot = 1.0 x limit = 0.231: 0.9500 / 0.0450 / 0.0050 / 0.0107
+  (the probabilities do not depend on F when s_model and sigma_tot are scaled with ln F)
+  battery of K = 10 independent tests, all at the same relative width (sigma_tot at the evaluable limit):
+    s_model = 0.0 x cap: per test 0.0052; at least one FAIL 0.051; at least one FAIL that removes eligibility (under-prediction in one of the 8 B1-a / B4-c tests, or both pile-up estimators) 0.021; expected re-tests 0.45
+    s_model = 0.5 x cap: per test 0.0055; at least one FAIL 0.054; at least one FAIL that removes eligibility (under-prediction in one of the 8 B1-a / B4-c tests, or both pile-up estimators) 0.022; expected re-tests 0.45
+    s_model = 1.0 x cap: per test 0.0107; at least one FAIL 0.102; at least one FAIL that removes eligibility (under-prediction in one of the 8 B1-a / B4-c tests, or both pile-up estimators) 0.042; expected re-tests 0.45
+  alternative cap s_model <= ln F / 2.5 (0.162, 0.277): per test 0.0164; at least one FAIL in ten 0.152; one that removes eligibility 0.064; outside the tolerance by declaration 0.0124
+  the v2 rule at the same widths (s_model at the v3 cap, K = 12): per test 0.0361, family 0.357
+  power, one rung at the evaluable limit, s_model at the cap in the (b) covariance; P(final PASS | true ln r = x ln F):
+    x = 0.0: PASS 0.9999 (FAIL 0.0001); with sigma_tot at half the limit: PASS 1.0000
+    x = 0.5: PASS 0.9869 (FAIL 0.0131); with sigma_tot at half the limit: PASS 0.9994
+    x = 0.75: PASS 0.8988 (FAIL 0.1012); with sigma_tot at half the limit: PASS 0.9282
+    x = 1.0: PASS 0.6218 (FAIL 0.3782); with sigma_tot at half the limit: PASS 0.3309
+    x = 1.25: PASS 0.2598 (FAIL 0.7402); with sigma_tot at half the limit: PASS 0.0082
+    x = 1.5: PASS 0.0591 (FAIL 0.9409); with sigma_tot at half the limit: PASS 0.0000
+    x = 2.0: PASS 0.0007 (FAIL 0.9993); with sigma_tot at half the limit: PASS 0.0000
+  two evaluable rungs with a common delta (Monte Carlo, 200000 draws, s_model at the cap, sigma_tot at the limit): per-test final FAIL 0.0192
+  battery as planned at the cap and the limit (8 one-rung tests of B1-a and B4-c, 2 multi-rung pile-up tests): at least one FAIL 0.118; at least one FAIL that removes eligibility 0.042
+  v3 ceiling test per rung (one-sided, FAIL at p < 0.001, INVESTIGATE at p < 0.05, re-test FAIL at p' < 0.05): false fail at the boundary P = H: 0.0035 per test; over 16 / 30 / 55 such tests: 0.054 / 0.098 / 0.173 (the finding P6)
+  v4 ceiling family (P6): 19 terms (DIF, NI 22 mm, NI 30 mm, NI 61.5 mm, Z(nunu)+j, W(tau_h), W(e nu), tt 1l, W(tau_l), W(mu nu), tW, tt 2l, WZ, WW, t-channel, ZZ, Z(tautau), Z(ll) lost, multijets); alpha_c = 0.05 / 19 = 0.00263; per-term false FAIL at the boundary 0.00263 + 4 alpha_c x alpha_c = 0.00266; family-wise 0.0493; limiting case: a term strictly below its ceiling fails less often
+    Sidak over 2 rungs: per-rung threshold equivalent to p_t < alpha_c is p_r < 0.00132
+    Sidak over 3 rungs: per-rung threshold equivalent to p_t < alpha_c is p_r < 0.00088
+    Sidak over 4 rungs: per-rung threshold equivalent to p_t < alpha_c is p_r < 0.00066
+    s_model = 0.0 x cap: closure family removes a selection with 0.021; with the ceiling family at its boundary: 0.069
+    s_model = 0.5 x cap: closure family removes a selection with 0.022; with the ceiling family at its boundary: 0.070
+    s_model = 1.0 x cap: closure family removes a selection with 0.042; with the ceiling family at its boundary: 0.089
+  v4 statement for Df-2 / §4.12: a correct-as-declared analysis loses a selection to a false FAIL with probability at most 6.9%-8.9% (closure family 2.1%-4.2%, ceiling family 4.9% at the boundary)
+  K-C1: price of the re-test threshold p' >= 0.05/K against v2's p' > 0.05 (one rung at the evaluable limit, s_model at the cap), P(final PASS | true |ln r| = x ln F):
+    x = 1.0: re-test at 0.05/K 0.622; re-test at 0.05 0.584; no re-test (direct PASS only) 0.410
+    x = 1.25: re-test at 0.05/K 0.260; re-test at 0.05 0.233; no re-test (direct PASS only) 0.164
+    x = 1.5: re-test at 0.05/K 0.059; re-test at 0.05 0.053; no re-test (direct PASS only) 0.042
+  ceiling test, substitution: 8 direct attributed counts in 4,000 events against H measured as 2,000 counts in 1e6 no-PU events (H = 2e-3 = the direct rate): p = 0.55; against H = 5e-4 (500 counts): p = 0.0011; limiting case H very large: p = 1
+  completeness bound: leak + mixed fraction <= F^(1/3) - 1 = 0.260 (ln = 0.231); 95 % upper limit with zero leaks in N passers: 3/N <= 0.26 needs N >= 12
+
+  N2: attributed counts per 500 C'_PU events in v1 (background.json -> cprime.<t>.rows[].factors; read this session), R04 / R05 / R06 / R07:
+    DIF: per 500: (166, 81, 2, 1); in 1,000 unbiased events R04 / R05 / R06: 332 / 162 / 4; unbiased events for N = 24 at R06: 6000; at R05: 148
+    NI 22 mm: per 500: (127, 46, 0, 0); in 1,000 unbiased events R04 / R05 / R06: 254 / 92 / 0; unbiased events for N = 24 at R06: no count in v1; at R05: 261
+    NI 30 mm: per 500: (173, 60, 1, 0); in 1,000 unbiased events R04 / R05 / R06: 346 / 120 / 2; unbiased events for N = 24 at R06: 12000; at R05: 200
+    NI 61.5 mm: per 500: (553, 189, 1, 0); in 1,000 unbiased events R04 / R05 / R06: 1106 / 378 / 2; unbiased events for N = 24 at R06: 12000; at R05: 63
+    gamma: per 500: (153, 86, 13, 2); in 1,000 unbiased events R04 / R05 / R06: 306 / 172 / 26; unbiased events for N = 24 at R06: 923; at R05: 140
+    V0: per 500: (859, 358, 6, 0); in 1,000 unbiased events R04 / R05 / R06: 1718 / 716 / 12; unbiased events for N = 24 at R06: 2000; at R05: 34
+    PV pair (24 at R02): per 500: (1, None, 0, 0); in 1,000 unbiased events R04 / R05 / R06: 2 / n/a / 0; unbiased events for N = 24 at R06: no count in v1; at R05: n/a
+  P10 fluctuation route: the four terms sized at an expected 31 (DIF, W(tau_h), W(tau_l), tt 1l; Z(nunu) at 81 is evaluable with P = 1.0000): P(at least one NOT TESTED) = 1 - 0.916^4 = 0.297 (before the 33-57 % errors of v1's rates)
+  P10 B3-c nominal edge: 58 expected late counts, 55 needed: P(N >= 55) = 0.67
+  K-C9 C2-c family: 4 rung families x 2 densities = 8 tests; |z| < 2 each gives a false 'not converged' in 0.31; Bonferroni |z| < 2.73 gives 0.049
+  sizing target: expected count 31 in the test half; P(Poisson(31) >= 24) = 0.916; sized at an expectation of 24 it would be 0.53
+  pile-up direct count at R07, expectation 70: P(N >= 55) = 0.97, P(N >= 64) = 0.78
+  thinning at R07: with 70 direct counts and N_eff = 80, sigma_tot = 0.164 (limit 0.135); evaluable needs N_eff >= 252
+  SM hit level, presel-weighted (effective) counts at R06 in v1 and the sample sized for the target in the test half:
+    Z(nunu)+j: 32.3 per 2000 events = 0.01615 per event; needed 3840 events; planned 10000: N_eff in the test half 80.8; at the v2 size of 10000: 80.8; extra 0.0 CPU-h
+    W(tau_h): 8.957 per 1625 events = 0.00551 per event; needed 11250 events; planned 11250: N_eff in the test half 31.0; at the v2 size of 2000: 5.5; extra 64.9 CPU-h
+    W(tau_l): 3.035 per 375 events = 0.00809 per event; needed 7662 events; planned 7662: N_eff in the test half 31.0; at the v2 size of 2000: 8.1; extra 39.7 CPU-h
+    tt 1l: 5.193 per 2000 events = 0.00260 per event; needed 23880 events; planned 23880: N_eff in the test half 31.0; at the v2 size of 2000: 2.6; extra 153.4 CPU-h
+  cost of compliance for the eight proxied processes if their R06 rate equals that of their v1 proxy (ESTIMATE; no v1 count exists):
+    W(e nu) (W(tau_l)-like): +40 CPU-h; floor 0.83; N_trig share 0.062
+    W(mu nu) (W(tau_l)-like): +40 CPU-h; floor 0.78; N_trig share 0.055
+    tW (tt-like): +153 CPU-h; floor 0.26; N_trig share 0.006
+    tt 2l (tt-like): +153 CPU-h; floor 0.24; N_trig share 0.005
+    t-channel (tt-like): +153 CPU-h; floor 0.17; N_trig share 0.003
+    WW (W(tau_h)-like): +65 CPU-h; floor 0.18; N_trig share 0.003
+    WZ (W(tau_h)-like): +65 CPU-h; floor 0.19; N_trig share 0.003
+    ZZ (Z-like): +13 CPU-h; floor 0.17; N_trig share 0.003
+    sum 682 CPU-h; range if every rate is tt-like to Z-like: 1227 to 103
+  NI at R06 unbiased: at 1 count per 500 events, N = 24 needs 12,000 events = 84 CPU-h per radius; at R05 (rung split) the 1,000 unbiased events give 92 / 120 / 378 counts
+  DIF at R06: 4,000 enriched (16 x enrichment) + 1,000 unbiased (4) events reach 31 expected counts for an enrichment >= 1.7; else 7750 unbiased events: +19 CPU-h
+  time tag on prompt candidates: hard-scatter candidates at R04 in the hit-level samples: Z(nunu) 10,000 x 19.52 = 1.95e+05; all four evaluable processes 5.77e+05; late counts at a fraction 1e-4: 58 (55 needed for F = 1.5)
+  crossing rungs on the direct sample: candidates at R05 4.77e+06, at R06 2.37e+04; after the R09 fit-probability cut at v1's 2/35: 1355; after R11: 129; evaluable (N >= 55) if the pass fraction at R06 is above 0.0023
+  pile-up direct: 96,000 trials x 7.29e-4 = 70 counts at R07, sigma_ln = 0.120 (limit for F = 1.5: 0.135)
+  thinning effective counts per 6000 rho = 2 trials (1/s_boot^2): R04 16866, R05 16023, R06 27778; direct counts in 6000 rho = 1 trials at R06: 1482, at R07: 4.4
+
+[12] extrapolation width (N5): s_tot^2 = s_model^2 + sum_f s_f^2 + (b^2 + sigma_b^2) d_in^2 + b0^2 d_out^2
+  d counts only rungs that change a cut the quantity depends on; with fewer than three evaluable cumulative test rungs sigma_b := b0 = ln F
+  the reviewers' recomputation reproduced (rung-index distance, sigma_b = b0, v2 placeholder s_model):
+    pile-up, s_model 0.20, F 1.5: {'R08': 0.45, 'R09': 0.61, 'R11': 1.3, 'R14': 2.47, 'R17': 3.68, 'R20': 4.89}
+    single interaction, s_model 0.35, F 2: {'R08': 0.78, 'R09': 1.04, 'R11': 2.22, 'R14': 4.23, 'R17': 6.29, 'R20': 8.35}
+  v3 planning values: s_model at the cap (0.135 for F = 1.5, 0.231 for F = 2); crossing terms s_f at the same value
+    occupancy model (all families act), no crossing test evaluable: {'R08': 0.43, 'R09': 0.59, 'R11': 1.29, 'R14': 2.47, 'R17': 3.67, 'R20': 4.88}
+    v3 row (withdrawn, P7): occupancy model, crossing tests PASS in the fit-probability, 2S and shape families: {'R08': 0.43, 'R09': 0.45, 'R11': 0.45, 'R14': 0.47, 'R17': 0.49, 'R20': 0.49}
+    v4: occupancy model, only the 2S crossing test PASS (fit-probability and shape comparisons are consistency checks): {'R08': 0.43, 'R09': 0.59, 'R11': 1.29, 'R14': 1.3, 'R17': 2.47, 'R20': 3.68}
+    occupancy model, as above and three evaluable cumulative rungs in the width family with sigma_b = 0.03: {'R08': 0.14, 'R09': 0.19, 'R11': 0.19, 'R14': 0.24, 'R17': 0.27, 'R20': 0.27}
+    promotion pi_k tested at R06-R07 (conditional row: DIF only if the enrichment is >= 4), no crossing test: {'R08': 0.73, 'R09': 0.73, 'R11': 0.73, 'R14': 2.2, 'R17': 2.2, 'R20': 2.2}
+    v4 (P8): promotion pi_k tested at R06 only (expected for DIF at G < 4 and for every B4 term), no crossing test: {'R08': 1.41, 'R09': 1.41, 'R11': 1.41, 'R14': 2.51, 'R17': 2.51, 'R20': 2.51} ; with a 2S crossing PASS: {'R08': 1.41, 'R09': 1.41, 'R11': 1.41, 'R14': 1.42, 'R17': 1.42, 'R20': 1.42}
+    check: sqrt(0.231^2 + 0.693^2 x 2^2) = 1.405; at R14 + 0.693^2 x 3^2: 2.509; limiting case d_in = 0: 0.231 = s_model
+    promotion pi_k, crossing test PASS in the 2S family: {'R08': 0.73, 'R09': 0.73, 'R11': 0.73, 'R14': 0.77, 'R17': 0.77, 'R20': 0.77}
+    promotion pi_k tested at R05 only (rung split, NI): d_in = 3 to R08: 2.09
+    conditional (F = 1.5) measured after R09 at the deepest and applied after R14 (5 rungs act): 2.03; after R11 (2 rungs): 0.82; measured after R07 and applied after R14 (7 rungs): 2.84
+    independent-steps alternative (ln F x sqrt d) for the occupancy model at R14, no crossing test: 1.08
+  N6 censoring: probability factor 0.1 with width 0.59: uncensored mean 0.119, P(> 1) = 0.000; censored at 1: mean 0.119
+  N6 censoring: probability factor 0.1 with width 1.29: uncensored mean 0.230, P(> 1) = 0.037; censored at 1: mean 0.196
+  N6 censoring: probability factor 0.1 with width 2.47: uncensored mean 2.112, P(> 1) = 0.176; censored at 1: mean 0.307
+  v1 thinning slope for scale: 0.36 per rung; ln 1.5 = 0.405, ln 2 = 0.693
+
+[13] other checks
+  R07 direct counts for 4000 events x 4 roads (v1 rate): 12, sigma_ln = 0.29
+  R07 direct counts for 12000 events x 4 roads (v1 rate): 35, sigma_ln = 0.17
+  R07 direct counts for 24000 events x 4 roads (v1 rate): 70, sigma_ln = 0.12
+  V4-5: P(>= 48 of 50 | true agreement 0.85) = 0.0142; | 0.90: 0.112; | 0.98: 0.922
+  B*-off paired: N for 5 sigma from 2.1 sigma at N = 171: 969
+  S1 with 1000 rows on the evaluation half (v1 placeholder efficiencies): relative binomial error eps 0.03: 0.180, eps 0.045: 0.146, eps 0.2: 0.063
+  S1 with 2000 rows on the evaluation half (v1 placeholder efficiencies): relative binomial error eps 0.03: 0.127, eps 0.045: 0.103, eps 0.2: 0.045
+  v1 best point: eps 0.045 on 200 rows: 0.33
+  checks: 0.3/2.71 = 0.1107; log10(1.2346e6/0.11) = 7.05
+  N_exp(E200) = 219.2 fb x 0.04764 x 3000 fb^-1 x 0.5035 = 15774; x 9/200 = 710; 1.2458e7 / 15775 = 789.7
+  sideband example: 1.14 x 0.05 x exp(1.105) = 0.172
+  injection test: standard error of the mean of mu_hat over 200 pseudo-experiments = 0.071 sd(mu_hat)
+  coverage test: binomial error at 95 % on 500 pseudo-experiments = 0.0097
+  coverage test, criterion >= 0.93 of 500 (>= 465): P(fail | true coverage 0.95) = 0.020; P(pass | true coverage 0.90) = 0.012
+  v3 family (P11): 8 checks of T1-c (iii) + 2 of T1-h at >= 465 of 500: false fail at a true 0.95: 0.147 (8) / 0.180 (10); at 0.945: 0.476 (10)
+  v4 T1 coverage family, c_ref = 0.95: FAIL below 462 of 500 (P = 0.0046 per check), INVESTIGATE 462-466 (P = 0.041), re-test FAIL below 462; family-wise false FAIL 0.047; P(final PASS | true coverage 0.90) = 0.0063
+  v4 T1 coverage family, c_ref = 0.945: FAIL below 459 of 500 (P = 0.0048 per check), INVESTIGATE 459-463 (P = 0.039), re-test FAIL below 459; family-wise false FAIL 0.049; P(final PASS | true coverage 0.90) = 0.0268
+  alternative (pooled lambda): 2 pooled T1-c (iii) checks of 2,000 + 2 T1-h checks of 500: at c_ref 0.95 FAIL below 1878 of 2,000 or 464 of 500 (family-wise 0.049 without re-test)
+  one-loop alpha_IC(m = 200 GeV, Lambda = 1.0 keV), b0 = 22/3: 0.0448; C_F alpha (pi/(2 beta) - 4/pi) at beta 0.7/0.5/0.3: +0.033/+0.063/+0.133
+  one-loop alpha_IC(m = 200 GeV, Lambda = 0.45 keV), b0 = 22/3: 0.0430; C_F alpha (pi/(2 beta) - 4/pi) at beta 0.7/0.5/0.3: +0.031/+0.060/+0.128
+  one-loop alpha_IC(m = 1500 GeV, Lambda = 5.0 keV), b0 = 22/3: 0.0439; C_F alpha (pi/(2 beta) - 4/pi) at beta 0.7/0.5/0.3: +0.032/+0.062/+0.130
+  B5 hard-scatter share of candidates in SM + PU samples: R04 0.102, R05 0.083, R06 0.062; DP1 R07 counts per process: 7.7 (full: 27.7)
+  B6 pooled error on eps_var/eps_nom, unpaired, eps = 0.2: 1200 rows 0.082, 3000 rows 0.052
+  pile-up vertices per crossing, upper estimate: 200 x 100 particles x 0.053 = 1060; Geant4 per PU event 200 x 100 x 0.134 ms = 2.7 s
+  C1 signal, 200 v2 rows against 200 v1 rows: detectable shift (2 sigma) at R04 (eps 0.205, v1 14 %): 0.39; at FB2 (eps 0.045, v1 33 %): 0.93
+  C1 signal, 400 v2 rows against 200 v1 rows: detectable shift (2 sigma) at R04 (eps 0.205, v1 14 %): 0.34; at FB2 (eps 0.045, v1 33 %): 0.80
+  C1 signal, 1000 v2 rows against 200 v1 rows: detectable shift (2 sigma) at R04 (eps 0.205, v1 14 %): 0.31; at FB2 (eps 0.045, v1 33 %): 0.72
+  pile-up no-credit value beyond the last direct count: N_trig x 1.14 / 96,000 trials = 485 events (mean 426)
+  S1 chain share that could be cut by 500 rows at the 15 points below 1 keV: 158 CPU-h (listed, not proposed)
+  paired B6 at six points, 300 rows: signal 76 CPU-h (reduced unpaired at four points: 50)
+  GA-1: 1 sigma binomial error of a v2 count on 400 rows (v1 placeholders): R07 (eps 0.09) 0.16; fallback (eps 0.045) 0.23
+  GA-6: re-digitisation of 24,000 direct + 80,000 signal events at the chain cost: 391 CPU-h
+  GA-7: paired B6 at six points: signal +25, partners +4, Stage-3 material for two more points at 3 to 5 keV +6 to +23 CPU-h
+  lever on the SHOULD item B5 (Q4 option): sideband with pile-up on the 500 pile-up events only: -137 CPU-h = -0.8 days
+  B5 with the signal road counted on all 10,000 Z(nunu) hit-level events: weighted hard-scatter candidates at R06 = 162
+  infracolour correction with the vector-current threshold factor quoted in the physics review (P-C4), C_F alpha [pi/(2 beta) - (3 + beta)/(4 pi) (pi^2/2 - 3/4)], at beta 0.7/0.5/0.3: +0.034/+0.066/+0.139
+  T1-e per-nuisance reading: P(|pull| > 2) = 0.046; on 200 pseudo-experiments its binomial error is 0.015; threshold 0.10 is 3.7 sigma above
+  B1-g test, expected secondary-attributed counts in 4,000 trials at R04/R05/R06/R07 (rate 1.57 x v1 counts per 500): 2085 / 1017 / 25 / 13
+  DIF rate per triggered event by process (background.json -> cprime.dif.rate.per_process): 1.5687 (WZ; v5, G-C14) to 1.5945 (tt 2l): spread 0.016

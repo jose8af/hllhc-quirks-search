@@ -442,3 +442,14 @@ FLAG FOR HUMAN: YES (Q4)
   with the Q4 alternatives the verdict orders. ALTERNATIVES: proposed row only. CONFIDENCE: high. FLAG FOR HUMAN: no.
 - [Ingrid] Not done, proposed: code-reference runtime "about ten seconds" (now ≈ 38 s); (α1′) in the "decades below v1"
   sentence. No git operation.
+
+[Jules] 2026-11-14 03:40, fixer, review cycle 6 (verdict STRATEGY_ARBITER_v6_johanna: ITERATE, 0 A, 1 B = U1, ten C items).
+[Jules] U1: the day-15 projection reads DIF and conversions on all own hits before CKF, no S_CKF, no conditional (rule 1, Df-9);
+[Jules]   v7 states this in §11.7 rule 1, §0, Q2 stem and (c); (α1) credit admitted only under (c); (c) judged with the redesigned
+[Jules]   conditional and S_CKF estimated on development samples (EST, no credit in the result); veto-alone statement at v1's central
+[Jules]   DIF size (1–2 counts). Script [9b] +2 print lines: (α1) conversions removed, DIF x e^-1: B50 159 / 256 (verdict draft 158–254;
+[Jules]   script binds); (α1') x 1/(1 - eps_pair): 4.96–5.09e4 (0.8) / 4.96–5.09e5 (0.98). stdout v6 -> v7: only the two lines added.
+[Jules] C items applied: Ph C-4, Cr C1–C4, Jp-C2, Jp-C5, Jp-C6, Jp-C7, Jp-C8. Package-only and deferred items not applied.
+[Jules] Outputs: outputs/STRATEGY_jules_2026-11-14_03-40.md (v7), outputs/budget_stdout_v7.txt, outputs/FIX_REPORT_cycle6_jules.md;
+[Jules]   COMMITMENTS.md header + version-7 row (TG-1). Diff v6 -> v7: 25 hunks, 0 unattributed. No default, number or criterion changed.
+[Jules] Orchestrator-ordered O1 (§4.4 point 4: C′_PU serves C1 and the rule-1 development estimate of a Q2 (c) redesign; no blinding, size or CPU-h change) and O2 (after-CKF basis label on the background size in §0 leading sentence and §12.5 point 3; 'credited' not used, the figure is the no-credit (α1′) row). Diff v6 -> v7 now 28 hunks, 0 unattributed; script not touched.

@@ -1,10 +1,10 @@
 # Binding commitments
 
-Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`
-("STR" below; version 6, after review cycle 5). Earlier versions of this file referred to
+Filled by the Phase-1 strategy and frozen at Gate A. Current strategy: `phase1_strategy/outputs/STRATEGY_jules_2026-11-14_03-40.md`
+("STR" below; version 7, after review cycle 6). Earlier versions of this file referred to
 `STRATEGY_brigitte_2026-11-13_17-55.md` (version 1), `STRATEGY_dmitri_2026-11-13_19-25.md` (version 2),
 `STRATEGY_emeric_2026-11-13_21-10.md` (version 3), `STRATEGY_fiona_2026-11-13_23-05.md` (version 4) and
-`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5).
+`STRATEGY_gunnar_2026-11-14_00-50.md` (version 5) and `STRATEGY_ingrid_2026-11-14_02-20.md` (version 6).
 Every MUST and SHOULD item of the publication plan is a "will implement", except S3 (endcap), dropped by the user
 (brief D1) and carried as an EST outlook statement.
 A status changes only through a logged `[D]` entry (JFC 12) or a user decision; never silently.
@@ -26,6 +26,12 @@ quantity; cumulative and crossing test rungs) and every probability is censored 
 Rows marked (DP) carry a downscope proposal that the user decides at Gate A; until then the full form is the commitment.
 Rows marked (Q-n) depend on a question the user answers at Gate A, rows marked (Df-n) contain a default the user
 can override (STR §12.1); until then the default is a proposal.
+
+## Changes of rows in version 7 (2026-11-14, fixer Jules, review cycle 6: U1; nothing removed)
+
+| identifier | what happened |
+|---|---|
+| TG-1 (Q2) | §11.7 rule 1 basis of the day-15 projection stated; Q2 (c) test on development estimates (U1); no status changed |
 
 ## Changes of rows in version 6 (2026-11-14, fixer Ingrid, review cycle 5: T1–T3 and adopted C items; nothing removed)
 

@@ -843,6 +843,13 @@ for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):
     print(f"    conversion rejection needed to reach the {tag} conversion level: {G_A1P:.0f} / {g_:.0f} = x{G_A1P / g_:.1f} ({1 - g_ / G_A1P:.1%}); not sufficient by itself (DIF above)")
 print(f"    avoided only with B50 <= 300: (alpha1) with fit-probability credit B50 {pmf_cache[('alpha1 (pile-up fall x339)', True)][1]:.0f} / {pmf_cache[('alpha1 (pile-up fall x201)', True)][1]:.0f};"
       f" (alpha1') with credit {A1P_CR[0]:.0f} / {A1P_CR[1]:.0f} (above)")
+# v7 (U1, verdict cycle 6 §7 item 1): (i) conversions removed and the DIF size x e^-1 (the factor-e planning uncertainty);
+# (ii) the day-15 projection basis (Df-9, §11.7 rule 1: own hits before CKF, no S_CKF): the (alpha1') DIF and conversion
+# terms x 1/(1 - eps_pair), eps_pair assumed 0.8-0.98 (not measured); sum of medians (fixed-B reading, as in row() above 5000).
+U1_I = [pmf_pred(kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] * math.exp(-1) / K_DIF)], (PU9,))[1][1] for t_ in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)")]
+U1_II = {eps: [sum(k * (m + 0.67) for k, m in kap_nodif + [(K_DIF, ALPHA[(t_, False)][0] / (1 - eps) / K_DIF), (kz, ALPHA[(t_, False)][1] / (1 - eps) / kz)]) + pu9 for t_ in ("alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x339)", "alpha1' (conversions at their own fall x6.5, DIF at the pile-up fall x201)")] for eps in (0.8, 0.98)}
+print(f"    v7 (U1): (alpha1) conversions removed, DIF x e^-1 (both falls): B50 {U1_I[0]:.0f} / {U1_I[1]:.0f} (x339 / x201) -> {'at or below' if max(U1_I) <= 300 else 'above'} 300")
+print(f"    v7 (U1): (alpha1') on the day-15 own-hit basis, conversions and DIF x 1/(1 - eps_pair) at eps_pair = 0.8 / 0.98 (assumed, not measured; photon rate 0.379): B50 ≈ {U1_II[0.8][0]:.3g}-{U1_II[0.8][1]:.3g} / {U1_II[0.98][0]:.3g}-{U1_II[0.98][1]:.3g} (sum of medians)")
 # v5 (R1 (c)): the factor-e size uncertainty of (alpha1) as size rows B x e^(-1), B x e^(+1) (counted-ceiling reading), and the
 # log-normal reading (width e^1.06 / e^0.94 on DIF / conversions) that is shown but not used.
 for tag in ("alpha1 (pile-up fall x339)", "alpha1 (pile-up fall x201)"):

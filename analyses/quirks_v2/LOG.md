@@ -176,3 +176,13 @@ outcome unchanged. Eight hardest earlier dispositions spot-checked and confirmed
 24 → 14 → 15 → 5 → 3 → 1. Latent regression trigger noted (a single systematic above 80 % of the total in the expected
 branch); v6 already commits to investigating it.
 Next: fixer Jules (opus) → STRATEGY v7 (U1 + the 10 C items) → cycle 7 narrow 4-bot re-review with fresh sessions.
+
+### 04:05 — STRATEGY v7 (fixer Jules): U1, 10 C items, and two orchestrator-ordered consistency fixes
+U1 fixed as the cycle-6 verdict worded it. The fixer reported two inconsistencies outside its strict scope; the
+orchestrator ordered them fixed before review (O1: §4.4 point 4 now states that the C′_PU sample serves C1 and the
+development estimate of a Q2 (c) redesign — background-only sample, no blinding issue, no size or CPU change; O2: the
+background size in §0 and §12.5 now carries its basis label "after CKF, as v1 counted them"). The fixer declined the
+word "credited" for O2 because 0.7–1.0×10⁴ is the no-credit row. It also added a "1–2 counts" caveat to two further
+copies of the "conversions alone" claim. All are listed for the cycle-7 panel to verify. Script values of v6 unchanged.
+DECISION: order O1/O2 now instead of letting cycle 7 find them. ALTERNATIVES: leave v7 exactly as the verdict ordered
+(probable further ITERATE on a known contradiction). CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
