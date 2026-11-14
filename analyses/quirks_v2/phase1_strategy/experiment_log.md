@@ -351,3 +351,50 @@ FLAG FOR HUMAN: YES (Q4)
 - [Emeric] Not done, for the orchestrator: no retrieval outside the repo; no sample produced; [V] tags of text kept
   unchanged from v1 and v2 were not re-audited; v3 is 2,674 lines (v2: 2,391) because the verdict's required tables
   outweigh the removed text.
+
+## [Fiona] 2026-11-13 23:05 - review cycle 3 fix (arbiter Felix: ITERATE, P1 (A), P2-P16 (B))
+- [Fiona] Wrote outputs/STRATEGY_fiona_2026-11-13_23-05.md (v4), FIX_REPORT_cycle3_fiona.md, updated COMMITMENTS.md and
+  src/strategy_budget.py (run with python3 -I, exit 0). P1-P16 resolved; C items applied as listed in the verdict; S-1 and
+  S-3 adopted as ruled; length cuts made, target of 2,500 lines not met (2,840).
+- [Fiona] Key numbers (script): summed floor 12.6 (pool, fourteen SM processes) + 0.46 multijets = 13.0; approved figure
+  4,574 CPU-h (4,417 + 156 reserve), threshold 5,946; calendar 57.6 days; selection lost to a false FAIL 6.9-8.9 %
+  (closure 2.1-4.2 %, ceiling family 4.9 %); headline reach 710 GeV at the 84 % edge (median 790), 470-500 GeV under
+  scenario (alpha1) without credit.
+
+DECISION: scenario (alpha) enters the projection as counted ceilings (Gamma(m+1) x kappa on the pool share; with credit,
+a conditional of width 0.43), not with the v1-based projection uncertainty (factor e) as a log-normal width.
+ALTERNATIVES: log-normal width 0.94-1.06 (hybrid limit dominated by the width: reach below 393 GeV); fixed B (540-570 GeV).
+CONFIDENCE: MEDIUM (the size is what the scenario estimates; without credit the term sits at its counted ceiling)
+FLAG FOR HUMAN: YES (Q2 headline number)
+
+DECISION: ceiling family = one Sidak-combined verdict per term over 19 terms, Bonferroni alpha_c = 0.05/19, INVESTIGATE
+up to 5 alpha_c with one re-test (family-wise 4.9 % at the boundary).
+ALTERNATIVES: combined one-sided chi2 per term; deepest-evaluable-rung test only.
+CONFIDENCE: MEDIUM-HIGH (the verdict accepts any family-wise 5 % rule)
+FLAG FOR HUMAN: YES (Df-2)
+
+DECISION: T1 coverage family: 10 checks against the convention's computed coverage, FAIL below k_F with
+P <= 0.005 (462 of 500 at 0.95), INVESTIGATE to the one-check 5 % point, one re-test; family-wise 4.7-4.9 %.
+ALTERNATIVES: pooled lambda (2,000 per point).
+CONFIDENCE: HIGH
+FLAG FOR HUMAN: YES (Df-10)
+
+DECISION: multijet planning N_trig 4e5 (1 % of N_trig; 0.1-10 %), floor 0.46 (0.05-4.6); Z(tautau) 4.26e5, Z(ll) 2.98e4
+from the review's ratios (B(Z->tautau)/B(Z->nunu) = 0.17 is UNVERIFIED: no branching fraction in the repo).
+ALTERNATIVES: none until the MET model (day 12); shares re-allocated then.
+CONFIDENCE: LOW (guesses by construction; the headline range carries them)
+FLAG FOR HUMAN: NO (reported in Table 4.4a)
+
+DECISION: calendar: 1.5-day closure buffer before the 4a review (N-C12, bought by S-1) and the reserve's 0.9 day on the
+critical path (spent by default, P13): 56.6 -> 57.6 days. Phase 3 at 12 days with 30 channel-days of development under
+the slot table (below PLAN's 35-50), reported as the main residual schedule risk.
+ALTERNATIVES: Phase 3 at 14 days (constructive review's option).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (Q4)
+
+- [Fiona] Script numerics changed (log-space Poisson and binomial sums, windowed pmf) because the (alpha) rows reach
+  B = 1e3-1e5; regression diff of the v3 and v4 outputs shows only intended changes, plus Ph-C1 (NI rates) and Ph-C9
+  (predictive pile-up cap, which moves the R08-like comparison row from 527 to 496 GeV).
+- [Fiona] Not done: the 2,500-line target (further cuts would touch content the verdict did not flag); no retrieval
+  outside the repo; no git operation.
+- [Fiona] Correction to the entry above: v4 is 2,842 lines, not 2,840.

@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Fiona | Phase-1 fixer, review cycle 3 → STRATEGY v4 | opus | spawned 23:05 | `phase1_strategy/outputs/STRATEGY_fiona_2026-11-13_23-05.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle3_fiona.md` |
+| Fiona | Phase-1 fixer, review cycle 3 → STRATEGY v4 | opus | DONE (P1–P16 resolved; 2,842 lines); cycle-4 panel Florence, Gerald, Gertrude spawned 23:50 | `phase1_strategy/outputs/STRATEGY_fiona_2026-11-13_23-05.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle3_fiona.md` |
 
 Phase-1 review history: cycle 1 ITERATE (Dagmar, M1–M35); cycle 2 ITERATE (Eloise, N1–N18); cycle 3 ITERATE (Felix:
 P1 A, P2–P16 B; says cycle 4 = pure verification). Versions kept: v1 Brigitte, v2 Dmitri, v3 Emeric, v4 Fiona.

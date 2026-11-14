@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Arithmetic behind the Phase-1 STRATEGY v3 (STRATEGY_emeric_2026-11-13_21-10.md).
+"""Arithmetic behind the Phase-1 STRATEGY v4 (STRATEGY_fiona_2026-11-13_23-05.md).
 
 Standard library only; run as `python3 -I strategy_budget.py` (about ten seconds; allowed on einstein).
 History: v1 by Brigitte (17:55); rewritten by the fixer Dmitri for review cycle 1 (arbiter findings M1-M35);
-updated by the fixer Emeric for review cycle 2 (findings N1-N18 and the residuals of M4, M5, M11, M12, M15, M24, M26).
+updated by the fixer Emeric for review cycle 2 (findings N1-N18 and the residuals of M4, M5, M11, M12, M15, M24, M26);
+updated by the fixer Fiona for review cycle 3 (findings P1-P16 and the adopted C items; "v4" lines below).
 Every unit cost carries a provenance letter:
   M = measured in the feasibility phase (source in the comment);
   D = derived from measured parts, or measured on one event / toy inputs;
@@ -11,8 +12,9 @@ Every unit cost carries a provenance letter:
 CPU-h are slot-hours on a worker with 4 jobs per node (the "4 concurrent" columns of FEAS_A).
 Sections printed: [1] unit costs, [2] capacity, [3] budget table, [4] totals and variants, [5] deltas per finding,
 [6] contingency, [7] calendar, [8] storage, [9] zero-count floors (M6), [10] zero-count likelihood checks (M1),
-[9b] projection per outcome (N7), [11] closure-test size and power (N4), statistics for the MUST closures (N2),
-[12] extrapolation width (N5), [13] other checks, [14] deltas v2 -> v3 per finding.
+[9b] projection per outcome (N7; v4: scenarios alpha, beta, gamma of P2), [11] closure-test size and power (N4),
+ceiling-test family (P6), statistics for the MUST closures (N2), [12] extrapolation width (N5; v4: P7, P8),
+[13] other checks (v4: T1 coverage family, P11).
 """
 import math
 import random
@@ -63,12 +65,26 @@ print(f"  if utilisation is 0.40: {0.40 * slot_day:.0f} per day")
 
 # ---- [9a] zero-count floors: inputs (needed before the budget because the no-PU pool is allocated from them) ------
 NTRIG = 4.0848e7                      # bsum_wp.json -> n_trig.value (read this session)
+PV_LINE = 0.22                        # v1 "PV-line factor": background.json -> cprime.ni*.rate.pv_line_factor; wp.py l.40 P_PV_LINE
 RATE = {"PV pair": 30.31, "DIF": 1.5945, "gamma": 0.379, "looper": 0.30, "V0": 0.052,
-        "NI 22 mm": 0.11 * 0.22, "NI 30 mm": 0.11 * 0.22, "NI 61.5 mm": 0.11 * 0.22}
-#   PV pair, DIF, gamma: D4 l.395 (cprime.<t>.rate); looper 0.30, V0 0.052, NI 0.10-0.12 x 0.22: D2 l.69 (UNVERIFIED)
-SM_NTRIG = {"Z(nunu)+j": 25078824.8, "W(tau_h)": 5407122.7, "W(e nu)": 2536644.1, "tt 1l": 2379799.0,
-            "W(tau_l)": 2257327.6, "W(mu nu)": 2238036.6, "tW": 259273.4, "tt 2l": 212934.8, "WZ": 137419.5,
-            "WW": 126435.9, "t-channel": 110124.9, "ZZ": 104504.5}   # bsum_wp.json -> n_trig.breakdown (read this session)
+        "NI 22 mm": 0.09823 * PV_LINE, "NI 30 mm": 0.12408 * PV_LINE, "NI 61.5 mm": 0.12408 * PV_LINE}
+#   PV pair, DIF, gamma: D4 l.395 (cprime.<t>.rate); looper 0.30, V0 0.052: D2 l.69 (UNVERIFIED);
+#   v4 (Ph-C1/K-C5): NI from background.json -> cprime.ni22/ni30/ni61.rate.value (read this session), one rate set
+RATE_D2 = dict(RATE, **{"NI 22 mm": 0.11 * 0.22, "NI 30 mm": 0.11 * 0.22, "NI 61.5 mm": 0.11 * 0.22})  # v2 history only
+SM_NTRIG_V1 = {"Z(nunu)+j": 25078824.8, "W(tau_h)": 5407122.7, "W(e nu)": 2536644.1, "tt 1l": 2379799.0,
+               "W(tau_l)": 2257327.6, "W(mu nu)": 2238036.6, "tW": 259273.4, "tt 2l": 212934.8, "WZ": 137419.5,
+               "WW": 126435.9, "t-channel": 110124.9, "ZZ": 104504.5}   # bsum_wp.json -> n_trig.breakdown (read this session)
+# v4 (P1): the two additions with a no-pile-up pool share. N_trig is not known before the MET model (day 12); planning
+# values [E]: Z(tautau) = r_tt x f_MET x N_Z(nunu), r_tt = B(Z->tautau)/B(Z->nunu) = 0.17 (review N-A1, UNVERIFIED),
+# f_MET = fraction with MET_reco > 250 GeV after the lepton veto, 0.1 (range 0.024-0.3); lost-lepton Z(ll) = r_ll x f_lost
+# x N_Z(nunu), r_ll = 0.34 (= 2 x 0.17, UNVERIFIED), f_lost = 3.5e-3 (range 1.2e-3-1.2e-2) [E, guesses fixed by the MET model].
+NZ = SM_NTRIG_V1["Z(nunu)+j"]
+ADD_PLAN = {"Z(tautau)": 0.17 * 0.1 * NZ, "Z(ll) lost": 0.34 * 3.5e-3 * NZ}
+ADD_LO = {"Z(tautau)": 1e5, "Z(ll) lost": 1e4}
+ADD_HI = {"Z(tautau)": 1.3e6, "Z(ll) lost": 1e5}
+SM_NTRIG = dict(SM_NTRIG_V1, **ADD_PLAN)
+MJ_PLAN, MJ_LO, MJ_HI = 4e5, 4e4, 4e6   # multijets after the MET selection [E: 1 % (0.1-10 %) of N_trig; R-4 and the MET model fix it]
+MJ_LOOSE = 1e6                        # loose multijet population through the no-pile-up chain (B4-e factorisation)
 G4_DEC, G4_NI = 0.011, 0.042   # M  vertices per pion gun (pT 1-10 GeV, |eta| < 1): decays, inelastic: FEAS_B Task 5
 # N8 (cycle 2): one route per particle origin. Particles of the hard-scatter vertex that Fatras traces (prompt tracks,
 # loopers, photon conversions, V0 decays) are counted by B4 on real events. The pool keeps, as single-interaction
@@ -77,8 +93,13 @@ G4_DEC, G4_NI = 0.011, 0.042   # M  vertices per pion gun (pT 1-10 GeV, |eta| < 
 POOL_SI = ["DIF", "NI 22 mm", "NI 30 mm", "NI 61.5 mm"]
 C_SI = {"DIF": NOPU + G4GUN / G4_DEC, "NI 22 mm": NOPU + G4GUN / G4_NI, "NI 30 mm": NOPU + G4GUN / G4_NI,
         "NI 61.5 mm": NOPU + G4GUN / G4_NI}
-terms_v2 = [(t, NTRIG * r, NOPU) for t, r in RATE.items()] + [(p, n, NOPU_HS) for p, n in SM_NTRIG.items()]
+terms_v2 = [(t, NTRIG * r, NOPU) for t, r in RATE_D2.items()] + [(p, n, NOPU_HS) for p, n in SM_NTRIG_V1.items()]
+terms_v3 = [(t, NTRIG * RATE_D2[t], C_SI[t]) for t in POOL_SI] + [(p, n, NOPU_HS) for p, n in SM_NTRIG_V1.items()]
 terms = [(t, NTRIG * RATE[t], C_SI[t]) for t in POOL_SI] + [(p, n, NOPU_HS) for p, n in SM_NTRIG.items()]
+
+
+def terms_with(add):
+    return [(t, NTRIG * RATE[t], C_SI[t]) for t in POOL_SI] + [(p, n, NOPU_HS) for p, n in dict(SM_NTRIG_V1, **add).items()]
 C_POOL_V2 = 600.0                     # v2: chain only; the Geant4 vertices were a separate line
 G4_V2 = 65.1                          # v2 Geant4 vertex line (script v2 [3])
 C_POOL = C_POOL_V2 + G4_V2            # v3: one envelope for the no-PU chain and its Geant4 vertices (same CPU as v2)
@@ -129,6 +150,8 @@ add("2", "C2", "MUST", "V4-4: 20 jobs x 2 reruns x 2 nodes", 20 * 4 * 300, "80 x
 add("2", "B2", "MUST", "rho = 2 RSS, pre-merge size, thinning N_eff per rung, frozen-road timing", 10 * H, "", "G")
 add("2", "B1", "MUST", "enrichment pilot: 1e7 minimum-bias interactions at generator level", 1e7 * MINBIAS, "1e7 x 2.5 ms", "M", "M6")
 add("2", "B1", "MUST", "enrichment pilot: 1e6 unbiased no-PU events each for DIF and the three NI radii (f_k, H, sagitta bound)", 4e6 * NOPU, "4e6 x 11.5 ms", "M", "M6")
+add("2", "B1", "MUST", "Geant4 vertices of the pilot's unbiased DIF and NI events (one vertex per event)", 1e6 * G4GUN / G4_DEC + 3e6 * G4GUN / G4_NI,
+    "1e6 x 12.2 ms + 3e6 x 3.2 ms (gun yields 1.1 %, 4.2 %)", "D", "P4 (K-C10)")
 PILOT_HS = 2.3e6
 add("2", "B4", "MUST", "pilot: N_t x H before the freeze for the largest term, 2.3e6 no-PU Z(nunu)+jets events", PILOT_HS * NOPU_HS, "2.3e6 x 45 ms", "G", "N1/N7")
 add("2", "B1", "MUST", "enrichment pilot: 1000 overlays of near-pass events", 1000 * SIG, "1000 x 25.2 s", "D", "M3/M6")
@@ -137,7 +160,10 @@ add("2", "all", "MUST", "unit-cost timing jobs (no-PU hard scatter, signal row, 
 # Phase 3 (development, signal blind)
 add("3", "B1", "MUST", "Geant4 hand-over tests, small P_geo and overlay samples", 60 * H, "", "G")
 add("3", "B1", "MUST", "pile-up-vertex secondaries test: 1000 PU events with Geant4 secondaries", 1000 * (B1EV + 2.7), "1000 x (60.4 + 2.7) s", "D", "M26")
-add("3", "B4", "MUST", "MET model, biased multijet generation, small hit samples", 50 * H, "", "G")
+N_DEVOVL = 1000
+add("3", "B1", "MUST", "development ceiling and completeness tests: 1000 unbiased Geant4 DIF overlays", N_DEVOVL * (SIG + NOPU + G4GUN / G4_DEC),
+    "1000 x (25.2 s + 23.7 ms)", "D", "P4")
+add("3", "B4", "MUST", "MET model and its validation, biased multijet generation tests (no SM hit-level sample, P14)", 50 * H, "", "G")
 add("3", "B3", "MUST", "conditionals on development samples", 10 * H, "", "G")
 add("3", "B2", "MUST", "occupancy estimator on the Phase-2 PU samples", 10 * H, "", "G")
 add("3", "T1", "MUST", "workspace on v1 counts; zero-count tests (limiting case, large count, coverage); injection", 60 * H, "30 (v1) + 30", "G", "M1/M7")
@@ -157,6 +183,11 @@ add("4a", "B1", "MUST", "overlays: DIF 9000 + NI 3 x 1500 + 4 sub-topologies x 1
 SCAN = 2e6
 add("4a", "B1", "MUST", "no-PU scan slice for the test overlays (disjoint seed stream), 2e6 events", SCAN * (NOPU + G4GUN / G4_DEC), "2e6 x (11.5 + 12.2) ms", "D", "N17")
 add("4a", "B2", "MUST", "crossing test rungs: re-analysis of the direct, overlay and hit-level samples", 5 * H, "", "G", "N5")
+N_PAIRED = 4 * 1000 + 4 * 1000   # unbiased B1 test overlays (DIF 1,000; NI 3 x 1,000) + 1,000 hit-level test-half events of each supplied B4 process
+add("4a", "B1", "MUST", "paired pile-up-only finder pass (term hits removed) on the 4,000 unbiased B1 test overlays", 4000 * TRIAL,
+    "4000 x 11.7 s", "M", "P5")
+add("4a", "B4", "MUST", "paired pile-up-only finder pass on 1,000 test-half events of each of the four supplied B4 processes", 4000 * TRIAL,
+    "4000 x 11.7 s", "M", "P5")
 add("4a", "B3", "MUST", "conditionals, vertex veto, stability across rungs, time-tag closure (re-analysis)", 25 * H, "20 + 5", "G", "M16")
 # N2: test half sized where v1 has a count: evaluable needs N_eff >= 24 at R06 (F = 2, s_P = 0.1); the sample is sized for an
 # expected count of 31, which gives at least 24 with probability 0.91 (Poisson; printed in [11]). v1 presel-weighted counts at R06
@@ -257,13 +288,22 @@ prod_s1 = tot(lambda p, i, pr: p == "4a" and i == "S1")
 prod_red = tot(lambda p, i, pr: p == "4a" and sh_red(p, i, pr))
 prod_full = tot(lambda p, i, pr: p == "4a" and sh_full(p, i, pr))
 print(f"  Phase 4a: background and T1 MUST {prod_must_bkg:.0f}; S1 chain {prod_s1:.0f}; SHOULD reduced {prod_red:.0f}; SHOULD full {prod_full:.0f}")
-
-# ---- [5] deltas v2 -> v3 per finding (cycle 2) ---------------------------------------------------------------------------
-V1 = {"MUST": 2950.0, "RED": 3275.0, "FULL": 3798.0}
-V2 = {"MUST": 3968.0, "RED": 4401.0, "FULL": 4915.0, "DAYS": 57.9, "NONPROD": 44}
 TOYS_V2 = (5 * 20 * 8 + 3 * 40 * 8) * TOYS1000 / H
 TOYS_V3 = (5 + 3) * (NFT + NCHK) * 8 * TOYS1000 / H
-RESERVE2 = TOYS_V2 - TOYS_V3          # the CPU freed by C-1: the day-15 redirection reserve (Q2), not in the totals
+RESERVE2 = TOYS_V2 - TOYS_V3          # the CPU freed by C-1: the day-15 redirection reserve (Q2)
+# v4 (P13): the reserve is spent by default (rule 3 of STR §11.7), so it is inside the approved figure of every variant.
+APPROVED = {"MUST only": must + RESERVE2, "MUST + SHOULD reduced": must + shr + RESERVE2, "MUST + SHOULD full": must + shf + RESERVE2}
+print(f"  v4 approved figure = total + day-15 reserve {RESERVE2:.1f} CPU-h (P13):")
+for k_, v_ in APPROVED.items():
+    print(f"    {k_}: {v_ - RESERVE2:.1f} + {RESERVE2:.1f} = {v_:.1f} CPU-h; stop-and-ask threshold 1.3 x {v_:.0f} = {1.3 * v_:.0f}")
+V3 = {"MUST": 3945.0, "RED": 4378.0, "FULL": 4891.0, "THR": 5691.0, "DAYS": 56.6}
+P_ADD = sum(h for p, i, pr, lab, h, a, pv, f in items if f.startswith("P4") or f.startswith("P5"))
+print(f"  v3 -> v4: review additions (P4, P5, K-C10) {P_ADD:.1f} CPU-h; MUST {V3['MUST']:.0f} -> {must:.0f}; reduced {V3['RED']:.0f} -> {must + shr:.0f};"
+      f" full {V3['FULL']:.0f} -> {must + shf:.0f}; approved (reduced + reserve) {APPROVED['MUST + SHOULD reduced']:.0f}, threshold {V3['THR']:.0f} -> {1.3 * APPROVED['MUST + SHOULD reduced']:.0f}")
+
+# ---- [5] deltas v2 -> v3 per finding (cycle 2; history) -----------------------------------------------------------------
+V1 = {"MUST": 2950.0, "RED": 3275.0, "FULL": 3798.0}
+V2 = {"MUST": 3968.0, "RED": 4401.0, "FULL": 4915.0, "DAYS": 57.9, "NONPROD": 44}
 deltas = [   # (label, CPU-h, CPU-h on the Phase-4a critical path)
     ("N1/N7 pilot: N_t x H of the largest term before the freeze (2.3e6 no-PU Z(nunu) events; idle pre-freeze capacity)", PILOT_HS * NOPU_HS / H, 0.0),
     ("N2 hit level: W(tau_h) to %d events" % (2000 + HIT_EXTRA["W(tau_h)"]), HIT_EXTRA["W(tau_h)"] * SIG / H, HIT_EXTRA["W(tau_h)"] * SIG / H),
@@ -283,9 +323,16 @@ for lab, d, dcrit in deltas:
     print(f"  {d:+8.1f} CPU-h  {dcrit / CAP_PROD:+5.2f} d   {lab}")
 print(f"  sum {sum(d for _, d, _ in deltas):+.1f} CPU-h; critical path {sum(c for _, _, c in deltas) / CAP_PROD:+.2f} d")
 print("  calendar, non-production days: N18 Phase 3 from 9 to 12 days (+3); C-5 Phase 2 from 7 to 5 (-2) and Phase 5 from 7 to 4 (-3)")
-print(f"  v1 -> v2 -> v3: MUST {V1['MUST']:.0f} -> {V2['MUST']:.0f} -> {must:.0f} ({must - V2['MUST']:+.0f}); reduced {V1['RED']:.0f} -> {V2['RED']:.0f} -> {must + shr:.0f}"
-      f" ({must + shr - V2['RED']:+.0f}); full {V1['FULL']:.0f} -> {V2['FULL']:.0f} -> {must + shf:.0f} ({must + shf - V2['FULL']:+.0f})")
-print(f"  day-15 redirection reserve (CPU freed by C-1, not in the totals): {RESERVE2:.0f} CPU-h = {RESERVE2 / CAP_PROD:.1f} production days if drawn")
+print(f"  v1 -> v2 -> v3: MUST {V1['MUST']:.0f} -> {V2['MUST']:.0f} -> {V3['MUST']:.0f}; reduced {V1['RED']:.0f} -> {V2['RED']:.0f} -> {V3['RED']:.0f};"
+      f" full {V1['FULL']:.0f} -> {V2['FULL']:.0f} -> {V3['FULL']:.0f} (v3 values; v4 in [4])")
+print(f"  day-15 redirection reserve (CPU freed by C-1; v4: inside the approved figure, P13): {RESERVE2:.0f} CPU-h = {RESERVE2 / CAP_PROD:.1f} production days")
+print("\n[5'] deltas v3 -> v4, per finding (CPU-h; days on the Phase-4a critical path at the production capacity)")
+for p, i, pr, lab, h, a, pv, f in items:
+    if f.startswith("P4") or f.startswith("P5"):
+        crit = h / CAP_PROD if p == "4a" else 0.0
+        print(f"  {h:+8.1f} CPU-h  {crit:+5.2f} d   {f}: {lab} (phase {p})")
+print(f"  {RESERVE2:+8.1f} CPU-h  {RESERVE2 / CAP_PROD:+5.2f} d   P13: day-15 reserve inside the approved figure, spent in 4a production by rule 3")
+print("  P1: Z(tautau) and lost-lepton Z(ll) get pool shares inside the same 665 CPU-h (0 CPU-h); S-1: B5 and the B6 signal arm out of the 4a window (0 CPU-h; days in [7])")
 
 # ---- [6] contingency from provenance --------------------------------------------------------------------------------------
 FRAC = {"M": 0.10, "D": 0.30, "G": 1.00}
@@ -296,13 +343,21 @@ for pv in "MDG":
     cont += FRAC[pv] * s
     print(f"  provenance {pv}: {s:.0f} CPU-h, carried at {FRAC[pv]:.0%} -> {FRAC[pv] * s:.0f}")
 RESERVE = 24000 * B1EV / H
+APP = APPROVED["MUST + SHOULD reduced"]
 print(f"  contingency from provenance {cont:.0f} CPU-h; fresh-sample reserve (one B2 direct sample) {RESERVE:.0f} CPU-h")
-print(f"  reduced total with both: {must + shr + cont + RESERVE:.0f} CPU-h; stop-and-ask threshold 1.3 x {must + shr:.0f} = {1.3 * (must + shr):.0f}")
-print(f"  thresholds for the other variants: MUST only 1.3 x {must:.0f} = {1.3 * must:.0f}; full 1.3 x {must + shf:.0f} = {1.3 * (must + shf):.0f};"
-      f" envelope alternative (Q4): {must + shr:.0f} + {cont:.0f} = {must + shr + cont:.0f}, threshold {1.3 * (must + shr + cont):.0f}")
+print(f"  approved figure (reduced + day-15 reserve) {APP:.0f} CPU-h; with contingency and the fresh-sample reserve: {APP + cont + RESERVE:.0f};"
+      f" stop-and-ask threshold 1.3 x {APP:.0f} = {1.3 * APP:.0f}")
+print(f"  thresholds for the other variants (each with the reserve): MUST only 1.3 x {APPROVED['MUST only']:.0f} = {1.3 * APPROVED['MUST only']:.0f};"
+      f" full 1.3 x {APPROVED['MUST + SHOULD full']:.0f} = {1.3 * APPROVED['MUST + SHOULD full']:.0f};"
+      f" envelope alternative (Q4): {APP:.0f} + {cont:.0f} = {APP + cont:.0f}, threshold {1.3 * (APP + cont):.0f}")
+print(f"  if every guessed (G) unit cost doubled: {APP:.0f} + {FRAC['G'] * sum(h for p, i, pr, lab, h, a, v, f in items if v == 'G' and (is_must(pr) or sh_red(p, i, pr))):.0f}"
+      f" = {APP + sum(h for p, i, pr, lab, h, a, v, f in items if v == 'G' and (is_must(pr) or sh_red(p, i, pr))):.0f} CPU-h against the threshold {1.3 * APP:.0f}")
+G_MEAS1 = sum(h for p, i, pr, lab, h, a, v, f in items if v == "G" and (is_must(pr) or sh_red(p, i, pr))
+              and ("45 ms" in a or "50 ms" in a or "652 s" in a or "FxFx" in lab or "V4-5" in lab or "T_seed" in lab))
+print(f"  K-C13: G-provenance CPU-h whose unit cost the day-5 timing jobs measure (45 ms no-PU event, MLM, FxFx, toy scaling): {G_MEAS1:.0f};"
+      f" the rest of the G total (allowances, Geant4 spectra and variations, development) is fixed only at checkpoint 2 or later")
 print("  conditional draws (none is inside the approved figure; each is reported as an overrun when drawn and counts toward the threshold):")
-for lab, h in (("day-15 redirection reserve (pre-approved by the Q2 default)", RESERVE2),
-               ("exact toys in both passes if the f_T check of pass 1 fails (upper value; the check toys are reused)",
+for lab, h in (("exact toys in both passes if the f_T check of pass 1 fails (upper value; the check toys are reused)",
                 (5 * 20 * 8 - 5 * NCHK * 8) * TOYS1000 / H + 3 * 40 * 8 * TOYS1000 / H - 3 * (NFT + NCHK) * 8 * TOYS1000 / H),
                ("DIF test overlays raised to 7,750 unbiased events if the enrichment is below 1.7", 2750 * SIG / H),
                ("second direct pile-up sample (INVESTIGATE or bug re-test)", RESERVE),
@@ -324,24 +379,50 @@ print(f"  Phase 2 CPU {ph2_cpu:.0f}: {ph2_cpu:.0f} / {CAP_DEV:.0f} = {ph2_cpu / 
 PRE = 5 + 12 + 2 + 2
 print(f"  Phase 3 CPU {ph3_cpu:.0f} (of which the S1 string propagation {string_h:.0f}, days 12-19); capacity in Phases 2 + 3 + freeze ({PRE} days x {CAP_DEV:.0f}) = {PRE * CAP_DEV:.0f};"
       f" idle {PRE * CAP_DEV - ph2_cpu - ph3_cpu:.0f}")
-print(f"  Phase 3 development effort: 3 channels x 12 days = 36 channel-days (v2: 6 x 9 = 54 with twice the allowed concurrency; PLAN: 35-50 person-days)")
-FIXED = [("Phase 2 (three agents)", 5), ("Phase 3 development (three critical channels; PREREG drafted)", 12), ("freeze: 4-bot review of PREREG_v2, hash", 2), ("ITERATE allowance (freeze)", 2),
+SLOTS = [("Phase 2, days 0-5", [("(i) C1 campaigns and C2; the sealed C1 comparison as a short separate session inside this slot, after the C1 counts", 5),
+                                 ("(ii) S2, P1, retrievals R-2/R-3 first, Herwig install attempt", 5),
+                                 ("(iii) pilot, T1 workspace builder on v1 counts, Geant4 geometry, B1-d scan, hand-over code", 5)]),
+         ("Phase 3, days 5-17", [("(i) B1 + B3 development", 12),
+                                 ("(ii) B2 development (days 5-16), then the one Phase-3 1-bot review of SELECTION.md (days 16-17)", 12),
+                                 ("(iii) T1 + B4 development (days 5-12: MET model by day 10, A and m_mig day 12), then the PREREG_v2 drafter with the T2 script (days 12-17)", 12)])]
+print("  v4 agent-slot table (P16; at most three agents at a time; executors + reviewers + drafter):")
+for ph_, rows_ in SLOTS:
+    print(f"    {ph_}: {len(rows_)} concurrent slots; " + "; ".join(f"{r_} [{d_} d]" for r_, d_ in rows_))
+DEV3, DRAFT3, REV3 = 12 + 11 + 7, 5, 1
+print(f"  Phase 3 channel-days: development {DEV3} + PREREG drafting {DRAFT3} + 1-bot review {REV3} = {DEV3 + DRAFT3 + REV3} = 3 x 12 (cap);"
+      f" PLAN estimates 35-50 person-days of development; each 3 channel-days more lengthen Phase 3 by one day (decision point 2 moves the freeze)")
+FIXED = [("Phase 2 (three agents)", 5), ("Phase 3 development (three channels; PREREG drafted in channel (iii) from day 12; one 1-bot review)", 12),
+         ("freeze: 4-bot review of PREREG_v2, hash", 2), ("ITERATE allowance (freeze)", 2),
+         ("closure analysis of the last campaign, T1 expected results, note and PDF before the 4a review (N-C12; bought by S-1)", 1.5),
          ("4a review (4-bot + bib)", 3), ("ITERATE allowance (4a)", 2), ("4b: T2, toys, 4-bot + bib", 3), ("ITERATE allowance (4b)", 2),
          ("Gate B turnaround", 2), ("4c and 1-bot review", 3), ("Phase 5 (sections 1-6, 8-10 drafted during 4a)", 4), ("ITERATE allowance (5-bot)", 2)]
 nonprod = sum(d for _, d in FIXED)
 for lab, d in FIXED:
-    print(f"    {d:2d} d  {lab}")
-print(f"  non-production days: {nonprod} (v2: {V2['NONPROD']}) -> already above the 28 days of a 4-week target; without the four ITERATE allowances: {nonprod - 8}")
+    print(f"    {d:4.1f} d  {lab}")
+print(f"  non-production days: {nonprod} (v3: 42; v2: {V2['NONPROD']}) -> already above the 28 days of a 4-week target; without the four ITERATE allowances: {nonprod - 8}")
+# S-1 (adopted): B5 and the B6 signal arm leave the 4a production window and run in days 36-48 beside the S1 chain and the toys.
+B6SIG_RED = 4 * 300 * 6 * SIG + 4 * 300 * SIG + 2 * 2 * 300 * (s3_at[1.5] + 2 * s3_at[3] + s3_at[5])
+B6SIG_FULL = 6 * 500 * 6 * SIG + 6 * 500 * SIG + 2 * 2 * 500 * (s3_at[1.5] + s3_at[3] + s3_at[5])
+MOVED = {"MUST-only": 0.0,
+         "MUST + SHOULD reduced": (6000 * 7 * TRIAL + 500 * 16 * TRIAL + 20 * H + B6SIG_RED) / H,
+         "MUST + SHOULD full": (8000 * 19 * TRIAL + 500 * 16 * TRIAL + 20 * H + B6SIG_FULL) / H}
+print(f"  S-1: moved out of the 4a window: reduced {MOVED['MUST + SHOULD reduced']:.0f} CPU-h (B5 163 + prototype 20 + B6 signal arm {B6SIG_RED / H:.0f});"
+      f" full {MOVED['MUST + SHOULD full']:.0f} CPU-h")
+CAL = {}
 for name, cpu in [("MUST-only", prod_must_bkg), ("MUST + SHOULD reduced", prod_must_bkg + prod_red), ("MUST + SHOULD full", prod_must_bkg + prod_full)]:
-    d = cpu / CAP_PROD
-    s1d = prod_s1 / CAP_PROD
-    print(f"  {name}: 4a background production {cpu:.0f} CPU-h = {d:.1f} days; S1 chain {prod_s1:.0f} CPU-h = {s1d:.1f} days runs during the"
-          f" 4a review (5 days); total {nonprod + d:.1f} days = {(nonprod + d) / 7:.1f} weeks;"
-          f" at utilisation 0.50 in production: {nonprod + cpu / CAP_DEV:.1f} days")
+    crit = cpu - MOVED[name] + RESERVE2
+    d = crit / CAP_PROD
+    CAL[name] = nonprod + d
+    late = prod_s1 + MOVED[name]
+    print(f"  {name}: 4a production on the critical path {cpu:.0f} - {MOVED[name]:.0f} (S-1) + {RESERVE2:.0f} (day-15 reserve, P13) = {crit:.0f} CPU-h = {d:.1f} days;"
+          f" S1 chain {prod_s1:.0f} + moved {MOVED[name]:.0f} + toys pass 1 {5 * (NFT + NCHK) * 8 * TOYS1000 / H:.0f} = {late + 5 * (NFT + NCHK) * 8 * TOYS1000 / H:.0f} CPU-h"
+          f" run between the end of production and Gate B ({(nonprod - 5 - 12 - 4 - 3 - 4 - 2) * CAP_PROD:.0f} core-h available); total {nonprod + d:.1f} days = {(nonprod + d) / 7:.1f} weeks; at utilisation 0.50 in production: {nonprod + crit / CAP_DEV:.1f} days")
+print(f"  range: every review passes at once and MUST only: {CAL['MUST-only'] - 8:.1f} days; two ITERATE cycles per panel review: +8 days")
 t4b, t4c = 5 * (NFT + NCHK) * 8 * TOYS1000 / H, 3 * (NFT + NCHK) * 8 * TOYS1000 / H
 print(f"  toys 4b {t4b:.1f} + 4c {t4c:.1f} = {t4b + t4c:.1f} CPU-h (v2: {TOYS_V2:.1f}); at {CAP_PROD:.0f}/day: {t4b / CAP_PROD:.1f} and {t4c / CAP_PROD:.1f} days (inside the 3-day windows)")
 print(f"  time-ordered checkpoints: decision point 1 and stop-rule checkpoint 1 at day 5; decision point 2 at day 15; freeze days 17-19; production from day {PRE};"
-      f" Gate B at about day {PRE + (prod_must_bkg + prod_red) / CAP_PROD + 3 + 2 + 3 + 2 + 2:.0f}")
+      f" Gate B at about day {PRE + (prod_must_bkg + prod_red - MOVED['MUST + SHOULD reduced'] + RESERVE2) / CAP_PROD + 1.5 + 3 + 2 + 3 + 2 + 2:.0f};"
+      f" v4: rule 1 of decision point 2 computed preliminarily at day 7 from the finished pilot, binding at day 15")
 print(f"  old T1-g if done with nested toys: 500 x 2 x 8 x 652 s = {500 * 2 * 8 * 652 / H:.0f} CPU-h (not done)")
 
 # ---- [8] storage (GB) -----------------------------------------------------------------------------------------------------------
@@ -375,7 +456,7 @@ U68 = -math.log(0.32)
 v1_m = {"PV pair": 1e7, "DIF": 1e7, "gamma": 1e7, "V0": 1e7}
 print("  v1 plan (1e7 for four topologies, 1e6 per SM process):")
 f_v1 = {t: U68 * NTRIG * RATE[t] / v1_m[t] for t in v1_m}
-f_v1_sm = sum(U68 * n / 1e6 for n in SM_NTRIG.values())
+f_v1_sm = sum(U68 * n / 1e6 for n in SM_NTRIG_V1.values())
 print("   ", {t: round(v, 2) for t, v in f_v1.items()}, f"sum {sum(f_v1.values()):.1f}; SM sum {f_v1_sm:.1f} (Z(nunu) {U68 * SM_NTRIG['Z(nunu)+j'] / 1e6:.1f})")
 sq = sum(math.sqrt(RATE[t]) for t in v1_m)
 f_sq = {t: U68 * NTRIG * RATE[t] / (4e7 * math.sqrt(RATE[t]) / sq) for t in v1_m}
@@ -395,7 +476,9 @@ for c_h in (C_POOL, C_POOL + RESERVE2, 2 * C_POOL):
     rows = floor_table(c_h)
     s68 = sum(r[3] for r in rows)
     si68 = sum(r[3] for r in rows if r[0] in SI)
-    print(f"  v3 routes, pool {c_h:.0f} CPU-h (chain + Geant4 vertices): sum of floors {s68:.1f} (DIF and NI {si68:.1f}, SM {s68 - si68:.1f}); sum of means {sum(r[4] for r in rows):.1f}")
+    print(f"  v4 routes (fourteen SM processes), pool {c_h:.0f} CPU-h (chain + Geant4 vertices): sum of floors {s68:.1f} (DIF and NI {si68:.1f}, SM {s68 - si68:.1f}); sum of means {sum(r[4] for r in rows):.1f}")
+rows_v3 = floor_table(C_POOL, tt=terms_v3)
+print(f"  v3 routes for comparison (twelve SM processes, NI at 0.11 x 0.22): sum of floors {sum(r[3] for r in rows_v3):.2f}")
 print(f"  | term | N_t in 3 ab^-1 | cost per event (ms) | M_t planned | transfer factor N_t/M_t | floor at 68 % (1.14 N/M) |   (pool {C_POOL:.0f} CPU-h)")
 rows = floor_table(C_POOL)
 cost = {t: c for t, n, c in terms}
@@ -403,17 +486,44 @@ for t, n, m, f68, mean in rows:
     print(f"  | {t} | {n:.3g} | {1e3 * cost[t]:.1f} | {m:.3g} | {mean:.2f} | {f68:.2f} |")
 EVAL4 = ("Z(nunu)+j", "W(tau_h)", "W(tau_l)", "tt 1l")
 print(f"  events in the pool: DIF and NI {m_si:.3g} ({c_si_h / H:.0f} CPU-h), SM {m_sm:.3g} ({m_sm * NOPU_HS / H:.0f} CPU-h)")
+PROXY8 = ("W(e nu)", "W(mu nu)", "tW", "tt 2l", "t-channel", "WW", "WZ", "ZZ")
 print(f"  floors by group: DIF {rows[0][3]:.2f}; NI (three) {sum(r[3] for r in rows[1:4]):.2f}; the four SM processes with an evaluable closure {sum(r[3] for r in rows if r[0] in EVAL4):.2f};"
-      f" the eight proxied processes {sum(r[3] for r in rows if r[0] in SM_NTRIG and r[0] not in EVAL4):.2f}")
-print(f"  N_trig share: four evaluable processes {sum(SM_NTRIG[p] for p in EVAL4) / NTRIG:.3f}; eight proxied processes {sum(v for p, v in SM_NTRIG.items() if p not in EVAL4) / NTRIG:.3f}")
+      f" the eight proxied processes {sum(r[3] for r in rows if r[0] in PROXY8):.2f}; the two pooled additions {sum(r[3] for r in rows if r[0] in ADD_PLAN):.2f}")
+print(f"  N_trig share: four evaluable processes {sum(SM_NTRIG[p] for p in EVAL4) / NTRIG:.3f}; eight proxied processes {sum(SM_NTRIG[p] for p in PROXY8) / NTRIG:.3f};"
+      f" the two additions at their planning N_trig {sum(ADD_PLAN.values()) / NTRIG:.3f} (N_trig itself is kept at v1's 4.0848e7; the additions raise it by {sum(ADD_PLAN.values()) / NTRIG:.1%} at day 12)")
+# P1: the additions in the pool, their range, and the cost of keeping the v3 floor instead
+F_V3 = sum(r[3] for r in rows_v3)
+F_V4 = sum(r[3] for r in rows)
+print(f"  P1: Z(tautau) planning N_trig {ADD_PLAN['Z(tautau)']:.3g} (range 1e5-1.3e6), lost-lepton Z(ll) {ADD_PLAN['Z(ll) lost']:.3g} (range 1e4-1e5) [E]")
+for lab_, add_ in (("low", ADD_LO), ("planning", ADD_PLAN), ("high", ADD_HI)):
+    rr_ = floor_table(C_POOL, tt=terms_with(add_))
+    al_ = allocate(C_POOL, tt=terms_with(add_))
+    fz_ = [r for r in rr_ if r[0] == "Z(tautau)"][0]
+    fl_ = [r for r in rr_ if r[0] == "Z(ll) lost"][0]
+    s_ = sum(r[3] for r in rr_)
+    print(f"    {lab_}: Z(tautau) M = {al_['Z(tautau)']:.3g} ({al_['Z(tautau)'] * NOPU_HS / H:.1f} CPU-h), floor {fz_[3]:.2f}; Z(ll) M = {al_['Z(ll) lost']:.3g}"
+          f" ({al_['Z(ll) lost'] * NOPU_HS / H:.1f} CPU-h), floor {fl_[3]:.2f}; summed pool floor {s_:.2f}; to keep {F_V3:.2f} the pool needs"
+          f" {C_POOL * s_ / F_V3:.0f} CPU-h (+{C_POOL * s_ / F_V3 - C_POOL:.0f})")
+    print(f"      without a pool share (direct bound on 2,000 hit-level events, N_t x 1.14 / 2000): Z(tautau) {U68 * add_['Z(tautau)'] / 2000:.0f}, Z(ll) {U68 * add_['Z(ll) lost'] / 2000:.0f} events")
+MJF = {k_: U68 * v_ / MJ_LOOSE for k_, v_ in (("low", MJ_LO), ("planning", MJ_PLAN), ("high", MJ_HI))}
+print(f"  multijet floor through the factorisation (N_MJ x 1.14 / 1e6 loose events) [E]: {MJF['planning']:.2f} (range {MJF['low']:.2f}-{MJF['high']:.2f})")
+print(f"  headline sum of 68 % floors: pool {F_V4:.2f} + multijets {MJF['planning']:.2f} = {F_V4 + MJF['planning']:.1f} (range {F_V4 + MJF['low']:.1f}-{F_V4 + MJF['high']:.1f}; with the additions"
+      f" at their low / high N_trig: {sum(r[3] for r in floor_table(C_POOL, tt=terms_with(ADD_LO))) + MJF['low']:.1f} / {sum(r[3] for r in floor_table(C_POOL, tt=terms_with(ADD_HI))) + MJF['high']:.1f})")
+tt_2c = [(t, n, (2 * c if c == NOPU_HS else c)) for t, n, c in terms]
+r2c = floor_table(C_POOL, tt=tt_2c)
+print(f"  if the no-PU hard-scatter event costs 90 ms instead of 45 (G provenance): SM pool floor {sum(r[3] for r in r2c if r[0] in SM_NTRIG):.1f}"
+      f" (now {sum(r[3] for r in rows if r[0] in SM_NTRIG):.1f}), summed pool floor {sum(r[3] for r in r2c):.1f}")
+C_NI6 = NOPU + G4GUN / (G4_NI / 6)
+tt_slab = [(t, n, (C_NI6 if t.startswith("NI") else c)) for t, n, c in terms]
+print(f"  K-C6: if the inelastic gun yield per slab is a sixth of 4.2 % (c_NI = {1e3 * C_NI6:.1f} ms), the summed pool floor is {sum(r[3] for r in floor_table(C_POOL, tt=tt_slab)):.2f} (D provenance)")
 print(f"  pilot: one H count in 2.3e6 Z(nunu) no-PU events = {SM_NTRIG['Z(nunu)+j'] / PILOT_HS:.1f} events in 3 ab^-1; in 1e6 DIF events = {NTRIG * RATE['DIF'] / 1e6:.0f}")
-print(f"  v1 best B84 against the v3 zero-count floor: log10(1.2346e6 / {sum(r[3] for r in rows):.1f}) = {math.log10(1.2346e6 / sum(r[3] for r in rows)):.2f} decades")
+print(f"  v1 best B84 against the v4 zero-count floor: log10(1.2346e6 / {sum(r[3] for r in rows):.1f}) = {math.log10(1.2346e6 / sum(r[3] for r in rows)):.2f} decades")
 random.seed(20261113)
 means = [r[4] for r in rows]
-draws = sorted(sum(mu * random.expovariate(1.0) for mu in means) for _ in range(200000))
+draws = sorted(sum(mu * random.expovariate(1.0) for mu in means + [MJ_PLAN / MJ_LOOSE]) for _ in range(200000))
 q = lambda f: draws[int(f * len(draws))]
-print(f"  predictive distribution of the summed floor (each term N/M x Exp(1)): 16 % {q(0.16):.1f}, median {q(0.5):.1f}, 84 % {q(0.84):.1f},"
-      f" mean {sum(means):.1f}; sigma_ln = 0.5 ln(q84/q16) = {0.5 * math.log(q(0.84) / q(0.16)):.2f}")
+print(f"  predictive distribution of the summed floor, pool terms and the multijet planning term (each N/M x Exp(1)): 16 % {q(0.16):.1f}, median {q(0.5):.1f}, 84 % {q(0.84):.1f},"
+      f" mean {sum(means) + MJ_PLAN / MJ_LOOSE:.1f}; sigma_ln = 0.5 ln(q84/q16) = {0.5 * math.log(q(0.84) / q(0.16)):.2f}")
 print(f"  enrichment G needed to bring the summed 68 % floor to 10 / 1 / 0.11 events: {sum(r[3] for r in rows) / 10:.1f} / {sum(r[3] for r in rows):.0f} / {sum(r[3] for r in rows) / 0.11:.0f}")
 print(f"  road-multiplicity ceiling for unoriented single interactions: 2 pi / 0.30 = {2 * math.pi / 0.30:.1f}")
 
@@ -437,20 +547,32 @@ print("  quantiles of Gamma(1) (m = 0): 16 %% %.3f, median %.3f, 68 %% %.3f, 84 
 
 
 def pmf_pred(gam, lnn=(), nd=3000, seed=7):
+    """Marginal pmf of n for B = sum kappa x Gamma(m + 1) + sum of log-normal terms (median, width, cap).
+    cap: a number (fixed censoring value), None (no cap), or a negative number -c: the cap is drawn per pseudo-experiment
+    as c x Exp(1), the predictive draw of a no-credit zero-count bound (v4, Ph-C9). The Poisson sum per draw is taken over
+    b +- (10 sqrt(b) + 10) only (v4: avoids the underflow of exp(-b) above b = 745; the tails beyond are below 1e-20)."""
     rnd = random.Random(seed)
     bs = []
     for _ in range(nd):
         b = sum(k * rnd.gammavariate(m + 1, 1.0) for k, m in gam)
         for med, sw, capv in lnn:
-            b += min(med * math.exp(sw * rnd.gauss(0, 1)), capv)
+            x = med * math.exp(sw * rnd.gauss(0, 1))
+            if capv is not None:
+                x = min(x, capv if capv >= 0 else -capv * rnd.expovariate(1.0))
+            b += x
         bs.append(b)
-    kmax = int(max(bs) + 8 * math.sqrt(max(bs)) + 20)
+    kmax = int(max(bs) + 10 * math.sqrt(max(bs)) + 20)
     pmf = [0.0] * (kmax + 1)
     for b in bs:
-        p = math.exp(-b)
-        for k in range(kmax + 1):
-            pmf[k] += p
-            p *= b / (k + 1)
+        k0 = max(0, int(b - 10 * math.sqrt(b) - 10))
+        k1 = min(kmax, int(b + 10 * math.sqrt(b) + 10))
+        if b <= 0:
+            pmf[0] += 1.0
+            continue
+        lp = k0 * math.log(b) - b - math.lgamma(k0 + 1)
+        for k in range(k0, k1 + 1):
+            pmf[k] += math.exp(lp)
+            lp += math.log(b) - math.log(k + 1)
     bs.sort()
     return [x / nd for x in pmf], (bs[int(0.16 * nd)], bs[nd // 2], bs[int(0.84 * nd)])
 
@@ -468,12 +590,13 @@ def s95_pmf(pmf, nobs):
     den = sum(pmf[: nobs + 1])
 
     def cls(sig):
-        tot_, c, p = 0.0, 0.0, math.exp(-sig)
+        # v4: Poisson terms in log space (exp(-sig) underflows above sig = 745)
+        tot_, c, lp, ls = 0.0, 0.0, -sig, math.log(sig)
         cdf = []
         for j in range(nobs + 1):
-            c += p
+            c += math.exp(lp)
             cdf.append(c)
-            p *= sig / (j + 1)
+            lp += ls - math.log(j + 1)
         for k in range(nobs + 1):
             tot_ += pmf[k] * cdf[nobs - k]
         return tot_ / den
@@ -516,7 +639,8 @@ def reach_of(s95v):
 
 print("\n[9b] projection per outcome: one-bin expected CLs limit on the signal yield and the reach read from the plan's table (EST)")
 print("  mapping s95 -> reach (PLAN l.121, sigma_ln = 0 row; fixed B, median expected limit):", [(round(a, 1), int(b)) for a, b in MAPR])
-kap = [(r[4], 0) for r in rows]
+MJK = (MJ_PLAN / MJ_LOOSE, 0)                          # multijet planning floor term (v4, P1 point 2)
+kap = [(r[4], 0) for r in rows] + [MJK]
 kz = SM_NTRIG["Z(nunu)+j"] / alloc["Z(nunu)+j"]
 r07 = 35 / 48000.0
 PU_R07 = NTRIG * r07                                   # direct v1 rate at R07
@@ -524,42 +648,126 @@ PU_R08 = (PU_R07 / (0.2470 / r07), PU_R07 / (49.72 / 0.2470))   # width-step fal
 CHI = (2 / 35.0, 32 / 126.0, 12 / 32.0)                # v1 conditional fit-probability fractions R09, R10, R11 (D4 l.266, UNVERIFIED)
 PU_R09 = tuple(x * CHI[0] for x in PU_R08)
 PU_R11 = tuple(x * CHI[0] * CHI[1] * CHI[2] for x in PU_R08)
-PU_NC = NTRIG * U68 / 96000                            # no-credit value of the pile-up term
+PU_NC = NTRIG * U68 / 96000                            # no-credit value of the pile-up term (68 % upper value)
+PU_CAP = -NTRIG / 96000                                # v4 (Ph-C9): the cap is drawn as (N_trig / 96,000) x Exp(1) in every pseudo-experiment
 print(f"  EST pile-up medians from v1 numbers: R07 direct {PU_R07:.3g}; R08 {PU_R08[0]:.0f}-{PU_R08[1]:.0f} (width-step fall x339 / x201);"
-      f" R09 {PU_R09[0]:.1f}-{PU_R09[1]:.1f}; R11 {PU_R11[0]:.2f}-{PU_R11[1]:.2f}; R14: no v1 number, at most the R11 value; no-credit value {PU_NC:.0f}")
+      f" R09 {PU_R09[0]:.1f}-{PU_R09[1]:.1f}; R11 {PU_R11[0]:.2f}-{PU_R11[1]:.2f}; R14: no v1 number, at most the R11 value; no-credit value {PU_NC:.0f}"
+      f" (68 % upper value; mean {NTRIG / 96000:.0f}; drawn as {NTRIG / 96000:.0f} x Exp(1) in the projection)")
 W_PU = {"R08": 0.43, "R09": 0.59, "R11": 1.29, "R14": 2.47}    # s_tot of [12], occupancy model, no crossing test
 for rr, med in (("R08", PU_R08), ("R09", PU_R09), ("R11", PU_R11), ("R14", PU_R11)):
     print(f"    {rr}: B50 {med[0]:.3g}-{med[1]:.3g}; B84 = B50 x exp({W_PU[rr]}) = {med[0] * math.exp(W_PU[rr]):.3g}-{med[1] * math.exp(W_PU[rr]):.3g}"
-          f" (with crossing tests, s_tot 0.45-0.47: {med[0] * math.exp(0.46):.3g}-{med[1] * math.exp(0.46):.3g})")
+          + (f" (2S crossing test PASS, s_tot 1.30: {med[0] * math.exp(1.30):.3g}-{med[1] * math.exp(1.30):.3g}; v4, P7: no credit from the fit-probability and shape crossing comparisons)" if rr == "R14" else ""))
 pu9 = 0.5 * (PU_R09[0] + PU_R09[1])
 pu8 = 0.5 * (PU_R08[0] + PU_R08[1])
 pmf_v2, _ = pmf_pred([(r[4], 0) for r in rows_v2])
 print(f"  check against the constructive review (v2 floors, all empty): s95 = {s95_pmf(pmf_v2, quant_pmf(pmf_v2, 0.5)):.1f} (review: 24.1)")
-kap_noz = [(r[4], 0) for r in rows if r[0] != "Z(nunu)+j"]
-SCEN = [("floors only (every count zero, every ceiling H empty, no pile-up term)", kap, ()),
-        ("R09-like: floors + EST pile-up median %.0f (s_tot 0.59)" % pu9, kap, ((pu9, 0.59, PU_NC),)),
-        ("R08-like: floors + EST pile-up median %.0f (s_tot 0.43)" % pu8, kap, ((pu8, 0.43, PU_NC),))]
-for mh in (3, 10, 30, 100):
-    SCEN.append(("R09-like, Z(nunu) at its ceiling with m_H = %d counts" % mh, kap_noz + [(kz, mh)], ((pu9, 0.59, PU_NC),)))
-print("  | outcome | B16 / B50 / B84 | sigma_ln = 0.5 ln(B84/B16) | s95 median [16 %, 84 %] | reach, EST (GeV) |")
-for lab, gam, lnn in SCEN:
+PU9 = (pu9, 0.59, PU_CAP)
+
+
+def rfmt(sv):
+    return f"< {MAPR[-1][1]}" if sv > MAPR[-1][0] else f"{reach_of(sv):.0f}"
+
+
+def wm(m):
+    return math.sqrt(trigamma(m + 1))
+
+
+# (alpha): DIF and hard-scatter conversions from v1's own attributed counts per 500 full-pile-up events (Table 4.4b):
+# DIF 2 at R06, 1 at R07; gamma 13 at R06, 2 at R07. R07 value = N_t x count / 500; R08 = R07 / fall; R09 = R08 (no credit)
+# or R08 x 2/35 (v1's pile-up fit-probability fraction as credit). Width = count width w_m of the R07 count (+) one
+# untested width step at F = 2 (b0 = ln 2), in quadrature [E].
+DIF_R07 = NTRIG * RATE["DIF"] * 1 / 500.0
+GAM_R07 = NTRIG * RATE["gamma"] * 2 / 500.0
+W_DIF, W_GAM = math.sqrt(wm(1) ** 2 + math.log(2) ** 2), math.sqrt(wm(2) ** 2 + math.log(2) ** 2)
+print(f"  (alpha) inputs: R07 DIF {DIF_R07:.3g} (1 count in 500), conversions {GAM_R07:.3g} (2 in 500; R06: {NTRIG * RATE['gamma'] * 13 / 500:.3g});"
+      f" uncertainty of the v1-based size: sqrt(w_m^2 + ln2^2) = factor e^{W_DIF:.2f} (DIF, m = 1), e^{W_GAM:.2f} (conversions, m = 2) [a projection uncertainty, not a width of the v2 term]")
+kap_nodif = [(r[4], 0) for r in rows if r[0] != "DIF"] + [MJK]
+ALPHA = {}
+for tag, fd, fg in (("alpha1 (pile-up fall x339)", 0.2470 / r07, 0.2470 / r07), ("alpha1 (pile-up fall x201)", 49.72 / 0.2470, 49.72 / 0.2470),
+                    ("alpha2 (own R06->R07 fall: DIF x2, conversions x6.5)", 2.0, 13 / 2.0)):
+    for credit in (False, True):
+        c_ = CHI[0] if credit else 1.0
+        ALPHA[(tag, credit)] = (DIF_R07 / fd * c_, GAM_R07 / fg * c_)
+        print(f"    {tag}, {'with' if credit else 'no'} fit-probability credit at R09: DIF {DIF_R07 / fd * c_:.3g}, conversions {GAM_R07 / fg * c_:.3g}")
+pmf_cache = {}
+
+
+def row(lab, gam, lnn, store=None):
+    med_sum = sum(k * (m + 0.67) for k, m in gam) + sum(x[0] for x in lnn)
+    if med_sum > 5000:
+        b = med_sum
+        sv = s95_fixed(b)
+        print(f"  | {lab} | ≈ {b:.0f} (sum of medians; fixed-B limit, an upper edge of the reach) | | {sv:.0f} | {rfmt(sv)} |")
+        if store is not None:
+            pmf_cache[store] = (b, b, b, sv, sv, sv)
+        return
     pmf, (b16, b50, b84) = pmf_pred(gam, lnn)
     lim = [s95_pmf(pmf, quant_pmf(pmf, f)) for f in (0.16, 0.5, 0.84)]
-    print(f"  | {lab} | {b16:.0f} / {b50:.0f} / {b84:.0f} | {0.5 * math.log(b84 / b16):.2f} | {lim[1]:.1f} [{lim[0]:.1f}, {lim[2]:.1f}] | {reach_of(lim[1]):.0f} [{reach_of(lim[2]):.0f}, {reach_of(lim[0]):.0f}] |")
+    print(f"  | {lab} | {b16:.0f} / {b50:.0f} / {b84:.0f} | {0.5 * math.log(b84 / b16):.2f} | {lim[1]:.1f} [{lim[0]:.1f}, {lim[2]:.1f}] | {rfmt(lim[1])} [{rfmt(lim[2])}, {rfmt(lim[0])}] |")
+    if store is not None:
+        pmf_cache[store] = (b16, b50, b84) + tuple(lim)
+
+
+print("  | outcome | B16 / B50 / B84 | sigma_ln = 0.5 ln(B84/B16) | s95 median [16 %, 84 %] | reach, EST (GeV): median [84 % edge, 16 % edge] |")
+row("floors only (every count zero, every ceiling H empty, no pile-up term; multijets at their planning floor)", kap, (), "floors")
+row("R09-like: floors + EST pile-up median %.0f (s_tot 0.59)" % pu9, kap, (PU9,), "R09")
+row("R08-like: floors + EST pile-up median %.0f (s_tot 0.43)" % pu8, kap, ((pu8, 0.43, PU_CAP),), "R08")
+kap_noz = [(r[4], 0) for r in rows if r[0] != "Z(nunu)+j"] + [MJK]
+for mh in (3, 10, 30, 100):
+    row("R09-like, Z(nunu) enters at its ceiling (estimator not credited): m_H = %d simulated ceiling counts (%.0f events)" % (mh, kz * mh),
+        kap_noz + [(kz, mh)], (PU9,), "Z%d" % mh)
 b1000 = kz * 1001 + pu9 + sum(k for k, m in kap_noz)
-print(f"  m_H = 1000: B about {b1000:.0f}, fixed-B s95 = {s95_fixed(b1000):.0f}, reach {reach_of(s95_fixed(b1000)):.0f} GeV")
-print(f"  one-bin limit with every zero-count term dropped: {-math.log(0.05):.2f}; with the floors: {s95_pmf(pmf_pred(kap)[0], quant_pmf(pmf_pred(kap)[0], 0.5)):.1f}")
+print(f"  m_H = 1000: B about {b1000:.0f}, fixed-B s95 = {s95_fixed(b1000):.0f}, reach {rfmt(s95_fixed(b1000))} GeV")
+MZ = alloc["Z(nunu)+j"]
+LATE = list(PROXY8) + list(ADD_PLAN)
+for mh in (10, 30, 100):
+    gam_b = [(r[4], 0) for r in rows if r[0] not in LATE] + [(r[4], mh * r[2] / MZ) for r in rows if r[0] in LATE] + [(MJ_PLAN / MJ_LOOSE, mh * MJ_LOOSE / MZ)]
+    row("(beta) Z(nunu) tested and credited (at its floor); the eight proxied processes, the additions and multijets at H, H per event as Z(nunu) with m_H = %d" % mh,
+        gam_b, (PU9,), "beta%d" % mh)
+SMSET = [p for p in SM_NTRIG]
+for mh in (10, 30, 100):
+    gam_g = [(r[4], 0) for r in rows if r[0] not in SMSET] + [(r[4], mh * r[2] / MZ) for r in rows if r[0] in SMSET] + [(MJ_PLAN / MJ_LOOSE, mh * MJ_LOOSE / MZ)]
+    row("(gamma) every SM ceiling at H per event as Z(nunu) (scales with N_trig, x%.2f), m_H = %d" % ((sum(SM_NTRIG.values()) + MJ_PLAN) / NZ, mh),
+        gam_g, (PU9,), "gamma%d" % mh)
+# How the (alpha) terms enter the projection: without credit they are counted ceilings (the term at H, counted on its pool
+# share with m = B / kappa counts, like the Z(nunu) ceiling rows: DIF kappa of the pool, conversions with the Z(nunu) kappa);
+# with credit, the counted size times v1's fit-probability fraction as a conditional applied one rung beyond where it is
+# measured, a log-normal of width s_tot = sqrt(0.135^2 + 0.405^2) = 0.43 (STR §4.0 point 7, F = 1.5).
+K_DIF = [r[4] for r in rows if r[0] == "DIF"][0]
+W_COND1 = math.sqrt((math.log(1.5) / 3) ** 2 + math.log(1.5) ** 2)
+for (tag, credit), (d_, g_) in ALPHA.items():
+    lab_ = "%s, %s: DIF %.3g + conversions %.3g" % (tag, "fit-probability credit at R09" if credit else "no credit (R09 = R08)", d_, g_)
+    if credit:
+        row(lab_, kap_nodif, (PU9, (d_, W_COND1, None), (g_, W_COND1, None)), (tag, credit))
+    else:
+        row(lab_, kap_nodif + [(K_DIF, d_ / K_DIF), (kz, g_ / kz)], (PU9,), (tag, credit))
+a1 = [pmf_cache[("alpha1 (pile-up fall x339)", False)], pmf_cache[("alpha1 (pile-up fall x201)", False)]]
+e0 = pmf_cache["R09"]
+print(f"  HEADLINE (P2): empty ceilings, R09-like: reach {rfmt(e0[5])} GeV at the 84 % edge, median {rfmt(e0[4])}; (alpha1) no credit: B50 {a1[0][1]:.0f}-{a1[1][1]:.0f},"
+      f" median reach {rfmt(a1[1][4])}-{rfmt(a1[0][4])} GeV, 84 % edge {rfmt(a1[1][5])}-{rfmt(a1[0][5])}; (beta) m_H = 10: median {rfmt(pmf_cache['beta10'][4])}, 84 % edge {rfmt(pmf_cache['beta10'][5])};"
+      f" negligible background 1026 GeV")
+print(f"  one-bin limit with every zero-count term dropped: {-math.log(0.05):.2f}; with the floors: {e0[4] if False else s95_pmf(pmf_pred(kap)[0], quant_pmf(pmf_pred(kap)[0], 0.5)):.1f}")
 for c_h in (C_POOL + RESERVE2, 2 * C_POOL):
-    kp = [(r[4], 0) for r in floor_table(c_h)]
-    pmf, (b16, b50, b84) = pmf_pred(kp, ((pu9, 0.59, PU_NC),))
+    kp = [(r[4], 0) for r in floor_table(c_h)] + [MJK]
+    pmf, (b16, b50, b84) = pmf_pred(kp, (PU9,))
     l50 = s95_pmf(pmf, quant_pmf(pmf, 0.5))
-    print(f"  R09-like with the pool at {c_h:.0f} CPU-h, ceilings empty: B50 {b50:.0f}, s95 {l50:.1f}, reach {reach_of(l50):.0f} GeV")
-pmf, (b16, b50, b84) = pmf_pred(kap_noz + [(kz, 130)], ((pu9, 0.59, PU_NC),))
-l50 = s95_pmf(pmf, quant_pmf(pmf, 0.5))
-print(f"  class limit of decision point 2 (B50 = 300 events): m_H = 130 gives B50 {b50:.0f}, s95 {l50:.0f}, reach {reach_of(l50):.0f} GeV")
-print(f"  change of the bound against v1's best B84 of 1.2346e6: B84 = 24 -> {math.log10(1.2346e6 / 24):.1f} decades; B84 = 260 -> {math.log10(1.2346e6 / 260):.1f} decades")
+    print(f"  R09-like with the pool at {c_h:.0f} CPU-h, ceilings empty: B50 {b50:.0f}, s95 {l50:.1f}, reach {rfmt(l50)} GeV")
+for mh in (120, 125, 130, 135):
+    pmf, (b16, b50, b84) = pmf_pred(kap_noz + [(kz, mh)], (PU9,))
+    l50 = s95_pmf(pmf, quant_pmf(pmf, 0.5))
+    print(f"  class limit of decision point 2 (B50 = 300 events): m_H = {mh} gives B50 {b50:.0f}, s95 {l50:.0f}, reach {rfmt(l50)} GeV")
+print(f"  change of the bound against v1's best B84 of 1.2346e6: empty ceilings B84 = {e0[2]:.0f} -> {math.log10(1.2346e6 / e0[2]):.1f} decades;"
+      f" Z(nunu) m_H = 100: B84 = {pmf_cache['Z100'][2]:.0f} -> {math.log10(1.2346e6 / pmf_cache['Z100'][2]):.1f}; (alpha1) no credit x201: B84 = {a1[1][2]:.0f} -> {math.log10(1.2346e6 / a1[1][2]):.1f}")
 print(f"  projection rule per term: max(zero-count floor, N_t x H); one counted ceiling event of Z(nunu) at the final sample size = {kz:.2f} events in 3 ab^-1")
 print(f"  R07-direct baseline, size from v1 counts: pile-up direct {PU_R07:.3g} + DIF attributed 1/500 x N_t = {NTRIG * RATE['DIF'] / 500:.3g} events (order 1e5)")
+# P3 / P14: EST of the Z(nunu) ceiling at R08. v1's attributed hard-scatter rate with pile-up (after CKF removal) is 4.51 / 0.0162
+# per event at R05 / R06 (fall x278); two more width steps at x100-300 each give H_CKF(R08). Option (a) of Df-9 classifies on all
+# own hits: H_a = H_CKF / (1 - eps_pair), eps_pair = probability that CKF removes a passing own-hit configuration (assumed 0.8-0.98).
+H_CKF = (0.0162 / 300 ** 2, 0.0162 / 100 ** 2)
+print(f"  P3/P14 EST: H_CKF(R08) = {H_CKF[0]:.2g}-{H_CKF[1]:.2g} per event; m_H(CKF) in {MZ:.3g} events = {H_CKF[0] * MZ:.1f}-{H_CKF[1] * MZ:.1f};"
+      f" pilot (2.3e6 events) expects {H_CKF[0] * PILOT_HS:.1f}-{H_CKF[1] * PILOT_HS:.1f} counts at R08")
+for eps in (0.8, 0.9, 0.98):
+    print(f"    option (a), eps_pair = {eps}: m_H = {H_CKF[0] * MZ / (1 - eps):.0f}-{H_CKF[1] * MZ / (1 - eps):.0f}; pilot counts {H_CKF[0] * PILOT_HS / (1 - eps):.1f}-{H_CKF[1] * PILOT_HS / (1 - eps):.1f}")
 
 # ---- [10] zero-count likelihood: one-bin analytic checks (M1) ----------------------------------------------------------------------
 # One bin, one background term B = kappa * lambda, auxiliary count m = 0, lambda ~ Gamma(1) (flat prior).
@@ -698,7 +906,7 @@ def band(lo, hi, d, sg):
     return max(0.0, cdf_abs(hi) - cdf_abs(lo))
 
 
-def one_rung(L, smod, sg, K, delta=None, v2rule=False):
+def one_rung(L, smod, sg, K, delta=None, v2rule=False, rt05=False):
     """Verdict probabilities of a one-rung test. v3 rule: pass |x| <= min(L, T05); FAIL |x| > min(L + 2 sg, TK);
     INVESTIGATE between; the re-test (same delta, new eps) passes if |x'| <= min(L, TK).
     v2 rule: FAIL if |x| > L (no route for (a)); (b): FAIL p < 0.05/K, INVESTIGATE p < 0.05, re-test needs p' > 0.05."""
@@ -707,7 +915,7 @@ def one_rung(L, smod, sg, K, delta=None, v2rule=False):
     if v2rule:
         lo_, up_, rt_ = min(L, t05), min(L, tk), min(L, t05)
     else:
-        lo_, up_, rt_ = min(L, t05), min(L + 2 * sg, tk), min(L, tk)
+        lo_, up_, rt_ = min(L, t05), min(L + 2 * sg, tk), (min(L, t05) if rt05 else min(L, tk))
 
     def given(d):
         p_dir = band(0.0, lo_, d, sg)
@@ -796,7 +1004,33 @@ print(f"  two evaluable rungs with a common delta (Monte Carlo, {nmc} draws, s_m
 p1_, p2_ = PT[(2.0, 1.0, 1.0)], nfail / nmc
 print(f"  battery as planned at the cap and the limit (8 one-rung tests of B1-a and B4-c, 2 multi-rung pile-up tests): at least one FAIL {1 - (1 - p1_) ** N2 * (1 - p2_) ** N15:.3f};"
       f" at least one FAIL that removes eligibility {1 - (1 - p1_ / 2) ** N2 * (1 - p2_ * p2_):.3f}")
-print(f"  ceiling test (one-sided, FAIL at p < 0.001, INVESTIGATE at p < 0.05, re-test FAIL at p' < 0.05): false fail at the boundary P = H: {0.001 + 0.049 * 0.05:.4f} per test")
+print(f"  v3 ceiling test per rung (one-sided, FAIL at p < 0.001, INVESTIGATE at p < 0.05, re-test FAIL at p' < 0.05): false fail at the boundary P = H: {0.001 + 0.049 * 0.05:.4f} per test;"
+      f" over 16 / 30 / 55 such tests: {1 - (1 - 0.00345) ** 16:.3f} / {1 - (1 - 0.00345) ** 30:.3f} / {1 - (1 - 0.00345) ** 55:.3f} (the finding P6)")
+# v4 (P6): one ceiling verdict per term. p_t = Sidak-corrected minimum one-sided p over the term's evaluable rungs,
+# p_t = 1 - (1 - min_r p_r)^n_r (exact for independent rungs, conservative for nested ones). Family: the T_C terms with a
+# ceiling test; Bonferroni alpha_c = 0.05 / T_C. FAIL at p_t < alpha_c; INVESTIGATE for alpha_c <= p_t < 5 alpha_c, one re-test on
+# a fresh unbiased sample, FAIL if p_t' < alpha_c. Sub-topology tests are dropped (P4 (iii), default).
+CEIL_TERMS = ["DIF", "NI 22 mm", "NI 30 mm", "NI 61.5 mm"] + list(SM_NTRIG) + ["multijets"]
+T_C = len(CEIL_TERMS)
+A_C = 0.05 / T_C
+p_term = A_C + 4 * A_C * A_C
+p_fam_c = 1 - (1 - p_term) ** T_C
+print(f"  v4 ceiling family (P6): {T_C} terms ({', '.join(CEIL_TERMS)}); alpha_c = 0.05 / {T_C} = {A_C:.5f}; per-term false FAIL at the boundary"
+      f" {A_C:.5f} + 4 alpha_c x alpha_c = {p_term:.5f}; family-wise {p_fam_c:.4f}; limiting case: a term strictly below its ceiling fails less often")
+for nr in (2, 3, 4):
+    print(f"    Sidak over {nr} rungs: per-rung threshold equivalent to p_t < alpha_c is p_r < {1 - (1 - A_C) ** (1 / nr):.5f}")
+ELIG_CL = {fs: 1 - (1 - PT[(2.0, fs, 1.0)] / 2) ** N2 * (1 - PT[(2.0, fs, 1.0)] ** 2) for fs in (0.0, 0.5, 1.0)}
+for fs, e_ in ELIG_CL.items():
+    print(f"    s_model = {fs:.1f} x cap: closure family removes a selection with {e_:.3f}; with the ceiling family at its boundary: {1 - (1 - e_) * (1 - p_fam_c):.3f}")
+E_ALL = (1 - (1 - ELIG_CL[0.0]) * (1 - p_fam_c), 1 - (1 - ELIG_CL[1.0]) * (1 - p_fam_c))
+print(f"  v4 statement for Df-2 / §4.12: a correct-as-declared analysis loses a selection to a false FAIL with probability at most {E_ALL[0]:.1%}-{E_ALL[1]:.1%}"
+      f" (closure family {ELIG_CL[0.0]:.1%}-{ELIG_CL[1.0]:.1%}, ceiling family {p_fam_c:.1%} at the boundary)")
+print("  K-C1: price of the re-test threshold p' >= 0.05/K against v2's p' > 0.05 (one rung at the evaluable limit, s_model at the cap), P(final PASS | true |ln r| = x ln F):")
+for mult in (1.0, 1.25, 1.5):
+    L_ = math.log(2)
+    a_ = one_rung(L_, L_ / 3, L_ / 3, K_FAM, delta=mult * L_)
+    b_ = one_rung(L_, L_ / 3, L_ / 3, K_FAM, delta=mult * L_, rt05=True)
+    print(f"    x = {mult}: re-test at 0.05/K {1 - a_[3]:.3f}; re-test at 0.05 {1 - b_[3]:.3f}; no re-test (direct PASS only) {a_[0]:.3f}")
 
 
 def ceil_p(nd, t_exp, mh, m_exp):
@@ -819,6 +1053,12 @@ per500 = {"DIF": (166, 81, 2, 1), "NI 22 mm": (127, 46, 0, 0), "NI 30 mm": (173,
 for t, c in per500.items():
     print(f"    {t}: per 500: {c}; in 1,000 unbiased events R04 / R05 / R06: {c[0] * 2} / {c[1] * 2 if c[1] is not None else 'n/a'} / {c[2] * 2};"
           f" unbiased events for N = 24 at R06: " + (f"{24 / c[2] * 500:.0f}" if c[2] else "no count in v1") + "; at R05: " + (f"{24 / c[1] * 500:.0f}" if c[1] else "n/a"))
+P_EV = 1 - sum(pois_pmf(k, N_TARGET) for k in range(N_EVAL))
+print(f"  P10 fluctuation route: the four terms sized at an expected {N_TARGET} (DIF, W(tau_h), W(tau_l), tt 1l; Z(nunu) at 81 is evaluable with"
+      f" P = {1 - sum(pois_pmf(k, 80.8) for k in range(N_EVAL)):.4f}): P(at least one NOT TESTED) = 1 - {P_EV:.3f}^4 = {1 - P_EV ** 4:.3f} (before the 33-57 % errors of v1's rates)")
+print(f"  P10 B3-c nominal edge: 58 expected late counts, 55 needed: P(N >= 55) = {1 - sum(pois_pmf(k, 58) for k in range(55)):.2f}")
+print(f"  K-C9 C2-c family: 4 rung families x 2 densities = 8 tests; |z| < 2 each gives a false 'not converged' in {1 - (1 - 2 * Phi(-2)) ** 8:.2f};"
+      f" Bonferroni |z| < {inv_phi(1 - 0.05 / 16):.2f} gives {1 - (1 - 0.05 / 8) ** 8:.3f}")
 print(f"  sizing target: expected count {N_TARGET} in the test half; P(Poisson({N_TARGET}) >= {N_EVAL}) = {1 - sum(pois_pmf(k, N_TARGET) for k in range(N_EVAL)):.3f};"
       f" sized at an expectation of {N_EVAL} it would be {1 - sum(pois_pmf(k, N_EVAL) for k in range(N_EVAL)):.2f}")
 print(f"  pile-up direct count at R07, expectation 70: P(N >= 55) = {1 - sum(pois_pmf(k, 70) for k in range(55)):.2f}, P(N >= 64) = {1 - sum(pois_pmf(k, 70) for k in range(64)):.2f}")
@@ -874,10 +1114,22 @@ c15, c2 = math.log(1.5) / 3, math.log(2) / 3
 print(f"  v3 planning values: s_model at the cap ({c15:.3f} for F = 1.5, {c2:.3f} for F = 2); crossing terms s_f at the same value")
 print("    occupancy model (all families act), no crossing test evaluable:", {("R%02d" % r): round(s_tot(c15, 1.5, 1, max(0, r - 8)), 2) for r in RUNGS})
 ncross = {8: 0, 9: 1, 11: 1, 14: 2, 17: 3, 20: 3}
-print("    occupancy model, crossing tests PASS in the fit-probability, 2S and shape families:", {("R%02d" % r): round(s_tot(c15, 1.5, 1, 0, cross=[c15] * ncross[r]), 2) for r in RUNGS})
+print("    v3 row (withdrawn, P7): occupancy model, crossing tests PASS in the fit-probability, 2S and shape families:", {("R%02d" % r): round(s_tot(c15, 1.5, 1, 0, cross=[c15] * ncross[r]), 2) for r in RUNGS})
+# v4 (P7, Df-2 option (a)): the occupancy comparisons at R09xR06, R11xR06 and R15-R20xR06 share the finder-candidate pass
+# fraction with the derivation (STR §4.5) and are consistency checks: no distance credit. Only the 2S crossing test (hits
+# only) can remove its family (R12-R14) from d_out; the width step R07 -> R08 always counts (d_in = 1).
+d_out_2s = {r: (r - 8) - min(3, max(0, r - 11)) for r in RUNGS}
+print("    v4: occupancy model, only the 2S crossing test PASS (fit-probability and shape comparisons are consistency checks):",
+      {("R%02d" % r): round(s_tot(c15, 1.5, 1, d_out_2s[r], cross=[c15] * (1 if r >= 12 else 0)), 2) for r in RUNGS})
 print("    occupancy model, as above and three evaluable cumulative rungs in the width family with sigma_b = 0.03:", {("R%02d" % r): round(s_tot(c15, 1.5, 1, 0, cross=[c15] * ncross[r], sb=0.03), 2) for r in RUNGS})
 d2s = {8: 0, 9: 0, 11: 0, 14: 3, 17: 3, 20: 3}
-print("    promotion pi_k (counting and width rungs act; fit-probability and shape rungs do not), no crossing test:", {("R%02d" % r): round(s_tot(c2, 2.0, 1, d2s[r]), 2) for r in RUNGS})
+print("    promotion pi_k tested at R06-R07 (conditional row: DIF only if the enrichment is >= 4), no crossing test:", {("R%02d" % r): round(s_tot(c2, 2.0, 1, d2s[r]), 2) for r in RUNGS})
+# v4 (P8): the expected case. One evaluable width rung (R06): n = 1, b_hat = 0, sigma_b = b0 = ln 2; d_in = 2 (R07, R08).
+print("    v4 (P8): promotion pi_k tested at R06 only (expected for DIF at G < 4 and for every B4 term), no crossing test:",
+      {("R%02d" % r): round(s_tot(c2, 2.0, 2, d2s[r]), 2) for r in RUNGS},
+      "; with a 2S crossing PASS:", {("R%02d" % r): round(s_tot(c2, 2.0, 2, 0, cross=[c2] * (1 if r >= 12 else 0)), 2) for r in RUNGS})
+print(f"    check: sqrt(0.231^2 + 0.693^2 x 2^2) = {math.sqrt(0.231 ** 2 + 4 * 0.693 ** 2):.3f}; at R14 + 0.693^2 x 3^2: {math.sqrt(0.231 ** 2 + 4 * 0.693 ** 2 + 9 * 0.693 ** 2):.3f};"
+      f" limiting case d_in = 0: {s_tot(c2, 2.0, 0, 0):.3f} = s_model")
 print("    promotion pi_k, crossing test PASS in the 2S family:", {("R%02d" % r): round(s_tot(c2, 2.0, 1, 0, cross=[c2] * (1 if r >= 12 else 0)), 2) for r in RUNGS})
 print("    promotion pi_k tested at R05 only (rung split, NI): d_in = 3 to R08:", round(s_tot(c2, 2.0, 3, 0), 2))
 print(f"    conditional (F = 1.5) measured after R09 at the deepest and applied after R14 (5 rungs act): {s_tot(c15, 1.5, 0, 5):.2f}; after R11 (2 rungs): {s_tot(c15, 1.5, 0, 2):.2f};"
@@ -905,7 +1157,7 @@ for n in (4000, 12000, 24000):
 
 
 def binom_tail(n, k, p):
-    return sum(math.comb(n, j) * p ** j * (1 - p) ** (n - j) for j in range(k, n + 1))
+    return sum(math.exp(math.lgamma(n + 1) - math.lgamma(j + 1) - math.lgamma(n - j + 1) + j * math.log(p) + (n - j) * math.log(1 - p)) for j in range(k, n + 1))
 
 
 print(f"  V4-5: P(>= 48 of 50 | true agreement 0.85) = {binom_tail(50, 48, 0.85):.4f}; | 0.90: {binom_tail(50, 48, 0.90):.3f}; | 0.98: {binom_tail(50, 48, 0.98):.3f}")
@@ -920,6 +1172,37 @@ print(f"  sideband example: 1.14 x 0.05 x exp(1.105) = {1.14 * 0.05 * math.exp(1
 print(f"  injection test: standard error of the mean of mu_hat over 200 pseudo-experiments = {1 / math.sqrt(200):.3f} sd(mu_hat)")
 print(f"  coverage test: binomial error at 95 % on 500 pseudo-experiments = {math.sqrt(0.05 * 0.95 / 500):.4f}")
 print(f"  coverage test, criterion >= 0.93 of 500 (>= 465): P(fail | true coverage 0.95) = {1 - binom_tail(500, 465, 0.95):.3f}; P(pass | true coverage 0.90) = {binom_tail(500, 465, 0.90):.3f}")
+print(f"  v3 family (P11): 8 checks of T1-c (iii) + 2 of T1-h at >= 465 of 500: false fail at a true 0.95: {1 - binom_tail(500, 465, 0.95) ** 8:.3f} (8) /"
+      f" {1 - binom_tail(500, 465, 0.95) ** 10:.3f} (10); at 0.945: {1 - binom_tail(500, 465, 0.945) ** 10:.3f} (10)")
+
+
+def k_below(n, p, a):
+    """largest k with P(X < k | n, p) <= a"""
+    k, c = 0, 0.0
+    while True:
+        pk = math.exp(math.lgamma(n + 1) - math.lgamma(k + 1) - math.lgamma(n - k + 1) + k * math.log(p) + (n - k) * math.log(1 - p))
+        if c + pk > a:
+            return k
+        c += pk
+        k += 1
+
+
+# v4 (P11, Df-10): one family of N_COV = 10 checks (T1-c (iii): 4 true lambda x 2 points; T1-h: 2 points), 500
+# pseudo-experiments per (point, lambda). Reference c_ref = the convention's computed coverage at the workspace's kappa and
+# lambda (one-bin analogue of [10]), at most 0.95. FAIL if X < k_F (P(X < k_F | c_ref) <= 0.05 / N_COV); INVESTIGATE if
+# k_F <= X < k_05 (P(X < k_05 | c_ref) <= 0.05); one re-test on 500 new pseudo-experiments, FAIL if X' < k_F.
+N_COV = 10
+for c_ref in (0.95, 0.945):
+    kF, k05 = k_below(500, c_ref, 0.05 / N_COV), k_below(500, c_ref, 0.05)
+    pF = 1 - binom_tail(500, kF, c_ref)
+    pI = binom_tail(500, kF, c_ref) - binom_tail(500, k05, c_ref)
+    fam = 1 - (1 - pF - pI * pF) ** N_COV
+    pw = binom_tail(500, k05, 0.90) + (binom_tail(500, kF, 0.90) - binom_tail(500, k05, 0.90)) * binom_tail(500, kF, 0.90)
+    print(f"  v4 T1 coverage family, c_ref = {c_ref}: FAIL below {kF} of 500 (P = {pF:.4f} per check), INVESTIGATE {kF}-{k05 - 1} (P = {pI:.3f}),"
+          f" re-test FAIL below {kF}; family-wise false FAIL {fam:.3f}; P(final PASS | true coverage 0.90) = {pw:.4f}")
+kPool = k_below(2000, 0.95, 0.05 / 4)
+print(f"  alternative (pooled lambda): 2 pooled T1-c (iii) checks of 2,000 + 2 T1-h checks of 500: at c_ref 0.95 FAIL below {kPool} of 2,000 or"
+      f" {k_below(500, 0.95, 0.05 / 4)} of 500 (family-wise {1 - (1 - (1 - binom_tail(2000, kPool, 0.95))) ** 2 * (1 - (1 - binom_tail(500, k_below(500, 0.95, 0.05 / 4), 0.95))) ** 2:.3f} without re-test)")
 b0 = 22.0 / 3.0
 for mq, lam_kev in ((200.0, 1.0), (200.0, 0.45), (1500.0, 5.0)):
     a = 2 * math.pi / (b0 * math.log(mq / (lam_kev * 1e-6)))
