@@ -282,3 +282,72 @@ FLAG FOR HUMAN: NO
 - [Dmitri] Not done, for the orchestrator: no retrieval from outside the repo (R-12 to R-20 are Phase-2 tasks);
   no Herwig install attempt (needs a worker and the install slot); the Gate-A sheet in v2 §12.1 is about three
   pages and should be condensed in `GATE_A.md`; not every [V] tag of the text kept from v1 was re-audited.
+
+## 2026-11-13 21:10 — [Emeric] fixer, review cycle 2 (arbiter Eloise: ITERATE; N1-N4 A, N5-N18 B, 7 partial M)
+
+- [Emeric] Output: `outputs/STRATEGY_emeric_2026-11-13_21-10.md` (v3; v2 untouched), `outputs/FIX_REPORT_cycle2_emeric.md`,
+  `COMMITMENTS.md` (v3 rows, all `open`, T2-h added, nothing removed), `src/strategy_budget.py` (rerun, exit 0).
+- [Emeric] Facts read in the v1 record this session (VERIFIED): `gen_d123.py` l.21-23, l.150-179, l.240-290;
+  `normalise.py` l.84-110 (gamma, V0, PV pair, looper: 'HS vertex only'; DIF, NI: 'HS + 200 x min-bias');
+  `s4cp.py` l.1-20, l.105-116; `AN1/background.json` (cprime rates and attributed counts per rung; sm counts and
+  class events); `AN1/bsum_wp.json` n_trig.
+- [Emeric] Two numbers of v2 and of the verdict did not survive the check: the W(tau) R06 counts are per 1,625
+  (tau_h) and 375 (tau_l) events, not per 2,000. Evaluable samples are cheaper for W(tau_l) (28 CPU-h at the bare
+  threshold, not 210) and W(tau_h) (47, not 61); tt 1l is 116 as stated.
+- [Emeric] Failed or abandoned approaches:
+  (1) First N4 attempt kept v2's re-test criterion (fresh sample must give p > 0.05). With the model bias shared
+  between test and re-test this gives 3.6 % false FAIL per test at the cap (36 % over twelve). Replaced by
+  p' >= 0.05/K on the re-test.
+  (2) First N1 completeness design was an unpaired sum rule against the B2 rate. At R05 the pile-up rate is 49.7 per
+  trial; a 1 % uncertainty on it is ten times the attributed DIF count, so the residual cannot be measured (the same
+  blindness as the withdrawn secondaries ratio test). Replaced by truth classes (attributed / mixed / pure pile-up).
+  A paired pile-up-only finder pass (26 CPU-h) was considered and not added.
+  (3) First sizing of the three SM samples was for an expected count of exactly 24: that is evaluable with
+  probability 0.53. Raised to an expectation of 31 (0.92); +67 CPU-h; all dependent numbers re-propagated.
+  (4) Neighbourhood check found v2's "thinning N_eff = 80 at R07 (evaluable)" wrong: with the 70 direct counts
+  sigma_tot = 0.164 > 0.135; needs N_eff >= 252. Corrected.
+  (5) I considered keeping the gamma and V0 derivation and test overlays as "sub-topology closures" of the
+  hard-scatter estimator. Dropped: they are no term any more and B4-c tests the estimator on the real events of
+  four processes (86 % of N_trig). Their 1,000 unbiased events stay for the ceiling and completeness tests.
+
+DECISION: one accounting route per particle origin. Hard-scatter-vertex particles traced by Fatras (prompt pairs,
+loopers, conversions, V0) are counted by B4 on real SM events; B1 keeps decays in flight and nuclear interactions
+(hard-scatter share + x200 minimum-bias share, the latter at its own z). Pool 665 CPU-h (chain + Geant4 vertices, the
+same CPU as v2) re-allocated: summed zero-count floor 45.3 -> 11.7 events.
+ALTERNATIVES: PV pairs as the remainder after B4 attribution; PV-pair gun term only, with B4 restricted to non-prompt
+candidates.
+CONFIDENCE: MEDIUM-HIGH (the overlap is read in the v1 code; whether Fatras real events contain conversions and V0
+at the generator rates is a Phase-2 route check with a fallback)
+FLAG FOR HUMAN: YES (Q2: the headline changes; the ceiling H of the real events is now the open number)
+
+DECISION: closure rule: s_model <= ln F / 3 (estimator above the cap not submitted); INVESTIGATE band ln F + 2 sigma
+for (a); re-test passed if |ln r'| <= ln F and p' >= 0.05/K; K = 10 fixed. False FAIL that removes a selection for a
+correct-as-declared analysis: 2.1-4.2 %; any FAIL 5-12 %.
+ALTERNATIVES: cap ln F / 2.5 (15 % / 6 %); criterion (a) on the statistical part only (does not remove the
+inconsistency: an estimator with s_model = 0.20 is outside ln 1.5 in 4 % of the cases whatever the test).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (Df-2)
+
+DECISION: MUST closures supplied where cheap: W(tau_h), W(tau_l), tt 1l hit-level samples (+258 CPU-h, 172 of them
+paid by overlays that no longer serve a term); NI at R05 by a rung split (0 CPU-h); DIF sized for R06. The eight
+proxied SM processes and the three additions go to Q3 as an exception to brief D4 (cost of compliance about 680
+CPU-h, 100 to 1,230).
+ALTERNATIVES: entry at H for everything except W(tau_h) (the verdict's default); comply everywhere.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (Q3)
+
+DECISION: completeness bound 0.26 (= 2^(1/3) - 1, the scale ln F / 3) on the 95 % upper limit of
+(leak + mixed)/attributed, carried as a factor c_mix on the term.
+ALTERNATIVES: a 10 % bound; a paired measurement of the mixed excess (26 CPU-h).
+CONFIDENCE: LOW-MEDIUM (a convention; the measured fractions come in Phase 3)
+FLAG FOR HUMAN: NO (reported in the fix report as contestable)
+
+DECISION: Phase 2 in 5 days and Phase 3 in 12 days with three channels; B5 and B6 prototypes and the BDT recipe in
+the production window; calendar 56.6 days.
+ALTERNATIVES: Phase 3 at 14-18 days with all prototypes before the freeze (60-65 days).
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES (Q4)
+
+- [Emeric] Not done, for the orchestrator: no retrieval outside the repo; no sample produced; [V] tags of text kept
+  unchanged from v1 and v2 were not re-audited; v3 is 2,674 lines (v2: 2,391) because the verdict's required tables
+  outweigh the removed text.

@@ -23,7 +23,7 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Emeric | Phase-1 fixer, review cycle 2 → STRATEGY v3 | fable | spawned 21:10 | `phase1_strategy/outputs/STRATEGY_emeric_2026-11-13_21-10.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle2_emeric.md` |
+| Emeric | Phase-1 fixer, review cycle 2 → STRATEGY v3 | fable | DONE; cycle-3 reviewers Estelle, Fabian, Fabiola spawned 22:00 | `phase1_strategy/outputs/STRATEGY_emeric_2026-11-13_21-10.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle2_emeric.md` |
 
 Phase-1 review history: cycle 1 ITERATE (arbiter Dagmar, M1–M35); cycle 2 ITERATE (arbiter Eloise: 7 M partial, N1–N4 A,
 N5–N18 B; Gate A = 5 questions + 8 defaults). Versions: v1 Brigitte, v2 Dmitri, v3 Emeric (all kept).
