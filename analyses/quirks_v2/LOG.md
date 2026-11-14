@@ -160,3 +160,19 @@ item; they corrected how the expected outcome is stated to the human. That state
 iterations are warranted; no ESCALATE is needed because nothing is blocked on the user before the gate.
 Next: fixer Ingrid (opus) → STRATEGY v6 (T1–T3 + listed C items) → cycle 6: three fresh reviewers with narrow scopes
 (physics: T1, T2; critical: v5→v6 diff, greps, T3 figures; constructive: Q2 and Q4 as the human reads them) + arbiter.
+
+### 03:40 — Phase 1 review cycle 6: ITERATE (0 A, 1 B)
+STRATEGY v6 (fixer Ingrid) cleared by all three fresh reviewers (Isolde, Ivan, Jasper: 0 A, 0 B, 20 C; diff clean;
+script output byte-identical). Arbiter Johanna, checking independently, re-classified two C items as B and merged
+them into U1: the binding day-15 projection reads decays in flight and conversions on all own hits before track
+finding, with no S_CKF and no conditional credit, while the Gate-A text describes the branches on v1's after-CKF,
+credited basis (so the ×5–50 caveat applies at day 15 as well as day 7, "(α1) with fit-probability credit" is not a
+branch that avoids the pause under the rule as written, the bar for option (c) is understated, and nothing defines
+how a redesign is judged before the freeze). Text and two script print lines, 0 CPU-h; default (a) and the expected
+outcome unchanged. Eight hardest earlier dispositions spot-checked and confirmed. Verdict:
+`phase1_strategy/review/arbiter/STRATEGY_ARBITER_v6_johanna_2026-11-14_03-15.md`. C items: 10 to apply before commit,
+3 for the Gate-A package only, 2 deferred, 5 absorbed into U1. Gate-A text (Jasper §5) is 2,590 words: must be cut to
+3 pages; 11 corrections listed in the verdict §9. History by cycle — merged A: 11 → 4 → 1 → 0 → 0 → 0; merged B:
+24 → 14 → 15 → 5 → 3 → 1. Latent regression trigger noted (a single systematic above 80 % of the total in the expected
+branch); v6 already commits to investigating it.
+Next: fixer Jules (opus) → STRATEGY v7 (U1 + the 10 C items) → cycle 7 narrow 4-bot re-review with fresh sessions.

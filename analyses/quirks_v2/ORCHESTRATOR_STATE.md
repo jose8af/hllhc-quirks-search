@@ -23,23 +23,24 @@ DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibilit
 
 | name | role | model | state | writes |
 |---|---|---|---|---|
-| Ingrid | Phase-1 fixer, review cycle 5 → STRATEGY v6 (T1–T3 only) | opus | DONE (T1–T3 resolved, 0 unattributed hunks); cycle-6 panel Isolde, Ivan, Jasper spawned 02:50 | `phase1_strategy/outputs/STRATEGY_ingrid_2026-11-14_02-20.md`, `COMMITMENTS.md`, `…/FIX_REPORT_cycle5_ingrid.md` |
+| Jules | Phase-1 fixer, review cycle 6 → STRATEGY v7 (U1 + 10 C items) | opus | spawned 03:40 (14 Nov) | `phase1_strategy/outputs/STRATEGY_jules_2026-11-14_03-40.md`, `…/FIX_REPORT_cycle6_jules.md` |
 
-Phase-1 review history: cycles 1–5 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo); merged A 11→4→1→0→0;
-cycle 5 left T1–T3 (B, text only). Versions kept: v1 Brigitte … v5 Gunnar, v6 Ingrid.
-Cycle 6 panel (fresh, narrow scopes per Hugo's verdict): physics Isolde (T1, T2), critical Ivan (v5→v6 diff, greps,
-T3 figures), constructive Jasper (Q2 and Q4 as the human reads them), arbiter Johanna → `STRATEGY_*_REVIEW_v6_*`.
-Iteration count: 5 done (STRONG WARN reached; cap 10).
+Phase-1 review history: cycles 1–6 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna); merged A
+11→4→1→0→0→0; merged B 24→14→15→5→3→1 (U1). Versions kept: v1 Brigitte … v6 Ingrid, v7 Jules.
+Cycle 7 panel (fresh, narrow per Johanna's verdict §12): physics Katya, critical Kenji, constructive Klaus, arbiter Lena
+→ `STRATEGY_*_REVIEW_v7_*`. Iteration count: 6 done (strong-warn level passed; hard cap 10 → ESCALATE to the user if
+cycle 9 still does not pass).
 KEY FOR GATE A: expected outcome of the default plan = background ≈ 0.7–1.0×10⁴ events led by hard-scatter
 conversions; with the strategy's own 0.17 normalisation width the reach is below 243 GeV (existing bounds ≈ 180 GeV);
-day-15 pause expected even with a conversion veto alone (decays in flight 385–647 > 300). Q2 is the central decision
-(with optional rider: earlier decision at day 7, +7 CPU-h). Approve figure 4,609 CPU-h (4,616 with the rider),
-threshold 5,992 (6,001), calendar 60 days incl. the pause. Gate-A draft text: Hiroshi's review §5 (update with v6).
+day-15 pause expected; the day-15 reading is on all own hits before CKF (×5–50 above v1's credited basis). Q2 is the
+central decision (optional rider: earlier decision at day 7, +7 CPU-h). Approve 4,609 CPU-h (4,616 with rider),
+threshold 5,992 (6,001), 60 days incl. the pause. Gate-A candidate text: Jasper's review §5 — must be cut from 2,590
+words to 3 pages and corrected per Johanna's verdict §9 (11 corrections) and the cycle-7 outcome.
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Reserved for cycle 6: Isolde, Ivan, Jasper, Johanna. Next free: Jules.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Isolde, Ivan, Jasper, Johanna, Jules. Reserved for cycle 7: Katya, Kenji, Klaus, Lena. Next free: Leopold.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -49,7 +50,7 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Ingrid reports: commit; spawn the cycle-6 narrow panel; then arbiter Johanna. Repeat until PASS.
+1. When Jules reports: commit; spawn the cycle-7 narrow panel; then arbiter Lena. Repeat until PASS.
 2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
 3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
    `gate-A`, update STATUS, notify the user, **stop for Gate A**.
