@@ -125,3 +125,21 @@ Headline correction ordered (P2): lead with the conservative reach (about 720 Ge
 v1's own counts for decays in flight and conversions), 790 GeV only as the upper edge; the day-15 pause for a large
 background is a realistic branch.
 Next: fixer Fiona (opus: well-specified text/table/script work) → STRATEGY v4 → cycle-4 verification panel.
+
+## 2026-11-14
+
+### 00:50 — Phase 1 review cycle 4: ITERATE (0 A, 5 B); the expected outcome of the default plan changes
+STRATEGY v4 (fixer Fiona) reviewed by fresh sessions Florence (physics), Gerald (critical), Gertrude (constructive);
+arbiter Greta: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v4_greta_2026-11-14_00-25.md`. P1–P16: 14 resolved,
+2 partial. Merged Category A by cycle: 11 → 4 → 1 → 0. Open: R1 headline, R2 three Q3 annex rows, R3 pilot
+classification schedule, R4 S_CKF test sample (0 CPU-h), R5 paired passes for eleven SM processes (+36 CPU-h, adopted).
+**R1 is a physics finding for the human, not only wording.** Checked by the arbiter against the tracked v1 record
+(`C12FC_v1/background.json`): hard-scatter conversions fell 86 → 13 → 2 over R05–R07 (about ×6.5 per rung); a
+pile-up-like fall is rejected at p = 7×10⁻⁴ to 2×10⁻³. Extrapolated by the strategy's own rule, the default plan's
+background at R08–R09 is of order 10⁴ events, led by conversions: reach about 270 GeV at the 84 % edge (median about
+315; about 390 GeV if the background were known exactly) — ESTIMATE on v1 placeholder efficiencies. The day-15 rule is
+therefore *expected* to pause the study before production. Gate-A question Q2 is reframed around this: pause and
+ask (default), or pre-authorise the "real background" paper, or pre-authorise a pre-freeze conversion-veto redesign.
+All numbers of v4 were reproduced by all three reviewers. Iteration count: 4 (strong warning at 5).
+Next: fixer Gunnar (opus) → STRATEGY v5 limited to R1–R5 and the adopted C items → cycle-5 verification with a
+v4→v5 diff check.
