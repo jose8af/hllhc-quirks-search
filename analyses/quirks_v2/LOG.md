@@ -186,3 +186,23 @@ word "credited" for O2 because 0.7–1.0×10⁴ is the no-credit row. It also ad
 copies of the "conversions alone" claim. All are listed for the cycle-7 panel to verify. Script values of v6 unchanged.
 DECISION: order O1/O2 now instead of letting cycle 7 find them. ALTERNATIVES: leave v7 exactly as the verdict ordered
 (probable further ITERATE on a known contradiction). CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+
+### 05:00 — Phase 1 review cycle 7: ITERATE (0 A, 4 B, one family)
+STRATEGY v7 (fixer Jules) cleared by Kenji (critical) and Klaus (constructive); Katya (physics) found two B items;
+arbiter Lena confirmed both with the script's own functions, found a third and promoted a C to B — all one family
+(V1): how the reading of the day-15 rule is described. Verdict: `phase1_strategy/review/arbiter/
+STRATEGY_ARBITER_v7_lena_2026-11-14_04-30.md`. Facts established: branch (β) reads as (γ) at day 15 (its Z(νν) credit
+exists only after the freeze) and is below 300 only up to about 60 pool counts; at decays in flight ×e⁻¹ a conversion
+rejection of ×69–235 is needed (not ×31–52); at v1's central decays-in-flight size no conversion rejection alone is
+enough; the fit-probability credit also acts on decays in flight, which option (c) as worded did not target. The
+arbiter swept the whole family: 40 statements, 4 incorrect, 18 needing a label, and ordered a structural fix: a
+script-printed day-15 table (branch → B₅₀ under rule 1 → above/below 300) plus a rejection grid for option (c), with
+the text citing the table instead of paraphrasing it. The cycle-6 arbiter's fix text was the source of all four.
+Arbiter's statement for the record: the design, criteria, samples, budget (4,609 CPU-h / 5,992 / 60 days), default
+and expected outcome are settled; the defects are confined to the human-facing description of the day-15 decision.
+History — A: 11 → 4 → 1 → 0 → 0 → 0 → 0; B: 24 → 14 → 15 → 5 → 3 → 1 → 4.
+Orchestrator note: cycles 4–7 each found further sentences of the same family because each fix replaced prose with
+prose. The table computed by the script removes the mechanism. Escalation rule stands: if cycle 9 does not pass,
+stop and put the open list to the user instead of running to the cap of 10.
+Next: fixer Leopold (opus) → STRATEGY v8 → cycle 8 narrow panel (physics recomputes the table; critical checks the
+v7→v8 diff and greps; constructive checks the Gate-A package against the table) + arbiter.
