@@ -2,9 +2,25 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-13 15:50 -05 · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy), step EXECUTE (feasibility, resumed after the 15:12 interruption)
+**Updated:** 2026-11-14 01:25 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy) — **STOPPED, WAITING FOR THE USER**
 
-**Read `LOG.md` entry "15:12 — INTERRUPTION" first: it holds the constraints now in force (10 GB cap, nothing heavy on einstein, one pixi install at a time, modest number of subagents).**
+**Two things are waiting on the user (both reported 2026-11-14 01:25):**
+1. **Phase-1 review did not pass in nine cycles.** Cycle 9 = ITERATE, 0 A, 1 B (a stale "ten defaults" in the freeze
+   table, introduced by the orchestrator's addition O6) + 13 wording edits with exact text, already tested by the
+   arbiter. Verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md` (§0 = open list).
+   The orchestrator stopped by its own rule. Question to the user: (i) authorise cycle 10 (apply the edits as v10 +
+   narrow mechanical re-review; it is the hard cap), or (ii) take Gate A now on v9 + the edit list, or (iii) other.
+   Do NOT start cycle 10, a fixer, or Gate A without the user's answer.
+2. **Cluster fault:** `/nfs/cajuela` hangs on einstein and ssh to all three workers hangs since about 00:47 on 14 Nov
+   (details in `LOG.md`, entry "01:18 — CLUSTER FAULT"). No repair attempted. Do NOT start any worker job, Argo
+   workflow or bundle until the user confirms the cluster is healthy; then re-run the cajuela and ssh preflight
+   checks and write the overdue repo bundle.
+
+**Clock warning:** times in `LOG.md` and in file names before 2026-11-14 01:20 are sequence labels, not clock times;
+git commit times are authoritative. Always call `date` before writing a time.
+
+Read `LOG.md` entry "15:12 — INTERRUPTION" for the constraints in force (10 GB cap, nothing heavy on einstein, one
+pixi install at a time, at most 3 subagents).
 
 ## Phase tracker
 - [x] Preflight — PASS on re-run after the cajuela fix (`PREFLIGHT.md`)
@@ -21,28 +37,25 @@ A fresh session reads `prompt.md` (the brief), then this file, then resumes at "
 DONE and committed: investigators D1–D6 + `FRAMING.md` (`980d207`); feasibility C runner (`0ff12df`), B generators/Geant4
 (`6c1b760`), A chain (`3502634`). Reports: `phase1_strategy/outputs/feasibility/FEAS_{A,B,C}_*.md` + `benchmarks_*.json`.
 
-| name | role | model | state | writes |
-|---|---|---|---|---|
-| Mireille | Phase-1 fixer, review cycle 8 → STRATEGY v9 (W1: rule-1 clarification, recomputed tables, self-test, text checker; verdict §3–§5 only) | opus | DONE (sha256 equal to expected, self-test 8/8, text check 45/45, O6 = Df-11 row; 33 hunks, 0 unattributed); cycle-9 panel Nadia, Nikolai, Nora spawned 07:25 | `phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md`, `src/strategy_budget.py`, `src/check_day15_text.py`, `budget_stdout_v9.txt`, `FIX_REPORT_cycle8_mireille.md` |
+No subagent is running.
 
-Phase-1 review history: cycles 1–8 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena, Margaret);
-A 11→4→1→0→0→0→0→0; B 24→14→15→5→3→1→4→1. Versions kept: v1 Brigitte … v8 Leopold, v9 Mireille.
-Cycle 9 panel (fresh, per Margaret's verdict): physics Nadia (recompute tables from rule 1 independently: medians 1 %,
-factors 5 %; run self-test), critical Nikolai (v8→v9 diff, stdout sha256 0ca4af15…003433d, byte-identity outside the
-two tables, text checker), constructive Nora (final Gate-A package incl. 13 corrections), arbiter Odette.
-Iteration count: 8 done. **CYCLE 9 IS THE LAST: if it does not PASS, stop and put the open list to the user.**
-Settled: design, criteria, samples, budget 4,609 CPU-h / threshold 5,992 / 60 days, default (a), expected outcome.
-Root cause of cycles 4–8 (found in cycle 8): rule 1 was ambiguous about SM processes without a day-15 sample; pinned
-reading = all SM read through the Z(νν) pilot count; day-15 limit ≈ 12 Z(νν) pilot counts. This pinned reading must be
-shown to the user at Gate A as an overridable default.
+Phase-1 review history: cycles 1–9 all ITERATE (arbiters Dagmar, Eloise, Felix, Greta, Hugo, Johanna, Lena, Margaret,
+Odette); A 11→4→1→0→0→0→0→0→0; B 24→14→15→5→3→1→4→1→1. Versions kept: v1 Brigitte … v9 Mireille
+(`phase1_strategy/outputs/STRATEGY_mireille_2026-11-14_06-55.md` is the current strategy).
+Settled (cycle-7, -8 and -9 arbiters): design, criteria, samples, budget 4,609 CPU-h / threshold 5,992 / 60 days incl.
+the expected pause, default answers, expected outcome; day-15 family closed with script self-test and text checker.
+If the user authorises cycle 10: fixer applies verdict-v9 edits (B-1 + E2–E14; the arbiter's tested script is
+`/var/tmp/jdochoa/arbiter_odette/apply_edits.py`, to be used only as a reference) → v10; verification per verdict §9
+(narrow, mechanical, fresh sessions: diff v9→v10 equals the edit list; checker 45/45; script output unchanged).
+Draft Gate-A package: `gates/GATE_A_DRAFT.md` (1,496 words; describes v9 with the edits applied).
 KEY FOR GATE A: expected outcome = background ≈ 0.7–1.0×10⁴ events (after CKF, as v1 counted) led by hard-scatter
 conversions; reach below 243 GeV with the 0.17 normalisation width (bounds ≈ 180 GeV); day-15 pause expected; no
-conversion rejection alone lifts it at v1's central decays-in-flight size (1–2 v1 counts). Q2 central.
+conversion rejection alone lifts it at v1's central decays-in-flight size (1–2 v1 counts). Q2 central; Df-11 new.
 
 Geant4 env (per-worker local, V13): schrodinger, landau, maxwell all installed, stamps match lock `edbcef24…`.
 Install slot for the shared home: FREE, nothing pending.
 
-Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Isolde, Ivan, Jasper, Johanna, Jules. Katya, Kenji, Klaus, Lena, Leopold. Ludmila, Magnus, Marcel, Margaret, Mireille. Reserved for cycle 9: Nadia, Nikolai, Nora, Odette. Next free: Oscar.
+Session names used so far: Ada … Brigitte, Casimir, Celeste, Cosima, Dagmar, Dmitri. Dolores, Dorothea, Edmund, Eloise, Emeric. Estelle, Fabian, Fabiola, Felix, Fiona. Florence, Gerald, Gertrude, Greta, Gunnar. Hana, Hedwig, Hiroshi, Hugo, Ingrid. Isolde, Ivan, Jasper, Johanna, Jules. Katya, Kenji, Klaus, Lena, Leopold. Ludmila, Magnus, Marcel, Margaret, Mireille. Nadia, Nikolai, Nora, Odette. Next free: Oscar.
 pixi 0.84.2 at `~/.pixi/bin`; every shell sources `tools/env.sh`.
 
 ## Campaigns running
@@ -52,11 +65,7 @@ None. No production before Gate A.
 None.
 
 ## Next action
-1. When Mireille reports: commit; spawn the cycle-9 panel; then arbiter Odette. PASS → steps 2–3.
-   Not PASS → stop and put the open list to the user (do not start cycle 10 without the user).
-2. Regression checklist of the root CLAUDE.md (orchestrator, after the arbiter's PASS).
-3. Write `gates/GATE_A.md` (3 pages or less; the arbiter's list of Gate-A decisions is the backbone), bundle
-   `gate-A`, update STATUS, notify the user, **stop for Gate A**.
+WAIT for the user's answers to the two items at the top. Nothing else.
 
 ## Standing rules to remember
 - Never rename a directory on cajuela. Files: `.part` → rename → marker.

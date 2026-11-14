@@ -241,3 +241,53 @@ tables, the label line and the self-test lines the script output is byte-identic
 addition O6: row Df-11 in the table of overridable defaults (the pinned reading of rule 1, citing the table row).
 Correction to the orchestrator's own brief for O6: the alternative reading with a pool floor is the *lenient* one
 per the verdict, not the stricter one; the fixer followed the verdict. 33 hunks v8→v9, none unattributed.
+
+### CORRECTION (written 2026-11-14 01:20 -05, measured with `date`): the times in this log are not clock times
+From the "14:45" entries onward the orchestrator wrote entry times, file-name timestamps and "spawned at" times from
+its own running estimate without calling `date`. They drifted: the entries labelled 19:25 (13 Nov) to 07:55 (14 Nov)
+were in fact written between 18:40 on 13 Nov and 01:05 on 14 Nov, and some earlier labels are off by 10–25 minutes
+(for example the user's Geant4 decision, labelled 16:00, was committed at 15:39). **The git commit times are the
+authoritative clock** (`git log --date=iso`). The labels remain valid as an ordering and as identifiers in file
+names (reviews, verdicts, strategy versions), which are not renamed. Measured anchors: preflight 14:06 and 14:34;
+out-of-memory incident 15:12 (reported by the user); reconciliation 15:35; strategy v1 committed 18:16; cycle-9
+reviews committed 01:05 on 14 Nov. From this entry on, every time in this log comes from `date` or from git.
+
+### 2026-11-14 01:10 (git) — Phase 1 review cycle 9: ITERATE (0 A, 1 B). Orchestrator stops by its own rule
+STRATEGY v9 (fixer Mireille) reviewed by fresh sessions Nadia (physics: approve; 38/38 table cells recomputed with
+separate code), Nikolai (critical: mechanical checks all pass; found the one B), Nora (constructive: sound and honest
+basis for Gate A). Arbiter Odette (fable): `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md`.
+W1 and the whole day-15 family: closed (sha256 of the script output equals the expected value; self-test 8/8; text
+checker 45/45 on v9 and 41 mismatches on v8 as control; rule-1 clarification present). No number, criterion, budget
+figure, default answer or expected outcome is open.
+B-1 (stands at Category B): the "What is frozen when" table still says Gate A freezes "the ten defaults"; there are
+eleven since the orchestrator-ordered addition O6 (Df-11, the pinned reading of rule 1), whose count update missed
+this row. The arbiter judged it B because that row is the strategy's only list of what Gate A freezes and "ten"
+reads as excluding Df-11. **The defect was introduced by the orchestrator's own addition O6.**
+Also ordered, Category C, exact text given and tested against the checker on a scratch copy (13 hunks): what the
+strategy should tell the human about Df-11 (the alternative reading is more lenient: about 20 instead of 12 Z(νν)
+pilot counts; the pinned reading is itself a proxy that under-reads the other processes' conversions by about 8 %,
+at most ×1.6; "≈ 12 counts" holds at an R09 candidate and is about 6–7 at R08), and one sentence in rule 1 (E6: at
+least 10⁵ draws; a reading within that precision of 300 pauses) — the only edit touching a criterion, which the
+human may drop. Gate-A package text corrected by the arbiter (1,496 words), copied to `gates/GATE_A_DRAFT.md`.
+History — A: 11→4→1→0→0→0→0→0→0; B: 24→14→15→5→3→1→4→1→1.
+DECISION: stop here and put the open list to the user, as committed in the entry on cycle 7 ("if cycle 9 does not
+pass, stop"). Applying the edits and verifying them would be cycle 10, the hard cap of JFC 06 §6.5.
+ALTERNATIVES: run cycle 10 without asking (within the cap, but against the orchestrator's own stated rule and with
+nine ITERATEs behind it). CONFIDENCE: HIGH. FLAG FOR HUMAN: YES.
+
+### 2026-11-14 01:18 (date) — CLUSTER FAULT: `/nfs/cajuela` hangs on einstein; ssh to all three workers hangs
+Found while checking a load report from the cycle-9 arbiter (it saw load average 96–141 on einstein). Measured:
+- `cat /proc/loadavg` on einstein: 159.23 138.09 94.08; 162 `kubelet` threads and one kernel thread
+  `192.168.10.254-manager` in uninterruptible sleep (state D); CPU idle; memory fine (10 GB available).
+- `timeout 8 ls /nfs/cajuela/jdochoa/quirks_v2` on einstein: no answer (killed by the timeout). The underlying
+  `ls /mnt/cajuela` answers at once, so the disks and mergerfs respond and the hang is in the NFS mount of cajuela.
+- `ssh -x <worker> …` with a 15 s timeout: no answer from landau, maxwell and schrodinger; all three answer `ping`.
+  One older ssh to maxwell had been hanging for about 31 minutes, which dates the start to about 00:47.
+- `kubectl get nodes`: all four nodes Ready. `/home` responds normally; the repository is unaffected.
+The study had no job running on any worker and no process writing to cajuela at that time; the review agents on
+einstein only read files under `/home` and ran a standard-library script (36 MB, 75 s, one at a time). Cause not
+established. Per brief §7 this is a broken cluster service: no repair attempted; reported to the user.
+Consequences: no repo bundle can be written to cajuela (the last bundle is `repo-2026-11-13.bundle`, made at 14:37);
+no worker job or Argo campaign may be started until the user confirms the cluster is healthy.
+Also cleaned: three stale processes of ours on einstein (a watcher loop left by the chain-port executor since about
+17:46 that polled maxwell by ssh every 15 s, its hung ssh child, and one older waiting loop) were killed at 01:19.

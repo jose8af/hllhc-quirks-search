@@ -1,6 +1,11 @@
 # Status — quirks v2
 
-**2026-11-13 (day 1).** Phase 1 (Strategy) started. No production yet; nothing runs before Gate A.
+**2026-11-14 01:25 (day 1, night).** Phase 1 (Strategy): **stopped, waiting for the user** on two matters.
+
+1. The Phase-1 review panel ran nine cycles without a PASS. The last verdict leaves one Category B item (one stale
+   word in a table row) and thirteen wording edits; nothing about the design, budget or expected outcome is open.
+   Gate A has not been reached. Draft package: `gates/GATE_A_DRAFT.md`.
+2. Cluster fault since about 00:47: `/nfs/cajuela` hangs on einstein and ssh to the three workers hangs. Not repaired.
 
 | | |
 |---|---|
@@ -9,7 +14,7 @@
 | cajuela, this project | 0 GB of 1.5 TB soft budget |
 | cajuela pool free | 3.9 TB of 4.5 TB |
 | software area (`~/sw`, `~/.pixi`, `~/.cache/rattler`, envs in the repo tree) | about 10 GB of 150 GB |
-| last repo bundle | `repo-2026-11-13.bundle` |
+| last repo bundle | `repo-2026-11-13.bundle` (13 Nov 14:37). **Overdue**: cajuela is not reachable |
 
 **Done today:** preflight (passed on re-run after the admin's cajuela fix), branch `v2-jfc`, JFC vendored, analysis
 scaffolded, state and ledger files.
