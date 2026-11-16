@@ -3,7 +3,7 @@
 Asked for by the orchestrator after `outputs/HALF_TURN_xavier_2026-11-16_16-08.md`. Campaigns [V] (markers
 `ledger/markers/<campaign>/000/`, data `/nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/<campaign>/000/`):
 `p2-c-px-lp0` (smoke, 2 × 200 events), **`p2-c-px-lp`** (40 jobs × 5,000 events: 10⁵ events per set), `p2-c-px-lps`
-(summary, `p2-c-px-lps-0.json`). 0.60 CPU-h. Validation slices (streams `px.looper.*`), not pilot data. Background only.
+(summary, `p2-c-px-lps-0.json`), `p2-c-px-lpb` / `p2-c-px-lpbs` (the same events again, with per-layer counts). 0.60 CPU-h + 0.6 for the rerun. Validation slices (streams `px.looper.*`), not pilot data. Background only.
 
 ## Result
 
@@ -22,11 +22,27 @@ the zero is 2.2×10⁴ events, against the scale of 300.
 | with a candidate after the refit (N_L2 ≥ 4) | **0** | **0** | the plane refit (t_tol 30 µm, 3σ re-collection) |
 | R01 (N_IP2 ≥ 4) … R07 (w < 9.4 mm), R08–R14 | 0 at every rung | 0 at every rung | |
 
-Hits in the road per trial: median 6 (10–90 %: 4–8/9; 99 %: 18). Since no event has a candidate, v1's record holds
-no candidate variable and no near-pass class for these events; the per-event double-crossing layer counts on the
-particle's own crossings, without any plane requirement (an upper bound on every near-pass class), are being
-produced by a rerun of the same events with the per-layer counts stored (`p2-c-px-lpb`, summary
-`p2-c-px-lpbs/000/p2-c-px-lpbs-0.json`, key `own_crossing_upper_bounds`; running on one lane when this was written).
+Hits in the road per trial: median 6 (10–90 %: 4–8/9; 99 %: 18). No event has a candidate, so v1's record holds no
+candidate variable for these events.
+
+**Near-pass classes on the particle's own crossings** [V: rerun of the same events with the per-layer counts stored,
+`p2-c-px-lpb` (40 jobs) and `p2-c-px-lpbs-0.json`, key `own_crossing_upper_bounds`; the rerun reproduces the funnel
+above number for number]. A layer can be a double-crossing layer of some ribbon only if the particle crosses it at
+least twice (pixel layers: crossings; stacked layers: min(inner, outer)); counted with **no plane, road or width
+requirement**, this is an upper bound on every count a ribbon could reach:
+
+| per 10⁵ events | natural | flat |
+|---|---|---|
+| ≥ 3 pixel layers crossed at least twice (the fixed cut N_IT2 ≥ 3 could be met) | 10,860 | 10,350 |
+| … and ≥ 4 / 5 / 6 / 7 of the seven inner (pixel + PS) layers (R01 / R02 / R03 / R04 could be met) | 10,068 / 8,007 / 5,799 / 3,453 | 10,080 / 7,714 / 5,608 / 3,574 |
+| deficit k_IP at R04 by multiplicity alone: 0 / 1 / 2 / 3 / ≥ 4 | 3,453 / 2,346 / 2,405 / 2,311 / 89,485 | 3,574 / 2,034 / 2,277 / 2,598 / 89,517 |
+| at least one 2S layer crossed twice in both sensors | 19,585 | 22,942 |
+
+So multiplicity is not what removes the loopers: 10 % of them cross enough layers twice for R01 and 3.5 % for R04.
+What removes them is the plane: the crossings of successive turns do not lie in one plane through the PV within the
+finder's seed band and refit tolerance (seed score ≥ 4 in 33–34 events of 10⁵, no candidate after the refit). The
+subset classification of STR §4.4 point 4 (widest-holding ribbon of the rung's width through the PV) does not exist
+as code yet; the numbers above are its upper bound, not its value.
 
 ## What was done, and how it differs from v1's looper gun
 

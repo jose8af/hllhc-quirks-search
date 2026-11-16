@@ -623,3 +623,21 @@ option B. The B1 streams are not launched.
 (135.5 ms per event), max RSS 1,261 MB, output 169.3 MB (33.9 kB per event), as the slices predicted. The file's
 sha256 recomputed on einstein equals the marker's. Content validation of the first pilot file (hard checks, V4-1)
 is delegated to Xavier's lane, since it needs the ACTS environment on a worker.
+
+## 2026-11-16 17:15 -05 (measured) — Looper gun: no candidate in 2×10⁵; option (a) for the after-a-turn streams passes
+- `phase2_exploration/outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md` (VERIFIED, p2-c-px-lp, -lpb): single central
+  charged particles below 0.63 GeV, full Geant4 trajectories to 25 ns injected as hits, v1 finder at road 0.15 and
+  T_seed 4, no pile-up. Of 10⁵ + 10⁵ events: 72,105 / 73,756 with a seed triple, 33 / 34 with seed score ≥ 4, **0 / 0
+  with a candidate after the refit, 0 at every rung**. About 10 % of loopers cross enough layers twice for R01 by
+  multiplicity alone; the seed threshold and the plane refit remove them. The zero is weak as a bound: N_t ≈ 1.9×10⁹
+  prompt central loopers in 3 ab⁻¹ (ESTIMATE), one count = 1.9×10⁴ events, a zero allows 2.2×10⁴ at 68 %. Not covered:
+  loopers outside ±0.1 of the road, |η| > 1, displaced ones, **a looper together with other particles (pile-up)**.
+  Arc times: later arcs arrive within 2.7–7.1 ns, so a bunch-crossing time window removes none.
+- By the user's option B ("if they do not make candidates, keep the chain and state the limitation with that
+  measurement behind it"): the chain is kept, the pilot stands, and the limitation is stated with this measurement
+  and its weak bound. The orchestrator will propose in the addendum a robustness test on the term most exposed, the
+  pile-up term (a pile-up sample with the Geant4 arcs injected, compared at R04–R05), for the user to accept or not.
+- `phase2_exploration/outputs/A1_OPTION_A_xavier_2026-11-16_16-17.md`: Fatras parent to half a turn plus injected
+  Geant4 parent crossings beyond it: 0.04 % / 0.05 % of pre-vertex crossings without a hit for DIF-C / NI-C (before:
+  40–67 %), 1.5 % duplicate hits at the seam, V4-1 passes, reruns identical. **Adopted for DIF-C and NI-C.**
+- Next: addendum v4 by a fresh fixer (Zoe), then the third review.
