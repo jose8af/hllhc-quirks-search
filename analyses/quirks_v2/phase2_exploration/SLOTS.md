@@ -1,1 +1,7 @@
 # Slot announcements (append-only; time from `date`, node, duration, channel)
+- 2026-11-16 11:57 -05 | maxwell | ≈ 1.5 h (to ≈ 13:27) | channel (i) Rosalie: day-0 rho = 2 memory jobs (p2-a-day0-pu2, then the 8-event job), one job at a time, node to itself; please keep off maxwell
+2026-11-16 11:57 -0500 | maxwell | ~0.5 h | channel (ii) Sebastian | 1 job p2-b-s2-smoke (SSH runner), then p2-b-s2-mlmtime 3 jobs (1 per node, ~0.5 h each)
+- 2026-11-16 12:00 -0500 | schrodinger | ~0.3 h | channel (iii) Tatiana: p2-c-t-hs0s smoke (3 short jobs, SSH runner, 2 at a time), then p2-c-t-hs0 timing (12 jobs, 2 at a time)
+- 2026-11-16 12:05 -05 | landau | 2 slots, until relaunched (≈ 19:00, then 4 across nodes) | channel (i) Rosalie: p2-a-c1-pu1 (200 jobs × ≈ 22 min, SSH runner); maxwell remains channel (i) rho = 2 to ≈ 13:30 (note: a channel (ii) madevent job was seen on maxwell at 12:05)
+- 2026-11-16 12:07 -0500 | landau | ~0.3 h | channel (iii) Tatiana: p2-c-t-g4 (4 jobs, SSH runner, 2 at a time)
+- 2026-11-16 12:10 -0500 | landau | 1 slot, ≈ 1.5 h (3 campaigns in sequence, 1 job at a time) | channel (ii) Sebastian: p2-b-s2-mlmtime (3 × ≈ 12 min), then p2-b-s2-kval (6 short), p2-b-s2-kscan (5 × ≈ 15 min); starts only after channel (iii) p2-c-t-g4 has left landau. (Apology: the 11:58–12:09 channel (ii) smoke job ran on maxwell before I had read the 11:57 reservation; maxwell is left to channel (i).)

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(g4hv CXX)
+find_package(Geant4 REQUIRED)
+add_executable(g4hv g4hv.cc)
+target_link_libraries(g4hv ${Geant4_LIBRARIES})
+target_compile_features(g4hv PRIVATE cxx_std_17)

@@ -93,3 +93,24 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
 
 ## 7. Log
 - 11:55 plan written.
+- 11:56 chain edit (pre-merge store hook) in production.py / run_stage4.py; logged in CHAIN_PROVENANCE.md.
+- 11:56 code: src/c1_pu_job.py, src/make_campaigns.py; campaigns tools/runner/campaigns/p2-a-day0-pu{1,2}.json.
+- 11:57 SLOTS.md: maxwell to myself ≈ 1.5 h. Launched (SSH runner, one job per node):
+  p2-a-day0-pu2 on maxwell (n = 1, 2, 4 + n1 without store), p2-a-day0-pu1 on landau (5 events rho = 1).
+- 11:58 p2-a-day0-pu2 jobs d0pu2-n1/n2/n4 FAILED at start (scratch work dir created after the writer opened its file:
+  my bug in c1_pu_job.py, fixed). Failed jobs are never retried by the runner → new campaign p2-a-day0-pu2b (same
+  seeds/chunks, ids d0pu2b-*). d0pu2-n1-nopm (no store) ran: done, 179.6 CPU-s, max RSS 1076.8 MB, maxwell (VERIFIED,
+  marker ledger/markers/p2-a-day0-pu2/000/d0pu2-n1-nopm.marker).
+- 12:02 p2-a-day0-pu2b launched on maxwell (one at a time).
+- 12:04 p2-a-day0-pu1 done (landau, alone, first job on the node, cold Pythia-init and numba caches): 5 events,
+  314.6 CPU-s (62.9 s/event incl. fixed start), max RSS 626.8 MB, chain 12.3 s/crossing in stages (ckf 7.1, fatras+digi
+  2.5), finder per trial 11.27 ± 7.33 s (find 10.6 s) at road 0.15 / T_seed 4 [VERIFIED, outputs/day0_measurements.json].
+  The ×0.77 road-0.15 saving assumed in Table 4.0 is not seen at this N (one job).
+- 12:05 seen: channel (ii) MG job on maxwell (my announced node) and three channel (iii) jobs on schrodinger.
+- 12:05 c1-pu1 sized 20 events/job (≈ 21 min at ≈ 63 s/event), 200 jobs, RSS request 1000 MB; launched SSH runner
+  on landau, 2 per node (my 3rd weekday slot is the maxwell rho = 2 job).
+- 12:08 resumability test on p2-a-c1-pu1: driver killed with kill -9 on landau while c1pu1-0000/0001 ran; jobs kept
+  running (detached); relaunch 12:09 adopted both running jobs from markers (driver log: "our ssh jobs 4 … cap 3").
+  PASS. Relaunched with landau --max-per-node 1 because channel (iii) started 2 jobs on landau (p2-c-t-g4) at ≈ 12:08:
+  landau then carried 4 jobs against its cap of 3 (graphical session); mine drop to 1 as they finish.
+  Check: ssh -x landau "$R/bin/qv2run status $R/campaigns/p2-a-c1-pu1.json --live -v"   (R=$REPO/tools/runner)

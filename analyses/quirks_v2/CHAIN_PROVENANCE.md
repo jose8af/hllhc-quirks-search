@@ -79,3 +79,13 @@ needs the v2 re-freeze (REPRODUCE §5.1-4).
 - `acts/scripts/smoke_test.py:35`: temp HepMC3 directory from `QV2_SMOKE_TMP` if set (else the v1 `acts/probe/smoke_tmp`).
 - `analytic/numerics/M2_single.py:198`: process-pool size from `QV2_NPROC` (default 7, as in v1).
 - The full list of port edits with reasons is in `phase1_strategy/outputs/feasibility/FEAS_A_chain_anselm.md` §2.4.
+
+### Phase-2 edits (channel (i), executor Rosalie, 2026-11-16 11:56 -05)
+- `acts/stage4/finder/production.py` `process_trial(..., premerge_min_nip2=None)`: optional pre-merge candidate store
+  of STR §4.5 (a) [SD4] (every loose candidate with N_IP2 ≥ threshold, before grouping, with its hit list and hit
+  table) returned as `res['pre']`. Additive: no RNG draw, no change of any other output when unused or used
+  (bit-identity checked on one ρ = 2 event, campaign `p2-a-day0-pu2`, jobs `d0pu2-n1` vs `d0pu2-n1-nopm`).
+  Diff: +36 lines, 2 changed.
+- `acts/stage4/run_stage4.py` `run_pu_job(job, allow_interim, premerge=None)`: forwards the threshold and hands each
+  trial's store to a streaming writer (`phase2_exploration/src/c1_pu_job.py`), so it is not kept in memory.
+  Diff: +7 lines, 1 changed. Why: the ρ = 2 C1 jobs are also the B2 development sample (STR §4.1, §4.17 row 2).
