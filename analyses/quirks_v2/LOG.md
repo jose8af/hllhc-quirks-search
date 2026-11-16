@@ -617,3 +617,9 @@ Preflight 0 failed checks; node count 1 before; `bash tools/runner/examples/p2x/
 Status: `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume: the launch script again.
 Expected: 95 CPU-h, 79 GB, about 48 h (to about 18 Nov 16:30). Chain as it is (half-turn limit), by the user's
 option B. The B1 streams are not launched.
+
+## 2026-11-16 16:54 -05 (measured) — Pilot: first jobs done
+`p2-c-pilot-mb-0000` and `p2-c-pilot-znn-00000` have done markers (16:54). Z(νν) job: 677.7 CPU-s for 5,000 events
+(135.5 ms per event), max RSS 1,261 MB, output 169.3 MB (33.9 kB per event), as the slices predicted. The file's
+sha256 recomputed on einstein equals the marker's. Content validation of the first pilot file (hard checks, V4-1)
+is delegated to Xavier's lane, since it needs the ACTS environment on a worker.
