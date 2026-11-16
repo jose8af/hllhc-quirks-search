@@ -29,6 +29,21 @@ Rows marked (DP) carry a downscope proposal that the user decides at Gate A; unt
 Rows marked (Q-n) depend on a question the user answers at Gate A, rows marked (Df-n) contain a default the user
 can override (STR §12.1); until then the default is a proposal.
 
+## Gate A answers (user, 2026-11-16; FROZEN)
+
+| item | answer |
+|---|---|
+| Q1 | ● six v1 signal counts of C1 sealed until Gate B, four open |
+| Q2 | ● (a) pause and ask at day 15 if the projection exceeds B₅₀ = 300 or both pile-up estimators miss their cap. The optional day-7 rider was **not** taken |
+| Q3 | ● yes: an untested MUST closure criterion enters at its ceiling, no credit, selection eligible |
+| Q4 | ● approved schedule **4,609 CPU-h**, stop-and-ask at **5,992 CPU-h**, calendar about 60 days; DP1, DP2, DP4 (S4/S5 out), DP5 accepted; contingency 2,150 CPU-h not pre-approved |
+| Q5 | ● yes: truth-level signal generation before the hash |
+| Df-1 … Df-11 | no override: all eleven defaults stand, including Df-11 (pinned reading of §11.7 rule 1) |
+| rule 1 precision sentence (E6) | kept (the user was told twice it could be dropped and did not drop it) |
+
+Source: the user's message "Q1 ●; Q2 ●; Q3 ●; Q4 ●; Q5 ● . Ok go ahead." (`LOG.md`, 2026-11-16). Day 0 of the
+calendar of STR §11 is 2026-11-16.
+
 ## Changes of rows in version 10 (2026-11-16, fixer Oscar, review cycle 9: B-1; nothing removed)
 
 | identifier | what happened |
@@ -219,8 +234,8 @@ can override (STR §12.1); until then the default is a proposal.
 | P1-c | MUST | Population estimator for c defined in advance (paired median) and evaluated on new events; original gate reported as failed | \|median\|/median(c_ev) ≤ 1.5 % and ≤ 2σ at five points on 300 new events each (STR §4.15) | 2 | 2 | open |
 | P1-d | MUST | Validity window stated as measured; failed straight-string ratio kept visible; Linux difference of one Stage-1 run followed up | table per (point, Λ, k_B bin) from the tracked results; text follows it (STR §4.15) | 2 | 5 | open |
 | S3 | SHOULD | **dropped by user decision (brief D1)**; barrel-only paper; endcap gain stated as an EST outlook exactly as fixed in the brief | n/a | 5 (text) | 5 | dropped (user) |
-| S4 | COULD | optional; strategy recommends not including it (DP4): ≥ 1 week and ≈ 740 CPU-h, delays the freeze | — | — | — | undecided, pending Gate A |
-| S5 | COULD | optional; strategy recommends not including it (DP4): negative result stated instead | — | — | — | undecided, pending Gate A |
+| S4 | COULD | optional; strategy recommends not including it (DP4): ≥ 1 week and ≈ 740 CPU-h, delays the freeze | — | — | — | out (DP4 accepted at Gate A, 2026-11-16) |
+| S5 | COULD | optional; strategy recommends not including it (DP4): negative result stated instead | — | — | — | out (DP4 accepted at Gate A, 2026-11-16) |
 
 ## Commitments from the strategy that are not plan items
 
@@ -238,7 +253,7 @@ can override (STR §12.1); until then the default is a proposal.
 | INV-1 | Sample inventory with roles (development / derivation / test / production / reserve), seed streams and independence (STR §4.17) | every produced sample matches a row (including 13a, 18a, 18b; the 4a hit-level samples in two stages); no development sample enters a closure verdict; `DATA_MANIFEST.md` carries the stream names | 2–4a | 4a | open |
 | BL-1 | Complete list of signal quantities that exist before the closure verdicts: the C1 tier approved in Q1; A, f₂₀₀ and the migration fraction (selection-independent; A and m_mig computed once, after the MET model) | no other signal quantity in any artifact before the verdicts; B6 efficiency ratios and the tracker hit-time loss formed only after them (STR §4.1) | 2–4a | 4b | open |
 | FP-1 | Failure protocol after the freeze: ticket always; bug → dated addendum and one re-test on a fresh sample; no bug → reported as failed, [SD8] | each FAIL or INVESTIGATE closed along one of the three branches; fresh samples as named in STR §8 (second direct sample, test overlays, hit-level test halves, pool slice), each used at most once and reported as an overrun | 4a | 4a | open |
-| GA | The five questions (Q1–Q5) and the eleven defaults (Df-1–Df-11) of Gate A (STR §12.1) | each question answered by the user and each override recorded in `LOG.md`; rows marked (Q-n) or (Df-n) updated by a logged entry | 1 | 1 | open |
+| GA | The five questions (Q1–Q5) and the eleven defaults (Df-1–Df-11) of Gate A (STR §12.1) | each question answered by the user and each override recorded in `LOG.md`; rows marked (Q-n) or (Df-n) updated by a logged entry | 1 | 1 | done (2026-11-16, section "Gate A answers") |
 
 ## Systematic plan (STR §5; every "will implement")
 

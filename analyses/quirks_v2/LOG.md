@@ -329,3 +329,16 @@ Also cleaned: three stale processes of ours on einstein (a watcher loop left by 
 The heading "11:00" and the times "10:55" (arbiter) in the entry above were written ahead of the clock. Measured:
 the commits are `25b3ff5` at 10:44, `cdafef2` at 10:49 and `87b6c04` (PASS, Gate A package) at 10:53. The repo bundle
 `repo-2026-11-16.bundle` was rewritten after `87b6c04` (75,209,234 bytes, verified).
+
+## 2026-11-16 11:50 -05 (measured) — GATE A PASSED BY THE USER
+The user asked for the questions, then for the expected quality of the paper against v1 (answered: method clearly
+stronger; headline expected at or near existing bounds, the "real background" paper; the strong result has no
+demonstrated route), then answered: **"Q1 ●; Q2 ●; Q3 ●; Q4 ●; Q5 ● . Ok go ahead."**
+- All five defaults taken; no rider; no default Df-1…Df-11 overridden; E6 kept. Recorded and frozen in
+  `COMMITMENTS.md` ("Gate A answers"). Approved schedule: 4,609 CPU-h, stop-and-ask at 5,992, about 60 days.
+- **Day 0 of the calendar = 2026-11-16.** Day 5 = 21 Nov, day 7 = 23 Nov, day 12 = 28 Nov, day 15 = 1 Dec (binding
+  rule 1; a pause is expected there), freeze days 17–19 = 3–5 Dec, Gate B about day 49–51 = 4–6 Jan 2027,
+  Gate C about day 58–60 = 13–15 Jan 2027.
+- The user asked for a daily track of work and results: `STATUS.md` is updated at least daily and a dated report is
+  written to `daily/YYYY-MM-DD.md` at the end of each working day.
+- Phase 2 starts.
