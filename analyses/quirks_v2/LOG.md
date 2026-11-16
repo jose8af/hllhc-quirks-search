@@ -525,3 +525,14 @@ floor 201 as timed, 121 with both measures; upside reach 514 [445] / 584 [514] G
 CPU-h at the 31-parameter toy cost. Three populations are unread by rule 1 in the draft and stated first: parents of
 0.3–0.5 GeV, parents at 1 < |η| < 1.5 (51 % of the pool), off-road hard-scatter hadrons. The third review waits for
 the A-1 result.
+
+## 2026-11-16 15:28 -05 (measured) — Z(νν) pilot and pilot.mb: GO (to start when the node's slice queue ends)
+Xavier's step 1: `phase2_exploration/outputs/PILOT_READY_xavier_2026-11-16_15-09.md`; campaign files in
+`tools/runner/examples/p2x/pilot/` (`p2-c-pilot-mb`: 40 jobs; `p2-c-pilot-znn-00…15`: 460 × 5,000 = 2.3×10⁶
+events). Slices VERIFIED: hard checks pass, same seed → identical hash, 133.2 ms and 33.6 kB per Z(νν) event,
+RSS 1.25 GB per job. Estimated cost 95.0 CPU-h, 79.4 GB, 47.5 h on 2 slots (budget of the two samples: 29 + part of
+the B1 pilot; overrun reported). The generator-level summary stores ΣE_T, jets to 10 GeV, neutrinos, τ, p̂T, weight
+and the hadron/photon list; not the full particle list (another jet radius would need regeneration from seeds,
+about 29 CPU-h). Orchestrator ran the preflight on einstein at 15:28: 0 failed checks; cajuela 3.9 TB free.
+Decision: launch on 2 slots on schrodinger after slice queue 6 (which carries the A-1 re-validation) has ended.
+The B1 streams remain held for the addendum review and the user's approval.

@@ -1,0 +1,71 @@
+{
+ "campaign": "p2-b-p1-time",
+ "tier": "regenerable",
+ "expected_hours": 1.0,
+ "description": "channel (ii) P1: per-event cost of v1's paired B*-off test (4 nm_kernel runs per event) on toy Stage-3 inputs; timing only; floor test 2 timing (2 events, nominal and 44-bit kernels, 3 keV, s = 1/9, B* off)",
+ "jobs": [
+  {
+   "id": "bstar-time-l5",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/bstar_time.py $QV2_OUT_DIR/bstar-time-l5.json 5.0 3",
+   "outputs": [
+    "bstar-time-l5.json"
+   ]
+  },
+  {
+   "id": "bstar-time-l1",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/bstar_time.py $QV2_OUT_DIR/bstar-time-l1.json 1.0 5",
+   "outputs": [
+    "bstar-time-l1.json"
+   ]
+  },
+  {
+   "id": "floor2-time-nominal",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/floor2.py $QV2_OUT_DIR/floor2-time-nominal.json nominal 3.0 0.1111111111 500 0 2",
+   "outputs": [
+    "floor2-time-nominal.json"
+   ]
+  },
+  {
+   "id": "floor2-time-t44",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/floor2.py $QV2_OUT_DIR/floor2-time-t44.json t44 3.0 0.1111111111 500 0 2",
+   "outputs": [
+    "floor2-time-t44.json"
+   ]
+  },
+  {
+   "id": "floor2-time-dd",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/floor2.py $QV2_OUT_DIR/floor2-time-dd.json dd 3.0 0.1111111111 500 0 2",
+   "outputs": [
+    "floor2-time-dd.json"
+   ]
+  },
+  {
+   "id": "p1d-m2-linux",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "bash /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/m2_linux.sh",
+   "outputs": [
+    "M2_linux.json",
+    "M2_linux_raw.tar.gz",
+    "m2_single_stdout.txt",
+    "m2_analysis_stdout.txt"
+   ]
+  }
+ ]
+}

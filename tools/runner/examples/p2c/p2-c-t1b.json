@@ -1,0 +1,91 @@
+{
+ "campaign": "p2-c-t1b",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_campaigns.py t1b",
+ "description": "T1-b refined: hybrid toys with q-tilde per mu; fine asymptotic scan; v1-statistic diagnostic",
+ "expected_hours": 1.0,
+ "defaults": {
+  "max_rss_mb": 600,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1b-diag",
+   "outputs": [
+    "p2-c-t1b-diag.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1diag $QV2_OUT_DIR/p2-c-t1b-diag.json"
+  },
+  {
+   "id": "p2-c-t1b-mu760",
+   "outputs": [
+    "p2-c-t1b-mu760.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu760.json 760 1000 20261960"
+  },
+  {
+   "id": "p2-c-t1b-mu790",
+   "outputs": [
+    "p2-c-t1b-mu790.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu790.json 790 1000 20261990"
+  },
+  {
+   "id": "p2-c-t1b-mu810",
+   "outputs": [
+    "p2-c-t1b-mu810.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu810.json 810 1000 20262010"
+  },
+  {
+   "id": "p2-c-t1b-mu825",
+   "outputs": [
+    "p2-c-t1b-mu825.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu825.json 825 1000 20262025"
+  },
+  {
+   "id": "p2-c-t1b-mu835",
+   "outputs": [
+    "p2-c-t1b-mu835.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu835.json 835 1000 20262035"
+  },
+  {
+   "id": "p2-c-t1b-mu845",
+   "outputs": [
+    "p2-c-t1b-mu845.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu845.json 845 1000 20262045"
+  },
+  {
+   "id": "p2-c-t1b-mu855",
+   "outputs": [
+    "p2-c-t1b-mu855.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu855.json 855 1000 20262055"
+  },
+  {
+   "id": "p2-c-t1b-mu870",
+   "outputs": [
+    "p2-c-t1b-mu870.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu870.json 870 1000 20262070"
+  },
+  {
+   "id": "p2-c-t1b-mu890",
+   "outputs": [
+    "p2-c-t1b-mu890.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu890.json 890 1000 20262090"
+  },
+  {
+   "id": "p2-c-t1b-mu915",
+   "outputs": [
+    "p2-c-t1b-mu915.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1pt $QV2_OUT_DIR/p2-c-t1b-mu915.json 915 1000 20262115"
+  }
+ ]
+}

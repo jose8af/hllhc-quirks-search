@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-c-val-b1",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_campaigns.py val-b1",
+ "description": "hand-over validation: truncation, product times, variant A against B",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 1000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-val-b1-0",
+   "outputs": [
+    "p2-c-val-b1-0.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_validate.py $QV2_OUT_DIR/p2-c-val-b1-0.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000/p2-c-t-b1-dif.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000/p2-c-t-b1-ni22.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000/p2-c-t-b1-ni30.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000/p2-c-t-b1-ni61.npz"
+  }
+ ]
+}

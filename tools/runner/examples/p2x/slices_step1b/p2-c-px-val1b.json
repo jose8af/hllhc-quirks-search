@@ -1,0 +1,22 @@
+{
+ "campaign": "p2-c-px-val1b",
+ "tier": "regenerable",
+ "data_prefix": "p2c/px_validation",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_pilot_campaigns.py slices --ver mb=b,znn=b,val=1b",
+ "description": "pilot code slice: validation of every slice output",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 3000,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-px-val1b-0",
+   "outputs": [
+    "p2-c-px-val1b-0.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_validate.py $QV2_OUT_DIR/p2-c-px-val1b-0.json /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/outputs/partition_p2-c-part-0.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-mbb/000/p2-c-px-mbb-r0.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-mbb/000/p2-c-px-mbb-r1.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-mbb/000/p2-c-px-mbb-d.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-mbb/000/p2-c-px-mbb-big.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-mbb/000/p2-c-px-mbb-nox.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-znnb/000/p2-c-px-znnb-r0.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-znnb/000/p2-c-px-znnb-r1.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-znnb/000/p2-c-px-znnb-d.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-znnb/000/p2-c-px-znnb-big.npz"
+  }
+ ]
+}

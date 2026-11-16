@@ -1,0 +1,34 @@
+{
+ "campaign": "p2-b-s2-fxfx-time",
+ "tier": "regenerable",
+ "expected_hours": 1.0,
+ "description": "channel (ii) S2-c: FxFx 0-1j (MC@NLO + Pythia 8.313 FxFx) unit-cost timing at E 500 GeV; job a builds the node-local process dir and grids, job b reuses them",
+ "jobs": [
+  {
+   "id": "fxfx-e500-a",
+   "shard": 0,
+   "max_rss_mb": 2000,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-a E 500 2000 --shower",
+   "outputs": [
+    "fxfx-e500-a.timing.json",
+    "fxfx-e500-a.lhe.gz",
+    "fxfx-e500-a.npz",
+    "fxfx-e500-a.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-b",
+   "shard": 0,
+   "max_rss_mb": 2000,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-b E 500 5000 --shower",
+   "outputs": [
+    "fxfx-e500-b.timing.json",
+    "fxfx-e500-b.lhe.gz",
+    "fxfx-e500-b.npz",
+    "fxfx-e500-b.aux.tar.gz"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "name": "",
+ "params": {
+  "name": "",
+  "only": [
+   "znn"
+  ],
+  "prefix": "p2-c-px-lt",
+  "data_prefix": "p2c/px_validation",
+  "beta_min": 0.1,
+  "n_road_orientations": 21,
+  "trunc": {
+   "default": "radius",
+   "difc": "time",
+   "nic": "time",
+   "hs": "auto",
+   "lowpt": "auto"
+  },
+  "yields": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/outputs/pilot_yields_xavier.json",
+  "mb": {
+   "stream": "pilot.mb",
+   "interactions": 10000000,
+   "per_job": 250000,
+   "chunk0": 0,
+   "part0": 0,
+   "xpool_jobs": 40
+  },
+  "g4": {
+   "stream": "pilot.g4",
+   "all_per_job": 2000000,
+   "ni_per_job": 12500000,
+   "pool_files_per_job": 2,
+   "chunk0": {
+    "all": 0,
+    "ni": 1000,
+    "hs": 2000,
+    "lowpt": 3000
+   },
+   "margin_sigma": 5.0,
+   "margin_yield_err": 3.0,
+   "extra_firings": 0.03
+  },
+  "samples": {
+   "dif": {
+    "classes": [
+     "dif",
+     "k0l"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.dif",
+    "per_job": 25000
+   },
+   "difc": {
+    "classes": [
+     "difc"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.difc",
+    "per_job": 25000
+   },
+   "ni22": {
+    "classes": [
+     "ni22"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni22",
+    "per_job": 25000
+   },
+   "ni30": {
+    "classes": [
+     "ni30"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni30",
+    "per_job": 25000
+   },
+   "ni61": {
+    "classes": [
+     "ni61"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni61",
+    "per_job": 25000
+   },
+   "nix": {
+    "classes": [
+     "nix"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.nix",
+    "per_job": 25000
+   },
+   "nic": {
+    "classes": [
+     "nic"
+    ],
+    "events": 2000000,
+    "pass": "all",
+    "stream": "pilot.c0.nic",
+    "per_job": 25000
+   }
+  },
+  "hs": {
+   "enabled": true,
+   "stream": "pilot.c0.hs",
+   "gen_stream": "pilot.c0.hs.gen",
+   "gen_sample": "Znunu_j",
+   "gen_events": 20000,
+   "gen_per_job": 10000,
+   "events": 200000,
+   "per_job": 25000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_margin": 0.1
+  },
+  "lowpt": {
+   "enabled": true,
+   "stream": "pilot.c0.lowpt",
+   "events": 200000,
+   "per_job": 25000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_margin": 0.1
+  },
+  "znn": {
+   "stream": "px.lt.znn",
+   "sample": "Znunu_j",
+   "events": 100,
+   "per_job": 100,
+   "chunk0": 4,
+   "part0": 2,
+   "parts": 1
+  },
+  "costs": {
+   "mb_ms": 3.56,
+   "g4_all_ms": 0.305,
+   "g4_ni_ms": 0.047,
+   "b1_ms": 5.0,
+   "znn_ms": 130.7,
+   "hsgen_ms": 38.0,
+   "job_overhead_s": 12.0,
+   "mb_bytes_per_int": 215.0,
+   "vtx_bytes": 800.0,
+   "b1_bytes": 3500.0,
+   "znn_bytes": 33561.0,
+   "rss_mb": {
+    "mb": 700,
+    "g4": 2500,
+    "b1": 2000,
+    "znn": 1500,
+    "hsgen": 300
+   }
+  },
+  "slots": [
+   2,
+   3
+  ],
+  "plan_suffix": "add1"
+ },
+ "campaigns": [
+  {
+   "campaign": "p2-c-px-lt-znn-02",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/p2-c-px-lt-znn-02.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": null,
+   "storage_gb": 0.0,
+   "after": [],
+   "size": 100,
+   "unit": "events"
+  }
+ ],
+ "samples": {},
+ "warnings": [],
+ "lanes": {
+  "2": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/p2-c-px-lt-znn-02.json"
+    ],
+    []
+   ],
+   "cpu_h": [
+    0.0,
+    0.0
+   ],
+   "wall_h": 0.0
+  },
+  "3": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/p2-c-px-lt-znn-02.json"
+    ],
+    [],
+    []
+   ],
+   "cpu_h": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "wall_h": 0.0
+  }
+ },
+ "total": {
+  "cpu_h": 0.0,
+  "storage_gb": 0.0,
+  "jobs": 1,
+  "b1_events": 0
+ },
+ "hashes": {
+  "scripts": {
+   "p2c_campaigns.py": "c618ffd001ee4b1f3795baba3ba81dee12d29fe211df0719c2653f784fad3c97",
+   "p2c_common.py": "8049f805df5a66c0f681b3c3a83ed4ceffc7ec38313bb19b0cfe84db0d8764c3",
+   "p2c_hs0.py": "f5b6357175166548208a26fea82ca8207193aaecca77a5751f468b3b13b1f2a7",
+   "p2x_common.py": "076b36af5dd02ebd9aa1c3f33904bbc57f7d6df980ac4811aeb527770c551ab1",
+   "p2x_hs0.py": "464e23a37f8e90efd1b087ef036264b0a9356b9d3e3f3a34eaf5d9ff7c0ec5d0",
+   "p2x_queue.sh": "1ba0ddf772329995af4c216f7cf3a14f4e9596a77fb78c924e02a386f923b95d"
+  },
+  "inputs": {
+   "acts/geometry/cms_phase2_public.json": "5a948cce91b4be94a59d6633de0103e14fda5ed17e0b5df64999d5fdaed2b543",
+   "acts/pixi.lock": "260822560ccde207daaadee952d6934c2e3212d9a0c66be857adc6207196d36b",
+   "acts/scripts/pythia8_tune_CP5.dat": "3002a2a36b8118be0c9c526eff8b4909f6fabb1f70467e170595df21edadddc7",
+   "acts/stage4/analysis/gen_d123.py": "2bb94cfbaea73986895f2d11c0f38cab47236d40bb0f01697ce5492b6d1ab3de",
+   "acts/stage4/code/run_chain.py": "bdea0e276e30473908f93b7b23e75d3876e4d6b43893b78077accf21f24aec8d",
+   "acts/stage4/code/s4cp.py": "0d15212e56f2fde5e0f57598c2f6de55731d0289c1622689ac1e250b4147eda5",
+   "acts/stage4/code/s4geo.py": "753c5f0bdee986fe80f8f47cc54ca6ce62682a64f2235c2b81e70863851034bb",
+   "acts/stage4/code/s4pu.py": "75e2f06c3280d086b1c4fa007ec49a3f75365ff548ce08ef7bb9e4c7fd818438",
+   "sim/stage3/code/surfaces_s3.json": "f4c664f608531861cd4a5052f39cc2f2c7492cbfb80d96ad96edf21daa975b40"
+  }
+ },
+ "frozen_from_launch": [
+  "phase2_exploration/src/p2c_campaigns.py",
+  "phase2_exploration/src/p2c_common.py",
+  "phase2_exploration/src/p2c_hs0.py",
+  "phase2_exploration/src/p2x_common.py",
+  "phase2_exploration/src/p2x_hs0.py",
+  "phase2_exploration/src/p2x_queue.sh",
+  "acts/geometry/cms_phase2_public.json",
+  "acts/pixi.lock",
+  "acts/scripts/pythia8_tune_CP5.dat",
+  "acts/stage4/analysis/gen_d123.py",
+  "acts/stage4/code/run_chain.py",
+  "acts/stage4/code/s4cp.py",
+  "acts/stage4/code/s4geo.py",
+  "acts/stage4/code/s4pu.py",
+  "sim/stage3/code/surfaces_s3.json"
+ ],
+ "campaign_file_sha256": {
+  "p2-c-px-lt-znn-02": "469edb3d46ca67fffcd056579d8ab550fce35b0e0b7aac14a8607c19b69c3fa9"
+ },
+ "scripts": {
+  "launch_2slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/LAUNCH_p2-c-px-lt_znn_add1_2slots.sh",
+  "launch_3slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/LAUNCH_p2-c-px-lt_znn_add1_3slots.sh",
+  "status": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test/STATUS_p2-c-px-lt_znn_add1.sh",
+  "stop": "touch /home/scratch/jdochoa/drivers/STOP.<first campaign of the lane> on the node: the lane ends after its running campaign; running jobs are never killed by it"
+ }
+}

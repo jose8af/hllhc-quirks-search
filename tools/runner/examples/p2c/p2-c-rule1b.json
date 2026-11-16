@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-c-rule1b",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_campaigns.py rule1 p2-c-rule1b",
+ "description": "rule-1 readings and projections with measured costs",
+ "expected_hours": 0.2,
+ "defaults": {
+  "max_rss_mb": 300,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-rule1b-0",
+   "outputs": [
+    "p2-c-rule1b-0.json"
+   ],
+   "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_rule1.py $QV2_OUT_DIR/p2-c-rule1b-0.json /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/outputs/costs_after_step1.json"
+  }
+ ]
+}

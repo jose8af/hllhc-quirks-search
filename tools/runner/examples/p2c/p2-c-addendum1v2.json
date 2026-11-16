@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-c-addendum1v2",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_campaigns.py addendum1 p2-c-addendum1v2",
+ "description": "rule-1 basis, day-15 table and Table 4.4a rows for strategy addendum 1",
+ "expected_hours": 0.2,
+ "defaults": {
+  "max_rss_mb": 300,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-addendum1v2-0",
+   "outputs": [
+    "p2-c-addendum1v2-0.json"
+   ],
+   "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_addendum1.py $QV2_OUT_DIR/p2-c-addendum1v2-0.json"
+  }
+ ]
+}

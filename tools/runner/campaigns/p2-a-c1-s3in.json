@@ -1,0 +1,34 @@
+{
+ "campaign": "p2-a-c1-s3in",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C1 signal: Stage-3 inputs from Stage-2 campaigns p2-a-c1-s2",
+ "expected_hours": 0.5,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 3000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1s3in-m200",
+   "shard": 0,
+   "outputs": [
+    "F_m200_p2.npz",
+    "E-TRGS_m200.npz",
+    "c1_inputs_m200.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/sim/.pixi/envs/ana/bin/python $QV2/phase2_exploration/src/c1_s3_inputs.py 200 --trg /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-trg-m200-c00.npz --trg-json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-trg-m200-c00.json --inc /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-inc-m200-c00.npz --inc-json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-inc-m200-c00.json"
+  },
+  {
+   "id": "c1s3in-m500",
+   "shard": 0,
+   "outputs": [
+    "F_m500_p2.npz",
+    "E-TRGS_m500.npz",
+    "c1_inputs_m500.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/sim/.pixi/envs/ana/bin/python $QV2/phase2_exploration/src/c1_s3_inputs.py 500 --trg /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-trg-m500-c00.npz --trg-json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-trg-m500-c00.json --inc /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-inc-m500-c00.npz --inc-json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-s2/000/c1s2-inc-m500-c00.json"
+  }
+ ]
+}

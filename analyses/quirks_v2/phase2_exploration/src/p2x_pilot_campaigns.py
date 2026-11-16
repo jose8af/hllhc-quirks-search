@@ -100,9 +100,12 @@ DEFAULTS = {
     'znn': {'stream': 'pilot.hs0.znn', 'sample': 'Znunu_j', 'events': 2_300_000, 'per_job': 5_000, 'chunk0': 0, 'part0': 0,
             'parts': 16},
     # unit costs for the CPU, wall and storage estimates only (measured values, filled from the slices; see PILOT_READY)
-    'costs': {'mb_ms': 3.6, 'g4_all_ms': 0.305, 'g4_ni_ms': 0.047, 'b1_ms': 5.0, 'znn_ms': 127.0, 'hsgen_ms': 41.0,
-              'job_overhead_s': 15.0, 'mb_bytes_per_int': 70.0, 'vtx_bytes': 800.0, 'b1_bytes': 3500.0, 'znn_bytes': 31000.0,
-              'rss_mb': {'mb': 1200, 'g4': 2500, 'b1': 2000, 'znn': 1500, 'hsgen': 1000}},
+    # measured on the slices p2-c-px-mbb and p2-c-px-znnb (markers and logs; see PILOT_READY): mb 3.56 ms and 215 B per
+    # interaction with the wider pool (83 B without), max RSS 329 MB at 1.25e5; Z(nunu) 130.7 ms per event in the event loop
+    # + 12 s per job, 33.56 kB per event, max RSS 1,252 MB at 5,000 events.  B1 values: Tatiana's slices until mine are done.
+    'costs': {'mb_ms': 3.56, 'g4_all_ms': 0.305, 'g4_ni_ms': 0.047, 'b1_ms': 5.0, 'znn_ms': 130.7, 'hsgen_ms': 38.0,
+              'job_overhead_s': 12.0, 'mb_bytes_per_int': 215.0, 'vtx_bytes': 800.0, 'b1_bytes': 3500.0, 'znn_bytes': 33561.0,
+              'rss_mb': {'mb': 700, 'g4': 2500, 'b1': 2000, 'znn': 1500, 'hsgen': 300}},
     'slots': [2, 3],
 }
 
@@ -283,7 +286,9 @@ def sample_layout(events, per_job_max, per_file):
 
 
 def pilot(p, outdir=None):
-    assert 'px_validation' not in p['data_prefix'] and not p['data_prefix'].startswith('p2c'), 'pilot data prefix must be its own'
+    is_test = '-px-' in p['prefix']            # launch test of the machinery: validation prefix and px.* streams only
+    assert is_test == ('px_validation' in p['data_prefix']) and (is_test or not p['data_prefix'].startswith('p2c')), \
+        'pilot campaigns need their own data prefix; test campaigns (-px-) the validation prefix'
     tag = p['name']; pre = p['prefix'] + (f'-{tag}' if tag else ''); dp = p['data_prefix']
     only = set(p.get('only') or ['mb', 'b1', 'znn'])
     assert only <= {'mb', 'b1', 'znn'}, f'only: {only}'
@@ -482,10 +487,12 @@ def pilot(p, outdir=None):
             if not lane:
                 continue
             first = Path(lane[0]).stem
+            pid = f'/home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.pid'
+            logf = f'/home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.log'
+            inner = f'echo \\$\\$ > {pid}; exec {q} $NODE 1 ' + ' '.join(lane)
             lines.append(f'ssh -x -o BatchMode=yes $NODE "mkdir -p /home/scratch/jdochoa/drivers; rm -f /home/scratch/jdochoa/drivers/STOP.{first}; '
-                         f'pgrep -u jdochoa -f \'p2x_queue.sh [a-z]* 1 [^ ]*{first}.json\' > /dev/null && echo lane {i} already runs || '
-                         f'{{ setsid nohup {q} $NODE 1 ' + ' '.join(lane) +
-                         f' > /home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.log 2>&1 < /dev/null & echo lane {i} started; }}"')
+                         f'if [ -e {pid} ] && kill -0 \\$(cat {pid}) 2>/dev/null; then echo lane {i} already runs; else '
+                         f"setsid nohup bash -c '{inner}' > {logf} 2>&1 < /dev/null & echo lane {i} started; fi\"")
         lf = outdir / f'LAUNCH_{stem}_{nslot}slots.sh'
         lf.write_text('\n'.join(lines) + '\n')
         plan['scripts'][f'launch_{nslot}slots'] = str(lf)
@@ -587,7 +594,9 @@ def preflight(plan_file):
     # appended parts: no job id of this plan may already have a marker (checked per campaign above by name; here by id)
     have = {m.stem for m in markers.glob(f"{pp['prefix']}*/*/*.marker")}
     check(not (set(ids) & have), f'no job id of this plan has a marker yet ({len(set(ids) & have)} found)')
-    check(len(streams) == len(set(streams)) and not any(s.startswith('px.') for s in streams), f'seed streams distinct and not validation streams: {streams}')
+    is_test = '-px-' in pp['prefix']
+    check(len(streams) == len(set(streams)) and all(s.startswith('px.') == is_test for s in streams),
+          f'seed streams distinct; validation streams (px.*) only in a test: {streams}')
     log.info('%d failed checks. Remaining manual checks: node count (pgrep), SLOTS.md line, approval of the addendum.', bad)
     return bad
 

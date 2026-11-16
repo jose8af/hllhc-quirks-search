@@ -1,0 +1,16 @@
+# pyhf toy-cost environment (quirks v2 Phase 2, executor Viktor, 2026-11-16): pyhf 0.7.6 with the CPU-only jax backend
+# and iminuit, for the T1 toy-cost remedies (STR §4.11 pt 5).  Installed node-local on schrodinger at
+# /home/scratch/jdochoa/envs/pyhf_toys by install_pyhf_toys_local.sh; the solved lock is copied back here.
+[workspace]
+name = "qv2-pyhf-toys"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.12.*"
+numpy = "2.2.*"      # pyhf 0.7.6 toy CLs calls np.percentile(interpolation=...), removed in numpy >= 2.4 (FEAS_C O5)
+scipy = "*"
+pyhf = "==0.7.6"     # the version of STR §4.11 pt 5 and of p2-c-t-pyhf
+iminuit = "*"
+jax = ">=0.4.31,<0.5"     # pyhf 0.7.6 era; 0.4.31+ supports numpy 2
+jaxlib = { version = ">=0.4.31,<0.5", build = "*cpu*" }

@@ -1,0 +1,23 @@
+{
+ "campaign": "p2-a-c2-v45time2",
+ "tier": "scratch",
+ "data_prefix": "phase2",
+ "description": "C2 V4-5 timing, reduced grids (\u00b110 mrad fine, 50 mrad global) to measure the cost per normal and the window size; the full-size job timed out at 1800 s (p2-a-c2-v45time)",
+ "expected_hours": 0.3,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "v45-time2-pu",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --n 1 --tag v45-time2-pu --half 0.01 --gstep 0.05",
+   "outputs": [
+    "v45-time2-pu.json"
+   ],
+   "timeout_s": 900
+  }
+ ]
+}

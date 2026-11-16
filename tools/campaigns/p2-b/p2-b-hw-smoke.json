@@ -1,0 +1,79 @@
+{
+ "campaign": "p2-b-hw-smoke",
+ "tier": "scratch",
+ "expected_hours": 0.5,
+ "description": "channel (ii): DP5 smoke (Herwig and Pythia MB species counting, 2000 events each) and S2-a validation 2 reference runs (Resummino ~e_R LO/NLO/NLO+NLL; loop_quirkE Etilde LO/NLO at fixed mu = m); maxwell, where the Herwig/Resummino env is node-local",
+ "jobs": [
+  {
+   "id": "hw-mb-smoke",
+   "shard": 0,
+   "max_rss_mb": 1200,
+   "timeout_s": 1800,
+   "command": "/home/scratch/jdochoa/envs/herwig/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/herwig/mb_species.py herwig $QV2_OUT_DIR/hw-mb-smoke.json 2000 101",
+   "outputs": [
+    "hw-mb-smoke.json"
+   ]
+  },
+  {
+   "id": "py-mb-smoke",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/herwig/mb_species.py pythia $QV2_OUT_DIR/py-mb-smoke.json 2000 102",
+   "outputs": [
+    "py-mb-smoke.json"
+   ]
+  },
+  {
+   "id": "kref-resummino",
+   "shard": 0,
+   "max_rss_mb": 1000,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/kref-resummino.json 200,500,1000",
+   "outputs": [
+    "kref-resummino.json"
+   ]
+  },
+  {
+   "id": "kref-s-fixm",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kref-s-fixm S 14400 200,500,1000 --fixed m",
+   "outputs": [
+    "kref-s-fixm.json",
+    "kref-s-fixm.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "kref-resummino-dec",
+   "shard": 0,
+   "max_rss_mb": 1000,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/kref-resummino-dec.json 200,500,1000 --modes lo_nlo --decouple",
+   "outputs": [
+    "kref-resummino-dec.json"
+   ]
+  },
+  {
+   "id": "hw-mb-smoke2",
+   "shard": 0,
+   "max_rss_mb": 1200,
+   "timeout_s": 1800,
+   "command": "/home/scratch/jdochoa/envs/herwig/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/herwig/mb_species.py herwig $QV2_OUT_DIR/hw-mb-smoke2.json 2000 101",
+   "outputs": [
+    "hw-mb-smoke2.json"
+   ]
+  },
+  {
+   "id": "py-mb-smoke2",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/herwig/mb_species.py pythia $QV2_OUT_DIR/py-mb-smoke2.json 2000 102",
+   "outputs": [
+    "py-mb-smoke2.json"
+   ]
+  }
+ ]
+}

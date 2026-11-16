@@ -1,0 +1,63 @@
+{
+ "campaign": "p2-b-s2-kscan-p4l",
+ "tier": "regenerable",
+ "expected_hours": 1.5,
+ "description": "channel (ii) S2-b: K(m) with PDF4LHC21_40 (lhaid 93100), otherwise as p2-b-s2-kscan",
+ "jobs": [
+  {
+   "id": "kscan-e-p4l-0",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kscan-e-p4l-0 E 93100 200,300,400,500 --pdfunc",
+   "outputs": [
+    "kscan-e-p4l-0.json",
+    "kscan-e-p4l-0.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "kscan-e-p4l-1",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kscan-e-p4l-1 E 93100 600,700,800,900 --pdfunc",
+   "outputs": [
+    "kscan-e-p4l-1.json",
+    "kscan-e-p4l-1.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "kscan-e-p4l-2",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kscan-e-p4l-2 E 93100 1000,1100,1200 --pdfunc",
+   "outputs": [
+    "kscan-e-p4l-2.json",
+    "kscan-e-p4l-2.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "kscan-e-p4l-3",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kscan-e-p4l-3 E 93100 1300,1400,1500 --pdfunc",
+   "outputs": [
+    "kscan-e-p4l-3.json",
+    "kscan-e-p4l-3.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "kscan-s-p4l-0",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py nlo kscan-s-p4l-0 S 93100 200,500,1000,1500 --pdfunc",
+   "outputs": [
+    "kscan-s-p4l-0.json",
+    "kscan-s-p4l-0.aux.tar.gz"
+   ]
+  }
+ ]
+}

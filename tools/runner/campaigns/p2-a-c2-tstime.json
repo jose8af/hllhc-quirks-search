@@ -1,0 +1,32 @@
+{
+ "campaign": "p2-a-c2-tstime",
+ "tier": "scratch",
+ "data_prefix": "phase2",
+ "description": "C2 T_seed stability: cost of the finder at T_seed = 2 (reruns of the day-0 jobs d0pu1-n5-a and d0pu2b-n1 with the same seeds; paired pass fractions as a first look)",
+ "expected_hours": 0.7,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c2ts2-d0pu1-n5",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c2ts2-d0pu1-n5 --stream p2a.day0.pu1 --chunk 0 --ev0 0 --n 5 --rho 1 --roads 4 --dump 0 --kind pu --tseed 2",
+   "outputs": [
+    "c2ts2-d0pu1-n5.npz"
+   ],
+   "max_rss_mb": 1000
+  },
+  {
+   "id": "c2ts2-d0pu2b-n1",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c2ts2-d0pu2b-n1 --stream p2a.day0.pu2 --chunk 0 --ev0 0 --n 1 --rho 2 --roads 2 --dump 0 --kind pu --tseed 2",
+   "outputs": [
+    "c2ts2-d0pu2b-n1.npz"
+   ],
+   "max_rss_mb": 2500
+  }
+ ]
+}

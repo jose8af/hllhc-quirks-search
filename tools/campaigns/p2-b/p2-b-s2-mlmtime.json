@@ -1,0 +1,47 @@
+{
+ "campaign": "p2-b-s2-mlmtime",
+ "tier": "regenerable",
+ "expected_hours": 1.0,
+ "description": "channel (ii) S2: MLM 0-2j unit-cost timing (v1 cards, QED-FSR shower), Table 4.0 'MLM 0-2 jets not benchmarked: 50 ms assumed'",
+ "jobs": [
+  {
+   "id": "etrg-m500",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py mlmtime etrg-m500 F_TRG 500 1000 5000 --ptcut 100 --qedfsr",
+   "outputs": [
+    "etrg-m500.timing.json",
+    "etrg-m500.lhe.gz",
+    "etrg-m500.npz",
+    "etrg-m500.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "einc-m500",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py mlmtime einc-m500 F_INC 500 1000 5000 --qedfsr",
+   "outputs": [
+    "einc-m500.timing.json",
+    "einc-m500.lhe.gz",
+    "einc-m500.npz",
+    "einc-m500.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "strg-m500",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py mlmtime strg-m500 S_TRG 500 1000 5000 --ptcut 100 --qedfsr",
+   "outputs": [
+    "strg-m500.timing.json",
+    "strg-m500.lhe.gz",
+    "strg-m500.npz",
+    "strg-m500.aux.tar.gz"
+   ]
+  }
+ ]
+}

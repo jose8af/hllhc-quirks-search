@@ -1,0 +1,42 @@
+{
+ "campaign": "p2-c-toy-smoke",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_campaigns.py p2-c-toy-smoke",
+ "description": "T1 toy cost: smoke of every code path of p2v_toys.py",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-toy-smoke-std",
+   "outputs": [
+    "p2-c-toy-smoke-std.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-smoke-std.json 25 5 5 3 '-'"
+  },
+  {
+   "id": "p2-c-toy-smoke-jax-scipy",
+   "outputs": [
+    "p2-c-toy-smoke-jax-scipy.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-smoke-jax-scipy.json 25 5 5 3 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-smoke-jax-minuit-merged-chain",
+   "outputs": [
+    "p2-c-toy-smoke-jax-minuit-merged-chain.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-smoke-jax-minuit-merged-chain.json 25 5 5 3 'backend=jax,opt=minuit,layout=merged,start=chain'"
+  },
+  {
+   "id": "p2-c-toy-smoke-np-stitch-prev-fix",
+   "outputs": [
+    "p2-c-toy-smoke-np-stitch-prev-fix.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-smoke-np-stitch-prev-fix.json 25 5 5 3 'stitch=1,start=prev,fixneg=0.05,tol=1e-6'"
+  }
+ ]
+}

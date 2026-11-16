@@ -278,5 +278,36 @@ P1 selection |η_pair| < 1, for the physics runs. Consequence per criterion:
   `src/p1/nm_kernel_t44.py`.
 - Floor test 1 (≥ 30-digit step map) not started.
 
+### 3.3 P1 unit costs (campaign p2-b-p1-time, landau; toy kinematics; VERIFIED)
+| test | per-event CPU | basis |
+|---|---|---|
+| paired B*-off at 5 keV, 4 runs | mean 17.7 s, median 11.9 s, max 46 s (6 events; m = 500: 22.7 s, 1000: 12.7 s); numba compile 6 s once per job | `bstar-time-l5.json` |
+| same at 1 keV | mean 0.66 s (10 events) | `bstar-time-l1.json` |
+| floor test 2 (FIX2 'off' arm, 3 keV, s = 1/9, 5 fractions) | 0.4–10 s per event and kernel (nominal, t44, dd similar) | `floor2-time-*.json` |
+
+**Re-projection of P1** [ESTIMATE from these costs]: 970 × 17.7 s = 4.8 CPU-h at 5 keV, plus a few CPU-min each for the
+1 keV and P1-c runs and for the floor tests. That is ≈ 6 CPU-h with margin, against STR's 51. STR's 67.8 s × 2 per event
+was the Stage-3 production cost, not the cost of the 4 kernel runs (the K-B2 inconsistency noted in STR §4.15). Toy
+events are not production kinematics, so the cost is re-checked on the first production chunk.
+
+### 3.4 P1-d: Linux difference of the Stage-1 M2 numerics (done)
+Job p1d-m2-linux reran `analytic/numerics/M2_single.py all` (416 runs) and `M2_analysis.py` on landau, in job scratch.
+`src/p1/m2_compare.py` compared the result with v1's tracked `results/M2.json` → `outputs/p1/m2_compare.json`.
+- Every fitted M2 quantity (A, K, Â, K̂, tp-impulse, κ, for γ* = 1.05, 1.3, 2, 3 and all methods) agrees to ≤ 10⁻¹²
+  relative [VERIFIED].
+- The only differences are the counts of invalid / floor-rejected conformal runs at γ* = 2 and 3 (e.g. conf256 γ* = 2:
+  17 invalid in v1, 7 on Linux), the per-row lists of those runs, and the floor-scale entries dl, whose values sit at
+  the round-off floor.
+- These configurations have no fit in either run.
+
+**Reading: no quoted M2/P1 number moves; nothing goes to the errata.** FEAS_A's "2 crossings instead of 6" for
+`B_g1.3_e3.162e-05_th90_conf256` is one of these floor-level runs and does not change the M2b fit at γ* = 1.3
+(K_odd −2.00181 vs −2.00162, rel. 10⁻⁴).
+
+### 3.5 P1-d: validity-window table (done, v1 numbers)
+`src/p1/p1d_table.py` → `outputs/p1/p1d_table.json`. 30 (point, Λ) cells from v1's tracked P1.json (`v2b_revisit`).
+9 of 30 pass v1's 1.5 % rule, as STR states. The cells that fail are at Λ = 5 keV everywhere (+9.5 to +17 %), at
+Λ ≤ 0.6 keV for the heavy points (negative Dc), and around 2–3 % elsewhere.
+
 ## 4. Herwig install attempt (DP5)
 (queued on maxwell from 13:30)

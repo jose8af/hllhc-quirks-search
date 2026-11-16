@@ -1,0 +1,147 @@
+{
+ "campaign": "p2-c-toy-jax",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_campaigns.py p2-c-toy-jax",
+ "description": "T1 toy cost: jax backend with scipy and minuit, merged layout, start values, stitch",
+ "expected_hours": 1.0,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-toy-jax-pilot-n31-mu1.5",
+   "outputs": [
+    "p2-c-toy-jax-pilot-n31-mu1.5.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-pilot-n31-mu1.5.json 25 5 500 1.5 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-pilot-n31-mu2",
+   "outputs": [
+    "p2-c-toy-jax-pilot-n31-mu2.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-pilot-n31-mu2.json 25 5 500 2 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-pilot-n31-mu4",
+   "outputs": [
+    "p2-c-toy-jax-pilot-n31-mu4.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-pilot-n31-mu4.json 25 5 500 4 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-pilot-n31-mu6",
+   "outputs": [
+    "p2-c-toy-jax-pilot-n31-mu6.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-pilot-n31-mu6.json 25 5 500 6 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-js-n31-mu3",
+   "outputs": [
+    "p2-c-toy-jax-js-n31-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-js-n31-mu3.json 25 5 200 3 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-js-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-js-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-js-n60-mu3-a.json 45 14 50 3 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-js-n60-mu3-b",
+   "outputs": [
+    "p2-c-toy-jax-js-n60-mu3-b.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-js-n60-mu3-b.json 45 14 50 3 'backend=jax' 20261116 20261217"
+  },
+  {
+   "id": "p2-c-toy-jax-js-n80-mu3",
+   "outputs": [
+    "p2-c-toy-jax-js-n80-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-js-n80-mu3.json 60 19 100 3 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-js-n100-mu3",
+   "outputs": [
+    "p2-c-toy-jax-js-n100-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-js-n100-mu3.json 75 24 100 3 'backend=jax'"
+  },
+  {
+   "id": "p2-c-toy-jax-jm-n31-mu3",
+   "outputs": [
+    "p2-c-toy-jax-jm-n31-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jm-n31-mu3.json 25 5 100 3 'backend=jax,opt=minuit'"
+  },
+  {
+   "id": "p2-c-toy-jax-jm-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-jm-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jm-n60-mu3-a.json 45 14 4 3 'backend=jax,opt=minuit'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsmerged-n31-mu3",
+   "outputs": [
+    "p2-c-toy-jax-jsmerged-n31-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsmerged-n31-mu3.json 25 5 200 3 'backend=jax,layout=merged'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsmerged-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-jsmerged-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsmerged-n60-mu3-a.json 45 14 50 3 'backend=jax,layout=merged'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsmerged-n100-mu3",
+   "outputs": [
+    "p2-c-toy-jax-jsmerged-n100-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsmerged-n100-mu3.json 75 24 100 3 'backend=jax,layout=merged'"
+  },
+  {
+   "id": "p2-c-toy-jax-jschain-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-jschain-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jschain-n60-mu3-a.json 45 14 50 3 'backend=jax,start=chain'"
+  },
+  {
+   "id": "p2-c-toy-jax-jschain-n100-mu3",
+   "outputs": [
+    "p2-c-toy-jax-jschain-n100-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jschain-n100-mu3.json 75 24 100 3 'backend=jax,start=chain'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsstitch-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-jsstitch-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsstitch-n60-mu3-a.json 45 14 50 3 'backend=jax,stitch=1'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsstitch-n100-mu3",
+   "outputs": [
+    "p2-c-toy-jax-jsstitch-n100-mu3.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsstitch-n100-mu3.json 75 24 100 3 'backend=jax,stitch=1'"
+  },
+  {
+   "id": "p2-c-toy-jax-jsprev-n60-mu3-a",
+   "outputs": [
+    "p2-c-toy-jax-jsprev-n60-mu3-a.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-toy-jax-jsprev-n60-mu3-a.json 45 14 50 3 'backend=jax,start=prev'"
+  }
+ ]
+}

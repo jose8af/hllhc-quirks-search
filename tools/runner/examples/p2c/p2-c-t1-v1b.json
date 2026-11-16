@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-c-t1-v1b",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_campaigns.py t1-v1 p2-c-t1-v1b 300",
+ "description": "T1-b: v1 best-point limit with the T1 builder in v1 mode",
+ "expected_hours": 0.4,
+ "defaults": {
+  "max_rss_mb": 600,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1-v1b-0",
+   "outputs": [
+    "p2-c-t1-v1b-0.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2c_t1.py v1 $QV2_OUT_DIR/p2-c-t1-v1b-0.json 300"
+  }
+ ]
+}

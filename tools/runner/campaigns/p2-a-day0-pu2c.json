@@ -1,0 +1,23 @@
+{
+ "campaign": "p2-a-day0-pu2c",
+ "tier": "scratch",
+ "data_prefix": "phase2",
+ "description": "day-0 rho = 2 memory and pre-merge storage (STR \u00a74.5, COM B2-e): RSS vs events per job, one job alone on the node, pre-merge store N_IP2 >= 6 on",
+ "expected_hours": 0.6,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 3600,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "d0pu2c-n8",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id d0pu2c-n8 --stream p2a.day0.pu2 --chunk 3 --ev0 0 --n 8 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "d0pu2c-n8.npz",
+    "d0pu2c-n8.premerge.npz"
+   ]
+  }
+ ]
+}

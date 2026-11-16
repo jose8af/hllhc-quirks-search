@@ -1,0 +1,1814 @@
+{
+ "campaign": "p2-a-c1-pu2",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C1 (STR \u00a74.1, \u00a74.17 row 2): pile-up rho = 2, 2 roads, 1,000 events, 5 per job, stream c1.pu2, pre-merge store N_IP2 >= 6 on (B2 development), dumps for the first 200 events (C2 T_seed)",
+ "expected_hours": 30.0,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 2100.0,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1pu2-0000",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0000 --stream c1.pu2 --chunk 0 --ev0 0 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0000.npz",
+    "c1pu2-0000.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0001",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0001 --stream c1.pu2 --chunk 1 --ev0 5 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0001.npz",
+    "c1pu2-0001.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0002",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0002 --stream c1.pu2 --chunk 2 --ev0 10 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0002.npz",
+    "c1pu2-0002.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0003",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0003 --stream c1.pu2 --chunk 3 --ev0 15 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0003.npz",
+    "c1pu2-0003.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0004",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0004 --stream c1.pu2 --chunk 4 --ev0 20 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0004.npz",
+    "c1pu2-0004.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0005",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0005 --stream c1.pu2 --chunk 5 --ev0 25 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0005.npz",
+    "c1pu2-0005.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0006",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0006 --stream c1.pu2 --chunk 6 --ev0 30 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0006.npz",
+    "c1pu2-0006.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0007",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0007 --stream c1.pu2 --chunk 7 --ev0 35 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0007.npz",
+    "c1pu2-0007.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0008",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0008 --stream c1.pu2 --chunk 8 --ev0 40 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0008.npz",
+    "c1pu2-0008.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0009",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0009 --stream c1.pu2 --chunk 9 --ev0 45 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0009.npz",
+    "c1pu2-0009.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0010",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0010 --stream c1.pu2 --chunk 10 --ev0 50 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0010.npz",
+    "c1pu2-0010.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0011",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0011 --stream c1.pu2 --chunk 11 --ev0 55 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0011.npz",
+    "c1pu2-0011.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0012",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0012 --stream c1.pu2 --chunk 12 --ev0 60 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0012.npz",
+    "c1pu2-0012.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0013",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0013 --stream c1.pu2 --chunk 13 --ev0 65 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0013.npz",
+    "c1pu2-0013.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0014",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0014 --stream c1.pu2 --chunk 14 --ev0 70 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0014.npz",
+    "c1pu2-0014.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0015",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0015 --stream c1.pu2 --chunk 15 --ev0 75 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0015.npz",
+    "c1pu2-0015.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0016",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0016 --stream c1.pu2 --chunk 16 --ev0 80 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0016.npz",
+    "c1pu2-0016.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0017",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0017 --stream c1.pu2 --chunk 17 --ev0 85 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0017.npz",
+    "c1pu2-0017.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0018",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0018 --stream c1.pu2 --chunk 18 --ev0 90 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0018.npz",
+    "c1pu2-0018.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0019",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0019 --stream c1.pu2 --chunk 19 --ev0 95 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0019.npz",
+    "c1pu2-0019.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0020",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0020 --stream c1.pu2 --chunk 20 --ev0 100 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0020.npz",
+    "c1pu2-0020.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0021",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0021 --stream c1.pu2 --chunk 21 --ev0 105 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0021.npz",
+    "c1pu2-0021.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0022",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0022 --stream c1.pu2 --chunk 22 --ev0 110 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0022.npz",
+    "c1pu2-0022.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0023",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0023 --stream c1.pu2 --chunk 23 --ev0 115 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0023.npz",
+    "c1pu2-0023.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0024",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0024 --stream c1.pu2 --chunk 24 --ev0 120 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0024.npz",
+    "c1pu2-0024.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0025",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0025 --stream c1.pu2 --chunk 25 --ev0 125 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0025.npz",
+    "c1pu2-0025.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0026",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0026 --stream c1.pu2 --chunk 26 --ev0 130 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0026.npz",
+    "c1pu2-0026.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0027",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0027 --stream c1.pu2 --chunk 27 --ev0 135 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0027.npz",
+    "c1pu2-0027.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0028",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0028 --stream c1.pu2 --chunk 28 --ev0 140 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0028.npz",
+    "c1pu2-0028.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0029",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0029 --stream c1.pu2 --chunk 29 --ev0 145 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0029.npz",
+    "c1pu2-0029.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0030",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0030 --stream c1.pu2 --chunk 30 --ev0 150 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0030.npz",
+    "c1pu2-0030.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0031",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0031 --stream c1.pu2 --chunk 31 --ev0 155 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0031.npz",
+    "c1pu2-0031.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0032",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0032 --stream c1.pu2 --chunk 32 --ev0 160 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0032.npz",
+    "c1pu2-0032.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0033",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0033 --stream c1.pu2 --chunk 33 --ev0 165 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0033.npz",
+    "c1pu2-0033.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0034",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0034 --stream c1.pu2 --chunk 34 --ev0 170 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0034.npz",
+    "c1pu2-0034.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0035",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0035 --stream c1.pu2 --chunk 35 --ev0 175 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0035.npz",
+    "c1pu2-0035.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0036",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0036 --stream c1.pu2 --chunk 36 --ev0 180 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0036.npz",
+    "c1pu2-0036.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0037",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0037 --stream c1.pu2 --chunk 37 --ev0 185 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0037.npz",
+    "c1pu2-0037.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0038",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0038 --stream c1.pu2 --chunk 38 --ev0 190 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0038.npz",
+    "c1pu2-0038.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0039",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0039 --stream c1.pu2 --chunk 39 --ev0 195 --n 5 --rho 2 --roads 2 --dump 5 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0039.npz",
+    "c1pu2-0039.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0040",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0040 --stream c1.pu2 --chunk 40 --ev0 200 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0040.npz",
+    "c1pu2-0040.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0041",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0041 --stream c1.pu2 --chunk 41 --ev0 205 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0041.npz",
+    "c1pu2-0041.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0042",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0042 --stream c1.pu2 --chunk 42 --ev0 210 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0042.npz",
+    "c1pu2-0042.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0043",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0043 --stream c1.pu2 --chunk 43 --ev0 215 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0043.npz",
+    "c1pu2-0043.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0044",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0044 --stream c1.pu2 --chunk 44 --ev0 220 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0044.npz",
+    "c1pu2-0044.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0045",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0045 --stream c1.pu2 --chunk 45 --ev0 225 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0045.npz",
+    "c1pu2-0045.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0046",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0046 --stream c1.pu2 --chunk 46 --ev0 230 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0046.npz",
+    "c1pu2-0046.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0047",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0047 --stream c1.pu2 --chunk 47 --ev0 235 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0047.npz",
+    "c1pu2-0047.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0048",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0048 --stream c1.pu2 --chunk 48 --ev0 240 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0048.npz",
+    "c1pu2-0048.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0049",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0049 --stream c1.pu2 --chunk 49 --ev0 245 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0049.npz",
+    "c1pu2-0049.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0050",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0050 --stream c1.pu2 --chunk 50 --ev0 250 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0050.npz",
+    "c1pu2-0050.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0051",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0051 --stream c1.pu2 --chunk 51 --ev0 255 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0051.npz",
+    "c1pu2-0051.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0052",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0052 --stream c1.pu2 --chunk 52 --ev0 260 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0052.npz",
+    "c1pu2-0052.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0053",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0053 --stream c1.pu2 --chunk 53 --ev0 265 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0053.npz",
+    "c1pu2-0053.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0054",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0054 --stream c1.pu2 --chunk 54 --ev0 270 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0054.npz",
+    "c1pu2-0054.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0055",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0055 --stream c1.pu2 --chunk 55 --ev0 275 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0055.npz",
+    "c1pu2-0055.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0056",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0056 --stream c1.pu2 --chunk 56 --ev0 280 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0056.npz",
+    "c1pu2-0056.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0057",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0057 --stream c1.pu2 --chunk 57 --ev0 285 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0057.npz",
+    "c1pu2-0057.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0058",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0058 --stream c1.pu2 --chunk 58 --ev0 290 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0058.npz",
+    "c1pu2-0058.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0059",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0059 --stream c1.pu2 --chunk 59 --ev0 295 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0059.npz",
+    "c1pu2-0059.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0060",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0060 --stream c1.pu2 --chunk 60 --ev0 300 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0060.npz",
+    "c1pu2-0060.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0061",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0061 --stream c1.pu2 --chunk 61 --ev0 305 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0061.npz",
+    "c1pu2-0061.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0062",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0062 --stream c1.pu2 --chunk 62 --ev0 310 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0062.npz",
+    "c1pu2-0062.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0063",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0063 --stream c1.pu2 --chunk 63 --ev0 315 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0063.npz",
+    "c1pu2-0063.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0064",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0064 --stream c1.pu2 --chunk 64 --ev0 320 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0064.npz",
+    "c1pu2-0064.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0065",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0065 --stream c1.pu2 --chunk 65 --ev0 325 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0065.npz",
+    "c1pu2-0065.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0066",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0066 --stream c1.pu2 --chunk 66 --ev0 330 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0066.npz",
+    "c1pu2-0066.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0067",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0067 --stream c1.pu2 --chunk 67 --ev0 335 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0067.npz",
+    "c1pu2-0067.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0068",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0068 --stream c1.pu2 --chunk 68 --ev0 340 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0068.npz",
+    "c1pu2-0068.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0069",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0069 --stream c1.pu2 --chunk 69 --ev0 345 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0069.npz",
+    "c1pu2-0069.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0070",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0070 --stream c1.pu2 --chunk 70 --ev0 350 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0070.npz",
+    "c1pu2-0070.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0071",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0071 --stream c1.pu2 --chunk 71 --ev0 355 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0071.npz",
+    "c1pu2-0071.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0072",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0072 --stream c1.pu2 --chunk 72 --ev0 360 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0072.npz",
+    "c1pu2-0072.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0073",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0073 --stream c1.pu2 --chunk 73 --ev0 365 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0073.npz",
+    "c1pu2-0073.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0074",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0074 --stream c1.pu2 --chunk 74 --ev0 370 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0074.npz",
+    "c1pu2-0074.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0075",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0075 --stream c1.pu2 --chunk 75 --ev0 375 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0075.npz",
+    "c1pu2-0075.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0076",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0076 --stream c1.pu2 --chunk 76 --ev0 380 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0076.npz",
+    "c1pu2-0076.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0077",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0077 --stream c1.pu2 --chunk 77 --ev0 385 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0077.npz",
+    "c1pu2-0077.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0078",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0078 --stream c1.pu2 --chunk 78 --ev0 390 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0078.npz",
+    "c1pu2-0078.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0079",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0079 --stream c1.pu2 --chunk 79 --ev0 395 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0079.npz",
+    "c1pu2-0079.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0080",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0080 --stream c1.pu2 --chunk 80 --ev0 400 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0080.npz",
+    "c1pu2-0080.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0081",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0081 --stream c1.pu2 --chunk 81 --ev0 405 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0081.npz",
+    "c1pu2-0081.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0082",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0082 --stream c1.pu2 --chunk 82 --ev0 410 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0082.npz",
+    "c1pu2-0082.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0083",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0083 --stream c1.pu2 --chunk 83 --ev0 415 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0083.npz",
+    "c1pu2-0083.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0084",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0084 --stream c1.pu2 --chunk 84 --ev0 420 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0084.npz",
+    "c1pu2-0084.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0085",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0085 --stream c1.pu2 --chunk 85 --ev0 425 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0085.npz",
+    "c1pu2-0085.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0086",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0086 --stream c1.pu2 --chunk 86 --ev0 430 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0086.npz",
+    "c1pu2-0086.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0087",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0087 --stream c1.pu2 --chunk 87 --ev0 435 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0087.npz",
+    "c1pu2-0087.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0088",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0088 --stream c1.pu2 --chunk 88 --ev0 440 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0088.npz",
+    "c1pu2-0088.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0089",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0089 --stream c1.pu2 --chunk 89 --ev0 445 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0089.npz",
+    "c1pu2-0089.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0090",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0090 --stream c1.pu2 --chunk 90 --ev0 450 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0090.npz",
+    "c1pu2-0090.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0091",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0091 --stream c1.pu2 --chunk 91 --ev0 455 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0091.npz",
+    "c1pu2-0091.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0092",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0092 --stream c1.pu2 --chunk 92 --ev0 460 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0092.npz",
+    "c1pu2-0092.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0093",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0093 --stream c1.pu2 --chunk 93 --ev0 465 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0093.npz",
+    "c1pu2-0093.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0094",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0094 --stream c1.pu2 --chunk 94 --ev0 470 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0094.npz",
+    "c1pu2-0094.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0095",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0095 --stream c1.pu2 --chunk 95 --ev0 475 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0095.npz",
+    "c1pu2-0095.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0096",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0096 --stream c1.pu2 --chunk 96 --ev0 480 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0096.npz",
+    "c1pu2-0096.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0097",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0097 --stream c1.pu2 --chunk 97 --ev0 485 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0097.npz",
+    "c1pu2-0097.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0098",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0098 --stream c1.pu2 --chunk 98 --ev0 490 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0098.npz",
+    "c1pu2-0098.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0099",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0099 --stream c1.pu2 --chunk 99 --ev0 495 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0099.npz",
+    "c1pu2-0099.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0100",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0100 --stream c1.pu2 --chunk 100 --ev0 500 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0100.npz",
+    "c1pu2-0100.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0101",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0101 --stream c1.pu2 --chunk 101 --ev0 505 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0101.npz",
+    "c1pu2-0101.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0102",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0102 --stream c1.pu2 --chunk 102 --ev0 510 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0102.npz",
+    "c1pu2-0102.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0103",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0103 --stream c1.pu2 --chunk 103 --ev0 515 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0103.npz",
+    "c1pu2-0103.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0104",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0104 --stream c1.pu2 --chunk 104 --ev0 520 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0104.npz",
+    "c1pu2-0104.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0105",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0105 --stream c1.pu2 --chunk 105 --ev0 525 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0105.npz",
+    "c1pu2-0105.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0106",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0106 --stream c1.pu2 --chunk 106 --ev0 530 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0106.npz",
+    "c1pu2-0106.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0107",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0107 --stream c1.pu2 --chunk 107 --ev0 535 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0107.npz",
+    "c1pu2-0107.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0108",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0108 --stream c1.pu2 --chunk 108 --ev0 540 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0108.npz",
+    "c1pu2-0108.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0109",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0109 --stream c1.pu2 --chunk 109 --ev0 545 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0109.npz",
+    "c1pu2-0109.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0110",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0110 --stream c1.pu2 --chunk 110 --ev0 550 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0110.npz",
+    "c1pu2-0110.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0111",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0111 --stream c1.pu2 --chunk 111 --ev0 555 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0111.npz",
+    "c1pu2-0111.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0112",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0112 --stream c1.pu2 --chunk 112 --ev0 560 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0112.npz",
+    "c1pu2-0112.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0113",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0113 --stream c1.pu2 --chunk 113 --ev0 565 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0113.npz",
+    "c1pu2-0113.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0114",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0114 --stream c1.pu2 --chunk 114 --ev0 570 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0114.npz",
+    "c1pu2-0114.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0115",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0115 --stream c1.pu2 --chunk 115 --ev0 575 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0115.npz",
+    "c1pu2-0115.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0116",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0116 --stream c1.pu2 --chunk 116 --ev0 580 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0116.npz",
+    "c1pu2-0116.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0117",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0117 --stream c1.pu2 --chunk 117 --ev0 585 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0117.npz",
+    "c1pu2-0117.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0118",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0118 --stream c1.pu2 --chunk 118 --ev0 590 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0118.npz",
+    "c1pu2-0118.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0119",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0119 --stream c1.pu2 --chunk 119 --ev0 595 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0119.npz",
+    "c1pu2-0119.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0120",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0120 --stream c1.pu2 --chunk 120 --ev0 600 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0120.npz",
+    "c1pu2-0120.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0121",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0121 --stream c1.pu2 --chunk 121 --ev0 605 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0121.npz",
+    "c1pu2-0121.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0122",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0122 --stream c1.pu2 --chunk 122 --ev0 610 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0122.npz",
+    "c1pu2-0122.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0123",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0123 --stream c1.pu2 --chunk 123 --ev0 615 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0123.npz",
+    "c1pu2-0123.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0124",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0124 --stream c1.pu2 --chunk 124 --ev0 620 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0124.npz",
+    "c1pu2-0124.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0125",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0125 --stream c1.pu2 --chunk 125 --ev0 625 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0125.npz",
+    "c1pu2-0125.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0126",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0126 --stream c1.pu2 --chunk 126 --ev0 630 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0126.npz",
+    "c1pu2-0126.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0127",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0127 --stream c1.pu2 --chunk 127 --ev0 635 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0127.npz",
+    "c1pu2-0127.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0128",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0128 --stream c1.pu2 --chunk 128 --ev0 640 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0128.npz",
+    "c1pu2-0128.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0129",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0129 --stream c1.pu2 --chunk 129 --ev0 645 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0129.npz",
+    "c1pu2-0129.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0130",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0130 --stream c1.pu2 --chunk 130 --ev0 650 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0130.npz",
+    "c1pu2-0130.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0131",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0131 --stream c1.pu2 --chunk 131 --ev0 655 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0131.npz",
+    "c1pu2-0131.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0132",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0132 --stream c1.pu2 --chunk 132 --ev0 660 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0132.npz",
+    "c1pu2-0132.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0133",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0133 --stream c1.pu2 --chunk 133 --ev0 665 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0133.npz",
+    "c1pu2-0133.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0134",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0134 --stream c1.pu2 --chunk 134 --ev0 670 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0134.npz",
+    "c1pu2-0134.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0135",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0135 --stream c1.pu2 --chunk 135 --ev0 675 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0135.npz",
+    "c1pu2-0135.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0136",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0136 --stream c1.pu2 --chunk 136 --ev0 680 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0136.npz",
+    "c1pu2-0136.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0137",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0137 --stream c1.pu2 --chunk 137 --ev0 685 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0137.npz",
+    "c1pu2-0137.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0138",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0138 --stream c1.pu2 --chunk 138 --ev0 690 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0138.npz",
+    "c1pu2-0138.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0139",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0139 --stream c1.pu2 --chunk 139 --ev0 695 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0139.npz",
+    "c1pu2-0139.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0140",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0140 --stream c1.pu2 --chunk 140 --ev0 700 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0140.npz",
+    "c1pu2-0140.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0141",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0141 --stream c1.pu2 --chunk 141 --ev0 705 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0141.npz",
+    "c1pu2-0141.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0142",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0142 --stream c1.pu2 --chunk 142 --ev0 710 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0142.npz",
+    "c1pu2-0142.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0143",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0143 --stream c1.pu2 --chunk 143 --ev0 715 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0143.npz",
+    "c1pu2-0143.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0144",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0144 --stream c1.pu2 --chunk 144 --ev0 720 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0144.npz",
+    "c1pu2-0144.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0145",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0145 --stream c1.pu2 --chunk 145 --ev0 725 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0145.npz",
+    "c1pu2-0145.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0146",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0146 --stream c1.pu2 --chunk 146 --ev0 730 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0146.npz",
+    "c1pu2-0146.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0147",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0147 --stream c1.pu2 --chunk 147 --ev0 735 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0147.npz",
+    "c1pu2-0147.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0148",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0148 --stream c1.pu2 --chunk 148 --ev0 740 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0148.npz",
+    "c1pu2-0148.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0149",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0149 --stream c1.pu2 --chunk 149 --ev0 745 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0149.npz",
+    "c1pu2-0149.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0150",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0150 --stream c1.pu2 --chunk 150 --ev0 750 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0150.npz",
+    "c1pu2-0150.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0151",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0151 --stream c1.pu2 --chunk 151 --ev0 755 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0151.npz",
+    "c1pu2-0151.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0152",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0152 --stream c1.pu2 --chunk 152 --ev0 760 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0152.npz",
+    "c1pu2-0152.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0153",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0153 --stream c1.pu2 --chunk 153 --ev0 765 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0153.npz",
+    "c1pu2-0153.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0154",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0154 --stream c1.pu2 --chunk 154 --ev0 770 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0154.npz",
+    "c1pu2-0154.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0155",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0155 --stream c1.pu2 --chunk 155 --ev0 775 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0155.npz",
+    "c1pu2-0155.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0156",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0156 --stream c1.pu2 --chunk 156 --ev0 780 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0156.npz",
+    "c1pu2-0156.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0157",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0157 --stream c1.pu2 --chunk 157 --ev0 785 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0157.npz",
+    "c1pu2-0157.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0158",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0158 --stream c1.pu2 --chunk 158 --ev0 790 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0158.npz",
+    "c1pu2-0158.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0159",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0159 --stream c1.pu2 --chunk 159 --ev0 795 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0159.npz",
+    "c1pu2-0159.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0160",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0160 --stream c1.pu2 --chunk 160 --ev0 800 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0160.npz",
+    "c1pu2-0160.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0161",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0161 --stream c1.pu2 --chunk 161 --ev0 805 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0161.npz",
+    "c1pu2-0161.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0162",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0162 --stream c1.pu2 --chunk 162 --ev0 810 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0162.npz",
+    "c1pu2-0162.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0163",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0163 --stream c1.pu2 --chunk 163 --ev0 815 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0163.npz",
+    "c1pu2-0163.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0164",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0164 --stream c1.pu2 --chunk 164 --ev0 820 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0164.npz",
+    "c1pu2-0164.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0165",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0165 --stream c1.pu2 --chunk 165 --ev0 825 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0165.npz",
+    "c1pu2-0165.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0166",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0166 --stream c1.pu2 --chunk 166 --ev0 830 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0166.npz",
+    "c1pu2-0166.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0167",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0167 --stream c1.pu2 --chunk 167 --ev0 835 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0167.npz",
+    "c1pu2-0167.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0168",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0168 --stream c1.pu2 --chunk 168 --ev0 840 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0168.npz",
+    "c1pu2-0168.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0169",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0169 --stream c1.pu2 --chunk 169 --ev0 845 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0169.npz",
+    "c1pu2-0169.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0170",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0170 --stream c1.pu2 --chunk 170 --ev0 850 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0170.npz",
+    "c1pu2-0170.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0171",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0171 --stream c1.pu2 --chunk 171 --ev0 855 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0171.npz",
+    "c1pu2-0171.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0172",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0172 --stream c1.pu2 --chunk 172 --ev0 860 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0172.npz",
+    "c1pu2-0172.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0173",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0173 --stream c1.pu2 --chunk 173 --ev0 865 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0173.npz",
+    "c1pu2-0173.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0174",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0174 --stream c1.pu2 --chunk 174 --ev0 870 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0174.npz",
+    "c1pu2-0174.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0175",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0175 --stream c1.pu2 --chunk 175 --ev0 875 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0175.npz",
+    "c1pu2-0175.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0176",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0176 --stream c1.pu2 --chunk 176 --ev0 880 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0176.npz",
+    "c1pu2-0176.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0177",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0177 --stream c1.pu2 --chunk 177 --ev0 885 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0177.npz",
+    "c1pu2-0177.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0178",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0178 --stream c1.pu2 --chunk 178 --ev0 890 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0178.npz",
+    "c1pu2-0178.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0179",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0179 --stream c1.pu2 --chunk 179 --ev0 895 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0179.npz",
+    "c1pu2-0179.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0180",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0180 --stream c1.pu2 --chunk 180 --ev0 900 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0180.npz",
+    "c1pu2-0180.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0181",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0181 --stream c1.pu2 --chunk 181 --ev0 905 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0181.npz",
+    "c1pu2-0181.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0182",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0182 --stream c1.pu2 --chunk 182 --ev0 910 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0182.npz",
+    "c1pu2-0182.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0183",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0183 --stream c1.pu2 --chunk 183 --ev0 915 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0183.npz",
+    "c1pu2-0183.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0184",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0184 --stream c1.pu2 --chunk 184 --ev0 920 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0184.npz",
+    "c1pu2-0184.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0185",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0185 --stream c1.pu2 --chunk 185 --ev0 925 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0185.npz",
+    "c1pu2-0185.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0186",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0186 --stream c1.pu2 --chunk 186 --ev0 930 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0186.npz",
+    "c1pu2-0186.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0187",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0187 --stream c1.pu2 --chunk 187 --ev0 935 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0187.npz",
+    "c1pu2-0187.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0188",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0188 --stream c1.pu2 --chunk 188 --ev0 940 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0188.npz",
+    "c1pu2-0188.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0189",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0189 --stream c1.pu2 --chunk 189 --ev0 945 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0189.npz",
+    "c1pu2-0189.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0190",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0190 --stream c1.pu2 --chunk 190 --ev0 950 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0190.npz",
+    "c1pu2-0190.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0191",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0191 --stream c1.pu2 --chunk 191 --ev0 955 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0191.npz",
+    "c1pu2-0191.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0192",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0192 --stream c1.pu2 --chunk 192 --ev0 960 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0192.npz",
+    "c1pu2-0192.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0193",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0193 --stream c1.pu2 --chunk 193 --ev0 965 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0193.npz",
+    "c1pu2-0193.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0194",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0194 --stream c1.pu2 --chunk 194 --ev0 970 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0194.npz",
+    "c1pu2-0194.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0195",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0195 --stream c1.pu2 --chunk 195 --ev0 975 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0195.npz",
+    "c1pu2-0195.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0196",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0196 --stream c1.pu2 --chunk 196 --ev0 980 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0196.npz",
+    "c1pu2-0196.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0197",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0197 --stream c1.pu2 --chunk 197 --ev0 985 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0197.npz",
+    "c1pu2-0197.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0198",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0198 --stream c1.pu2 --chunk 198 --ev0 990 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0198.npz",
+    "c1pu2-0198.premerge.npz"
+   ]
+  },
+  {
+   "id": "c1pu2-0199",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_pu_job.py --id c1pu2-0199 --stream c1.pu2 --chunk 199 --ev0 995 --n 5 --rho 2 --roads 2 --dump 0 --kind pu --premerge 6",
+   "outputs": [
+    "c1pu2-0199.npz",
+    "c1pu2-0199.premerge.npz"
+   ]
+  }
+ ]
+}

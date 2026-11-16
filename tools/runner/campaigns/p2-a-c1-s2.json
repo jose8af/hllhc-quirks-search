@@ -1,0 +1,58 @@
+{
+ "campaign": "p2-a-c1-s2",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C1 signal Stage 2 (STR \u00a74.1, \u00a74.17 row 6): v1 F_TRG (pT_ME >= 100 GeV) and F_INC, MLM 0-2j, CP5, qCut 45, QED-FSR off, 20000 LHE events per chunk, E 200 and E 500; stream c1.s2",
+ "expected_hours": 2.0,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1s2-trg-m200-c00",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-trg-m200-c00 F_TRG 200 20000",
+   "outputs": [
+    "c1s2-trg-m200-c00.lhe.gz",
+    "c1s2-trg-m200-c00.npz",
+    "c1s2-trg-m200-c00.json",
+    "c1s2-trg-m200-c00.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-trg-m500-c00",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-trg-m500-c00 F_TRG 500 20000",
+   "outputs": [
+    "c1s2-trg-m500-c00.lhe.gz",
+    "c1s2-trg-m500-c00.npz",
+    "c1s2-trg-m500-c00.json",
+    "c1s2-trg-m500-c00.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m200-c00",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c00 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c00.lhe.gz",
+    "c1s2-inc-m200-c00.npz",
+    "c1s2-inc-m200-c00.json",
+    "c1s2-inc-m200-c00.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m500-c00",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m500-c00 F_INC 500 20000",
+   "outputs": [
+    "c1s2-inc-m500-c00.lhe.gz",
+    "c1s2-inc-m500-c00.npz",
+    "c1s2-inc-m500-c00.json",
+    "c1s2-inc-m500-c00.aux.tar.gz"
+   ]
+  }
+ ]
+}
