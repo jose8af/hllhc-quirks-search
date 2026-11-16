@@ -1,6 +1,6 @@
 # Status — quirks v2
 
-**2026-11-16 10:53 -05 (measured).** Phase 1 (Strategy): **review PASSED in cycle 10; stopped at human Gate A.**
+**2026-11-16 11:52 -05 (measured), day 0.** Gate A passed by the user (all defaults; 4,609 CPU-h approved). **Phase 2 running**: three executors (C1/C2; theory inputs and retrievals; pilot and Geant4 hand-over). Daily reports in `daily/`.
 
 - Gate package: `gates/GATE_A.md` (five questions Q1–Q5, eleven overridable defaults, budget, risks).
 - Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md` (v10,

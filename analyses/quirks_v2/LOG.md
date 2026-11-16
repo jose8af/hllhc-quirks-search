@@ -342,3 +342,9 @@ demonstrated route), then answered: **"Q1 ●; Q2 ●; Q3 ●; Q4 ●; Q5 ● . 
 - The user asked for a daily track of work and results: `STATUS.md` is updated at least daily and a dated report is
   written to `daily/YYYY-MM-DD.md` at the end of each working day.
 - Phase 2 starts.
+
+## 2026-11-16 11:52 -05 (measured) — Phase 2 started
+Three executors spawned from `phase2_exploration/PHASE2_BRIEF.md`: channel (i) Rosalie (Opus; C1, C2), channel (ii)
+Sebastian (Opus; S2, P1, retrievals, Herwig), channel (iii) Tatiana (Fable, logged; pilot, T1 builder, Geant4
+hand-over). Slot caps per channel are in the brief. A session cron at 18:47 triggers the daily report
+(`daily/`, `STATUS.md`, bundle).
