@@ -601,3 +601,12 @@ on the first real v2 workspace. Findings for T1: tied test-statistic values must
 (1e-5), minuit is slower here, fixing negligible rates changes the statistic (rejected). Environment lock in
 `tools/install/pyhf_toys/` (exists on schrodinger only). T1-b resumes with this configuration (successor session,
 not urgent: deadline Phase 3/4a).
+
+## 2026-11-16 16:36 -05 (measured) — User decisions: orchestrator launches the pilot; option B (measure the loopers first)
+The user answered the DECISION notice of 16:10: **"Q1. Launch it yourself and for q2. B recommended measure first"**.
+- Q1: the orchestrator launches the minimum-bias pool itself (the executor's launch had been denied by the
+  permission system; this is the user's explicit approval to the orchestrator).
+- Q2 = option B: the looper measurement runs first (already ordered), and the Z(νν) pilot starts today on the chain
+  as it is; if loopers make candidates the chain is fixed and the pilot regenerated (about 95 CPU-h).
+- Action: preflight at 16:36 = 0 failed checks. schrodinger has a graphical login (cap 3) and carried 2 slice jobs,
+  so Xavier was told to go to one lane; the 2-lane launch of `p2-c-pilot_mb-znn` follows when the node shows ≤ 1 job.
