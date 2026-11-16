@@ -447,3 +447,20 @@ the strategy addendum. The toy budget question is still open (backend test pendi
   4.0 / 5.1 / 5.1 (0.88 / 1.12 / 1.12); with "NI elsewhere" as a term an empty pilot reads 191 (R09) / 295 (R08)
   against 300.
 - Next: independent critical review of the addendum (JFC strategy-revision gate, 1-bot), then the user.
+
+## 2026-11-16 13:55 -05 (measured) — Addendum 1 review: ITERATE (3 A, 10 B)
+Critical reviewer Ulrich (Fable): `phase1_strategy/review/critical/ADDENDUM_1_CRITICAL_REVIEW_ulrich_2026-11-16_13-51.md`.
+- Confirmed by independent recomputation: the 13:25 pool table was wrong; corrected SM floor 166 / 134 / 120 / 90
+  effective events (as timed / forced tt̄ / preselection before the chain / both), summed pool floor 94–101 with the
+  chain change and 171–178 as timed; the rule-1 tables reproduce; the script overrides match the text.
+- A1: the argument for excluding decays after the first turn has two wrong numbers and its check sample is too small
+  (one count 313 events). A2: interactions of parents that have turned (+52 %) are in no term or sample. A3: the
+  proposed hand-over O13 (b) was never validated (the run that passed is O13 (a)); the Fatras no-decay check is
+  unverified.
+- B1–B10: N_t low against the sampled population; with consistent N_t a strict empty pilot reads 307–321 at R08;
+  ceiling family 19 → 20 under strict; toy projection about 7,600 CPU-h at 60 parameters (above 5,992) not stated;
+  multijets, hard-scatter share, weight classes, citations, resolving power of the named tests.
+- Reviewer's estimate of the upside reach (all ceilings empty): 790 [712] GeV at Gate A → 593–601 [526–530] with the
+  chain change, 517–521 [451–453] as timed. The floor the user accepted (36–42) would have given 692–708.
+- Orchestrator: channel (iii) fixes the addendum (v2, new file) with the missing measurements; a fresh reviewer
+  re-reviews; a separate short executor tests the toy remedies (stop-rule item).

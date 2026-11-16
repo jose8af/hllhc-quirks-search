@@ -126,6 +126,14 @@ def main(argv):
                      command=f'export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && {PYHFPY} '
                              f'{SRC}/p2c_t1.py v1 $QV2_OUT_DIR/{name}-0.json {nt}')]
         write(name, jobs, 0.4, 600, me, 'T1-b: v1 best-point limit with the T1 builder in v1 mode')
+    elif what == 't1b':           # refined T1-b: one job per mu (1000 + 1000 toys), plus the diagnostics job
+        name = 'p2-c-t1b'
+        pre = f'export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && {PYHFPY} {SRC}/p2c_t1.py '
+        mus = [760, 790, 810, 825, 835, 845, 855, 870, 890, 915]
+        jobs = [dict(id=f'{name}-mu{m}', outputs=[f'{name}-mu{m}.json'],
+                     command=pre + f'v1pt $QV2_OUT_DIR/{name}-mu{m}.json {m} 1000 {20261200 + m}') for m in mus]
+        jobs.insert(0, dict(id=f'{name}-diag', outputs=[f'{name}-diag.json'], command=pre + f'v1diag $QV2_OUT_DIR/{name}-diag.json'))
+        write(name, jobs, 1.0, 600, me, 'T1-b refined: hybrid toys with q-tilde per mu; fine asymptotic scan; v1-statistic diagnostic')
     else:
         raise SystemExit(f'unknown campaign {what}')
 

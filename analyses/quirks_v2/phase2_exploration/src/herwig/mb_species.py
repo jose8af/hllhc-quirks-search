@@ -98,7 +98,8 @@ saverun qv2mb EventGenerator
 
 def run_pythia(out, nev, seed):
     import pythia8
-    py = pythia8.Pythia('', False)
+    xml = os.environ.get('PYTHIA8DATA') or os.path.join(os.path.dirname(os.path.dirname(sys.executable)), 'share', 'Pythia8', 'xmldoc')
+    py = pythia8.Pythia(xml, False)   # the conda activation (PYTHIA8DATA) is not run by the job
     py.readFile(CP5)
     for l in ('Beams:eCM = 14000.', 'SoftQCD:inelastic = on', 'ParticleDecays:limitTau0 = on',
               'ParticleDecays:tau0Max = 1000.', 'Print:quiet = on', 'Next:numberCount = 0', 'Random:setSeed = on',

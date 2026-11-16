@@ -195,8 +195,119 @@ def v1_mode(out, ntoys, seed=20261116):
              res['mu95_v1_asymptotic'])
 
 
+def _v1_setup(tol=1e-4):
+    lim = json.loads((AN1 / 'limits.json').read_text())['points'][V1_POINT]
+    eff, b, sg = lim['s'], lim['b'], lim['sigma_ln']
+    fixed = [{'name': f'bkg_{c}', 'yield': {c: b[i]}, 'nuis': {f'bkg_own_{c}': sg[i]}} for i, c in enumerate(CATS)]
+    nuis = {f'bkg_own_{c}': {'bound': None} for c in CATS}
+    signal = {'yield': {c: eff[i] * V1_NORM for i, c in enumerate(CATS)}, 'nuis': {}}
+    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(tolerance=tol, strategy=2))
+    ws, model, info = build([], nuis, signal, fixed=fixed, mu_max=1.0e5)
+    return lim, nuis, signal, model
+
+
+def v1_point(out, mu, ntoys, seed):
+    """One mu of the refined T1-b run: b-only and s+b ensembles, failed-fit rule of the session log (retry once from
+    the generated nuisance values, then drop; dropped fraction reported)."""
+    lim, nuis, signal, model = _v1_setup()
+    cfg = model.config
+    rng = np.random.default_rng(seed)
+    t0 = time.process_time()
+
+    def gen(mu_gen):
+        pars = np.array(cfg.suggested_init(), float); pars[cfg.poi_index] = mu_gen
+        th = {}
+        for n in nuis:
+            th[n] = rng.normal(); pars[cfg.par_slice(n)] = th[n]
+        exp = np.asarray(model.expected_actualdata(pars))
+        return np.concatenate([rng.poisson(exp), np.asarray(cfg.auxdata)]), th
+
+    def q_of(d, th):
+        init = cfg.suggested_init(); bounds = cfg.suggested_bounds(); fixed_ = cfg.suggested_fixed()
+        try:
+            return float(pyhf.infer.test_statistics.qmu_tilde(mu, d, model, init, bounds, fixed_)), 0
+        except Exception:  # noqa: BLE001
+            for n, v in th.items():
+                init[cfg.par_slice(n).start] = float(np.clip(v, -4.9, 4.9))
+            try:
+                return float(pyhf.infer.test_statistics.qmu_tilde(mu, d, model, init, bounds, fixed_)), 1
+            except Exception:  # noqa: BLE001
+                return None, 2
+    res = dict(mu=mu, ntoys=ntoys, seed=seed)
+    for lab, mg in (('b', 0.0), ('sb', mu)):
+        q = []; retried = dropped = 0
+        for _ in range(ntoys):
+            d, th = gen(mg)
+            v, st = q_of(d, th)
+            retried += st == 1; dropped += st == 2
+            if v is not None:
+                q.append(v)
+        res[lab] = dict(q=q, retried=int(retried), dropped=int(dropped))
+    res['cpu_s'] = time.process_time() - t0
+    with open(out + '.tmp', 'w') as f:
+        json.dump(res, f)
+    os.replace(out + '.tmp', out)
+    log.info('mu %.1f: dropped b %d sb %d of %d; retried %d %d', mu, res['b']['dropped'], res['sb']['dropped'], ntoys,
+             res['b']['retried'], res['sb']['retried'])
+
+
+def limit_numbercount(s, b, sig, ntoys, seed, cl=0.95):
+    """DIAGNOSTIC ONLY (no verdict): v1's statistic, the weighted number count Q = sum_c n_c ln(1 + mu s_c / b_c) with the
+    nuisances marginalised (hybrid CLs), as acts/stage4/analysis/stats.py l.216-258, re-implemented with its own seed."""
+    rng = np.random.default_rng(seed)
+    s = np.asarray(s, float); b = np.asarray(b, float)
+    bt = b[None, :] * np.exp(np.asarray(sig)[None, :] * rng.standard_normal((ntoys, len(b))))
+    nb_obs = rng.poisson(bt); nb = rng.poisson(bt)
+
+    def cls(mu):
+        w = np.log1p(mu * s / b)
+        nsb = np.random.default_rng([seed, 1]).poisson(bt + mu * s[None, :])
+        qobs = float(np.quantile((nb_obs * w).sum(1), 0.5))
+        return np.mean((nsb * w).sum(1) <= qobs) / max(np.mean((nb * w).sum(1) <= qobs), 1e-12)
+    lo, hi = 0.0, 1.0
+    while cls(hi) > 1 - cl and hi < 1e12:
+        hi *= 4
+    lo = hi / 4
+    for _ in range(60):
+        mid = 0.5 * (lo + hi)
+        lo, hi = (mid, hi) if cls(mid) > 1 - cl else (lo, mid)
+    return float(hi)
+
+
+def v1_diag(out):
+    lim, nuis, signal, model = _v1_setup()
+    cfg = model.config
+    asimov = np.asarray(model.expected_data(np.zeros(cfg.npars)))
+    scan = []
+    for m in np.arange(780.0, 900.1, 4.0):
+        try:
+            scan.append((float(m), float(pyhf.infer.hypotest(m, asimov, model, test_stat='qtilde', return_expected=True)[1])))
+        except Exception:  # noqa: BLE001
+            scan.append((float(m), None))
+    ok = [x for x in scan if x[1] is not None]
+    mu_a = None
+    for a, c in zip(ok[:-1], ok[1:]):
+        if a[1] >= 0.05 > c[1]:
+            mu_a = float(a[0] + (a[1] - 0.05) * (c[0] - a[0]) / (a[1] - c[1]))
+            break
+    s = [signal['yield'][c] for c in CATS]
+    nc = [limit_numbercount(s, lim['b'], lim['sigma_ln'], 5000, sd) for sd in (20261116, 20261117, 20261118, 20261014)]
+    res = dict(asymptotic_scan=scan, mu95_asymptotic_pyhf_fine=mu_a, mu95_v1_asymptotic=lim['expected_asymptotic']['median'] / V1_NORM,
+               mu95_v1_toys=lim['expected_toys']['median'] / V1_NORM, diagnostic_v1_statistic_mu95=nc,
+               diagnostic_seeds=[20261116, 20261117, 20261118, 20261014], b_over_s=lim['b'][1] / s[1])
+    with open(out + '.tmp', 'w') as f:
+        json.dump(res, f, indent=1)
+    os.replace(out + '.tmp', out)
+    log.info('fine asymptotic %s (v1 %.1f); v1-statistic diagnostic %s (v1 %.1f)', mu_a, res['mu95_v1_asymptotic'], nc,
+             res['mu95_v1_toys'])
+
+
 def main(argv):
     mode, out = argv[0], argv[1]
+    if mode == 'v1pt':
+        return v1_point(out, float(argv[2]), int(argv[3]), int(argv[4]))
+    if mode == 'v1diag':
+        return v1_diag(out)
     if mode == 'v1':
         return v1_mode(out, int(argv[2]) if len(argv) > 2 else 500)
     if mode != 'time':
