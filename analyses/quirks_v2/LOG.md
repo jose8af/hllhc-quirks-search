@@ -699,3 +699,14 @@ v4, all attributed; all B-1…B-4 and C-1…C-12 applied, none left; script and 
 1–285 byte-identical. Two leftovers flagged by the fixer were edited by the orchestrator in the COMMITMENTS addendum
 section (the pointer sentence; the B6-a/B6-c row brought in line with B-2: one-sided correction instead of a
 symmetric nuisance). A fresh mechanical check (Dario) follows, then the DECISION notice.
+
+## 2026-11-16 18:33 -05 (measured) — Addendum 1 v5: mechanical check PASS; C edits applied; to the user
+Checker Dario (Opus, fresh): `phase1_strategy/review/critical/ADDENDUM_1_v5_MECHANICAL_CHECK_dario_2026-11-16_18-31.md`:
+PASS on checks a–e, no A or B; all 29 instructions of the third review re-applied independently give v5 character
+for character; hashes match; the orchestrator's two COMMITMENTS edits judged consistent. Nine C edits (exact text)
+applied by the orchestrator to v5 and to the COMMITMENTS addendum section, no re-review needed.
+**Document for the user's approval:** `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`,
+sha256 `dd45b3eaac09134b54e043dcddf79f4f16522b1b11b2b026b88e04723da98deb`.
+Review status, stated as it is: three critical reviews (ITERATE 3 A/10 B; ITERATE 2 A/5 B; ITERATE 0 A/4 B with
+exact texts and the statement that no further review of the text is needed), then a mechanical check PASS. The
+1-bot gate's three-round limit was reached; the user decides. DECISION notice sent with decisions D1–D10.

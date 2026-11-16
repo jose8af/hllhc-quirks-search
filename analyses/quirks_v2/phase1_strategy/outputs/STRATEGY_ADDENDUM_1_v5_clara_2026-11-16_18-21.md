@@ -1,6 +1,6 @@
 # Strategy addendum 1, version 5 (for the user's approval)
 
-Version 5, fixer Clara, 2026-11-16 18:21 (`date`), after the third critical review ITERATE (`phase1_strategy/review/critical/ADDENDUM_1_v4_CRITICAL_REVIEW_bruno_2026-11-16_18-17.md`): B-1…B-4 and C-1…C-12 applied as exact text; no table number changed. Status: for the user's approval. Record: `FIX_REPORT_addendum1_v5_clara.md`; one row per review item in "Changes since version 4" at the end. Version 4 is kept unchanged; the header of version 4 follows.
+Version 5, fixer Clara, 2026-11-16 18:21 (`date`), after the third critical review ITERATE (`phase1_strategy/review/critical/ADDENDUM_1_v4_CRITICAL_REVIEW_bruno_2026-11-16_18-17.md`): B-1…B-4 and C-1…C-12 applied as exact text; no number of the §4 tables or of the script output changed; text cells of §0.2 and §0.3 did (D6's factor is now 2.4 for one population and 2.7–3.4 for the three), and §0.1 item 5 now reads 40, not 41. Status: for the user's approval. Record: `FIX_REPORT_addendum1_v5_clara.md`; one row per review item in "Changes since version 4" at the end. Version 4 is kept unchanged; the header of version 4 follows.
 
 Fixer: Zoe, 2026-11-16 (stamp in the file name, `date`). Replaces versions 1 to 3
 (`STRATEGY_ADDENDUM_1_tatiana_2026-11-16_13-31.md`, `…_v2_tatiana_2026-11-16_14-14.md`, `…_v3_yvonne_2026-11-16_15-04.md`;
@@ -64,12 +64,13 @@ Part 1 of the pilot (`pilot.mb` and Z(νν)) was launched by the orchestrator on
 8. **The pool at the approved CPU** still needs your confirmation: summed zero-count allowance 201 events as timed,
    121 with two cost measures of which one is not demonstrated (12.6 at Gate A; your decision of 16 November was taken
    on 36–42). Reach if every ceiling is empty: 514–584 GeV median [445–514 at the 84 % edge], against 790 [712] [9], [10].
+9. **The signal's own hits are not truncated** (§1.1 point 5): quirk hits are injected without the fast simulation, and the Stage-3 propagator has no turn limit (read in the code by the third reviewer). The effect of the missing arcs of the other particles of a signal event and of its pile-up on the signal efficiency is not measured before the closure verdicts.
 
 ### 0.2 What you were shown at Gate A, in version 3, and now
 
 "Per count" = events in 3 ab⁻¹ that one counted pilot event stands for. Rows that did not change since version 3 say so.
 
-| quantity | frozen at Gate A | version 3 | **version 4** |
+| quantity | frozen at Gate A | version 3 | **version 5** |
 |---|---|---|---|
 | does the simulation follow curling particles? | assumed yes (STR l.210, l.230-232; v1 plan l.1267) | not known | **no hit beyond half a turn of any particle** [V: p2-c-px-a1e, -htg]; missing against Geant4: ≥ 25 % of the written hits (Z(νν)), ≥ 37 % (minimum bias), 34–58 % in TBPS; chain kept by your option B; limitation [L15] |
 | background from curling particles ("loopers") | 0 in 10⁵ guns (STR l.1071): by construction of the limit, not a measurement | — | **0 candidates in 10⁵ + 10⁵ single loopers with full Geant4 trajectories [V: p2-c-px-lpd, all 2×10⁵ events]; bound: 2.2×10⁴ events at 68 %** [E]; a looper with pile-up: not tested |
@@ -147,7 +148,7 @@ campaigns p2-c-px-a1d, -a1e, -ht, -htg; numbers re-read from the campaign JSON b
   **These fractions are lower bounds, twice over:** detector secondaries are not in the comparison (5 % of the
   written hits), and 0.97 % of the low-p_T particles had no Geant4 record in these runs (tracks ended by
   transportation only; the looper report's addendum of 17:20 shows they are multi-turn loopers), so the true
-  fractions are slightly higher.
+  fractions are slightly higher. With the complete Geant4 reference (p2-c-pa-htg, LOG.md 18:15) they are 25.2 % and 37.5 %; only the first reason remains (§7.1 point 1).
 - **Mechanism.** `run_chain.py` passes no loop, path or step setting; the Python configuration of
   `FatrasSimulation` in pyacts 48.0.0 has none; the compiled library carries a path-limit aborter. That it is ACTS's
   default loop protection is an inference [U]: the source is not installed. **Not configurable without rebuilding
@@ -316,7 +317,7 @@ object of [SD4], errors from the bootstrap over events. Read in addition, at no 
   × 1.10 / 1.25 / 1.5 / 2 an empty pilot reads 162 / 163 / 165 / 169 at R09 and 246 / 271 / 294, 256 / 283 / **308**,
   273 / **303** / **329**, **302** / **336** / **365** at R08 [E; 17]. 
 - **Effect, "not robust"** (|ln r| > ln 2 at a rung, or ln r(R06) − ln r(R04) above zero by more than 2σ of that difference): named in the
-  limitations and at abstract level; the user is asked to choose between the nuisance and fixing the chain (D1 (b)),
+  limitations and at abstract level; the user is asked to choose between the correction of the robust case and fixing the chain (D1 (b)),
   before the freeze.
 
 *What the test would not cover:* the single-interaction and hard-scatter terms' own later arcs (products), the
@@ -596,7 +597,7 @@ D5.
 The definition of the rule is unchanged: every term from the samples that exist at day 15, max(zero-count floor,
 N_t·H), H = Gamma(m + 1)/M on own hits before CKF, no pool floor, one Z(νν) count for all SM processes and the
 multijets, limit 300, at least 10⁵ draws for the binding median, a tie pauses (STR l.2730-2757, l.2949). The pile-up
-term is the present chain's estimate; [L15] is not a term of the rule.
+term is the present chain's estimate, or that estimate corrected by the robustness test if D2 is accepted, it shows an increase and the user chooses that it enter the binding reading (§1.5); [L15] is not a term of the rule.
 
 Replacement for the sentences that name samples and numbers (STR l.2733-2737, l.2755-2756, l.2949): "Each B1 class
 of addendum 1 (DIF, DIF-C, NI 22, 30, 61.5 mm, NI-X, NI-C) is read on its own pilot sample at N_t/M with the
@@ -741,7 +742,7 @@ the pilot, and at a quarter of v1's decays-in-flight size it works only for the 
 
 ## 6. What does not change, and what does
 
-Unchanged: the 16 T2 candidates and the selection rule; Q1–Q5; Df-1, Df-3 to Df-10; the definition of rule 1 (Df-11)
+Unchanged: the 16 T2 candidates and the selection rule; Q1–Q5; Df-1, Df-3 to Df-10; the definition of rule 1 (Df-11; its pile-up term only as chosen with D2)
 and its limit of 300; the stop rules; the approved CPU and calendar; the pool allocation rule; brief D7; the
 blinding (no signal quantity is used or shown here); the detector chain (v1's, with its half-turn limit); T1-i.
 Changed if this addendum is approved: the B1 term list (4 → 7); K (10 → 13), T_c (19 → 22) and α_c in Df-2, the
@@ -750,7 +751,7 @@ number of T1 auxiliary channels; N_t of every B1 term; **the parent hand-over (r
 option (a) for the two classes after a turn; criterion with multiplicity)**; M of the pilot and of the pool
 (effective events); Table 4.4a and every number derived from it (list in §4.3); the Q2 (c) numbers (§4.6); **a new
 limitation [L15] in STR §7**; **the looper statements of STR §2 and §4.4**; and, only if the user accepts D2, an
-eighth row of the B6 table (COM B6-a, B6-c).
+eighth row of the B6 table (COM B6-a, B6-c, B6-d) and, if the user so chooses with D2, its correction of the pile-up term in the binding day-15 reading (§1.5).
 
 ## 7. Open points and limitations
 
