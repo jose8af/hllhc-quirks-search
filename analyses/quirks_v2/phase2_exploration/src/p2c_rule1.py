@@ -112,6 +112,21 @@ def main(out, costs_file=None):
         # same floors as planned, M re-optimised for the new costs: CPU needed scales as (sum sqrt(N c))^2
         s_new = sum(math.sqrt(n * cost[t]) for t, n, c in terms); s_old = sum(math.sqrt(n * c) for t, n, c in terms)
         res[f'same_floor_reoptimised_{lab}_cpu_h'] = cpool * (s_new / s_old) ** 2
+    # ---- user decision 2026-11-16: approved CPU kept, hard-scatter pool shrunk.  SM share fixed at its planned CPU-h
+    # (Table 4.4a: 457), B1 share at its planned CPU-h, each re-allocated by the strategy's rule sqrt(N_t / c_t), G = 1.
+    cpu_sm = res['pool_totals']['cpu_h_STR']['SM']; cpu_b1 = res['pool_totals']['cpu_h_STR']['B1']
+    res['replacement_rows_4_4a'] = {}
+    for lab, cost in (('measured', meas), ('after_step1', after)):
+        out_rows = []
+        for share, cpu, sel in (('SM', cpu_sm, lambda t: t in sm_names), ('B1', cpu_b1, lambda t: t not in sm_names)):
+            tt = [(t, n, cost[t]) for t, n, c in terms if sel(t)]
+            al = alloc(cpu, tt=tt)
+            out_rows += [dict(term=t, share=share, N_t=n, cost_ms=1e3 * c, M_t=al[t], transfer=n / al[t], floor68=U68 * n / al[t],
+                              cpu_h=al[t] * c / H, provenance=prov[t]) for t, n, c in tt]
+        res['replacement_rows_4_4a'][lab] = dict(rows=out_rows, cpu_h_SM=cpu_sm, cpu_h_B1=cpu_b1,
+                                                  floor_SM=sum(r['floor68'] for r in out_rows if r['share'] == 'SM'),
+                                                  floor_B1=sum(r['floor68'] for r in out_rows if r['share'] == 'B1'),
+                                                  M_SM=sum(r['M_t'] for r in out_rows if r['share'] == 'SM'))
     # ---- toys (STR §4.11 pt 5 and cost line): budget items at 652 s per 1000 + 1000 toys, scaled by the measured ratios
     toy_items = {'pass 1 (5 x 11 x 8)': 80.0, 'pass-1 exact check': 22.0, 'pass 2 (3 x 11 x 8)': 48.0, 'pass-2 exact check': 13.0,
                  'T1-c (iii) stored distributions': 20.0}
