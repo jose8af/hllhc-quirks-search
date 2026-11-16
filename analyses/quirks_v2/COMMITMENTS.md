@@ -41,6 +41,11 @@ can override (STR §12.1); until then the default is a proposal.
 | Df-1 … Df-11 | no override: all eleven defaults stand, including Df-11 (pinned reading of §11.7 rule 1) |
 | rule 1 precision sentence (E6) | kept (the user was told twice it could be dropped and did not drop it) |
 
+**Post-Gate-A decision (user, 2026-11-16, stop-rule projection of Phase 2):** the no-pile-up hard-scatter pool keeps
+its CPU allocation (457 CPU-h within the approved 4,609; threshold 5,992 unchanged) and its event counts are reduced
+to what the measured unit costs allow; the higher zero-count floors of the SM terms are accepted (`LOG.md`,
+"option 1"). Rows B4-c and INV-1 and STR Table 4.4a are revised accordingly in the Phase-2 strategy addendum.
+
 Source: the user's message "Q1 ●; Q2 ●; Q3 ●; Q4 ●; Q5 ● . Ok go ahead." (`LOG.md`, 2026-11-16). Day 0 of the
 calendar of STR §11 is 2026-11-16.
 

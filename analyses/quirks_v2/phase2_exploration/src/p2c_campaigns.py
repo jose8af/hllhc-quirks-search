@@ -94,6 +94,21 @@ def main(argv):
         jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
                      command=ENV + f'{ACTSPY} {SRC}/p2c_validate.py $QV2_OUT_DIR/{name}-0.json {files}')]
         write(name, jobs, 0.1, 1000, me, 'hand-over validation: truncation, product times, variant A against B')
+    elif what == 'prof':          # cost-reduction study (orchestrator order 2026-11-16)
+        name = argv[1] if len(argv) > 1 else 'p2-c-prof'
+        spec = [('gen-znn', 'gen', 'Znunu_j 1500'), ('gen-wtn', 'gen', 'Wtaunu_j 1000'), ('gen-tt1', 'gen', 'ttbar_1l 300'),
+                ('gen-tt1f', 'gen', 'ttbar_1l 300 tt_forced'), ('chain-znn', 'chain', 'Znunu_j 400'), ('g4', 'g4', '')]
+        if len(argv) > 2:
+            spec = [x for x in spec if x[0] in argv[2:]]
+        jobs = [dict(id=f'{name}-{t}', outputs=[f'{name}-{t}.json'],
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_prof.py {m} $QV2_OUT_DIR/{name}-{t}.json {args}') for t, m, args in spec]
+        write(name, jobs, 0.5, 1500, me, 'profile of the no-PU hard-scatter event and of the Geant4 firing')
+    elif what == 'rule1':         # rule-1 readings, pool and toy projections (ESTIMATE; copy of the Phase-1 script)
+        name = argv[1] if len(argv) > 1 else 'p2-c-rule1'
+        costs = str(HERE.parent / 'outputs' / 'costs_after_step1.json')
+        jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
+                     command=f'PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I {SRC}/p2c_rule1.py $QV2_OUT_DIR/{name}-0.json {costs}')]
+        write(name, jobs, 0.2, 300, me, 'rule-1 readings and projections with measured costs')
     else:
         raise SystemExit(f'unknown campaign {what}')
 

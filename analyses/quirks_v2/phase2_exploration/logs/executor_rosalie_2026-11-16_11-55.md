@@ -185,3 +185,14 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
     seed tag qv2-c1-gen.
   * c1_compare.py (PU families; smoke-tested on the first 80 rho = 1 events: R04 174.9 vs v1 171.55, p = 0.80).
   Queue landau B now: s2 → c2-tstime → c2-v45time → c1-gen → c1-cp0 → c1-sm → c2-v44a → c2-v44b.
+- 13:17 c1s2-trg-m200-c00 done: 20,000 LHE, 928.5 CPU-s (46 ms/LHE event: MG 10.4, Pythia 25.2, convert 10.4 ms), RSS
+  215 MB, sigma_LHE(pT_ME ≥ 100) = 25.69 fb [VERIFIED, marker + c1s2-trg-m200-c00.json].
+- 13:20 src/c1_signal_compare.py: `open` masks every rung bit outside R01–R06 BEFORE v1's signal.analyse_file sees the
+  file (and F1/observables off), so no sealed quantity is formed even in memory; keeps R04 ×3 points, R06 at E200 1.5,
+  twin R04 ratios. `sealed` (for the dedicated session only): R07 and FB2/FB3 with F1 on, PASS/FAIL printed, counts and
+  p-values to an openssl AES-256-CBC (pbkdf2) file with the orchestrator's key, sha256 printed. `selftest-sealed` run on
+  SYNTHETIC numbers (no data read): encryption round trip OK.
+  HOW A LATER SESSION READS THE SEALED QUANTITIES: on a worker, TT env,
+    python phase2_exploration/src/c1_signal_compare.py sealed --a2 p2-a-c1-siga2 --a5 p2-a-c1-siga5 \
+        --key-file <orchestrator key> --out /nfs/cajuela/jdochoa/quirks_v2/data/sealed/c1_sealed.json.enc
+  (inputs: the done-marker outputs of the two signal campaigns; QV2_S3_DATA = phase2_exploration/outputs/c1_s3).

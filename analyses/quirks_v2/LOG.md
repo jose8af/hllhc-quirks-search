@@ -422,3 +422,12 @@ title page reads "CMS NOTE-2018/006, Expected performance of the physics objects
 the HL-LHC, The CMS Collaboration, 06 December 2018 (v2, 10 December 2018)", 33 pages, sha256 `28ec834e…c4ac66`: the
 public note that retrieval R-3 named. Channel (ii) is to extract the jet, MET and lepton performance at pile-up 200
 and the recommended systematic uncertainties from it and redo the MET comparison.
+
+## 2026-11-16 13:19 -05 (measured) — User decision on the stop-rule projection: option 1
+Asked how to handle the no-pile-up hard-scatter pool now that its measured unit costs project the total above the
+5,992 CPU-h threshold, the user answered: **"Option 1 you rrecommendation"** = keep the approved 4,609 CPU-h and
+shrink the pool. Consequences: the approved figure and the threshold do not change; the pool stays at its 457 CPU-h
+(plus what the day-15 reserve rule gives it) and its event counts M_t are re-derived from the measured costs (after
+the cost-reduction attempt), allocated by the strategy's own rule √(N_t/(c_t·G_t)); the summed zero-count floor of
+the SM terms rises (ESTIMATE: from 12.6 to roughly 50–60 events); Table 4.4a and the dependent text are revised in
+the strategy addendum. The toy budget question is still open (backend test pending).

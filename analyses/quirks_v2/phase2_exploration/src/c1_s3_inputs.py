@@ -194,7 +194,12 @@ def main():
     np.savez_compressed(out / sname, **st)
     d, sel = extract(st, "F", a.m, sname, md5_file(out / sname))
     np.savez_compressed(out / f"F_m{a.m}_p2.npz", **d)
-    info = dict(m=a.m, stitch=chk, n_stored=int(len(d["row"])),
+    n_p2 = 0                                # length of v1 make_jobs.p2_lists (template + toy to the 200th each)
+    for sp in (0, 1):
+        idx = np.where(d["tt_split"] == sp)[0]
+        c = np.cumsum(d["in_eta25"][idx])
+        n_p2 += int(np.searchsorted(c, 200)) + 1 if len(c) and c[-1] >= 200 else 0
+    info = dict(m=a.m, stitch=chk, n_stored=int(len(d["row"])), n_p2_list=n_p2,
                 n_in_eta25_template=int(np.sum(d["in_eta25"] & (d["tt_split"] == 0))),
                 n_in_eta25_toy=int(np.sum(d["in_eta25"] & (d["tt_split"] == 1))),
                 accepted_in_eta25_per_split=sel["accepted_in_eta25_per_split"], w_max=sel["w_max"],

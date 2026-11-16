@@ -23,6 +23,9 @@ import time
 
 import numpy as np
 
+import signal  # noqa: F401  (stdlib module, imported before acts/stage4/analysis/signal.py can shadow it)
+import subprocess  # noqa: F401
+
 import p2c_common as C
 
 sys.path.insert(0, str(C.CODE))

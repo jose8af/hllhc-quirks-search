@@ -125,6 +125,66 @@ def main():
         write("p2-a-c1-cp0", jobs, "final",
               f"C1 (STR §4.1, §4.17 row 3): C'_0 no pile-up at v1 sizes for DIF, NI 22 mm, PV pair (f_pre) and the "
               f"gamma, V0 gun sources of C'_PU; {per} events per job; stream c1.c0", a.hours or 3.0, a.rss or 1500)
+    elif a.what == "c1-s3in":
+        # one job per mass from every done Stage-2 chunk (markers); a.name = campaign name (new name per top-up)
+        mk = QV2 / "ledger" / "markers"
+        outs = {}
+        for camp in a.sizes.split(","):          # Stage-2 campaigns to use
+            for p in sorted((mk / camp).glob("*/*.marker")):
+                done = [json.loads(x) for x in p.read_text().splitlines() if '"done"' in x]
+                if done:
+                    for o in done[-1]["outputs"]:
+                        outs[o["name"]] = o["path"]
+        anapy = "$QV2/sim/.pixi/envs/ana/bin/python"
+        jobs = []
+        for m in (200, 500):
+            sel = lambda kind, ext: sorted(v for k, v in outs.items() if k.startswith(f"c1s2-{kind}-m{m}-") and k.endswith(ext))  # noqa
+            tn, tj, inn, ij = sel("trg", ".npz"), sel("trg", ".json"), sel("inc", ".npz"), sel("inc", ".json")
+            jid = f"c1s3in-m{m}"
+            jobs.append(dict(id=jid, shard=0, outputs=[f"F_m{m}_p2.npz", f"E-TRGS_m{m}.npz", f"c1_inputs_m{m}.json"],
+                             command=PRELUDE + f"{anapy} $QV2/phase2_exploration/src/c1_s3_inputs.py {m} --trg "
+                             f"{','.join(tn)} --trg-json {','.join(tj)} --inc {','.join(inn)} --inc-json {','.join(ij)}"))
+        write(a.name or "p2-a-c1-s3in", jobs, "final", f"C1 signal: Stage-3 inputs from Stage-2 campaigns {a.sizes}",
+              0.5, a.rss or 3000)
+    elif a.what == "c1-s3":
+        # a.sizes = "<input campaign>"; chunks: E200 100 events, E500 3 keV 40 events; 500 events covered per point
+        src = QV2 / "ledger" / "markers" / a.sizes
+        paths = {}
+        for p in sorted(src.glob("*/*.marker")):
+            done = [json.loads(x) for x in p.read_text().splitlines() if '"done"' in x]
+            if done:
+                for o in done[-1]["outputs"]:
+                    paths[o["name"]] = o["path"]
+        jobs = []
+        nlist = {m: json.load(open(paths[f"c1_inputs_m{m}.json"]))["n_p2_list"] for m in (200, 500)}
+        for m, lam, size in ((200, 1.5, 100), (200, 2.0, 100), (500, 3.0, 25)):
+            if nlist[m] < 400:
+                raise SystemExit(f"m = {m}: p2 list has {nlist[m]} events (< 400): top up Stage 2 first")
+            for ch in range((nlist[m] + size - 1) // size):
+                jid = f"c1s3-m{m}-l{lam:g}-c{ch:02d}".replace(".", "p")
+                jobs.append(dict(id=jid, shard=0, outputs=[f"p2_F_m{m}_L{lam:g}_BM_c{ch:02d}.npz"],
+                                 command=PRELUDE + f"{PY} $QV2/phase2_exploration/src/c1_s3_job.py --input "
+                                 f"{paths[f'F_m{m}_p2.npz']} --m {m} --lam {lam:g} --chunk {ch} --size {size}"))
+        write(a.name or "p2-a-c1-s3", jobs, "final", "C1 signal Stage 3 (v1 run_stage3.run_job, campaign p2 settings) at "
+              "E200 1.5 and 2 keV and E500 3 keV; p2 lists (template + toy to the 200th |eta| < 2.5 event each)",
+              a.hours or 4.0, a.rss or 800)
+    elif a.what == "c1-sig":
+        sg = f"{PRELUDE}{PY} $QV2/phase2_exploration/src/c1_sig_job.py"
+        a2, a5 = [], []
+        for ch in range((400 + a.per - 1) // a.per):              # a2 fast path, E 200, both Lambda, row-major
+            jid = f"c1sig-a2-m200-c{ch:02d}"
+            a2.append(dict(id=jid, shard=0, outputs=[f"{jid}.npz"],
+                           command=f"{sg} --id {jid} --kind a2 --m 200 --lams 1.5,2 --chunk {ch} --size {a.per}"))
+        for m, lam in ((500, 3.0), (200, 1.5), (200, 2.0)):     # full chain: E500 3 keV (v1 path) + the twins
+            for ch in range((400 + a.per - 1) // a.per):
+                jid = f"c1sig-a5-m{m}-l{lam:g}-c{ch:02d}".replace(".", "p")
+                a5.append(dict(id=jid, shard=0, outputs=[f"{jid}.npz"],
+                               command=f"{sg} --id {jid} --kind a5 --m {m} --lams {lam:g} --chunk {ch} --size {a.per}"))
+        desc = ("C1 signal Stage 4 (STR §4.1, COM C1-d/e): v1 run_g1b.run_signal_job, frozen config; {}. SEALED CONTENT: "
+                "outputs hold R07 and fallback bits; read only through c1_signal_compare.py (open: R04/R06 masked input)")
+        write("p2-a-c1-siga2", a2, "final", desc.format("a2 fast path E200 x {1.5, 2} keV"), 6.0, a.rss or 1500)
+        write("p2-a-c1-siga5", a5, "final", desc.format("a5 full chain E500 3 keV and twins E200 1.5 / 2 keV"), 10.0,
+              a.rss or 1500)
     else:
         raise SystemExit(f"unknown campaign kind {a.what}")
 
