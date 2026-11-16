@@ -484,3 +484,14 @@ FLAG FOR HUMAN: YES (Q4)
 [Mireille] O6 (orchestrator-ordered, beyond verdict §3–§5): Df-11 row in §12.1 defaults (pinned rule-1 reading, worded from T10/T12; consequence by
 [Mireille]   reference to the v9 Z(nunu)-count row; override: see verdict §1); "ten" -> "eleven" defaults in v9 l.8, l.141 and COM GA row; §13.8 and COM
 [Mireille]   rows. Text check ALL OK (45 of 45). Diff v8 -> v9: 33 hunks, 0 unattributed. Script and stdout untouched.
+
+[Oscar] 2026-11-16 10:41, fixer for review cycle 9 (verdict STRATEGY_ARBITER_v9_odette: ITERATE, 0 A, 1 B = B-1 "ten defaults" in §8).
+[Oscar] E1-E13b applied by program (old/new parsed from verdict §5; each old string once in v9). sha256 before bookkeeping
+[Oscar]   0e509b4fdaba65a512f95e1aae9742b4f7b3901d436dbb247db603eb62326fd4 = expected; diff v9 -> that state: the 13 hunks of §5.
+[Oscar] Bookkeeping: header version 10, §13.9 (verdict sentence verbatim, B-1 and C rows), code reference -> day15_text_check_v10.txt;
+[Oscar]   E14 + COM pointer v10, v9 in earlier versions, section "Changes of rows in version 10" (GA, ST-1 rows of §5). E6 applied.
+[Oscar] Text check on v10 vs budget_stdout_v9.txt: ALL OK (45 of 45), output identical to the v9 check. Checker not modified (takes paths
+[Oscar]   as arguments). Script not run; script, stdout, checker, v9 sha256 unchanged. Diff v9 -> v10: 18 hunks, 0 unattributed.
+[Oscar] Neighbourhood: every live statement of the defaults count says eleven (v10 l.8, 141, 2336; 11 Df rows; COM GA, v9/v10 rows);
+[Oscar]   "ten"/"eight" only in history rows. Flag: v10 l.16 author list stops at Ingrid (not ordered, not edited).
+[Oscar]   Output: outputs/STRATEGY_oscar_2026-11-16_10-41.md, outputs/FIX_REPORT_cycle9_oscar.md. One read-only git diff run (flagged). (10:44)
