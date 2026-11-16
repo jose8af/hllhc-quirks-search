@@ -128,3 +128,18 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   of 2,000 free fits above the numpy minimum by > 1e-3 (max 0.032 in twice-NLL); chain start reaches the numpy minima
   (|Δ| ≤ 1.3e-6); prev / prev2: 2 of 2,000 free fits worse by > 1e-3 (max 0.0047), both with μ̂ > μ (q = 0 either way).
   0 failed fits in every run so far. p2-c-toy-tune launched 16:02:48.
+- 2026-11-16 16:25 p2-c-toy-tune done [V], s per unit at μ = 3 (100 + 100 toys unless noted):
+  jax+scipy merged+stitch (ms): 355 / 792 / 1,872 at 60 / 80 / 100; ms + chain: 277 / 675 / 1,371; ms + prev: 168 ± 3 /
+  385 ± 6 / 817 ± 15; ms + prev2: 827 (100), 35 (31, 200 toys); jax tol 1e-10: 2,427 (100); jax minuit tol 1e-4 strategy 1:
+  2,099 (31). Accuracy against the tight-tolerance minima at 100 par (200 toys): pyhf default start (= the numpy
+  baseline's start): 90 free fits above the minimum by > 1e-3 (max 1.30 in twice-NLL), 4 fixed fits (max 0.010), 7 toys
+  with |Δq| > 1e-3 (max 0.033); chain: free fits all at the minimum, q within 0.010 (1 toy); prev and prev2: q identical
+  to the tight result for all 200 toys, fixed fits all at the minimum, 1 free fit 0.0088 above (q unaffected).
+  DECISION: recommended configuration = jax backend + scipy SLSQP + merged layout + stitch + warm start from the
+  previous toy (start=prev): fastest and at least as accurate as the baseline. 16:26 p2-c-toy-fix launched (best config at
+  μ = 3 on 31 par and μ = 6 on 80/100 par; option (c) fixneg 0.05 / 0.2 at 100 par and on the CLs point).
+- 2026-11-16 16:34 p2-c-toy-fix done 16:32 [V]: best config 34 s (31 par, μ = 3), 380 / 806 s (80 / 100 par, μ = 6): flat in μ.
+  Option (c) fixneg 0.05 / 0.2: 785 / 774 s at 100 par (≤ 6 % gain), q̃ shifted by up to 0.17 / 0.41; CLs at μ = 5
+  0.1372 / 0.1352 (tie-tolerant). Rejected. Total CPU 2.58 CPU-h [V: markers]. Report written:
+  outputs/TOY_COST_viktor_2026-11-16_16-33.md; summary JSON outputs/p2v_toy_cost_summary.json; experiment_log,
+  DAILY_NOTES, SLOTS (slot released) appended. Nothing of mine runs on any node.

@@ -21,7 +21,8 @@ import time
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', stream=sys.stdout)
 log = logging.getLogger('mb_species')
-PT_EDGES = [0.1, 0.5, 1.0, 2.0, 5.0, 10.0, 1e9]
+PT_EDGES = [0.1, 0.2, 0.3, 0.5, 0.7, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0, 1e9]
+ETA_EDGES = [0.0, 1.0, 1.5, 2.5]   # |eta| bins (orchestrator request 2026-11-16: |eta| < 1 and 1-1.5)
 SPECIES = {211: 'pi', 321: 'K', 2212: 'p'}
 ETA_MAX = 2.5
 HW_ENV = '/home/scratch/jdochoa/envs/herwig/.pixi/envs/default'
@@ -30,24 +31,53 @@ CP5 = '/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/sim/cards/pyth
 
 
 def empty():
-    return {s: [0] * (len(PT_EDGES) - 1) for s in SPECIES.values()}
+    """counts[species][eta_bin][pt_bin]; species pi, K, p and 'ch' = all charged final-state particles."""
+    return {s: [[0] * (len(PT_EDGES) - 1) for _ in range(len(ETA_EDGES) - 1)] for s in list(SPECIES.values()) + ['ch']}
 
 
-def fill(cnt, pdg, px, py, pz):
+def fill(cnt, pdg, px, py, pz, charged):
     a = abs(pdg)
-    if a not in SPECIES:
+    if a not in SPECIES and not charged:
         return
     pt = math.hypot(px, py)
     if pt < PT_EDGES[0]:
         return
     p = math.sqrt(pt * pt + pz * pz)
-    eta = 0.5 * math.log((p + pz) / (p - pz)) if p > abs(pz) else 99.0
-    if abs(eta) >= ETA_MAX:
+    eta = abs(0.5 * math.log((p + pz) / (p - pz))) if p > abs(pz) else 99.0
+    if eta >= ETA_EDGES[-1]:
         return
-    for i in range(len(PT_EDGES) - 1):
-        if pt < PT_EDGES[i + 1]:
-            cnt[SPECIES[a]][i] += 1
-            return
+    ie = next(k for k in range(len(ETA_EDGES) - 1) if eta < ETA_EDGES[k + 1])
+    ip = next(k for k in range(len(PT_EDGES) - 1) if pt < PT_EDGES[k + 1])
+    if charged:
+        cnt['ch'][ie][ip] += 1
+    if a in SPECIES:
+        cnt[SPECIES[a]][ie][ip] += 1
+
+
+def charge3(pid):
+    """3 x electric charge from the PDG Monte Carlo numbering scheme (leptons, gauge bosons, mesons, baryons).
+    Quark charges in units of e/3: d,s,b = -1; u,c,t = +2."""
+    a = abs(pid)
+    s = 1 if pid > 0 else -1
+    q = {1: -1, 2: 2, 3: -1, 4: 2, 5: -1, 6: 2}
+    if a in (11, 13, 15):
+        return -3 * s
+    if a in (12, 14, 16, 22, 21, 23, 25, 130, 310):
+        return 0
+    if a == 24:
+        return 3 * s
+    n = a % 10000
+    nq1, nq2, nq3 = (n // 1000) % 10, (n // 100) % 10, (n // 10) % 10
+    if nq1 == 0:            # meson: quark nq2, antiquark nq3
+        if nq2 == 0 or nq3 == 0:
+            return 0
+        c = q[nq2] - q[nq3]
+        if nq2 % 2 == 1 and nq2 != nq3 and q[nq2] == q[nq3]:
+            pass
+        # sign convention: for mesons the heavier quark sets the particle; PDG: e.g. 211 = u d~ -> +3
+        c = abs(c) * (1 if (q[nq2] - q[nq3]) * (1 if nq2 % 2 == 0 else -1) >= 0 else -1) if c else 0
+        return c * s
+    return (q.get(nq1, 0) + q.get(nq2, 0) + q.get(nq3, 0)) * s
 
 
 def run_herwig(out, nev, seed):
@@ -87,13 +117,14 @@ saverun qv2mb EventGenerator
             elif line[0] == 'P':
                 v = line.split()
                 if v[8] == '1':
-                    fill(cnt, int(v[2]), float(v[3]), float(v[4]), float(v[5]))
+                    pid = int(v[2])
+                    fill(cnt, pid, float(v[3]), float(v[4]), float(v[5]), charge3(pid) != 0)
     ru = resource.getrusage(resource.RUSAGE_CHILDREN)
     res = dict(generator='Herwig 7.3.0 (ThePEG 2.3.0), LHC-MB setup, CT14lo, 14 TeV', n_events=nevt, seed=seed,
-               counts=cnt, pt_edges=PT_EDGES, eta_max=ETA_MAX, cpu_children_s=ru.ru_utime + ru.ru_stime,
+               counts=cnt, pt_edges=PT_EDGES, eta_edges=ETA_EDGES, eta_max=ETA_MAX, cpu_children_s=ru.ru_utime + ru.ru_stime,
                wall_gen_s=t_gen, input=inp)
     json.dump(res, open(out, 'w'), indent=1)
-    log.info('herwig: %d events, counts %s', nevt, {k: sum(v) for k, v in cnt.items()})
+    log.info('herwig: %d events, counts %s', nevt, {k: sum(map(sum, v)) for k, v in cnt.items()})
 
 
 def run_pythia(out, nev, seed):
@@ -117,12 +148,12 @@ def run_pythia(out, nev, seed):
         for i in range(ev.size()):
             p = ev[i]
             if p.isFinal():
-                fill(cnt, p.id(), p.px(), p.py(), p.pz())
+                fill(cnt, p.id(), p.px(), p.py(), p.pz(), p.isCharged())
     res = dict(generator='Pythia 8.312 (acts env), CP5 + v1 PY_MB without the pi/K/mu/K_L mayDecay-off lines '
                          '(tau0Max = 1000 mm keeps them stable anyway)', n_events=nevt, seed=seed, counts=cnt,
-               pt_edges=PT_EDGES, eta_max=ETA_MAX, cpu_s=time.process_time() - t0)
+               pt_edges=PT_EDGES, eta_edges=ETA_EDGES, eta_max=ETA_MAX, cpu_s=time.process_time() - t0)
     json.dump(res, open(out, 'w'), indent=1)
-    log.info('pythia: %d events, counts %s', nevt, {k: sum(v) for k, v in cnt.items()})
+    log.info('pythia: %d events, counts %s', nevt, {k: sum(map(sum, v)) for k, v in cnt.items()})
 
 
 if __name__ == '__main__':

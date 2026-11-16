@@ -105,6 +105,16 @@ def main(argv):
                 job(c, 'jsmsp2-n100-mu3', 100, 100, 3, J + MS + ',start=prev2' + R, 'new'),
                 job(c, 'jsmsp2-n31-mu3', 31, 200, 3, J + MS + ',start=prev2' + R, 'new')]
         write(name, jobs, 0.6, 'T1 toy cost: minimum accuracy with recorded NLL; merged + stitch at 60/80/100')
+    elif name == 'p2-c-toy-fix':       # (c) fixing negligible terms (OPTION, changes the model) on the best config; mu check
+        B = 'backend=jax,layout=merged,stitch=1,start=prev,record=1'
+        jobs = [job(c, 'best-n31-mu3', 31, 200, 3, B, 'new'),
+                job(c, 'best-n80-mu6', 80, 100, 6, B, 'new'),
+                job(c, 'best-n100-mu6', 100, 100, 6, B, 'new'),
+                job(c, 'fix05-n100-mu3', 100, 100, 3, B + ',fixneg=0.05', 'new'),
+                job(c, 'fix20-n100-mu3', 100, 100, 3, B + ',fixneg=0.2', 'new'),
+                job(c, 'fix05-n31-mu5', 31, 1000, 5, B + ',fixneg=0.05', 'new'),
+                job(c, 'fix20-n31-mu5', 31, 1000, 5, B + ',fixneg=0.2', 'new')]
+        write(name, jobs, 0.2, 'T1 toy cost: best configuration at other mu; fixing negligible terms (option only)')
     elif name == 'p2-c-toy-base':      # step 1: baseline reproduction, profile; (a) minuit on numpy; stitch; 100 par pair
         jobs = [job(c, 'n31-mu3', 31, 200, 3),
                 job(c, 'n60-mu3-a', 60, 50, 3),

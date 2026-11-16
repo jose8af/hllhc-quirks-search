@@ -588,3 +588,16 @@ the cost with full loops, and whether the Geant4 comparison then passes. Then a 
   (fallback [DT3]).
 - FxFx job does not fit 30 minutes (13 min of wall time for 82 s of CPU: looks like I/O, to be diagnosed before any
   exception to the 30-minute rule is considered).
+
+## 2026-11-16 16:35 -05 (measured) — Toy cost: remedy found (Viktor)
+`phase2_exploration/outputs/TOY_COST_viktor_2026-11-16_16-33.md` (VERIFIED on a synthetic workspace, schrodinger,
+2.58 CPU-h). Baseline reproduced (487 / 8,814 / 67,780 s per 1000 + 1000 toys at 31 / 60 / 100 parameters; cost
+∝ N⁴ from finite-difference gradients). With a jax backend, merged auxiliary channels, the POI removed from the fit
+and warm starts: 30.5 / 168 / 385 / 817 s at 31 / 60 / 80 / 100 parameters, CLs identical to the baseline at the
+test point (0.1372 ± 0.0165), 0 failed fits in 25,180 toys. Projection of the toy programme (1,006 units):
+**47 / 108 / 228 CPU-h at 60 / 80 / 100 parameters against 183** (factor about 1.6 either way, ESTIMATE). The
+stop-rule exposure from toys (7,700 CPU-h at 60 parameters) is removed up to about 80 parameters; to be re-measured
+on the first real v2 workspace. Findings for T1: tied test-statistic values must be compared within a tolerance
+(1e-5), minuit is slower here, fixing negligible rates changes the statistic (rejected). Environment lock in
+`tools/install/pyhf_toys/` (exists on schrodinger only). T1-b resumes with this configuration (successor session,
+not urgent: deadline Phase 3/4a).

@@ -1,7 +1,7 @@
 """p2x_b1.py -- pilot no-pile-up single-interaction events for a CLASS LIST (addendum 1 v2), one Geant4 vertex each.
 
   <acts python> p2x_b1.py <sample> <classes: a+b+...> <out.npz> <n_events> <stream> <chunk> <first> <beta_min> <vertex file> \
-                          [trunc: radius|time|both|auto = radius] [n_road_orientations = 21]
+                          [trunc: radius|time|both|auto|hybrid|autoh = radius] [n_road_orientations = 21]
 
   sample    name of the pilot sample (dif, difc, ni22, ni30, ni61, nix, nic, hs, lowpt); only a label and a seed tag
   classes   classes of p2x_common.B1_CLASSES that form the sample (DIF sample of addendum v2 = dif+k0l)
@@ -15,6 +15,9 @@
                     its earlier hits at larger radius are dropped too)
             time    parent SimHits LATER than the Geant4 vertex time dropped (class TruncateParent below)
             both    dropped if later than the vertex time OR beyond the vertex radius
+            hybrid  time cut, and the stored Geant4 crossings of the parent later than its last kept Fatras hit are
+                    added as SimHits (class HybridParent; option (a) of outputs/HALF_TURN_*.md: Fatras makes no hit
+                    beyond half a turn).  autoh = hybrid for difc and nic, radius for the first-arc classes
 
 Chain and hand-over as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent, truncated as
 chosen (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
@@ -88,6 +91,55 @@ EVT_COLS = B1.EVT_COLS[:-2] + NEW_COLS + B1.EVT_COLS[-2:]
 W_ROAD = 0.15
 
 
+class HybridParent(acts.examples.IAlgorithm):
+    """Option (a) of outputs/HALF_TURN_*.md for parents that have turned: Fatras leaves no hit beyond half a turn, so
+    the Fatras parent is kept up to the Geant4 vertex time (as TruncateParent, mode time) and the stored Geant4
+    crossings of the parent that are LATER than its last kept Fatras hit (+ T_EPS) are added as SimHits (as
+    run_chain.Inject does for stored hits: same geometry ids, barcode of the parent, generation 0).  Events whose mode
+    is 'radius' get v1's radius cut and no injection.  Reads 'simhits', writes 'simhits_all' (given to build_sequencer
+    as `inject`).  what_of(event) -> (vp, vsec, particle, r_cut, t_cut, mode, mass, crossings (k, 8) cross_cols with
+    the surface as a chain sid), or None for an event without a charged parent."""
+    T_EPS = 0.005          # ns: a Geant4 crossing within 1.5 mm of flight of the last Fatras hit is taken as the same crossing
+
+    def __init__(self, G, what_of, store):
+        acts.examples.IAlgorithm.__init__(self, 'HybridParent', acts.logging.WARNING)
+        self.G = G; self.what_of = what_of; self.store = store
+        self.inp = acts.examples.ReadDataHandle(self, acts.examples.SimHitContainer, 'in'); self.inp.initialize('simhits')
+        self.out = acts.examples.WriteDataHandle(self, acts.examples.SimHitContainer, 'out'); self.out.initialize('simhits_all')
+
+    def execute(self, ctx):
+        w = self.what_of(ctx.eventNumber)
+        c = acts.examples.SimHitContainer(); nd = 0; ninj = 0; t_last = -1e30
+        key = None if w is None else (int(w[0]), int(w[1]), int(w[2]))
+        for h in self.inp(ctx.eventStore):
+            b = h.particleId
+            if key is not None and (int(b.vertexPrimary), int(b.vertexSecondary), int(b.particle)) == key and int(b.generation) == 0:
+                fp = h.fourPosition
+                t = fp[3] / u.ns
+                if (w[5] == 'radius' and math.hypot(fp[0], fp[1]) > w[3]) or (w[5] != 'radius' and t > w[4]):
+                    nd += 1
+                    continue
+                t_last = max(t_last, t)
+            c.insert(h)
+        if w is not None and w[5] != 'radius':
+            geo_of = self.G['geo_of']; nphi = self.G['nphi']; tab = self.G['tab']
+            for k, x in enumerate(w[7]):
+                if x[4] <= t_last + self.T_EPS or x[4] > w[4]:
+                    continue
+                sid = int(x[0])
+                en = math.sqrt(x[5] ** 2 + x[6] ** 2 + x[7] ** 2 + w[6] ** 2)
+                bc = acts.fatras.Barcode(); bc.vertexPrimary = key[0]; bc.vertexSecondary = key[1]; bc.particle = key[2]
+                sec = 0 if tab[sid]['kind'] == 'BTL' else rc.s4geo.sector(x[1], x[2], nphi)
+                p4 = acts.Vector4(x[5] * u.GeV, x[6] * u.GeV, x[7] * u.GeV, en * u.GeV)
+                c.insert(acts.examples.SimHit(geo_of[(sid, sec)], bc, acts.Vector4(x[1] * u.mm, x[2] * u.mm, x[3] * u.mm, x[4] * u.ns),
+                                              p4, p4, 100000 + k))
+                ninj += 1
+        self.store[ctx.eventNumber]['n_trunc_dropped'] = nd
+        self.store[ctx.eventNumber]['n_parent_injected'] = ninj
+        self.out(ctx, c)
+        return acts.examples.ProcessCode.SUCCESS
+
+
 def load(vfile, classes, first, n):
     z, meta = C.load_job(vfile)
     assert meta.get('mode') == 'g4prod', f'{vfile} is not a p2x_g4prod vertex file'
@@ -120,9 +172,24 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
         rc.BTL_SIDS.update(s['sid'] for s in G['surfs'] if s['kind'] == 'BTL')
         store = {}; aux = {}
         rc.TIMES.clear()
-        assert trunc_mode in TRUNC_MODES + ('auto',)
+        assert trunc_mode in TRUNC_MODES + ('auto', 'hybrid', 'autoh')
         after = [X.CODE[c] for c in AFTER_TURN]
-        ev_mode = [('time' if cls[i] in after else 'radius') if trunc_mode == 'auto' else trunc_mode for i in range(n_events)]
+        hyb = trunc_mode in ('hybrid', 'autoh')
+        ev_mode = [('time' if cls[i] in after else 'radius') if trunc_mode in ('auto', 'autoh') else
+                   ('time' if trunc_mode == 'hybrid' else trunc_mode) for i in range(n_events)]
+        sid_of_name = {s_['name']: s_['sid'] for s_ in G['surfs']}
+        code_sid = {int(c): sid_of_name.get(nm, -1) for nm, c in vmeta['vol_names'].items()}
+
+        def what_of(i):
+            tl = store[i]['info']['trunc']
+            if not tl:
+                return None
+            t = tl[0]
+            g = dict(zip(vcols, V[i]))
+            cr = np.array(CR[i], float).reshape(-1, 8)
+            sid = np.array([code_sid.get(int(c), -1) for c in cr[:, 0]])
+            cr = np.c_[sid, cr[:, 1:]][sid >= 0]
+            return (t[0], t[1], t[2], t[3], t[4], t[5], HO.MASS.get(abs(int(g['parent_pdg'])), 0.13957039), cr)
 
         def provider(i):
             P, trunc, npg, ninj, nslow = HO.event_rows(V[i], PR[i], vcols, dec, ev_seeds[i])
@@ -134,12 +201,16 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
             vz = np.array([[s4pu.GUN_VP, g['x0'], g['y0'], g['z0'], g['t0'], g['px0'], g['py0'], g['pz0']]])
             aux[i] = (P, pv, phimet, npg, ninj, len(trunc), nslow, droad)
             return P, vz, dict(trunc=[(*t, g['t'], ev_mode[i]) for t in trunc], n_particles=len(P))
-        if trunc_mode == 'radius':          # v1's own class, unchanged code path
-            trunc = rc.Truncate(lambda i: [t[:4] for t in store[i]['info']['trunc']], store)
+        if hyb:                             # option (a): time cut + Geant4 crossings beyond the Fatras parent's last hit
+            s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True, inject=HybridParent(G, what_of, store),
+                                   store_vp={s4pu.GUN_VP})
         else:
-            trunc = TruncateParent(lambda i: store[i]['info']['trunc'], store, trunc_mode)
-        s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True, truncate=trunc,
-                               store_vp={s4pu.GUN_VP})
+            if trunc_mode == 'radius':          # v1's own class, unchanged code path
+                trunc = rc.Truncate(lambda i: [t[:4] for t in store[i]['info']['trunc']], store)
+            else:
+                trunc = TruncateParent(lambda i: store[i]['info']['trunc'], store, trunc_mode)
+            s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True, truncate=trunc,
+                                   store_vp={s4pu.GUN_VP})
         s.run()
         v41 = np.zeros((n_events, len(rc.V41_COLS))); tim = np.zeros((n_events, len(rc.T_COLS)))
         st = {}
@@ -203,7 +274,8 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
                     mean_s_per_event={c: float(tim[:, k].mean()) for k, c in enumerate(rc.T_COLS)},
                     n_hits=int(len(H)), n_simhits=int(len(TOY)), n_ckf_tracks=int(v41[:, 10].sum()),
                     mean_injected=float(evt[:, 6].mean()), mean_trunc_dropped=float(evt[:, 7].mean()),
-                    mean_injected_slow=float(evt[:, 9].mean()))
+                    mean_injected_slow=float(evt[:, 9].mean()),
+                    mean_parent_hits_injected_from_geant4=float(np.mean([store[i].get('n_parent_injected', 0) for i in range(n_events)])))
         arrays = dict(hits=H, hit_off=hoff, tru=T, vz=VZ, vz_off=voff, v41=v41, timing=tim, evt=evt,
                       gvtx=np.array(V, float).reshape(-1, len(vcols)), gprod=GP, gprod_off=gpoff, gcross=GC, gcross_off=gcoff,
                       inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff)

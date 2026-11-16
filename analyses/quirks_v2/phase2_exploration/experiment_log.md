@@ -66,3 +66,20 @@ DECISION: pilot launch held and reported instead of executing the go given befor
 ALTERNATIVES: launch and report.
 CONFIDENCE: MEDIUM
 FLAG FOR HUMAN: YES
+
+## 2026-11-16 16:34 [Viktor] T1 toy cost: remedies and projection (outputs/TOY_COST_viktor_2026-11-16_16-33.md)
+Tried (campaigns p2-c-toy-*, schrodinger, 2.58 CPU-h): numpy+scipy baseline reproduced (487 / 8,814 / 67,780 s per
+1000+1000 toys at 31 / 60 / 100 par; ×18 from 31 to 60 as Tatiana's ×17). Did not work: minuit on numpy (×0.21–0.33)
+and on jax (×0.5) — pyhf runs hesse() in every fit; fixing negligible λ (≤ 6 %, and q̃ changes). Worked: jax autodiff
+gradients with scipy SLSQP (×20–36), merged channel layout and stitched POI (identical q̃, ×1.1–1.2), warm start from
+the previous toy (×2.4 more, and q̃ equal to tol = 1e-10 minima on all 200 toys at 100 par, where pyhf's default
+start misses by up to 0.033). Best: 30.5 / 168 / 385 / 817 s per unit at 31 / 60 / 80 / 100 par, 0 failed fits in
+25,180 toys. Programme (1,006 units, STR l.1710–1719, 1733): 47 / 108 / 228 CPU-h at 60 / 80 / 100 par vs 183.
+Found: CLs ties (discrete counts) make "q ≥ q_obs" sensitive to 1e-7 minimiser noise; count ties within 1e-5.
+DECISION: recommend jax + scipy + merged + stitch + start=prev for every T1 toy.
+ALTERNATIVES: jax + scipy + merged + stitch with chain start (×1.4 slower at 100 par, free fits exact, fixed fits
+within 0.010); procedural options O1 (shared b-only fits, ×0.78) and O2 (two-stage toys, ×0.4–0.5) not applied.
+CONFIDENCE: HIGH on the measured unit costs and correctness on the synthetic workspace; MEDIUM on the projection
+(synthetic structure, node and load factors: factor ≈ 1.6 either way; v2 parameter count unknown).
+FLAG FOR HUMAN: YES — at 100 parameters the central projection is 228 CPU-h (> 183); options O1/O2 or a smaller
+workspace would be needed there.

@@ -111,3 +111,10 @@ needs the v2 re-freeze (REPRODUCE §5.1-4).
   (0 of 7,100 tries failed the test, campaign p2-c-prof).
 - If adopted for production: the same two entries (and their analogues for tt̄ 2ℓ, tW, t-channel) go into `SM_SAMPLES`
   in the file, 2 lines per sample, at the v2 code freeze.
+
+## 2026-11-16 16:14 `phase2_exploration/src/g4/g4hv.cc`: option `allx` (Xavier, channel (iii))
+- **What.** New optional last argument `allx` of the `prim` mode (in the place of `exit`): a record is written for every primary, also for one that ends without a vertex. Its `V` line then carries the pseudo-process `LeftWorld` (r > RMAX or |z| > 2700 mm) or `TimeLimit` (t > 25 ns) and the point where the primary was dropped, followed by all its crossings of sensitive surfaces as `X` lines. Products are recorded at the vertex and killed, as without `exit`.
+- **Why.** Half-turn study (`phase2_exploration/outputs/HALF_TURN_xavier_2026-11-16_16-08.md`): Geant4 crossings of every charged particle as the reference for what Fatras records; then the looper gun (`p2x_looper_chain.py`).
+- **Size.** 18 changed lines (diff against the previous file: 1 flag, 5 comment lines, 10 lines in the stepping action, 1 line in `main`, 1 usage line). **Default behaviour unchanged**: without `allx` no code path differs.
+- **Hash.** sha256 before fd10a8906ba1d266…, after b5ad93a0eac98ace…. The node-local build is keyed on the source hash (`g4hv.sh`), so the new binary is `/home/scratch/jdochoa/cache/g4hv/3761b0df385463b0/`; the old one stays. No pilot or production sample was made with either; B1 jobs record this hash in their meta.
+- Not part of the v1 chain (`acts/`, `sim/`): no file there was modified.

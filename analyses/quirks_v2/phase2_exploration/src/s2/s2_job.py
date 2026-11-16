@@ -69,12 +69,35 @@ def seed(stream, chunk, mod):
     return int.from_bytes(h, 'big') % mod + 1
 
 
+def _sampler(pgid, path, stop, every=15.0):
+    """Every `every` s append one block: time, and per process of the step's process group: pid, state, cumulative
+    CPU (ps TIME), elapsed, command (diagnosis of wall >> CPU, FxFx)."""
+    with open(path, 'a') as f:
+        while not stop.wait(every):
+            r = subprocess.run(['ps', '-eo', 'pgid=,pid=,stat=,time=,etime=,args='], capture_output=True, text=True)
+            rows = [l for l in r.stdout.splitlines() if l.split() and l.split()[0] == str(pgid)]
+            f.write(f'--- {time.strftime("%H:%M:%S")} n={len(rows)}\n' + '\n'.join(x[:200] for x in rows) + '\n')
+            f.flush()
+
+
 def timed(name, cmd, cwd, logfile, env=None):
-    """Run cmd, wait, record CPU (children rusage delta), wall and max RSS of the step."""
+    """Run cmd, wait, record CPU (children rusage delta), wall and max RSS of the step.  Output lines are prefixed
+    with the wall-clock time; with QV2_SAMPLE=1 a process sampler writes <logfile>.ps."""
+    import threading
     r0 = resource.getrusage(resource.RUSAGE_CHILDREN)
     t0 = time.time()
     with open(logfile, 'w') as lf:
-        p = subprocess.run(cmd, cwd=cwd, stdout=lf, stderr=subprocess.STDOUT, env=env, stdin=subprocess.DEVNULL)
+        p = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=env,
+                             stdin=subprocess.DEVNULL, start_new_session=True, text=True, errors='replace')
+        stop = threading.Event()
+        th = None
+        if os.environ.get('QV2_SAMPLE') == '1':
+            th = threading.Thread(target=_sampler, args=(p.pid, logfile + '.ps', stop), daemon=True)
+            th.start()
+        for line in p.stdout:
+            lf.write(time.strftime('%H:%M:%S ') + line)
+        p.wait()
+        stop.set()
     t1 = time.time()
     r1 = resource.getrusage(resource.RUSAGE_CHILDREN)
     rec = dict(step=name, cpu_s=round((r1.ru_utime - r0.ru_utime) + (r1.ru_stime - r0.ru_stime), 3),
@@ -84,6 +107,36 @@ def timed(name, cmd, cwd, logfile, env=None):
     if p.returncode != 0:
         sys.exit(f'step {name} failed rc={p.returncode}; see {logfile}')
     return rec
+
+
+def use_local_env():
+    """QV2_LOCAL_ENV=1: copy the MG python env and the LHAPDF sets to node-local scratch once (flock) and use them, so
+    that nothing is read from NFS during the run (FxFx diagnosis, orchestrator ruling 2026-11-16).  lhapdf-config of the
+    copy is rewritten to the new prefix (text replacement of the old prefix in that one script)."""
+    global ENV, PY, LHAPDF_CONFIG, LHAPDF_DATA
+    src_env, src_pdf = ENV, LHAPDF_DATA
+    dst_env = os.path.join(LOCAL, 'envs_local', 'mg_default')
+    dst_pdf = os.path.join(LOCAL, 'lhapdf_local')
+    os.makedirs(os.path.join(LOCAL, '.locks'), exist_ok=True)
+    with open(os.path.join(LOCAL, '.locks', 'mgenvcopy.lock'), 'w') as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        for src, dst in ((src_env, dst_env), (src_pdf, dst_pdf)):
+            ok = os.path.join(dst, '.QV2_COPY_OK')
+            if not os.path.exists(ok):
+                tmp = dst + f'.tmp{os.getpid()}'
+                shutil.rmtree(tmp, ignore_errors=True)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                t0 = time.time()
+                subprocess.run(['cp', '-rd', src, tmp], check=True)
+                if src == src_env:
+                    cfg = os.path.join(tmp, 'bin', 'lhapdf-config')
+                    txt = open(cfg).read()
+                    open(cfg, 'w').write(txt.replace(src_env, dst_env))
+                shutil.rmtree(dst, ignore_errors=True)
+                os.rename(tmp, dst)
+                open(ok, 'w').write(f'{src} {time.ctime()} {time.time() - t0:.1f}s\n')
+    ENV, PY = dst_env, os.path.join(dst_env, 'bin', 'python3')
+    LHAPDF_CONFIG, LHAPDF_DATA = os.path.join(dst_env, 'bin', 'lhapdf-config'), dst_pdf
 
 
 def mg_env():
@@ -551,7 +604,8 @@ def cmd_fxfx(a):
             set_run(os.path.join(d, 'Cards', 'run_card.dat'),
                     {'ebeam1': '7000.0', 'ebeam2': '7000.0', 'pdlabel': 'lhapdf', 'lhaid': '14400',
                      'parton_shower': 'PYTHIA8', 'ickkw': '3', 'jetalgo': '1', 'jetradius': '1.0',
-                     'ptj': f'{FXFX_PTJ:.1f}', 'reweight_scale': 'True', 'reweight_PDF': 'False', 'req_acc': '-1'})
+                     'ptj': f'{FXFX_PTJ:.1f}', 'reweight_scale': 'True', 'reweight_PDF': 'False',
+                     'req_acc': a[a.index('--acc') + 1] if '--acc' in a else '-1'})
         sd = seed(f's2.fxfx.{spin}{mass}', tag, 30000000)
         set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'nevents': str(nev), 'iseed': str(sd)})
         run = tag.replace('-', '_')
@@ -668,6 +722,8 @@ def cmd_reshower(a):
 
 if __name__ == '__main__':
     args = sys.argv[1:]
+    if os.environ.get('QV2_LOCAL_ENV') == '1':
+        use_local_env()
     if args[0] in ('inc', 'reshower'):
         {'inc': cmd_inc, 'reshower': cmd_reshower}[args[0]](args[1:])
         sys.exit(0)
