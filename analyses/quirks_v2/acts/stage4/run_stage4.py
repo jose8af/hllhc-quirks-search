@@ -332,7 +332,9 @@ def finder_configs(fz, job, allow_interim):
     return cfg, wcfg
 
 
-def run_pu_job(job, allow_interim):
+def run_pu_job(job, allow_interim, premerge=None):
+    """v2 (Phase 2, Rosalie 2026-11-16): premerge = None (v1 behaviour) or an object with .min_nip2 and .write(ti, pre),
+    which receives each trial's pre-merge candidate store at once (STR §4.5 (a)); nothing else changes."""
     import inspect
     from acts.stage4.finder import production as PR
     PT_PARAMS = inspect.signature(PR.process_trial).parameters
@@ -414,7 +416,11 @@ def run_pu_job(job, allow_interim):
                     kw['require_btl'] = True
             elif rho > 1 and job['campaign'] not in DEV_CAMPAIGNS:
                 raise RuntimeError('rho > 1 production job needs process_trial(btl=...) (SR-T in-job columns, WP_RULE R2)')
+            if premerge is not None:
+                kw['premerge_min_nip2'] = premerge.min_nip2
             res = PR.process_trial(H, sid, INT, pv, phimet, float(rho), tseed, cfg=cfg, wcfg=wcfg, **kw)
+            if premerge is not None:
+                premerge.write(len(trials), res.pop('pre'))
             row = res['row']
             if 'road' in row:            # process_trial's road half-width (= delta95); 'road' below is the road index
                 row['road_cfg'] = row['road']

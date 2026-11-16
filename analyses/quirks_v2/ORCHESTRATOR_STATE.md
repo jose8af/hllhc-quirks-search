@@ -19,7 +19,7 @@ executor's log in `phase2_exploration/logs/`. Commit after every report (executo
 when channel (i) has the campaigns and the tested script (writes only PASS/FAIL per criterion; six sealed points);
 day 5 (21 Nov): decision point 1 (C1, C2) + stop-rule checkpoint 1 (re-project CPU with measured unit costs and
 utilisation); consolidate `EXPLORATION.md`, self-review + plot validator (JFC Phase-2 tier), then Phase 3.
-**Daily report** (user request): `daily/YYYY-MM-DD.md` + STATUS.md + bundle each evening; a session cron (18:47,
+**Daily report** (user request; DEVIATIONS V14): `daily/YYYY-MM-DD.tex` + compiled `.pdf` (LaTeX, built in `/var/tmp/jdochoa/tex`), STATUS.md, bundle, then **commit and `git push origin v2-jfc`** (authorised by the user 2026-11-16 for the daily reports; never force) each evening; a session cron (18:47,
 session-only, expires after 7 days: re-create) triggers it; if the session was restarted, re-create the cron.
 **User's next interventions:** day 5 only if the stop rule fires or C1 fails after three remediation attempts;
 **day 15 = 1 Dec: expected pause (Q2 a)**; freeze notification days 17–19 (3–5 Dec); Gate B about 4–6 Jan 2027;

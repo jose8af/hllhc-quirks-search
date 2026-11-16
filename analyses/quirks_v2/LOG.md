@@ -348,3 +348,14 @@ Three executors spawned from `phase2_exploration/PHASE2_BRIEF.md`: channel (i) R
 Sebastian (Opus; S2, P1, retrievals, Herwig), channel (iii) Tatiana (Fable, logged; pilot, T1 builder, Geant4
 hand-over). Slot caps per channel are in the brief. A session cron at 18:47 triggers the daily report
 (`daily/`, `STATUS.md`, bundle).
+
+## 2026-11-16 11:56 -05 (measured) — User authorises pushing; daily reports in LaTeX
+The user: "I want you to commit and push the daily reports in the repository. I give you permission to do so. Start
+right now with the phase 1 report and make sure to include all the improvements that are proposed and will be done
+with respect to v1. The reports that are pushed should be in latex."
+- This replaces the brief's "never push" for the daily reports (DEVIATIONS V14). A report commit sits on `v2-jfc`,
+  so pushing it pushes the branch with all its commits (the remote already had `v2-jfc` at `31a6974`). Still
+  never: force-push, history rewrite, pushing any other branch or tag.
+- Reports live in `daily/` as `.tex` with the compiled `.pdf`: `phase1_report` now, then one per day.
+- `daily/phase1_report.tex` written by the orchestrator (6 pages) from `COMMITMENTS.md`, `gates/GATE_A.md`,
+  `phase1_strategy/outputs/FRAMING.md` and the cycle-10 verdict.

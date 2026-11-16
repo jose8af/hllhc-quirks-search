@@ -199,7 +199,7 @@ def crossings(hoff, hits, LC, SD):
 
 
 def process_trial(H, sid, INT, pv, phimet, rho, seed, cfg=None, wcfg=None, extra_hit_cols=None, ckf=None, btl=None,
-                  require_btl=None):
+                  require_btl=None, premerge_min_nip2=None):
     """One PU-only trial (one road).  H: (n, >= 12) measurement rows (f1r column layout: sid, x, y, z, s0, s1, flag, vp,
     particle, gen, vsec, dE[, t]) = the finder pool AFTER CKF removal; INT: interaction id per row.
     cfg: finder.Config; its road MUST equal wcfg.delta95 (road = delta95, WP_RULE.md §1.1 item 1; review WP_RULE R1
@@ -469,6 +469,37 @@ def process_trial(H, sid, INT, pv, phimet, rho, seed, cfg=None, wcfg=None, extra
     else:
         hit = None
     T['store'] = time.perf_counter() - t0
+    pre = None
+    if premerge_min_nip2 is not None:
+        # v2 (Phase 2, Rosalie 2026-11-16; STR §4.5 [SD4] (a)): pre-merge candidate store.  Every loose candidate with
+        # N_IP2 >= premerge_min_nip2, BEFORE grouping, with its full hit list (CSR into a per-trial union table of the
+        # referenced road hits).  No RNG draw: every other output of this function is unchanged.
+        t0 = time.perf_counter()
+        pk = np.where(V['nip2'] >= premerge_min_nip2)[0] if nc else np.zeros(0, np.int64)
+        if len(pk):
+            refs = [hits[hoff[c]:hoff[c + 1]] for c in pk]
+            uni, inv = np.unique(np.concatenate(refs), return_inverse=True)
+            Hr = H[road_idx[uni]]
+        else:
+            refs, uni, inv, Hr = [], np.zeros(0, np.int64), np.zeros(0, np.int64), H[:0]
+        poff = np.zeros(len(pk) + 1, np.int64)
+        poff[1:] = np.cumsum([len(x) for x in refs])
+        pre = dict(idx=pk.astype(np.int32), off=poff, ref=inv.astype(np.int32), aligned=aligned[pk],
+                   gid=gid[pk].astype(np.int32), normal=r['normal'][pk].astype(np.float32),
+                   axis=r['axis'][pk].astype(np.float32), dphi_met=r['dphi_met'][pk].astype(np.float32),
+                   eta_axis=eta_ax[pk].astype(np.float32),
+                   **{'v_' + k: V[k][pk].astype(np.float32) for k in ('dw_core', 'chi2_core', 'chi2ndf')},
+                   **{'v_' + k: V[k][pk].astype(np.int16) for k in ('nit2', 'not2', 'nl2', 'nip2', 'n2s2', 'n_core')},
+                   h_xyz=Hr[:, 1:4].astype(np.float32), h_sid=sid[road_idx[uni]].astype(np.int16),
+                   h_s01=Hr[:, 4:6].astype(np.float32), h_dE=Hr[:, 11].astype(np.float32),
+                   h_INT=INT[road_idx[uni]].astype(np.int64), h_particle=Hr[:, 8].astype(np.int32),
+                   h_gen=Hr[:, 9].astype(np.int8))
+        if H.shape[1] > 12:
+            pre['h_t'] = Hr[:, 12].astype(np.float32)
+        T['premerge'] = time.perf_counter() - t0
     row['times'] = T
     row['t_total'] = float(sum(T.values()))
-    return dict(row=row, cand=cand, hit=hit)
+    out = dict(row=row, cand=cand, hit=hit)
+    if pre is not None:
+        out['pre'] = pre
+    return out

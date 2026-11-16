@@ -1,0 +1,264 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=3pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\est}{\textsc{est}}
+\newcommand{\ver}{\textsc{ver}}
+\title{HL-LHC electroweak quirks, study v2\\[2pt]\large Phase 1 report: strategy, feasibility and Gate A}
+\author{Private work (simulation). Public information only.}
+\date{16 November 2026 (day 0 of the approved calendar)}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Tags.} \ver{} = verified in this study (run or read, with file and line in the repository).
+\est{} = planning estimate. Every reach and background number in this report is an \est{} built on the placeholder
+efficiencies of v1, and no v2 signal efficiency has been computed.
+
+\section{Summary}
+\begin{itemize}
+\item Phase 1 is finished. The strategy passed its review panel in the tenth cycle, and Gate A was passed on
+      16 November 2026 with every default answer.
+\item Approved schedule: 4{,}609 CPU-h, stop-and-ask at 5{,}992 CPU-h, about 60 days. The original target of
+      2--4 weeks is missed by 4--5 weeks.
+\item The v1 chain runs on the Linux cluster, the event generators and Geant4 are installed, and a resumable job
+      runner is validated (\ver).
+\item Expected outcome of v2 (\est): a background that is estimated and tested, of about
+      $0.7$--$1.0\times10^{4}$ events led by photon conversions from the hard scatter, and a reach below 243~GeV.
+      Existing bounds are at about 180~GeV. The upside, 710--790~GeV, is not the expectation.
+\item The background projection of day 15 (1 December) is expected to exceed its threshold. The study then
+      pauses and asks how to continue.
+\end{itemize}
+
+\section{What v1 was, and why v2 exists}
+The search looks for a quirk--antiquirk pair bound by a string. In a tracker its hits do not form helices. They lie
+in a thin plane through the collision vertex. A dedicated plane finder searches for this pattern after standard
+tracking, in events triggered by missing transverse momentum, at 14~TeV, 3~ab$^{-1}$ and pile-up 200. Selections
+form a ladder of 23 tightening cuts, R01--R23.
+
+v1 made no physics statement:
+\begin{itemize}
+\item No selection met the frozen background rule. The lowest background figure was $1.23\times10^{6}$ events,
+      about seven decades above the budget of 0.11.
+\item From R08 on, every leading background term was a zero-count bound: no simulated event passed, so the term
+      measured the size of the simulated sample, not the background.
+\item The pile-up extrapolation failed its own closure test (factors 1.50 and 1.61) and was patched by a factor
+      2.41.
+\item The best expected limit was 790 times the predicted cross section, so nothing was excluded.
+\end{itemize}
+v1 therefore showed that counting simulated events cannot prove that the background is small. It did not show
+that the background is large. v2 replaces the bound by an estimate with closure tests and a stated width.
+
+\section{Improvements of v2 with respect to v1}
+The table lists every item of the publication plan as the approved strategy commits to it. Priority M is a
+must-have item and S a should-have item. The acceptance criteria are fixed in advance in
+\texttt{COMMITMENTS.md}; none has been evaluated yet.
+
+\begin{longtable}{L{1.0cm}L{0.5cm}L{5.4cm}L{7.6cm}}
+\toprule
+Item & Pr. & In v1 & In v2 \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+C1 & M & Ran on one machine; some files lost; no independent rerun.
+   & v1 is rerun on the cluster from logged port edits: 41 declared comparisons with v1, each with a
+     pre-declared test. Tracked lockfiles and a container recipe. Six of ten signal counts stay sealed until Gate B. \\
+C2 & M & Limited validation of the plane finder.
+   & Brute-force cross-check with new code on 50 signal and 50 pile-up trials (agreement within 1~mrad in at least
+     48 of 50), bit-identical reruns, and a seed-threshold stability test. \\
+C3 & M & Internal labels, unsourced statements and errors in the paper text.
+   & All 24 listed corrections, an errata file for v1, novelty wording checked against primary sources, and
+     disclosure of the AI workflow. \\
+B1 & M & Decays in flight and nuclear interactions from generator-level rates; the decay term rests on 1--2 counts.
+   & Geant4 vertices handed to the fast tracker simulation. An estimator built from pass and near-pass
+     probabilities without pile-up, a survival factor and a promotion model, with held-out closure within a
+     factor 2. A no-credit ceiling for every factor that cannot be tested, itself tested. Geant4 geometry matched
+     to the tracking geometry within 1\,\% of a radiation length per layer. \\
+B2 & M & Thinning extrapolation of pile-up failed closure and was patched by $\times2.41$.
+   & Repaired thinning with no scale-factor patch, plus an independent semi-analytic occupancy estimator in new
+     code. Each must reproduce direct counts within a factor 1.5 on held-out rungs, and the two must agree beyond
+     them. A direct sample of 24{,}000 events gives about 70 expected counts at R07. \\
+B3 & M & No tested conditional probabilities for the purpose-built cuts.
+   & Each conditional is measured after at least three preceding rungs and tested on disjoint halves. A
+     displaced-vertex veto is designed on background only. A time tag earns credit only where it closes and only
+     with sourced timing tails. A failed or untested conditional earns no credit. \\
+B4 & M & Eight Standard Model processes entered by proxy; Z($\tau\tau$), lost-lepton Z($\ell\ell$) and multijets
+         were absent.
+   & Hit-level samples for the proxied processes, the three missing processes added with a missing-momentum model
+     built from cited public parametrisations and validated against a published figure, cited K-factors, and a
+     generator comparison as normalisation uncertainty. \\
+B5 & S & No data-driven estimate.
+   & A road-rotation sideband closed in simulation, with its flatness, non-flat part and road independence
+     measured. Reduced form approved: 8 roads on 6{,}000 events. \\
+B6 & S & One detector model, no variations.
+   & Seven detector-model variations as robustness tests (resolution, inefficiency, material, noise top-up,
+     generator tune). Nuisances enter the fit only with a cited size. Reduced form approved: 4 signal points. \\
+B7 & S & Cosmic muons and beam backgrounds not addressed.
+   & A number from public rates, pointing and timing; a term of the fit if above 10\,\% of the background
+     uncertainty. \\
+T1 & M & One hybrid-toy limit; zero counts treated ad hoc.
+   & A published \texttt{pyhf} workspace with one auxiliary Poisson channel per simulated count, a zero-count
+     convention with a coverage test, closure-derived systematics, signal injection, pulls, impact ranking, and
+     toy-based limits everywhere. It must reproduce v1's limit of 789.7 within 10\,\% in v1 mode. \\
+T2 & M & A frozen background-free rule that no selection met, then a fallback selection.
+   & Sixteen candidate selections frozen at Gate A, a figure of merit evaluated on an optimisation half, and
+     results quoted on a disjoint evaluation half split by a salted hash. Bias checks on both the signal and the
+     background side. An always-eligible baseline that uses direct counts only. \\
+S1 & M & 200 signal rows per point; a fast path at some points.
+   & 2{,}000 rows at each of the 40 points through the full chain, no fast path, efficiencies blind until the
+     closure verdicts. \\
+S2 & M & Leading-order cross sections; two definitions of the generator-cut fraction.
+   & NLO K-factors after three validations ($K=1.165\pm0.002$ at 200~GeV in Phase 1, \ver), scale and PDF
+     errors with two PDF sets, a resummed normalisation as cross-check, one definition of the generator-cut
+     fraction with its uncertainty, QED final-state radiation in the nominal shower, a trigger turn-on from a
+     public curve, and the infracolour Coulomb correction. \\
+P1 & M & Thickness law with an untested numerical floor and one failed gate.
+   & Extended-precision and mantissa-truncation floor tests, a paired field-off test with stated power, a
+     pre-defined population estimator on new events, and the validity window stated as measured. \\
+S3 & -- & -- & Endcap dropped by decision; barrel only. The endcap gain is stated as an outlook estimate: signal
+     $\times1.5$--$3.2$ (\est). \\
+S4, S5 & -- & -- & Not included (approved at Gate A). \\
+\end{longtable}
+
+\noindent Improvements that are not plan items:
+\begin{itemize}
+\item \textbf{Pre-registration.} Selections, criteria, estimators and tolerances are written, reviewed, hashed and
+      committed before any production sample (planned for days 17--19).
+\item \textbf{Blinding.} No signal efficiency is looked at before the background closure verdicts are recorded.
+\item \textbf{Verdict classes.} Every criterion ends as pass, fail, not tested or not evaluable, with a fixed
+      consequence. A failed test is reported and not tuned away.
+\item \textbf{Reported target.} The width of the background estimate, the share of zero-count terms and a label
+      per term (no credit, bound, low count, estimate) are part of the result.
+\item \textbf{Method cross-check.} A boosted-decision-tree selection with a pre-registered recipe is compared
+      with the cut ladder at equal background.
+\item \textbf{Comparison with the literature.} Four reference analyses are tabulated and their published numbers
+      overlaid on the limit and reach figures. Twenty retrieval tasks take the external numbers from public sources, each logged; nothing is
+      quoted from memory.
+\item \textbf{Reproduction package.} Code, configuration, efficiency tables and the likelihood, together with a
+      full analysis note.
+\item \textbf{Referee questions.} Twenty-five anticipated questions are answered with a pointer to the text.
+\end{itemize}
+
+\section{What Phase 1 established (\ver)}
+\begin{center}
+\begin{tabular}{L{7.5cm}L{6.5cm}}
+\toprule
+Quantity & Measured on the cluster \\
+\midrule
+Full chain, one pile-up-200 event (4 jobs per node) & 13.5 s \\
+Plane finder, one trial & 11.7 s \\
+Pile-up density $\rho=2$, one event & 206 s, 1.46 GiB \\
+String propagation per event at 1 / 3 / 5 / 10 keV & 0.62 / 18.5 / 67 / 35 s \\
+Leading-order generation chain & about 34 ms per event \\
+Likelihood fit; 1{,}000 toys & 0.12 s; 652 s \\
+Job overhead, workflow engine against direct launch & 17 s against 2.4 s \\
+NLO K-factor at 200 GeV & $1.165\pm0.002$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item MG5\_aMC 2.9.22 with Pythia 8.313 reproduces v1's leading-order cross section. Geant4 11.4.3 is installed
+      on each worker node.
+\item The no-pile-up event cost (45 ms) is a guess. Of the 4{,}453 CPU-h of work, 753 rest on measured unit
+      costs, 2{,}322 on derived ones and 1{,}378 on guesses. The guesses are measured in the first week of Phase 2.
+\end{itemize}
+
+\section{Decisions fixed at Gate A}
+\begin{center}
+\begin{tabular}{L{1.0cm}L{13.2cm}}
+\toprule
+Q1 & Of the ten v1 signal counts used in the reproduction test, six stay sealed until Gate B and four are open. \\
+Q2 & If the day-15 projection exceeds 300 background events, the study pauses and asks. \\
+Q3 & A must-have closure criterion that cannot be tested enters at its ceiling, with no credit. \\
+Q4 & 4{,}609 CPU-h and about 60 days; stop-and-ask at 5{,}992 CPU-h; reduced forms of B5 and B6; S4 and S5 out;
+     the second hadronisation model at generator level only. \\
+Q5 & Truth-level signal generation may run before the pre-registration hash. \\
+\bottomrule
+\end{tabular}
+\end{center}
+Eleven further defaults stand without change. The one with the most weight fixes how the day-15 rule reads
+Standard Model processes that have no sample by then: all of them are read through the single Z($\nu\nu$) pilot
+count, which puts the limit at about 12 counts (\est).
+
+\section{Expected outcome (\est)}
+\begin{itemize}
+\item \textbf{Expected.} Background of about $0.7$--$1.0\times10^{4}$ events at the R08--R09 selections. With
+      the strategy's own normalisation width (0.17) the reach is below 243~GeV.
+\item \textbf{Day 15.} The rule reads the pilot before track finding and is expected at
+      $3\times10^{4}$--$3\times10^{5}$ events against the threshold of 300.
+\item \textbf{Upside.} 710--790~GeV if the ceilings turn out empty. No route to it has been demonstrated. At v1's
+      central size for decays in flight, no conversion rejection alone is enough.
+\item \textbf{Weak inputs.} Decays in flight rest on 1--2 counts in v1, and the conversion estimate on an assumed
+      pair efficiency. Both can move the result by a large factor in either direction.
+\end{itemize}
+If the expected case holds, the paper is the first measured background for this search, the reach at that
+background, and a sideband recipe as the way forward. It is a methods and feasibility paper, clearly more solid
+than v1, with a modest headline.
+
+\section{Schedule}
+\begin{center}
+\begin{tabular}{L{3.4cm}L{2.6cm}L{8.2cm}}
+\toprule
+Date & Day & Milestone \\
+\midrule
+21 November & 5 & Reproduction of v1 and finder checks; CPU re-projection with measured costs \\
+23 November & 7 & Preliminary background projection \\
+1 December & 15 & Binding projection; pause expected \\
+3--5 December & 17--19 & Pre-registration reviewed, hashed and frozen \\
+about 4--6 January & 49--51 & Gate B, before signal efficiencies are looked at \\
+about 13--15 January & 58--60 & Gate C, final paper \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Review record}
+The strategy went through ten review cycles (physics, critical and constructive reviewers, then an arbiter; the
+tenth cycle was a narrow mechanical check by one reviewer and the arbiter).
+\begin{center}
+\begin{tabular}{lcccccccccc}
+\toprule
+Cycle & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\midrule
+Must resolve & 11 & 4 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+Must fix & 24 & 14 & 15 & 5 & 3 & 1 & 4 & 1 & 1 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Cycles 1--3 rebuilt the method. Cycles 4--5 made the summary honest about the expected background. Cycles 6--9
+changed no design choice; they corrected how the day-15 decision is described, whose root cause was an ambiguous
+rule that cycle 8 pinned down.
+
+\section{Incidents}
+\begin{itemize}
+\item 13 November: stale file handles after a file rename on the shared data volume. Fixed by the administrator;
+      directories on that volume are never renamed.
+\item 13 November: the head node ran out of memory and all running agents were killed. State was reconciled; no
+      data was lost. The orchestrator now runs under a 10~GB cap and nothing heavy runs on the head node.
+\item 14--16 November: the shared data volume and remote login to the workers hung. The cause was not established
+      by this study and no repair was attempted. The cluster was confirmed healthy on 16 November.
+\item Times written in the log before 14 November 01:20 were estimates and drifted by up to seven hours. Commit
+      times are authoritative.
+\end{itemize}
+
+\section{Now running (Phase 2, days 0--5)}
+\begin{enumerate}
+\item Reproduction of v1 on the cluster and the finder cross-checks, with timing of the full chain.
+\item Theory inputs, thickness-law clean-ups, literature retrievals and the Herwig installation attempt.
+\item The pilot samples that feed the day-15 projection, the likelihood builder, and the Geant4 geometry and
+      hand-over.
+\end{enumerate}
+
+\section*{Files}
+\begin{itemize}
+\item Strategy: \path{analyses/quirks_v2/phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md}
+\item Commitments and Gate A answers: \path{analyses/quirks_v2/COMMITMENTS.md}
+\item Gate A package: \path{analyses/quirks_v2/gates/GATE_A.md}
+\item Final verdict: \path{analyses/quirks_v2/phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md}
+\item Log: \path{analyses/quirks_v2/LOG.md}
+\end{itemize}
+\end{document}
