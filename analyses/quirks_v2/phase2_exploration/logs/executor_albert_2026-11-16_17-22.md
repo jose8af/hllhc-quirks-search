@@ -120,3 +120,12 @@ then append the dated section to `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md`
    into DEFAULTS['costs'] and the events per chain job into the samples; `… b1` → `tools/runner/examples/p2x/b1/`;
    `… preflight <PLAN>`; launch test with `--set prefix=p2-c-pa-lt --set data_prefix=p2c/pa_validation` and pa.* streams
    on a node with room for 2–3 lanes (ask the orchestrator); write `outputs/B1_READY_albert_<stamp>.md`.
+- 2026-11-16 17:59 **Task A done [V: p2-c-px-lpd 40/40 (0.55 CPU-h), p2-c-px-lpds].** Rerun against first run: events recovered 985 (nat) /
+  1,003 (flat); finder trials 96,153 → 97,137 / 96,147 → 97,149; seed triple 72,105 → 72,773 / 73,756 → 74,446; seed ≥ T_seed
+  33 → 33 / 34 → 34; candidates 0 / 0; every rung 0. Section "Rerun with the transportation-ended tracks included" appended
+  to outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md. No candidate → no immediate alarm. Addendum v4 (Zoe, 17:26) read
+  (§0.3, §3): sizes, class list, lowpt alarm 2×10⁵, hand-over per stream as my defaults; it asks for the class-aware radius
+  check in the validator (done in p2x_validate.py) and "one validated job per stream".
+- 17:58 Slice queue started on my one lane (pgrep before: 2 = the pilot lanes; SLOTS.md line):
+  p2-c-pa-val0, -htg, -hsp, -g4, -b1, -val1; log schrodinger:/home/scratch/jdochoa/drivers/p2a_slices_1.log. The slice
+  campaign files were regenerated at 17:58 before the launch (hsp-big = 6 finished Z(νν) files).

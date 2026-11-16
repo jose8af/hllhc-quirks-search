@@ -27,8 +27,8 @@ Part 1 of the pilot (`pilot.mb` and Z(νν)) was launched by the orchestrator on
    37 % of the hits of a pile-up interaction are missing, up to 34–58 % in the middle tracker layers [V] (§1). v1 never
    mentions it; v1's test of curling particles ("0 of 10⁵") could not have counted anything. You chose on 16 November
    to measure first and keep the simulation if curling particles make no candidates. The measurement found **0
-   candidates in 2×10⁵ single curling particles with their full trajectories** [V; first run, provisional until the
-   rerun `p2-c-px-lpd` is read: 0.9 % of the events were missing]. So the simulation is kept.
+   candidates in 2×10⁵ single curling particles with their full trajectories** [V: p2-c-px-lpd, all 2×10⁵ events].
+   So the simulation is kept.
 2. **That zero is a weak bound, and it does not cover the case that matters most.** One count in that test would stand
    for 1.9×10⁴ events in 3 ab⁻¹; a zero allows 2.2×10⁴ events at 68 %, against the scale of 300 that the day-15 rule
    uses [E]. The test fired one particle at a time. A curling particle **together with pile-up hits** was not tested
@@ -71,7 +71,7 @@ Part 1 of the pilot (`pilot.mb` and Z(νν)) was launched by the orchestrator on
 | quantity | frozen at Gate A | version 3 | **version 4** |
 |---|---|---|---|
 | does the simulation follow curling particles? | assumed yes (STR l.210, l.230-232; v1 plan l.1267) | not known | **no hit beyond half a turn of any particle** [V: p2-c-px-a1e, -htg]; missing against Geant4: ≥ 25 % of the written hits (Z(νν)), ≥ 37 % (minimum bias), 34–58 % in TBPS; chain kept by your option B; limitation [L15] |
-| background from curling particles ("loopers") | 0 in 10⁵ guns (STR l.1071): by construction of the limit, not a measurement | — | **0 candidates in 10⁵ + 10⁵ single loopers with full Geant4 trajectories [V, provisional: rerun pending]; bound: 2.2×10⁴ events at 68 %** [E]; a looper with pile-up: not tested |
+| background from curling particles ("loopers") | 0 in 10⁵ guns (STR l.1071): by construction of the limit, not a measurement | — | **0 candidates in 10⁵ + 10⁵ single loopers with full Geant4 trajectories [V: p2-c-px-lpd, all 2×10⁵ events]; bound: 2.2×10⁴ events at 68 %** [E]; a looper with pile-up: not tested |
 | day-15 reading with an empty pilot, R09 candidate (limit 300) | 76 | 161 [16–84 %: 109–232] | **161, unchanged** [4] |
 | the same at an R08 candidate, pile-up estimate 88 / 118 / 148 | 156 / 181 / 204 | 238 / 262 / 284 | **238 / 262 / 284, unchanged**; new: 256 / 283 / **308** if pile-up is 25 % above the present chain's estimate, 273 / **303** / **329** if 50 % [17] |
 | pause at how many Z(νν) counts: R09; R08 | 12; 8 / 7 / 6 | 4; 2 / 1 / 1 | **unchanged** |
@@ -204,35 +204,35 @@ pilot regenerated (≈ 95 CPU-h); if not, the chain is kept and the limitation i
 
 ### 1.3 The measurement: a looper gun with full trajectories
 
-[V: `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md` and its addendum of 17:20; campaign p2-c-px-lp, summary
-`p2-c-px-lps-0.json` re-read by the script, 16. **PROVISIONAL (0.9 % of the events missing; rerun p2-c-px-lpd
-pending).** In the first runs 985 and 1,003 events of 10⁵ had no Geant4 record and no hit; they are multi-turn
-loopers, i.e. the bias is against candidates. A rerun of one job with them included (4,853 trials) has no seed above
-threshold and no candidate.]
+[V: `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md` with its addenda; campaign **p2-c-px-lpd** (40 of 40 jobs),
+summary `p2-c-px-lpds-0.json` re-read by the script, 16. This is the rerun of the first gun (p2-c-px-lp), in which
+985 and 1,003 events of 10⁵ had no Geant4 record and no hit (multi-turn loopers whose track ended by transportation
+only). They are recovered: **the zero now covers all 2×10⁵ events**, and the seed-threshold and candidate counts
+did not change (first run: finder run 96,153 / 96,147, seed triple 72,105 / 73,756, 33 / 34, 0 / 0).]
 
 Single prompt charged particles of a minimum-bias interaction with |η| < 1 and p_T < 0.63 GeV ("nat": natural
 spectrum, median 0.33 GeV; "flat": uniform in 0.1–0.63 GeV), followed by Geant4 until they decay, interact, stop,
 leave the tracker or reach 25 ns; **every** crossing injected as a hit through the chain's digitisation, seeding and
 CKF; the frozen v1 finder (road 0.15, T_seed 4) with v1's road draw (the particle starts within ± 0.1 of the road
-axis; one road per event). No pile-up. 18.1 crossings of counting surfaces per event, 9.1 of them after half a turn.
+axis; one road per event). No pile-up. 18.2 crossings of counting surfaces per event, 9.2 of them after half a turn.
 
 | events | natural spectrum | flat in p_T | removed by |
 |---|---|---|---|
 | generated | 100,000 | 100,000 | |
-| finder run (≥ 3 hits in the pool) | 96,153 | 96,147 | |
-| with at least one seed triple | 72,105 | 73,756 | road and seed geometry |
+| finder run (≥ 3 hits in the pool) | 97,137 | 97,149 | |
+| with at least one seed triple | 72,773 | 74,446 | road and seed geometry |
 | with a seed of score ≥ T_seed = 4 | **33** | **34** | **the seed threshold** |
 | with a candidate after the refit | **0** | **0** | **the plane refit** |
 | passing any rung R01–R14 | 0 | 0 | |
 
 Multiplicity alone does not remove them: counted with no plane, road or width requirement, 10 % of the loopers cross
-enough layers twice for R01 and 3.5 % for R04 [V: p2-c-px-lpbs]. What removes them is that the crossings of
+enough layers twice for R01 and 3.5 % for R04 [V: p2-c-px-lpbs; unchanged in the rerun per the looper report]. What removes them is that the crossings of
 successive turns do not lie in one plane through the primary vertex within the finder's tolerances.
 
 **What the zero does not bound** (same weight as the result):
 - N_t of what was fired: 7.30 such particles per minimum-bias interaction [V] × 200 × the fraction 0.0318 starting
   within ± 0.1 of the road axis × N_trig = **1.9×10⁹ in 3 ab⁻¹** [E]. **One count = 1.9×10⁴ events; the zero allows
-  2.2×10⁴ events at 68 %**, against the scale of 300. A zero that allowed 25 events would need 8.7×10⁷ gun events,
+  2.2×10⁴ events at 68 %**, against the scale of 300 (unchanged by the rerun: M is 10⁵ per set as before). A zero that allowed 25 events would need 8.7×10⁷ gun events,
   ≈ 264 CPU-h [E; 16].
 - Read for the hard-scatter event's own loopers (19.3 per Z(νν) event [V] × 0.0318 = 0.6 per triggered event, N_t
   2.5×10⁷, with the minimum-bias spectrum standing in for theirs): one count = 251 events, the zero allows 286 [E]:
@@ -762,8 +762,8 @@ eighth row of the B6 table (COM B6-a, B6-c).
 
 ### 7.1 Open points, with the resolving power of each test named
 
-1. **[L15]** (§1): chain-wide, weakly bounded; a looper with pile-up untested unless D2 is accepted. The looper
-   funnel is provisional until the rerun p2-c-px-lpd is read.
+1. **[L15]** (§1): chain-wide, weakly bounded; a looper with pile-up untested unless D2 is accepted. The Geant4
+   reference of the half-turn fractions still lacks 1 % of the tracks (its rerun is queued): lower bounds.
 2. **Not read by rule 1:** parents of 0.3–0.5 GeV (N_t 2.6–5.2×10⁸ [E]; alarm sample at 1,300–2,600 events per
    count); parents at 1 < |η| < 1.5 (N_t ≈ 1.9×10⁸ [E]; no sample); hard-scatter hadrons outside the road (1.8×10⁸
    vertices [E]; alarm through the minimum-bias orientations). If any of them makes candidates at a rate per vertex

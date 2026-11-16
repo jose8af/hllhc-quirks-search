@@ -257,6 +257,18 @@ validation 1 PASS, validation 2 criterion met (reference-status call open, §2.3
 Ẽ (scalar), same settings: K = 1.1619 / 1.1589 / 1.1875 / 1.2187 at 200 / 500 / 1000 / 1500 GeV. NLO scale
 +1.4/−1.1, +2.0/−2.1, +2.6/−3.1, +3.3/−4.0 %; PDF +3.4/−4.5, +5.3/−6.9, +10.2/−11.8, +17.9/−18.7 %.
 
+**PDF4LHC21_40** (campaign p2-b-s2-kscan-p4l; symmetric Hessian, 68 % CL; the strategy's nominal set because it
+installed). E: K = 1.1657 (200), 1.1535 (500), 1.1760 (1000), 1.1999 (1500); within ≤ 0.6 % of the CT18NLO K at every
+mass.
+
+| m [GeV] | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100 | 1200 | 1300 | 1400 | 1500 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| PDF4LHC21 PDF ± [%] (68 % CL) | 2.1 | 2.4 | 2.9 | 3.4 | 4.0 | 4.7 | 5.5 | 6.5 | 7.9 | 9.6 | 11.5 | 14.2 | 17.3 | 20.8 |
+
+Ẽ with PDF4LHC21: K = 1.1621 / 1.1578 / 1.1860 / 1.2095 at 200 / 500 / 1000 / 1500 GeV, PDF ±2.2 / 3.9 / 10.6 /
+30.5 %. Scale envelopes are as with CT18NLO. σ_NLO per mass and set: `outputs/s2/kfactors.json`
+(`results.E_93100`, `E_14400`, `S_…`).
+
 K error ±0.002 (integration). K(200) reproduces FEAS_B's 1.165 ± 0.002. All 14 E masses and 4 Ẽ masses are done with
 CT18NLO [VERIFIED, campaign p2-b-s2-kscan]. PDF4LHC21 (68 % CL) is queued (p2-b-s2-kscan-p4l). K_E/K_Ẽ = 1.0008 /
 0.9954 / 0.9920 / 0.9892 at 200 / 500 / 1000 / 1500 GeV.

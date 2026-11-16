@@ -115,3 +115,45 @@ them; the chain has no per-hit tracker time, and the BTL time tag sees a looper 
    table above stands for 99.1 % of the sample. Even with the record these tracks end where Geant4 stops them, before
    25 ns. The same 1 % ("no record") is in the Geant4 reference of `HALF_TURN_xavier_2026-11-16_16-08.md`: its
    missing-crossing numbers are low by at most that share of the particles.
+
+## Rerun with the transportation-ended tracks included (2026-11-16 17:58; appended by Albert, successor of Xavier)
+
+Campaigns [V]: `p2-c-px-lpd` (40 jobs × 5,000 events, 40 of 40 done, 0.55 CPU-h; the same events, seeds and finder
+configuration as `p2-c-px-lp`, with `g4hv.cc` 55b434a3…, which records a track that ends by transportation only),
+summary `p2-c-px-lpds` (read: `data/p2c/px_validation/p2-c-px-lpds/000/p2-c-px-lpds-0.json`; first run:
+`…/p2-c-px-lpbs/000/p2-c-px-lpbs-0.json`). Validation slices, not pilot data. Background only.
+
+**Result: still no seed-threshold event beyond the first run's, and no candidate at any rung.** Not one of the
+2×10⁵ events has a candidate in v1's record; R01–R14 count 0 events and 0 candidates in both sets
+(`events_passing_rung`, `candidates_passing_rung`, `trials_passing_R04_or_deeper` all zero or empty). The number of
+events with a seed of score ≥ T_seed = 4 is unchanged (33 and 34): **none of the recovered events has a seed above
+threshold.** Nothing to report in hits per layer, width, thickness or time spread: no candidate exists.
+
+| funnel of the frozen finder (events) | natural: first run → rerun | flat: first run → rerun |
+|---|---|---|
+| generated | 100,000 → 100,000 | 100,000 → 100,000 |
+| fewer than 3 hits in the finder's pool: no trial | 3,847 → 2,863 | 3,853 → 2,851 |
+| finder run | 96,153 → 97,137 | 96,147 → 97,149 |
+| with at least one seed triple | 72,105 → 72,773 | 73,756 → 74,446 |
+| with a seed of score N_L2 ≥ T_seed = 4 | 33 → **33** | 34 → **34** |
+| with a candidate after the refit (N_L2 ≥ 4) | 0 → **0** | 0 → **0** |
+| R01 … R14 | 0 → 0 at every rung | 0 → 0 at every rung |
+
+**Events recovered: 985 (natural) and 1,003 (flat)**, 0.99 % and 1.00 % of the sample: the tracks whose end process was
+"none" in the first run are now recorded as `Stopped` (985 / 1,003 in `particles.end_process`), with all their
+crossings injected. Of them, 984 and 1,002 give a finder trial; 668 and 690 more events have a seed triple; none
+reaches the seed threshold. Every other end-process count is identical to the first run (decay 28,310, left 32,613,
+at 25 ns 21,103, … in the natural set): the other 99 % of the events are the same events.
+
+Particle and crossing numbers with the recovered tracks (natural; flat within 0.01): alive after half a turn 87.9 %
+(was 86.9 %), after one turn 76.5 % (75.5 %); 18.20 crossings of barrel counting surfaces per event (18.06), 9.19 of
+them after half a turn (9.14), in 67.3 % of the events (66.6 %). Own-crossing upper bounds (no plane, road or width
+requirement): ≥ 3 pixel layers crossed at least twice 10,862 / 10,350 per 10⁵ (10,860 / 10,350); and ≥ 7 inner layers
+(R04 could be met) 3,453 / 3,574 (unchanged); at least one 2S layer crossed twice in both sensors 19,741 / 23,107
+(19,585 / 22,942). So the recovered tracks add crossings mainly in the outer layers and none to the inner-layer
+classes that the ladder needs.
+
+V4-1 closure: passes in 39 of 40 jobs; `p2-c-px-lpd-nat-008` again reads false (the one endcap SimHit near a disc
+edge of the 17:20 addendum, same event sample). The bound is unchanged: one count = 1.9×10⁴ events in 3 ab⁻¹, a zero
+allows 2.2×10⁴ events at 68 %. **The zero now stands for the whole sample of 2×10⁵ events (it stood for 99.0 %); what
+it does and does not bound is as written above.**
