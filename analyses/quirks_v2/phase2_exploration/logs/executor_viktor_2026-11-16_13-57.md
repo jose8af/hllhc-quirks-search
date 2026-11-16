@@ -99,3 +99,13 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   previous free-fit result). Added before launch: ref jobs jsmsp-n31-mu5, jsmsp2-n31-mu5 (merged+stitch+prev/prev2,
   1000+1000 at μ = 5); tune jobs jsmsp at 60/80/100, jsmsp2 at 31/100 (all with NLL record). p2-c-toy-base started
   14:31:51.
+- 2026-11-16 14:50 **Correction of the 14:29 entry:** the minuit "|Δq| up to 6.3" was an artefact of my pairing: the
+  b ensemble is drawn after the s+b ensemble from one stream, so toys align across jobs only if n_toys agree (jm-n31
+  had 100, js-n31 200). p2v_summary.py now pairs only the s+b ensemble when n_toys differ. Corrected: jax+minuit vs
+  jax+scipy |Δq| ≤ 5e-4 (100 s+b toys, 31 par), 0 differences > 0.01. Minuit is slow (hesse), not wrong.
+- 2026-11-16 14:49 Baseline numpy+scipy on schrodinger [V: p2-c-toy-base]: 31 par 487 ± 2 s per unit (200+200 toys;
+  Tatiana on landau: 638); 60 par 8,787 ± 134 and 8,841 ± 118 (two streams of 50+50) → ratio 18.1 (Tatiana ×17):
+  scaling reproduced; absolute level 0.76–0.80 of landau's. Fits: 31 par 15 iterations × (N+1) = 470 evaluations,
+  0.12 s per fit (0.26 ms per evaluation); 60 par 17 iterations, 1,020 evaluations, 2.2 s per fit (2.1 ms per evaluation).
+  So cost ≈ iterations (flat) × (N+1) (finite differences) × t_eval(N) with t_eval ∝ N^3 (×8 for ×1.9 in N). 0 failed fits.
+  numpy vs jax q on the same toys: |Δq| ≤ 0.004 (31) and ≤ 0.009 (60 par): this is the fit-tolerance scale.

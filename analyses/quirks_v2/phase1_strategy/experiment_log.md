@@ -495,3 +495,34 @@ FLAG FOR HUMAN: YES (Q4)
 [Oscar] Neighbourhood: every live statement of the defaults count says eleven (v10 l.8, 141, 2336; 11 Df rows; COM GA, v9/v10 rows);
 [Oscar]   "ten"/"eight" only in history rows. Flag: v10 l.16 author list stops at Ingrid (not ordered, not edited).
 [Oscar]   Output: outputs/STRATEGY_oscar_2026-11-16_10-41.md, outputs/FIX_REPORT_cycle9_oscar.md. One read-only git diff run (flagged). (10:44)
+
+[Yvonne] 2026-11-16 15:07. Fixer for strategy addendum 1, version 2 -> version 3 (second critical review, Wanda 14:37: ITERATE, 2 A, 5 B, 12 C).
+[Yvonne]   Output: outputs/STRATEGY_ADDENDUM_1_v3_yvonne_2026-11-16_15-04.md, outputs/FIX_REPORT_addendum1_v3_yvonne.md,
+[Yvonne]   outputs/addendum1_v3_stdout.txt (stdout of phase2_exploration/src/p2y_addendum1.py: copy of p2c_addendum1.py + OVERRIDES_V3;
+[Yvonne]   einstein, nice 19, 2 min 06 s, 125 MB), COMMITMENTS.md section "Changes of rows by addendum 1" replaced (285 lines above unchanged, diff).
+[Yvonne]   STR, addendum v1 and v2, p2c_*.py not edited. No git command, no job, no subagent.
+[Yvonne] A-1 (parent truncation after a turn): v2's "validated as proposed" withdrawn; 433/1,464 and 514/1,463 pre-vertex crossings without a
+[Yvonne]   Fatras parent hit, 8 and 88 late parent hits reported (read from p2-c-b1yv-val.json by the script); rule = truncation at the vertex time
+[Yvonne]   for DIF-C, NI-C; hard check <= 2 %. PARTIALLY: the re-validation campaign p2-c-px-tr (Xavier) had not run at 15:04; one placeholder line in P6.
+[Yvonne] A-2 (hard-scatter parents): sample in the script and in every rule-1 row. Readings (R09; R08 88/118/148): H1 2e6 vertices as one term
+[Yvonne]   161; 238/262/284 (DRAFT); as seven weight classes 185; 262/286/307; H2 2e5 one term 196; 273/297/319, seven classes 432; H3 not read 159; 237/260/282.
+[Yvonne]   New [V] from Xavier's slices (read on einstein, pure Python): 0.872 +- 0.032 in-road pool parents per triggered Z(nunu) event (1.3 % of the
+[Yvonne]   minimum-bias 68.1), 35.5 at any azimuth (p2-c-px-hsg-r0); low-pT parents 5.20 and 1<|eta|<1.5 parents 3.64 per interaction (p2-c-px-mbb-big).
+[Yvonne] B-1 21 road orientations pinned (+0.27 % over-coverage). B-2 low-pT N_t 2.6-5.2e8 [E, yield unmeasured], 1,300-2,600 events per count in 2e5:
+[Yvonne]   a zero bounds nothing; alarm only in the draft. B-3 K = 13, T_c = 22 (false FAIL removes a selection 7.0-9.9 % against 6.9-8.9 %), Q2 (c)
+[Yvonne]   grid on the new basis (f_D = 0: x67 [x46] against x44 [x30]). B-4 state of Xavier's code stated, nothing claimed ready. B-5 B1 pool floor 43.1 -> 23.0.
+[Yvonne]   C-1..C-12 applied except C-4 (writer of the partition JSON: p2c_g4vtx.py is hash-recorded by running slice jobs and needs a worker; provenance stated).
+[Yvonne] Failed / corrected on the way: (i) crossings at 4e4 draws gave the frozen m_Z as 13 (299.0 at 12, below the tie level 299.1); redone at 1e5
+[Yvonne]   draws: 299.6 -> 12, as both reviewers. (ii) my first low-pT number (5.12 per interaction) came from the slice of p2x_mbgen's first version,
+[Yvonne]   which had a fault in the v1-rate cuts; replaced by the rewritten slice (5.20).
+[Yvonne] DECISION: draft reads SEVEN B1 terms (strategy's convention: one term, one sample, one Gamma(m+1) per population; STR l.1563, l.1575-1578,
+[Yvonne]   l.726-727, l.2733-2734). ALTERNATIVES: four with the other classes left out (85/89 at R09), three merged terms (96/99), one term (62/65);
+[Yvonne]   the merged ones are honest and cheaper in zeros but re-open the frozen closure design B1-a. CONFIDENCE: medium-high that seven is the
+[Yvonne]   convention-faithful reading; the choice itself is the user's. FLAG FOR HUMAN: yes (v3 decision D1).
+[Yvonne] DECISION: `pilot.c0.hs` read as ONE term, not as seven weight classes. ALTERNATIVES: literal STR l.1564 (seven more zeros, +24 events, an
+[Yvonne]   empty pilot pauses at the upper R08 estimate); H2; H3; or mixing the hard-scatter vertices into each class sample at natural proportion (no
+[Yvonne]   extra zero; needs the hard-scatter class yields before the B1 streams are produced; proposed for the 4a pool, not drafted for the pilot because
+[Yvonne]   it is a design change). CONFIDENCE: medium. FLAG FOR HUMAN: yes (D2); orchestrator may prefer the mixing route.
+[Yvonne] DECISION: parents of 0.3-0.5 GeV, of 1<|eta|<1.5 and hard-scatter hadrons outside the road are NOT read by rule 1 in the draft; stated first
+[Yvonne]   in the document with sizes and the cost of reading them (21-35 CPU-h; 15 CPU-h). ALTERNATIVES: terms sized for 25 events per count (reading
+[Yvonne]   186; 263/287/309). CONFIDENCE: low that leaving them unread is safe; no bound exists (COM B1-e). FLAG FOR HUMAN: yes (D2, D4).

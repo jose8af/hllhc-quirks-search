@@ -65,17 +65,19 @@ def main(argv):
         if b is None or b is r:
             continue
         dq = []; nq = 0
-        for k in ('sb', 'b'):
+        # the b ensemble is drawn after the s+b ensemble from the same stream: aligned only if n_toys agree
+        ens = ('sb', 'b') if r['n_toys'] == b['n_toys'] else ('sb',)
+        for k in ens:
             for x, y in zip(r['q'][k], b['q'][k]):
                 if x is not None and y is not None:
                     dq.append(abs(x - y)); nq += 1
         dq = sorted(dq)
-        r['paired'] = dict(baseline=b['job'], n=nq, max_abs_dq=dq[-1] if dq else None,
+        r['paired'] = dict(baseline=b['job'], ensembles=list(ens), n=nq, max_abs_dq=dq[-1] if dq else None,
                            n_dq_gt_1e3=sum(x > 1e-3 for x in dq), n_dq_gt_1e2=sum(x > 1e-2 for x in dq),
                            n_dq_gt_0p1=sum(x > 0.1 for x in dq), speedup=b['cpu_1000'] / r['cpu_1000'])
-        if all(r['nll'][k] and b['nll'][k] for k in ('sb', 'b')):
+        if all(r['nll'][k] and b['nll'][k] for k in ens):
             dfix = []; dfree = []
-            for k in ('sb', 'b'):
+            for k in ens:
                 for x, y in zip(r['nll'][k], b['nll'][k]):
                     if x and y:
                         dfix.append(x[0] - y[0]); dfree.append(x[1] - y[1])

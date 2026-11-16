@@ -40,6 +40,7 @@ log = logging.getLogger("v45")
 W_C, T_TOL, ROAD = 75.0, 0.030, 0.15
 GRID_HALF, GRID_STEP, GLOBAL_STEP = 0.3, 2e-4, 5e-3
 SELFCHECK = False
+FULL_SPHERE = 0.0
 GLOBAL_HALF = 1.2    # global scan: tangent-plane coordinates up to ±1.2 (±50 deg) around n_F0, all road hits
 
 try:
@@ -231,6 +232,16 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
         sF0_road = score(*R_, n0)[0]
         out.update(global_best_score_road=float(GG[gi, gj]), score_F0_road=sF0_road, dn_F0_global_mrad=1e3 * ang(n0, ng),
                    global_better_elsewhere=bool(gb[k] > sF0_road and ang(n0, ng) > half), t_global_s=time.time() - t0)
+    if FULL_SPHERE:          # closing check of the ±50 deg restriction: direct sum over the whole half sphere, all road hits
+        t0 = time.time()
+        R_ = sel(road)
+        sb, sp = scan_sphere(*R_, FULL_SPHERE)
+        k = int(np.argmax(sb)); th = k * FULL_SPHERE
+        ns = np.array([np.sin(th) * np.cos(sp[k]), np.sin(th) * np.sin(sp[k]), np.cos(th)])
+        out.update(sphere_step=FULL_SPHERE, sphere_best_score=float(sb[k]), dn_F0_sphere_mrad=1e3 * ang(n0, ns),
+                   sphere_best_outside_50deg=bool(ang(n0, ns) > np.arctan(GLOBAL_HALF)),
+                   sphere_best_minus_global_best=float(sb[k] - out.get("global_best_score_road", np.nan)),
+                   t_sphere_s=time.time() - t0)
     out["agree"] = bool(out["dn_F0_opt_mrad"] < 1.0 and out["dn_F0_fit_mrad"] < 1.0)
     return out
 
@@ -294,9 +305,11 @@ def main():
     ap.add_argument("--step", type=float, default=None, help="timing tests only (default 0.2 mrad)")
     ap.add_argument("--gstep", type=float, default=None, help="timing tests only (default 5 mrad)")
     ap.add_argument("--selfcheck", action="store_true")
+    ap.add_argument("--full-sphere", type=float, default=0.0, help="also a direct half-sphere scan at this step (rad)")
     a = ap.parse_args()
-    global SELFCHECK
+    global SELFCHECK, FULL_SPHERE
     SELFCHECK = a.selfcheck
+    FULL_SPHERE = a.full_sphere
     res = []
     for i, tr in enumerate(pu_trials(a.files.split(","), a.skip + a.n)):
         if i < a.skip:

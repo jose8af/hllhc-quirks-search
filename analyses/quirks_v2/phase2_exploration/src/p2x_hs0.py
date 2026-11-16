@@ -7,10 +7,15 @@ s4pu.hseed('sm', sample, job_seed, i), so event i of a job is the event p2c_hs0 
 and p2c_hs0 does not store:
   gsum (n_ev, len(GSUM_COLS))   generator-level sums of the visible final state (no neutrinos) for a reconstruction-
                                 level MET model (STR §4.7): scalar sum pT, vector sum px, py in |eta| < 5 and < 3;
-                                numbers of charged particles; number of jets, of tau_h
+                                the same as scalar E_T sums; numbers of charged
+                                particles, jets, tau_h; pT-hat and the generator weight of the event
   jets10 (J, 4), jets10_off     SlowJet anti-kT 0.4 on the visible final state, pT > 10 GeV, |eta| < 5: pT, eta, phi, m
   tau (T, 8), tau_off           every decayed tau: pdg, pT, eta, phi of the tau; visible pT, eta, phi of its decay
                                 products (neutrinos removed); hadronic flag
+  had (H, 6), had_off           final hadrons and photons of the hard scatter with |eta| < 1.5, pT > 0.3 GeV: pdg, pT, eta,
+                                phi, production radius and z (review of addendum v2, C-8: also the parent pool of a
+                                hard-scatter single-interaction sample, with the event's own road in `evt`)
+  nu (N, 4), nu_off             every final neutrino: pdg, pT, eta, phi
   part (K, len(PART_COLS)), part_off   truth table of the generated particles that own at least one WRITTEN hit
                                 (barcode vsec, particle -> pdg, charge, pT, eta, phi, production point and time, mother
                                 pdg), so that own-hit candidates can be attributed to prompt pairs / conversions
@@ -39,15 +44,18 @@ gen_d123 = H0.gen_d123
 log = C.setup_logging('p2x_hs0')
 EVT_COLS = H0.EVT_COLS
 GSUM_COLS = ['sumpt_eta5', 'px_eta5', 'py_eta5', 'sumpt_eta3', 'px_eta3', 'py_eta3', 'n_ch_pt05_eta25', 'n_final_vis',
-             'n_jets10', 'n_tau', 'n_tau_had']
+             'n_jets10', 'n_tau', 'n_tau_had', 'sumet_eta5', 'sumet_eta3', 'pthat', 'gen_weight', 'n_nu', 'n_had']
+HAD_COLS = ['pdg', 'pt', 'eta', 'phi', 'r_prod', 'z_prod']      # final hadrons and photons, |eta| < 1.5, pT > 0.3 GeV
+NU_COLS = ['pdg', 'pt', 'eta', 'phi']
+HAD_ETA, HAD_PT = 1.5, 0.3
 PART_COLS = ['vsec', 'particle', 'pdg', 'q', 'pt', 'eta', 'phi', 'x', 'y', 'z', 't', 'mother_pdg', 'n_hits']
 MAX_REPLACE = H0.MAX_REPLACE
 
 
 def extra_summary(py, sj10):
     ev = py.event
-    s5 = [0.0, 0.0, 0.0]; s3 = [0.0, 0.0, 0.0]; nch = 0; nvis = 0
-    mother = {}
+    s5 = [0.0, 0.0, 0.0]; s3 = [0.0, 0.0, 0.0]; nch = 0; nvis = 0; et5 = 0.0; et3 = 0.0
+    mother = {}; had = []; nus = []
     for k in range(ev.size()):
         p = ev[k]
         if not p.isFinal():
@@ -55,13 +63,17 @@ def extra_summary(py, sj10):
         m1 = p.mother1()
         mother[(p.id(), p.px(), p.py(), p.pz())] = ev[m1].id() if m1 > 0 else 0
         if p.idAbs() in (12, 14, 16):
+            nus.append((p.id(), p.pT(), p.eta(), p.phi()))
             continue
         nvis += 1
         ae = abs(p.eta()); pt = p.pT()
+        et = p.e() * pt / p.pAbs() if p.pAbs() > 0 else 0.0
         if ae < 5.0:
-            s5[0] += pt; s5[1] += p.px(); s5[2] += p.py()
+            s5[0] += pt; s5[1] += p.px(); s5[2] += p.py(); et5 += et
         if ae < 3.0:
-            s3[0] += pt; s3[1] += p.px(); s3[2] += p.py()
+            s3[0] += pt; s3[1] += p.px(); s3[2] += p.py(); et3 += et
+        if ae < HAD_ETA and pt > HAD_PT and (p.idAbs() > 100 or p.id() == 22):
+            had.append((p.id(), pt, p.eta(), p.phi(), math.hypot(p.xProd(), p.yProd()), p.zProd()))
         if p.charge() != 0 and pt > 0.5 and ae < 2.5:
             nch += 1
     sj10.analyze(ev)
@@ -72,16 +84,18 @@ def extra_summary(py, sj10):
         if p.idAbs() != 15 or p.daughter1() <= 0 or ev[p.daughter1()].idAbs() == 15:
             continue
         ds = [ev[j].idAbs() for j in range(p.daughter1(), p.daughter2() + 1)]
-        had = 0.0 if any(x in (11, 13) for x in ds) else 1.0
+        is_had = 0.0 if any(x in (11, 13) for x in ds) else 1.0
         vx = vy = vz = 0.0
         for j in p.daughterListRecursive():
             d = ev[j]
             if d.isFinal() and d.idAbs() not in (12, 14, 16):
                 vx += d.px(); vy += d.py(); vz += d.pz()
         vpt = math.hypot(vx, vy)
-        taus.append((p.id(), p.pT(), p.eta(), p.phi(), vpt, math.asinh(vz / vpt) if vpt > 0 else 0.0, math.atan2(vy, vx), had))
-    gs = (*s5, *s3, nch, nvis, len(jets), len(taus), sum(t[7] for t in taus))
-    return gs, jets, taus, mother
+        taus.append((p.id(), p.pT(), p.eta(), p.phi(), vpt, math.asinh(vz / vpt) if vpt > 0 else 0.0, math.atan2(vy, vx), is_had))
+    info = py.infoPython()
+    gs = (*s5, *s3, nch, nvis, len(jets), len(taus), sum(t[7] for t in taus), et5, et3, info.pTHat(), info.weight(),
+          len(nus), len(had))
+    return gs, jets, taus, mother, had, nus
 
 
 def particle_table(P, mother):
@@ -121,8 +135,9 @@ def run(sample, out, n_events, stream, chunk):
                 P, vz, info = sm.event(ev_seeds[i])
                 py = sm.hs.gen.py
                 gen[i] = H0.gen_summary(py, info['hs_met'], sample, ev_seeds[i], sj20, sj30) + (info,)
-                gs, j10, taus, mother = extra_summary(py, sj10)
-                ext[i] = (gs, j10, taus, particle_table(P, mother))
+                gs, j10, taus, mother, had, nus = extra_summary(py, sj10)
+                ext[i] = (gs, j10, taus, particle_table(P, mother), np.array(had, np.float32).reshape(-1, len(HAD_COLS)),
+                          np.array(nus, np.float32).reshape(-1, len(NU_COLS)))
                 return P, vz, info
             s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True)
             try:
@@ -141,7 +156,7 @@ def run(sample, out, n_events, stream, chunk):
         for e, nm, t in rc.TIMES:
             st.setdefault(e, {})[nm] = t
         evt = np.zeros((n_events, len(EVT_COLS))); gsum = np.zeros((n_events, len(GSUM_COLS)))
-        hits = []; tru = []; vzs = []; jets = []; leps = []; j10s = []; taus = []; parts = []
+        hits = []; tru = []; vzs = []; jets = []; leps = []; j10s = []; taus = []; parts = []; hads = []; nul = []
         col = {k: i for i, k in enumerate(rc.COLS)}
         n_hit_nopart = 0
         for i in range(n_events):
@@ -155,7 +170,8 @@ def run(sample, out, n_events, stream, chunk):
             evt[i] = (info['hs_met'][0], info['hs_met'][1], info['hs_tries'], info['hs_sigma_gen_mb'], *info['hs_vtx'],
                       info['n_hs'], w, det['met_reco'], phm, det['eps_trig'], det['met250'], det['jet100'],
                       det['mindphi'], det['n_veto'], ev_seeds[i] % 2 ** 31, ev_seeds[i] // 2 ** 31)
-            gs, j10, tt, ptab = ext[i]
+            gs, j10, tt, ptab, had, nus = ext[i]
+            hads.append(had); nul.append(nus)
             gsum[i] = gs
             # particles with written hits: key (vsec, particle) of the hit barcode -> row of the table
             if len(ev):
@@ -179,12 +195,15 @@ def run(sample, out, n_events, stream, chunk):
         J10, j10off = C.concat(j10s, 4, np.float32)
         TA, taoff = C.concat(taus, 8, np.float32)
         PT, ptoff = C.concat(parts, len(PART_COLS), np.float32)
+        HD, hdoff = C.concat(hads, len(HAD_COLS), np.float32)
+        NU, nuoff = C.concat(nul, len(NU_COLS), np.float32)
         v41_pass = bool(np.all(v41[:, 3] == 1) and np.all(v41[:, 4] == 0) and np.all(v41[:, 6] < 1.0)
                         and np.all(v41[:, 0] - v41[:, 1] <= np.maximum(2, 1e-5 * v41[:, 0])))
         w = evt[:, EVT_COLS.index('w_v1')]
         meta = dict(mode='hs0x', sample=sample, stream=stream, chunk=chunk, job_seed=job_seed, n_events=n_events,
                     mu=0.0, chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS,
-                    evt_cols=EVT_COLS, gsum_cols=GSUM_COLS, part_cols=PART_COLS, jet_cols=['pt', 'eta', 'phi', 'm'],
+                    evt_cols=EVT_COLS, gsum_cols=GSUM_COLS, part_cols=PART_COLS, had_cols=HAD_COLS, nu_cols=NU_COLS,
+                    had_selection=dict(abs_eta_max=HAD_ETA, pt_min=HAD_PT, what='final hadrons (|id| > 100) and photons'), jet_cols=['pt', 'eta', 'phi', 'm'],
                     lep_cols=['pdg', 'pt', 'eta', 'phi', 'iso_dr03', 'prompt'],
                     tau_cols=['pdg', 'pt', 'eta', 'phi', 'vis_pt', 'vis_eta', 'vis_phi', 'hadronic'], replaced_events=replaced,
                     v41_pass=v41_pass, n_lost_simhits=int(np.sum(v41[:, 0] - v41[:, 1])),
@@ -202,7 +221,7 @@ def run(sample, out, n_events, stream, chunk):
                     n_part_rows=int(len(PT)))
         arrays = dict(hits=Hh, hit_off=hoff, tru=T, vz=V, vz_off=voff, v41=v41, timing=tim, evt=evt, jets=J, jet_off=joff,
                       lep=L, lep_off=loff, gsum=gsum, jets10=J10, jets10_off=j10off, tau=TA, tau_off=taoff, part=PT,
-                      part_off=ptoff)
+                      part_off=ptoff, had=HD, had_off=hdoff, nu=NU, nu_off=nuoff)
         X.save(out, arrays, meta)
         X.write_sha(str(out) + '.sha.json', dict(job=dict(sample=sample, stream=stream, chunk=chunk, job_seed=job_seed,
                                                           n_events=n_events),

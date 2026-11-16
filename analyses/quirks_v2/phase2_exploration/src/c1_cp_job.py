@@ -54,7 +54,19 @@ def main():
         srcd = work / "prod" / "src"
         srcd.mkdir()
         needs = []
-        for p in a.sources.split(","):
+        srcs = a.sources.split(",")
+        if a.sources == "auto":       # every C'_0 job of this topology must be done (v1: needs ALL C'_0 outputs)
+            import json as _j
+            camp = _j.loads((QV2.parents[1] / "tools" / "runner" / "campaigns" / "p2-a-c1-cp0.json").read_text())
+            want = [j["id"] for j in camp["jobs"] if j["id"].startswith(f"c1cp0-{a.topo}-")]
+            srcs = []
+            for jid in want:
+                mk = QV2 / "ledger" / "markers" / "p2-a-c1-cp0" / "000" / f"{jid}.marker"
+                done = [_j.loads(x) for x in mk.read_text().splitlines() if '"done"' in x] if mk.exists() else []
+                if not done:
+                    raise SystemExit(f"C'_0 job {jid} not done: C'_PU {a.topo} cannot run yet")
+                srcs += [o["path"] for o in done[-1]["outputs"] if o["name"].endswith(".npz")]
+        for p in srcs:
             (srcd / Path(p).name).symlink_to(p)
             needs.append(f"src/{Path(p).name}")
         job["needs"] = needs

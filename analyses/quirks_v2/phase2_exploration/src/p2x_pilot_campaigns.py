@@ -49,19 +49,38 @@ INPUTS = ['acts/stage4/code/run_chain.py', 'acts/stage4/code/s4pu.py', 'acts/sta
           'acts/scripts/pythia8_tune_CP5.dat', 'acts/pixi.lock', '../../tools/install/g4/pixi.lock',
           'phase2_exploration/outputs/pilot_yields_xavier.json']
 
+# what each block of campaigns executes or reads: hashed into the PLAN, checked by `preflight`, and FROZEN (not to be
+# edited) from the launch of that block until its last job is done -- jobs record the same hashes in their meta
+CHAIN = ['acts/stage4/code/run_chain.py', 'acts/stage4/code/s4pu.py', 'acts/stage4/code/s4geo.py', 'acts/stage4/code/s4cp.py',
+         'acts/geometry/cms_phase2_public.json', 'sim/stage3/code/surfaces_s3.json', 'acts/scripts/pythia8_tune_CP5.dat',
+         'acts/pixi.lock']
+BLOCK_FILES = {
+    'mb': (['p2x_mbgen.py', 'p2x_common.py', 'p2c_mbgen.py', 'p2c_common.py', 'p2c_campaigns.py', 'p2x_queue.sh'],
+           ['acts/stage4/code/s4pu.py', 'acts/scripts/pythia8_tune_CP5.dat', 'acts/pixi.lock']),
+    'znn': (['p2x_hs0.py', 'p2x_common.py', 'p2c_hs0.py', 'p2c_common.py', 'p2c_campaigns.py', 'p2x_queue.sh'],
+            CHAIN + ['acts/stage4/analysis/gen_d123.py']),
+    'b1': (SCRIPTS, INPUTS),
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Default parameter set = strategy addendum 1 version 2 (DRAFT under review).  Change with --params / --set.
 DEFAULTS = {
-    'name': 'v2',                              # tag of this parameter set; campaign names are <prefix>-<name>-...
+    'name': '',                                # optional tag: campaign names are <prefix>[-<name>]-...
+    'only': [],                                # [] = everything; or a subset of mb, b1 (Geant4 + chain + mixed samples), znn
     'prefix': 'p2-c-pilot',
     'data_prefix': 'pilot',                    # data/pilot/<campaign>/000/ ; never the validation prefix
-    'beta_min': 0.1,                           # hand-over P6
+    'beta_min': 0.1,                           # hand-over P6: the VALIDATED variant (0 would be the variant that failed)
+    'n_road_orientations': 21,                 # review B-1 (recorded in every B1 file; Phase 3 tests them)
+    'trunc': {'default': 'radius', 'difc': 'time', 'nic': 'time', 'hs': 'auto', 'lowpt': 'auto'},   # review A-1
     'yields': str(QV2 / 'phase2_exploration' / 'outputs' / 'pilot_yields_xavier.json'),
-    'mb': {'stream': 'pilot.mb', 'interactions': 10_000_000, 'per_job': 250_000, 'chunk0': 0, 'lowpt_min': 0.3,
-           'lowpt_pool_jobs': 4},              # the low-pT pool is stored by the first 4 jobs only (its rate by all)
+    # chunk0 / part0: to APPEND later, generate again with only=[mb] or [znn], chunk0 = first unused chunk, part0 = first
+    # unused part, and the number of additional interactions / events: new job ids, new seeds, old files untouched
+    'mb': {'stream': 'pilot.mb', 'interactions': 10_000_000, 'per_job': 250_000, 'chunk0': 0, 'part0': 0,
+           'xpool_jobs': 40},                  # jobs (from chunk 0) that store the wider pool (0.3 < pT, |eta| < 1.5)
     'g4': {'stream': 'pilot.g4', 'all_per_job': 2_000_000, 'ni_per_job': 12_500_000, 'pool_files_per_job': 2,
            'chunk0': {'all': 0, 'ni': 1000, 'hs': 2000, 'lowpt': 3000},
-           'margin_sigma': 5.0, 'margin_yield_err': 3.0},
+           'margin_sigma': 5.0, 'margin_yield_err': 3.0,
+           'extra_firings': 0.03},             # review C-7: 3 % more firings than the margins alone ask for
     # one entry per pilot sample: classes (of p2x_common.B1_CLASSES), events M, Geant4 pass, stream, events per job
     'samples': {
         'dif':  {'classes': ['dif', 'k0l'], 'events': 4_000_000, 'pass': 'all', 'stream': 'pilot.c0.dif', 'per_job': 25_000},
@@ -78,7 +97,8 @@ DEFAULTS = {
            'pool_margin': 0.10},
     'lowpt': {'enabled': True, 'stream': 'pilot.c0.lowpt', 'events': 200_000, 'per_job': 25_000, 'classes': B1_CLASSES,
               'pool_margin': 0.10},
-    'znn': {'stream': 'pilot.hs0.znn', 'sample': 'Znunu_j', 'events': 2_300_000, 'per_job': 5_000, 'chunk0': 0, 'parts': 8},
+    'znn': {'stream': 'pilot.hs0.znn', 'sample': 'Znunu_j', 'events': 2_300_000, 'per_job': 5_000, 'chunk0': 0, 'part0': 0,
+            'parts': 16},
     # unit costs for the CPU, wall and storage estimates only (measured values, filled from the slices; see PILOT_READY)
     'costs': {'mb_ms': 3.6, 'g4_all_ms': 0.305, 'g4_ni_ms': 0.047, 'b1_ms': 5.0, 'znn_ms': 127.0, 'hsgen_ms': 41.0,
               'job_overhead_s': 15.0, 'mb_bytes_per_int': 70.0, 'vtx_bytes': 800.0, 'b1_bytes': 3500.0, 'znn_bytes': 31000.0,
@@ -131,9 +151,9 @@ def dpath(data_prefix, camp, fname):
     return f'{DATA}/{data_prefix}/{camp}/000/{fname}'
 
 
-def job_mb(jid, n, stream, chunk, lowpt_min, keep):
+def job_mb(jid, n, stream, chunk, keep):
     return dict(id=jid, outputs=[f'{jid}.npz', f'{jid}.npz.sha.json'],
-                command=ENV + f'{ACTSPY} {SRC}/p2x_mbgen.py $QV2_OUT_DIR/{jid}.npz {n} {stream} {chunk} {lowpt_min} {int(keep)}')
+                command=ENV + f'{ACTSPY} {SRC}/p2x_mbgen.py $QV2_OUT_DIR/{jid}.npz {n} {stream} {chunk} {int(keep)}')
 
 
 def job_hsg(jid, sample, n, stream, chunk):
@@ -151,10 +171,10 @@ def job_g4(jid, gpass, n, stream, chunk, pool_prefix, groups, pool_files):
                               f'{groups_spec(groups)} ' + ' '.join(pool_files))
 
 
-def job_b1(jid, sample, classes, n, stream, chunk, first, beta, vfile):
+def job_b1(jid, sample, classes, n, stream, chunk, first, beta, vfile, trunc='radius', n_orient=21):
     return dict(id=jid, outputs=[f'{jid}.npz', f'{jid}.npz.sha.json'],
                 command=ENV + f'{ACTSPY} {SRC}/p2x_b1.py {sample} {"+".join(classes)} $QV2_OUT_DIR/{jid}.npz {n} {stream} '
-                              f'{chunk} {first} {beta} {vfile}')
+                              f'{chunk} {first} {beta} {vfile} {trunc} {n_orient}')
 
 
 def job_znn(jid, sample, n, stream, chunk):
@@ -163,17 +183,18 @@ def job_znn(jid, sample, n, stream, chunk):
 
 
 # ---- validation slices ----------------------------------------------------------------------------------------------
-def slices(ver=''):
+def slices(ver='', val_keys=('mb', 'hsg', 'znn', 'g4', 'b1'), sub='slices'):
     """Small end-to-end slices of every sample type.  Streams px.*, data prefix p2c/px_validation: NOT pilot data."""
-    out = CAMP_DIR / 'slices'
+    out = CAMP_DIR / sub
     dp = 'p2c/px_validation'
     me = f'python3 -I {SRC}/p2x_pilot_campaigns.py slices' + (f' --ver {ver}' if ver else '')
     vmap = dict(x.split('=') for x in ver.split(',')) if ver else {}          # e.g. g4=b,b1=b -> p2-c-px-g4b, p2-c-px-b1b
     c = {k: f'p2-c-px-{k}{vmap.get(k, "")}' for k in ('mb', 'hsg', 'znn', 'g4', 'b1', 'val')}
     files = {}
     # 1 minimum bias: same seed twice, another chunk, and one job at half the pilot job size
-    j = [job_mb(f'{c["mb"]}-r0', 20000, 'px.mb', 0, 0.3, 1), job_mb(f'{c["mb"]}-r1', 20000, 'px.mb', 0, 0.3, 1),
-         job_mb(f'{c["mb"]}-d', 20000, 'px.mb', 1, 0.3, 1), job_mb(f'{c["mb"]}-big', 125000, 'px.mb', 2, 0.3, 1)]
+    j = [job_mb(f'{c["mb"]}-r0', 20000, 'px.mb', 0, 1), job_mb(f'{c["mb"]}-r1', 20000, 'px.mb', 0, 1),
+         job_mb(f'{c["mb"]}-d', 20000, 'px.mb', 1, 1), job_mb(f'{c["mb"]}-big', 125000, 'px.mb', 2, 1),
+         job_mb(f'{c["mb"]}-nox', 20000, 'px.mb', 3, 0)]
     files['mb'] = write_campaign(out, c['mb'], j, 0.3, 1500, me, 'pilot code slice: minimum bias with main and low-pT pools', dp)
     # 2 hard-scatter parent pool
     j = [job_hsg(f'{c["hsg"]}-r0', 'Znunu_j', 2000, 'px.c0.hs.gen', 0), job_hsg(f'{c["hsg"]}-r1', 'Znunu_j', 2000, 'px.c0.hs.gen', 0),
@@ -218,9 +239,15 @@ def slices(ver=''):
     for s, cl in (('dif', ['dif', 'k0l']), ('nix', ['nix']), ('nic', ['nic'])):
         j.append(job_b1(f'{b}-{s}-big', s, cl, 25000, f'px.c0.{s}', 2, 4000, 0.1, vf('all-big', s)))
     files['b1'] = write_campaign(out, b, j, 0.5, 2000, me, 'pilot code slice: chain events for every pilot sample type', dp)
+    # 5b truncation of the parent (review A-1): the same events and seeds with v1's radius cut, the time cut, both
+    tcamp = f'p2-c-px-tr{vmap.get("tr", "")}'
+    j = [job_b1(f'{tcamp}-{s}-{mode}', s, cl, 2000, f'px.c0.{s}', 0, 0, 0.1, vf(src, s), mode)
+         for s, cl, src in spec for mode in ('radius', 'time', 'both')]
+    files['tr'] = write_campaign(out, tcamp, j, 0.2, 2000, me, 'pilot code slice: parent truncation by radius (v1), by time, by both', dp)
+    c['tr'] = tcamp
     # 6 validation
     allf = []
-    for camp_key in ('mb', 'hsg', 'znn', 'g4', 'b1'):
+    for camp_key in val_keys:
         d = json.loads(Path(files[camp_key]).read_text())
         allf += [dpath(dp, d['campaign'], o) for jb in d['jobs'] for o in jb['outputs'] if o.endswith('.npz')]
     v = c['val']
@@ -257,10 +284,12 @@ def sample_layout(events, per_job_max, per_file):
 
 def pilot(p, outdir=None):
     assert 'px_validation' not in p['data_prefix'] and not p['data_prefix'].startswith('p2c'), 'pilot data prefix must be its own'
-    tag = p['name']; pre = f"{p['prefix']}-{tag}"; dp = p['data_prefix']
-    outdir = Path(outdir) if outdir else CAMP_DIR / f'pilot_{tag}'
+    tag = p['name']; pre = p['prefix'] + (f'-{tag}' if tag else ''); dp = p['data_prefix']
+    only = set(p.get('only') or ['mb', 'b1', 'znn'])
+    assert only <= {'mb', 'b1', 'znn'}, f'only: {only}'
+    outdir = Path(outdir) if outdir else CAMP_DIR / 'pilot'
     me = f'python3 -I {SRC}/p2x_pilot_campaigns.py pilot (parameters: PLAN_{pre}.json -> params)'
-    Y = json.loads(Path(p['yields']).read_text())
+    Y = json.loads(Path(p['yields']).read_text()) if 'b1' in only else {}
     cost = p['costs']; ovh = cost['job_overhead_s']
     plan = dict(name=tag, params=p, campaigns=[], samples={}, warnings=[])
     for s in list(p['samples'].values()) + [p['hs'], p['lowpt']]:
@@ -280,17 +309,19 @@ def pilot(p, outdir=None):
 
     # --- minimum bias
     mb = p['mb']; n_mb = math.ceil(mb['interactions'] / mb['per_job'])
-    cmb = f'{pre}-mb'
-    jobs = [job_mb(f'{cmb}-{k:04d}', min(mb['per_job'], mb['interactions'] - k * mb['per_job']), mb['stream'], mb['chunk0'] + k,
-                   mb['lowpt_min'], k < mb['lowpt_pool_jobs']) for k in range(n_mb)]
-    add(cmb, jobs, mb['interactions'] * cost['mb_ms'] * 1e-3 + n_mb * ovh, cost['rss_mb']['mb'],
-        f"pilot: minimum bias, generator level, stream {mb['stream']}", mb['interactions'] * cost['mb_bytes_per_int'],
-        events=mb['interactions'], unit='interactions')
-    mbfile = lambda k: dpath(dp, cmb, f'{cmb}-{k % n_mb:04d}.npz')  # noqa: E731
+    cmb = f'{pre}-mb' + (f"-{mb['part0']:02d}" if mb['part0'] else '')
+    mbid = lambda k: f"{pre}-mb-{mb['chunk0'] + k:04d}"  # noqa: E731   (job id = chunk number: unique across appended parts)
+    if 'mb' in only:
+        jobs = [job_mb(mbid(k), min(mb['per_job'], mb['interactions'] - k * mb['per_job']), mb['stream'], mb['chunk0'] + k,
+                       mb['chunk0'] + k < mb['xpool_jobs']) for k in range(n_mb)]
+        add(cmb, jobs, mb['interactions'] * cost['mb_ms'] * 1e-3 + n_mb * ovh, cost['rss_mb']['mb'],
+            f"pilot: minimum bias, generator level, stream {mb['stream']}, chunks {mb['chunk0']}-{mb['chunk0'] + n_mb - 1}",
+            mb['interactions'] * cost['mb_bytes_per_int'], events=mb['interactions'], unit='interactions')
+    mbfile = lambda k: dpath(dp, cmb, f'{mbid(k % n_mb)}.npz')  # noqa: E731
 
     # --- Geant4 passes for the class samples
     g4 = p['g4']; vsrc = {}
-    for gpass, per_job, ms in (('all', g4['all_per_job'], cost['g4_all_ms']), ('ni', g4['ni_per_job'], cost['g4_ni_ms'])):
+    for gpass, per_job, ms in (('all', g4['all_per_job'], cost['g4_all_ms']), ('ni', g4['ni_per_job'], cost['g4_ni_ms'])) if 'b1' in only else ():
         ss = {k: s for k, s in p['samples'].items() if s['pass'] == gpass}
         if not ss:
             continue
@@ -303,7 +334,7 @@ def pilot(p, outdir=None):
             exp = nm / y['n_fire'] * per_job
             u = usable(exp, nm, p)
             lay[k] = sample_layout(s['events'], s['per_job'], u) + (exp, u)
-        n_files = max(v[2] for v in lay.values())
+        n_files = math.ceil(max(v[2] for v in lay.values()) * (1.0 + g4.get('extra_firings', 0.0)))
         cg = f'{pre}-g4{gpass[0]}'
         groups = {k: s['classes'] for k, s in ss.items()}
         nppj = g4['pool_files_per_job']
@@ -323,11 +354,12 @@ def pilot(p, outdir=None):
                                       vertices_unused_fraction=round(1 - s['events'] / (exp * n_files), 3))
 
     # --- chain campaigns of the class samples
-    for k, s in p['samples'].items():
+    for k, s in (p['samples'].items() if 'b1' in only else ()):
         cg, jl = vsrc[k]
         cc = f'{pre}-c0-{k}'
         jobs = [job_b1(f'{cc}-{i:04d}', k, s['classes'], n, s['stream'], i, first, p['beta_min'],
-                       dpath(dp, cg, f'{cg}-{f:04d}.{k}.npz')) for i, (f, first, n) in enumerate(jl)]
+                       dpath(dp, cg, f'{cg}-{f:04d}.{k}.npz'), p['trunc'].get(k, p['trunc']['default']),
+                       p['n_road_orientations']) for i, (f, first, n) in enumerate(jl)]
         assert sum(x[2] for x in jl) == s['events']
         add(cc, jobs, s['events'] * cost['b1_ms'] * 1e-3 + len(jobs) * ovh, cost['rss_mb']['b1'],
             f"pilot: no-pile-up events of sample {k} = {'+'.join(s['classes'])}, stream {s['stream']}",
@@ -336,7 +368,7 @@ def pilot(p, outdir=None):
     # --- mixed samples: hard-scatter parents, low-pT parents
     for key, pool_prefix in (('hs', 'pool'), ('lowpt', 'lowpt')):
         m = p[key]
-        if not m.get('enabled'):
+        if not m.get('enabled') or 'b1' not in only:
             continue
         y = Y[key]
         nm = sum(y['counts'][c] for c in m['classes'])
@@ -350,7 +382,7 @@ def pilot(p, outdir=None):
                 m['gen_events'] * 60.0, events=m['gen_events'], unit='generated events')
             pools = [dpath(dp, ch, f'{ch}-{i:04d}.npz') for i in range(ng)]; dep = ch
         else:
-            pools = [mbfile(i) for i in range(p['mb']['lowpt_pool_jobs'])]; dep = cmb
+            pools = [mbfile(i) for i in range(min(4, n_mb))]; dep = cmb
         per_job = g4['all_per_job']
         # firings so that the files hold `events` usable vertices: one or more jobs of equal size
         n_fire_total = m['events'] / (nm / y['n_fire']) * 1.05
@@ -371,7 +403,8 @@ def pilot(p, outdir=None):
         assert nf <= nj
         cc = f'{pre}-c0-{key}'
         jobs = [job_b1(f'{cc}-{i:04d}', key, m['classes'], n_, m['stream'], i, first, p['beta_min'],
-                       dpath(dp, cg, f'{cg}-{f:04d}.{key}.npz')) for i, (f, first, n_) in enumerate(jl)]
+                       dpath(dp, cg, f'{cg}-{f:04d}.{key}.npz'), p['trunc'].get(key, p['trunc']['default']),
+                       p['n_road_orientations']) for i, (f, first, n_) in enumerate(jl)]
         add(cc, jobs, m['events'] * cost['b1_ms'] * 1e-3 + len(jobs) * ovh, cost['rss_mb']['b1'],
             f"pilot: no-pile-up events of the mixed sample {key}, stream {m['stream']}", m['events'] * cost['b1_bytes'],
             after=[cg], events=m['events'], unit='events')
@@ -381,13 +414,13 @@ def pilot(p, outdir=None):
     # --- Z(nunu), in parts so that the lanes can be balanced
     z = p['znn']; nz = math.ceil(z['events'] / z['per_job']); parts = max(1, min(z['parts'], nz))
     per_part = math.ceil(nz / parts)
-    for a in range(parts):
+    for a in range(parts if 'znn' in only else 0):
         ks = range(a * per_part, min((a + 1) * per_part, nz))
         if not len(ks):
             continue
-        cz = f'{pre}-znn-{a:02d}'
-        jobs = [job_znn(f'{pre}-znn-{k:05d}', z['sample'], min(z['per_job'], z['events'] - k * z['per_job']), z['stream'],
-                        z['chunk0'] + k) for k in ks]
+        cz = f"{pre}-znn-{z['part0'] + a:02d}"
+        jobs = [job_znn(f"{pre}-znn-{z['chunk0'] + k:05d}", z['sample'], min(z['per_job'], z['events'] - k * z['per_job']),
+                        z['stream'], z['chunk0'] + k) for k in ks]
         ne = sum(min(z['per_job'], z['events'] - k * z['per_job']) for k in ks)
         add(cz, jobs, ne * cost['znn_ms'] * 1e-3 + len(jobs) * ovh, cost['rss_mb']['znn'],
             f"pilot: no-pile-up {z['sample']} events, stream {z['stream']}, part {a}", ne * cost['znn_bytes'], events=ne,
@@ -404,7 +437,7 @@ def pilot(p, outdir=None):
     chain_n = [c for c in plan['campaigns'] if is_ni(c)]
     chain_h = [c for c in plan['campaigns'] if is_hs(c)]
     zparts = [c for c in plan['campaigns'] if is_z(c)]
-    mb_h = by[cmb]['cpu_h'] * 1.15
+    mb_h = by[cmb]['cpu_h'] * 1.15 if cmb in by else 0.0
     plan['lanes'] = {}
     for nslot in p['slots']:
         lanes = [[] for _ in range(nslot)]; load = [0.0] * nslot
@@ -428,11 +461,43 @@ def pilot(p, outdir=None):
     tot = sum(c['cpu_h'] for c in plan['campaigns'])
     plan['total'] = dict(cpu_h=round(tot, 1), storage_gb=round(sum(c['storage_gb'] for c in plan['campaigns']), 1),
                          jobs=sum(c['jobs'] for c in plan['campaigns']),
-                         b1_events=sum(s['events'] for s in p['samples'].values()))
-    plan['hashes'] = dict(scripts={s: sha(HERE / s) for s in SCRIPTS if (HERE / s).exists()},
-                          inputs={i: (sha(QV2 / i) if (QV2 / i).exists() else None) for i in INPUTS})
+                         b1_events=sum(s['events'] for s in p['samples'].values()) if 'b1' in only else 0)
+    scr = sorted({x for b in only for x in BLOCK_FILES[b][0]}); inp = sorted({x for b in only for x in BLOCK_FILES[b][1]})
+    plan['hashes'] = dict(scripts={s: sha(HERE / s) for s in scr if (HERE / s).exists()},
+                          inputs={i: (sha(QV2 / i) if (QV2 / i).exists() else None) for i in inp})
+    plan['frozen_from_launch'] = [f'phase2_exploration/src/{x}' for x in scr] + inp
     plan['campaign_file_sha256'] = {c['campaign']: sha(c['file']) for c in plan['campaigns']}
-    pf = outdir / f'PLAN_{pre}.json'
+    pf = outdir / (f'PLAN_{pre}' + ('_' + '-'.join(sorted(only)) if only != {'mb', 'b1', 'znn'} else '') + (f"_{p['plan_suffix']}" if p.get('plan_suffix') else '') + '.json')
+    # launch / status scripts (text; run from einstein; they are NOT executed by this generator)
+    stem = pf.name[len('PLAN_'):-len('.json')]
+    plan['scripts'] = {}
+    q = f'{SRC}/p2x_queue.sh'
+    for nslot, v in plan['lanes'].items():
+        lines = ['#!/bin/bash', f'# launch of {stem} on {nslot} slot(s) of NODE (default schrodinger): one queue per slot, 1 job each.',
+                 '# Run on einstein AFTER: preflight ok, a line in phase2_exploration/SLOTS.md, the go of the orchestrator.',
+                 '# Resume after any stop: run this script again (complete campaigns and done jobs are skipped).',
+                 'NODE=${1:-schrodinger}',
+                 'echo "qv2run jobs on $NODE now: $(ssh -x -o BatchMode=yes $NODE "pgrep -u jdochoa -af \'[q]v2run job\' | wc -l")"']
+        for i, lane in enumerate(v['lanes']):
+            if not lane:
+                continue
+            first = Path(lane[0]).stem
+            lines.append(f'ssh -x -o BatchMode=yes $NODE "mkdir -p /home/scratch/jdochoa/drivers; rm -f /home/scratch/jdochoa/drivers/STOP.{first}; '
+                         f'pgrep -u jdochoa -f \'p2x_queue.sh [a-z]* 1 [^ ]*{first}.json\' > /dev/null && echo lane {i} already runs || '
+                         f'{{ setsid nohup {q} $NODE 1 ' + ' '.join(lane) +
+                         f' > /home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.log 2>&1 < /dev/null & echo lane {i} started; }}"')
+        lf = outdir / f'LAUNCH_{stem}_{nslot}slots.sh'
+        lf.write_text('\n'.join(lines) + '\n')
+        plan['scripts'][f'launch_{nslot}slots'] = str(lf)
+    st = ['#!/bin/bash', f'# status of {stem} from the markers (run on einstein; the runner itself runs on the worker)', 'NODE=${1:-schrodinger}',
+          f'ssh -x -o BatchMode=yes $NODE \'for f in ' + ' '.join(c['file'] for c in plan['campaigns']) +
+          f'; do {RUNNER}/bin/qv2run status $f --json; done; tail -n 2 /home/scratch/jdochoa/drivers/{stem}_*lane*.log 2>/dev/null; '
+          'pgrep -u jdochoa -af "[q]v2run job" | wc -l\'']
+    sf = outdir / f'STATUS_{stem}.sh'
+    sf.write_text('\n'.join(st) + '\n')
+    plan['scripts']['status'] = str(sf)
+    plan['scripts']['stop'] = ('touch /home/scratch/jdochoa/drivers/STOP.<first campaign of the lane> on the node: the lane ends after its '
+                               'running campaign; running jobs are never killed by it')
     pf.write_text(json.dumps(plan, indent=1) + '\n')
     log.info('plan: %s', pf)
     log.info('total: %s', plan['total'])
@@ -513,10 +578,15 @@ def preflight(plan_file):
         check((HERE / s).exists() and sha(HERE / s) == h, f'script unchanged since the plan: {s} {h[:12]}')
     for i, h in plan['hashes']['inputs'].items():
         check(h is not None and (QV2 / i).exists() and sha(QV2 / i) == h, f'input unchanged since the plan: {i} {(h or "missing")[:12]}')
-    streams = [plan['params']['mb']['stream'], plan['params']['g4']['stream'], plan['params']['znn']['stream']] + \
-              [s['stream'] for s in plan['params']['samples'].values()] + \
-              [plan['params'][k]['stream'] for k in ('hs', 'lowpt') if plan['params'][k].get('enabled')] + \
-              ([plan['params']['hs']['gen_stream']] if plan['params']['hs'].get('enabled') else [])
+    pp = plan['params']; only = set(pp.get('only') or ['mb', 'b1', 'znn'])
+    streams = ([pp['mb']['stream']] if 'mb' in only else []) + ([pp['znn']['stream']] if 'znn' in only else [])
+    if 'b1' in only:
+        streams += [pp['g4']['stream']] + [s['stream'] for s in pp['samples'].values()] + \
+                   [pp[k]['stream'] for k in ('hs', 'lowpt') if pp[k].get('enabled')] + \
+                   ([pp['hs']['gen_stream']] if pp['hs'].get('enabled') else [])
+    # appended parts: no job id of this plan may already have a marker (checked per campaign above by name; here by id)
+    have = {m.stem for m in markers.glob(f"{pp['prefix']}*/*/*.marker")}
+    check(not (set(ids) & have), f'no job id of this plan has a marker yet ({len(set(ids) & have)} found)')
     check(len(streams) == len(set(streams)) and not any(s.startswith('px.') for s in streams), f'seed streams distinct and not validation streams: {streams}')
     log.info('%d failed checks. Remaining manual checks: node count (pgrep), SLOTS.md line, approval of the addendum.', bad)
     return bad
@@ -526,7 +596,9 @@ def main(argv):
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     what = argv[0]
     if what == 'slices':
-        slices(argv[argv.index('--ver') + 1] if '--ver' in argv else '')
+        slices(argv[argv.index('--ver') + 1] if '--ver' in argv else '',
+               tuple(argv[argv.index('--val') + 1].split(',')) if '--val' in argv else ('mb', 'hsg', 'znn', 'g4', 'b1'),
+               argv[argv.index('--sub') + 1] if '--sub' in argv else 'slices')
     elif what == 'defaults':
         sys.stdout.write(json.dumps(DEFAULTS, indent=1) + '\n')
     elif what == 'pilot':

@@ -35,3 +35,24 @@ FLAG FOR HUMAN: YES
 
 ## 2026-11-16 12:58 [Sebastian] install-slot check from a worker does not work
 `ssh landau` from maxwell fails ("Could not resolve hostname"). Only einstein resolves the short worker names. The pgrep check inside `queue_maxwell1.sh` therefore passed vacuously. Verified by hand from einstein that no other pixi install was running. Future install checks run from einstein.
+
+## [Rosalie, channel (i)] 2026-11-16 14:43 -05 — deviations and decisions (detail: outputs/EXPLORATION_i_rosalie_2026-11-16_14-43.md §2)
+- DECISION D-i-1: pre-merge store kept at N_IP2 ≥ 6 although it measures 33.8 MB/trial (STR planning 3.6–14);
+  projection ≈ 270 GB < 400 GB cap. ALTERNATIVES: N_IP2 ≥ 7 ([DT4]). CONFIDENCE: HIGH (orchestrator agreed). FLAG FOR HUMAN: NO.
+- DECISION D-i-2: V4-5 exhaustive 0.2 mrad scan computed by band accumulation (|u·n| ≤ 4σ, ≤ 3.4e-4 per hit dropped)
+  with a direct-sum check on a sub-grid; global scan ±50° at 5 mrad plus a 10 mrad full half-sphere check on 10 trials.
+  ALTERNATIVES: direct sum (86 CPU-h). CONFIDENCE: HIGH. FLAG FOR HUMAN: NO. First attempt (direct sum) failed: timeout
+  at 1800 s, p2-a-c2-v45time.
+- DECISION D-i-3: probe-row exclusion off; v1 excluded 0 rows at the three C1 points (signal_eff.json) → no effect.
+  CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+- DECISION D-i-4: C2-c T_seed test by regeneration from seeds (v1 g3_rerun pattern), not from dumps. CONFIDENCE: HIGH.
+- NOTE D-i-5: all C1 comparisons are between independent samples (lost v1 Stage 2/3; new seed streams), as STR [A2].
+- FINDING (S2-c input, sent to channel (ii) via the orchestrator): stitch closure σ_TRG / σ_INC(pT_ME ≥ 100) at
+  pT(QQ) > 200 = 1.118 ± 0.06 (z = +2.3) at m 200, 1.055 ± 0.037 (z = +1.5) at m 500, 20k LHE each, FSR off.
+- FAILED ATTEMPT: day-0 jobs d0pu2-n1/n2/n4 failed at start (script bug, scratch dir created too late); rerun as
+  p2-a-day0-pu2b.
+
+## [Xavier, channel (iii)] 2026-11-16 14:49 pilot code slices
+- Failed attempt: first p2x_mbgen changed the module constant p2c_mbgen.POOL_PT at run time to widen the pool; the same constant enters the v1 road rates, which doubled (0.0164 against 0.0080). Found on slice p2-c-px-mb (log of -big), fixed by an own loop with the v1 cuts as fixed numbers; slice redone as p2-c-px-mbb. Lesson: do not patch a constant of an imported module without reading every use of it.
+- Failed attempt: p2-c-px-znn (4 jobs) failed at the first event, a local variable shadowed the hadron list in p2x_hs0.extra_summary. Fixed; slice redone as p2-c-px-znnb.
+- Process error: I edited p2x_queue.sh while a queue was running it; the queue shell was killed by pid before it read on and restarted. No job affected.

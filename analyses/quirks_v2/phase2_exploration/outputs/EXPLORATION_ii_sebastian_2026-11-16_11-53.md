@@ -228,7 +228,18 @@ are 0.1–0.16 %.
 | NLO scale +/− [%] | 1.5/1.1 | 1.6/1.3 | 1.7/1.6 | 1.9/1.9 | 2.0/2.1 | 2.1/2.3 | 2.2/2.5 | 2.3/2.7 |
 | CT18NLO PDF +/− [%] (90 % CL) | 3.3/4.3 | 3.7/4.9 | 4.2/5.6 | 4.8/6.3 | 5.5/7.0 | 6.1/7.8 | 6.9/8.6 | 7.8/9.5 |
 
-K error ±0.002 (integration). K(200) reproduces FEAS_B's 1.165 ± 0.002.
+| m [GeV] | 1000 | 1100 | 1200 | 1300 | 1400 | 1500 |
+|---|---|---|---|---|---|---|
+| K | 1.1781 | 1.1817 | 1.1875 | 1.1943 | 1.1997 | 1.2055 |
+| NLO scale +/− [%] | 2.4/2.9 | 2.5/3.0 | 2.6/3.2 | 2.8/3.4 | 2.9/3.6 | 3.0/3.7 |
+| CT18NLO PDF +/− [%] | 8.7/10.4 | 9.8/11.5 | 11.0/12.6 | 12.4/13.8 | 13.8/15.1 | 15.3/16.5 |
+
+Ẽ (scalar), same settings: K = 1.1619 / 1.1589 / 1.1875 / 1.2187 at 200 / 500 / 1000 / 1500 GeV. NLO scale
++1.4/−1.1, +2.0/−2.1, +2.6/−3.1, +3.3/−4.0 %; PDF +3.4/−4.5, +5.3/−6.9, +10.2/−11.8, +17.9/−18.7 %.
+
+K error ±0.002 (integration). K(200) reproduces FEAS_B's 1.165 ± 0.002. All 14 E masses and 4 Ẽ masses are done with
+CT18NLO [VERIFIED, campaign p2-b-s2-kscan]. PDF4LHC21 (68 % CL) is queued (p2-b-s2-kscan-p4l). K_E/K_Ẽ = 1.0008 /
+0.9954 / 0.9920 / 0.9892 at 200 / 500 / 1000 / 1500 GeV.
 
 ### 2.6 Pending in S2
 K(m) with CT18NLO and PDF4LHC21; validation 3 (DY, μ = M_pair); validation 2 runs; S2-c inclusive samples, f₂₀₀ and its

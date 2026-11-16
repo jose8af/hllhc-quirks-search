@@ -1,6 +1,7 @@
 """p2x_b1.py -- pilot no-pile-up single-interaction events for a CLASS LIST (addendum 1 v2), one Geant4 vertex each.
 
-  <acts python> p2x_b1.py <sample> <classes: a+b+...> <out.npz> <n_events> <stream> <chunk> <first> <beta_min> <vertex file>
+  <acts python> p2x_b1.py <sample> <classes: a+b+...> <out.npz> <n_events> <stream> <chunk> <first> <beta_min> <vertex file> \
+                          [trunc: radius|time|both|auto = radius] [n_road_orientations = 21]
 
   sample    name of the pilot sample (dif, difc, ni22, ni30, ni61, nix, nic, hs, lowpt); only a label and a seed tag
   classes   classes of p2x_common.B1_CLASSES that form the sample (DIF sample of addendum v2 = dif+k0l)
@@ -8,8 +9,15 @@
             in file (= firing) order; the job fails if the file holds fewer (never a silent short sample)
   beta_min  hand-over cut of addendum v2 P6 (0.1): products slower than this at the slab exit are not given to Fatras
 
-Chain and hand-over exactly as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent with v1's
-Truncate (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
+  trunc     how the Fatras parent is cut at the Geant4 vertex (review of addendum v2, finding A-1):
+            auto    time for the classes difc and nic (after a turn), radius for the first-arc classes
+            radius  v1's run_chain.Truncate: parent SimHits at r > r_vertex dropped (wrong for a parent that has turned:
+                    its earlier hits at larger radius are dropped too)
+            time    parent SimHits LATER than the Geant4 vertex time dropped (class TruncateParent below)
+            both    dropped if later than the vertex time OR beyond the vertex radius
+
+Chain and hand-over as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent, truncated as
+chosen (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
 event stored on every surface.  The Geant4 crossings of the parent before the vertex are stored (variant B input).
 
 Per event (`evt`, columns EVT_COLS): everything of p2c_b1.EVT_COLS, plus the vertex class, the parent kinematics at
@@ -17,10 +25,12 @@ its origin (pdg, pT, eta, phi), the road offset, the vertex radius / z / time / 
 momentum at the vertex, pool provenance and source weight.  The last two columns are the event seed.
 Road: N_t of addendum v2 counts parents inside a road of half-width 0.15.  `road_dphi` = phi(parent at origin) -
 phi(road axis): the true offset for a hard-scatter pool (from the pool file), else a draw U(-0.15, 0.15) seeded per
-event; `phi_road` = phi(parent) - road_dphi.  `phimet` is Tatiana's independent uniform draw (kept).  Nothing is cut
+event; `phi_road` = phi(parent) - road_dphi.  The number of road orientations to be tested per event in Phase 3
+(21 = 2 pi / 0.30 non-overlapping roads, axes phi_road + 2 pi k / 21) is recorded in meta['road_orientations'].  `phimet` is Tatiana's independent uniform draw (kept).  Nothing is cut
 on either; Phase 3 chooses the convention.
 """
 import json
+import math
 import shutil
 import sys
 import tempfile
@@ -36,7 +46,42 @@ import p2x_common as X
 rc = B1.rc
 s4pu = B1.s4pu
 
+acts = rc.acts
+u = rc.u
 log = C.setup_logging('p2x_b1')
+TRUNC_MODES = ('radius', 'time', 'both')
+AFTER_TURN = ('difc', 'nic')          # 'auto': time for these classes, radius (v1) for the first-arc classes
+
+
+class TruncateParent(acts.examples.IAlgorithm):
+    """run_chain.Truncate (l.266-290) with a time criterion.  trunc_of(event) -> list of (vp, vsec, particle, r_cut [mm],
+    t_cut [ns], mode); generation-0 SimHits of that particle are dropped if (mode radius) r > r_cut, (mode time) t > t_cut,
+    (mode both) either; the mode is given per event (so 'auto' can depend on the vertex class).  Reads 'simhits', writes 'simhits_t', stores n_trunc_dropped (as run_chain.Truncate)."""
+
+    def __init__(self, trunc_of, store, mode):
+        acts.examples.IAlgorithm.__init__(self, 'TruncateParentX', acts.logging.WARNING)
+        self.trunc_of = trunc_of; self.store = store; self.mode = mode
+        self.inp = acts.examples.ReadDataHandle(self, acts.examples.SimHitContainer, 'in'); self.inp.initialize('simhits')
+        self.out = acts.examples.WriteDataHandle(self, acts.examples.SimHitContainer, 'out'); self.out.initialize('simhits_t')
+
+    def execute(self, ctx):
+        cut = {(int(a), int(b), int(c)): (float(r), float(t), m) for a, b, c, r, t, m in self.trunc_of(ctx.eventNumber)}
+        c = acts.examples.SimHitContainer(); nd = 0
+        for h in self.inp(ctx.eventStore):
+            b = h.particleId
+            key = (int(b.vertexPrimary), int(b.vertexSecondary), int(b.particle))
+            if key in cut and int(b.generation) == 0:
+                fp = h.fourPosition
+                far = math.hypot(fp[0], fp[1]) > cut[key][0]
+                late = fp[3] / u.ns > cut[key][1]
+                mode = cut[key][2]
+                if (mode == 'radius' and far) or (mode == 'time' and late) or (mode == 'both' and (far or late)):
+                    nd += 1
+                    continue
+            c.insert(h)
+        self.store[ctx.eventNumber]['n_trunc_dropped'] = nd
+        self.out(ctx, c)
+        return acts.examples.ProcessCode.SUCCESS
 NEW_COLS = ['cls', 'parent_pdg', 'parent_pt0', 'parent_eta0', 'parent_phi0', 'road_dphi', 'phi_road', 'vtx_r', 'vtx_z',
             'vtx_t', 'vtx_vol', 'first_arc', 'parent_p_vtx', 'fire', 'pool_file', 'pool_row', 'src_index', 'w_src']
 EVT_COLS = B1.EVT_COLS[:-2] + NEW_COLS + B1.EVT_COLS[-2:]
@@ -58,7 +103,7 @@ def load(vfile, classes, first, n):
     return V, PR, CR, cls[take], src[take], meta
 
 
-def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
+def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, trunc_mode='radius', n_orient=21):
     t_start = time.time()
     HO.BETA_MIN = float(beta_min)
     job_seed = C.qv2_seed(stream, chunk)
@@ -75,6 +120,9 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
         rc.BTL_SIDS.update(s['sid'] for s in G['surfs'] if s['kind'] == 'BTL')
         store = {}; aux = {}
         rc.TIMES.clear()
+        assert trunc_mode in TRUNC_MODES + ('auto',)
+        after = [X.CODE[c] for c in AFTER_TURN]
+        ev_mode = [('time' if cls[i] in after else 'radius') if trunc_mode == 'auto' else trunc_mode for i in range(n_events)]
 
         def provider(i):
             P, trunc, npg, ninj, nslow = HO.event_rows(V[i], PR[i], vcols, dec, ev_seeds[i])
@@ -85,8 +133,11 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
             g = dict(zip(vcols, V[i]))
             vz = np.array([[s4pu.GUN_VP, g['x0'], g['y0'], g['z0'], g['t0'], g['px0'], g['py0'], g['pz0']]])
             aux[i] = (P, pv, phimet, npg, ninj, len(trunc), nslow, droad)
-            return P, vz, dict(trunc=trunc, n_particles=len(P))
-        trunc = rc.Truncate(lambda i: store[i]['info']['trunc'], store)
+            return P, vz, dict(trunc=[(*t, g['t'], ev_mode[i]) for t in trunc], n_particles=len(P))
+        if trunc_mode == 'radius':          # v1's own class, unchanged code path
+            trunc = rc.Truncate(lambda i: [t[:4] for t in store[i]['info']['trunc']], store)
+        else:
+            trunc = TruncateParent(lambda i: store[i]['info']['trunc'], store, trunc_mode)
         s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True, truncate=trunc,
                                store_vp={s4pu.GUN_VP})
         s.run()
@@ -133,12 +184,15 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
         meta = dict(mode='b1x', term=sample, sample=sample, classes=classes, class_codes=X.CODE, n_per_class=n_cls,
                     stream=stream, chunk=chunk, job_seed=job_seed, n_events=n_events, first_vertex=first,
                     vertex_file=str(vfile), vertex_file_sha256=C.sha256_file(vfile), vertex_file_meta=vsum,
-                    beta_min=float(beta_min),
-                    handover=f'A (Fatras parent, v1 Truncate); products from the slab exit; beta < {HO.BETA_MIN} not handed over; '
+                    beta_min=float(beta_min), trunc_mode=trunc_mode,
+                    handover=f'A (Fatras parent, truncated at the vertex by {trunc_mode}); products from the slab exit; beta < {HO.BETA_MIN} not handed over; '
                              'Geant4 parent crossings stored (variant B input)',
                     chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS, evt_cols=EVT_COLS,
                     vcols=vcols, toy_cols=rc.TOY_COLS, pcols=s4pu.PCOLS, surface_names=vmeta['vol_names'],
                     proc_names=vmeta['proc_names'], road_half_width=W_ROAD,
+                    road_orientations=dict(n=int(n_orient), axis_k='phi_road + 2 pi k / n, k = 0 .. n-1',
+                                           note='review of addendum v2, B-1: if adopted, the own-hit count of a sample is the number of '
+                                                '(event, orientation) passes; a recorded parameter, nothing is simulated per orientation'),
                     prod_cols=['pdg', 'px', 'py', 'pz', 'E', 'x', 'y', 'z', 't'],
                     cross_cols=['surface', 'x', 'y', 'z', 't', 'px', 'py', 'pz'], v41_pass=v41_pass,
                     n_lost_simhits=int(np.sum(v41[:, 0] - v41[:, 1])),
@@ -166,4 +220,5 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
 
 if __name__ == '__main__':
     a = sys.argv[1:]
-    run(a[0], a[1].split('+'), a[2], int(a[3]), a[4], int(a[5]), int(a[6]), float(a[7]), a[8])
+    run(a[0], a[1].split('+'), a[2], int(a[3]), a[4], int(a[5]), int(a[6]), float(a[7]), a[8], a[9] if len(a) > 9 else 'radius',
+        int(a[10]) if len(a) > 10 else 21)

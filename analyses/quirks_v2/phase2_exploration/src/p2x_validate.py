@@ -12,7 +12,8 @@ Per file, by meta['mode'] (no rung, no candidate, no selection quantity is forme
            offsets, distinct seeds, no parent hit beyond the vertex radius, no product hit before its production time),
            plus: class of every event recomputed from its stored Geant4 vertex row == stored class, class in the
            sample's class list, parent inside the sample's phase space, |road offset| < 0.15, every hit owned by the
-           gun vertex, vertex-file provenance present
+           gun vertex, vertex-file provenance present; and (review of addendum v2, A-1) the Geant4 crossings of the
+           parent before the vertex that have no Fatras parent hit: at most 2 % of the crossings, on all events
   hs0x     V4-1 closure, no NaN, offsets, distinct seeds, truth MET > filter, every written hit has a row in the
            particle table, summaries finite
 Reproducibility: files with the same (mode, stream, chunk, size, sample/group/pass, first vertex) must have the same
@@ -34,24 +35,31 @@ log = C.setup_logging('p2x_validate')
 def key_of(m):
     return (m['mode'], m.get('sample', m.get('group', '')), m.get('g4_pass', ''), m['stream'], m['chunk'],
             m.get('n_events', m.get('n_fire', m.get('n_int'))), m.get('first_vertex', 0), m.get('vertex_file', ''),
-            m.get('pool_prefix', ''))
+            m.get('pool_prefix', ''), m.get('trunc_mode', ''))
 
 
 def chk_mb(z, m, part):
     r = {}
-    for pre, lo, hi in (('pool', 0.5, 20.0), ('lowpt', m['lowpt_phase_space']['pt'][0], 0.5)):
+    for pre, lo, hi, emax in (('pool', 0.5, 20.0, 1.0), ('xpool', 0.3, 20.0, 1.5)):
         if f'{pre}_pt' not in z.files:
             continue
         pt = z[f'{pre}_pt']; eta = z[f'{pre}_eta']
-        r[f'{pre}_in_phase_space'] = bool(len(pt) and pt.min() > lo - 1e-6 and pt.max() <= hi + 1e-6 and np.abs(eta).max() < 1.0)
+        r[f'{pre}_in_phase_space'] = bool(len(pt) and pt.min() > lo - 1e-6 and pt.max() <= hi + 1e-6 and np.abs(eta).max() < emax)
+        if pre == 'xpool':
+            r['xpool_disjoint_from_pool'] = bool(not np.any((pt > np.float32(0.5001)) & (np.abs(eta) < 0.9999)))
         r[f'{pre}_nan'] = int(np.isnan(pt).sum() + np.isnan(eta).sum())
         r[f'{pre}_species_ok'] = bool(np.all(np.isin(np.abs(z[f'{pre}_pdg']), (211, 321, 2212, 130, 2112, 22))))
     n = m['n_int']; ref = part['pool_per_interaction']
+    v1 = part['v1_rates']
     r.update(n_pool_per_interaction=m['n_pool_per_interaction'], n_lowpt_per_interaction=m['n_lowpt_per_interaction'],
+             n_xpool_per_interaction=m['n_xpool_per_interaction'], n_fwd_per_interaction=m['n_fwd_per_interaction'],
+             v1_dif_rate_x200=200 * m['rate_per_interaction_in_road']['dif'], v1_dif_rate_x200_partition=200 * v1['dif'],
              z_pool_vs_partition=float((m['n_pool'] - ref * n) / np.sqrt(ref * n * 2.0)),     # crude: clustered counts
              rate_v1=m['rate_per_interaction_in_road'], cpu_ms_per_interaction=m['cpu_ms_per_interaction'])
     r['hard'] = bool(r.get('pool_in_phase_space') and r.get('pool_nan') == 0 and r.get('pool_species_ok')
-                     and r.get('lowpt_in_phase_space', True) and r.get('lowpt_nan', 0) == 0)
+                     and r.get('xpool_in_phase_space', True) and r.get('xpool_nan', 0) == 0 and r.get('xpool_disjoint_from_pool', True)
+                     and abs(m['rate_per_interaction_in_road']['dif'] / v1['dif'] - 1) < 0.15
+                     and not np.isnan(z['hist']).any() and z['hist'].sum() > 0)
     return r
 
 
@@ -98,6 +106,42 @@ def chk_g4(z, m, part):
     return r
 
 
+BARREL_COUNT = ['TBPX_L1', 'TBPX_L2', 'TBPX_L3', 'TBPX_L4'] + [f'{a}_L{k}_{s}' for a in ('TBPS', 'TB2S') for k in (1, 2, 3)
+                                                                for s in ('in', 'out')]          # run_chain.py l.59-60
+A1_MAX = 0.02      # review of addendum v2, A-1: Geant4 pre-vertex crossings without a Fatras parent hit, per stream
+
+
+def parent_crossings(z, m):
+    """All events with a charged parent: per counting surface, number of Geant4 crossings of the parent before the vertex
+    against number of written Fatras parent hits (multiplicities, so a parent that crosses a layer twice counts twice)."""
+    import p2c_validate as PV
+    H = z['hits']; ho = z['hit_off']; ev = z['evt']; gc = z['gcross']; gco = z['gcross_off']
+    col = {k: i for i, k in enumerate(m['columns'])}
+    code_name = {v: k for k, v in m['surface_names'].items()}
+    cnt_sid = {i for i, nm in PV.SID_NAME.items() if nm in BARREL_COUNT}
+    both = og = of = nev = 0
+    for i in range(len(ev)):
+        if ev[i, 8] <= 0:
+            continue
+        nev += 1
+        h = H[ho[i]:ho[i + 1]]
+        par = (h[:, col['vsec']] == 0) & (h[:, col['gen']] == 0) & (h[:, col['particle']] == 1)
+        nf = {}
+        for sid in h[par, col['sid']].astype(int):
+            if sid in cnt_sid:
+                nf[PV.SID_NAME[sid]] = nf.get(PV.SID_NAME[sid], 0) + 1
+        ng = {}
+        for c in gc[gco[i]:gco[i + 1], 0].astype(int):
+            nm = code_name[c]
+            if nm in BARREL_COUNT:
+                ng[nm] = ng.get(nm, 0) + 1
+        for nm in set(nf) | set(ng):
+            a, b = ng.get(nm, 0), nf.get(nm, 0)
+            both += min(a, b); og += max(0, a - b); of += max(0, b - a)
+    return dict(a1_events=nev, a1_both=both, a1_g4_without_fatras=og, a1_fatras_without_g4=of,
+                a1_frac_g4_without_fatras=og / max(both + og, 1), a1_frac_fatras_without_g4=of / max(both + of, 1))
+
+
 def chk_b1(path, z, m, part):
     import p2c_g4vtx as GV
     import p2c_validate as PV
@@ -111,7 +155,9 @@ def chk_b1(path, z, m, part):
     hi = 0.5 if m['sample'] == 'lowpt' else 20.0
     pt = ev[:, ec['parent_pt0']]
     H = z['hits']; hc = {k: i for i, k in enumerate(m['columns'])}
-    r.update(sample=m['sample'], classes=m['classes'], n_per_class=m['n_per_class'],
+    r.update(parent_crossings(z, m))
+    r.update(trunc_mode=m.get('trunc_mode', 'radius'), a1_ok=bool(r['a1_frac_g4_without_fatras'] <= A1_MAX),
+             sample=m['sample'], classes=m['classes'], n_per_class=m['n_per_class'],
              class_recomputed_equal=bool(np.array_equal(code, ev[:, ec['cls']].astype(np.int8))),
              class_in_sample=bool(np.all(np.isin(ev[:, ec['cls']], [X.CODE[c] for c in m['classes']]))),
              first_arc_equal=bool(np.array_equal(fa.astype(float), ev[:, ec['first_arc']])),
@@ -128,7 +174,17 @@ def chk_b1(path, z, m, part):
                      and r['class_recomputed_equal'] and r['class_in_sample'] and r['first_arc_equal']
                      and r['parent_in_phase_space'] and r['road_offset_ok'] and r['hits_all_gun'] and r['evt_nan'] == 0
                      and r['provenance'] and r['mean_injected_slow'] == 0)
+    r['hard_without_a1'] = r['hard']
+    r['hard'] = bool(r['hard'] and r['a1_ok'])
     return r
+
+
+def nu_met_ok(z, m):
+    """The stored neutrino list reproduces the stored truth MET vector of every event (float32 list: 1e-3 relative)."""
+    nu = z['nu']; off = z['nu_off']; ev = z['evt']
+    idx = np.repeat(np.arange(len(ev)), np.diff(off))
+    mx = np.bincount(idx, nu[:, 1] * np.cos(nu[:, 3]), minlength=len(ev)); my = np.bincount(idx, nu[:, 1] * np.sin(nu[:, 3]), minlength=len(ev))
+    return np.allclose(mx, ev[:, 0], rtol=2e-3, atol=0.05) and np.allclose(my, ev[:, 1], rtol=2e-3, atol=0.05)
 
 
 def chk_hs0(z, m, part):
@@ -139,7 +195,11 @@ def chk_hs0(z, m, part):
              seeds_distinct=bool(len(np.unique(ev[:, -2] + ev[:, -1] * 2.0 ** 31)) == n),
              met_min=float(np.hypot(ev[:, 0], ev[:, 1]).min()), hits_without_particle_row=m['n_hits_without_particle_row'],
              summaries_nan=int(np.isnan(z['gsum']).sum() + np.isnan(z['jets10']).sum() + np.isnan(z['tau']).sum()
-                               + np.isnan(z['part']).sum() + np.isnan(ev).sum()),
+                               + np.isnan(z['part']).sum() + np.isnan(ev).sum() + np.isnan(z['had']).sum() + np.isnan(z['nu']).sum()),
+             had_per_event=float(len(z['had']) / n), nu_per_event=float(len(z['nu']) / n),
+             nu_sum_equals_met=bool(nu_met_ok(z, m)), gen_weight_all_one=bool(np.all(z['gsum'][:, m['gsum_cols'].index('gen_weight')] == 1.0)),
+             pthat_min=float(z['gsum'][:, m['gsum_cols'].index('pthat')].min()),
+             rss_note='max RSS and CPU are in the job marker',
              part_rows_per_event=float(len(z['part']) / n), part_hits_sum_equal=bool(z['part'][:, -1].sum() == len(H)),
              hits_per_event=float(len(H) / n), bytes_per_event=float(m['bytes'] / n), s_per_event=m['mean_s_per_event'],
              t_total_s=m['t_total_s'], tries_per_event=m['sum_tries'] / n, mean_w_v1=float(w.mean()),
@@ -147,7 +207,8 @@ def chk_hs0(z, m, part):
              replaced_events=len(m['replaced_events']), n_tau=int(len(z['tau'])),
              jets10_per_event=float(len(z['jets10']) / n), jets20_per_event=float(len(z['jets']) / n))
     r['hard'] = bool(r['v41_pass'] and r['nan_hits'] == 0 and r['offsets_ok'] and r['seeds_distinct'] and r['met_min'] >= 200.0
-                     and r['hits_without_particle_row'] == 0 and r['summaries_nan'] == 0 and r['part_hits_sum_equal'])
+                     and r['hits_without_particle_row'] == 0 and r['summaries_nan'] == 0 and r['part_hits_sum_equal']
+                     and r['nu_sum_equals_met'] and r['pthat_min'] >= 150.0)
     return r
 
 
@@ -157,6 +218,7 @@ def main(out, part_file, files):
     for f in files:
         z, m = C.load_job(f)
         mode = m['mode']
+        m['bytes'] = Path(f).stat().st_size          # the size is known only after the file is written: not in its meta
         r = dict(file=str(f), mode=mode, stream=m['stream'], chunk=m['chunk'], content_sha256=m['content_sha256'], bytes=m['bytes'])
         arrays = {k: z[k] for k in z.files if k != 'meta'}
         r['content_hash_recomputed_equal'] = bool(X.content_sha256(arrays) == m['content_sha256'])
@@ -177,13 +239,13 @@ def main(out, part_file, files):
         res.append(r)
         k = key_of(m)
         groups[k].append((str(f), m['content_sha256']))
-        kinds[(k[0], k[1], k[2], k[8])].add(m['content_sha256'])
+        kinds[(k[0], k[1], k[2], k[8], k[9])].add(m['content_sha256'])
         log.info('%s', json.dumps({a: b for a, b in r.items() if a not in ('file',)}, default=str))
     rep = [dict(key=[str(x) for x in k], files=[a for a, _ in v], identical=len({h for _, h in v}) == 1)
            for k, v in groups.items() if len(v) > 1]
     keys_per_kind = defaultdict(int)
     for k in groups:
-        keys_per_kind[(k[0], k[1], k[2], k[8])] += 1
+        keys_per_kind[(k[0], k[1], k[2], k[8], k[9])] += 1
     diff = [dict(kind=[str(x) for x in kd], n_distinct_jobs=keys_per_kind[kd], n_distinct_hashes=len(hs),
                  all_different=len(hs) == keys_per_kind[kd]) for kd, hs in kinds.items() if keys_per_kind[kd] > 1]
     ok = all(r['hard'] for r in res)

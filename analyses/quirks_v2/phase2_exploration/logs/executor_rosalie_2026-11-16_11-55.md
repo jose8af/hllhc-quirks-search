@@ -228,3 +228,39 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
   Check: ssh -x landau "tail /home/scratch/jdochoa/drivers/queue_landau_B.log"; qv2run status <campaign> --live.
   CPU-h spent (ledger, per job): C1 6.71 (pu1 2.86, pu2 2.90, s2 0.95, s3in 0.00); C2 0.62 (tstime 0.12, v45time 0.50,
   v45time2 0.00); day-0 0.95.
+
+## STATE FOR A SUCCESSOR (kept current; last update 2026-11-16 14:43 -05)
+Read first: PHASE2_BRIEF.md, this log's §1 (blinding), outputs/EXPLORATION_i_rosalie_2026-11-16_14-43.md (deviations).
+R=/home/users/jdochoa/hllhc-quirks-search/tools/runner ; campaigns in $R/campaigns/p2-a-*.json (made by
+src/make_campaigns.py) ; data /nfs/cajuela/jdochoa/quirks_v2/data/phase2/<campaign>/000/ ; markers ledger/markers/<campaign>/.
+Status of any campaign: ssh -x landau "$R/bin/qv2run status $R/campaigns/<c>.json --live -v"
+Shares (ORCHESTRATOR RULING in SLOTS.md): landau 2 slots, maxwell 2 slots (channel (i)).
+Slots/queues (driver logs in /home/scratch/jdochoa/drivers/ on the node):
+  landau A: driver of p2-a-c1-pu1 (--max-per-node 1). Restart: ssh -x landau "$R/bin/qv2run ssh launch $R/campaigns/p2-a-c1-pu1.json --nodes landau --max-per-node 1 --on landau"
+  landau B: src/queue_slot.sh landau logs/queue_landau_B.txt (re-read after each campaign; append lines to add work;
+            a line STOP ends it). Order: c1-s2 ✓, c2-v45time ✗(timeout), c1-s3in ✓, c2-tstime ✓, c2-v45time2 ✓, c1-s3,
+            c1-cp0, c2-v45time3, c1-siga2, c1-siga5, c1-gen, c1-sm, c2-tseed1, c2-v44a, c2-v44b (order of 14:45).
+            Restart: ssh -x landau "setsid nohup $QV2/phase2_exploration/src/queue_slot.sh landau $QV2/phase2_exploration/logs/queue_landau_B.txt > /home/scratch/jdochoa/drivers/queue_landau_B.log 2>&1 < /dev/null &"
+            (finished campaigns are skipped by their drivers: relaunch of a complete campaign dispatches nothing).
+  maxwell: driver of p2-a-c1-pu2 (--max-per-node 2) + queues logs/queue_maxwell_1.txt (c1-pu2 watch → c2-tseed2) and
+           logs/queue_maxwell_2.txt (c1-pu2 watch → c2-v44c), same restart pattern with "maxwell".
+C'_PU DEFINED 14:44 as p2-a-c1-cppua (dif, gamma; maxwell queue 2) and p2-a-c1-cppub (v0, pvpair; maxwell queue 1), --sources auto (needs all C'0 jobs of the topology done, else the job fails: rerun under new ids). NOT YET DEFINED: (was cppu:
+  topology>; DIF, gamma, V0 1,000 slots each, PV pair 2,000; 40 slots/job); V4-5 production (after c2-v45time3:
+  v45_bruteforce.py pu on the first 50 R04 trials of c1-pu1, plus --full-sphere 0.01 on 10 trials; signal mode to write:
+  first R04-accepted events in file order of the a5 outputs (17/17/16), hit pool from the a5 dumps via g1b_tt.assemble).
+Scripts (src/): c1_pu_job.py (PU/SM jobs, --premerge, --tseed), c1_s2_job.py (copy of channel ii's s2_job + c1gen),
+  c1_s3_inputs.py, c1_s3_job.py, c1_s3_index.py, c1_sig_job.py, c1_cp_job.py, v45_bruteforce.py, day0_summary.py,
+  c1_compare.py (PU families; C', SM, rates, trend/c-factor still to add), c1_signal_compare.py (open / sealed /
+  selftest-sealed), queue_slot.sh, make_campaigns.py.
+BLINDING / SEALED: signal outputs data/phase2/p2-a-c1-siga2/000/*.npz and p2-a-c1-siga5/000/*.npz hold R07 and FB bits.
+  Channel (i) reads them ONLY via `c1_signal_compare.py open` (masks rung bits outside R01–R06 before v1's analyse_file).
+  Sealed session command (worker, TT env, from $QV2):
+    envs/tt/.pixi/envs/default/bin/python phase2_exploration/src/c1_signal_compare.py sealed --a2 p2-a-c1-siga2 \
+      --a5 p2-a-c1-siga5 --key-file <orchestrator key> --out /nfs/cajuela/jdochoa/quirks_v2/data/sealed/c1_sealed.json.enc
+  (first run `python3 -I phase2_exploration/src/c1_s3_index.py` to write outputs/c1_s3/STAGE3_INDEX.json; it refuses
+  unless all 30 Stage-3 jobs are done).
+TRAPS: failed/timeout/oom jobs are never retried by the runner → rerun under new job ids/campaign; never pkill -f with
+  a pattern that is also in your ssh command line (it kills the ssh shell); jobs.tsv has one row per OUTPUT (deduplicate
+  by job_id when summing CPU); the a2/a5 jobs build their Stage-3 index from markers and fail if Stage 3 is incomplete;
+  keep PYTHONDONTWRITEBYTECODE=1 / remove src/__pycache__ after importing make_campaigns locally.
+CPU-h so far (14:40, ledger): C1 6.7, C2 0.6, day-0 0.95.

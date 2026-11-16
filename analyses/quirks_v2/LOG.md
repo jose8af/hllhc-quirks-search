@@ -515,3 +515,13 @@ Orchestrator decisions:
   the user chooses a larger size; nothing in the addendum changes its content. Cost 81 CPU-h against 29: an overrun
   of 52 CPU-h, reported (brief D6). The B1 streams stay held.
 - Addendum v3 by a fresh fixer; then a third (last) 1-bot review: the JFC 1-bot limit is "escalate after 3".
+
+## 2026-11-16 15:07 -05 (measured) — Addendum 1 version 3 written (fixer Yvonne); A-1 re-validation pending
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v3_yvonne_2026-11-16_15-04.md`, script `phase2_exploration/src/p2y_addendum1.py`,
+stdout `phase1_strategy/outputs/addendum1_v3_stdout.txt`, `FIX_REPORT_addendum1_v3_yvonne.md`. All findings resolved
+or stated except A-1, which carries one placeholder for Xavier's re-validation campaign `p2-c-px-tr` (queued).
+v3 numbers (ESTIMATE): empty pilot 161 [109–232] at R09 and 238 / 262 / 284 at R08; pilot 135 CPU-h, 156 GB; pool
+floor 201 as timed, 121 with both measures; upside reach 514 [445] / 584 [514] GeV; K 13, T_c 22; projection 4,787
+CPU-h at the 31-parameter toy cost. Three populations are unread by rule 1 in the draft and stated first: parents of
+0.3–0.5 GeV, parents at 1 < |η| < 1.5 (51 % of the pool), off-road hard-scatter hadrons. The third review waits for
+the A-1 result.
