@@ -414,3 +414,11 @@ with respect to v1. The reports that are pushed should be in latex."
 - Orchestrator: channel (iii) is to (1) make a real attempt at cost reduction, (2) write a decision memo with the
   effect of every choice on the rule-1 readings and on Gate-A-frozen text, (3) give the pool and toy projections as
   tables; then a strategy addendum with a 1-bot review (JFC strategy-revision gate) before the pilot is submitted.
+
+## 2026-11-16 13:17 -05 (measured) — User supplies CMS NOTE-2018/006
+The user pushed `NOTE2018_006.pdf` to `origin/v2-jfc` (commit `cae66ff`, repo root) and said to use it. Fetched
+and merged into local `v2-jfc` (merge commit, no rebase; local was 4 ahead, 1 behind). Checked by the orchestrator:
+title page reads "CMS NOTE-2018/006, Expected performance of the physics objects with the upgraded CMS detector at
+the HL-LHC, The CMS Collaboration, 06 December 2018 (v2, 10 December 2018)", 33 pages, sha256 `28ec834e…c4ac66`: the
+public note that retrieval R-3 named. Channel (ii) is to extract the jet, MET and lepton performance at pile-up 200
+and the recommended systematic uncertainties from it and redo the MET comparison.
