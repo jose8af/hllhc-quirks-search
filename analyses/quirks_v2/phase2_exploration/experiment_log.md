@@ -83,3 +83,12 @@ CONFIDENCE: HIGH on the measured unit costs and correctness on the synthetic wor
 (synthetic structure, node and load factors: factor ≈ 1.6 either way; v2 parameter count unknown).
 FLAG FOR HUMAN: YES — at 100 parameters the central projection is 228 CPU-h (> 183); options O1/O2 or a smaller
 workspace would be needed there.
+
+### 2026-11-16 18:15 channel (iii) Albert — first validation of the B1 chain at full job size: the "validated" β cut leaves a residue
+What was tried: `p2x_validate.py` on Xavier's p2-c-px-g4 (vertex files) and p2-c-px-b1 (radius cut), which had never been through a validation job (campaign p2-c-pa-val0), then a diagnostic of the failing check (p2-c-pa-dg1, src/p2a_diag_early.py).
+What worked: all vertex files; all first-arc streams at 2,000 events; reruns identical.
+What did not: "no product hit before the vertex time" fails in 25,000-event files (nix-big 6 hits in 3 events, nic-big 1 hit). (1) 5 hits are correct hits of secondaries Geant4 made along the parent's path before the vertex (stored as products with their own earlier production point): the check was too coarse; it now compares with the product's own production time. (2) 2 hits of one event are a slow heavy fragment (β = 0.134 > cut 0.1) with Fatras hits at t = −32 ns: the pathology the β cut was made for, at ≈ 4×10⁻⁵ per NI-X event (1 event).
+DECISION: keep β_min = 0.1 as the campaign default for now (it is the variant the addendum calls validated), record `n_early_prod` per event in every B1 file, measure the rate on ≈ 1.5×10⁵ NI events and scan β_min = 0.15 / 0.2 / 0.3 on the same events (p2-c-pa-b1-nix-b*).
+ALTERNATIVES: raise the cut now without a measurement; filter early hits in the job (new hand-over code).
+CONFIDENCE: MEDIUM — one event; the scan decides.
+FLAG FOR HUMAN: YES — whether a known rate of flagged events is acceptable or the cut moves (addendum P6 names 0.1).

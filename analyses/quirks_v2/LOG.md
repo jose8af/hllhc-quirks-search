@@ -677,3 +677,18 @@ with Fatras hits at t = −32 ns: a residue of the slow-fragment pathology, abou
 from one event). Being measured: per-event flag, rate on 1.5×10⁵ NI events, a β scan (0.15, 0.2, 0.3). A change of
 the β cut would change addendum P6 and needs the user. Half-turn fractions corrected with the full Geant4
 reference: 25.2 % (Z(νν)) and 37.5 % (minimum bias); no statement changes.
+
+## 2026-11-16 18:21 -05 (measured) — Addendum 1 v4, third review: ITERATE (0 A, 4 B, 12 C), all with exact text
+Reviewer Bruno (Fable, fresh): `phase1_strategy/review/critical/ADDENDUM_1_v4_CRITICAL_REVIEW_bruno_2026-11-16_18-17.md`.
+42 numbers recomputed with an own sampler: all reproduce. No number of the tables changes. B-1: the slow-fragment
+residue found after v4 closed must be a release condition for the nuclear-interaction streams (P6 (vi), D9). B-2:
+the robustness test's reading made single-valued (fixed density at raw pre-CKF level; one-sided correction if
+r > 1; the user chooses whether it enters the binding day-15 reading; a later chain fix regenerates the pilot).
+B-3: §0.1 corrected (every term comes from the present simulation; the looper zero is in finder candidates, not in
+the own-hit classes the rule counts; the hard-scatter looper zero read as a term would put an empty pilot at about
+351). B-4: the three unread populations could under-read B1 by up to about 3, not 2. The reviewer read the Stage-3
+code: quirk-pair hits are not truncated (no signal quantity looked at). He states that with the B and C texts applied
+as written no further review of the text is needed.
+Three-round limit of the 1-bot gate reached: the matter goes to the user. Orchestrator: a mechanical fixer applies
+the exact texts as version 5, a narrow mechanical check confirms the application (as in Phase-1 cycle 10), and the
+user gets the DECISION notice with the review status stated as it is.

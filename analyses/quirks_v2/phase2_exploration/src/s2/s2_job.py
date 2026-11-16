@@ -570,7 +570,10 @@ def fxfx_py8_card(sd, nev, qedfsr=True):
 
 
 def cmd_fxfx(a):
-    """fxfx <tag> <E|S> <mass> <nev> [--shower]: MC@NLO 0-1j (FxFx) events with loop_quirkE.  The process directory
+    """fxfx <tag> <E|S> <mass> <nev> [--shower] [--stage compile|grids|gen] [--acc X]: MC@NLO 0-1j (FxFx) events with
+    loop_quirkE, staged so that every runner job stays below 30 min: 'compile' = output + `compile MC` (stamp COMPILED);
+    'grids' = first launch without compilation (-x), MINT grids + a few events (stamp READY); 'gen' = launch -x -o
+    reusing the grids.  The process directory
     lives in node-local /home/scratch/jdochoa/cache/fxfx/<spin>_m<mass> (kept between jobs on the same node): the first
     job makes it (output, compile, grids, first events); later jobs reuse the grids (launch -o)."""
     tag, spin, mass, nev = a[0], a[1], int(a[2]), int(a[3])
@@ -583,11 +586,13 @@ def cmd_fxfx(a):
     ready = os.path.join(base, 'READY')
     info = dict(tag=tag, spin=spin, mass=mass, nev=nev, ptj=FXFX_PTJ, qcut=FXFX_QCUT, node=socket.gethostname(),
                 start=time.strftime('%Y-%m-%d %H:%M:%S %z'))
+    stage = a[a.index('--stage') + 1] if '--stage' in a else 'all'     # compile | grids | gen | all
+    compiled = os.path.join(base, 'COMPILED')
+    info['stage'] = stage
     os.makedirs(os.path.join(LOCAL, '.locks'), exist_ok=True)
     with open(os.path.join(LOCAL, '.locks', f'fxfx_{spin}_m{mass}.lock'), 'w') as lk:
         fcntl.flock(lk, fcntl.LOCK_EX)
-        first = not os.path.exists(ready)
-        if first:
+        if stage in ('compile', 'all') and not os.path.exists(compiled):
             shutil.rmtree(base, ignore_errors=True)
             models = os.path.join(base, 'models')
             os.makedirs(models)
@@ -606,13 +611,39 @@ def cmd_fxfx(a):
                      'parton_shower': 'PYTHIA8', 'ickkw': '3', 'jetalgo': '1', 'jetradius': '1.0',
                      'ptj': f'{FXFX_PTJ:.1f}', 'reweight_scale': 'True', 'reweight_PDF': 'False',
                      'req_acc': a[a.index('--acc') + 1] if '--acc' in a else '-1'})
+            pm = os.path.join(d, 'Cards', 'param_card.dat')     # the mass is set once, in the card, for all stages
+            txt = open(pm).read()
+            txt, nsub = re.subn(r'(?m)^(\s*%d\s+)\S+' % (9000011 if spin == 'E' else 9000013), r'\g<1>%.6e' % mass, txt)
+            if nsub < 1:
+                sys.exit('mass line not found in param_card')
+            open(pm, 'w').write(txt)
+            cmdf = os.path.join(base, 'compile.cmd')
+            open(cmdf, 'w').write('compile MC -f\nexit\n')
+            timed('amcatnlo_compile', [PY, os.path.join(d, 'bin', 'aMCatNLO'), cmdf], base,
+                  os.path.join(base, 'compile.log'), mg_env())
+            open(compiled, 'w').write(time.ctime() + '\n')
+        if stage == 'compile':
+            info['steps'] = STEPS
+            json.dump(info, open(os.path.join(out, f'{tag}.timing.json'), 'w'), indent=1)
+            with tarfile.open(os.path.join(out, f'{tag}.aux.tar.gz'), 'w:gz') as tf:
+                for f in glob.glob(os.path.join(base, '*.log')) + glob.glob(os.path.join(base, '*.ps')):
+                    tf.add(f, arcname=os.path.basename(f))
+            log.info('fxfx compile stage done: %s', STEPS)
+            return
+        if not os.path.exists(compiled):
+            sys.exit('stage %s needs a compiled process dir (run --stage compile first on this node)' % stage)
+        first = not os.path.exists(ready)
+        if stage == 'gen' and first:
+            sys.exit('stage gen needs grids (run --stage grids first on this node)')
         sd = seed(f's2.fxfx.{spin}{mass}', tag, 30000000)
         set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'nevents': str(nev), 'iseed': str(sd)})
+        if '--acc' in a:
+            set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'req_acc': a[a.index('--acc') + 1]})
         run = tag.replace('-', '_')
-        opt = '' if first else ' -o'
+        opt = ' -x' + ('' if first else ' -o')
         rec, txt = mg(mgdir, f'launch {d} -n {run}{opt}\nfixed_order=OFF\norder=NLO\nshower=OFF\nmadspin=OFF\n'
-                             f'reweight=OFF\ndone\nset {MASSPAR[spin]} {mass}\ndone\nexit\n',
-                      f'launch_{run}', base, 'amcatnlo_first' if first else 'amcatnlo_onlygen')
+                             f'reweight=OFF\ndone\ndone\nexit\n',
+                      f'launch_{run}', base, 'amcatnlo_grids_and_events' if first else 'amcatnlo_onlygen')
         if first:
             open(ready, 'w').write(time.ctime() + '\n')
     rd = os.path.join(d, 'Events', run)
