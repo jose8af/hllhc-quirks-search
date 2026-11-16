@@ -5,7 +5,7 @@ excess is the double-precision floor, the 44-bit kernel shows the nominal kernel
 k = 2.5 (8x larger eps_perp), with the eps_perp^-2 shape; two-sample test at p > 0.05 (evaluation script, not here).
 Settings as FIX2: max_boost 1e-3, hmax_trk 0.02 cm x s, string-queue cap 2^21, detector scaled by s (radii, z-limits,
 exits, hmax), vacuum, vertex at the origin.  Events: Phase-1 toy Stage-3 inputs (|eta_pair| < 1 subset) or an npz given.
-Usage: python floor2.py <out.json> <kernel nominal|t44> <lam_keV> <s> <mass> <i0> <n> [--fr 1,0.5,0.4,0.25,0.05]
+Usage: python floor2.py <out.json> <kernel nominal|t44|dd> <lam_keV> <s> <mass> <i0> <n> [--fr 1,0.5,0.4,0.25,0.05]
 """
 import json
 import logging
@@ -30,7 +30,7 @@ def main():
     out, kern, lam, s, m, i0, n = (sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4]), int(sys.argv[5]),
                                    int(sys.argv[6]), int(sys.argv[7]))
     frs = [float(x) for x in sys.argv[sys.argv.index('--fr') + 1].split(',')] if '--fr' in sys.argv else [1, 0.5, 0.4, 0.25, 0.05]
-    run = __import__('nm_kernel' if kern == 'nominal' else 'nm_kernel_t44').run
+    run = __import__({'nominal': 'nm_kernel', 't44': 'nm_kernel_t44', 'dd': 'nm_kernel_dd'}[kern]).run
     from nm_bstar import bstar_off_fields
     from T3_propagator import plane_fit, REC_RADII, REC_ZMAX
     d = np.load(TOY.format(m=m))

@@ -431,3 +431,19 @@ shrink the pool. Consequences: the approved figure and the threshold do not chan
 the cost-reduction attempt), allocated by the strategy's own rule √(N_t/(c_t·G_t)); the summed zero-count floor of
 the SM terms rises (ESTIMATE: from 12.6 to roughly 50–60 events); Table 4.4a and the dependent text are revised in
 the strategy addendum. The toy budget question is still open (backend test pending).
+
+## 2026-11-16 13:33 -05 (measured) — Phase 2: strategy addendum 1 drafted; pool-floor figures given to the user were wrong
+- Channel (iii) cost study: only tt̄ gets cheaper without changing physics (forced decays, generator level only so
+  far). Decision memo `phase2_exploration/outputs/PILOT_DECISIONS_tatiana_2026-11-16_13-22.md`.
+- Addendum draft: `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_tatiana_2026-11-16_13-31.md` (pending review and
+  user approval; strategy v10 untouched).
+- **Correction.** The pool table of 13:25 (summed floor 12.6 → 41.7 / 36.0 events), which the orchestrator relayed
+  to the user, counted generated filter-level events as preselected events. With the preselection weights measured
+  on 10,000 events per process (effective fractions 0.440 Z(νν), 0.268 W(τν), 0.125 tt̄ 1ℓ) the SM floor at 457 CPU-h
+  is 90–166 effective events (ESTIMATE), summed pool floor about 94–101. Before that the orchestrator had told the
+  user "roughly 50–60". The user's "option 1" was therefore taken on figures that were too low by about ×2–3; the
+  user is told and may re-decide.
+- Proposed rule-1 readings (ESTIMATE): one Z(νν) count 41.2 events (frozen: 18.1), one DIF count 77.7 (65.1), NI
+  4.0 / 5.1 / 5.1 (0.88 / 1.12 / 1.12); with "NI elsewhere" as a term an empty pilot reads 191 (R09) / 295 (R08)
+  against 300.
+- Next: independent critical review of the addendum (JFC strategy-revision gate, 1-bot), then the user.

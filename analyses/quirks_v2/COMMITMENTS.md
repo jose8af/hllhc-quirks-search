@@ -282,3 +282,21 @@ calendar of STR §11 is 2026-11-16.
 | VC-2 | Signal injection (check 2), pulls and constraints (3), impact ranking (4) | T1-d, T1-e, T1-f | 4a | 4a | open |
 | VC-3 | Goodness of fit (5) and look-elsewhere (6): not applicable to data; closure p-values reported; Bonferroni in C1 and C2-c; family-wise rules for the closure battery (K = 10), the ceiling family (19 terms) and the T1 coverage family (10 checks), with their sizes at the declared widths | STR §5.2, §4.0, §4.11 | 4a | 4a | open |
 | NA-1 | Declared not applicable (STR §5.1): beam energy; background shape as written; data/MC detector comparison as written; dE/dx calibration; b-tagging heavy-flavour treatment | justification in STR §5.1 | — | 4a (re-check) | n/a |
+
+## Changes of rows by addendum 1 (pending review and user approval)
+
+Drafted 2026-11-16 by Tatiana (Phase-2 executor, channel (iii)) from
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_tatiana_2026-11-16_13-31.md`. **Nothing in this section is in force
+until the addendum has passed review and the user has approved it; no row above is altered and no status changes.**
+Numbers tagged in the addendum ([V] campaign, [E] script `phase2_exploration/src/p2c_addendum1.py`).
+
+| identifier | what the addendum proposes |
+|---|---|
+| B1-a, B1-f (Df-9) | DIF term defined on first-arc decays (transverse path ≤ πR, 30 < r < 1000 mm), N_t = 7.77×10⁷ (v1 rate × the measured Geant4 ratio 1.19); decays after the first turn are a separate pilot sample (2.5×10⁵ events) for the check of the analytic bound, and join the term (N_t × 2.01) if H(R05) > 0 there. NI rates without the factor 0.22: N_t = 4.0 / 5.1 / 5.1×10⁶. Strict version: a new term "NI elsewhere" (N_t = 7.36×10⁷; family of ceiling tests T_c 19 → 20 if adopted); lenient version: recorded, not a term |
+| B1-a (hand-over) | products handed to Fatras where they leave the slab of their Geant4 vertex; products with β < 0.1 followed by Geant4 to their end; Fatras parent with v1's Truncate, Geant4 parent crossings stored for the second variant |
+| B1-c | the DIF rate comparison is made on first-arc decays (Geant4 0.0455 per parent against v1's 0.0381) |
+| B1-e | the pilot's unbiased population is the v1 rate phase space with the natural spectrum; H tabulated against parent pT, η and road offset in Phase 3 as the test of that restriction; the curler sample is the check of the bound |
+| B4-c | no-pile-up pool counted in effective preselected events (N_eff = (Σw)²/Σw²); Table 4.4a rows replaced at the approved 457 + 208 CPU-h (user decision 2026-11-16): SM floors 8.6 → 90 (forced tt̄ decays and preselection before the chain) or 166 (as timed); summed pool floor 12.6 → 94–101 |
+| ST-1 (Q4, Df-11) | rule 1 unchanged in definition; its numbers become 41 events per Z(νν) pilot count (2.3×10⁶ generated events, effective 1.01×10⁶), 78 per DIF count, 4.0 / 5.1 / 5.1 per NI count, 74 per NI-elsewhere count (strict); all-zero B₅₀ 191 (R09) / 295 (R08) strict, 120 / 225 lenient. Approved 4,609 CPU-h and threshold 5,992 unchanged; pilot generation 108 CPU-h against 54.5 (reported overrun) |
+| T1-i (Df-8) | not changed; finding recorded: toy cost ×17 / ×27 / ×75 at 60 / 80 / 100 parameters; four tests proposed before any change |
+| INV-1 | sample 11 gains the streams `pilot.c0.difc` (curler decays) and `pilot.c0.nix` (NI elsewhere); the Z(νν) pilot is 2.3×10⁶ generated events with stored preselection inputs |

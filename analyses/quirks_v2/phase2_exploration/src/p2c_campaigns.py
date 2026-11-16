@@ -109,6 +109,11 @@ def main(argv):
         jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
                      command=f'PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I {SRC}/p2c_rule1.py $QV2_OUT_DIR/{name}-0.json {costs}')]
         write(name, jobs, 0.2, 300, me, 'rule-1 readings and projections with measured costs')
+    elif what == 'addendum1':     # tables of strategy addendum 1 (ESTIMATE)
+        name = argv[1] if len(argv) > 1 else 'p2-c-addendum1'
+        jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
+                     command=f'PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I {SRC}/p2c_addendum1.py $QV2_OUT_DIR/{name}-0.json')]
+        write(name, jobs, 0.2, 300, me, 'rule-1 basis, day-15 table and Table 4.4a rows for strategy addendum 1')
     else:
         raise SystemExit(f'unknown campaign {what}')
 
