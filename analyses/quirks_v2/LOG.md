@@ -359,3 +359,22 @@ with respect to v1. The reports that are pushed should be in latex."
 - Reports live in `daily/` as `.tex` with the compiled `.pdf`: `phase1_report` now, then one per day.
 - `daily/phase1_report.tex` written by the orchestrator (6 pages) from `COMMITMENTS.md`, `gates/GATE_A.md`,
   `phase1_strategy/outputs/FRAMING.md` and the cycle-10 verdict.
+
+## 2026-11-16 12:15 -05 (measured) — Phase 2, channel (ii) reports 1 and 2; strategy-revision input on the MET model
+- R-2 (trigger turn-on) sourced from the public L1 trigger TDR (retrieval #11). R-3 sourced only from the second
+  public source (ATLAS notes, #12); the CMS note CMS-NOTE-2018-006 is not obtainable by an agent (CDS bot protection;
+  not circumvented). Jet-response tail: not sourced after a second attempt (#14). Validation figure: #15.
+- **Strategy-revision input (channel (ii)):** Phase 1 assumed the public soft-term parametrisation could be validated
+  against a separate pile-up-200 figure. Phase 2 found the only explicit public formula (2013, made for μ ≤ 140) gives
+  a MET resolution ×1.5–3 above the 2019 μ = 200 figure. Implication: a model built on the 2013 formula fails the
+  external validation of B4-b; a model built on the 2019 figure has no independent validation figure left.
+- **Orchestrator ruling (not a stop):** the stop-and-ask of STR §4.7 applies when no parameters can be sourced from
+  two public sources; parameters are sourced. A model without a passing external validation is the strategy's own
+  "not validated" branch (COM B4-b: full variation as width, stated). The choice between the two constructions is a
+  pre-freeze design decision of the Phase-3 MET-model work (by day 10), reviewed with the pre-registration; the
+  2013-against-2019 difference is the natural size of the "full variation". A second μ = 200 figure (the CMS note,
+  if the user supplies it by hand) would restore an independent validation. The user was told on 16 Nov.
+- Answers given to channel (ii): f₂₀₀ allowed (COM BL-1), A and m_mig not; S1 Stage-2 samples are not Phase 2;
+  install slot granted for Herwig (node-local) and PDF4LHC21; Herwig comparison charged to S2 within 139 CPU-h.
+- A channel (ii) smoke job overlapped for 11 minutes with channel (i)'s reserved ρ = 2 memory measurement on maxwell;
+  channel (i) to state whether its measurement is affected.

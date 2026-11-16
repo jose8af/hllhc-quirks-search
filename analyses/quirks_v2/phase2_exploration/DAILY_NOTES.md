@@ -1,3 +1,5 @@
 # Daily notes of the Phase-2 channels (append-only)
 - 2026-11-16 12:10 -0500 [ch. (ii) Sebastian] Done: plan; R-2 (CMS L1 TDR Table 4.1 p. 210: PUPPI MET 50 % at 128 GeV, 90 % at 200 GeV, vs gen MET, no uncertainty given) and R-3 (ATLAS-only parametrisations for μ ≤ 140 + ATL-PHYS-PUB-2019-005 Fig. 18 at μ = 200; CMS note and jet low tail not found) logged; MLM smoke passed (E-TRG m500 σ = 1.214 fb, v1 1.213; MG launch fixed ≈ 92 s, shower 25 ms, conversion 10 ms per LHE event, VERIFIED p2-b-s2-smoke). 0.09 CPU-h spent.
   Runs now: chain on landau (1 slot) waiting for channel (iii)'s p2-c-t-g4 to leave, then p2-b-s2-mlmtime → kval → kscan. Check: `ssh -x landau cat /home/scratch/jdochoa/drivers/chain_s2_first.log`.
+- 2026-11-16 12:14 [ch. (ii) Sebastian] R-3 closed via the ATLAS route. The jet-response tail is not sourced. Validation figure: ATL-PHYS-PUB-2019-005 Fig. 18 (37–51 GeV, reading error ±0.5 GeV). The 2013 ATLAS MET formula is ×1.5–3 above it (flag for ch. (iii)). PDF4LHC21_40 installed (sw/lhapdf_data).
+  Runs now: landau chain (mlmtime → kval → kscan; waiting for p2-c-t-g4); Herwig install queued on maxwell from 13:30.

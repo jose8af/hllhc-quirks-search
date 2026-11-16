@@ -1,0 +1,11 @@
+# Herwig 7 from conda-forge for the generator-level hadronisation comparison ([DP5], STR §11.5; quirks v2 Phase 2,
+# executor Sebastian, 2026-11-16).  Installed node-local by install_herwig_local.sh; the solved lock is copied back here.
+[workspace]
+name = "qv2-herwig"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+herwig = "==7.3.0"
+python = "3.11.*"
+numpy = "*"
