@@ -56,3 +56,13 @@ FLAG FOR HUMAN: YES
 - Failed attempt: first p2x_mbgen changed the module constant p2c_mbgen.POOL_PT at run time to widen the pool; the same constant enters the v1 road rates, which doubled (0.0164 against 0.0080). Found on slice p2-c-px-mb (log of -big), fixed by an own loop with the v1 cuts as fixed numbers; slice redone as p2-c-px-mbb. Lesson: do not patch a constant of an imported module without reading every use of it.
 - Failed attempt: p2-c-px-znn (4 jobs) failed at the first event, a local variable shadowed the hadron list in p2x_hs0.extra_summary. Fixed; slice redone as p2-c-px-znnb.
 - Process error: I edited p2x_queue.sh while a queue was running it; the queue shell was killed by pid before it read on and restarted. No job affected.
+
+## 2026-11-16 15:29 [Sebastian] FxFx (0–1j MC@NLO) does not fit a 30-minute job
+Attempt 1 (fxfx-e500-a, landau, nb_core = 1, node-local process dir): process generation ≈ 80 s; the first launch had completed 17 of 56 tasks of its first queue after 13 min wall, with only 82 s of CPU. Stopped to free the slot. Not yet tried: MG gridpack mode for NLO; increasing nb_core (outside the 1-core-per-job rule); a source of the idle time (MG polling, NFS reads of HEPTools/LHAPDF). Needs an orchestrator decision before a second attempt.
+
+## [Xavier, channel (iii)] 2026-11-16 15:41 A-1: truncation by time does not close the finding; Fatras stops at half a turn
+Phase 1 assumed the chain propagates curling particles (v1 "looper" topology; hand-over "the parent's hits up to the vertex"). Phase 2 found: no hit beyond 0.5 turn of any particle (B1 parents: p2-c-px-a1d; Z(νν) slice events: 231 of 3.94×10⁶ hits, p2-c-px-a1e). Implications: DIF-C and NI-C cannot be given their parent hits by any truncation (40–45 % of the Geant4 pre-vertex crossings missing with the time cut, p2-c-px-val2); every sample lacks the later arcs of soft particles. Detail and options: outputs/A1_TRUNCATION_xavier_2026-11-16_15-40.md.
+DECISION: pilot launch held and reported instead of executing the go given before this was known.
+ALTERNATIVES: launch and report.
+CONFIDENCE: MEDIUM
+FLAG FOR HUMAN: YES

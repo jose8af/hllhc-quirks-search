@@ -536,3 +536,18 @@ and the hadron/photon list; not the full particle list (another jet radius would
 about 29 CPU-h). Orchestrator ran the preflight on einstein at 15:28: 0 failed checks; cajuela 3.9 TB free.
 Decision: launch on 2 slots on schrodinger after slice queue 6 (which carries the A-1 re-validation) has ended.
 The B1 streams remain held for the addendum review and the user's approval.
+
+## 2026-11-16 15:42 -05 (measured) — A-1 result: the chain records no hit beyond half a turn; Z(νν) launch held
+Xavier did not launch on the go and reported first (correct). `phase2_exploration/outputs/A1_TRUNCATION_xavier_2026-11-16_15-40.md`
+(VERIFIED, campaigns p2-c-px-tr, -val2, -a1d, -a1e): with v1's radius cut the first-arc streams match Geant4 (0.0–0.11 %
+of parent crossings without a hit); a time cut is no better. For the after-a-turn streams NO truncation passes:
+58.5 % / 66.5 % of Geant4 pre-vertex crossings have no Fatras hit with the radius cut and 40.4 % / 45.2 % with the
+time cut, because **Fatras in the v1 chain leaves no hit beyond half a turn of any particle** (last parent hit at
+≤ 0.50 turn in every stream; in 5,000 Z(νν) slice events 231 of 3.94×10⁶ hits lie beyond 0.5 turn, behind a sharp
+edge). Mechanism unverified (probably the propagator's loop protection). The second reviewer's measure missed it.
+This is chain-wide and inherited from v1: every sample (signal, SM, pile-up, single interactions) loses the later
+arcs of curling particles. The pilot would be self-consistent with v1 and C1, but a chain change would mean
+regenerating it.
+Orchestrator: `pilot.mb` (generator level, unaffected) starts now. The Z(νν) pilot is held for a few hours for a
+quantification: how many barrel crossings are missing per sample type, the mechanism and whether it is configurable,
+the cost with full loops, and whether the Geant4 comparison then passes. Then a decision, with the user informed.

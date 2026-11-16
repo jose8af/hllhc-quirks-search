@@ -109,3 +109,10 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   0.12 s per fit (0.26 ms per evaluation); 60 par 17 iterations, 1,020 evaluations, 2.2 s per fit (2.1 ms per evaluation).
   So cost ≈ iterations (flat) × (N+1) (finite differences) × t_eval(N) with t_eval ∝ N^3 (×8 for ×1.9 in N). 0 failed fits.
   numpy vs jax q on the same toys: |Δq| ≤ 0.004 (31) and ≤ 0.009 (60 par): this is the fit-tolerance scale.
+- 2026-11-16 15:33 p2-c-toy-base all done 15:32:34 [V]: numpy+scipy 100 par 67,780 ± 2,196 s per unit (20+20 toys;
+  Tatiana 48,600 from 6+6 on landau; 33 s median per toy, p90 38–44 s, 1,900 evaluations per fit, 17 s per fit);
+  stitch on numpy 60 par 8,575 ± 126 (×1.0, |Δq| 7e-9); numpy+minuit (remedy a) 1,468 s at 31 par (×0.33, 1,630 calls
+  per fit) and 41,267 s at 60 par (6+6 toys; ×0.21): (a) is a slow-down, because pyhf's minuit runs numerical gradients
+  and hesse() (N² calls) in every fit. Profiles (cProfile, numpy): 85–90 % of the time in pyhf's model evaluation
+  (60 par: concatenate 22 s, where 20 s, einsum 14 s, power [normsys code1] 14 s, make_pdf 5 s of 90 s); SLSQP itself
+  negligible. jax vs numpy at 100 par on the 20 paired toys: |Δq| ≤ 0.0076. p2-c-toy-ref launched 15:32:52 by the waiter.
