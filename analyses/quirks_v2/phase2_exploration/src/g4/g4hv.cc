@@ -16,12 +16,15 @@
 //        Output text records, written only for primaries that end in a vertex (a process other than transportation
 //        kills the primary) inside r < RMAX, |z| < ZMAX:
 //          V <id> <process> <volume> <parent_pdg> <x> <y> <z> <t> <px> <py> <pz> <nprod> <ncross>
-//          P <pdg> <px> <py> <pz> <E>                              (nprod lines; GeV)
+//          P <pdg> <px> <py> <pz> <E> <x> <y> <z> <t>              (nprod lines; GeV, mm, ns)
+//        Product hand-over point: with the option 'exit', the products of a vertex inside a material slab are
+//        tracked by Geant4 until they leave that slab and are recorded there (those that stop inside the slab are
+//        not handed over; N_STOP counts them); without it, and for vertices in vacuum, at the vertex itself.
 //          X <surface> <x> <y> <z> <t> <px> <py> <pz>              (ncross lines: the primary's crossings before the vertex)
 //        and one summary line "G4HV ..." on stdout.
 //   scan <n_per_eta> : geantinos from the origin at eta = -3.0 ... 3.0 in steps of 0.1 (uniform phi); output
 //          S <eta> <volume> <path_mm> <x_over_X0> <x_over_lambdaI> <r_mid_mm> <z_mid_mm>
-// Usage: g4hv <geom.txt> <physlist> <seed> <out.txt> prim <primaries.txt> [rmax_mm] | scan <n_per_eta> [overlap]
+// Usage: g4hv <geom.txt> <physlist> <seed> <out.txt> prim <primaries.txt> [rmax_mm] [exit] | scan <n_per_eta> [overlap]
 #include "G4RunManagerFactory.hh"
 #include "G4PhysListFactory.hh"
 #include "G4VModularPhysicsList.hh"
@@ -73,6 +76,12 @@ static const double ZMAX = 2700.0, TMAX = 25.0;                      // mm, ns
 static std::map<std::string, long> gCount;                           // "process|volume" -> vertices
 static long gNvtx = 0, gNcut = 0, gNprim = 0;
 static bool gOverlap = false;
+static bool gExit = false;
+static long gNstop = 0, gNexit = 0;
+struct Prod { int pdg; double px, py, pz, e, x, y, z, t; };
+static std::vector<Prod> gProd;
+static bool gHaveVtx = false;
+static std::string gVtxVol, gVtxHead;
 
 static std::string base(const G4String& n) {
   auto k = n.find('#');
@@ -152,9 +161,18 @@ static std::map<std::string, ScanAcc> gAcc;
 
 class EvAct : public G4UserEventAction {
  public:
-  void BeginOfEventAction(const G4Event*) override { gCross.clear(); gAcc.clear(); }
+  void BeginOfEventAction(const G4Event*) override { gCross.clear(); gAcc.clear(); gProd.clear(); gHaveVtx = false; }
   void EndOfEventAction(const G4Event*) override {
-    if (!gScan) return;
+    if (!gScan) {
+      if (!gHaveVtx) return;
+      std::fprintf(gOut, "%s %zu %zu\n", gVtxHead.c_str(), gProd.size(), gCross.size());
+      for (auto& q : gProd)
+        std::fprintf(gOut, "P %d %.9g %.9g %.9g %.9g %.6f %.6f %.6f %.6f\n", q.pdg, q.px, q.py, q.pz, q.e, q.x, q.y, q.z, q.t);
+      for (auto& c : gCross)
+        std::fprintf(gOut, "X %s %.6f %.6f %.6f %.6f %.9g %.9g %.9g\n", c.surf.c_str(), c.x, c.y, c.z, c.t, c.px, c.py,
+                     c.pz);
+      return;
+    }
     for (auto& kv : gAcc)
       std::fprintf(gOut, "S %.2f %s %.6f %.8f %.8f %.3f %.3f\n", gEta, kv.first.c_str(), kv.second.path, kv.second.xx0,
                    kv.second.xl, kv.second.r, kv.second.z);
@@ -178,7 +196,25 @@ class Step : public G4UserSteppingAction {
       }
       return;
     }
-    if (tr->GetParentID() != 0) { tr->SetTrackStatus(fStopAndKill); return; }
+    if (tr->GetParentID() != 0) {
+      // product of the vertex, tracked inside the vertex slab (option 'exit'): handed over where it leaves the slab
+      auto pv2 = post->GetPhysicalVolume();
+      std::string vnow = pv2 ? base(pv2->GetName()) : "none";
+      if (!gHaveVtx || vnow != gVtxVol) {
+        if (gHaveVtx) {
+          auto x = post->GetPosition(); auto p = post->GetMomentum();
+          gProd.push_back({tr->GetDefinition()->GetPDGEncoding(), p.x() / GeV, p.y() / GeV, p.z() / GeV,
+                           post->GetTotalEnergy() / GeV, x.x() / mm, x.y() / mm, x.z() / mm, post->GetGlobalTime() / ns});
+          ++gNexit;
+        }
+        tr->SetTrackStatus(fStopAndKill);
+      } else if (tr->GetTrackStatus() == fStopAndKill || tr->GetTrackStatus() == fStopButAlive
+                 || post->GetGlobalTime() > TMAX * ns) {
+        if (tr->GetTrackStatus() != fStopAndKill) tr->SetTrackStatus(fStopAndKill);
+        ++gNstop;
+      }
+      return;
+    }
     // crossing of a sensitive surface: boundary between the two halves of one slab
     if (post->GetStepStatus() == fGeomBoundary) {
       auto v1 = pre->GetPhysicalVolume(); auto v2 = post->GetPhysicalVolume();
@@ -208,18 +244,19 @@ class Step : public G4UserSteppingAction {
       if (proc->GetProcessName() == "Decay" && post->GetMomentum().mag() > 0) { pm = post->GetMomentum().mag(); }
       if (x.perp() < RMAX * mm && std::fabs(x.z()) < ZMAX * mm) {
         long id = gPrim[G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID()].id;
-        std::fprintf(gOut, "V %ld %s %s %d %.6f %.6f %.6f %.6f %.9g %.9g %.9g %zu %zu\n", id,
-                     proc->GetProcessName().c_str(), vol.c_str(), tr->GetDefinition()->GetPDGEncoding(), x.x() / mm,
-                     x.y() / mm, x.z() / mm, post->GetGlobalTime() / ns, pm * d.x() / GeV, pm * d.y() / GeV,
-                     pm * d.z() / GeV, sec->size(), gCross.size());
-        for (auto q : *sec) {
-          auto p = q->GetMomentum();
-          std::fprintf(gOut, "P %d %.9g %.9g %.9g %.9g\n", q->GetDefinition()->GetPDGEncoding(), p.x() / GeV, p.y() / GeV,
-                       p.z() / GeV, q->GetTotalEnergy() / GeV);
+        char buf[512];
+        std::snprintf(buf, sizeof buf, "V %ld %s %s %d %.6f %.6f %.6f %.6f %.9g %.9g %.9g", id,
+                      proc->GetProcessName().c_str(), vol.c_str(), tr->GetDefinition()->GetPDGEncoding(), x.x() / mm,
+                      x.y() / mm, x.z() / mm, post->GetGlobalTime() / ns, pm * d.x() / GeV, pm * d.y() / GeV,
+                      pm * d.z() / GeV);
+        gVtxHead = buf; gVtxVol = vol; gHaveVtx = true;
+        if (!(gExit && vol != "World")) {          // hand-over at the vertex: record now, the stack kills them
+          for (auto q : *sec) {
+            auto p = q->GetMomentum();
+            gProd.push_back({q->GetDefinition()->GetPDGEncoding(), p.x() / GeV, p.y() / GeV, p.z() / GeV,
+                             q->GetTotalEnergy() / GeV, x.x() / mm, x.y() / mm, x.z() / mm, post->GetGlobalTime() / ns});
+          }
         }
-        for (auto& c : gCross)
-          std::fprintf(gOut, "X %s %.6f %.6f %.6f %.6f %.9g %.9g %.9g\n", c.surf.c_str(), c.x, c.y, c.z, c.t, c.px, c.py,
-                       c.pz);
         ++gNvtx; ++gCount[proc->GetProcessName() + "|" + vol];
       }
       return;
@@ -234,7 +271,8 @@ class Step : public G4UserSteppingAction {
 class Stack : public G4UserStackingAction {
  public:
   G4ClassificationOfNewTrack ClassifyNewTrack(const G4Track* t) override {
-    return (t->GetParentID() > 0) ? fKill : fUrgent;
+    if (t->GetParentID() == 0) return fUrgent;
+    return (gExit && gHaveVtx && gVtxVol != "World") ? fUrgent : fKill;      // products tracked only inside a slab
   }
 };
 
@@ -273,6 +311,7 @@ int main(int argc, char** argv) {
     }
     nev = (int)gPrim.size(); gNprim = nev;
     if (argc > 7) RMAX = std::atof(argv[7]);
+    gExit = argc > 8 && std::string(argv[8]) == "exit";
   }
   G4Random::setTheSeed(seed);
   auto rm = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
@@ -293,7 +332,8 @@ int main(int argc, char** argv) {
   std::fclose(gOut);
   G4cout << "G4HV mode=" << mode << " physlist=" << plist << " field_T=" << gB << " nev=" << nev << " init_cpu_s="
          << double(c1 - c0) / CLOCKS_PER_SEC << " event_cpu_s=" << double(c2 - c1) / CLOCKS_PER_SEC << " cpu_ms_per_event="
-         << 1e3 * double(c2 - c1) / CLOCKS_PER_SEC / std::max(nev, 1) << " nvtx=" << gNvtx << " ndropped=" << gNcut;
+         << 1e3 * double(c2 - c1) / CLOCKS_PER_SEC / std::max(nev, 1) << " nvtx=" << gNvtx << " ndropped=" << gNcut << " handover=" << (gExit ? "exit" : "vertex")
+         << " nprod_exit=" << gNexit << " nprod_stopped_in_slab=" << gNstop;
   for (auto& kv : gCount) G4cout << " " << kv.first << "=" << kv.second;
   G4cout << G4endl;
   delete rm;

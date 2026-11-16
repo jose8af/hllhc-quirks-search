@@ -1,0 +1,93 @@
+{
+ "n_declared": 41,
+ "bonferroni_p": 0.0012195121951219512,
+ "entries": {
+  "pu1.R04": {
+   "v1": 171.55,
+   "v1_s_ln": 0.0056,
+   "v1_source": "D4 \u00a75.2 B1 (columns[3].B1_per_trial)",
+   "v2": 174.86875,
+   "v2_s_ln": 0.07634094571359488,
+   "z": 0.25031885506103174,
+   "p": 0.8023407762941017,
+   "mde_2sigma": 0.16543234414394034,
+   "test": "log-ratio z",
+   "note": ""
+  },
+  "pu1.R05": {
+   "v1": 49.72,
+   "v1_s_ln": 0.0062,
+   "v1_source": "D4 \u00a75.2 B1",
+   "v2": 50.50625,
+   "v2_s_ln": 0.08408562108265862,
+   "z": 0.18608825627567804,
+   "p": 0.8523755511982116,
+   "mde_2sigma": 0.18367946249262632,
+   "test": "log-ratio z",
+   "note": ""
+  },
+  "pu1.R06": {
+   "v1": 0.247,
+   "v1_s_ln": 0.01,
+   "v1_source": "D4 \u00a75.2 B1 (s_ln \u2248 0.01 [E] there)",
+   "v2": 0.203125,
+   "v2_s_ln": 0.13694359392503405,
+   "z": -1.4242904047362335,
+   "p": 0.154362423951523,
+   "mde_2sigma": 0.3160258093028924,
+   "test": "log-ratio z",
+   "note": ""
+  },
+  "pu1.R07": {
+   "v1": "35/48000",
+   "v1_source": "D4 \u00a72.3: 35 groups / 48,000 trials",
+   "v2": "0/320",
+   "p": 1.0,
+   "z": 0.0,
+   "test": "conditional binomial (Poisson counts, trial exposures)",
+   "gross_check_only": false
+  },
+  "pu1.R08": {
+   "v1": "0/48000",
+   "v1_source": "D4 \u00a72.3: 0 / 48,000",
+   "v2": "0/320",
+   "p": 1.0,
+   "z": 0.0,
+   "test": "conditional binomial (Poisson counts, trial exposures)",
+   "gross_check_only": true
+  },
+  "pu1.R09": {
+   "v1": "0/48000",
+   "v1_source": "D4 \u00a72.3: 0 / 48,000",
+   "v2": "0/320",
+   "p": 1.0,
+   "z": 0.0,
+   "test": "conditional binomial (Poisson counts, trial exposures)",
+   "gross_check_only": true
+  }
+ },
+ "samples": {
+  "pu1": {
+   "campaign": "p2-a-c1-pu1",
+   "files": 4,
+   "events": 80,
+   "trials": 320
+  }
+ },
+ "families": {
+  "pu1": {
+   "n": 3,
+   "mean_ln_ratio": -0.013435671963284405,
+   "s": 0.05238695035132741,
+   "z": -0.25646982451124806,
+   "coherent": true
+  }
+ },
+ "individual_fail": [],
+ "global_partial": {
+  "n_available": 6,
+  "sum_z2": 2.125891525346492,
+  "chi2_99_at_n_available": 16.811893829770927,
+  "note": "the global test of STR \u00a74.1 uses all 41 quantities; partial value only"
+ }
+}

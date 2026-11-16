@@ -89,3 +89,10 @@ needs the v2 re-freeze (REPRODUCE §5.1-4).
 - `acts/stage4/run_stage4.py` `run_pu_job(job, allow_interim, premerge=None)`: forwards the threshold and hands each
   trial's store to a streaming writer (`phase2_exploration/src/c1_pu_job.py`), so it is not kept in memory.
   Diff: +7 lines, 1 changed. Why: the ρ = 2 C1 jobs are also the B2 development sample (STR §4.1, §4.17 row 2).
+
+### Phase 2, channel (ii) (executor Sebastian, 2026-11-16 13:09)
+- No file under `analytic/`, `sim/`, `acts/`, `code/` or `envs/` was modified.
+- `phase2_exploration/src/p1/nm_kernel_t44.py` is a copy of `analytic/numerics/nm_kernel.py` with two changes (diff
+  ≈ 15 lines): `mdot()` truncates every product and the result to a 44-bit mantissa (P1 floor test 2, STR §4.15), and
+  `CODE` is an absolute path to `analyses/quirks_v2/code`.
+- Phase-2 jobs import the chain code read-only, with `PYTHONDONTWRITEBYTECODE=1` and `NUMBA_CACHE_DIR` in job scratch.

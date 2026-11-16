@@ -392,3 +392,25 @@ with respect to v1. The reports that are pushed should be in latex."
 - Slot conflicts between the channels: replaced the per-channel caps by fixed node shares (`phase2_exploration/SLOTS.md`).
 - Ruling: channel (i) produces the C1 signal inputs itself (Stage 2 at E 200 and E 500 with v1's cards, FSR off as
   S2-d keeps for C1; Stage 3 at the three C1 points), reusing channel (ii)'s generation job script.
+
+## 2026-11-16 13:11 -05 (measured) — Phase 2, channel (iii) interim: pilot held; stop-rule projection above the threshold
+- Measured unit costs (VERIFIED, channel (iii)): no-pile-up hard-scatter event 0.127 s (Z(νν)), 0.17 s (W(τν)),
+  0.57 s (tt̄ 1ℓ) against the guessed 45 ms; B1 no-PU chain event 3.7–5.9 ms (11.5); Geant4 firing 0.41 ms (0.134);
+  toys 638 s at 31 parameters but 1.1×10⁴ / 1.8×10⁴ / 4.9×10⁴ s at 60 / 80 / 100 (synthetic workspace; the two
+  largest on 12 toys). v1 rates reproduced (DIF 1.56 against 1.59 per event; NI 0.098 against 0.098). B1-d Phase-2
+  part passes (positions identical, x/X₀ to 4×10⁻⁷).
+- **Projection (ESTIMATE, channel (iii)):** the 4a no-pile-up pool (457 CPU-h at 45 ms) becomes about 2,000–2,600
+  CPU-h at the planned sizes, i.e. a total of about 6,150–6,760 CPU-h against the stop-and-ask threshold 5,992. The
+  toy budget (183 CPU-h) does not hold above about 31 parameters with the present backend.
+  **Brief §7 stop rule (projected overrun above 30 %) is met on this estimate: the user is asked.** No spending
+  beyond the approved Phase-2 items is started; C1, C2, S2, P1 continue (needed in every branch).
+- **Pilot not submitted.** The Z(νν) pilot at 2.3×10⁶ events costs 81 CPU-h against 29, and the generator gives
+  filter-level events (mean v1 preselection weight 0.40), so one count would read about 27 events, not 18. Open
+  definition choices that change what rule 1 reads: the population of the unbiased DIF/NI events (O1), curling
+  parents (O12: Geant4 gives 2.5× v1's decays per parent), the NI "PV-line factor" 0.22 (O3: without it one NI
+  count reads 4–5 events, not about 1), NI in other layers (O4: 13 % of Geant4 inelastic vertices are at the three
+  strategy radii), the hand-over point (first version put product hits before the vertex time; an "exit" option
+  passes the hard checks).
+- Orchestrator: channel (iii) is to (1) make a real attempt at cost reduction, (2) write a decision memo with the
+  effect of every choice on the rule-1 readings and on Gate-A-frozen text, (3) give the pool and toy projections as
+  tables; then a strategy addendum with a 1-bot review (JFC strategy-revision gate) before the pilot is submitted.

@@ -64,7 +64,38 @@ Reading (b), with ΣE_T,hs = ΣE_T − 20μ, is undefined below 4,000 GeV.
   (ESTIMATE).
 
 ## 2. S2: theory inputs
-(in progress: MLM timing, validations 1 and 3, K(m) scan, f₂₀₀ samples, FxFx timing)
+
+### 2.1 Unit cost of MLM 0–2j generation (replaces the Table 4.0 guess of 50 ms)
+
+Campaign `p2-b-s2-mlmtime`, landau, one job at a time. v1 cards: xqcut 30, qCut 45, CP5, QED-FSR card; the trigger
+samples (TRG) carry v1's 100 GeV ME cut. Code: `src/s2/s2_job.py mlmtime`. VERIFIED from each job's own child rusage.
+
+| sample (m = 500) | σ_LHE this run [fb] | v1 σ_LHE [fb] (`sim/SAMPLES.md`) | MG fixed per launch [s] | MG per event [ms] | Pythia per event [ms] | npz per event [ms] |
+|---|---|---|---|---|---|---|
+| E-TRG | 1.2086 ± 0.0062 | 1.213 | 99 | 3.4 | 25.1 | 9.7 |
+| E-INC | 5.386 ± 0.015 | 5.389 | 72 | 4.9 | 22.6 | 9.9 |
+| Ẽ-TRG | 0.09736 | 0.09734 | 89 | 3.8 | 25.5 | 10.6 |
+
+In a 20,000-event chunk the full chain (MG + Pythia + npz) costs **≈ 41 ms per LHE event** [VERIFIED rates, chunk
+arithmetic ESTIMATE], against the Table 4.0 assumption of 50 ms (G). Further measurements:
+- Max RSS 214 MB.
+- Node-local MG copy: 28 s once per node.
+- The extra compile of the first launch: ≈ 5–8 s on top of the launch fixed cost.
+
+### 2.2 S2-a validation 1: model identity (PASS)
+
+Fixed-order LO of `loop_quirkE` (aMC@NLO, `fixed_order=ON, order=LO`) against the tree-level v1 UFO (MadEvent). Both
+runs use μ_R = μ_F = m (fixed; banner checked), CT18NLO, 14 TeV, N_IC = 1. Campaign `p2-b-s2-kval`. Evaluation:
+`src/s2/kval_eval.py` → `outputs/s2/kval.json`. The z-score includes half a unit of aMC@NLO's 4-digit summary rounding.
+
+| m [GeV] | σ FO-LO [pb] | σ tree [pb] | rel. diff. | z | verdict (\|z\| < 3 and < 0.5 %) |
+|---|---|---|---|---|---|
+| 200 | 0.09342 ± 0.000039 | 0.09344 ± 0.000031 | −0.021 % | −0.40 | PASS |
+| 500 | 2.654e-3 ± 1.2e-6 | 2.654e-3 ± 1.0e-6 | 0.000 % | 0.00 | PASS |
+| 1000 | 8.218e-5 ± 3.7e-8 | 8.216e-5 ± 3.4e-8 | +0.024 % | +0.40 | PASS |
+
+(in progress: K(m) with CT18NLO and PDF4LHC21, validation 3 (DY), validation 2 (Resummino), S2-c inclusive samples
+and f₂₀₀, FxFx timing)
 
 ## 3. P1: thickness-law clean-ups
 (in progress: v1 B*-off configuration resolved, re-timing next)

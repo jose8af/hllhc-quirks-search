@@ -55,9 +55,11 @@ def main(argv):
         write('p2-c-t-hs0', jobs, 1.0, 1500, me, 'day-0 timing of the no-PU hard-scatter event (the guessed 45 ms)')
     elif what == 't-g4':          # Geant4 vertex yield and cost per firing on the natural spectrum; material scan
         name = argv[1] if len(argv) > 1 else 'p2-c-t-g4'
+        ho = argv[2] if len(argv) > 2 else 'vertex'
+        nj, sizes = (3, '40000 500000 3000000') if ho == 'vertex' else (2, '20000 200000 1500000')
         jobs = [dict(id=f'{name}-y{k}', outputs=[f'{name}-y{k}.npz'],
-                     command=ENV + f'{ACTSPY} {SRC}/p2c_g4vtx.py time $QV2_OUT_DIR/{name}-y{k}.npz 40000 500000 3000000 '
-                                   f'time.g4 {k}') for k in range(3)]
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_g4vtx.py time $QV2_OUT_DIR/{name}-y{k}.npz {sizes} '
+                                   f'time.g4 {k} FTFP_BERT {ho}') for k in range(nj)]
         jobs.append(dict(id=f'{name}-scan', outputs=[f'{name}-scan.npz'],
                          command=ENV + f'{ACTSPY} {SRC}/p2c_g4vtx.py scan $QV2_OUT_DIR/{name}-scan.npz 20'))
         write(name, jobs, 0.5, 1500, me, 'timing: Geant4 vertex yield per firing, cost per firing, geantino scan')
@@ -70,8 +72,9 @@ def main(argv):
         write(name, jobs, 0.5, 600, me, 'timing: hybrid toys (two fits each) at 31, 60, 80, 100 parameters')
     elif what == 't-b1':          # hand-over slice: 2,000 events per term from the vertices of p2-c-t-g4
         name = argv[1] if len(argv) > 1 else 'p2-c-t-b1'
-        vdir = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-g4/000'
-        files = ' '.join(f'{vdir}/p2-c-t-g4-y{k}.npz' for k in range(3))
+        g4c = argv[3] if len(argv) > 3 else 'p2-c-t-g4'
+        vdir = f'/nfs/cajuela/jdochoa/quirks_v2/data/p2c/{g4c}/000'
+        files = ' '.join(f'{vdir}/{g4c}-y{k}.npz' for k in range(2))
         n_ev = int(argv[2]) if len(argv) > 2 else 2000
         jobs = [dict(id=f'{name}-{t}', outputs=[f'{name}-{t}.npz'],
                      command=ENV + f'{ACTSPY} {SRC}/p2c_b1.py {t} $QV2_OUT_DIR/{name}-{t}.npz {n_ev} time.c0.{t} 0 0 {files}')
@@ -84,9 +87,10 @@ def main(argv):
                      command=ENV + f'{ACTSPY} {SRC}/p2c_matscan.py $QV2_OUT_DIR/{name}-0.json {scan}')]
         write(name, jobs, 0.1, 1000, me, 'B1-d: positions, x/X0 per layer, Fatras physics record')
     elif what == 'val-b1':        # hand-over validation on the slice of p2-c-t-b1
-        name = 'p2-c-val-b1'
-        d = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000'
-        files = ' '.join(f'{d}/p2-c-t-b1-{t}.npz' for t in ('dif', 'ni22', 'ni30', 'ni61'))
+        name = argv[1] if len(argv) > 1 else 'p2-c-val-b1'
+        b1c = argv[2] if len(argv) > 2 else 'p2-c-t-b1'
+        d = f'/nfs/cajuela/jdochoa/quirks_v2/data/p2c/{b1c}/000'
+        files = ' '.join(f'{d}/{b1c}-{t}.npz' for t in ('dif', 'ni22', 'ni30', 'ni61'))
         jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
                      command=ENV + f'{ACTSPY} {SRC}/p2c_validate.py $QV2_OUT_DIR/{name}-0.json {files}')]
         write(name, jobs, 0.1, 1000, me, 'hand-over validation: truncation, product times, variant A against B')

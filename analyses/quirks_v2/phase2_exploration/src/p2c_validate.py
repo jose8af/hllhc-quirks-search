@@ -42,7 +42,7 @@ def one(path):
                seeds_distinct=bool(len(np.unique(ev[:, -2] + ev[:, -1] * 2.0 ** 31)) == n),
                hits_per_event=float(len(H) / n), ckf_tracks_per_event=float(z['v41'][:, 10].mean()),
                events_without_hits=int(np.sum(np.diff(ho) == 0)), sha_hits=C.hashlib.sha256(H.tobytes()).hexdigest()[:16])
-    late_parent = 0; beyond = 0; early_prod = 0; with_prod_hits = 0; n_parent_hits = 0
+    late_parent = 0; beyond = 0; early_prod = 0; with_prod_hits = 0; n_parent_hits = 0; n_prod_hits = 0
     dbal = []; drphi = []; dz = []; only_f = 0; only_g = 0; both = 0; ncmp = 0
     for i in range(n):
         h = H[ho[i]:ho[i + 1]].astype(float); t = T[ho[i]:ho[i + 1]].astype(float)
@@ -55,6 +55,7 @@ def one(path):
         beyond += int(np.sum(par & (rt > rv + 1e-3)))
         late_parent += int(np.sum(par & ~btl & (h[:, col['t']] > g['t'] + 0.010)))
         pr = h[:, col['vsec']] >= 1
+        n_prod_hits += int(pr.sum())
         with_prod_hits += int(pr.any())
         early_prod += int(np.sum(pr & ~btl & (h[:, col['t']] < g['t'] - 0.010)))
         P = gp[gpo[i]:gpo[i + 1]].astype(float)
@@ -85,7 +86,9 @@ def one(path):
                     only_g += 1
     res.update(parent_hits=n_parent_hits, parent_hits_beyond_vertex_radius=beyond,
                parent_hits_later_than_vertex_time=late_parent, product_hits_earlier_than_vertex=early_prod,
-               frac_events_with_product_hits=with_prod_hits / n,
+               frac_events_with_product_hits=with_prod_hits / n, product_hits=n_prod_hits,
+               product_handover=m.get('handover'), mean_injected=m.get('mean_injected'),
+               mean_injected_slow=m.get('mean_injected_slow'),
                decay_momentum_imbalance_q50_q90_q99=q(dbal),
                ab_events=ncmp, ab_surfaces_both=both, ab_only_fatras=only_f, ab_only_geant4=only_g,
                ab_abs_drphi_mm_q50_q90_q99=q(np.abs(drphi)), ab_abs_dz_mm_q50_q90_q99=q(np.abs(dz)),

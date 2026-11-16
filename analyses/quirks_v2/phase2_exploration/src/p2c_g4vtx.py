@@ -1,6 +1,6 @@
 """p2c_g4vtx.py -- Geant4 vertices of primaries drawn from the minimum-bias pool (STR §4.4 pt 1, 2, 5).
 
-  <acts python> p2c_g4vtx.py time <out.npz> <n_int> <n_fire_dif> <n_fire_ni> <stream> <chunk> [physlist]
+  <acts python> p2c_g4vtx.py time <out.npz> <n_int> <n_fire_dif> <n_fire_ni> <stream> <chunk> [physlist] [vertex|exit]
   <acts python> p2c_g4vtx.py scan <out.npz> <n_per_eta>
 
 A "firing" is one pool primary sent through Geant4 from a luminous-region vertex with a uniform azimuth (the detector
@@ -67,13 +67,13 @@ def parse(path, names, fire0, ipass, prim):
                           *map(float, w[5:12]), int(w[12]), int(w[13]), p0[1], p0[2], p0[3], p0[4], p0[5], p0[6], p0[7]))
                 np_.append(0); nx.append(0)
             elif c == 'P':
-                w = ln.split(); P.append(tuple(map(float, w[1:6]))); np_[-1] += 1
+                w = ln.split(); P.append(tuple(map(float, w[1:10]))); np_[-1] += 1
             elif c == 'X':
                 w = ln.split(); X.append((names.code(names.vol, w[1]),) + tuple(map(float, w[2:9]))); nx[-1] += 1
     return V, P, X, np_, nx
 
 
-def fire(pool, n_fire, pname, seed, geom, physlist, names, fire0=0):
+def fire(pool, n_fire, pname, seed, geom, physlist, names, fire0=0, handover='vertex'):
     """Fire n_fire primaries of the pool rows allowed in this pass.  Returns record lists and the Geant4 CPU."""
     ps = PASSES[pname]
     sel = np.nonzero(np.isin(np.abs(pool['pdg']), ps['species']))[0]
@@ -93,7 +93,10 @@ def fire(pool, n_fire, pname, seed, geom, physlist, names, fire0=0):
         with open(fin, 'w') as f:
             for i, r in enumerate(prim):
                 f.write('%d %d %.6f %.6f %.6f %.6f %.9g %.9g %.9g\n' % (i, r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7]))
-        kv, _ = run_g4([geom, physlist, int(rng.integers(1, 2 ** 31 - 1)), fout, 'prim', fin, ps['rmax']])
+        kv, _ = run_g4([geom, physlist, int(rng.integers(1, 2 ** 31 - 1)), fout, 'prim', fin, ps['rmax']]
+                       + (['exit'] if handover == 'exit' else []))
+        for k2 in ('nprod_exit', 'nprod_stopped_in_slab'):
+            counts[k2] = counts.get(k2, 0) + int(kv.get(k2, 0))
         cpu += float(kv['event_cpu_s']); init += float(kv['init_cpu_s'])
         for k, x in kv.items():
             if '|' in k:
@@ -108,7 +111,7 @@ def fire(pool, n_fire, pname, seed, geom, physlist, names, fire0=0):
 
 def pack(recs):
     V = np.array(sum((r['V'] for r in recs), []), float).reshape(-1, len(VCOLS))
-    P = np.array(sum((r['P'] for r in recs), []), np.float32).reshape(-1, 5)
+    P = np.array(sum((r['P'] for r in recs), []), np.float64).reshape(-1, 9)
     X = np.array(sum((r['X'] for r in recs), []), np.float32).reshape(-1, 8)
     npd = np.array(sum((r['np'] for r in recs), []), np.int64); nxd = np.array(sum((r['nx'] for r in recs), []), np.int64)
     poff = np.r_[0, np.cumsum(npd)]; xoff = np.r_[0, np.cumsum(nxd)]
@@ -147,24 +150,25 @@ def main(argv):
         return
     n_int, n_dif, n_ni, stream, chunk = int(argv[2]), int(argv[3]), int(argv[4]), argv[5], int(argv[6])
     physlist = argv[7] if len(argv) > 7 else 'FTFP_BERT'
+    handover = argv[8] if len(argv) > 8 else 'vertex'
     import p2c_mbgen
     arrays, mmeta = p2c_mbgen.generate(n_int, stream, chunk)
     pool = dict(pdg=arrays['pool_pdg'], pt=arrays['pool_pt'], eta=arrays['pool_eta'])
     geom = geom_file()
     names = Names()
     seed = C.qv2_seed(stream + '.g4', chunk, mod=2 ** 62)
-    rd, sd = fire(pool, n_dif, 'dif', seed + 1, geom, physlist, names)
-    rn, sn = fire(pool, n_ni, 'ni', seed + 2, geom, physlist, names, fire0=n_dif)
+    rd, sd = fire(pool, n_dif, 'dif', seed + 1, geom, physlist, names, handover=handover)
+    rn, sn = fire(pool, n_ni, 'ni', seed + 2, geom, physlist, names, fire0=n_dif, handover=handover)
     A = pack([rd, rn])
     m, proc, vol = classify(A['vtx'], names)
     ip = A['vtx'][:, 1]
     yld = dict(dif_pass={k: float((v & (ip == 0)).sum()) / max(n_dif, 1) for k, v in m.items()},
                ni_pass={k: float((v & (ip == 1)).sum()) / max(n_ni, 1) for k, v in m.items()})
     n_sel_dif = int(np.isin(np.abs(pool['pdg']), PASSES['dif']['species']).sum())
-    meta = dict(mode='g4vtx-time', stream=stream, chunk=chunk, physlist=physlist, vcols=VCOLS, proc_names=names.proc,
+    meta = dict(mode='g4vtx-time', stream=stream, chunk=chunk, physlist=physlist, product_handover=handover, vcols=VCOLS, proc_names=names.proc,
                 vol_names=names.vol, passes=PASSES, mbgen=mmeta, dif=sd, ni=sn, yield_per_firing=yld,
                 pool_size=int(len(pool['pdg'])), pool_dif_species=n_sel_dif, t_total_s=round(time.time() - t0, 2),
-                prod_cols=['pdg', 'px', 'py', 'pz', 'E'], cross_cols=['surface', 'x', 'y', 'z', 't', 'px', 'py', 'pz'],
+                prod_cols=['pdg', 'px', 'py', 'pz', 'E', 'x', 'y', 'z', 't'], cross_cols=['surface', 'x', 'y', 'z', 't', 'px', 'py', 'pz'],
                 code_sha256=C.code_hashes([__file__, C.HERE / 'g4' / 'g4hv.cc', C.HERE / 'g4' / 'make_geom_g4.py',
                                            C.HERE / 'p2c_mbgen.py']))
     meta['bytes'] = C.save_job(out, dict(A, pool_pdg=pool['pdg'], pool_pt=pool['pt'], pool_eta=pool['eta'],

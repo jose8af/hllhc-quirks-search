@@ -39,44 +39,48 @@ class Decayer:
         if not self.py.init():
             raise RuntimeError('Pythia decayer init failed')
 
-    def decay(self, prods, xv, tv_ns, seed):
-        """prods: (n, 5) pdg, px, py, pz, E at the vertex xv (mm), time tv (ns).  Returns list of
-        (pdg, q, m, x, y, z, t_ns, px, py, pz, displaced: bool) of final particles."""
+    def decay(self, prods, seed):
+        """prods: (n, 9) pdg, px, py, pz, E, x, y, z (mm), t (ns): each product at its hand-over point.  Returns list of
+        (pdg, q, m, x, y, z, t_ns, px, py, pz, displaced: bool, beta) of final particles."""
         py = self.py
         py.rndm.init(int(seed) % 900_000_000)
         ev = py.event
         ev.reset()
         out = []
-        tmm = tv_ns * s4pu.C_MM_PER_NS
-        for pdg, px, py_, pz, e in prods:
+        start = []
+        for pdg, px, py_, pz, e, x0, y0, z0, t0 in prods:
+            xv = (x0, y0, z0); tv_ns = t0; tmm = tv_ns * s4pu.C_MM_PER_NS
             pdg = int(pdg)
             m2 = e * e - px * px - py_ * py_ - pz * pz
             m = math.sqrt(max(m2, 0.0))
             if abs(pdg) >= 1000000000:                       # nucleus 100ZZZAAAI: passed directly
                 z = (abs(pdg) // 10000) % 1000
-                out.append((pdg, float(z), m, xv[0], xv[1], xv[2], tv_ns, px, py_, pz, False))
+                out.append((pdg, float(z), m, xv[0], xv[1], xv[2], tv_ns, px, py_, pz, False,
+                            math.sqrt(max(e * e - m2, 0.0)) / max(e, 1e-12)))
                 continue
             if not py.particleData.isParticle(pdg):
                 continue
             i = ev.append(pdg, 91, 0, 0, px, py_, pz, e, m)
             ev[i].vProd(pythia8.Vec4(xv[0], xv[1], xv[2], tmm))
             ev[i].tau(ev[i].tau0() * py.rndm.exp())
+            start.append(xv)
         if ev.size() > 1:
             py.moreDecays()
             for k in range(1, ev.size()):
                 p = ev[k]
                 if not p.isFinal():
                     continue
-                disp = abs(p.xProd() - xv[0]) + abs(p.yProd() - xv[1]) + abs(p.zProd() - xv[2]) > 1e-9
+                disp = p.mother1() > 0          # daughter of a product decayed here: a later, displaced vertex
                 out.append((p.id(), p.charge(), p.m(), p.xProd(), p.yProd(), p.zProd(), p.tProd() / s4pu.C_MM_PER_NS,
-                            p.px(), p.py(), p.pz(), disp))
+                            p.px(), p.py(), p.pz(), disp, p.pAbs() / max(p.e(), 1e-12)))
         return out
 
 
 def fatras_rows(final):
     """Fatras input selection and vsec numbering: 1 = at the Geant4 vertex, 2.. = one per distinct later decay point."""
     rows = []; keys = {}
-    for pdg, q, m, x, y, z, t, px, py_, pz, disp in final:
+    nslow = 0
+    for pdg, q, m, x, y, z, t, px, py_, pz, disp, beta in final:
         pt = math.hypot(px, py_)
         if pt <= s4pu.PT_MIN or not (q != 0 or pdg == 22):
             continue
@@ -89,12 +93,13 @@ def fatras_rows(final):
         code = int(pdg)
         if abs(code) not in SAFE_PDG:
             code = 2212 if q > 0 else -2212
+        nslow += beta < 0.1
         rows.append((GUN_VP, vsec, code, q, m, x, y, z, t, px, py_, pz))
-    return rows
+    return rows, nslow
 
 
 def event_rows(v, prods, vcols, decayer, seed):
-    """One Geant4 vertex -> (P rows (n, 12) PCOLS, trunc list, n_products_g4, n_injected)."""
+    """One Geant4 vertex -> (P rows (n, 12) PCOLS, trunc list, n_products_g4, n_injected, n_injected with beta < 0.1)."""
     g = dict(zip(vcols, v))
     pdg = int(g['parent_pdg']); a = abs(pdg)
     rows = []; trunc = []
@@ -102,7 +107,7 @@ def event_rows(v, prods, vcols, decayer, seed):
         q = (CHARGE3[a] / 3.0) * (1 if pdg > 0 else -1)
         rows.append((GUN_VP, 0, pdg, q, MASS[a], g['x0'], g['y0'], g['z0'], g['t0'], g['px0'], g['py0'], g['pz0']))
         trunc.append((GUN_VP, 0, 1, math.hypot(g['x'], g['y'])))
-    final = decayer.decay(prods, (g['x'], g['y'], g['z']), g['t'], seed)
-    pr = fatras_rows(final)
+    final = decayer.decay(prods, seed)
+    pr, nslow = fatras_rows(final)
     P = np.array(rows + pr, float).reshape(-1, 12)
-    return P, trunc, len(prods), len(pr)
+    return P, trunc, len(prods), len(pr), nslow

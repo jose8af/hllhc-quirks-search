@@ -32,3 +32,6 @@ DECISION: none taken on the pilot definition. Open choices O1–O12 are in logs/
 ALTERNATIVES: listed per choice with a recommendation.
 CONFIDENCE: MEDIUM (O1, O3, O5, O12 change numbers that rule 1 of STR §11.7 reads).
 FLAG FOR HUMAN: YES
+
+## 2026-11-16 12:58 [Sebastian] install-slot check from a worker does not work
+`ssh landau` from maxwell fails ("Could not resolve hostname"). Only einstein resolves the short worker names. The pgrep check inside `queue_maxwell1.sh` therefore passed vacuously. Verified by hand from einstein that no other pixi install was running. Future install checks run from einstein.

@@ -78,6 +78,9 @@ def main():
     ap.add_argument("--premerge", type=int, default=None, help="store pre-merge candidates with N_IP2 >= this")
     ap.add_argument("--kind", default="pu", choices=["pu", "sm"])
     ap.add_argument("--sm-sample", default=None)
+    ap.add_argument("--tseed", type=int, default=None,
+                    help="C2 T_seed stability: override finder T_seed (g3_rerun.py pattern); events, PV, roads and "
+                         "trial seeds are regenerated identically from the same job seed")
     a = ap.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", stream=sys.stderr)
@@ -96,6 +99,14 @@ def main():
     if fz.get("wp_rule_sha256") != RS.sha256_file(RS.HERE / "WP_RULE.md"):
         raise SystemExit("WP_RULE.md sha256 differs from frozen_inputs.json -> refusing (v1 freeze rule)")
 
+    if a.tseed is not None:          # v1 acts/stage4/g3/g3_rerun.py: wrap the config hook, change one parameter
+        orig = RS.finder_configs
+
+        def finder_configs(fz_, job_, allow_interim):
+            cfg, wcfg = orig(fz_, job_, allow_interim)
+            cfg.tseed = int(a.tseed)
+            return cfg, wcfg
+        RS.finder_configs = finder_configs
     seed = RS.hash_seed(f"qv2|{a.stream}|{a.chunk}")
     job = dict(id=a.id, campaign="C1", sample=a.stream, kind=a.kind, chunk=a.chunk, ev0=a.ev0, n_events=a.n,
                roads=a.roads, rho=a.rho, seed=seed, dump_events=a.dump, est_s=0.0, mem_gb=0.0,

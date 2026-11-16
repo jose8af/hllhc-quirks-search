@@ -387,7 +387,8 @@ def cmd_nlo(a):
     --fixed MU: fixed mu_R = mu_F = MU (GeV) instead of the default dynamical H_T/2 (validation 1)."""
     tag, spin, lhaid, masses = a[0], a[1], a[2], [int(x) for x in a[3].split(',')]   # DY: masses = [0] (label only)
     orders = a[a.index('--orders') + 1].split(',') if '--orders' in a else ['LO', 'NLO']
-    fixed = float(a[a.index('--fixed') + 1]) if '--fixed' in a else None
+    fixed = a[a.index('--fixed') + 1] if '--fixed' in a else None      # a number, or 'm' (= the mass of each point)
+    fixed = fixed if fixed in (None, 'm') else float(fixed)
     acc = a[a.index('--acc') + 1] if '--acc' in a else '0.002'
     pdfunc = '--pdfunc' in a
     mhist = [float(x) for x in a[a.index('--mhist') + 1].split(',')] if '--mhist' in a else None
@@ -412,9 +413,11 @@ def cmd_nlo(a):
     set_conf(os.path.join(d, 'Cards', 'amcatnlo_configuration.txt'), conf)
     kv = {'ebeam1': '7000.0', 'ebeam2': '7000.0', 'pdlabel': 'lhapdf', 'lhaid': lhaid, 'store_rwgt_info': 'True',
           'reweight_scale': 'True', 'reweight_PDF': 'True' if pdfunc else 'False', 'req_acc_FO': acc}
-    if fixed:
+    if fixed is not None and fixed != 'm':
         kv.update(fixed_ren_scale='True', fixed_fac_scale='True', muR_ref_fixed=f'{fixed:.4f}',
                   muF_ref_fixed=f'{fixed:.4f}')
+    if fixed == 'm':
+        kv.update(fixed_ren_scale='True', fixed_fac_scale='True')
     if mll:
         kv['mll'] = mll
     if '--dyn' in a:
@@ -442,6 +445,8 @@ def cmd_nlo(a):
     for m in masses:
         for o in orders:
             run = f'{spin}{m}_{o}'
+            if fixed == 'm':
+                set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'muR_ref_fixed': f'{m:.4f}', 'muF_ref_fixed': f'{m:.4f}'})
             setm = f'set {MASSPAR[spin]} {m}\n' if MASSPAR[spin] else ''
             mg(mgdir, f'launch {d} -n {run}\nfixed_order=ON\norder={o}\ndone\n{setm}done\nexit\n',
                f'launch_{run}', work, f'fo_{o}_m{m}')

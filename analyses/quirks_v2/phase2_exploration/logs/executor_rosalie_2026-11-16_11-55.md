@@ -138,3 +138,50 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
 - 12:56 p2-a-c1-pu2 written (5 events/job, 200 jobs, RSS request 2100 MB, dumps for events 0–199) and launched on
   maxwell, 2 per node (SLOTS.md updated). Channel slots now: landau 1 (c1-pu1), maxwell 2 (c1-pu2) = 3 (weekday cap).
   Plan for 19:00: relaunch c1-pu1 with one more slot (channel cap 4 off-hours).
+- 12:58 Orchestrator answers (after the interim report): (1) I produce the C1 signal inputs (Stage 2 at E 200, E 500
+  with v1 cards, FSR off, then Stage 3 at the three points; reuse channel (ii)'s src/s2/s2_job.py by copying);
+  (2) fixed node shares (SLOTS.md ORCHESTRATOR RULING 12:58): mine = landau 2, maxwell 2; C2 and signal inside them;
+  (3) 34 MB/trial store accepted (deviation from STR's 3.6–14 MB to be stated in EXPLORATION); (4) the ρ = 2 timing
+  node was shared ≈ 11 min with a channel (ii) MG job: timing caveat, memory stands; (5) next report gives projected
+  C1 + C2 CPU-h with measured costs and corrected Table 4.0 unit costs.
+- 12:58 p2-a-c1-pu1 driver restarted with landau --max-per-node 2 (old driver pid 1689413 stopped; c1pu1-0004
+  dispatched, 2 running). p2-a-c1-pu2 runs 2 on maxwell.
+- 13:00 C1 signal plan (orchestrator answer 1). Pipeline, each step a runner campaign, code in src/:
+  1. p2-a-c1-s2: c1_s2_job.py c1gen = COPY of channel (ii)'s src/s2/s2_job.py (sha256 d3eb2b8a…1deef5 at copy time)
+     + a `c1gen` command: v1 F_TRG (pT_ME ≥ 100, produce.py PTCUT) and F_INC MLM 0–2j, v1 cards, CP5 + quirk card,
+     qCut 45, QED-FSR OFF; seeds stream c1.s2. First pass: 1 chunk × 20,000 LHE per (TRG|INC, m 200|500) = 4 jobs.
+  2. c1_s3_inputs.py (one job per mass): merge → stitch TRGS (v1 stitch_trg rule) → v1 make_inputs 'p2' extract →
+     F_m<m>_p2.npz. Needs ≥ 200 |eta| < 2.5 unweighted events per split (v1 p2_lists); top-up chunks if short.
+  3. c1_s3_job.py: v1 run_stage3.run_job, chunks of the p2 lists (template + toy up to the 200th each = 400 rows).
+  4. c1_s3_index.py → outputs/c1_s3/STAGE3_INDEX.json (absolute cajuela paths, from done markers).
+  5. c1_sig_job.py: v1 run_g1b.run_signal_job: a2 (fast path) E 200 at Λ = 1.5, 2 keV row-major; a5 (full chain) E 500
+     3 keV; twins = a5 at E 200 1.5 and 2 keV. Rows: all counting rows of both splits.
+  DECISION: probe-row exclusion off (QV2_ALLOW_NO_F1R=1): v1's f1r_summary.json is lost and its rows refer to v1's
+  Stage-2 rows, which do not exist in the regenerated sample; C1 compares against v1's counts over v1's denominators
+  as recorded (STR §4.1). CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+  SEALED OUTPUTS (orchestrator answer 1): the signal job outputs p2-a-c1-sig*/000/*.npz (on cajuela, with done markers)
+  hold sig.eff / sig.eff_fckf / sig.eff_T / sig.eff_fckf_T packed bits for all 43 rungs and the per-trial rung tables.
+  Nobody in channel (i) opens them except c1_compare.py, which reads only the R04 and R06 columns. A later session reads
+  R07 and the FB columns from the same files (keys and rung order in meta_json → rungs).
+- 13:05 slot management (ORCHESTRATOR RULING 12:58): landau slot A = p2-a-c1-pu1 driver (max 1 per node); landau slot B =
+  queue_slot.sh with queue file phase2_exploration/logs/queue_landau_B.txt (p2-a-c1-s2 → p2-a-c1-cp0 → p2-a-c1-sm;
+  re-read after each campaign, so later campaigns are appended there); maxwell 2 slots = p2-a-c1-pu2.
+  Transient 13:00–≈13:08: 3 of my jobs on landau (pu1 0003/0004 + s2) until c1pu1-0003 ends.
+  New code: src/c1_s2_job.py, c1_s3_inputs.py, c1_s3_job.py, c1_s3_index.py, c1_sig_job.py, c1_cp_job.py, queue_slot.sh;
+  campaigns p2-a-c1-cp0 (16 jobs × 25,000 events: DIF 5e4, NI22 3e4, PV pair / γ / V⁰ 1e5) and p2-a-c1-sm (50 × 40).
+- 13:11 C2 defined (code + campaigns; production sizes of T_seed and V4-5 follow from the two timing jobs):
+  * C2-b V4-4: p2-a-c2-v44a (20 rho = 1 jobs × 5 events, stream c2.v44, landau), p2-a-c2-v44b (the same 20 again on
+    landau: bit-identical expected), p2-a-c2-v44c (the same 20 on maxwell + 2 jobs of stream c2.v44x: different seeds).
+  * C2-c T_seed 4 → 2: DECISION: regenerate the events from the job seed with the finder T_seed overridden (v1's own
+    g3_rerun.py pattern; c1_pu_job.py --tseed 2) instead of re-reading the S6 dumps (STR §4.2 wording): the pairing with
+    the stored T_seed = 4 jobs is then exact (same events, PV, roads, trial seeds) and needs no new reconstruction code;
+    the chain costs ≈ 13 s per crossing more. Timing first: p2-a-c2-tstime (rerun of d0pu1-n5-a and d0pu2b-n1 at T_seed 2).
+    CONFIDENCE: HIGH. FLAG FOR HUMAN: NO.
+  * C2-a V4-5: src/v45_bruteforce.py (numba scan 3001 × 3001 normals at 0.2 mrad within ±0.3 rad of n_F0 with a
+    resolution-weighted inlier score; 5 mrad half-sphere global scan; scipy least_squares fit on the F0 inliers; hit pool
+    rebuilt from the S6 dumps with the job's seed streams, checked by n_road and PV against the stored trial). PU mode
+    written; signal mode added when the full-chain C1 outputs exist. Timing: p2-a-c2-v45time (one PU trial).
+  * C1 rates: p2-a-c1-gen = v1 gen_d123.py nt unchanged, one job per SM process (v1 NPROC sizes) + minimum bias 1e5,
+    seed tag qv2-c1-gen.
+  * c1_compare.py (PU families; smoke-tested on the first 80 rho = 1 events: R04 174.9 vs v1 171.55, p = 0.80).
+  Queue landau B now: s2 → c2-tstime → c2-v45time → c1-gen → c1-cp0 → c1-sm → c2-v44a → c2-v44b.
