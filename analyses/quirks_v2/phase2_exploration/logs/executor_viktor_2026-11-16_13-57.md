@@ -74,3 +74,11 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   jax+minuit, merged layout, chain start, stitch, prev start. p2-c-toy-base (numpy baseline: 31 par 200 toys, 60 par
   2 × 50, profile 31/60, minuit on numpy, stitch on numpy, 100 par 20 toys for paired checks) queued behind it by a
   background waiter on einstein (launches only if schrodinger has ≤ 2 jobs).
+- 2026-11-16 14:11 First jax readings [V: p2-c-toy-jax, μ = 3, s per 1000+1000]: jax+scipy 84 (31 par), 412 / 451 (60, two
+  toy streams of 50+50), 857 (80, 100+100), 1898 ± 42 (100, 100+100); 35–45 function+gradient calls per fit at all sizes;
+  0 failed fits. μ pilot (jax, 31 par, 500+500): CLs 1.0 / 1.0 / 0.244 ± 0.031 / 0.040 ± 0.013 at μ = 1.5 / 2 / 4 / 6
+  → correctness point μ_c = 5; campaign p2-c-toy-ref (1000+1000 paired toys at μ = 5, 31 par) queued after p2-c-toy-base.
+- 2026-11-16 14:18 jax+minuit = 1254 s per unit at 31 par (777 calls per fit: pyhf runs hesse() after every valid
+  migrad). The 60-par minuit job (50+50) projected > 30 min: driver and job stopped by pid at 14:18 (orphan `started`
+  marker p2-c-toy-jax-jm-n60-mu3-a, attempt 1, no output); campaign edited: jm4-n60-mu3-a (4+4 toys), no 100-par minuit
+  job; numpy minuit at 60 par cut to 6+6 toys in p2-c-toy-base. Driver relaunched 14:18:51 (done jobs are skipped).

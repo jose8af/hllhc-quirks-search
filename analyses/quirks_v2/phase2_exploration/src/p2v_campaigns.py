@@ -62,8 +62,9 @@ def main(argv):
                  job(c, 'js-n80-mu3', 80, 100, 3, J, 'new'),
                  job(c, 'js-n100-mu3', 100, 100, 3, J, 'new'),
                  job(c, 'jm-n31-mu3', 31, 100, 3, J + ',opt=minuit', 'new'),
-                 job(c, 'jm-n60-mu3-a', 60, 50, 3, J + ',opt=minuit', 'new'),
-                 job(c, 'jm-n100-mu3', 100, 50, 3, J + ',opt=minuit', 'new'),
+                 # pyhf's minuit optimiser always runs hesse() (N^2 calls): 1254 s per unit at 31 par; 60 par on 4
+                 # toys only (the 50-toy job was stopped at 14:18, > 30 min projected); no 100-par minuit job
+                 job(c, 'jm4-n60-mu3-a', 60, 4, 3, J + ',opt=minuit', 'new'),
                  job(c, 'jsmerged-n31-mu3', 31, 200, 3, J + ',layout=merged', 'new'),
                  job(c, 'jsmerged-n60-mu3-a', 60, 50, 3, J + ',layout=merged', 'new'),
                  job(c, 'jsmerged-n100-mu3', 100, 100, 3, J + ',layout=merged', 'new'),
@@ -89,7 +90,7 @@ def main(argv):
                 job(c, 'prof-n31', 31, 30, 3, 'profile=1'),
                 job(c, 'prof-n60', 60, 10, 3, 'profile=1'),
                 job(c, 'mina-n31-mu3', 31, 200, 3, 'opt=minuit'),
-                job(c, 'mina-n60-mu3-a', 60, 50, 3, 'opt=minuit'),
+                job(c, 'mina-n60-mu3-a', 60, 6, 3, 'opt=minuit'),
                 job(c, 'stitch-n60-mu3-a', 60, 50, 3, 'stitch=1'),
                 job(c, 'n100-mu3', 100, 20, 3)]
         write(name, jobs, 1.5, 'T1 toy cost: baseline numpy+scipy at 31/60/100 par, profile, minuit on numpy, stitch')

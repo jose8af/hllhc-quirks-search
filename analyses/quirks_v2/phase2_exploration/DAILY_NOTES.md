@@ -17,3 +17,5 @@
   Runs now: nothing. Pilot held (addendum in review).
 - 2026-11-16 14:15 channel (iii) Tatiana: addendum 1 fixed after the critical review (v2 + fix report). Measured: complete Geant4 vertex partition (3.7×10⁸ single-interaction vertices in 3 ab⁻¹ against 6.8×10⁷ assumed); the proposed hand-over validated on all eight streams; Fatras verified not to decay hadrons. With 10⁶ events per sample an empty pilot would read 387 (R09): proposed sizes give 159 (R09), 237–283 (R08) for ≈ 131 CPU-h. Pool floor at the approved CPU 99–213 events; T1-b not yet resolved (fit failures decide the result).
   Runs now: nothing of mine. Pilot held until re-review and user approval.
+- 2026-11-16 14:18 channel (iii) Tatiana: session made replaceable: successor section in logs/executor_tatiana_2026-11-16_11-57.md; interim outputs/EXPLORATION_iii_tatiana_2026-11-16_14-18.md (24 campaigns, 4.58 CPU-h; B1-d PASS; hand-over validated; T1-b no verdict; pilot not generated).
+  Runs now: nothing of mine. Pilot held until addendum v2 is re-reviewed and approved.

@@ -185,3 +185,86 @@ counts; migration sample; `EXPLORATION_c_tatiana_<stamp>.md`.
   Written: phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v2_tatiana_2026-11-16_14-14.md, phase1_strategy/outputs/FIX_REPORT_addendum1_tatiana.md, outputs/partition_p2-c-part-0.json, src/p2c_addendum1.py (version 2), src/p2c_fatras_check.py; COMMITMENTS.md: my "by addendum 1" section replaced (row lines checked by grep). B7 and B10 are PARTIALLY resolved (the two small samples are defined, not run).
   Slots: Viktor's toy jobs hold one slot of schrodinger; I ran at most 2 at a time. CPU of my campaigns [V: ledger]: 4,58 CPU-h in 75 jobs.
   State of paused work: T1-b NOT RESOLVED (entry of 13:5x above); B3 timing script, S1 migration job script, EXPLORATION artifact not started; Fatras step-limit note is in this log (to be copied into the EXPLORATION file).
+
+## State for a successor (written 2026-11-16 14:18; everything below is as of that time)
+
+**Where things are.** Campaign files: `tools/runner/examples/p2c/<campaign>.json` (all written by `src/p2c_campaigns.py <key>`).
+Outputs: `/nfs/cajuela/jdochoa/quirks_v2/data/p2c/<campaign>/000/`. Job logs: `/nfs/cajuela/jdochoa/quirks_v2/logs/p2c/<campaign>/000/<job>.a<N>.log`.
+Markers: `ledger/markers/<campaign>/000/<job>.marker`. CPU: `ssh -x schrodinger "$R/bin/qv2run rebuild-ledger"` then `ledger/jobs.tsv`
+(`R=/home/users/jdochoa/hllhc-quirks-search/tools/runner`). Launch (schrodinger only, absolute paths, check the count first):
+`ssh -x schrodinger "pgrep -u jdochoa -af '[q]v2run job'"`; `$R/bin/qv2run ssh launch $R/examples/p2c/<c>.json --nodes schrodinger --max-per-node N --on schrodinger`;
+status `ssh -x schrodinger "$R/bin/qv2run status $R/examples/p2c/<c>.json -v"`.
+
+**Campaigns (mine; `p2-c-toy-*` and `p2v_*` belong to session Viktor).** All complete unless noted; nothing is running.
+| campaign | jobs | CPU-h | content |
+|---|---|---|---|
+| p2-c-t-hs0s | 3 | 0.00 | FAILED (Pythia data path); superseded by p2-c-t-hs0s2 |
+| p2-c-t-hs0s2 | 3 | 0.05 | smoke, 200 no-PU events of Z(νν), W(τν), tt̄ 1ℓ |
+| p2-c-t-hs0 | 16 | 2.39 | timing: 10⁴ events each of Z(νν), W(τν), tt̄ 1ℓ (also the source of the preselection weights) |
+| p2-c-t-ttf | 2 | 0.23 | tt̄ with forced W decays through the chain, 2 × 1,250 events |
+| p2-c-t-g4 | 4 | 0.44 | Geant4 yields (hand-over at the vertex: superseded for products) and geantino scan |
+| p2-c-t-g4x | 3 | 0.14 | the same with the slab-exit hand-over |
+| p2-c-matscan | 1 | 0.00 | B1-d: positions, x/X₀, Fatras configuration |
+| p2-c-t-b1, p2-c-val-b1 | 4 + 1 | 0.01 | first hand-over slice and its validation (FAILED hard check: slow fragments) |
+| p2-c-t-b1x, p2-c-val-b1x | 4 + 1 | 0.01 | slab-exit hand-over slice and validation (passes) |
+| p2-c-part | 2 | 0.21 | vertex partition of all species (p2-c-part-0.npz, 189 MB) and Fatras no-decay check |
+| p2-c-b1y, p2-c-b1yv | 9 + 1 | 0.02 | hand-over as proposed in addendum v2 on 8 streams; the validation job inside p2-c-b1y failed (started early), rerun as p2-c-b1yv (passes) |
+| p2-c-t-pyhf | 4 | 0.16 | toy cost at 31 / 60 / 80 / 100 parameters (+ 0.24 CPU-h of one terminated attempt, not in the ledger sum) |
+| p2-c-prof, p2-c-prof2 | 6 + 1 | 0.22 | generator and Geant4 cost profiles (p2-c-prof-g4 failed at import; rerun as p2-c-prof2) |
+| p2-c-rule1, p2-c-rule1b, p2-c-addendum1 | 3 | 0.07 | tables of the memo and of addendum version 1 (superseded) |
+| p2-c-addendum1v2 | 1 | 0.04 | every table of addendum version 2 |
+| p2-c-t1-v1, p2-c-t1-v1b | 2 | 0.16 | T1 v1 mode, attempts 1 and 2 (see T1-b) |
+| p2-c-t1b | 4 of 11 done | 0.44 | T1-b refined: diag + μ = 760, 790, 810 done; 7 jobs never dispatched (driver stopped by me) |
+Total 4.58 CPU-h in 75 jobs against 84 budgeted.
+
+**Scripts in `src/` (mine: `p2c_*`, `g4/`, `strategy_budget_copy.py`).** `<acts>` = `acts/.pixi/envs/default/bin/python` with the
+environment line `ENV` of `p2c_campaigns.py` (PYTHIA8DATA etc.); `<pyhf>` = `phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python`.
+- `p2c_common.py`: seeds (`qv2_seed(stream, chunk)`), compressed job files, readers (`load_job`, `event_hits`).
+- `p2c_hs0.py <sample> <out> <n> <stream> <chunk>` (`<acts>`): no-PU hard-scatter events with generator-level summary; `ttbar_1l_pos/neg` are injected at run time.
+- `p2c_mbgen.py <out> <n_int> <stream> <chunk>` (`<acts>`): generator-level minimum bias, spectra, parent pool.
+- `g4/make_geom_g4.py`, `g4/g4hv.cc`, `g4/g4hv.sh`: Geant4 geometry file and application; `g4hv.sh` builds once per node into `/home/scratch/jdochoa/cache/g4hv/<hash>/`; option `exit` = slab-exit hand-over.
+- `p2c_g4vtx.py time|scan|part …` (`<acts>`): fires pool parents through Geant4, parses vertices; `classify()` and `first_arc()` define the classes dif, difc, k0l, ni22, ni30, ni61, nix, nic; `part` writes the partition.
+- `p2c_handover.py`: Geant4 vertex → Fatras particle rows; `P2C_BETA_MIN=0.1` in the environment = the proposed hand-over.
+- `p2c_b1.py <term> <out> <n> <stream> <chunk> <first> <vertex files>` (`<acts>`): no-PU B1 events through the chain.
+- `p2c_validate.py <out.json> <b1 files>` (`<acts>`): hard checks and Fatras-against-Geant4 parent comparison.
+- `p2c_matscan.py`, `p2c_fatras_check.py`, `p2c_prof.py` (`<acts>`): B1-d comparison; Fatras no-decay check; cost profiles.
+- `p2c_t1.py time|v1|v1pt|v1diag …` (`<pyhf>`): T1 workspace builder (`build`), toy timing, v1 mode.
+- `p2c_rule1.py`, `p2c_addendum1.py <out.json>` (`/usr/bin/python3 -I`): projections; the second prints every table of addendum v2 from `outputs/partition_p2-c-part-0.json`.
+- `p2c_campaigns.py <key> [args]` (`python3 -I`, einstein): writes campaign files; keys t-hs0s, t-hs0, t-g4, t-pyhf, t-b1, matscan, val-b1, prof, rule1, addendum1, t-ttf, t1-v1, t1b, fix1, fix2.
+
+**Open choices.** All are in `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v2_tatiana_2026-11-16_14-14.md` (in review; do not edit) and
+`FIX_REPORT_addendum1_tatiana.md`. Partially resolved: B7 (`pilot.c0.hs` defined, job not written), B10 (`pilot.c0.lowpt` defined, not
+run). Closed by the orchestrator: no B2 work here; `s4pu.py` is not edited until channel (i)'s C1 campaigns end.
+
+**T1-b (COM T1-b), no verdict.** Read literally: v1's background treatment, T1's own statistic, 789.7 ± 10 % = [710.7, 868.7].
+Failed-fit rule (fixed before the refined run): retry once from the generated nuisance values, then drop; a μ point with > 2 %
+dropped is NOT RESOLVED. Done: `p2-c-t1b-diag` (fine asymptotic 828.67; v1-statistic diagnostic 794.4 / 831.8 / 814.3 / 814.0),
+μ = 760, 790, 810 (CLs 0, but 2.8–3.9 % dropped → NOT RESOLVED). Not dispatched: μ = 825 … 915. Plan: make q̃ fail-free before
+any rerun: start the fit at μ̂ = max(0, (n_G − b_G e^{σθ})/s_G) with θ at its generated value, or profile the two nuisances on a
+grid; then rerun the ten points (`p2c_campaigns.py t1b` with new job ids: done and failed jobs are never rerun by the runner).
+Do not restart toys before session Viktor's result on the toy cost.
+
+**Pilot campaigns as they would be submitted under addendum v2 (NOT submitted, NOT written as campaign files).**
+1. `p2-c-mbgen`: `p2c_mbgen.py`, 10⁷ interactions, stream `pilot.mb`, 40 jobs × 2.5×10⁵ (≈ 15 min each), ≈ 10 CPU-h.
+2. `p2-c-g4vtx`: needs a production mode in `p2c_g4vtx.py` that reads the pool from the mbgen files (the `time`/`part` modes
+   generate their own): 'all' pass 1.2×10⁸ firings (0.305 ms) with `exit`, 'ni' pass 4.6×10⁸ firings (0.047 ms), stream `pilot.g4`;
+   ≈ 16 CPU-h; jobs of ≤ 4×10⁶ ('all') / 2.5×10⁷ ('ni') firings.
+3. `p2-c-c0-<term>` for dif (with k0l), difc, ni22, ni30, ni61, nix, nic: `P2C_BETA_MIN=0.1 p2c_b1.py`, 25,000 events per job
+   (RSS ≈ 33 kB per event), sizes 4, 4, 1, 1, 1, 4, 2 ×10⁶, streams `pilot.c0.<term>`, ≈ 22 CPU-h. `load_vertices` must take
+   class `dif` OR `k0l` for the DIF sample (not yet coded).
+4. `p2-c-hs0-znn`: `p2c_hs0.py Znunu_j`, 2.3×10⁶ events, 5,000 per job (RSS 0.18 MB per event; 10.6 min), 460 jobs,
+   stream `pilot.hs0.znn`, 81 CPU-h, 70 GB.
+5. `pilot.c0.hs`, `pilot.c0.lowpt`: not written.
+On 2–3 slots of schrodinger: 44–66 h of wall time.
+
+**Known traps.**
+- `--on <node>` needs an ABSOLUTE campaign path. A `failed`, `timeout` or `done` job is never rerun: use new job ids.
+- Jobs call the env's python directly: export PYTHIA8DATA (see `ENV`). `acts/stage4/analysis/signal.py` shadows the standard
+  library if that directory is first on `sys.path`: import `signal`, `subprocess` before inserting it.
+- The SSH driver does not subtract jobs of my other campaigns: sum `--max-per-node` over running drivers yourself. Two jobs of
+  one campaign run in parallel, so a job must not depend on another job of the same campaign.
+- `pkill -f <pattern>` over ssh kills its own shell; kill drivers by pid.
+- The chain keeps every event in memory until the end of the job: size jobs by RSS, not by time.
+- Fatras drops any particle that reaches its step limit, with all its hits (0.03–0.07 per hard-scatter event).
+- Numbers superseded and where: memo and 13:25 cost file → addendum v1 → addendum v2 (each header says so).
+- 2026-11-16 14:18 Hand-over section "State for a successor" written above; outputs/EXPLORATION_iii_tatiana_2026-11-16_14-18.md written (interim). Not written: the `pilot.c0.hs` job and the S1 migration generation job (neither is cheap: the first needs a hard-scatter parent pool and a production mode of p2c_g4vtx.py, the second needs channel (ii)'s MLM cards and a tested generation chain I have not read).
