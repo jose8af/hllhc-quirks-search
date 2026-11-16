@@ -2,19 +2,18 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-14 01:25 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy) — **STOPPED, WAITING FOR THE USER**
+**Updated:** 2026-11-16 10:47 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy) — **review cycle 10 running (authorised by the user 2026-11-16)**
 
-**Two things are waiting on the user (both reported 2026-11-14 01:25):**
-1. **Phase-1 review did not pass in nine cycles.** Cycle 9 = ITERATE, 0 A, 1 B (a stale "ten defaults" in the freeze
-   table, introduced by the orchestrator's addition O6) + 13 wording edits with exact text, already tested by the
-   arbiter. Verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md` (§0 = open list).
-   The orchestrator stopped by its own rule. Question to the user: (i) authorise cycle 10 (apply the edits as v10 +
-   narrow mechanical re-review; it is the hard cap), or (ii) take Gate A now on v9 + the edit list, or (iii) other.
-   Do NOT start cycle 10, a fixer, or Gate A without the user's answer.
-2. **Cluster fault:** `/nfs/cajuela` hangs on einstein and ssh to all three workers hangs since about 00:47 on 14 Nov
-   (details in `LOG.md`, entry "01:18 — CLUSTER FAULT"). No repair attempted. Do NOT start any worker job, Argo
-   workflow or bundle until the user confirms the cluster is healthy; then re-run the cajuela and ssh preflight
-   checks and write the overdue repo bundle.
+**Cluster:** the user confirmed it healthy on 2026-11-16; cajuela and ssh re-checked at 10:40; bundle
+`repo-2026-11-16.bundle` written. Workers may be used again. Still in force: 10 GB cap, nothing heavy on einstein.
+
+**Next action:** fixer Oscar (Opus) is producing STRATEGY v10 from the cycle-9 verdict §5 (E1–E14 + bookkeeping;
+verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md`). When it reports: commit;
+spawn ONE fresh critical reviewer (Opus) for the mechanical check of verdict §9; then a fresh arbiter (not below Opus).
+PASS → regression checklist, `gates/GATE_A.md` from `gates/GATE_A_DRAFT.md` (cite v10; "cycle 9: a stale count, fixed
+in v10"), bundle, STATUS, stop for Gate A. ITERATE at cycle 10 = hard cap → go to the user, no cycle 11.
+If a session resumes and no v10 file `phase1_strategy/outputs/STRATEGY_oscar_*.md` with a
+`FIX_REPORT_cycle9_oscar.md` exists, re-spawn the fixer. Session names used through Oscar; next free: Pauline.
 
 **Clock warning:** times in `LOG.md` and in file names before 2026-11-14 01:20 are sequence labels, not clock times;
 git commit times are authoritative. Always call `date` before writing a time.

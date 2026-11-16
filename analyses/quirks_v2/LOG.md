@@ -291,3 +291,15 @@ Consequences: no repo bundle can be written to cajuela (the last bundle is `repo
 no worker job or Argo campaign may be started until the user confirms the cluster is healthy.
 Also cleaned: three stale processes of ours on einstein (a watcher loop left by the chain-port executor since about
 17:46 that polled maxwell by ssh every 15 s, its hung ssh child, and one older waiting loop) were killed at 01:19.
+
+## 2026-11-16 10:40 -05 (measured) — User: cluster healthy, cycle 10 authorised
+- The user asked for the cycle-9 counts (answered: 0 A, 1 B, 17 C: 15 applied in the fix pass, 1 deferred to Phase 2,
+  1 record only), then reported that the cluster test workflow passed, allowed the repo bundle and the workers again,
+  kept the 10 GB cap and the "nothing heavy on einstein" rule, and **authorised review cycle 10** (the hard cap).
+- Own checks at 10:40: `ls /nfs/cajuela/jdochoa/quirks_v2/backup` answers; ssh to landau, maxwell, schrodinger
+  answers in about 1 s each. Load averages are still decaying (1-min: einstein 105, workers about 40).
+- Repo bundle written: `/nfs/cajuela/jdochoa/quirks_v2/backup/repo-2026-11-16.bundle` (75,266,407 bytes, `--all`,
+  written as `.part` then renamed, `git bundle verify` OK, sha256 `32811a67…46d1d74`). HEAD at the time: `9b0fced`.
+- 10:45: fixer **Oscar** (Opus, default) spawned with the strict scope of the cycle-9 verdict §5 (E1–E14 incl. E6 and
+  the bookkeeping) to produce STRATEGY v10. E6 (the precision sentence of rule 1) is applied; the user may still drop it.
+  Next: the narrow check of verdict §9 (fresh critical reviewer, then arbiter).
