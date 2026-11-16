@@ -95,6 +95,7 @@ def run(out, n, job_seed, kind, ev0, pool_file):
         store = {}; rc.TIMES.clear()
         proc_code = {}
         truth = np.zeros((n, len(TCOLS)))
+        laycnt = np.zeros((n, len(XV.BARREL_COUNT)), np.int16)        # Geant4 crossings per barrel counting surface
         inj = {}
         for i, e in enumerate(ev):
             pabs = float(np.linalg.norm(e['p3'])); beta = pabs / math.hypot(pabs, e['m']); rad = e['pt'] / (0.299792458e-3 * B_T)
@@ -109,7 +110,7 @@ def run(out, n, job_seed, kind, ev0, pool_file):
                 p4 = (c[5], c[6], c[7], en)
                 hl.append((sid, s4pu.GUN_VP, 1, (c[1], c[2], c[3], c[4]), p4, p4, k, 0, 0, 0))
                 if c[0] in XV.BARREL_COUNT:
-                    tc.append(c[4])
+                    tc.append(c[4]); laycnt[i, XV.BARREL_COUNT.index(c[0])] += 1
             inj[i] = hl
             tc = np.array(tc); tn = np.array([turn(t) for t in tc]) if len(tc) else np.zeros(0)
             late = tc[tn > 0.5]
@@ -135,7 +136,7 @@ def run(out, n, job_seed, kind, ev0, pool_file):
         meta['ev_info'] = [{k: v for k, v in store[i]['info'].items()} for i in range(n)]
         meta = rc.finish(out, store, n, meta, t0)
         tmp = Path(str(out) + '.truth.tmp.npz')
-        np.savez_compressed(tmp, truth=truth, cols=np.array(TCOLS), proc=np.array(json.dumps(proc_code)),
+        np.savez_compressed(tmp, truth=truth, cols=np.array(TCOLS), layer_cross=laycnt, layers=np.array(XV.BARREL_COUNT), proc=np.array(json.dumps(proc_code)),
                             n_meas=np.array(meta['n_meas']), n_written=np.array(meta['n_written']))
         tmp.replace(str(out) + '.truth.npz')
         log.info('%s', json.dumps(dict(set=kind, n=n, v41_pass=meta['v41_pass'], t_total_s=meta['t_total_s'],

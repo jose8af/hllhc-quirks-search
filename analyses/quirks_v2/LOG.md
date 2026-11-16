@@ -610,3 +610,10 @@ The user answered the DECISION notice of 16:10: **"Q1. Launch it yourself and fo
   as it is; if loopers make candidates the chain is fixed and the pilot regenerated (about 95 CPU-h).
 - Action: preflight at 16:36 = 0 failed checks. schrodinger has a graphical login (cap 3) and carried 2 slice jobs,
   so Xavier was told to go to one lane; the 2-lane launch of `p2-c-pilot_mb-znn` follows when the node shows ≤ 1 job.
+
+## 2026-11-16 16:40 -05 (measured) — PILOT LAUNCHED (pilot.mb and Z(νν)) by the orchestrator
+Preflight 0 failed checks; node count 1 before; `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh`
+→ lane 0 and lane 1 started on schrodinger at 16:39; 3 jobs on the node (2 pilot lanes + Xavier's one lane).
+Status: `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume: the launch script again.
+Expected: 95 CPU-h, 79 GB, about 48 h (to about 18 Nov 16:30). Chain as it is (half-turn limit), by the user's
+option B. The B1 streams are not launched.

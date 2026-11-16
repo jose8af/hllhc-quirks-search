@@ -60,6 +60,23 @@ def one_set(files):
         pc = json.loads(str(t['proc'])); inv = {v: k for k, v in pc.items()}
         for code, n in zip(*np.unique(t['truth'][:, c['end_proc']].astype(int), return_counts=True)):
             procs[inv[int(code)]] = procs.get(inv[int(code)], 0) + int(n)
+    own = None
+    if 'layer_cross' in T[0].files:
+        # upper bounds from the particle's own crossings with NO plane requirement: a layer can be a double-crossing
+        # layer of some ribbon only if the particle crosses it at least twice (IT: crossings; stacked OT: min(in, out)),
+        # the counting rule of acts/stage4/finder/README.md "Seeds"
+        L = np.concatenate([t['layer_cross'] for t in T]).astype(int)
+        it2 = (L[:, :4] >= 2).sum(1)
+        ps2 = sum((np.minimum(L[:, 4 + 2 * k], L[:, 5 + 2 * k]) >= 2).astype(int) for k in range(3))
+        s2 = sum((np.minimum(L[:, 10 + 2 * k], L[:, 11 + 2 * k]) >= 2).astype(int) for k in range(3))
+        ip2 = it2 + ps2
+        n_ = len(L)
+        own = dict(note='own crossings only, no plane, road or width requirement: an upper bound on every count',
+                   N_IT2_max_hist_0_to_4=np.bincount(it2, minlength=5).tolist(), N_PS2_max_hist_0_to_3=np.bincount(ps2, minlength=4).tolist(),
+                   N_2S2_max_hist_0_to_3=np.bincount(s2, minlength=4).tolist(), N_IP2_max_hist_0_to_7=np.bincount(ip2, minlength=8).tolist(),
+                   frac_N_IT2_max_ge3=float((it2 >= 3).mean()),
+                   frac_N_IT2_ge3_and_N_IP2_max_ge={str(k): float(((it2 >= 3) & (ip2 >= k)).mean()) for k in (4, 5, 6, 7)},
+                   deficit_k_IP_at_R04_hist_0_to_7=np.bincount(np.maximum(0, 7 - ip2), minlength=8).tolist(), n=n_)
     nmeas = np.concatenate([t['n_meas'] for t in T]); nwr = np.concatenate([t['n_written'] for t in T])
     hist = lambda a, hi: np.bincount(np.clip(np.asarray(a, int), 0, hi), minlength=hi + 1).tolist()  # noqa: E731
     return dict(n_files=len(files), rungs=R[:14], finder_cfg=cfg, v41_pass_all=bool(v41), totals=tot,
@@ -85,6 +102,7 @@ def one_set(files):
                                counting_after_half_turn_per_event=float(X[:, c['n_cross_counting_after_half_turn']].mean()),
                                events_with_crossing_after_half_turn=float(np.mean(X[:, c['n_cross_counting_after_half_turn']] > 0)),
                                measurements_per_event=float(nmeas.mean()), written_per_event=float(nwr.mean())),
+                own_crossing_upper_bounds=own,
                 arc_times_ns=dict(first_crossing_after_half_turn_q=q(X[:, c['t_first_after_half_turn']]),
                                   median_crossing_after_half_turn_q=q(X[:, c['t_median_after_half_turn']]),
                                   last_crossing_q=q(X[:, c['t_last']])),

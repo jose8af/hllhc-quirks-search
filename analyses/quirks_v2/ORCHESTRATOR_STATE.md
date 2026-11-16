@@ -2,24 +2,35 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-16 14:19 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 0 of the calendar = 2026-11-16
+**Updated:** 2026-11-16 16:40 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 0 of the calendar = 2026-11-16
 
 **Gate A passed by the user 2026-11-16** with all defaults (`COMMITMENTS.md`, "Gate A answers"): 4,609 CPU-h approved,
 stop-and-ask 5,992, about 60 days. Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md`.
 
-**Running (2026-11-16 14:25):**
-- channel (i) Rosalie (Opus): C1 campaigns p2-a-c1-pu1/pu2 running, C1 signal inputs, C2. Shares: landau 2, maxwell 2.
-- channel (ii) Sebastian (Opus): S2 validations, K(m), f₂₀₀, P1; R-2/R-3 done incl. CMS NOTE-2018/006. landau 1, maxwell 1.
-- channel (iii): Tatiana retired (hand-over in her log). **Xavier** (Fable) makes the pilot campaigns ready, does NOT
-  submit. **Viktor** (Opus) tests toy-cost remedies (stop-rule item: ~7,600 CPU-h projected at 60 parameters).
-  schrodinger: Xavier 2, Viktor 1.
-- **Wanda** (Fable): re-review of strategy addendum 1 v2 (`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v2_tatiana_2026-11-16_14-14.md`;
-  first review ITERATE 3 A / 10 B). **The pilot is HELD** until: review PASS → user approval (notify with
-  `[DECISION]`: pilot sizes ~131 CPU-h vs 54.5; which classes are terms of rule 1; whether the pool decision
-  "option 1" stands at the corrected floor 99–213 events / upside 506–597 GeV, or CPU is added). If ITERATE again:
-  a FRESH fixer (not Tatiana). Pilot must start by about 18 Nov for day 5.
-- Open: T1-b no verdict (resume after Viktor); MET-model construction choice (Phase 3, by day 10); jet-response
-  tail not sourced; R-15–R-17 open; `s4pu.py` forced-tt̄ edit waits for the C1 campaigns to finish.
+**Running (2026-11-16 16:40):**
+- **PILOT part 1 RUNNING** on schrodinger, 2 lanes, launched by the orchestrator 16:39 on the user's approval:
+  `p2-c-pilot-mb` (40 jobs) + `p2-c-pilot-znn-00…15` (460 jobs, 2.3×10⁶ events), ~95 CPU-h, ~48 h. Status:
+  `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume = `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh`
+  (idempotent). Do not edit files under `frozen_from_launch` of the PLAN. Verify first done markers + one file check.
+- channel (i) Rosalie (Opus): C1 campaigns, C1 signal chain, C2 queued; landau 2, maxwell 2. Next report at first verdicts.
+- channel (ii) Sebastian (Opus): S2-a 3× PASS (validation 2 with qualifier); K(m) done (CT18), PDF4LHC21 running;
+  f₂₀₀, P1 runs, FxFx diagnosis (no 30-min exception yet), Herwig comparison. landau 1, maxwell 1.
+- channel (iii) **Xavier** (Fable): ONE lane on schrodinger: looper gun (Geant4 trajectories injected; informs the
+  chain decision) then option (a) slices for DIF-C/NI-C; then B1 production code/campaign files (not launched).
+  Xavier may not launch pilot campaigns (permission system); the orchestrator launches on user approval.
+- Toys solved up to ~80 parameters (jax + warm start; `phase2_exploration/outputs/TOY_COST_viktor_2026-11-16_16-33.md`).
+- **Chain finding:** Fatras stops every particle at half a turn (v1 behaviour; 25–37 % of crossings missing;
+  `phase2_exploration/outputs/HALF_TURN_xavier_2026-11-16_16-08.md`). User chose option B (measure loopers first;
+  pilot on the present chain). If the looper gun shows candidates → notify (RESULT/DECISION): fix chain, regenerate pilot.
+- **Addendum 1:** v3 written (`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v3_yvonne_2026-11-16_15-04.md`), NOT yet
+  reviewed a third time. Before the third (last 1-bot) review it needs a fresh fixer pass (v4): A-1 result
+  (`phase2_exploration/outputs/A1_TRUNCATION_xavier_2026-11-16_15-40.md`), the half-turn finding and the treatment of
+  DIF-C/NI-C (option (a) result), looper-gun result, jets stored to 10 GeV (not 15), toy projection with jax
+  (47/108/228 CPU-h), pilot part 1 already launched. Then review → user approval (DECISION notice) → B1 pilot streams.
+  User decisions still owed: B1 pilot sizes; number of terms; hard-scatter sample; unread populations; pool decision
+  at the corrected floor (121–201 events; upside 514–584 GeV).
+- Open: T1-b no verdict (resume with the jax configuration, successor session); MET-model construction (Phase 3);
+  jet-response tail not sourced; R-15–R-17 open; `s4pu.py` forced-tt̄ edit waits for C1 campaigns to finish.
 
 **Orchestrator duties now:** commit on each report; resume executors; spawn the separate sealed C1 comparison session
 when channel (i) has the campaigns and the tested script (writes only PASS/FAIL per criterion; six sealed points);
