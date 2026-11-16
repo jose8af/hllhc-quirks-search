@@ -100,3 +100,14 @@ needs the v2 re-freeze (REPRODUCE §5.1-4).
   `phase2_exploration/src/herwig/pixi.{toml,lock}` (lock sha256 8d045f81…66a). Herwig 7.3.0 / ThePEG 2.3.0 for [DP5];
   Resummino 3.1.2 (conda-forge build h154ca16_2, sha256 c58d442d…e23d) as the fixed-order reference of S2-a validation 2.
   Package checksums: retrieval_log #21.
+
+### Phase 2, channel (iii) (Tatiana, 2026-11-16 13:34): tt̄ samples with forced W decays, run-time injection only
+- What: two entries added to `s4pu.SM_SAMPLES` **at run time** by `phase2_exploration/src/p2c_hs0.py` (`FORCED_TT`):
+  `ttbar_1l_pos` = the `ttbar_1l` process lines + `24:onMode = off`, `24:onPosIfAny = 11 13 15`, `24:onNegIfAny = 1 2 3 4 5`;
+  `ttbar_1l_neg` = the charge conjugate. The file `acts/stage4/code/s4pu.py` is **not edited** (0 lines of diff): channel (i)'s
+  C1 campaigns record its sha256 while they run, and v1's own `gen_d123.py` injects its extra processes the same way.
+- Why: 23.7 generator tries per kept event instead of 48.3 (strategy addendum 1 §3.3). The `ttbar_1l` one-lepton test of
+  `HardScatter.generate` does not apply to the new names; every forced event has exactly one leptonic W by construction
+  (0 of 7,100 tries failed the test, campaign p2-c-prof).
+- If adopted for production: the same two entries (and their analogues for tt̄ 2ℓ, tW, t-channel) go into `SM_SAMPLES`
+  in the file, 2 lines per sample, at the v2 code freeze.

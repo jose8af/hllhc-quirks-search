@@ -17,3 +17,4 @@
 - 2026-11-16 13:00 -05 | landau (channel (i) share, 2 slots) | ≈ 2 h | channel (i) Rosalie: 1 slot p2-a-c1-pu1, 1 slot p2-a-c1-s2 (C1 signal Stage 2, 4 generator jobs ≈ 20 min, 1 at a time); maxwell share unchanged (p2-a-c1-pu2, 2 slots)
 - 2026-11-16 13:01 -0500 | maxwell | install slot RELEASED | channel (ii) Sebastian: Herwig 7.3.0 / ThePEG 2.3.0 + Resummino 3.1.2 installed node-local at maxwell:/home/scratch/jdochoa/envs/herwig (pixi install 27 s wall, 0.32 GB RSS, 1.8 GB env; lock sha256 8d045f81…). No pixi install of mine runs now.
 - 2026-11-16 13:03 -0500 | landau | my 1 slot (ruling) | channel (ii) Sebastian: p2-b-s2-kscan-p4l (5 jobs) queued behind p2-b-s2-kdy
+- 2026-11-16 13:34 -0500 | maxwell | same 1 light slot | channel (ii) Sebastian: order changed: after the running s2c-inc chunk, p2-b-hw-smoke (≈ 1 h) runs before the remaining 22 s2c-inc chunks; then s2c-rs (queue_maxwell3.sh)

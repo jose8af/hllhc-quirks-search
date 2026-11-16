@@ -40,6 +40,11 @@ EVT_COLS = ['met_x', 'met_y', 'hs_tries', 'sigma_gen_mb', 'vtx_x', 'vtx_y', 'vtx
             'w_v1', 'met_reco_v1', 'phimet_reco_v1', 'eps_trig_v1', 'met250_v1', 'jet100_v1', 'mindphi_v1', 'n_veto_v1',
             'ev_seed_lo', 'ev_seed_hi']
 MAX_REPLACE = 5
+# tt-bar with forced decays (addendum 1 §3.3): the two charge-conjugate halves of "exactly one W -> l nu".  Injected at
+# run time (as gen_d123.EXTRA does); acts/stage4/code/s4pu.py itself is not edited (see CHAIN_PROVENANCE.md).
+TT = s4pu.SM_SAMPLES['ttbar_1l'][0]
+FORCED_TT = {'ttbar_1l_pos': TT + ["24:onMode = off", "24:onPosIfAny = 11 13 15", "24:onNegIfAny = 1 2 3 4 5"],
+             'ttbar_1l_neg': TT + ["24:onMode = off", "24:onNegIfAny = 11 13 15", "24:onPosIfAny = 1 2 3 4 5"]}
 
 
 def gen_summary(py, met, sample, ev_seed, sj20, sj30):
@@ -66,6 +71,8 @@ def gen_summary(py, met, sample, ev_seed, sj20, sj30):
 def run(sample, out, n_events, stream, chunk):
     t_start = time.time()
     job_seed = C.qv2_seed(stream, chunk)
+    if sample in FORCED_TT:
+        s4pu.SM_SAMPLES[sample] = (FORCED_TT[sample], 150.0)
     scratch = tempfile.mkdtemp(prefix='p2c_hs0_', dir='.')
     try:
         G = rc.geometry(scratch)

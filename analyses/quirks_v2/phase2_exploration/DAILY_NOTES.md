@@ -13,3 +13,5 @@
   Runs now: nothing. Pilot held. Next: T1 builder on v1 counts, B3 timing script, hand-over hardening.
 - 2026-11-16 13:32 channel (iii) Tatiana: strategy addendum 1 drafted (phase1_strategy/outputs/STRATEGY_ADDENDUM_1_tatiana_2026-11-16_13-31.md) with the matching pending section in COMMITMENTS.md. Preselection weight measured on 10,000 events: Z(νν) 0.431 ± 0.005 (effective fraction 0.440). Proposed rule-1 numbers: 41 events per Z(νν) count, 78 per DIF count; an empty pilot reads 191 (R09) / 295 (R08) in the strict version. Correction: in effective preselected events the SM pool floor at the approved CPU is 90–166 events, not 33–39.
   Runs now: nothing. Pilot held until the addendum is reviewed and approved. Next: item 4.
+- 2026-11-16 13:46 channel (iii) Tatiana: forced tt̄ decays measured through the chain: 0.327 s per event (unforced 0.571). T1 builder in v1 mode gives a preliminary best-point limit between 873 and 916 against v1's 789.7 (not yet within 10 %; fits unstable at 5×10⁵ counts, and v1's toy limit used a different test statistic).
+  Runs now: nothing. Pilot held (addendum in review).

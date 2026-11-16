@@ -114,6 +114,18 @@ def main(argv):
         jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
                      command=f'PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 -I {SRC}/p2c_addendum1.py $QV2_OUT_DIR/{name}-0.json')]
         write(name, jobs, 0.2, 300, me, 'rule-1 basis, day-15 table and Table 4.4a rows for strategy addendum 1')
+    elif what == 't-ttf':         # forced tt-bar decays through the chain (addendum 1 §3.3)
+        jobs = []
+        for smp, t in (('ttbar_1l_pos', 'ttp'), ('ttbar_1l_neg', 'ttn')):
+            jobs += hs0_jobs('p2-c-t-ttf', smp, t, f'time.hs0.{t}', 1, 1250)
+        write('p2-c-t-ttf', jobs, 0.3, 1500, me, 'timing: tt-bar 1-lepton with forced W decays, no pile-up, through the chain')
+    elif what == 't1-v1':         # COM T1-b: v1 best point in v1 mode
+        name = argv[1] if len(argv) > 1 else 'p2-c-t1-v1'
+        nt = argv[2] if len(argv) > 2 else '500'
+        jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
+                     command=f'export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && {PYHFPY} '
+                             f'{SRC}/p2c_t1.py v1 $QV2_OUT_DIR/{name}-0.json {nt}')]
+        write(name, jobs, 0.4, 600, me, 'T1-b: v1 best-point limit with the T1 builder in v1 mode')
     else:
         raise SystemExit(f'unknown campaign {what}')
 
