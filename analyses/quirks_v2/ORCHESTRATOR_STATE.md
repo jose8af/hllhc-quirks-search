@@ -27,14 +27,15 @@ day 5 (21 Nov): decision point 1 (C1, C2) + stop-rule checkpoint 1 (re-project C
 utilisation); consolidate `EXPLORATION.md`, self-review + plot validator (JFC Phase-2 tier), then Phase 3.
 **Daily report** (user request; DEVIATIONS V14): `daily/YYYY-MM-DD.tex` + compiled `.pdf` (LaTeX, built in `/var/tmp/jdochoa/tex`), STATUS.md, bundle, then **commit and `git push origin v2-jfc`** (authorised by the user 2026-11-16 for the daily reports; never force) each evening; a session cron (18:47,
 session-only, expires after 7 days: re-create) triggers it; if the session was restarted, re-create the cron.
-**Notifications to the user (user instruction 2026-11-16, DEVIATIONS V15):** `tools/notify/notify.sh <KIND> "<subject>" <body-file>`
-makes an empty commit on `origin/main` with the information in the message and pushes `v2-jfc` too. Only the
-orchestrator notifies. Send one ONLY when: (DECISION) a decision of the user is needed, with the options, a
-recommendation and the deadline; (PROBLEM) a cluster or infrastructure fault needs the user or an admin, or a stop
-rule fires; (RESULT) a result that changes the expected outcome, a gate or a decision point is reached (day 5, 7,
-12, 15, freeze, gates), or a criterion fails; (INFO) the evening daily report (one line + pointer). Not for routine
-progress. Batch what arrives within about an hour; at most a few per day outside emergencies. The message must
-stand alone (readable off-network): numbers with tags, what is asked, by when. No sealed signal quantity ever.
+**Notifications to the user (user instruction 2026-11-16, DEVIATIONS V15b):** `tools/notify/notify.sh <KIND> "<subject>" <body.md>`
+writes a NEW FILE `notices/<date_time>_<KIND>_<slug>.md`, commits only it and pushes `v2-jfc` (the user watches the
+repository by hand; no mail exists; nothing is pushed to `main` any more). Only the orchestrator notifies. Send one
+ONLY when: (DECISION) a decision of the user is needed, with options, recommendation and deadline; (PROBLEM) a
+cluster or infrastructure fault needs the user or an admin, or a stop rule fires; (RESULT) a result that changes the
+expected outcome, a decision point or gate is reached, or a criterion fails. The evening daily report (LaTeX + PDF in
+`daily/`) is itself the routine notice. Batch what arrives within about an hour. Each notice stands alone: numbers
+with tags, what is asked, by when. No sealed signal quantity ever. When the user has answered a DECISION notice,
+say so in the next notice or daily report.
 
 **User's next interventions:** day 5 only if the stop rule fires or C1 fails after three remediation attempts;
 **day 15 = 1 Dec: expected pause (Q2 a)**; freeze notification days 17–19 (3–5 Dec); Gate B about 4–6 Jan 2027;

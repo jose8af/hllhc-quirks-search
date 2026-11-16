@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
-# Notify the user by an EMPTY commit on origin/main (user instruction of 2026-11-16).
-# The commit message carries the information; the working tree and the current branch are not touched.
-# Usage: tools/notify/notify.sh <DECISION|RESULT|PROBLEM|INFO> "<subject>" <body-file>
-# Rules: fast-forward only, never force; no checkout (agents work in the tree); also pushes v2-jfc so that the
-# files the message points to are readable from outside the network.
+# Notify the user by a NEW FILE committed and pushed on v2-jfc (user instruction of 2026-11-16, second form:
+# "commit and push in the same fashion of the daily reports ... if I see a file that was not there then I know
+# something happened"). The earlier empty-commit-on-main form is dropped.
+# Usage: tools/notify/notify.sh <DECISION|RESULT|PROBLEM|INFO> "<subject>" <body-file(markdown)>
+# Writes analyses/quirks_v2/notices/<YYYY-MM-DD_HHMM>_<KIND>_<slug>.md, commits ONLY that file, pushes v2-jfc.
+# Never force; no other branch.
 set -euo pipefail
 kind="$1"; subject="$2"; body="$3"
 case "$kind" in DECISION|RESULT|PROBLEM|INFO) ;; *) echo "bad kind" >&2; exit 2;; esac
 cd "$(git rev-parse --show-toplevel)"
-msg="$(mktemp -p /var/tmp/jdochoa notify.XXXXXX)"
+[ "$(git rev-parse --abbrev-ref HEAD)" = "v2-jfc" ] || { echo "not on v2-jfc" >&2; exit 3; }
+slug="$(printf '%s' "$subject" | tr 'A-Z' 'a-z' | tr -c 'a-z0-9' '-' | sed 's/--*/-/g;s/^-//;s/-$//' | cut -c1-48)"
+f="analyses/quirks_v2/notices/$(date '+%Y-%m-%d_%H%M')_${kind}_${slug}.md"
+mkdir -p "$(dirname "$f")"
 {
-  echo "[quirks-v2][$kind] $subject"
+  echo "# [$kind] $subject"
+  echo
+  echo "Written $(date '+%Y-%m-%d %H:%M %z') by the orchestrator. Current status: \`analyses/quirks_v2/STATUS.md\`."
   echo
   cat "$body"
-  echo
-  echo "Sent: $(date '+%Y-%m-%d %H:%M %z'). Work branch: v2-jfc at $(git rev-parse --short v2-jfc)."
-  echo "Status file: analyses/quirks_v2/STATUS.md (branch v2-jfc)."
-  echo
-  echo "Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>"
-} > "$msg"
-timeout 120 git push -q origin v2-jfc || echo "WARN: push of v2-jfc failed" >&2
+} > "$f"
+git add "$f"
+git commit -q -m "notice($kind): $subject
+
+Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>" -- "$f"
 for try in 1 2 3; do
-  timeout 60 git fetch -q origin main
-  parent="$(git rev-parse origin/main)"
-  commit="$(git commit-tree "${parent}^{tree}" -p "$parent" -F "$msg")"
-  if timeout 60 git push -q origin "$commit:refs/heads/main"; then
-    echo "notified: $commit on main ($kind)"; rm -f "$msg"; exit 0
-  fi
+  if timeout 120 git push -q origin v2-jfc; then echo "notice pushed: $f"; exit 0; fi
+  timeout 60 git fetch -q origin && git merge -q --no-edit origin/v2-jfc || true
   sleep 5
 done
-echo "ERROR: notification push failed; message kept at $msg" >&2; exit 1
+echo "ERROR: push failed; notice committed locally at $f" >&2; exit 1

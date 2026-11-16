@@ -491,3 +491,9 @@ statistic gives 794–832 over four seeds). Fresh reviewer next.
   tests, campaign files); it does not submit. Running now: Rosalie (i), Sebastian (ii), Viktor (toy cost), Wanda
   (addendum re-review), Xavier: five agents instead of three, for the hours in which the two short tasks run; the
   orchestrator's cgroup is at 0.9 GB of the 10 GB cap.
+
+## 2026-11-16 14:28 -05 (measured) — Notification method changed by the user
+The user dropped the empty-commit-on-main idea (no mail without GitHub Actions) and asked instead to "commit and
+push in the same fashion of the daily reports": they look at the repository by hand and a new file means something
+happened. `tools/notify/notify.sh` now writes a file in `notices/` and pushes `v2-jfc`; DEVIATIONS V15b. The
+empty commit `db07909` on `main` is left in place.

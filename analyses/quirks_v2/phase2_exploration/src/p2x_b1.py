@@ -1,0 +1,169 @@
+"""p2x_b1.py -- pilot no-pile-up single-interaction events for a CLASS LIST (addendum 1 v2), one Geant4 vertex each.
+
+  <acts python> p2x_b1.py <sample> <classes: a+b+...> <out.npz> <n_events> <stream> <chunk> <first> <beta_min> <vertex file>
+
+  sample    name of the pilot sample (dif, difc, ni22, ni30, ni61, nix, nic, hs, lowpt); only a label and a seed tag
+  classes   classes of p2x_common.B1_CLASSES that form the sample (DIF sample of addendum v2 = dif+k0l)
+  first     the events are the vertices [first, first + n_events) of those classes in ONE group file of p2x_g4prod.py,
+            in file (= firing) order; the job fails if the file holds fewer (never a silent short sample)
+  beta_min  hand-over cut of addendum v2 P6 (0.1): products slower than this at the slab exit are not given to Fatras
+
+Chain and hand-over exactly as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent with v1's
+Truncate (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
+event stored on every surface.  The Geant4 crossings of the parent before the vertex are stored (variant B input).
+
+Per event (`evt`, columns EVT_COLS): everything of p2c_b1.EVT_COLS, plus the vertex class, the parent kinematics at
+its origin (pdg, pT, eta, phi), the road offset, the vertex radius / z / time / volume, first-arc flag, parent
+momentum at the vertex, pool provenance and source weight.  The last two columns are the event seed.
+Road: N_t of addendum v2 counts parents inside a road of half-width 0.15.  `road_dphi` = phi(parent at origin) -
+phi(road axis): the true offset for a hard-scatter pool (from the pool file), else a draw U(-0.15, 0.15) seeded per
+event; `phi_road` = phi(parent) - road_dphi.  `phimet` is Tatiana's independent uniform draw (kept).  Nothing is cut
+on either; Phase 3 chooses the convention.
+"""
+import json
+import shutil
+import sys
+import tempfile
+import time
+
+import numpy as np
+
+import p2c_common as C
+import p2c_b1 as B1
+import p2c_handover as HO
+import p2x_common as X
+
+rc = B1.rc
+s4pu = B1.s4pu
+
+log = C.setup_logging('p2x_b1')
+NEW_COLS = ['cls', 'parent_pdg', 'parent_pt0', 'parent_eta0', 'parent_phi0', 'road_dphi', 'phi_road', 'vtx_r', 'vtx_z',
+            'vtx_t', 'vtx_vol', 'first_arc', 'parent_p_vtx', 'fire', 'pool_file', 'pool_row', 'src_index', 'w_src']
+EVT_COLS = B1.EVT_COLS[:-2] + NEW_COLS + B1.EVT_COLS[-2:]
+W_ROAD = 0.15
+
+
+def load(vfile, classes, first, n):
+    z, meta = C.load_job(vfile)
+    assert meta.get('mode') == 'g4prod', f'{vfile} is not a p2x_g4prod vertex file'
+    missing = [c for c in classes if c not in meta['complete_classes'] or c not in meta['group_classes']]
+    assert not missing, f'classes {missing} are not (completely) in {vfile}'
+    cls = z['cls']
+    idx = np.nonzero(np.isin(cls, [X.CODE[c] for c in classes]))[0]
+    if len(idx) < first + n:
+        raise RuntimeError(f'{vfile}: {len(idx)} vertices of {classes}, need [{first}, {first + n})')
+    take = idx[first:first + n]
+    po = z['prod_off']; xo = z['cross_off']; prod = z['prod']; cross = z['cross']; vtx = z['vtx']; src = z['src']
+    V = [vtx[i] for i in take]; PR = [prod[po[i]:po[i + 1]] for i in take]; CR = [cross[xo[i]:xo[i + 1]] for i in take]
+    return V, PR, CR, cls[take], src[take], meta
+
+
+def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile):
+    t_start = time.time()
+    HO.BETA_MIN = float(beta_min)
+    job_seed = C.qv2_seed(stream, chunk)
+    V, PR, CR, cls, src, vmeta = load(vfile, classes, first, n_events)
+    assert np.all(np.isin(cls, [X.CODE[c] for c in classes])) and len(cls) == n_events
+    vcols = vmeta['vcols']; scol = {k: i for i, k in enumerate(vmeta['src_cols'])}
+    ev_seeds = [s4pu.hseed('p2x-b1', sample, job_seed, i, mod=2 ** 62) for i in range(n_events)]
+    dec = HO.Decayer(job_seed)
+    bs = s4pu.load_beamspot(rc.TT)
+    sig = np.array([bs['sigma_xy_um'] * 1e-3, bs['sigma_xy_um'] * 1e-3, bs['sigma_z_mm']])
+    scratch = tempfile.mkdtemp(prefix='p2x_b1_', dir='.')
+    try:
+        G = rc.geometry(scratch)
+        rc.BTL_SIDS.update(s['sid'] for s in G['surfs'] if s['kind'] == 'BTL')
+        store = {}; aux = {}
+        rc.TIMES.clear()
+
+        def provider(i):
+            P, trunc, npg, ninj, nslow = HO.event_rows(V[i], PR[i], vcols, dec, ev_seeds[i])
+            rng = np.random.default_rng(s4pu.hseed('p2x-b1-pv', sample, ev_seeds[i], mod=2 ** 63))
+            pv = rng.normal(0, 1, 3) * sig
+            phimet = rng.uniform(-np.pi, np.pi)
+            droad = rng.uniform(-W_ROAD, W_ROAD)
+            g = dict(zip(vcols, V[i]))
+            vz = np.array([[s4pu.GUN_VP, g['x0'], g['y0'], g['z0'], g['t0'], g['px0'], g['py0'], g['pz0']]])
+            aux[i] = (P, pv, phimet, npg, ninj, len(trunc), nslow, droad)
+            return P, vz, dict(trunc=trunc, n_particles=len(P))
+        trunc = rc.Truncate(lambda i: store[i]['info']['trunc'], store)
+        s = rc.build_sequencer(G, n_events, job_seed, provider, store, with_ckf=True, truncate=trunc,
+                               store_vp={s4pu.GUN_VP})
+        s.run()
+        v41 = np.zeros((n_events, len(rc.V41_COLS))); tim = np.zeros((n_events, len(rc.T_COLS)))
+        st = {}
+        for e, nm, t in rc.TIMES:
+            st.setdefault(e, {})[nm] = t
+        evt = np.zeros((n_events, len(EVT_COLS)))
+        hits = []; tru = []; vzs = []; toys = []; inj = []
+        for i in range(n_events):
+            r = store[i]; ev = r['ev']
+            v41[i] = (r['nh'], r['nm'], r['nmap'], r['bij'], r['nunm'], len(ev), r['onsurf'], 0, 0, 0, r['ntr'],
+                      r['nckf'], r['n_in'])
+            x = st.get(i, {})
+            t2 = x.get('t2_digi', 0.0); t3 = x.get('t3_seed', t2); t4 = x.get('t4_ckf', t3)
+            tim[i] = (r['t_gen'], r['t_source'], t2 - x.get('t1_source', t2), t3 - t2, t4 - t3, r['t_dump'])
+            P, pv, phimet, npg, ninj, ntr, nslow, droad = aux[i]
+            g = dict(zip(vcols, V[i]))
+            pt0 = float(np.hypot(g['px0'], g['py0'])); phi0 = float(np.arctan2(g['py0'], g['px0']))
+            eta0 = float(np.arcsinh(g['pz0'] / max(pt0, 1e-300)))
+            sd = float(src[i, scol['road_dphi']])
+            rd = sd if np.isfinite(sd) else droad
+            phi_road = (phi0 - rd + np.pi) % (2 * np.pi) - np.pi
+            evt[i] = (first + i, *pv, phimet, npg, ninj, r.get('n_trunc_dropped', 0), ntr, nslow,
+                      cls[i], g['parent_pdg'], pt0, eta0, phi0, rd, phi_road, float(np.hypot(g['x'], g['y'])), g['z'], g['t'],
+                      g['vol'], src[i, scol['first_arc']], float(np.sqrt(g['px'] ** 2 + g['py'] ** 2 + g['pz'] ** 2)), g['fire'],
+                      src[i, scol['pool_file']], src[i, scol['pool_row']], src[i, scol['src_index']], src[i, scol['w_src']],
+                      ev_seeds[i] % 2 ** 31, ev_seeds[i] // 2 ** 31)
+            hits.append(ev); tru.append(r['tru']); vzs.append(r['vz']); toys.append(r['toy_simhits']); inj.append(P)
+        H, hoff = C.concat(hits, len(rc.COLS), np.float32)
+        T, _ = C.concat(tru, 3, np.float32)
+        VZ, voff = C.concat(vzs, 8, np.float64)
+        TOY, toff = C.concat(toys, len(rc.TOY_COLS), np.float64)
+        INJ, ioff = C.concat(inj, 12, np.float64)
+        GP, gpoff = C.concat(PR, 9, np.float64)
+        GC, gcoff = C.concat(CR, 8, np.float32)
+        v41_pass = bool(np.all(v41[:, 3] == 1) and np.all(v41[:, 4] == 0) and np.all(v41[:, 6] < 1.0)
+                        and np.all(v41[:, 0] - v41[:, 1] <= np.maximum(2, 1e-5 * v41[:, 0])))
+        ccol = EVT_COLS.index('cls')
+        n_cls = {c: int((evt[:, ccol] == X.CODE[c]).sum()) for c in classes}
+        assert sum(n_cls.values()) == n_events, 'an event outside the classes of its sample'
+        vsum = {k: vmeta.get(k) for k in ('stream', 'chunk', 'job_seed', 'g4_pass', 'n_fire', 'group', 'group_classes',
+                                          'content_sha256', 'pool_prefix', 'pool_files', 'physlist', 'product_handover')}
+        meta = dict(mode='b1x', term=sample, sample=sample, classes=classes, class_codes=X.CODE, n_per_class=n_cls,
+                    stream=stream, chunk=chunk, job_seed=job_seed, n_events=n_events, first_vertex=first,
+                    vertex_file=str(vfile), vertex_file_sha256=C.sha256_file(vfile), vertex_file_meta=vsum,
+                    beta_min=float(beta_min),
+                    handover=f'A (Fatras parent, v1 Truncate); products from the slab exit; beta < {HO.BETA_MIN} not handed over; '
+                             'Geant4 parent crossings stored (variant B input)',
+                    chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS, evt_cols=EVT_COLS,
+                    vcols=vcols, toy_cols=rc.TOY_COLS, pcols=s4pu.PCOLS, surface_names=vmeta['vol_names'],
+                    proc_names=vmeta['proc_names'], road_half_width=W_ROAD,
+                    prod_cols=['pdg', 'px', 'py', 'pz', 'E', 'x', 'y', 'z', 't'],
+                    cross_cols=['surface', 'x', 'y', 'z', 't', 'px', 'py', 'pz'], v41_pass=v41_pass,
+                    n_lost_simhits=int(np.sum(v41[:, 0] - v41[:, 1])),
+                    code_sha256=dict(C.code_hashes(), **X.src_hashes('p2x_b1.py', 'p2x_common.py', 'p2c_b1.py', 'p2c_common.py',
+                                                                     'p2c_handover.py', 'p2c_g4vtx.py')),
+                    input_sha256=X.input_hashes(),
+                    t_total_s=round(time.time() - t_start, 3),
+                    mean_s_per_event={c: float(tim[:, k].mean()) for k, c in enumerate(rc.T_COLS)},
+                    n_hits=int(len(H)), n_simhits=int(len(TOY)), n_ckf_tracks=int(v41[:, 10].sum()),
+                    mean_injected=float(evt[:, 6].mean()), mean_trunc_dropped=float(evt[:, 7].mean()),
+                    mean_injected_slow=float(evt[:, 9].mean()))
+        arrays = dict(hits=H, hit_off=hoff, tru=T, vz=VZ, vz_off=voff, v41=v41, timing=tim, evt=evt,
+                      gvtx=np.array(V, float).reshape(-1, len(vcols)), gprod=GP, gprod_off=gpoff, gcross=GC, gcross_off=gcoff,
+                      inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff)
+        X.save(out, arrays, meta)
+        X.write_sha(str(out) + '.sha.json', dict(job=dict(sample=sample, stream=stream, chunk=chunk, job_seed=job_seed,
+                                                          first=first, n_events=n_events),
+                                                 files={str(out).rsplit('/', 1)[-1]: meta['content_sha256']}))
+        log.info(json.dumps({k: meta[k] for k in ('sample', 'n_events', 'n_per_class', 't_total_s', 'v41_pass', 'mean_s_per_event',
+                                                  'n_hits', 'n_simhits', 'mean_injected', 'mean_injected_slow',
+                                                  'mean_trunc_dropped', 'bytes', 'content_sha256')}))
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+if __name__ == '__main__':
+    a = sys.argv[1:]
+    run(a[0], a[1].split('+'), a[2], int(a[3]), a[4], int(a[5]), int(a[6]), float(a[7]), a[8])

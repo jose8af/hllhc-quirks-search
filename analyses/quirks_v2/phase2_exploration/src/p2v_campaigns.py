@@ -63,8 +63,8 @@ def main(argv):
                  job(c, 'js-n100-mu3', 100, 100, 3, J, 'new'),
                  job(c, 'jm-n31-mu3', 31, 100, 3, J + ',opt=minuit', 'new'),
                  # pyhf's minuit optimiser always runs hesse() (N^2 calls): 1254 s per unit at 31 par; 60 par on 4
-                 # toys only (the 50-toy job was stopped at 14:18, > 30 min projected); no 100-par minuit job
-                 job(c, 'jm4-n60-mu3-a', 60, 4, 3, J + ',opt=minuit', 'new'),
+                 # toys only (same id: the 50-toy attempt was stopped at 14:18, > 30 min projected; the runner needs the id); no 100-par job
+                 job(c, 'jm-n60-mu3-a', 60, 4, 3, J + ',opt=minuit', 'new'),
                  job(c, 'jsmerged-n31-mu3', 31, 200, 3, J + ',layout=merged', 'new'),
                  job(c, 'jsmerged-n60-mu3-a', 60, 50, 3, J + ',layout=merged', 'new'),
                  job(c, 'jsmerged-n100-mu3', 100, 100, 3, J + ',layout=merged', 'new'),
