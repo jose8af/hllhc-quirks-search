@@ -482,3 +482,12 @@ with larger samples (pilot about 131 CPU-h against 54.5, 144 GB) 159 and 237–2
 timed, 99–137 with the chain change; upside reach 506–597 [443–524] GeV; projection about 4,780 CPU-h if toys stay
 at the 31-parameter cost. T1-b: no verdict (failed-fit rule not met; asymptotic 828.67 against v1's 828.7; v1's
 statistic gives 794–832 over four seeds). Fresh reviewer next.
+
+## 2026-11-16 14:19 -05 (measured) — Channel (iii) handed to a successor; five agents for a short time
+- Tatiana (context about 0.8 M tokens) wrote her hand-over section and an interim EXPLORATION file and is retired.
+  Her report times around 14:14–14:22 were partly ahead of the clock (measured 14:19 at her last report); commit
+  times are authoritative.
+- Successor Xavier (Fable; logged) makes the pilot campaigns ready to submit (two missing pieces of code, slice
+  tests, campaign files); it does not submit. Running now: Rosalie (i), Sebastian (ii), Viktor (toy cost), Wanda
+  (addendum re-review), Xavier: five agents instead of three, for the hours in which the two short tasks run; the
+  orchestrator's cgroup is at 0.9 GB of the 10 GB cap.
