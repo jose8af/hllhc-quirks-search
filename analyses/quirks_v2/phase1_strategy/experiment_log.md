@@ -557,3 +557,12 @@ FLAG FOR HUMAN: YES (Q4)
 [Zoe] DECISION: for the outcome "effect within ln 2" a nuisance of the measured size on the pile-up term is drafted. ALTERNATIVES: limitation only;
 [Zoe]   chain fix. CONFIDENCE: low that [SD17] allows it without a ruling. FLAG FOR HUMAN: yes (reviewer and user; v4 section 1.5).
 [Zoe] Proposed to the orchestrator, not decided: looper overlays of sample 19 made from Geant4 crossings; a C3 erratum item on v1's looper bound.
+[Clara] 2026-11-16 18:26. Fixer, strategy addendum 1 v4 -> v5: exact texts of the third critical review (Bruno 18:17, ITERATE, 0 A, 4 B, 12 C).
+[Clara]   Output: outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md, outputs/FIX_REPORT_addendum1_v5_clara.md; COMMITMENTS.md section
+[Clara]   "Changes of rows by addendum 1" only (l.1-285 byte-identical, cmp). B-1..B-4, C-1..C-12 all applied; every old text found exactly once
+[Clara]   (whitespace-insensitive) and every string checked against the review file. diff v4->v5: 27 hunks, 0 unattributed; COM: 4 hunks, 0 unattributed.
+[Clara]   p2z_addendum1.py and addendum1_v4_stdout.txt untouched (sha256 unchanged). No git, no job, no subagent.
+[Clara] DECISION: C-12 rows placed in the COM table by line order (after C1-a, B1-g, B6-a/B6-c). ALTERNATIVES: append at the end of the table.
+[Clara]   CONFIDENCE: high that the text is verbatim; placement is a choice. FLAG FOR HUMAN: yes (fix report, flag 2).
+[Clara] FLAGS (no action): COM pointer sentence still says "Version 4 ... Zoe" / "ADD4" with the v5 path; COM B6-a/B6-c row still says "nuisance"
+[Clara]   (contradicts B-2); v5 l.147-150 keeps the "0.97 % without a Geant4 record" caveat (not listed by the review); trailing space v5 l.317.

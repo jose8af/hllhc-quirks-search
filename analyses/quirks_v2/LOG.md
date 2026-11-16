@@ -692,3 +692,10 @@ as written no further review of the text is needed.
 Three-round limit of the 1-bot gate reached: the matter goes to the user. Orchestrator: a mechanical fixer applies
 the exact texts as version 5, a narrow mechanical check confirms the application (as in Phase-1 cycle 10), and the
 user gets the DECISION notice with the review status stated as it is.
+
+## 2026-11-16 18:27 -05 (measured) — Addendum 1 version 5 (exact texts of the third review applied by Clara)
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md` (sha256 00df2c65…709923a): 27 hunks from
+v4, all attributed; all B-1…B-4 and C-1…C-12 applied, none left; script and stdout untouched; COMMITMENTS lines
+1–285 byte-identical. Two leftovers flagged by the fixer were edited by the orchestrator in the COMMITMENTS addendum
+section (the pointer sentence; the B6-a/B6-c row brought in line with B-2: one-sided correction instead of a
+symmetric nuisance). A fresh mechanical check (Dario) follows, then the DECISION notice.
