@@ -16,6 +16,14 @@ Per file, by meta['mode'] (no rung, no candidate, no selection quantity is forme
            parent before the vertex that have no Fatras parent hit: at most 2 % of the crossings, on all events
   hs0x     V4-1 closure, no NaN, offsets, distinct seeds, truth MET > filter, every written hit has a row in the
            particle table, summaries finite
+Albert, 2026-11-16 (files written before that date are checked exactly as before):
+  hspool-x the hard-scatter parent pools of p2a_hspool.py (phase space, road / off-road, weights, source files)
+  b1x      files that carry the per-event array `ev_mode`: "no parent hit beyond the vertex radius" is required of the
+           events whose parent has the radius cut (ev_mode 0); of the events with a time cut or the hybrid parent
+           (ev_mode 1, 3) "no parent hit later than the vertex time" is required instead (a parent that has turned
+           was at larger radii before its vertex).  The parent phase space and the road condition are those recorded
+           in the vertex file's meta (pool selection, pool prefix), so the optional samples are checked against
+           their own definition.
 Reproducibility: files with the same (mode, stream, chunk, size, sample/group/pass, first vertex) must have the same
 content hash; files of the same kind with another chunk must differ.
 """
@@ -93,8 +101,13 @@ def chk_g4(z, m, part):
              partition_sum_ok=bool(m['counts_sum'] == sum(t['all'] for t in m['counts'].values())),
              counts={k: t['all'] for k, t in m['counts'].items()}, g4_ms_per_firing=m['g4_ms_per_firing'],
              products_per_vertex=float(len(z['prod']) / max(len(V), 1)), crossings_per_vertex=float(len(z['cross']) / max(len(V), 1)),
-             bytes_per_vertex=float(m['bytes'] / max(len(V), 1)), pool_rows_used=int(len(np.unique(src[:, sc['pool_row']] + 1e9 * src[:, sc['pool_file']]))))
-    if m['pool_prefix'] == 'pool' and all(pf['mode'] == 'mbgen-x' for pf in m['pool_files']):
+             bytes_per_vertex=float(m['bytes'] / max(len(V), 1)), pool_rows_used=int(len(np.unique(src[:, sc['pool_row']] + 1e9 * src[:, sc['pool_file']]))),
+             pool_prefix=m['pool_prefix'], pool_modes=sorted({str(pf['mode']) for pf in m['pool_files']}),
+             pool_selection=m.get('pool_selection'), pool_draw=m.get('pool_draw', 'uniform'),
+             pool_rows_in_pass=m.get('pool_rows_in_pass'), pool_rows_fired_distinct=m.get('pool_rows_fired_distinct'),
+             firings_per_distinct_pool_row=m.get('firings_per_distinct_pool_row'), g4=m.get('g4'),
+             w_src_min_max=[float(src[:, sc['w_src']].min()), float(src[:, sc['w_src']].max())] if len(src) else None)
+    if m['pool_prefix'] == 'pool' and all(pf['mode'] == 'mbgen-x' for pf in m['pool_files']) and not m.get('pool_selection'):
         zs = {}
         for k in m['complete_classes']:
             a = m['counts'][k]['all']; b = part['counts'].get(k, {}).get('all', 0)
@@ -142,6 +155,58 @@ def parent_crossings(z, m):
                 a1_frac_g4_without_fatras=og / max(both + og, 1), a1_frac_fatras_without_g4=of / max(both + of, 1))
 
 
+def chk_hspool_x(z, m, part):
+    """Pools of p2a_hspool.py: `pool_*` inside the road of the event, `opool_*` outside; both in the pool phase space."""
+    r = dict(n_events=m['n_events'], n_files=len(m['source_files']), sum_w=m['sum_w'], n_w_full=m['n_w_full'], n_w_low=m['n_w_low'])
+    ok = True
+    for pre, inroad in (('pool', True), ('opool', False)):
+        if f'{pre}_pt' not in z.files:
+            continue
+        pt = z[f'{pre}_pt']; eta = z[f'{pre}_eta']; d = z[f'{pre}_dphi']; w = z[f'{pre}_w']
+        r[f'n_{pre}'] = int(len(pt))
+        r[f'{pre}_in_phase_space'] = bool(len(pt) and pt.min() > 0.5 and pt.max() < 20 and np.abs(eta).max() < 1)
+        r[f'{pre}_road_ok'] = bool(np.all(np.abs(d) < 0.15) if inroad else np.all((np.abs(d) >= 0.15) & (np.abs(d) <= np.pi + 1e-6)))
+        r[f'{pre}_species_ok'] = bool(np.all(np.isin(np.abs(z[f'{pre}_pdg']), (211, 321, 2212, 130, 2112, 22))))
+        r[f'{pre}_nan'] = int(np.isnan(pt).sum() + np.isnan(eta).sum() + np.isnan(d).sum() + np.isnan(w).sum())
+        r[f'{pre}_w_range'] = [float(w.min()), float(w.max())] if len(w) else None
+        r[f'{pre}_per_event'] = float(len(pt) / m['n_events'])
+        r[f'{pre}_per_event_weighted'] = float(w.sum() / max(m['sum_w'], 1e-300))
+        r[f'{pre}_mean_pt'] = float(pt.mean()) if len(pt) else None
+        ok = ok and r[f'{pre}_in_phase_space'] and r[f'{pre}_road_ok'] and r[f'{pre}_species_ok'] and r[f'{pre}_nan'] == 0 \
+            and w.min() >= 0
+    e = z['evt']
+    r['events_distinct'] = bool(len(np.unique(e[:, 0] * 1e6 + e[:, 1])) == len(e))
+    r['hard'] = bool(ok and r['events_distinct'] and len(e) == m['n_events'])
+    return r
+
+
+def per_mode_parent_checks(z, m):
+    """For files with `ev_mode`: parent hits beyond the vertex radius in radius-mode events, and parent hits later
+    than the vertex time (+ 0.010 ns, as p2c_validate.one) in the events with a time cut or the hybrid parent."""
+    import p2c_validate as PV
+    H = z['hits']; ho = z['hit_off']; T = z['tru']; G = z['gvtx']; vc = {k: i for i, k in enumerate(m['vcols'])}
+    col = {k: i for i, k in enumerate(m['columns'])}; em = z['ev_mode']
+    btl_sid = {i for i, nm in PV.SID_NAME.items() if nm == 'BTL'}
+    beyond_r = late_t = nr = nt = 0
+    for i in range(len(em)):
+        if em[i] < 0:
+            continue
+        h = H[ho[i]:ho[i + 1]]; t = T[ho[i]:ho[i + 1]]
+        par = (h[:, col['vsec']] == 0) & (h[:, col['gen']] == 0) & (h[:, col['particle']] == 1)
+        if not par.any():
+            continue
+        g = G[i]
+        if em[i] == 0:
+            nr += 1
+            beyond_r += int(np.sum(par & (np.hypot(t[:, 0], t[:, 1]) > np.hypot(g[vc['x']], g[vc['y']]) + 1e-3)))
+        else:
+            nt += 1
+            notbtl = np.array([int(sd) not in btl_sid for sd in h[:, col['sid']]], bool)
+            late_t += int(np.sum(par & notbtl & (h[:, col['t']] > g[vc['t']] + 0.010)))
+    return dict(radius_mode_events_with_parent_hits=nr, time_mode_events_with_parent_hits=nt,
+                parent_hits_beyond_vertex_radius_in_radius_mode=beyond_r, parent_hits_later_than_vertex_time_in_time_mode=late_t)
+
+
 def chk_b1(path, z, m, part):
     import p2c_g4vtx as GV
     import p2c_validate as PV
@@ -153,7 +218,13 @@ def chk_b1(path, z, m, part):
     code, fa = X.class_codes(z['gvtx'], nm)
     lo = 0.3 if m['sample'] == 'lowpt' else 0.5
     hi = 0.5 if m['sample'] == 'lowpt' else 20.0
-    pt = ev[:, ec['parent_pt0']]
+    elo, ehi = 0.0, 1.0
+    vm = m.get('vertex_file_meta', {})
+    if vm.get('pool_selection'):                 # the phase space the Geant4 job selected from a wider pool
+        ps = vm['pool_selection']
+        lo, hi, elo, ehi = ps['pt_lo'], ps['pt_hi'], ps['abs_eta_lo'], ps['abs_eta_hi']
+    offroad = vm.get('pool_prefix') == 'opool'
+    pt = ev[:, ec['parent_pt0']]; aeta = np.abs(ev[:, ec['parent_eta0']]); ard = np.abs(ev[:, ec['road_dphi']])
     H = z['hits']; hc = {k: i for i, k in enumerate(m['columns'])}
     r.update(parent_crossings(z, m))
     r.update(trunc_mode=m.get('trunc_mode', 'radius'), a1_ok=bool(r['a1_frac_g4_without_fatras'] <= A1_MAX),
@@ -161,16 +232,27 @@ def chk_b1(path, z, m, part):
              class_recomputed_equal=bool(np.array_equal(code, ev[:, ec['cls']].astype(np.int8))),
              class_in_sample=bool(np.all(np.isin(ev[:, ec['cls']], [X.CODE[c] for c in m['classes']]))),
              first_arc_equal=bool(np.array_equal(fa.astype(float), ev[:, ec['first_arc']])),
-             parent_in_phase_space=bool(pt.min() > lo - 1e-5 and pt.max() < hi + 1e-5 and np.abs(ev[:, ec['parent_eta0']]).max() < 1.0 + 1e-6),
-             road_offset_ok=bool(np.abs(ev[:, ec['road_dphi']]).max() < 0.15),
+             parent_in_phase_space=bool(pt.min() > lo - 1e-5 and pt.max() < hi + 1e-5 and aeta.max() < ehi + 1e-6
+                                        and aeta.min() >= elo - 1e-6),
+             parent_phase_space_checked=dict(pt_lo=lo, pt_hi=hi, abs_eta_lo=elo, abs_eta_hi=ehi, offroad=offroad),
+             road_offset_ok=bool(ard.min() >= 0.15 - 1e-6 and ard.max() <= np.pi + 1e-6) if offroad else bool(ard.max() < 0.15),
              hits_all_gun=bool(len(H) == 0 or np.all(H[:, hc['vp']] == s4pu.GUN_VP)),
              evt_nan=int(np.isnan(ev).sum()), provenance=bool(m.get('vertex_file_sha256') and m['vertex_file_meta'].get('content_sha256')),
              beta_min=m['beta_min'], bytes_per_event=float(m['bytes'] / m['n_events']), s_per_event=m['mean_s_per_event'],
              t_total_s=m['t_total_s'], mean_pt0=float(pt.mean()), frac_ckf_flag=float((H[:, hc['flag']] > 0).mean()) if len(H) else 0.0,
              vertex_r_q=[float(q) for q in np.quantile(ev[:, ec['vtx_r']], (0.05, 0.5, 0.95))],
              w_src_mean=float(ev[:, ec['w_src']].mean()), gcross_per_event=float(len(z['gcross']) / m['n_events']))
+    radius_ok = r['parent_hits_beyond_vertex_radius'] == 0
+    if 'ev_mode' in z.files:
+        r.update(per_mode_parent_checks(z, m))
+        r.update(seam_window_ns=m.get('seam_window_ns'), n_per_ev_mode=m.get('n_per_ev_mode'),
+                 parent_hits_injected_per_event=float(z['n_parent_inj'].mean()),
+                 ev_mode_consistent=bool(np.all((z['ev_mode'] >= 0) == (ev[:, 8] > 0))))
+        radius_ok = (r['parent_hits_beyond_vertex_radius_in_radius_mode'] == 0
+                     and r['parent_hits_later_than_vertex_time_in_time_mode'] == 0 and r['ev_mode_consistent'])
+    r['parent_truncation_ok'] = bool(radius_ok)
     r['hard'] = bool(r['v41_pass'] and r['nan_hits'] == 0 and r['offsets_ok'] and r['seeds_distinct']
-                     and r['parent_hits_beyond_vertex_radius'] == 0 and r['product_hits_earlier_than_vertex'] == 0
+                     and radius_ok and r['product_hits_earlier_than_vertex'] == 0
                      and r['class_recomputed_equal'] and r['class_in_sample'] and r['first_arc_equal']
                      and r['parent_in_phase_space'] and r['road_offset_ok'] and r['hits_all_gun'] and r['evt_nan'] == 0
                      and r['provenance'] and r['mean_injected_slow'] == 0)
@@ -227,6 +309,8 @@ def main(out, part_file, files):
             r.update(chk_mb(z, m, part))
         elif mode == 'hspool':
             r.update(chk_hspool(z, m, part))
+        elif mode == 'hspool-x':
+            r.update(chk_hspool_x(z, m, part))
         elif mode == 'g4prod':
             r.update(chk_g4(z, m, part))
         elif mode == 'b1x':

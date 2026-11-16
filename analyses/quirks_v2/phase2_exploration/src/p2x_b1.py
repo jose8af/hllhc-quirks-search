@@ -1,7 +1,7 @@
 """p2x_b1.py -- pilot no-pile-up single-interaction events for a CLASS LIST (addendum 1 v2), one Geant4 vertex each.
 
   <acts python> p2x_b1.py <sample> <classes: a+b+...> <out.npz> <n_events> <stream> <chunk> <first> <beta_min> <vertex file> \
-                          [trunc: radius|time|both|auto|hybrid|autoh = radius] [n_road_orientations = 21]
+                          [trunc: radius|time|both|auto|hybrid|autoh = radius] [n_road_orientations = 21] [seam_ns = 0.005]
 
   sample    name of the pilot sample (dif, difc, ni22, ni30, ni61, nix, nic, hs, lowpt); only a label and a seed tag
   classes   classes of p2x_common.B1_CLASSES that form the sample (DIF sample of addendum v2 = dif+k0l)
@@ -18,6 +18,11 @@
             hybrid  time cut, and the stored Geant4 crossings of the parent later than its last kept Fatras hit are
                     added as SimHits (class HybridParent; option (a) of outputs/HALF_TURN_*.md: Fatras makes no hit
                     beyond half a turn).  autoh = hybrid for difc and nic, radius for the first-arc classes
+
+  seam_ns   (Albert, 2026-11-16) the seam window of the hybrid parent, HybridParent.T_EPS; default = the validated
+            0.005 ns.  Recorded in meta['seam_window_ns'] with the mode; per event the arrays `ev_mode` (0 radius cut,
+            1 time cut, 2 both, 3 time cut + Geant4 crossings beyond the last Fatras hit) and `n_parent_inj` (parent
+            SimHits added from Geant4 crossings) say what was done to the parent of that event.
 
 Chain and hand-over as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent, truncated as
 chosen (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
@@ -155,9 +160,12 @@ def load(vfile, classes, first, n):
     return V, PR, CR, cls[take], src[take], meta
 
 
-def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, trunc_mode='radius', n_orient=21):
+def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, trunc_mode='radius', n_orient=21,
+        seam_ns=None):
     t_start = time.time()
     HO.BETA_MIN = float(beta_min)
+    if seam_ns is not None:
+        HybridParent.T_EPS = float(seam_ns)
     job_seed = C.qv2_seed(stream, chunk)
     V, PR, CR, cls, src, vmeta = load(vfile, classes, first, n_events)
     assert np.all(np.isin(cls, [X.CODE[c] for c in classes])) and len(cls) == n_events
@@ -251,11 +259,22 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
         n_cls = {c: int((evt[:, ccol] == X.CODE[c]).sum()) for c in classes}
         assert sum(n_cls.values()) == n_events, 'an event outside the classes of its sample'
         vsum = {k: vmeta.get(k) for k in ('stream', 'chunk', 'job_seed', 'g4_pass', 'n_fire', 'group', 'group_classes',
-                                          'content_sha256', 'pool_prefix', 'pool_files', 'physlist', 'product_handover')}
+                                          'content_sha256', 'pool_prefix', 'pool_files', 'physlist', 'product_handover',
+                                          'pool_selection', 'pool_draw', 'pool_rows_in_pass', 'pool_rows_fired_distinct',
+                                          'firings_per_distinct_pool_row', 'pool_pt_min_max', 'pool_abs_eta_min_max')}
+        mode_code = {'radius': 0, 'time': 3 if hyb else 1, 'both': 2}
+        ev_mode_arr = np.array([mode_code[m_] for m_ in ev_mode], np.int8)
+        ev_mode_arr[evt[:, EVT_COLS.index('parent_charged')] <= 0] = -1          # neutral parent: no Fatras parent, nothing cut
+        n_pinj = np.array([store[i].get('n_parent_injected', 0) for i in range(n_events)], np.int32)
         meta = dict(mode='b1x', term=sample, sample=sample, classes=classes, class_codes=X.CODE, n_per_class=n_cls,
                     stream=stream, chunk=chunk, job_seed=job_seed, n_events=n_events, first_vertex=first,
                     vertex_file=str(vfile), vertex_file_sha256=C.sha256_file(vfile), vertex_file_meta=vsum,
                     beta_min=float(beta_min), trunc_mode=trunc_mode,
+                    seam_window_ns=float(HybridParent.T_EPS) if hyb else None,
+                    ev_mode_codes={'neutral parent (nothing cut)': -1, 'radius': 0, 'time': 1, 'both': 2,
+                                   'hybrid (time cut + Geant4 crossings later than the last Fatras hit + seam window)': 3},
+                    n_per_ev_mode={str(k): int((ev_mode_arr == k).sum()) for k in (-1, 0, 1, 2, 3)},
+                    after_turn_classes=list(AFTER_TURN),
                     handover=f'A (Fatras parent, truncated at the vertex by {trunc_mode}); products from the slab exit; beta < {HO.BETA_MIN} not handed over; '
                              'Geant4 parent crossings stored (variant B input)',
                     chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS, evt_cols=EVT_COLS,
@@ -278,7 +297,7 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
                     mean_parent_hits_injected_from_geant4=float(np.mean([store[i].get('n_parent_injected', 0) for i in range(n_events)])))
         arrays = dict(hits=H, hit_off=hoff, tru=T, vz=VZ, vz_off=voff, v41=v41, timing=tim, evt=evt,
                       gvtx=np.array(V, float).reshape(-1, len(vcols)), gprod=GP, gprod_off=gpoff, gcross=GC, gcross_off=gcoff,
-                      inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff)
+                      inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff, ev_mode=ev_mode_arr, n_parent_inj=n_pinj)
         X.save(out, arrays, meta)
         X.write_sha(str(out) + '.sha.json', dict(job=dict(sample=sample, stream=stream, chunk=chunk, job_seed=job_seed,
                                                           first=first, n_events=n_events),
@@ -293,4 +312,4 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
 if __name__ == '__main__':
     a = sys.argv[1:]
     run(a[0], a[1].split('+'), a[2], int(a[3]), a[4], int(a[5]), int(a[6]), float(a[7]), a[8], a[9] if len(a) > 9 else 'radius',
-        int(a[10]) if len(a) > 10 else 21)
+        int(a[10]) if len(a) > 10 else 21, float(a[11]) if len(a) > 11 else None)

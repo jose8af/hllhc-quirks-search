@@ -1,0 +1,364 @@
+p2z_addendum1.py -- strategy addendum 1, version 4.  ESTIMATE unless marked [V].  Sections [1]-[7], [9], [10], [12]: as version 3.
+budget copy sha256 548b5ba8c3cbf65682708c7c8b034d2c62b2f8c1436142156f77e9775908c634
+OVERRIDES (version 2): {"PILOT_HS_GENERATED": 2300000.0, "M_FULL": {"Z": 0.4396, "W": 0.2657, "tt": 0.1205}, "LOW_CLASS": {"Z": [0.0025, 0.05], "W": [0.0516, 0.05], "tt": [0.0946, 0.05]}, "F_PASS": {"Z": 0.442, "W": 0.315, "tt": 0.2105}, "F_HS": 1.0221153846153845, "R08_PILEUP": [87.9, 117.9, 148.0], "COST": {"Z": [0.042, 0.085], "W": [0.086, 0.085], "tt": [0.46, 0.111], "tt_forced": [0.216, 0.111]}, "CHAIN_B1": {"DIF": 0.0037, "DIFC": 0.0037, "NI22": 0.0038, "NI30": 0.0059, "NI61": 0.0059, "NIX": 0.0059, "NIC": 0.0059}, "G4_ALL_MS": 0.3051742946666667, "G4_NI_MS": 0.0469}
+OVERRIDES_V3: {"TIE": 0.003, "ND": 100000, "ND_CROSS": 100000, "ND_GRID": 20000, "HS_IN_ROAD_PER_TRIG": 0.8718, "HS_ANY_PHI_PER_TRIG": 35.5, "HS_SLICE_PARENTS_W": 723, "HS_SLICE_EVENTS": 2000, "HS_SLICE_EVENTS_W": 834, "HS_SIZES": {"H1": 2000000.0, "H2": 200000.0}, "HS_OFFROAD_SIZE": 7300000.0, "LOWPT_PER_INT": 5.201752, "FWD_PER_INT": 3.643512, "POOL_PER_INT_SLICE": 7.09628, "V1_DIF_RATE_PX_MBB": 0.007967949, "LOWPT_YIELD_FACTOR": [1.0, 2.0], "LOWPT_SIZE": 200000.0, "LOWPT_CHAIN_S": 0.0048, "ALL_PASS_MARGIN": 1.03, "G4_JOB_FIRINGS": 2000000.0, "V1_DIF_RATE_T_G4": 0.007802, "KB_PER_B1_EVENT": 4.3, "KB_PER_Z_EVENT": 30.2, "KB_Z_EXTRA": 1.0, "HS_CHAIN_S": 0.005, "HSPOOL_GEN_S": 0.0383, "TOY_S": {"31 numpy": 638.0, "60 numpy": 11052.0, "80 numpy": 17799.0, "100 numpy": 48589.0, "31 jax": 84.0, "60 jax": 432.0, "80 jax": 857.0, "100 jax": 1898.0}, "NEW_4A_CPU_H": 41.0}
+OVERRIDES_V4: {"PILOT_ZNN_JOB_CPU_S": [677.731, 662.727, 665.947], "PILOT_ZNN_JOB_BYTES": [169313573, 169187713, 169065349], "PILOT_ZNN_JOB_EVENTS": 5000, "PILOT_MB_JOB_CPU_S": [879.824, 889.121], "PILOT_MB_JOBS": 40, "PILOT_MB_GB": 2.2, "PILOT_LAUNCH": "2026-11-16 16:39", "PILOT_LANES": 2, "DAY5": "2026-11-21 00:00", "G4_ALL_MS_PILOT": 0.33780000000000004, "G4_NI_MS_PILOT": 0.0538, "G4_ALL_JOB_GB": 0.226, "G4_NI_GB": 2.0, "CHAIN_B1_HYBRID": {"DIFC": 0.00483, "NIC": 0.00622}, "B_PER_EVENT": {"DIF": 2587, "DIFC": 4452, "NI22": 3298, "NI30": 3557, "NI61": 3420, "NIX": 3493, "NIC": 5377, "HS": 3704, "LOWPT": 3522}, "TOY_UNITS": 1006.4, "TOY_ALL_EXACT_UNITS": 1303.0, "TOY_FACTOR": 1.6, "TOY_S_JAX": {"31": 30.5, "60": 168.0, "80": 385.0, "100": 817.0}, "TOY_S_NUMPY_SCHRODINGER": {"31": 487.0, "60": 8814.0, "100": 67780.0}, "TOY_S_NUMPY_LANDAU": {"31": 638.0, "60": 11052.0, "80": 17799.0, "100": 48589.0}, "G4_MS_PER_FIRING_PIK": 0.41, "PU_CHAIN_S": 12.3, "PU_FINDER_S": 11.3, "PU_TRIALS": 4, "PU_EVENT_S_MEASURED": 58.0, "ROB_HITS": [1.0, 1.3], "ROB_EVENTS": [600, 1000], "PU_RATE_PER_TRIAL": {"R04": 171.55, "R05": 49.7, "R06": 0.247, "R07": 0.000729}, "ROB_SLICE_CPU_H": 2.0, "SIG_ROW_S": 25.2}
+derived from OVERRIDES_V4: Z(nunu) pilot job 133.8 ms and 33.84 kB per generated event (three done jobs); pilot.mb 9.83 CPU-h for 40 jobs (two done jobs)
+
+[1] PARTITION AND N_t  [V counts: p2-c-part-0; N_t: E]
+  firings 1500000; vertices 245945; classes: conversion 52583, dif 53063, difc 51441, k0l 2906, ni22 2583, ni30 3502, ni61 3496, nic 26239, nix 50083, other 49
+  B1 classes: DIF 55969, DIFC 51441, NI22 2583, NI30 3502, NI61 3496, NIX 50083, NIC 26239; sum of the B1 classes 193313; + conversions 52583 + other 49 = 245945 (all vertices: 245945)
+  species of DIFC 35970 pi, 15471 K; DIF 26641 pi, 26422 K, K0L 2906
+  N_t = N_trig 4.0848e+07 x 200 x pool in road 0.34051 (= 7.13168 x 0.30 / 2 pi) x class vertices per firing x F_HS 1.0221
+    DIF   count  55969  per firing 0.03731  N_t 1.061e+08  (minimum-bias share alone 1.038e+08; statistical error 0.4 %)
+    DIFC  count  51441  per firing 0.03429  N_t 9.751e+07  (minimum-bias share alone 9.54e+07; statistical error 0.4 %)
+    NI22  count   2583  per firing 0.00172  N_t 4.896e+06  (minimum-bias share alone 4.79e+06; statistical error 2.0 %)
+    NI30  count   3502  per firing 0.00233  N_t 6.638e+06  (minimum-bias share alone 6.495e+06; statistical error 1.7 %)
+    NI61  count   3496  per firing 0.00233  N_t 6.627e+06  (minimum-bias share alone 6.484e+06; statistical error 1.7 %)
+    NIX   count  50083  per firing 0.03339  N_t 9.494e+07  (minimum-bias share alone 9.288e+07; statistical error 0.4 %)
+    NIC   count  26239  per firing 0.01749  N_t 4.974e+07  (minimum-bias share alone 4.866e+07; statistical error 0.6 %)
+    sum N_t 3.664e+08  (minimum-bias share 3.585e+08; hard-scatter share at F_HS 7.93e+06)
+    frozen (Table 4.4a): DIF 6.51e+07, NI 8.83e+05 / 1.12e+06 / 1.12e+06, sum 6.82e+07; ratio new / frozen 5.37
+    DIF pieces: first arc at 30-1000 mm (v1's own definition) 43011 -> 8.15e+07 (x1.252 of the frozen 6.51e7); first arc at r < 30 or > 1000 mm 10052 -> 1.91e+07; K0L 2906 -> 5.51e+06
+    conversions of minimum-bias photons (B2 by the route table, not B1): 52583 -> 2.39 per triggered event in the road, 9.75e+07 in 3 ab^-1 (minimum-bias share)
+    later decays (DIFC) from parents above 0.57 GeV: 31,238 of 51441 = 61% [V: review Wanda, part.py; the 53 % of version 2 was the first review's number for 30-1000 mm]
+  C-6 hard-scatter share from v1's rates: v1 total 1.5687-1.5945 (STR l.255); v1 formula, minimum bias x 200: 1.560 on 40,000 interactions (p2-c-t-g4), 1.613 on the 25,000 of the partition campaign and 1.594 on 125,000 (p2-c-px-mbb-big) -> share -1.1% / +0.1% / +2.2%, i.e. 0-3 %; F_HS = 1.0221 kept as an upper-side value
+  A-2 measured on the hard-scatter slice [V: p2-c-px-hsg-r0, 2000 generated Z(nunu) events]: pool parents inside the road per triggered event 0.872 +- 3.7 % (723 parents in 834 events of non-zero weight), against 200 x 0.3405 = 68.1 from minimum bias: 1.28% by parent count; at any azimuth 35.5 per triggered event (41 off-road hadrons per in-road one; a uniform azimuth would put 1.70 in the road)
+
+[2] EVENTS IN 3 ab^-1 PER PILOT COUNT
+  10^6 per sample: DIF 106.1, DIFC 97.5, NI22 4.9, NI30 6.6, NI61 6.6, NIX 94.9, NIC 49.7   (with the hard-scatter share read on its own sample: DIF 103.8, DIFC 95.4, NI22 4.8, NI30 6.5, NI61 6.5, NIX 92.9, NIC 48.7)
+  proposed sizes 4, 4, 1, 1, 1, 4, 2 x 10^6: DIF 26.5, DIFC 24.4, NI22 4.9, NI30 6.6, NI61 6.6, NIX 23.7, NIC 24.9   (with the hard-scatter share read on its own sample: DIF 25.9, DIFC 23.9, NI22 4.8, NI30 6.5, NI61 6.5, NIX 23.2, NIC 24.3)
+  frozen: DIF 65.1, NI 0.88 / 1.12 / 1.12, all SM through one Z(nunu) count 18.1
+  Z(nunu) pilot 2.3e6 generated: M (full-weight class) 1.011e+06; one full-weight count = 41.25 events for all SM processes and the multijets (24.8 for Z(nunu) alone); one low-weight (0.05) count = 2.10
+  v4: other Z(nunu) pilot sizes (generated events: CPU-h at the measured 133.8 ms of the pilot jobs [127 in version 3], events per full-weight count): 8.3e+05: 31 CPU-h, 114.3; 1.5e+06: 56 CPU-h, 63.2; 2.3e+06: 85 CPU-h, 41.2; 3.5e+06: 130 CPU-h, 27.1; 5.23e+06: 194 CPU-h, 18.1
+
+[3] A-2  THE HARD-SCATTER PARENT SAMPLE pilot.c0.hs
+  N_t of the hard-scatter share, all seven classes: 7.93e+06 at F_HS = 1.0221 (used below; upper side); from the measured parent count and the minimum-bias yield 0.1289 B1 vertices per firing: 4.59e+06 [E: the yield of the stiffer parents is not measured]
+  H1: 2e+06 vertices in the natural class mixture = 1.55e+07 firings; one count = 4.0 events as ONE term (2.3 at the measured parent count); as seven weight classes (STR l.1564 read literally): 4.0 per count in each class, seven zeros; Geant4 1.32 + chain 2.78 = 4.1 CPU-h
+      parents from 2e4 generator-level events (version 2): 7.23e+03 distinct in-road parents of non-zero weight, 2146.5 firings each, 276.63 vertices per parent; pool generation 0.2 CPU-h
+      parents from 2e5 generator-level events: 7.23e+04 distinct in-road parents of non-zero weight, 214.6 firings each, 27.66 vertices per parent; pool generation 2.1 CPU-h
+      parents from the 2.3e6 Z(nunu) pilot events (stored hadron list, C-8): 8.31e+05 distinct in-road parents of non-zero weight, 18.7 firings each, 2.41 vertices per parent; no generation cost
+  H2: 2e+05 vertices in the natural class mixture = 1.55e+06 firings; one count = 39.6 events as ONE term (22.9 at the measured parent count); as seven weight classes (STR l.1564 read literally): 39.6 per count in each class, seven zeros; Geant4 0.13 + chain 0.28 = 0.4 CPU-h
+      parents from 2e4 generator-level events (version 2): 7.23e+03 distinct in-road parents of non-zero weight, 214.6 firings each, 27.66 vertices per parent; pool generation 0.2 CPU-h
+      parents from 2e5 generator-level events: 7.23e+04 distinct in-road parents of non-zero weight, 21.5 firings each, 2.77 vertices per parent; pool generation 2.1 CPU-h
+      parents from the 2.3e6 Z(nunu) pilot events (stored hadron list, C-8): 8.31e+05 distinct in-road parents of non-zero weight, 1.9 firings each, 0.24 vertices per parent; no generation cost
+  off-road hard-scatter hadrons (not in N_t as frozen: N_t counts parents inside the road): 1.82e+08 B1 vertices in 3 ab^-1 at the minimum-bias yield [E]; a second stratum of 7.3e+06 vertices would read 25.0 events per count and cost 4.8 + 10.1 = 15 CPU-h; all central hadrons in one unweighted sample of 2e6 would read 93 events per count
+
+[4] RULE 1: EMPTY-PILOT READING AND CROSSINGS  (B50 and crossings: medians of 1e5 draws, common random numbers; a reading >= 300 x (1 - 0.003) = 299.1 pauses: ties pause, STR l.2757)
+  FROZEN (STR: 4 B1 terms, v1 N_t, 10^6 per sample, 18.1 per Z count)
+      events per count: DIF 65.13, NI22 0.88, NI30 1.12, NI61 1.12, Z 18.13
+      empty pilot B50: R09 76.1 [16-84 %: 36-152]; R08 at pile-up 88 / 118 / 148: 156.2 / 181.2 / 203.8   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 12 (B50 299.6 at 12, 281.1 at 11) | R08@88: 8 (B50 304.3 at 8, 285.9 at 7) | R08@118: 7 (B50 310.2 at 7, 291.7 at 6) | R08@148: 6 (B50 313.8 at 6, 295.3 at 5)
+      pause at how many counts in DIF, the others zero: R09: 4 (B50 333.7 at 4, 268.7 at 3) | R08@88: 3 (B50 346.9 at 3, 282.7 at 2) | R08@118: 2 (B50 307.4 at 2, 244.3 at 1) | R08@148: 2 (B50 330.2 at 2, 267.0 at 1)
+      regression check: d15_q of the unchanged budget script, 1e5 draws: 76.6 [37-152] (STR prints 76 [37-152]); frozen m_Z = 11 / 12 / 13: 281.6 / 300.2 / 318.5
+  SEVEN TERMS, 10^6 per sample, hard-scatter parents not read (H3)
+      events per count: DIF 106.09, DIFC 97.51, NI22 4.90, NI30 6.64, NI61 6.63, NIX 94.94, NIC 49.74, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 388.5 [16-84 %: 243-592]; R08 at pile-up 88 / 118 / 148: 466.6 / 491.4 / 514.5   PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 0 (B50 388.5 at 0) | R08@88: 0 (B50 466.6 at 0) | R08@118: 0 (B50 491.4 at 0) | R08@148: 0 (B50 514.5 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 0 (B50 388.5 at 0; B50 388.5 at 0; B50 388.5 at 0; B50 388.5 at 0) | R08@88: 0 (B50 466.6 at 0; B50 466.6 at 0; B50 466.6 at 0; B50 466.6 at 0) | R08@118: 0 (B50 491.4 at 0; B50 491.4 at 0; B50 491.4 at 0; B50 491.4 at 0) | R08@148: 0 (B50 514.5 at 0; B50 514.5 at 0; B50 514.5 at 0; B50 514.5 at 0)
+  SEVEN TERMS, proposed sizes, hard-scatter parents NOT READ (H3; the reading of version 2)
+      events per count: DIF 26.52, DIFC 24.38, NI22 4.90, NI30 6.64, NI61 6.63, NIX 23.73, NIC 24.87, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 159.2 [16-84 %: 107-232]; R08 at pile-up 88 / 118 / 148: 236.7 / 260.5 / 282.2   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 4 (B50 322.1 at 4, 281.2 at 3) | R08@88: 2 (B50 317.6 at 2, 277.0 at 1) | R08@118: 1 (B50 301.3 at 1, 260.5 at 0) | R08@148: 1 (B50 323.0 at 1, 282.2 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 6 (B50 318.8 at 6, 292.3 at 5; B50 306.3 at 6, 281.8 at 5; B50 302.5 at 6, 278.7 at 5; B50 309.2 at 6, 284.2 at 5) | R08@88: 3 (B50 316.2 at 3, 289.8 at 2; B50 309.9 at 3, 285.7 at 2; B50 308.0 at 3, 284.4 at 2; B50 311.3 at 3, 286.6 at 2) | R08@118: 2 (B50 313.7 at 2, 287.3 at 1; B50 309.3 at 2, 285.2 at 1; B50 308.1 at 2, 284.6 at 1; B50 310.3 at 2, 285.7 at 1) | R08@148: 1 (B50 308.9 at 1, 282.2 at 0; B50 306.9 at 1, 282.2 at 0; B50 306.2 at 1, 282.2 at 0; B50 307.4 at 1, 282.2 at 0)
+  ** DRAFT **  SEVEN TERMS, proposed sizes, + pilot.c0.hs H1 (2e6 vertices) as one term
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 160.8 [16-84 %: 109-232]; R08 at pile-up 88 / 118 / 148: 238.3 / 262.3 / 283.8   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 4 (B50 323.5 at 4, 282.5 at 3) | R08@88: 2 (B50 318.7 at 2, 278.4 at 1) | R08@118: 1 (B50 302.5 at 1, 262.3 at 0) | R08@148: 1 (B50 324.7 at 1, 283.8 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 6 (B50 317.0 at 6, 291.0 at 5; B50 304.7 at 6, 280.7 at 5; B50 301.1 at 6, 277.7 at 5; B50 307.6 at 6, 283.1 at 5) | R08@88: 3 (B50 315.8 at 3, 289.9 at 2; B50 309.7 at 3, 285.8 at 2; B50 307.8 at 3, 284.6 at 2; B50 311.1 at 3, 286.7 at 2) | R08@118: 2 (B50 313.8 at 2, 288.2 at 1; B50 309.7 at 2, 286.2 at 1; B50 308.5 at 2, 285.6 at 1; B50 310.7 at 2, 286.7 at 1) | R08@148: 1 (B50 310.1 at 1, 283.8 at 0; B50 308.0 at 1, 283.8 at 0; B50 307.3 at 1, 283.8 at 0; B50 308.5 at 1, 283.8 at 0)
+      pause at how many counts in HS, the others zero: R09: 35 (B50 300.7 at 35, 296.6 at 34) | R08@88: 16 (B50 301.9 at 16, 298.0 at 15) | R08@118: 10 (B50 302.0 at 10, 298.0 at 9) | R08@148: 4 (B50 299.7 at 4, 295.6 at 3)
+      three other seeds, empty pilot: R09 160.8 / 160.6 / 160.6; R08@88 238.4 / 237.8 / 238.0; R08@118 262.5 / 261.3 / 261.7; R08@148 284.4 / 283.2 / 283.6
+  SEVEN TERMS, proposed sizes, + H1 (2e6) as seven weight classes (STR l.1564 literally)
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS-DIF 3.96, HS-DIFC 3.96, HS-NI22 3.96, HS-NI30 3.96, HS-NI61 3.96, HS-NIX 3.96, HS-NIC 3.96, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 184.5 [16-84 %: 131-257]; R08 at pile-up 88 / 118 / 148: 261.6 / 285.7 / 307.4   below / below / below / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 3 (B50 306.3 at 3, 265.2 at 2) | R08@88: 1 (B50 302.2 at 1, 261.6 at 0) | R08@118: 1 (B50 326.2 at 1, 285.7 at 0) | R08@148: 0 (B50 307.4 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 5 (B50 314.6 at 5, 288.5 at 4; B50 304.6 at 5, 280.4 at 4; B50 301.4 at 5, 278.0 at 4; B50 306.9 at 5, 282.3 at 4) | R08@88: 2 (B50 313.7 at 2, 287.8 at 1; B50 309.7 at 2, 285.9 at 1; B50 308.5 at 2, 285.3 at 1; B50 310.6 at 2, 286.3 at 1) | R08@118: 1 (B50 311.9 at 1, 285.7 at 0; B50 309.8 at 1, 285.7 at 0; B50 309.2 at 1, 285.7 at 0; B50 310.3 at 1, 285.7 at 0) | R08@148: 0 (B50 307.4 at 0; B50 307.4 at 0; B50 307.4 at 0; B50 307.4 at 0)
+  SEVEN TERMS, proposed sizes, + H2 (2e5 vertices, as drafted in version 2) as one term
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 39.64, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 195.9 [16-84 %: 134-279]; R08 at pile-up 88 / 118 / 148: 273.1 / 297.0 / 319.1   below / below / below / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 3 (B50 318.0 at 3, 277.1 at 2) | R08@88: 1 (B50 313.5 at 1, 273.1 at 0) | R08@118: 1 (B50 337.6 at 1, 297.0 at 0) | R08@148: 0 (B50 319.1 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 4-5 (B50 300.3 at 4, 274.1 at 3; B50 315.8 at 5, 292.1 at 4; B50 312.7 at 5, 289.7 at 4; B50 318.2 at 5, 294.0 at 4) | R08@88: 2 (B50 324.8 at 2, 298.8 at 1; B50 320.7 at 2, 296.8 at 1; B50 319.5 at 2, 296.2 at 1; B50 321.7 at 2, 297.3 at 1) | R08@118: 1 (B50 323.0 at 1, 297.0 at 0; B50 320.9 at 1, 297.0 at 0; B50 320.3 at 1, 297.0 at 0; B50 321.4 at 1, 297.0 at 0) | R08@148: 0 (B50 319.1 at 0; B50 319.1 at 0; B50 319.1 at 0; B50 319.1 at 0)
+      pause at how many counts in HS, the others zero: R09: 3 (B50 313.5 at 3, 274.1 at 2) | R08@88: 1 (B50 312.0 at 1, 273.1 at 0) | R08@118: 1 (B50 336.1 at 1, 297.0 at 0) | R08@148: 0 (B50 319.1 at 0)
+  SEVEN TERMS, proposed sizes, + H2 (2e5) as seven weight classes
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS-DIF 39.64, HS-DIFC 39.64, HS-NI22 39.64, HS-NI30 39.64, HS-NI61 39.64, HS-NIX 39.64, HS-NIC 39.64, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 431.7 [16-84 %: 323-564]; R08 at pile-up 88 / 118 / 148: 508.7 / 532.9 / 554.9   PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 0 (B50 431.7 at 0) | R08@88: 0 (B50 508.7 at 0) | R08@118: 0 (B50 532.9 at 0) | R08@148: 0 (B50 554.9 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 0 (B50 431.7 at 0; B50 431.7 at 0; B50 431.7 at 0; B50 431.7 at 0) | R08@88: 0 (B50 508.7 at 0; B50 508.7 at 0; B50 508.7 at 0; B50 508.7 at 0) | R08@118: 0 (B50 532.9 at 0; B50 532.9 at 0; B50 532.9 at 0; B50 532.9 at 0) | R08@148: 0 (B50 554.9 at 0; B50 554.9 at 0; B50 554.9 at 0; B50 554.9 at 0)
+  DRAFT + the off-road hard-scatter stratum (7.3e6 vertices) as one more term
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 41.25, Zlow 2.10, HSoff 24.97
+      empty pilot B50: R09 186.1 [16-84 %: 129-262]; R08 at pile-up 88 / 118 / 148: 263.1 / 287.0 / 308.9   below / below / below / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 3 (B50 307.7 at 3, 266.8 at 2) | R08@88: 1 (B50 303.6 at 1, 263.1 at 0) | R08@118: 1 (B50 327.6 at 1, 287.0 at 0) | R08@148: 0 (B50 308.9 at 0)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 5 (B50 316.1 at 5, 290.4 at 4; B50 305.9 at 5, 282.0 at 4; B50 302.8 at 5, 279.6 at 4; B50 308.2 at 5, 283.9 at 4) | R08@88: 2 (B50 315.0 at 2, 289.3 at 1; B50 311.0 at 2, 287.2 at 1; B50 309.8 at 2, 286.6 at 1; B50 312.0 at 2, 287.7 at 1) | R08@118: 1 (B50 312.9 at 1, 287.0 at 0; B50 310.9 at 1, 287.0 at 0; B50 310.3 at 1, 287.0 at 0; B50 311.4 at 1, 287.0 at 0) | R08@148: 0 (B50 308.9 at 0; B50 308.9 at 0; B50 308.9 at 0; B50 308.9 at 0)
+  DRAFT with the Z(nunu) pilot at 3.5e+06 generated events
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 27.11, Zlow 1.38
+      empty pilot B50: R09 147.6 [16-84 %: 101-210]; R08 at pile-up 88 / 118 / 148: 224.7 / 248.5 / 269.9   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 6 (B50 309.8 at 6, 282.6 at 5) | R08@88: 3 (B50 305.3 at 3, 278.1 at 2) | R08@118: 2 (B50 302.1 at 2, 275.2 at 1) | R08@148: 2 (B50 323.8 at 2, 297.0 at 1)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 6-7 (B50 303.1 at 6, 277.1 at 5; B50 314.7 at 7, 290.9 at 6; B50 310.4 at 7, 287.2 at 6; B50 318.0 at 7, 293.7 at 6) | R08@88: 3-4 (B50 301.8 at 3, 275.9 at 2; B50 319.9 at 4, 295.9 at 3; B50 317.5 at 4, 294.0 at 3; B50 321.8 at 4, 297.3 at 3) | R08@118: 2-3 (B50 299.9 at 2, 274.1 at 1; B50 319.5 at 3, 295.8 at 2; B50 317.7 at 3, 294.5 at 2; B50 320.8 at 3, 296.8 at 2) | R08@148: 2 (B50 321.6 at 2, 295.9 at 1; B50 317.4 at 2, 293.8 at 1; B50 316.2 at 2, 293.2 at 1; B50 318.4 at 2, 294.3 at 1)
+  DRAFT with the Z(nunu) pilot at 5.23e+06 generated events
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 18.14, Zlow 0.93
+      empty pilot B50: R09 138.7 [16-84 %: 95-197]; R08 at pile-up 88 / 118 / 148: 215.5 / 239.2 / 260.6   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 9 (B50 302.2 at 9, 284.4 at 8) | R08@88: 5 (B50 306.3 at 5, 288.3 at 4) | R08@118: 4 (B50 312.0 at 4, 293.8 at 3) | R08@148: 3 (B50 315.4 at 3, 297.1 at 2)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 7 (B50 319.7 at 7, 293.8 at 6; B50 305.5 at 7, 281.6 at 6; B50 301.2 at 7, 277.9 at 6; B50 308.8 at 7, 284.4 at 6) | R08@88: 4 (B50 318.8 at 4, 292.8 at 3; B50 310.8 at 4, 286.7 at 3; B50 308.3 at 4, 284.9 at 3; B50 312.7 at 4, 288.1 at 3) | R08@118: 3 (B50 316.4 at 3, 290.7 at 2; B50 310.3 at 3, 286.5 at 2; B50 308.5 at 3, 285.3 at 2; B50 311.7 at 3, 287.5 at 2) | R08@148: 2 (B50 312.5 at 2, 286.7 at 1; B50 308.4 at 2, 284.6 at 1; B50 307.1 at 2, 284.1 at 1; B50 309.3 at 2, 285.1 at 1)
+  DRAFT with every B1 sample doubled (3.4e7 events) and H1 doubled
+      events per count: DIF 12.97, DIFC 11.93, NI22 2.40, NI30 3.25, NI61 3.24, NIX 11.61, NIC 12.17, HS 1.98, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 101.5 [16-84 %: 67-154]; R08 at pile-up 88 / 118 / 148: 179.0 / 203.0 / 224.8   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 5 (B50 303.9 at 5, 263.3 at 4) | R08@88: 3 (B50 299.7 at 3, 258.8 at 2) | R08@118: 3 (B50 324.0 at 3, 283.0 at 2) | R08@148: 2 (B50 305.0 at 2, 264.8 at 1)
+      pause at how many counts in one large B1 sample (DIF, DIFC, NIX, NIC), the others zero: R09: 16-17 (B50 311.7 at 16, 298.6 at 15; B50 307.1 at 17, 295.0 at 16; B50 301.7 at 17, 290.0 at 16; B50 311.2 at 17, 298.8 at 16) | R08@88: 10-11 (B50 309.9 at 10, 296.9 at 9; B50 299.3 at 10, 287.4 at 9; B50 308.0 at 11, 296.1 at 10; B50 301.7 at 10, 289.6 at 9) | R08@118: 8-9 (B50 307.6 at 8, 294.4 at 7; B50 299.1 at 8, 286.9 at 7; B50 308.2 at 9, 296.5 at 8; B50 301.1 at 8, 288.6 at 7) | R08@148: 6-7 (B50 302.9 at 6, 290.0 at 5; B50 308.3 at 7, 296.6 at 6; B50 306.1 at 7, 294.7 at 6; B50 310.0 at 7, 298.0 at 6)
+  -- the number of terms (same 1.7e7 B1 events; hard-scatter parents not read in these four rows, so that they compare with 159) --
+  FOUR TERMS (lenient: only DIF and the three radii read; 2.4e8 vertices not read), proposed sizes
+      events per count: DIF 26.52, NI22 4.90, NI30 6.64, NI61 6.63, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 84.9 [16-84 %: 50-141]; R08 at pile-up 88 / 118 / 148: 163.3 / 187.3 / 208.8   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 6 (B50 329.6 at 6, 288.6 at 5) | R08@88: 4 (B50 325.6 at 4, 284.5 at 3) | R08@118: 3 (B50 308.7 at 3, 268.2 at 2) | R08@148: 3 (B50 330.6 at 3, 290.3 at 2)
+      pause at how many counts in DIF, the others zero: R09: 9 (B50 324.5 at 9, 298.0 at 8) | R08@88: 6 (B50 322.3 at 6, 295.6 at 5) | R08@118: 5 (B50 319.7 at 5, 293.1 at 4) | R08@148: 4 (B50 315.2 at 4, 288.7 at 3)
+  FOUR TERMS (lenient), 10^6 per sample
+      events per count: DIF 106.09, NI22 4.90, NI30 6.64, NI61 6.63, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 146.6 [16-84 %: 76-274]; R08 at pile-up 88 / 118 / 148: 227.1 / 252.3 / 275.4   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 4 (B50 317.3 at 4, 275.2 at 3) | R08@88: 2 (B50 311.9 at 2, 269.6 at 1) | R08@118: 2 (B50 336.8 at 2, 295.2 at 1) | R08@148: 1 (B50 318.0 at 1, 275.4 at 0)
+      pause at how many counts in DIF, the others zero: R09: 2 (B50 355.2 at 2, 249.9 at 1) | R08@88: 1 (B50 328.7 at 1, 227.1 at 0) | R08@118: 1 (B50 354.1 at 1, 252.3 at 0) | R08@148: 1 (B50 377.6 at 1, 275.4 at 0)
+  THREE TERMS (all decays; the three radii; all other interactions), each sample a natural mixture, 8 + 3 + 6 x 10^6
+      events per count: DEC 25.45, NI3 6.05, NIO 24.11, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 96.3 [16-84 %: 56-157]; R08 at pile-up 88 / 118 / 148: 174.3 / 198.1 / 220.2   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 5 (B50 300.1 at 5, 259.2 at 4) | R08@88: 4 (B50 336.8 at 4, 295.8 at 3) | R08@118: 3 (B50 319.8 at 3, 279.0 at 2) | R08@148: 2 (B50 301.2 at 2, 260.6 at 1)
+      pause at how many counts in one large B1 sample (DEC, NIO), the others zero: R09: 8-9 (B50 301.1 at 8, 275.5 at 7; B50 314.7 at 9, 290.6 at 8) | R08@88: 5-6 (B50 301.6 at 5, 276.4 at 4; B50 319.6 at 6, 295.2 at 5) | R08@118: 4-5 (B50 300.1 at 4, 274.5 at 3; B50 319.2 at 5, 294.9 at 4) | R08@148: 4 (B50 321.9 at 4, 296.3 at 3; B50 316.7 at 4, 292.3 at 3)
+  ONE TERM (all B1 vertices in one natural mixture of 1.7e7 events)
+      events per count: B1 21.56, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 61.9 [16-84 %: 31-114]; R08 at pile-up 88 / 118 / 148: 140.5 / 164.3 / 186.3   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 6 (B50 307.2 at 6, 265.7 at 5) | R08@88: 4 (B50 302.5 at 4, 261.5 at 3) | R08@118: 4 (B50 326.9 at 4, 285.5 at 3) | R08@148: 3 (B50 307.5 at 3, 266.9 at 2)
+      pause at how many counts in B1, the others zero: R09: 11 (B50 301.3 at 11, 279.7 at 10) | R08@88: 8 (B50 313.6 at 8, 292.1 at 7) | R08@118: 7 (B50 315.8 at 7, 294.5 at 6) | R08@148: 6 (B50 316.0 at 6, 294.3 at 5)
+  FOUR TERMS (lenient), proposed sizes, with H1 as one term
+      events per count: DIF 25.95, NI22 4.79, NI30 6.49, NI61 6.48, HS 3.96, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 88.5 [16-84 %: 54-145]; R08 at pile-up 88 / 118 / 148: 166.5 / 190.3 / 212.0   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 6 (B50 333.3 at 6, 292.0 at 5) | R08@88: 4 (B50 328.8 at 4, 288.0 at 3) | R08@118: 3 (B50 312.0 at 3, 271.1 at 2) | R08@148: 3 (B50 334.1 at 3, 293.0 at 2)
+  THREE TERMS, with H1 as one term
+      events per count: DEC 24.90, NI3 5.92, NIO 23.59, HS 3.96, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 98.8 [16-84 %: 59-160]; R08 at pile-up 88 / 118 / 148: 177.0 / 200.9 / 222.8   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 5 (B50 302.5 at 5, 261.5 at 4) | R08@88: 4 (B50 339.2 at 4, 298.3 at 3) | R08@118: 3 (B50 322.3 at 3, 281.8 at 2) | R08@148: 2 (B50 304.0 at 2, 263.5 at 1)
+  ONE TERM, with H1 as one term
+      events per count: B1 21.09, HS 3.96, Z 41.25, Zlow 2.10
+      empty pilot B50: R09 65.3 [16-84 %: 35-118]; R08 at pile-up 88 / 118 / 148: 143.9 / 168.0 / 189.6   below / below / below / below
+      pause at how many counts in Z, the others zero: R09: 6 (B50 310.4 at 6, 269.4 at 5) | R08@88: 4 (B50 306.0 at 4, 264.8 at 3) | R08@118: 4 (B50 330.3 at 4, 289.0 at 3) | R08@148: 3 (B50 311.1 at 3, 270.2 at 2)
+
+[5] B-3  WHAT THE NUMBER OF B1 TERMS DOES TO THE TWO TEST FAMILIES  (functions one_rung of the unchanged budget script)
+  4 B1 terms: K = 10 (B1-a x 4, B4-c x 4, B2-a, B2-b), re-test threshold 0.05/K = 0.00500; T_c = 19, alpha_c = 0.00263, ceiling family false FAIL at the boundary 0.0493
+      s_model = 0 x cap: per test 0.0052, at least one FAIL 0.051, one that removes a selection 0.021, either family 0.069
+      s_model = 1 x cap: per test 0.0107, at least one FAIL 0.102, one that removes a selection 0.042, either family 0.089
+  7 B1 terms: K = 13 (B1-a x 7, B4-c x 4, B2-a, B2-b), re-test threshold 0.05/K = 0.00385; T_c = 22, alpha_c = 0.00227, ceiling family false FAIL at the boundary 0.0493
+      s_model = 0 x cap: per test 0.0040, at least one FAIL 0.051, one that removes a selection 0.022, either family 0.070
+      s_model = 1 x cap: per test 0.0098, at least one FAIL 0.120, one that removes a selection 0.053, either family 0.099
+  3 B1 terms: K = 9 (B1-a x 3, B4-c x 4, B2-a, B2-b), re-test threshold 0.05/K = 0.00556; T_c = 18, alpha_c = 0.00278, ceiling family false FAIL at the boundary 0.0494
+      s_model = 0 x cap: per test 0.0058, at least one FAIL 0.051, one that removes a selection 0.020, either family 0.069
+      s_model = 1 x cap: per test 0.0112, at least one FAIL 0.096, one that removes a selection 0.039, either family 0.086
+  1 B1 terms: K = 7 (B1-a x 1, B4-c x 4, B2-a, B2-b), re-test threshold 0.05/K = 0.00714; T_c = 16, alpha_c = 0.00313, ceiling family false FAIL at the boundary 0.0494
+      s_model = 0 x cap: per test 0.0074, at least one FAIL 0.051, one that removes a selection 0.019, either family 0.067
+      s_model = 1 x cap: per test 0.0125, at least one FAIL 0.084, one that removes a selection 0.031, either family 0.079
+  (frozen: K = 10, T_c = 19: budget_stdout_v9.txt l.453-477: closure family 2.1-4.2 %, ceiling family 4.9 %, either 6.9-8.9 %)
+
+[6] B-1  ROAD ORIENTATIONS;  B-2  LOW pT AND |eta| > 1
+  21 non-overlapping orientations of full width 0.30: 21 x 0.30 = 6.300 against 2 pi = 6.2832: the grid of step 2 pi / 21 = 0.2992 over-covers by +0.27%; N_t (parents inside one road: pool x 0.30 / 2 pi) x m / M with m summed over the 21 orientations is the rate in the road, over-read by that amount
+  low-pT parents (0.3 < pT <= 0.5 GeV, |eta| < 1) [V: p2-c-px-mbb-big, 125,000 interactions]: 5.202 per interaction, 0.2484 in a road (73% of the pool's 7.096)
+    B1 vertices per firing = 1 x the pool's 0.1289 (NOT MEASURED): N_t 2.61e+08 (0.71 of the seven classes); one count in 2e+05 events = 1307 events; a zero count allows 1490 (limit 300); 25 events per count needs 1.05e+07 events: Geant4 6.9 + chain 13.9 = 21 CPU-h
+    B1 vertices per firing = 2 x the pool's 0.1289 (NOT MEASURED): N_t 5.23e+08 (1.43 of the seven classes); one count in 2e+05 events = 2615 events; a zero count allows 2980 (limit 300); 25 events per count needs 2.09e+07 events: Geant4 6.9 + chain 27.9 = 35 CPU-h
+  DRAFT + the low-pT population as a term sized for 25 events per count (for the decision; NOT in the draft)
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 41.25, Zlow 2.10, LOWPT 25.00
+      empty pilot B50: R09 186.1 [16-84 %: 129-262]; R08 at pile-up 88 / 118 / 148: 263.2 / 287.0 / 308.9   below / below / below / PAUSES WHEN EMPTY
+      pause at how many counts in Z, the others zero: R09: 3 (B50 307.8 at 3, 266.8 at 2) | R08@88: 1 (B50 303.7 at 1, 263.2 at 0) | R08@118: 1 (B50 327.6 at 1, 287.0 at 0) | R08@148: 0 (B50 308.9 at 0)
+  DRAFT + the 2e5 low-pT check sample read as a term at its zero floor (1307 per count; shown to make the point)
+      events per count: DIF 25.95, DIFC 23.85, NI22 4.79, NI30 6.49, NI61 6.48, NIX 23.22, NIC 24.33, HS 3.96, Z 41.25, Zlow 2.10, LOWPT 1307.47
+      empty pilot B50: R09 1083.3 [16-84 %: 402-2566]; R08 at pile-up 88 / 118 / 148: 1160.6 / 1185.4 / 1208.7   PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY / PAUSES WHEN EMPTY
+  parents with pT > 0.5 GeV at 1 <= |eta| < 1.5 [V: p2-c-px-mbb-big]: 3.644 per interaction, 51% of the pool; N_t 1.88e+08 at the pool's vertex yield (yield NOT MEASURED) [E]; a 2e5 check sample would read 941 events per count
+  B1-g (Phase 3, 1,000 pile-up events): one count = N_trig / 1,000 = 4.08e+04 events
+
+[7] A-1  HAND-OVER VALIDATION OF VERSION 2, AS MEASURED  [V: p2-c-b1yv-val.json; 1,000 events per stream, parent comparison on the first 100]
+    dif   parent hits   9968; later than the vertex time   8; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface   988, of which without a Fatras parent hit    0 = 0.0%; product hits before the vertex time 0
+    difc  parent hits  10226; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface  1464, of which without a Fatras parent hit  433 = 29.6%; product hits before the vertex time 0
+    k0l   parent hits      0; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface     0, of which without a Fatras parent hit    0; product hits before the vertex time 0
+    ni22  parent hits      0; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface     0, of which without a Fatras parent hit    0; product hits before the vertex time 0
+    ni30  parent hits    418; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface    56, of which without a Fatras parent hit    0 = 0.0%; product hits before the vertex time 0
+    ni61  parent hits   1301; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface   149, of which without a Fatras parent hit    0 = 0.0%; product hits before the vertex time 0
+    nix   parent hits   7585; later than the vertex time  88; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface   877, of which without a Fatras parent hit    2 = 0.2%; product hits before the vertex time 0
+    nic   parent hits   9231; later than the vertex time   0; beyond the vertex radius 0; Geant4 pre-vertex crossings of a counting surface  1463, of which without a Fatras parent hit  514 = 35.1%; product hits before the vertex time 0
+    all_hard_checks_pass (checks of version 2, which did not include the missing-crossing check): True
+    events of the two after-a-turn streams at the proposed sizes: 6e+06 of 1.7e+07
+
+[8] v4  PILOT: SIZES, COST, STORAGE, CALENDAR  [E from V unit costs; part 1 from the first done jobs]
+  10^6 per sample: 'all' pass 5.888e+07 firings (+ 3 % margin; available vertices: DIF 2.2e+06, DIFC 2.02e+06, NIX 1.97e+06, NIC 1.03e+06), 30 jobs of <= 2e6 firings (11 min each); 'ni' pass 5.218e+08 firings
+      CPU-h: minimum bias 9.8 [10.0 planned]; Geant4 13.3 at the production-code cost 0.338 / 0.0538 ms per firing [11.8 in version 3 at 0.305 / 0.0469]; chain 10.1 [9.7 in version 3; DIF-C and NI-C now at the option-(a) cost]; Z(nunu) 85.5 [81.1 in version 3 at 127 ms; 85.0 planned by the executor at 133.2]; hard-scatter sample 0.0; low-pT check 0.5
+      TOTAL 119.2 CPU-h (budgeted 54.5; overrun 65; version 3: 134.5).  PART 1, launched (Z(nunu) + minimum bias): 95.3;  B1 PART, not launched: 23.9
+      storage 116 GB = B1 events 26.9 (7.2e+06 events at the measured slice sizes per stream, 2.6-5.4 kB) + Z(nunu) 77.8 (2.3e6 x 33.84 kB) + minimum bias 2.2 + Geant4 vertex files 8.8 (30 x 0.226 GB measured per 'all' job + 2.0 for the 'ni' pass [E]; NOT in the 156 GB of version 3, which carried 1.5 GB for both); part 1 alone 80.0 GB
+  proposed sizes: 'all' pass 1.234e+08 firings (+ 3 % margin; available vertices: DIF 4.6e+06, DIFC 4.23e+06, NIX 4.12e+06, NIC 2.16e+06), 62 jobs of <= 2e6 firings (11 min each); 'ni' pass 4.573e+08 firings
+      CPU-h: minimum bias 9.8 [10.0 planned]; Geant4 18.4 at the production-code cost 0.338 / 0.0538 ms per firing [16.4 in version 3 at 0.305 / 0.0469]; chain 23.8 [22.4 in version 3; DIF-C and NI-C now at the option-(a) cost]; Z(nunu) 85.5 [81.1 in version 3 at 127 ms; 85.0 planned by the executor at 133.2]; hard-scatter sample 4.2; low-pT check 0.5
+      TOTAL 142.3 CPU-h (budgeted 54.5; overrun 88; version 3: 134.5).  PART 1, launched (Z(nunu) + minimum bias): 95.3;  B1 PART, not launched: 47.0
+      storage 167 GB = B1 events 71.3 (1.92e+07 events at the measured slice sizes per stream, 2.6-5.4 kB) + Z(nunu) 77.8 (2.3e6 x 33.84 kB) + minimum bias 2.2 + Geant4 vertex files 16.0 (62 x 0.226 GB measured per 'all' job + 2.0 for the 'ni' pass [E]; NOT in the 156 GB of version 3, which carried 1.5 GB for both); part 1 alone 80.0 GB
+  calendar [E: wall = CPU, lanes never idle]: part 1 launched 16 Nov 16:39 on 2 lanes: pilot.mb complete about 17 Nov 02:28 (first campaign of lane 0); Z(nunu) complete about 18 Nov 16:17 (95.3 CPU-h / 2)
+      B1 part (47.0 CPU-h) started when Z(nunu) ends, on 2 lane(s): complete about 19 Nov 15:46; margin to day 5 (21 Nov 00:00): 32 h
+      B1 part (47.0 CPU-h) started when Z(nunu) ends, on 3 lane(s): complete about 19 Nov 07:56; margin to day 5 (21 Nov 00:00): 40 h
+      B1 part (47.0 CPU-h) started when Z(nunu) ends, on 1 lane(s): complete about 20 Nov 15:15; margin to day 5 (21 Nov 00:00): 9 h
+      if the two Geant4 passes (18.4 CPU-h; they need only pilot.mb) run on a third slot before Z(nunu) ends: B1 part complete about 19 Nov 06:34 on 2 lanes
+      order forced by the inputs: pilot.mb -> pilot.g4 ('all', 'ni'); Z(nunu) files (stored hadron list) -> parents of pilot.c0.hs -> its Geant4 firing and chain: pilot.c0.hs cannot start before about 18 Nov 16:17
+  B1 samples doubled: + 46 CPU-h; Z(nunu) at 3.5e6 / 5.23e6: + 45 / + 109 CPU-h (appended parts, nothing regenerated)
+  another jet radius or clustering input for the Z(nunu) summary: regeneration at generator level from the stored seeds, 2.3e6 x 46.1 ms = 29 CPU-h [E from V: generation stage of p2-c-px-znnb]
+
+[9] TABLE 4.4a AT THE APPROVED CPU  (457 + 208 CPU-h; M_t ~ sqrt(N_t / c_t); G = 1)
+  planned split SM 456.6 / B1 208.5 CPU-h; planned floors SM 8.64, B1 3.94, all 12.59
+  SM, as timed                      : Z(nunu) 29.2, W(tau_h) 20.2, W(e nu) 13.8, tt 1l 36.4; sum of 14 169.4; tt-type share 40%; C-10 low-weight (0.05) classes, one zero each: + 8.6 (= 0.051 x each row)
+  SM, forced tt                     : Z(nunu) 26.4, W(tau_h) 18.3, W(e nu) 12.5, tt 1l 24.9; sum of 14 138.3; tt-type share 33%; C-10 low-weight (0.05) classes, one zero each: + 7.1 (= 0.051 x each row)
+  SM, preselection before the chain : Z(nunu) 19.6, W(tau_h) 14.0, W(e nu) 9.6, tt 1l 28.5; sum of 14 122.5; tt-type share 43%; C-10 low-weight (0.05) classes, one zero each: + 6.3 (= 0.051 x each row)
+  SM, both                          : Z(nunu) 17.1, W(tau_h) 12.2, W(e nu) 8.3, tt 1l 17.5; sum of 14 93.4; tt-type share 35%; C-10 low-weight (0.05) classes, one zero each: + 4.8 (= 0.051 x each row)
+  B1, version-2 costing (one Geant4 pass charged per class), seven: DIF 9.1, DIFC 9.0, NI22 1.9, NI30 2.4, NI61 2.4, NIX 9.7, NIC 8.7; sum 43.1
+  B1, version-2 costing (one Geant4 pass charged per class), four: DIF 3.3, NI22 0.7, NI30 0.9, NI61 0.9; sum 5.8
+  B-5  B1, seven classes, ONE shared 'all' pass (0.904 ms per firing with the chain for every vertex) + 'ni' pass (0.0810 ms per firing): best split 86% of 208 CPU-h on the 'all' pass = 7.17e+08 firings, 'ni' pass 1.26e+09: DIF 4.5, DIFC 4.5, NI22 1.6, NI30 1.6, NI61 1.6, NIX 4.5, NIC 4.5; sum 23.0  (version 2: 43.1)
+       events through the chain: 1.004e+08; B1 sum with ten times fewer 'ni' firings: 29.6
+  ALL POOL TERMS, as timed                      : seven classes 192 (with the low-weight classes 201); four terms 175   [version 2: 213 / 175]
+  ALL POOL TERMS, forced tt                     : seven classes 161 (with the low-weight classes 168); four terms 144   [version 2: 181 / 144]
+  ALL POOL TERMS, preselection before the chain : seven classes 146 (with the low-weight classes 152); four terms 128   [version 2: 166 / 128]
+  ALL POOL TERMS, both                          : seven classes 116 (with the low-weight classes 121); four terms 99   [version 2: 137 / 99]
+  frozen: 12.6 (SM 8.6).  CPU-h for an SM floor of 39: 1094 (both) to 1984 (as timed); of 8.6: 4960 to 8996
+  SM factor: costs x4.51 (8.64 -> 39.0 with generated events counted as preselected, memo of 13:25), weights x4.34
+  v4 SENSITIVITY, not adopted (the table above stays as in version 3 until the day-12 re-allocation): with the production-code Geant4 cost and the option-(a) chain cost (0.981 ms per 'all' firing against 0.904) the B1 sum is 24.9 instead of 23.0; with the Z(nunu) cost 133.8 ms instead of 127 for the Z-type rows alone (x1.053 in cost, x1.026 in the allowance of those rows): all pool terms as timed about 204 instead of 201 [E: the square-root rule applied to the Z rows only, no re-allocation]
+
+[10] REACH WITH EVERY CEILING EMPTY  (strategy functions pmf_pred, s95_pmf, reach_of; v1 placeholder efficiencies; ESTIMATE)
+  frozen (regression check, STR Table 4.4c: 13 / 18 / 25, 790 [712]): B16/50/84 13 / 18 / 25; reach 790 [712]
+  as timed  + seven classes, version-2 B1 costing (regression check): B16/50/84 143 / 189 / 246; reach 506 [442] GeV
+  as timed  + four terms (lenient): B16/50/84 113 / 155 / 211; reach 522 [451] GeV
+  as timed  + seven classes, shared Geant4 pass (B-5): B16/50/84 127 / 170 / 226; reach 515 [449] GeV
+  as timed  + seven classes, shared pass, + low-weight classes (C-10)  ** version 3 **: B16/50/84 132 / 177 / 235; reach 514 [445] GeV
+  both      + seven classes, version-2 B1 costing (regression check): B16/50/84 96 / 125 / 159; reach 565 [503] GeV
+  both      + four terms (lenient): B16/50/84 68 / 92 / 122; reach 597 [524] GeV
+  both      + seven classes, shared Geant4 pass (B-5): B16/50/84 82 / 107 / 139; reach 584 [518] GeV
+  both      + seven classes, shared pass, + low-weight classes (C-10)  ** version 3 **: B16/50/84 85 / 110 / 143; reach 584 [514] GeV
+  R08-like selection (pile-up median 118), ceilings empty: frozen B50 113, reach 496 [435] (STR: 113, 496 [435])
+      as timed: B50 275, reach 454 [392] (version-2 floors: B50 288); class limit 300
+      both: B50 208, reach 478 [417] (version-2 floors: B50 222); class limit 300
+
+[11] v4  PROJECTION AGAINST THE APPROVED FIGURES  (approved 4,609; stop-and-ask 5,992; toy line of the approved figure 183 CPU-h)
+  extra lines: pilot_overrun +87.8, multijet_loose +15.3, b6c +45.6, new_4a +41.0; sum +189.6 CPU-h  (version 3: +181.9; the difference is the pilot)
+  toy programme: 1006.4 units of 1000 + 1000 toys (TOY_COST section 6; 182.3 CPU-h at the 652 s of STR)
+  PLANNING CASE: jax backend, scipy SLSQP with autodiff, merged layout, POI stitched, warm starts  [V per unit on a SYNTHETIC workspace, schrodinger; to be re-measured on the first real v2 workspace]
+     31 parameters:   30.5 s per unit -> toys   8.5 CPU-h (x/ 1.6: 5-14) against 183; TOTAL 4624 (4621-4629) -> below 5,992 over the whole band; conditional all-exact draw 11 CPU-h (STR: 236 at 652 s)
+     60 parameters:  168.0 s per unit -> toys  47.0 CPU-h (x/ 1.6: 29-75) against 183; TOTAL 4663 (4645-4691) -> below 5,992 over the whole band; conditional all-exact draw 61 CPU-h (STR: 236 at 652 s)
+     80 parameters:  385.0 s per unit -> toys 107.6 CPU-h (x/ 1.6: 67-172) against 183; TOTAL 4723 (4683-4788) -> below 5,992 over the whole band; conditional all-exact draw 139 CPU-h (STR: 236 at 652 s)
+    100 parameters:  817.0 s per unit -> toys 228.4 CPU-h (x/ 1.6: 143-365) against 183; TOTAL 4844 (4758-4981) -> below 5,992 over the whole band; conditional all-exact draw 296 CPU-h (STR: 236 at 652 s)
+  OLD BACKEND (numpy + scipy, finite-difference gradients), kept for the record:
+    landau, version 3's inputs [V: p2-c-t-pyhf]: 31 par: toys 178 CPU-h, TOTAL 4794 (below); 60 par: toys 3090 CPU-h, TOTAL 7705 (ABOVE); 80 par: toys 4976 CPU-h, TOTAL 9591 (ABOVE); 100 par: toys 13583 CPU-h, TOTAL 18199 (ABOVE)
+    schrodinger [V: p2-c-toy-base]: 31 par: toys 136 CPU-h, TOTAL 4752 (below); 60 par: toys 2464 CPU-h, TOTAL 7080 (ABOVE); 100 par: toys 18948 CPU-h, TOTAL 23564 (ABOVE)
+    as printed in version 3 (183 x s / 652, extras +181.9): 4,787 / 7,710 / 9,604 / 18,246 at 31 / 60 / 80 / 100 parameters
+  break-even of the toy line with 183 CPU-h: about 93 parameters [E: TOY_COST section 1]; total projection at 60 / 80 / 100 parameters: 4663 / 4723 / 4844, i.e. +54 / +114 / +235 against the approved 4,609 and 1148 or more below 5,992
+
+[12] B-3  THE Q2 (c) TABLE AND THE (alpha1), (gamma) ROWS ON THE NEW BASIS  (R09 pile-up estimate; 2e4 draws per median as in the strategy; ESTIMATE, v1 placeholder inputs)
+  (alpha1) decays in flight after CKF from v1's counts: 385 / 647 events (fall x339 / x201) on the frozen N_t; x1.252 for the first-arc N_t inside v1's own definition: 481 / 810; the other classes have no v1 count
+  basis: the DRAFT reading (seven terms, proposed sizes, H1): per count DIF 25.9, Z 41.25; empty reading on these 2e4 draws 161 (frozen basis: 76; room below 300: 139 against 224)
+  -- decays in flight at v1's size (frozen N_t) --
+  |   f_D = 0 (pilot count zero) | B50 with the conversions removed 161 / 161 | 0.379: x67 (98.5%) / x67 (98.5%); 0.255: x46 (97.8%) / x46 (97.8%); Z(nunu) 0.231 (the pilot's own): x42 (97.6%) / x42 (97.6%) |
+  |   f_D = 1/4 | B50 with the conversions removed 257 / 323 | 0.379: x222 (99.5%) / none suffices; 0.255: x150 (99.3%) / none suffices; Z(nunu) 0.231 (the pilot's own): x135 (99.3%) / none suffices |
+  |   f_D = e^-1 | B50 with the conversions removed 303 / 400 | 0.379: none suffices / none suffices; 0.255: none suffices / none suffices; Z(nunu) 0.231 (the pilot's own): none suffices / none suffices |
+  |   f_D = 1 (v1's central size) | B50 with the conversions removed 547 / 808 | 0.379: none suffices / none suffices; 0.255: none suffices / none suffices; Z(nunu) 0.231 (the pilot's own): none suffices / none suffices |
+  -- decays in flight x1.25 (first-arc Geant4 N_t) --
+  |   f_D = 0 (pilot count zero) | B50 with the conversions removed 161 / 161 | 0.379: x67 (98.5%) / x67 (98.5%); 0.255: x46 (97.8%) / x46 (97.8%); Z(nunu) 0.231 (the pilot's own): x42 (97.6%) / x42 (97.6%) |
+  |   f_D = 1/4 | B50 with the conversions removed 281 / 364 | 0.379: x494 (99.8%) / none suffices; 0.255: x333 (99.7%) / none suffices; Z(nunu) 0.231 (the pilot's own): x303 (99.7%) / none suffices |
+  |   f_D = e^-1 | B50 with the conversions removed 339 / 460 | 0.379: none suffices / none suffices; 0.255: none suffices / none suffices; Z(nunu) 0.231 (the pilot's own): none suffices / none suffices |
+  |   f_D = 1 (v1's central size) | B50 with the conversions removed 642 / 972 | 0.379: none suffices / none suffices; 0.255: none suffices / none suffices; Z(nunu) 0.231 (the pilot's own): none suffices / none suffices |
+  |   without an S_CKF estimate (own hits; eps_pair 0.8 / 0.98, assumed): f_D = 0: x335 / x3350 at 0.379 |
+  | (c) only: (alpha1) with fit-probability credit 2/35 on decays in flight and conversions, x339 / x201 | 192 / 215 | (frozen basis 109 / 130)
+  (gamma) row: m_H = 10 / 30 / 60 / 100 pool-equivalent counts of the frozen pool (1.1e+07 Z(nunu) events) = full-weight pilot counts 0.92 / 2.76 / 5.52 / 9.20 -> B50 197 / 272 / 386 / 538  (frozen: m_Z 2.1 / 6.3 / 12.6 / 20.9 -> 117 / 195 / 309 / 462)
+  expected pilot counts in the expected branch (alpha1') at eps_pair 0.8, frozen 'm_Z 1632, m_D 30-50': full-weight Z counts 717, DIF-sample counts 74-125: the pause stays the expected branch by a wide margin
+
+[13] SUMMARY NUMBERS FOR THE USER TABLE (version-3 lines; the rule-1, pool and reach numbers are UNCHANGED in version 4: none of their inputs changed)
+  B1 vertices behind the terms: frozen 6.82e+07 (4 terms); v3 3.66e+08 (7 terms; of which hard-scatter share 7.9e+06)
+  per count: DIF frozen 65.1 -> 25.9; DIFC 23.9; NI22/30/61 4.8 / 6.5 / 6.5; NIX 23.2; NIC 24.3; HS 4.0; Z 41.2; Zlow 2.1
+  empty pilot R09: frozen 76; v2 (H3) 159; v3 draft 161.  R08 88/118/148: frozen 156 / 181 / 204; v2 237 / 260 / 282; v3 draft 238 / 262 / 284
+  pause at Z(nunu) counts (R09 / R08 88 / 118 / 148): frozen 12 / 8 / 7 / 6; v2 4 / 2 / 1 / 1; v3 draft 4 / 2 / 1 / 1
+  pause at counts in one large B1 sample: frozen DIF 4 / 3 / 2 / 2; v2 6 / 3 / 2 / 1; v3 draft 6 / 3 / 2 / 1; in the hard-scatter sample 35 / 16 / 10 / 4
+  number of terms, empty pilot R09 (hard-scatter parents not read): seven 159; four 85; three 96; one 62; with H1 as one more term: 161 / 89 / 99 / 65
+  v4: pilot 142 CPU-h, 167 GB (version 3: 135 CPU-h, 156 GB); pool floor sums as timed / both: seven 201 / 121, four 175 / 99
+  reach, every ceiling empty, R09-like: frozen 790 [712]; v3 as timed 514 [445], both measures 584 [514]; four terms 522 [451] / 597 [524]
+  day 5 of the calendar is 2026-11-21 (day 0 = 2026-11-16, COMMITMENTS l.49-50)
+
+[14] v4 [a]  A-1 SETTLED: PARENT TRUNCATION AND OPTION (a)  [V: p2-c-px-val2-0.json (campaign p2-c-px-tr, 2,000 events per file) and p2-c-px-val3-0.json (campaign p2-c-px-hy)]
+  measure: Geant4 crossings of a barrel counting surface by the parent before its vertex, WITH MULTIPLICITY, all events with a charged parent (fields a1_*);
+  'once per surface' is the measure of the second review on the first 100 events (fields ab_*); criterion: without a hit <= 2 % on the first measure
+    p2-c-px-tr-dif-radius      mode radius  G4 crossings  18735: without a parent hit     20 =   0.11 %; parent hits without a G4 crossing     9 =  0.05 %; once per surface (100 events): only G4    0 of   994; later than the vertex time   19; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-dif-time        mode time    G4 crossings  18735: without a parent hit     47 =   0.25 %; parent hits without a G4 crossing    33 =  0.18 %; once per surface (100 events): only G4    0 of   994; later than the vertex time    0; beyond the vertex radius     27; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-tr-dif-both        mode both    G4 crossings  18735: without a parent hit     47 =   0.25 %; parent hits without a G4 crossing     9 =  0.05 %; once per surface (100 events): only G4    0 of   994; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-difc-radius     mode radius  G4 crossings  49048: without a parent hit  28692 =  58.50 %; parent hits without a G4 crossing     1 =  0.00 %; once per surface (100 events): only G4  435 of  1470; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-difc-time       mode time    G4 crossings  49048: without a parent hit  19802 =  40.37 %; parent hits without a G4 crossing    51 =  0.17 %; once per surface (100 events): only G4   20 of  1470; later than the vertex time    0; beyond the vertex radius   9394; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-difc-both       mode both    G4 crossings  49048: without a parent hit  28692 =  58.50 %; parent hits without a G4 crossing     1 =  0.00 %; once per surface (100 events): only G4  435 of  1470; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-nix-radius      mode radius  G4 crossings  15368: without a parent hit     15 =   0.10 %; parent hits without a G4 crossing     3 =  0.02 %; once per surface (100 events): only G4    1 of   885; later than the vertex time  208; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-nix-time        mode time    G4 crossings  15368: without a parent hit    506 =   3.29 %; parent hits without a G4 crossing   350 =  2.30 %; once per surface (100 events): only G4   21 of   885; later than the vertex time    0; beyond the vertex radius    347; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-nix-both        mode both    G4 crossings  15368: without a parent hit    506 =   3.29 %; parent hits without a G4 crossing     3 =  0.02 %; once per surface (100 events): only G4   21 of   885; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-nic-radius      mode radius  G4 crossings  53131: without a parent hit  35335 =  66.51 %; parent hits without a G4 crossing     2 =  0.01 %; once per surface (100 events): only G4  498 of  1475; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-nic-time        mode time    G4 crossings  53131: without a parent hit  24021 =  45.21 %; parent hits without a G4 crossing    31 =  0.11 %; once per surface (100 events): only G4   16 of  1475; later than the vertex time    0; beyond the vertex radius  11754; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-nic-both        mode both    G4 crossings  53131: without a parent hit  35335 =  66.51 %; parent hits without a G4 crossing     2 =  0.01 %; once per surface (100 events): only G4  498 of  1475; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-ni22-radius     mode radius  G4 crossings      0: without a parent hit      0 =   0.00 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of     0; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni22-time       mode time    G4 crossings      0: without a parent hit      0 =   0.00 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of     0; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni22-both       mode both    G4 crossings      0: without a parent hit      0 =   0.00 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of     0; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni30-radius     mode radius  G4 crossings    893: without a parent hit      0 =   0.00 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of    53; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni30-time       mode time    G4 crossings    893: without a parent hit      4 =   0.45 %; parent hits without a G4 crossing     3 =  0.34 %; once per surface (100 events): only G4    0 of    53; later than the vertex time    0; beyond the vertex radius      3; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-tr-ni30-both       mode both    G4 crossings    893: without a parent hit      4 =   0.45 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of    53; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni61-radius     mode radius  G4 crossings   2627: without a parent hit      0 =   0.00 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    0 of   154; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-ni61-time       mode time    G4 crossings   2627: without a parent hit     29 =   1.10 %; parent hits without a G4 crossing    31 =  1.18 %; once per surface (100 events): only G4    1 of   154; later than the vertex time    0; beyond the vertex radius     31; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-tr-ni61-both       mode both    G4 crossings   2627: without a parent hit     29 =   1.10 %; parent hits without a G4 crossing     0 =  0.00 %; once per surface (100 events): only G4    1 of   154; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-tr-hs-radius       mode radius  G4 crossings  27044: without a parent hit  10253 =  37.91 %; parent hits without a G4 crossing     6 =  0.04 %; once per surface (100 events): only G4  210 of  1057; later than the vertex time   51; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-hs-time         mode time    G4 crossings  27044: without a parent hit   6988 =  25.84 %; parent hits without a G4 crossing   124 =  0.61 %; once per surface (100 events): only G4   12 of  1057; later than the vertex time    0; beyond the vertex radius   3624; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-hs-both         mode both    G4 crossings  27044: without a parent hit  10368 =  38.34 %; parent hits without a G4 crossing     6 =  0.04 %; once per surface (100 events): only G4  216 of  1057; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-lowpt-radius    mode radius  G4 crossings  34546: without a parent hit  20790 =  60.18 %; parent hits without a G4 crossing     2 =  0.01 %; once per surface (100 events): only G4  290 of   974; later than the vertex time   62; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-lowpt-time      mode time    G4 crossings  34546: without a parent hit  16310 =  47.21 %; parent hits without a G4 crossing   103 =  0.56 %; once per surface (100 events): only G4    2 of   974; later than the vertex time    0; beyond the vertex radius   4662; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr-lowpt-both      mode both    G4 crossings  34546: without a parent hit  20872 =  60.42 %; parent hits without a G4 crossing     2 =  0.01 %; once per surface (100 events): only G4  290 of   974; later than the vertex time    0; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok False; validator flag hard False
+    p2-c-px-tr: all_hard_checks_pass = False; reruns identical = False (0 pairs)
+    p2-c-px-hy-difc-r0         mode hybrid  G4 crossings  49048: without a parent hit     18 =   0.04 %; parent hits without a G4 crossing   785 =  1.58 %; once per surface (100 events): only G4    0 of  1470; later than the vertex time    0; beyond the vertex radius  19643; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-difc-r1         mode hybrid  G4 crossings  49048: without a parent hit     18 =   0.04 %; parent hits without a G4 crossing   785 =  1.58 %; once per surface (100 events): only G4    0 of  1470; later than the vertex time    0; beyond the vertex radius  19643; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-nic-r0          mode hybrid  G4 crossings  53131: without a parent hit     25 =   0.05 %; parent hits without a G4 crossing   828 =  1.54 %; once per surface (100 events): only G4    0 of  1475; later than the vertex time    0; beyond the vertex radius  25945; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-nic-r1          mode hybrid  G4 crossings  53131: without a parent hit     25 =   0.05 %; parent hits without a G4 crossing   828 =  1.54 %; once per surface (100 events): only G4    0 of  1475; later than the vertex time    0; beyond the vertex radius  25945; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-hs-r0           mode autoh   G4 crossings  27044: without a parent hit     30 =   0.11 %; parent hits without a G4 crossing   297 =  1.09 %; once per surface (100 events): only G4    2 of  1057; later than the vertex time   51; beyond the vertex radius   7340; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-lowpt-r0        mode autoh   G4 crossings  34546: without a parent hit     41 =   0.12 %; parent hits without a G4 crossing   694 =  1.97 %; once per surface (100 events): only G4    0 of   974; later than the vertex time   62; beyond the vertex radius  12551; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard False
+    p2-c-px-hy-dif-r0          mode autoh   G4 crossings  18735: without a parent hit     20 =   0.11 %; parent hits without a G4 crossing     9 =  0.05 %; once per surface (100 events): only G4    0 of   994; later than the vertex time   19; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-hy-nix-r0          mode autoh   G4 crossings  15368: without a parent hit     15 =   0.10 %; parent hits without a G4 crossing     3 =  0.02 %; once per surface (100 events): only G4    1 of   885; later than the vertex time  208; beyond the vertex radius      0; V4-1 True; NaN 0; product hits before the vertex 0; a1_ok True; validator flag hard True
+    p2-c-px-hy: all_hard_checks_pass = False; reruns identical = True (2 pairs)
+  NOTE: for files with turned parents the validator's flag 'hard' is False under option (a) because of its check 'no parent hit beyond the vertex radius' (see the counts above):
+        that check does not apply to a parent that has turned; p2x_validate.py must make it class-aware before 'one validated job per stream' can read all-pass for DIF-C, NI-C, hs, lowpt
+
+[15] v4 [b]  THE HALF-TURN LIMIT  [V: p2-c-px-htg-{znn,mb}.json (2,000 Z(nunu) events, 20,000 minimum-bias interactions), p2-c-px-a1e-0.json]
+  znn: 2000 events; charged particles given to Fatras 138.6 per event, central 40.0, central with pT < 0.63 GeV 19.3 (48%);
+      written hits on counting surfaces 833 per event; Geant4 crossings of the same particles 958, of which after half a turn 204.1 (21.3%); Geant4 crossings WITHOUT a simulated hit 209.2 = 25.1% of the written hits; hits without a Geant4 crossing 39.7
+      by layer, crossings without a hit / hits of generation 0: TBPX_L1 7%, TBPX_L2 11%, TBPX_L3 15%, TBPX_L4 18%, TBPS_L1_in 42%, TBPS_L1_out 42%, TBPS_L2_in 39%, TBPS_L2_out 39%, TBPS_L3_in 34%, TBPS_L3_out 34%, TB2S_L1_in 27%, TB2S_L1_out 27%, TB2S_L2_in 20%, TB2S_L2_out 20%, TB2S_L3_in 11%, TB2S_L3_out 11%
+      central particles with pT < 0.63 GeV in Geant4: 38665; ended before half a turn 11.4%, between half and one 10.7%, alive after one turn 76.9%; WITHOUT A GEANT4 RECORD 375 = 0.97% (tracks ended by transportation only, multi-turn loopers: LOOPER_GUN addendum 17:20) -> the missing-crossing numbers above are LOW by up to that share of the particles
+  mb: 20000 events; charged particles given to Fatras 52.6 per event, central 12.5, central with pT < 0.63 GeV 8.7 (70%);
+      written hits on counting surfaces 244 per event; Geant4 crossings of the same particles 312, of which after half a turn 88.8 (28.5%); Geant4 crossings WITHOUT a simulated hit 91.0 = 37.3% of the written hits; hits without a Geant4 crossing 13.8
+      by layer, crossings without a hit / hits of generation 0: TBPX_L1 8%, TBPX_L2 14%, TBPX_L3 21%, TBPX_L4 26%, TBPS_L1_in 58%, TBPS_L1_out 58%, TBPS_L2_in 57%, TBPS_L2_out 57%, TBPS_L3_in 53%, TBPS_L3_out 53%, TB2S_L1_in 46%, TB2S_L1_out 46%, TB2S_L2_in 38%, TB2S_L2_out 38%, TB2S_L3_in 24%, TB2S_L3_out 24%
+      central particles with pT < 0.63 GeV in Geant4: 174722; ended before half a turn 11.5%, between half and one 10.9%, alive after one turn 76.6%; WITHOUT A GEANT4 RECORD 1676 = 0.96% (tracks ended by transportation only, multi-turn loopers: LOOPER_GUN addendum 17:20) -> the missing-crossing numbers above are LOW by up to that share of the particles
+  x 200 interactions (one pile-up crossing) [E]: written 4.88e+04, Geant4 crossings 6.23e+04, without a hit 1.82e+04
+  hits of generated charged particles by turn in 5000 Z(nunu) slice events [V: p2-c-px-a1e]: total 3.939e+06; beyond 0.5 turn 231 = 0.0059%; the last bin below 0.5 (0.45-0.5) holds 6004
+  v1 top-up [U: TT/acts/stage4/plan.md l.303-310]: (ratio - 1) x the event's own Fatras crossings per layer, z resampled from the layer, phi uniform, ratio 2.3-7.3 to the TDR occupancy:
+      it restores the NUMBER of hits per layer; the added crossings are independent in phi, so the correlation of successive arcs of one particle is not restored (a looper-pair variant exists as a variation only)
+
+[16] v4 [c]  THE LOOPER GUN  -- FIRST RUN p2-c-px-lp: PROVISIONAL (0.9 % of events missing, rerun p2-c-px-lpd pending) [V: p2-c-px-lps-0.json]
+  set nat: generated 100000; fewer than 3 pool hits 3847; finder run 96153; with a seed triple 72105; with seed score >= T_seed 33; with a candidate after the refit 0; events passing any rung 0; finder {"road": 0.15, "w_c": 75.0, "t_tol": 0.03, "tseed": 4, "iters": 3}; without a Geant4 record 985 (0.98%); crossings per event 18.1, after half a turn 9.1
+  set flat: generated 100000; fewer than 3 pool hits 3853; finder run 96147; with a seed triple 73756; with seed score >= T_seed 34; with a candidate after the refit 0; events passing any rung 0; finder {"road": 0.15, "w_c": 75.0, "t_tol": 0.03, "tseed": 4, "iters": 3}; without a Geant4 record 1003 (1.00%); crossings per event 18.4, after half a turn 9.1
+  what the zero bounds [E]: prompt charged particles with |eta| < 1, pT < 0.63 GeV: 7.30 per minimum-bias interaction [V: 145,991 in 20,000, p2-c-px-ht-mb]; started within +-0.1 of the road axis: 0.0318; N_t = N_trig x 200 x 7.30 x 0.0318 = 1.9e+09 in 3 ab^-1; one count in 1e+05 events = 1.9e+04 events; a zero allows 2.16e+04 at 68 % (both sets as one sample of 2e5, different spectra: 1.08e+04); for a zero to allow 25 events: M = 8.7e+07 gun events = 264 CPU-h at 11 ms
+  the same gun read for the HARD-SCATTER event's own loopers [E; gun spectrum = minimum bias, hard-scatter rate of Z(nunu) used for all SM processes]: 19.3 per event x 0.0318 = 0.615 per triggered event, N_t 2.51e+07; one count in 1e5 = 251 events; a zero allows 286 at 68 % (limit 300)
+  NOT covered by the gun: loopers starting outside +-0.1 of the road axis (97 % of them), |eta| > 1, displaced loopers, products of the looper's decay or interaction, the dE/dx rungs, and
+      a looper TOGETHER WITH OTHER PARTICLES (pile-up, or the rest of the hard-scatter event): none of these is bounded by the zero
+
+[17] v4 [d]  PROPOSED EIGHTH B6 ROW (for the user to accept or decline): pile-up with the later arcs restored against the same events on the present chain
+  unit costs: nominal rho = 1 event = chain 12.3 s + 4 trials x 11.3 s = 57.5 s (measured whole event 57-59 s); Geant4 for the arcs: 200 x 52.6 charged particles x 0.41 ms = 4.3 s per crossing (3.7 s at the 0.354 ms per particle measured in p2-c-px-htg-mb)
+  sample size: criterion B6-a = statistical error on ln(B_var / B_nom) < 0.1 at R06.  Poisson counts at the v1 direct rates per trial (LOWER bound on the error: candidates of one event are correlated; the bootstrap over events decides):
+    R04: 171.6 per trial; unpaired error 0.1 needs 200 counts per sample = 1.17 trials = 0.291 events; at 600 events: 4.12e+05 counts, error 0.002;  at 1000 events: 6.86e+05 counts, error 0.002;
+    R05: 49.7 per trial; unpaired error 0.1 needs 200 counts per sample = 4.02 trials = 1.01 events; at 600 events: 1.19e+05 counts, error 0.004;  at 1000 events: 1.99e+05 counts, error 0.003;
+    R06: 0.247 per trial; unpaired error 0.1 needs 200 counts per sample = 810 trials = 202 events; at 600 events: 593 counts, error 0.058;  at 1000 events: 988 counts, error 0.045;
+    R07: 0.000729 per trial; unpaired error 0.1 needs 200 counts per sample = 2.74e+05 trials = 6.86e+04 events; at 600 events: 1.75 counts, error 1.069;  at 1000 events: 2.92 counts, error 0.828;
+    -> R04-R06 evaluable at 600 events (the size of every other reduced B6 background row, STR l.1513), R07 not; the design is paired (same events and seeds), so 0.1 is an upper value
+  600 events: varied sample hits x1.0: 62 s per event, 10.3 CPU-h; hits x1.3, finder ~ hits^1: 79 s per event, 13.2 CPU-h; hits x1.3, finder ~ hits^2: 97 s per event, 16.1 CPU-h; nominal partner (same events, present chain) 9.6 CPU-h; slice and validation 2 CPU-h [E] -> TOTAL 22-28 CPU-h  (12-18 if the nominal partner is an existing B6 / development sample of the same events)
+  1000 events: varied sample hits x1.0: 62 s per event, 17.2 CPU-h; hits x1.3, finder ~ hits^1: 79 s per event, 22.0 CPU-h; hits x1.3, finder ~ hits^2: 97 s per event, 26.9 CPU-h; nominal partner (same events, present chain) 16.0 CPU-h; slice and validation 2 CPU-h [E] -> TOTAL 35-45 CPU-h  (19-29 if the nominal partner is an existing B6 / development sample of the same events)
+  optional signal arm (B6 signal column, read only after the closure verdicts): 1200 rows x (25.2 s x 1.0-1.3 + 4.3 s) = 10-12 CPU-h [E; nominal partners are B6's]
+  projection with the test accepted (600 events, own partner): 60 / 80 / 100 parameters 4690 / 4751 / 4872 CPU-h at the upper cost: below 5,992
+  what a shift of the pile-up term would do to rule 1 (DRAFT terms, empty pilot; pile-up median x f, same width and cap; the frozen rule reads the present chain, f = 1):
+    f = 1.00 (ln f = 0.00): R09 161; R08 at 88 / 118 / 148: 238 / 262 / 284
+    f = 1.10 (ln f = 0.10): R09 162; R08 at 88 / 118 / 148: 246 / 271 / 294
+    f = 1.25 (ln f = 0.22): R09 163; R08 at 88 / 118 / 148: 256 / 283 / 308
+    f = 1.50 (ln f = 0.41): R09 165; R08 at 88 / 118 / 148: 273 / 303 / 329
+    f = 2.00 (ln f = 0.69): R09 169; R08 at 88 / 118 / 148: 302 / 336 / 365   <- the B6-b "robust" boundary, ln 2
+
+[18] v4  SUMMARY OF WHAT CHANGED AGAINST VERSION 3 (numbers for the user table)
+  UNCHANGED: every rule-1 reading and crossing ([4]: draft 161; R08 238 / 262 / 284), N_t and events per count ([1]-[3]), families ([5]), pool table ([9]: 201 as timed, 121 both), reach ([10]), Q2 (c) grid ([12])
+  pilot: 142.3 CPU-h (v3 134.5), of which part 1 launched 95.3 (v3 91.1) and B1 part 47.0 (v3 43.4); storage 167 GB (v3 156), part 1 80 GB
+  projection: 4663 / 4723 / 4844 CPU-h at 60 / 80 / 100 parameters with the jax configuration (v3: 7,710 / 9,604 / 18,246 with the old backend)
+  proposed robustness test: 22-28 CPU-h at 600 events with its own nominal partner

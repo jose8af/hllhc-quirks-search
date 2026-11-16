@@ -654,3 +654,16 @@ is delegated to Xavier's lane, since it needs the ACTS environment on a worker.
 - The V4-1 failure in one looper job is the documented digitisation loss on an endcap disc, not a barrel surface.
 - Xavier (context about 0.76 M tokens) wrote his successor section and hands step 3 (B1 production code and
   campaign files) to a successor, session Albert (Fable).
+
+## 2026-11-16 17:37 -05 (measured) — Addendum 1 version 4 written (fixer Zoe); looper rerun still pending
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v4_zoe_2026-11-16_17-26.md`, `FIX_REPORT_addendum1_v4_zoe.md`, script
+`phase2_exploration/src/p2z_addendum1.py`, stdout `phase1_strategy/outputs/addendum1_v4_stdout.txt`. All rule-1
+readings identical to v3 (empty pilot 161 at R09; 238 / 262 / 284 at R08). New: the half-turn limit as limitation
+[L15] with the looper result (marked provisional in five places until the rerun `p2-c-px-lpd` is summarised); a
+proposed robustness test on the pile-up term (600 events with later arcs restored, 22–28 CPU-h; if the true pile-up
+count were 25 % higher an empty pilot reads 308 at the upper R08 estimate); hand-over rule per stream; pilot 142 CPU-h
+and 167 GB (part 1 running 95.3; B1 part 47.0); toys 47 / 108 / 228 CPU-h; projection 4,663–4,844 CPU-h. Ten
+decisions D1–D10 for the user with recommendations. Zoe reports one read-only `git status` in a shell line.
+Open for the reviewer: the design of the robustness test; the validator flag for turned parents (not class-aware);
+whether a quirk pair exceeds half a turn in Stage 3 (unknown); a C3 erratum item for v1's looper bound.
+The third review starts when the looper rerun is filled in.

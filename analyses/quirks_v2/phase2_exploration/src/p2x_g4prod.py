@@ -1,7 +1,7 @@
 """p2x_g4prod.py -- production mode of the Geant4 vertex generation: parent pool read from pool FILES.
 
   <acts python> p2x_g4prod.py <out_prefix> <pass: all|ni> <n_fire> <stream> <chunk> <pool_prefix: pool|lowpt> \
-                              <groups> <pool file> [...]
+                              <groups> <pool file> [...] [sel=ptlo:pthi:etalo:etahi] [draw=weighted]
 
   groups   comma list  name=class+class,...   e.g.  dif=dif+k0l,difc=difc,nix=nix,nic=nic,ni22=ni22,ni30=ni30,ni61=ni61
            or one mixed group  hs=dif+difc+k0l+ni22+ni30+ni61+nix+nic.  One vertex file <out_prefix>.<name>.npz is
@@ -16,6 +16,12 @@ of every firing kept (fire() does not return it).
 Every vertex is classified into exactly one of ten classes (p2x_common.class_codes: asserted); the full partition
 table (class x species, conversions and 'other' included) is in meta of every file.  Products and crossings are
 stored for the B1 classes of the group only.
+Options (Albert, 2026-11-16; without them nothing differs from the first version):
+  sel=ptlo:pthi:etalo:etahi   only pool rows with ptlo < pT <= pthi and etalo <= |eta| < etahi are fired (the wider
+                              pool `xpool` of p2x_mbgen holds several populations: 0.3-0.5 GeV parents, 1 < |eta| < 1.5)
+  draw=weighted               pool rows are drawn in proportion to their weight (pool_w; hard-scatter parents of
+                              p2a_hspool.py: the v1 preselection weight of their event) instead of uniformly
+meta records the selection, the draw, the number of distinct pool rows fired and the firings per distinct row.
 Arrays per group file: vtx (n, len(VCOLS)), cls (n) int8, src (n, len(SRC_COLS)), prod (m, 9), prod_off, cross (k, 8),
 cross_off.  Side file <out_prefix>.sha.json: content hash of every group file.
 """
@@ -51,13 +57,18 @@ def parse_groups(spec):
     return g
 
 
-def fire_chunk(pool, sel, n, pname, seed, geom, physlist, names, fire0):
+def fire_chunk(pool, sel, n, pname, seed, geom, physlist, names, fire0, cdf=None, fired=None):
     """One sub-chunk of n firings (p2c_g4vtx.fire l.88-110, pool row kept)."""
     ps = GV.PASSES[pname]
     rng = np.random.default_rng(seed)
     bs = json.loads((C.QV2 / 'acts' / 'geometry' / 'cms_phase2_public.json').read_text())['beamspot']
     sig = np.array([bs['sigma_xy_um'] * 1e-3, bs['sigma_xy_um'] * 1e-3, bs['sigma_z_mm'], bs['sigma_t_ps'] * 1e-3])
-    idx = sel[rng.integers(0, len(sel), n)]
+    if cdf is None:
+        idx = sel[rng.integers(0, len(sel), n)]
+    else:                                   # draw=weighted: row k of sel with probability w_k / sum(w)
+        idx = sel[np.minimum(np.searchsorted(cdf, rng.random(n), side='right'), len(sel) - 1)]
+    if fired is not None:
+        fired[idx] = True
     phi = rng.uniform(-np.pi, np.pi, n)
     v = rng.normal(0.0, 1.0, (n, 4)) * sig
     pt = pool['pt'][idx].astype(float); eta = pool['eta'][idx].astype(float)
@@ -83,15 +94,28 @@ def take(A, keep):
                 nprod=npd[keep], ncross=nxd[keep])
 
 
-def run(out_prefix, pname, n_fire, stream, chunk, pool_prefix, groups, pool_files, physlist='FTFP_BERT'):
+def run(out_prefix, pname, n_fire, stream, chunk, pool_prefix, groups, pool_files, physlist='FTFP_BERT', sel_win=None,
+        draw='uniform'):
     t0 = time.time()
     if pname == 'ni':
         bad = [c for cl in groups.values() for c in cl if c not in NI_PASS_COMPLETE]
         assert not bad, f"classes {bad} are not complete in the 'ni' pass (primary dropped beyond r = 70 mm)"
     job_seed = C.qv2_seed(stream, chunk)
     pool, pool_meta = X.load_pool(pool_files, pool_prefix)
-    sel = np.nonzero(np.isin(np.abs(pool['pdg']), GV.PASSES[pname]['species']))[0]
+    msel = np.isin(np.abs(pool['pdg']), GV.PASSES[pname]['species'])
+    if sel_win is not None:
+        ptlo, pthi, etalo, etahi = sel_win
+        ae = np.abs(pool['eta'])
+        msel &= (pool['pt'] > np.float32(ptlo)) & (pool['pt'] <= np.float32(pthi)) & (ae >= np.float32(etalo)) & (ae < np.float32(etahi))
+    assert draw in ('uniform', 'weighted')
+    cdf = None
+    if draw == 'weighted':
+        msel &= pool['w'] > 0
+        wsel = pool['w'][msel].astype(np.float64)
+        cdf = np.cumsum(wsel) / wsel.sum()
+    sel = np.nonzero(msel)[0]
     assert len(sel) > 0, 'empty parent pool'
+    fired = np.zeros(len(pool['pdg']), bool)
     geom = GV.geom_file()
     names = GV.Names()
     species = GV.PASSES['all']['species']
@@ -102,7 +126,7 @@ def run(out_prefix, pname, n_fire, stream, chunk, pool_prefix, groups, pool_file
     while done < n_fire:
         n = min(SUB, n_fire - done)
         seed = s4pu.hseed('p2x-g4', job_seed, pname, j, mod=2 ** 62)
-        A, prow, phi, kv = fire_chunk(pool, sel, n, pname, seed, geom, physlist, names, done)
+        A, prow, phi, kv = fire_chunk(pool, sel, n, pname, seed, geom, physlist, names, done, cdf, fired)
         for k in g4:
             g4[k] += float(kv.get(k, 0)) if k.endswith('_s') else int(kv.get(k, 0))
         code, fa = X.class_codes(A['vtx'], names)
@@ -124,7 +148,13 @@ def run(out_prefix, pname, n_fire, stream, chunk, pool_prefix, groups, pool_file
     assert n_vtx == g4['nvtx'], f'vertices parsed {n_vtx} != Geant4 summary {g4["nvtx"]}'
     base = dict(mode='g4prod', g4_pass=pname, stream=stream, chunk=chunk, job_seed=job_seed, n_fire=n_fire, physlist=physlist,
                 product_handover='exit', pool_prefix=pool_prefix, pool_files=pool_meta, pool_rows=int(len(pool['pdg'])),
-                pool_rows_in_pass=int(len(sel)), groups=groups, counts=table, counts_sum=n_vtx, classes=X.CLASSES,
+                pool_rows_in_pass=int(len(sel)), pool_selection=dict(pt_lo=sel_win[0], pt_hi=sel_win[1], abs_eta_lo=sel_win[2],
+                                                                     abs_eta_hi=sel_win[3]) if sel_win is not None else None,
+                pool_draw=draw, pool_rows_fired_distinct=int(fired.sum()),
+                firings_per_distinct_pool_row=float(n_fire / max(int(fired.sum()), 1)),
+                pool_pt_min_max=[float(pool['pt'][sel].min()), float(pool['pt'][sel].max())],
+                pool_abs_eta_min_max=[float(np.abs(pool['eta'][sel]).min()), float(np.abs(pool['eta'][sel]).max())],
+                pool_weight_sum=float(pool['w'][sel].sum()), groups=groups, counts=table, counts_sum=n_vtx, classes=X.CLASSES,
                 yield_per_firing={k: t['all'] / n_fire for k, t in table.items()},
                 complete_classes=list(NI_PASS_COMPLETE) if pname == 'ni' else list(X.B1_CLASSES),
                 vcols=GV.VCOLS, src_cols=SRC_COLS, proc_names=names.proc, vol_names=names.vol,
@@ -162,4 +192,7 @@ def run(out_prefix, pname, n_fire, stream, chunk, pool_prefix, groups, pool_file
 
 if __name__ == '__main__':
     a = sys.argv[1:]
-    run(a[0], a[1], int(a[2]), a[3], int(a[4]), a[5], parse_groups(a[6]), a[7:])
+    opt = dict(x.split('=', 1) for x in a[7:] if x.startswith(('sel=', 'draw=')))
+    run(a[0], a[1], int(a[2]), a[3], int(a[4]), a[5], parse_groups(a[6]),
+        [x for x in a[7:] if not x.startswith(('sel=', 'draw='))],
+        sel_win=tuple(float(v) for v in opt['sel'].split(':')) if 'sel' in opt else None, draw=opt.get('draw', 'uniform'))

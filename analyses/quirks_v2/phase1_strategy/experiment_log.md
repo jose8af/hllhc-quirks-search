@@ -526,3 +526,34 @@ FLAG FOR HUMAN: YES (Q4)
 [Yvonne] DECISION: parents of 0.3-0.5 GeV, of 1<|eta|<1.5 and hard-scatter hadrons outside the road are NOT read by rule 1 in the draft; stated first
 [Yvonne]   in the document with sizes and the cost of reading them (21-35 CPU-h; 15 CPU-h). ALTERNATIVES: terms sized for 25 events per count (reading
 [Yvonne]   186; 263/287/309). CONFIDENCE: low that leaving them unread is safe; no bound exists (COM B1-e). FLAG FOR HUMAN: yes (D2, D4).
+
+[Zoe] 2026-11-16 17:37. Fixer for strategy addendum 1, version 3 -> version 4 (integration of the measurements made after 15:04; not a redesign).
+[Zoe]   Output: outputs/STRATEGY_ADDENDUM_1_v4_zoe_2026-11-16_17-26.md, outputs/FIX_REPORT_addendum1_v4_zoe.md, outputs/addendum1_v4_stdout.txt
+[Zoe]   (stdout of phase2_exploration/src/p2z_addendum1.py: copy of p2y_addendum1.py + OVERRIDES_V4 + sections [14]-[18]; einstein, nice 19,
+[Zoe]   2 min 04-07 s, 127 MB), COMMITMENTS.md section "Changes of rows by addendum 1" replaced (285 lines above byte-identical, diff).
+[Zoe]   STR, addendum v1-v3, p2y_addendum1.py, p2c_*.py, p2x_*.py not edited. No job, no subagent. One accidental read-only git status (disclosed).
+[Zoe] a. A-1 settled from p2-c-px-val2 / -val3 (re-read): radius cut for first-arc streams (0.00-0.11 % of Geant4 pre-vertex crossings without a hit),
+[Zoe]   option (a) for DIF-C / NI-C (0.04 % / 0.05 %; 1.5 % duplicates). Criterion = crossings with multiplicity. Found: the validator's overall flag
+[Zoe]   is false for option-(a) files with turned parents (radius check not class-aware): stated as a release condition, not hidden.
+[Zoe] b. Half-turn limit stated first (v4 section 1) with seven consequences. Top-up statement supported from v1's plan.md l.299-310 (independent
+[Zoe]   crossings, phi uniform): number per layer restored, arrangement not. Signal: quirk hits are injected, not Fatras; Stage 3 not read.
+[Zoe] c. Looper gun: 0 / 0 candidates (33 / 34 with seed score >= 4), PROVISIONAL (0.9 % of events without a Geant4 record; rerun p2-c-px-lpd
+[Zoe]   at 16+ of 40 jobs, 0 candidates in the first 80,000 events by my tally). Zero allows 2.2e4 events at 68 %; limitation drafted as [L15].
+[Zoe] d. Robustness test drafted as an option: eighth B6 row, 600 events, R04-R06, 22-28 CPU-h. New number: pile-up x1.25 puts an empty pilot
+[Zoe]   at 308 at the upper R08 estimate, x1.5 at 303 at the central one.
+[Zoe] e. Jets 10 GeV (jets10) / 20 GeV (jets), not 15. Pilot 142.3 CPU-h (part 1 95.3 launched; B1 part 47.0), 167 GB. Projection with the jax
+[Zoe]   toy configuration 4,663 / 4,723 / 4,844 CPU-h at 60 / 80 / 100 parameters (old backend 7,705 / 9,591 / 18,199).
+[Zoe] Failed / corrected on the way: (i) first draft cited the R05 pile-up rate at STR l.748; it is l.747. (ii) first draft said the Fatras parent
+[Zoe]   agrees with Geant4 to 99-99.9 % on the first half turn; the report says 98-99.9 %. (iii) first draft gave the dump stage as "17.3-18.4 ms of
+[Zoe]   131-134"; the second number came from another job with a different stage sum; reduced to the one measured pair.
+[Zoe] DECISION: Table 4.4a (pool floors 201 / 121) NOT recomputed with the unit costs measured after v3; sensitivity line only (about 204).
+[Zoe]   ALTERNATIVES: recompute now (changes the figures the user is asked to confirm by 1.5 %). CONFIDENCE: high that the difference is immaterial;
+[Zoe]   the table is re-derived at day 12 anyway. FLAG FOR HUMAN: no (stated in v4 section 0.2 and 4.4).
+[Zoe] DECISION: pilot cost and storage use the production code's measured Geant4 cost, the option-(a) chain cost, measured bytes per stream and
+[Zoe]   the Geant4 vertex files (16 GB, absent from v3). ALTERNATIVES: keep v3's unit costs. CONFIDENCE: high. FLAG FOR HUMAN: no.
+[Zoe] DECISION: robustness test proposed at fixed total density (top-up reduced by the injected crossings) and before the freeze.
+[Zoe]   ALTERNATIVES: arcs on top of an unchanged top-up (about 30 % more hits; mixes arrangement with density); run in the 4a window like the other
+[Zoe]   B6 rows (then an "effect" can no longer lead to a chain fix). CONFIDENCE: medium. FLAG FOR HUMAN: yes (v4 D2; design points named).
+[Zoe] DECISION: for the outcome "effect within ln 2" a nuisance of the measured size on the pile-up term is drafted. ALTERNATIVES: limitation only;
+[Zoe]   chain fix. CONFIDENCE: low that [SD17] allows it without a ruling. FLAG FOR HUMAN: yes (reviewer and user; v4 section 1.5).
+[Zoe] Proposed to the orchestrator, not decided: looper overlays of sample 19 made from Geant4 crossings; a C3 erratum item on v1's looper bound.
