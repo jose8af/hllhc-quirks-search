@@ -15,3 +15,5 @@
   Runs now: nothing. Pilot held until the addendum is reviewed and approved. Next: item 4.
 - 2026-11-16 13:46 channel (iii) Tatiana: forced tt̄ decays measured through the chain: 0.327 s per event (unforced 0.571). T1 builder in v1 mode gives a preliminary best-point limit between 873 and 916 against v1's 789.7 (not yet within 10 %; fits unstable at 5×10⁵ counts, and v1's toy limit used a different test statistic).
   Runs now: nothing. Pilot held (addendum in review).
+- 2026-11-16 14:15 channel (iii) Tatiana: addendum 1 fixed after the critical review (v2 + fix report). Measured: complete Geant4 vertex partition (3.7×10⁸ single-interaction vertices in 3 ab⁻¹ against 6.8×10⁷ assumed); the proposed hand-over validated on all eight streams; Fatras verified not to decay hadrons. With 10⁶ events per sample an empty pilot would read 387 (R09): proposed sizes give 159 (R09), 237–283 (R08) for ≈ 131 CPU-h. Pool floor at the approved CPU 99–213 events; T1-b not yet resolved (fit failures decide the result).
+  Runs now: nothing of mine. Pilot held until re-review and user approval.

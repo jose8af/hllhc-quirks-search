@@ -285,18 +285,20 @@ calendar of STR §11 is 2026-11-16.
 
 ## Changes of rows by addendum 1 (pending review and user approval)
 
-Drafted 2026-11-16 by Tatiana (Phase-2 executor, channel (iii)) from
-`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_tatiana_2026-11-16_13-31.md`. **Nothing in this section is in force
-until the addendum has passed review and the user has approved it; no row above is altered and no status changes.**
-Numbers tagged in the addendum ([V] campaign, [E] script `phase2_exploration/src/p2c_addendum1.py`).
+Version 2, drafted 2026-11-16 by Tatiana from `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v2_tatiana_2026-11-16_14-14.md`
+after the critical review (fix report `FIX_REPORT_addendum1_tatiana.md`); replaces the version-1 text of this section.
+**Nothing in this section is in force until the addendum has passed review and the user has approved it; no row above
+is altered and no status changes.** Numbers: [V] campaigns named in the addendum, [E] script
+`phase2_exploration/src/p2c_addendum1.py`. Row lines are those of this file.
 
-| identifier | what the addendum proposes |
+| identifier (line) | what the addendum proposes |
 |---|---|
-| B1-a, B1-f (Df-9) | DIF term defined on first-arc decays (transverse path ≤ πR, 30 < r < 1000 mm), N_t = 7.77×10⁷ (v1 rate × the measured Geant4 ratio 1.19); decays after the first turn are a separate pilot sample (2.5×10⁵ events) for the check of the analytic bound, and join the term (N_t × 2.01) if H(R05) > 0 there. NI rates without the factor 0.22: N_t = 4.0 / 5.1 / 5.1×10⁶. Strict version: a new term "NI elsewhere" (N_t = 7.36×10⁷; family of ceiling tests T_c 19 → 20 if adopted); lenient version: recorded, not a term |
-| B1-a (hand-over) | products handed to Fatras where they leave the slab of their Geant4 vertex; products with β < 0.1 followed by Geant4 to their end; Fatras parent with v1's Truncate, Geant4 parent crossings stored for the second variant |
-| B1-c | the DIF rate comparison is made on first-arc decays (Geant4 0.0455 per parent against v1's 0.0381) |
-| B1-e | the pilot's unbiased population is the v1 rate phase space with the natural spectrum; H tabulated against parent pT, η and road offset in Phase 3 as the test of that restriction; the curler sample is the check of the bound |
-| B4-c | no-pile-up pool counted in effective preselected events (N_eff = (Σw)²/Σw²); Table 4.4a rows replaced at the approved 457 + 208 CPU-h (user decision 2026-11-16): SM floors 8.6 → 90 (forced tt̄ decays and preselection before the chain) or 166 (as timed); summed pool floor 12.6 → 94–101 |
-| ST-1 (Q4, Df-11) | rule 1 unchanged in definition; its numbers become 41 events per Z(νν) pilot count (2.3×10⁶ generated events, effective 1.01×10⁶), 78 per DIF count, 4.0 / 5.1 / 5.1 per NI count, 74 per NI-elsewhere count (strict); all-zero B₅₀ 191 (R09) / 295 (R08) strict, 120 / 225 lenient. Approved 4,609 CPU-h and threshold 5,992 unchanged; pilot generation 108 CPU-h against 54.5 (reported overrun) |
-| T1-i (Df-8) | not changed; finding recorded: toy cost ×17 / ×27 / ×75 at 60 / 80 / 100 parameters; four tests proposed before any change |
-| INV-1 | sample 11 gains the streams `pilot.c0.difc` (curler decays) and `pilot.c0.nix` (NI elsewhere); the Z(νν) pilot is 2.3×10⁶ generated events with stored preselection inputs |
+| B1-a (l.177), B1-f (l.182, Df-9) | B1 terms become seven classes that partition every Geant4 decay and inelastic vertex of the pool parents (π±, K±, p, K⁰_L, n, γ within 1 mm of the interaction point, 0.5 < pT < 20 GeV, \|η\| < 1): DIF (first-arc decays, K⁰_L decays; N_t 1.06×10⁸), DIF-C (decays after the first turn; 9.75×10⁷), NI 22 / 30 / 61.5 mm (first arc, no factor 0.22; 4.90 / 6.64 / 6.63×10⁶), NI-X (first arc, other layers; 9.49×10⁷), NI-C (after a turn; 4.97×10⁷). Ceiling family T_c 19 → 22, α_c = 0.05/22; closure designs for the three new terms (≈ +41 CPU-h in 4a); three more Q3-annex rows, inventory rows and T1 auxiliary channels. Hand-over: products at the exit of their vertex slab, products with β < 0.1 not handed over, Fatras parent with v1's Truncate, Geant4 parent crossings stored (validated, campaigns p2-c-b1y, p2-c-b1yv) |
+| B1-c (l.179) | rates per class from Geant4 on the Pythia pool; the comparison with v1 is made on first-arc π/K decays at 30–1000 mm (Geant4 / v1 = 1.19) and on the three radii before the factor 0.22 (+3 to +8 % per π±) |
+| B1-d (l.180) | Phase-2 part done: positions and x/X₀ agree (p2-c-matscan); the running Fatras instance neither decays nor absorbs hadrons (p2-c-part-fatras) |
+| B1-e (l.181) | no bound is claimed for decays after the first turn or for parents below 0.5 GeV; both are sampled (DIF-C; check sample `pilot.c0.lowpt`) |
+| B1-g (l.183) | unchanged (Phase 3); its resolving power is 4.1×10⁴ events per count: an alarm at loose rungs, not a bound |
+| B4-c (l.197) | no-pile-up pool counted in effective preselected events (full-weight class, Σw/w_max); Table 4.4a at the approved 457 + 208 CPU-h: SM floor 8.6 → 169 as timed, 93 with forced tt̄ decays (327 ms, measured for tt̄ 1ℓ) and the preselection before the chain; all pool terms 12.6 → 175–213 as timed, 99–137 with both measures |
+| T1-i (l.216, Df-8) | not changed; toy cost ×17 at 60 parameters measured; projection ≈ 7,700 CPU-h against the threshold 5,992 unless a remedy under test works |
+| ST-1 (l.257, Q4, Df-11) | rule 1 unchanged in definition; it reads the seven B1 classes on their own pilot samples (4, 4, 1, 1, 1, 4, 2 ×10⁶ events proposed; 24–27 events per count for the large classes, 4.9–6.6 for the three radii) and the SM processes at 41 events per full-weight Z(νν) pilot count (2.3×10⁶ generated; provisional until the day-12 MET model). Empty-pilot B₅₀: 159 at R09, 237–283 at R08 (387 and 465–513 with 10⁶ events per sample). Approved 4,609 CPU-h and threshold 5,992 unchanged; pilot generation ≈ 131 CPU-h against 54.5 (reported overrun) |
+| INV-1 (l.258) | sample 11: streams `pilot.c0.{dif,difc,ni22,ni30,ni61,nix,nic,hs,lowpt}`, `pilot.mb`, `pilot.g4`, `pilot.hs0.znn`; 1.7×10⁷ B1 events and 2.3×10⁶ generated Z(νν) events with stored preselection inputs; ≈ 144 GB |

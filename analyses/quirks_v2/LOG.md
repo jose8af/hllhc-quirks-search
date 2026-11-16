@@ -471,3 +471,14 @@ The user asked to be alerted by git when a decision is needed, an important resu
 information". Frequency left to the orchestrator. Implemented as `tools/notify/notify.sh` (git plumbing: no
 checkout, fast-forward only, never force; pushes `v2-jfc` with it). Policy in `ORCHESTRATOR_STATE.md`;
 DEVIATIONS V15.
+
+## 2026-11-16 14:16 -05 (measured) — Addendum 1 version 2 (fix after the ITERATE)
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v2_tatiana_2026-11-16_14-14.md` + `FIX_REPORT_addendum1_tatiana.md`.
+Author's statement: A1–A3 resolved with new measurements; B7, B10 partially. Main numbers (ESTIMATE unless noted):
+single-interaction vertices 3.66×10⁸ in 3 ab⁻¹ against 6.8×10⁷ in Table 4.4a (complete partition of 245,945 Geant4
+vertices, VERIFIED; half of the decays and a third of the interactions after a turn; v1's 30–1000 mm radial cut
+removed); seven B1 terms instead of four; an empty pilot at 10⁶ events per sample reads 387 (R09) and 465–513 (R08);
+with larger samples (pilot about 131 CPU-h against 54.5, 144 GB) 159 and 237–283; pool floor 175–213 events as
+timed, 99–137 with the chain change; upside reach 506–597 [443–524] GeV; projection about 4,780 CPU-h if toys stay
+at the 31-parameter cost. T1-b: no verdict (failed-fit rule not met; asymptotic 828.67 against v1's 828.7; v1's
+statistic gives 794–832 over four seeds). Fresh reviewer next.
