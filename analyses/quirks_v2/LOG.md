@@ -324,3 +324,8 @@ Also cleaned: three stale processes of ours on einstein (a watcher loop left by 
   Data, no Stage 3 at Λ ≥ 15 keV). No regression trigger.
 - `gates/GATE_A.md` written from the draft with the changes of verdict §9 (1,586 words); the draft file is removed.
 - Stopped for the user's Gate A. Nothing runs.
+
+## 2026-11-16 10:55 -05 (measured) — Time correction to the entry above
+The heading "11:00" and the times "10:55" (arbiter) in the entry above were written ahead of the clock. Measured:
+the commits are `25b3ff5` at 10:44, `cdafef2` at 10:49 and `87b6c04` (PASS, Gate A package) at 10:53. The repo bundle
+`repo-2026-11-16.bundle` was rewritten after `87b6c04` (75,209,234 bytes, verified).
