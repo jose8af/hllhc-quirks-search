@@ -303,3 +303,24 @@ Also cleaned: three stale processes of ours on einstein (a watcher loop left by 
 - 10:45: fixer **Oscar** (Opus, default) spawned with the strict scope of the cycle-9 verdict §5 (E1–E14 incl. E6 and
   the bookkeeping) to produce STRATEGY v10. E6 (the precision sentence of rule 1) is applied; the user may still drop it.
   Next: the narrow check of verdict §9 (fresh critical reviewer, then arbiter).
+
+## 2026-11-16 11:00 -05 (measured) — Phase-1 review PASS in cycle 10; stop at Gate A
+- 10:45 fixer Oscar delivered STRATEGY v10 (`phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md`): E1–E14 as
+  exact text; sha256 before bookkeeping equal to the cycle-9 arbiter's prediction; checker 45 of 45. Commit `25b3ff5`.
+- 10:49 critical reviewer Pauline (fresh, Opus): checks a–g PASS, 0 A, 0 B, 2 C. Commit `cdafef2`. Her two stated
+  limits were closed from git by the orchestrator: nothing under `phase1_strategy/src/` changed in the fix;
+  `COMMITMENTS.md` changed by +12/−4 lines.
+- 10:55 arbiter Quentin (fresh, Opus): **PASS**, 0 A, 0 B, 2 C
+  (`phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md`). The narrowed panel (one
+  critical reviewer + arbiter) is what the cycle-9 arbiter ordered; Quentin records its limit: the arbiter-written
+  text of cycle 9 was not read by a physics reviewer apart from its numbers.
+- C-1 applied by the orchestrator as ordered (no re-review): v10 l.16 author list → "(the author of the version that
+  introduced the sentence, §12.2)". v10 sha256 now `d806bb362a514b3fba687ad107018be9fe42ac7e3ad665cbb98b4432e020b779`
+  (the arbiter's predicted value); checker re-run: 45 of 45, output identical to `day15_text_check_v10.txt`.
+  C-2 (fixer ran one read-only `git diff`): record only.
+- Orchestrator regression checklist: Phase 1 has no validation test, systematic, fit, goodness-of-fit, bin exclusion
+  or measured result, so those boxes cannot be ticked; binding decisions D1–D10 of the brief are respected in v10
+  (cycle-9 verdict §6, unchanged by the fix: endcap as outlook only, no cloud, no ρ = 3, no pile-up scan, no Open
+  Data, no Stage 3 at Λ ≥ 15 keV). No regression trigger.
+- `gates/GATE_A.md` written from the draft with the changes of verdict §9 (1,586 words); the draft file is removed.
+- Stopped for the user's Gate A. Nothing runs.

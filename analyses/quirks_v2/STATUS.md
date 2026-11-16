@@ -1,36 +1,28 @@
 # Status — quirks v2
 
-**2026-11-14 01:25 (day 1, night).** Phase 1 (Strategy): **stopped, waiting for the user** on two matters.
+**2026-11-16 10:53 -05 (measured).** Phase 1 (Strategy): **review PASSED in cycle 10; stopped at human Gate A.**
 
-1. The Phase-1 review panel ran nine cycles without a PASS. The last verdict leaves one Category B item (one stale
-   word in a table row) and thirteen wording edits; nothing about the design, budget or expected outcome is open.
-   Gate A has not been reached. Draft package: `gates/GATE_A_DRAFT.md`.
-2. Cluster fault since about 00:47: `/nfs/cajuela` hangs on einstein and ssh to the three workers hangs. Not repaired.
+- Gate package: `gates/GATE_A.md` (five questions Q1–Q5, eleven overridable defaults, budget, risks).
+- Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md` (v10,
+  sha256 `d806bb36…020b779`), `COMMITMENTS.md`, `phase1_strategy/outputs/budget_stdout_v9.txt`.
+- Verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md` (0 A, 0 B, 2 C; the one
+  C edit is applied).
+- Nothing runs. No production, no worker job and no CPU-h are spent until Gate A is answered.
 
 | | |
 |---|---|
-| Schedule | not yet approved (proposed at Gate A, after the cluster benchmarks) |
-| CPU-h used / planned | 0 / to be set at Gate A |
-| cajuela, this project | 0 GB of 1.5 TB soft budget |
-| cajuela pool free | 3.9 TB of 4.5 TB |
-| software area (`~/sw`, `~/.pixi`, `~/.cache/rattler`, envs in the repo tree) | about 10 GB of 150 GB |
-| last repo bundle | `repo-2026-11-13.bundle` (13 Nov 14:37). **Overdue**: cajuela is not reachable |
+| Schedule | proposed at Gate A: 4,609 CPU-h, stop-and-ask at 5,992, about 60 days (ESTIMATE) |
+| CPU-h used / planned | 0 of production / to be approved at Gate A |
+| cajuela, this project | under 1 GB of 1.5 TB soft budget (bundles only) |
+| last repo bundle | `repo-2026-11-16.bundle` |
+| Review history | A 11→4→1→0→0→0→0→0→0→0; B 24→14→15→5→3→1→4→1→1→0 |
 
-**Done today:** preflight (passed on re-run after the admin's cajuela fix), branch `v2-jfc`, JFC vendored, analysis
-scaffolded, state and ledger files.
+**Incidents so far:** 13 Nov 14:06 stale file handle after a directory rename on cajuela (admin fix); 13 Nov 15:12
+einstein out of memory (orchestrator now capped at 10 GB); 14 Nov about 00:47 to 16 Nov cajuela NFS and ssh to the
+workers hung (cause not established by us; the user confirmed the cluster healthy on 16 Nov).
 
-**Running:** three feasibility executors, resumed after the incident, one per worker (chain benchmarks; generators;
-runner validation). The six investigator digests are done.
+**Limits in force:** 10 GB cap, nothing heavy on einstein, one pixi install at a time, at most 3 subagents, never
+rename a directory on cajuela, no push.
 
-**Incident 15:12:** einstein ran out of memory; the orchestrator and the three feasibility executors were killed and
-cajuela was down until 15:20. State reconciled and committed; all environments verified complete except Geant4
-(removed, to be reinstalled). Lost: about 25 minutes of executor work in progress, no data. New limits in force:
-10 GB cap, nothing heavy on einstein, one pixi install at a time, at most 3 subagents.
-
-**Open risks**
-- Writing environments to the shared home from a worker is slow (~1 MB/s) and slows NFS for the lab. By user
-  decision the Geant4 environment (3.3 GB) is installed on each worker's local scratch instead.
-- The chain has never run on Linux; pyacts 48 may need a source build on a worker.
-- Geant4 is not installed; route (conda-forge package or source build) decided by the feasibility executor.
-- Cluster capacity is 12 worker cores, shared with lab users; the plan's 3–8k CPU-h are M3 units, not yet converted.
-- cajuela: directories must never be renamed while in use (see `PREFLIGHT.md`).
+**Open risks:** see `gates/GATE_A.md` §7. The expected outcome on v1 placeholder efficiencies is a real background
+and a reach near existing bounds; the day-15 rule is expected to pause the study.

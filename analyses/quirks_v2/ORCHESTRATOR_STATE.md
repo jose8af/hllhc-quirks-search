@@ -2,18 +2,21 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-16 10:47 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy) — **review cycle 10 running (authorised by the user 2026-11-16)**
+**Updated:** 2026-11-16 11:00 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 1 (Strategy) — **review PASSED (cycle 10); STOPPED AT HUMAN GATE A**
 
-**Cluster:** the user confirmed it healthy on 2026-11-16; cajuela and ssh re-checked at 10:40; bundle
-`repo-2026-11-16.bundle` written. Workers may be used again. Still in force: 10 GB cap, nothing heavy on einstein.
+**Waiting for the user's Gate-A answers** (package `gates/GATE_A.md`): Q1–Q5, any override of Df-1…Df-11, whether
+to keep sentence E6 of rule 1, and approval of the schedule (4,609 CPU-h, threshold 5,992, about 60 days; rider
+variant 4,616 / 6,001). Do NOT start Phase 2, any production or any worker job before the user answers.
+Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md` (v10, sha256 d806bb36…020b779) +
+`COMMITMENTS.md` + `budget_stdout_v9.txt`. Verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md`.
 
-**Next action:** fixer Oscar (Opus) is producing STRATEGY v10 from the cycle-9 verdict §5 (E1–E14 + bookkeeping;
-verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md`). When it reports: commit;
-spawn ONE fresh critical reviewer (Opus) for the mechanical check of verdict §9; then a fresh arbiter (not below Opus).
-PASS → regression checklist, `gates/GATE_A.md` from `gates/GATE_A_DRAFT.md` (cite v10; "cycle 9: a stale count, fixed
-in v10"), bundle, STATUS, stop for Gate A. ITERATE at cycle 10 = hard cap → go to the user, no cycle 11.
-If a session resumes and no v10 file `phase1_strategy/outputs/STRATEGY_oscar_*.md` with a
-`FIX_REPORT_cycle9_oscar.md` exists, re-spawn the fixer. Session names used through Oscar; next free: Pauline.
+**Next action after the answers:** record them in `COMMITMENTS.md` (frozen at Gate A) and `LOG.md`; if E6 is dropped
+or a default overridden, a fixer applies it and the change is logged; commit; bundle; read the deferred JFC files for
+Phase 2 (DEVIATIONS V11); plan Phase 2 (week 1: C1, C2, cost measurements, pilot; day-5/7/12/15 decision points).
+Carry into Phase 2: the deferred item Physics C-4 of cycle 9 (self-test 7 at ±5 %, more draws for the DIF rows) and,
+if E6 is dropped, the precision rule. Fixer prompts must repeat the no-git rule (two agents ran a read-only git).
+Cluster confirmed healthy by the user 2026-11-16; workers usable; 10 GB cap and "nothing heavy on einstein" stay.
+Session names used through Quentin; next free: Rosalie.
 
 **Clock warning:** times in `LOG.md` and in file names before 2026-11-14 01:20 are sequence labels, not clock times;
 git commit times are authoritative. Always call `date` before writing a time.
@@ -24,7 +27,7 @@ pixi install at a time, at most 3 subagents).
 ## Phase tracker
 - [x] Preflight — PASS on re-run after the cajuela fix (`PREFLIGHT.md`)
 - [x] Scaffold, state files, first bundle, first commit
-- [ ] **Phase 1: Strategy — investigators + feasibility executors + strategy executor + 4-bot review → GATE A (human)**
+- [ ] **Phase 1: Strategy — done and review PASSED (cycle 10, 2026-11-16); waiting at GATE A (human)**
 - [ ] Phase 2: Exploration / regenerate the base — executor(s) + self-review + plot validator; decision point 1
 - [ ] Phase 3: Processing, signal blind — parallel channels B1–B7, T1, T2, each 1-bot; consolidation; PREREG_v2 (4-bot, hash, notify user)
 - [ ] Phase 4a: Expected — production, closure verdicts; executor + note writer + typesetter + 4-bot+bib

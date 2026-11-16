@@ -1,14 +1,12 @@
-> **DRAFT — NOT YET THE GATE-A PACKAGE.** The Phase-1 review panel has not passed: cycle 9 ended ITERATE with one
-> Category B item (a stale count, "ten defaults" for eleven, in one table row) and thirteen wording edits, all given as
-> exact text in `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v9_odette_2026-11-14_07-55.md` (its §0 is a two-minute
-> open list). This text is the cycle-9 arbiter's corrected package (1,496 words), copied unchanged from its scratch
-> area; it describes STRATEGY v9 *with* those edits applied (a v10 that does not exist yet). The orchestrator stopped
-> here by its own escalation rule and is asking the user how to proceed. Times quoted in file names and in `LOG.md`
-> are sequence labels, not clock times (see the LOG correction of 2026-11-14 01:20).
+> Phase-1 review PASSED in cycle 10 (`phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md`).
+> Artifact of record: STRATEGY v10 (`phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md`), `COMMITMENTS.md`,
+> `budget_stdout_v9.txt`, `src/check_day15_text.py`. Times in file names before 2026-11-16 are sequence labels, not
+> clock times (`LOG.md` correction of 2026-11-14 01:20).
 
 # GATE A — quirks v2: strategy, benchmarks and schedule
 
-Sources: STRATEGY v10 (STR), `budget_stdout_v9.txt` (stdout). **All reach and background numbers: ESTIMATE on v1
+Sources: STRATEGY v10 (STR, `STRATEGY_oscar_2026-11-16_10-41.md`), `budget_stdout_v9.txt`
+(stdout). **All reach and background numbers: ESTIMATE on v1
 placeholder efficiencies**.
 
 ## 1. Headline
@@ -36,7 +34,8 @@ Of 4,453 CPU-h: 753 measured, 2,322 derived, **1,378 guessed**.
 - v1 chain on Linux. MG5 2.9.22 + Pythia 8.313 reproduce v1's LO σ (z = 0.91); NLO K = 1.165 at 200 GeV; Geant4 11.4.3 installs in ≈ 3 min. Runner tests pass.
 - Incidents (`LOG.md` 14:06, 15:12): stale file handle after a cajuela directory rename; einstein out of memory.
   Since: the rules of `AGENT_RULES.md`.
-- Review: cycles 1–9, Category A 11→4→1→0→0→0→0→0→0, Category B 24→14→15→5→3→1→4→1→1 (cycle 9: a stale count, fixed in v10).
+- Review: cycles 1–10, Category A 11→4→1→0→0→0→0→0→0→0, Category B 24→14→15→5→3→1→4→1→1→0 (cycle 9: a stale
+  count, fixed in v10; cycle 10: a mechanical check of v10, PASS).
   Cycles 4–8 turned on the day-15 reading; cycle 8 found rule 1 ambiguous and pinned it (Df-11: limit ≈ 12 Z(νν) pilot counts, not ≈ 20).
 
 ## 3. Your decisions
@@ -97,6 +96,9 @@ hash, +47 CPU-h, +1.8 days.
 | Df-5 | time-tag credit only where it closes | Df-10 | coverage checks: one family of 10 |
 | **Df-11, NEW (pinned in cycle 8)** | rule 1 reads only day-15 samples: every SM process via the Z(νν) pilot count (a proxy, probably lenient: by v1's photon rates their conversions are under-read by ≈ 8 %, at most ×1.6), no pool floor; (c) factors never multiply a floor; ties pause → limit ≈ 12 counts (R09 candidate; ≈ 6–7 at R08) | alternative | SM at pool floors: limit ≈ 20, more lenient, blind to most conversions, (c) looks easier |
 
+"Ties pause" in Df-11 is the sentence added in cycle 9 (binding B₅₀ from ≥ 10⁵ draws; a reading within that precision
+of 300 pauses). You may drop it; it is then fixed in Phase 2.
+
 ## 5. Budget and calendar
 | variant | CPU-h | threshold | days (no pause / pause) |
 |---|---|---|---|
@@ -130,5 +132,5 @@ conditionals measured in production. **If none works**, the plan's "real backgro
 quirk-plane background, the reach at that B, the sideband recipe as the way out.
 
 ## 9. Files
-STR v10 (§0, §12.1); `budget_stdout_v9.txt`; `COMMITMENTS.md`; `phase1_strategy/outputs/feasibility/`;
-`phase1_strategy/review/arbiter/`; `LOG.md`; `DEVIATIONS.md`.
+STR v10 (§0, §12.1); `budget_stdout_v9.txt`; `src/check_day15_text.py` (45 of 45 on v10); `COMMITMENTS.md`;
+`phase1_strategy/outputs/feasibility/`; `phase1_strategy/review/arbiter/` (cycle-10 verdict); `LOG.md`; `DEVIATIONS.md`.

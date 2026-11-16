@@ -13,7 +13,7 @@ feasibility benchmarks. The user's decisions are in §12.1: five questions Q1–
 D1…D6 = the digests in `outputs/digests/`; FEAS_A/B/C = the reports in `outputs/feasibility/`; COM = `QV2/COMMITMENTS.md`.
 
 **Tags.** **[V]** VERIFIED: the number was read at the cited file:line or JSON key by the author of the sentence
-(Brigitte, Dmitri, Emeric, Fiona, Gunnar or Ingrid, whoever wrote it), or re-derived (the script section is given). **[E]** ESTIMATE,
+(the author of the version that introduced the sentence, §12.2), or re-derived (the script section is given). **[E]** ESTIMATE,
 with the arithmetic. **[U]** UNVERIFIED: transcribed from a digest, a review or a v1 document and not opened. A number
 without a tag in a table inherits the tag in the table caption.
 
