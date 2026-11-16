@@ -378,3 +378,17 @@ with respect to v1. The reports that are pushed should be in latex."
   install slot granted for Herwig (node-local) and PDF4LHC21; Herwig comparison charged to S2 within 139 CPU-h.
 - A channel (ii) smoke job overlapped for 11 minutes with channel (i)'s reserved ρ = 2 memory measurement on maxwell;
   channel (i) to state whether its measurement is affected.
+
+## 2026-11-16 12:58 -05 (measured) — Phase 2, channel (i) interim report; fixed node shares
+- Day-0 measurements (VERIFIED, channel (i)): ρ = 2 max RSS 1.60 / 1.59 / 1.74 / 2.12 GB at 1 / 2 / 4 / 8 events per
+  job (with the pre-merge store; +0.5 GB) → 2 ρ = 2 jobs per node, 5 events per job; ρ = 2 cost 195 CPU-s per event
+  (Table 4.0: 206); ρ = 1 cost 57–59 CPU-s per event (60.4); finder 11.3 ± 7.3 s per trial at road 0.15, so the ×0.77
+  saving assumed in Table 4.0 is not seen; pre-merge store 34 MB per trial (STR: 3.6–14), projecting about 270 GB
+  with the 4a ρ = 2 sample (planning value 200 GB, cap 400 GB: accepted, no change of the N_IP2 ≥ 6 threshold;
+  enters the day-5 storage projection).
+- The memory measurement was taken alone on the node; the ρ = 2 timing shared the node with a channel (ii) job for
+  11 minutes (stated with the number).
+- C1 campaigns p2-a-c1-pu1 (4,000 events) and p2-a-c1-pu2 (1,000 events) run; resume after a driver kill tested.
+- Slot conflicts between the channels: replaced the per-channel caps by fixed node shares (`phase2_exploration/SLOTS.md`).
+- Ruling: channel (i) produces the C1 signal inputs itself (Stage 2 at E 200 and E 500 with v1's cards, FSR off as
+  S2-d keeps for C1; Stage 3 at the three C1 points), reusing channel (ii)'s generation job script.

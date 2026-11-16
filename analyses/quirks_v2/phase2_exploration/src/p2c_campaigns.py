@@ -65,8 +65,8 @@ def main(argv):
         name = 'p2-c-t-pyhf'
         jobs = [dict(id=f'{name}-n{1 + nt + nn}', outputs=[f'{name}-n{1 + nt + nn}.json'],
                      command=f'export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 && {PYHFPY} '
-                             f'{SRC}/p2c_t1.py time $QV2_OUT_DIR/{name}-n{1 + nt + nn}.json {nt} {nn} 100')
-                for nt, nn in ((25, 5), (45, 14), (60, 19), (75, 24))]
+                             f'{SRC}/p2c_t1.py time $QV2_OUT_DIR/{name}-n{1 + nt + nn}.json {nt} {nn} {ntoy}')
+                for nt, nn, ntoy in ((25, 5, 100), (45, 14, 100), (60, 19, 20), (75, 24, 20))]   # 20: 30-min limit
         write(name, jobs, 0.5, 600, me, 'timing: hybrid toys (two fits each) at 31, 60, 80, 100 parameters')
     elif what == 't-b1':          # hand-over slice: 2,000 events per term from the vertices of p2-c-t-g4
         name = argv[1] if len(argv) > 1 else 'p2-c-t-b1'
@@ -77,6 +77,19 @@ def main(argv):
                      command=ENV + f'{ACTSPY} {SRC}/p2c_b1.py {t} $QV2_OUT_DIR/{name}-{t}.npz {n_ev} time.c0.{t} 0 0 {files}')
                 for t in ('dif', 'ni22', 'ni30', 'ni61')]
         write(name, jobs, 0.3, 1500, me, 'timing and hand-over slice: no-PU B1 events from Geant4 vertices')
+    elif what == 'matscan':       # B1-d: ACTS geometry and material against the Geant4 scan of p2-c-t-g4
+        name = 'p2-c-matscan'
+        scan = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-g4/000/p2-c-t-g4-scan.npz'
+        jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_matscan.py $QV2_OUT_DIR/{name}-0.json {scan}')]
+        write(name, jobs, 0.1, 1000, me, 'B1-d: positions, x/X0 per layer, Fatras physics record')
+    elif what == 'val-b1':        # hand-over validation on the slice of p2-c-t-b1
+        name = 'p2-c-val-b1'
+        d = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t-b1/000'
+        files = ' '.join(f'{d}/p2-c-t-b1-{t}.npz' for t in ('dif', 'ni22', 'ni30', 'ni61'))
+        jobs = [dict(id=f'{name}-0', outputs=[f'{name}-0.json'],
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_validate.py $QV2_OUT_DIR/{name}-0.json {files}')]
+        write(name, jobs, 0.1, 1000, me, 'hand-over validation: truncation, product times, variant A against B')
     else:
         raise SystemExit(f'unknown campaign {what}')
 

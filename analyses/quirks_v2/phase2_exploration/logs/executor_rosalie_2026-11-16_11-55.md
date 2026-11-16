@@ -114,3 +114,27 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
   PASS. Relaunched with landau --max-per-node 1 because channel (iii) started 2 jobs on landau (p2-c-t-g4) at ≈ 12:08:
   landau then carried 4 jobs against its cap of 3 (graphical session); mine drop to 1 as they finish.
   Check: ssh -x landau "$R/bin/qv2run status $R/campaigns/p2-a-c1-pu1.json --live -v"   (R=$REPO/tools/runner)
+- 12:25 p2-a-day0-pu2b done (maxwell, one job at a time; a channel (ii) MG job shared the node part of the time).
+  [VERIFIED, outputs/day0_measurements.json, markers ledger/markers/p2-a-day0-pu2{,b}/]
+  | job | events | CPU s | CPU s/event | max RSS MB | pre-merge cand/trial | pre-merge MB/trial |
+  | d0pu2-n1-nopm | 1 | 179.6 | 179.6 | 1076.8 | (store off) | — |
+  | d0pu2b-n1 | 1 | 194.1 | 194.1 | 1597.8 | 115,311 | 32.6 |
+  | d0pu2b-n2 | 2 | 329.2 | 164.6 | 1585.2 | 102,621 | 28.2 |
+  | d0pu2b-n4 | 4 | 715.6 | 178.9 | 1738.4 | 110,094 | 30.7 |
+  Finder per ρ = 2 trial 64–76 s (find 52–63 s, IS weights 4.6–5.8 s); chain 12.6–14.4 s per crossing incl. start.
+  Bit identity with/without the pre-merge store (same seed): 105 of 106 keys identical, only `job_id` differs → PASS.
+  The store adds ≈ 0.5 GB RSS (1.08 → 1.60 GB at 1 event); RSS grows slowly with events (1.59 → 1.74 GB, 2 → 4).
+  Storage: ≈ 31 MB per trial (110 hits per stored candidate on average), above the STR §4.5 guess of 3.6–14 MB.
+  Projection: c1-pu2 2,000 trials → 62 GB; with 3,000 production events (6,000 trials) 248 GB in all: below the
+  400 GB cap, above the 200 GB planning value. No [DT4] (threshold stays N_IP2 ≥ 6).
+- 12:26 p2-a-day0-pu2c (8 events, chunk 3) launched on maxwell alone.
+- 12:55 p2-a-day0-pu2c (8 events, maxwell alone) done: 1688.9 CPU-s (211 s/event), max RSS 2120.8 MB, wall 1694 s
+  (28 min: 8 events per job is too close to the 30-min limit), pre-merge 127,797 cand/trial, 37.0 MB/trial.
+  ρ = 2 summary [VERIFIED, 15 events]: CPU 195 s/event mean (2928 s / 15; Table 4.0: 206 s); max RSS 1.60 / 1.59 / 1.74
+  / 2.12 GB at 1 / 2 / 4 / 8 events → STR §4.5 rule 2 (≤ 2.5 GiB): **2 ρ = 2 jobs per node**; pre-merge store
+  33.8 MB/trial on average (1,015 MB / 30 trials) → c1-pu2 ≈ 68 GB; with the 4a ρ = 2 sample ≈ 270 GB < 400 GB cap.
+  ρ = 1 at 3–4 jobs per node (c1pu1-0000/0001, landau): 1140.9 / 1172.0 CPU-s for 20 events = 57–59 s/event (Table
+  4.0: 60.4 s), RSS 575–579 MB, 55 MB per job.
+- 12:56 p2-a-c1-pu2 written (5 events/job, 200 jobs, RSS request 2100 MB, dumps for events 0–199) and launched on
+  maxwell, 2 per node (SLOTS.md updated). Channel slots now: landau 1 (c1-pu1), maxwell 2 (c1-pu2) = 3 (weekday cap).
+  Plan for 19:00: relaunch c1-pu1 with one more slot (channel cap 4 off-hours).

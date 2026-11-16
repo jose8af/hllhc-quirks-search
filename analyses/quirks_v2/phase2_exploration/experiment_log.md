@@ -15,3 +15,20 @@ Phase 1 assumed (STR §4.7) that public Phase-2 parameters for the soft-term res
 DECISION: none taken by me; reported.
 CONFIDENCE: MEDIUM. The figure readings are by eye, and the 2013 formula's ΣE_T convention is read from the text.
 FLAG FOR HUMAN: YES.
+
+## 2026-11-16 12:21 [Sebastian] FxFx settings for S2-c
+The Pythia side follows `HEPTools/pythia8/share/Pythia8/examples/main164fxfx.cmnd` (Pythia 8.313, local copy). The MG side uses the NLO run_card keys ickkw = 3, jetalgo = 1 (kT), jetradius = 1.0, ptj = μ_Q (`Template/NLO/Cards/run_card.dat` l.113-138).
+DECISION: μ_Q = ptj = JetMatching:qCutME = 30 GeV and JetMatching:qCut = 45 GeV. These are v1's MLM xqcut/qCut (produce.py l.51), chosen so the FxFx and MLM samples share merging scales. The example card's 10/20 GeV is a demonstration for Z production.
+ALTERNATIVES: qCut = 30 or 60, i.e. the STR merging-scale variations.
+CONFIDENCE: MEDIUM. FxFx enters only the f₂₀₀ uncertainty band (S2-c), so this choice moves the band, not the nominal.
+FLAG FOR HUMAN: NO (recorded).
+
+## [Tatiana, channel (iii)] 2026-11-16 12:32
+- Failed attempt: campaign p2-c-t-hs0s (3 jobs) failed in 1 s each: Pythia could not find its XML data because jobs call the env's python directly and conda activation is skipped. Fix: PYTHIA8DATA (and CONDA_PREFIX, PYTHIA8, PYTHIA8_DIR) exported in the job command. Relaunched as p2-c-t-hs0s2 (failed jobs are never retried by the runner).
+- Process error: for about 5 minutes I had 5 concurrent jobs (cap 3 on weekdays). Stopped one driver; later drivers are launched with explicit per-node limits that sum to 3.
+- Finding: no-PU hard-scatter event costs 0.127 s (Z(νν)), 0.173 s (W(τν)) against the guessed 45 ms; B1 no-PU event 3.7–5.9 ms against 11.5 ms; Geant4 on the natural spectrum 0.42 ms per firing through the tracker (0.134 ms for the 1–10 GeV gun of FEAS_B).
+
+DECISION: none taken on the pilot definition. Open choices O1–O12 are in logs/executor_tatiana_2026-11-16_11-57.md §5 and its log, reported to the orchestrator before any pilot campaign is submitted.
+ALTERNATIVES: listed per choice with a recommendation.
+CONFIDENCE: MEDIUM (O1, O3, O5, O12 change numbers that rule 1 of STR §11.7 reads).
+FLAG FOR HUMAN: YES

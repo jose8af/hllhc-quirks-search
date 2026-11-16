@@ -3,3 +3,5 @@
   Runs now: chain on landau (1 slot) waiting for channel (iii)'s p2-c-t-g4 to leave, then p2-b-s2-mlmtime → kval → kscan. Check: `ssh -x landau cat /home/scratch/jdochoa/drivers/chain_s2_first.log`.
 - 2026-11-16 12:14 [ch. (ii) Sebastian] R-3 closed via the ATLAS route. The jet-response tail is not sourced. Validation figure: ATL-PHYS-PUB-2019-005 Fig. 18 (37–51 GeV, reading error ±0.5 GeV). The 2013 ATLAS MET formula is ×1.5–3 above it (flag for ch. (iii)). PDF4LHC21_40 installed (sw/lhapdf_data).
   Runs now: landau chain (mlmtime → kval → kscan; waiting for p2-c-t-g4); Herwig install queued on maxwell from 13:30.
+- 2026-11-16 12:57 -05 channel (i) Rosalie: day-0 measured (VERIFIED, outputs/day0_measurements.json): rho = 2 RSS 1.60/1.59/1.74/2.12 GB at 1/2/4/8 events/job -> 2 per node, 195 CPU-s/event, pre-merge store 34 MB/trial (planning projection 270 GB < 400 GB cap); rho = 1 57-59 CPU-s/event, finder 11.3 s/trial at road 0.15.
+  Running: p2-a-c1-pu1 (rho = 1, 200 jobs, landau) and p2-a-c1-pu2 (rho = 2, 200 jobs, maxwell); 1.1 CPU-h spent so far.

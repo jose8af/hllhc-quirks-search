@@ -310,8 +310,61 @@ def cmd_mlmtime(a):
     log.info('done: %s', json.dumps(info['derived']))
 
 
-NLO_PROCS = {'E': 'generate p p > xe+ xe- [QCD]', 'S': 'generate p p > sxe+ sxe- [QCD]'}
-MASSPAR = {'E': 'MXE', 'S': 'MSXE'}
+NLO_PROCS = {'E': 'generate p p > xe+ xe- [QCD]', 'S': 'generate p p > sxe+ sxe- [QCD]',
+             'DY': 'generate p p > e+ e- [QCD]'}
+MASSPAR = {'E': 'MXE', 'S': 'MSXE', 'DY': None}
+
+MPAIR_ANA = '''c qv2 (Sebastian): pair invariant mass of particles 3 and 4 (the produced pair), from the MG template
+c analysis_HwU_template.f; histogram 1 = total rate, 2 = M(pair) in NB bins on [MLO, MHI]
+      subroutine analysis_begin(nwgt,weights_info)
+      implicit none
+      integer nwgt
+      character*(*) weights_info(*)
+      call HwU_inithist(nwgt,weights_info)
+      call HwU_book(1,'total rate      ', 5,0.5d0,5.5d0)
+      call HwU_book(2,'M pair          ', @NB@,@MLO@d0,@MHI@d0)
+      return
+      end
+      subroutine analysis_end(dummy)
+      implicit none
+      double precision dummy
+      call HwU_write_file
+      return
+      end
+      subroutine analysis_fill(p,istatus,ipdg,wgts,ibody)
+      implicit none
+      include 'nexternal.inc'
+      integer istatus(nexternal)
+      integer iPDG(nexternal)
+      double precision p(0:4,nexternal)
+      double precision wgts(*)
+      integer ibody
+      double precision e,px,py,pz,xm
+      call HwU_fill(1,1d0,wgts)
+      e=p(0,3)+p(0,4)
+      px=p(1,3)+p(1,4)
+      py=p(2,3)+p(2,4)
+      pz=p(3,3)+p(3,4)
+      xm=sqrt(max(e**2-px**2-py**2-pz**2,0d0))
+      call HwU_fill(2,xm,wgts)
+      return
+      end
+'''
+
+
+def parse_hwu(rd, title='M pair'):
+    rows, on = [], False
+    for l in open(os.path.join(rd, 'MADatNLO.HwU')):
+        if l.startswith('<histogram>'):
+            on = title in l
+            continue
+        if l.startswith('<\\histogram>'):
+            on = False
+            continue
+        if on and l.strip():
+            v = [float(x) for x in l.split()]
+            rows.append(dict(lo=v[0], hi=v[1], val=v[2], err=v[3], scale_min=v[5], scale_max=v[6]))
+    return rows
 
 
 def parse_summary(rd):
@@ -332,11 +385,13 @@ def cmd_nlo(a):
     """nlo <tag> <E|S> <lhaid> <m1,m2,...> [--orders LO,NLO] [--fixed MU] [--pdfunc] [--acc 0.002]
     aMC@NLO fixed-order runs with the loop model loop_quirkE (Basil's make_loop_quirkE.py, built in scratch).
     --fixed MU: fixed mu_R = mu_F = MU (GeV) instead of the default dynamical H_T/2 (validation 1)."""
-    tag, spin, lhaid, masses = a[0], a[1], a[2], [int(x) for x in a[3].split(',')]
+    tag, spin, lhaid, masses = a[0], a[1], a[2], [int(x) for x in a[3].split(',')]   # DY: masses = [0] (label only)
     orders = a[a.index('--orders') + 1].split(',') if '--orders' in a else ['LO', 'NLO']
     fixed = float(a[a.index('--fixed') + 1]) if '--fixed' in a else None
     acc = a[a.index('--acc') + 1] if '--acc' in a else '0.002'
     pdfunc = '--pdfunc' in a
+    mhist = [float(x) for x in a[a.index('--mhist') + 1].split(',')] if '--mhist' in a else None
+    mll = a[a.index('--mll') + 1] if '--mll' in a else None
     out = os.environ.get('QV2_OUT_DIR', os.getcwd())
     work = os.path.join(os.environ.get('QV2_SCRATCH_DIR', os.getcwd()), 'work')
     os.makedirs(work, exist_ok=True)
@@ -360,15 +415,39 @@ def cmd_nlo(a):
     if fixed:
         kv.update(fixed_ren_scale='True', fixed_fac_scale='True', muR_ref_fixed=f'{fixed:.4f}',
                   muF_ref_fixed=f'{fixed:.4f}')
+    if mll:
+        kv['mll'] = mll
+    if '--dyn' in a:
+        kv['dynamical_scale_choice'] = a[a.index('--dyn') + 1]
+    if '--dyn' in a and a[a.index('--dyn') + 1] == '10':   # user scale = M(pair) = invariant mass of particles 3+4
+        sf = os.path.join(d, 'SubProcesses', 'setscales.f')
+        s = open(sf).read()
+        old = ('         write(*,*) "User-defined scale not set"\n         stop 1\n'
+               "         temp_scale_id='User-defined dynamical scale' ! use a meaningful string\n         tmp = 0d0\n")
+        new = ("         temp_scale_id='qv2: M(pair) of particles 3+4'\n"
+               '         tmp=dsqrt(max(0d0,(pp(0,3)+pp(0,4))**2-(pp(1,3)+pp(1,4))**2\n'
+               '     &        -(pp(2,3)+pp(2,4))**2-(pp(3,3)+pp(3,4))**2))\n')
+        if s.count(old) != 1:
+            sys.exit('setscales.f user block not found')
+        open(sf, 'w').write(s.replace(old, new))
     set_run(os.path.join(d, 'Cards', 'run_card.dat'), kv)
+    if mhist:
+        lo, hi, nb = mhist
+        open(os.path.join(d, 'FixedOrderAnalysis', 'analysis_HwU_qv2_mpair.f'), 'w').write(
+            MPAIR_ANA.replace('@NB@', str(int(nb))).replace('@MLO@', f'{lo:.1f}').replace('@MHI@', f'{hi:.1f}'))
+        fc = os.path.join(d, 'Cards', 'FO_analyse_card.dat')
+        open(fc, 'w').write(re.sub(r'(?m)^FO_ANALYSE\s*=.*$', 'FO_ANALYSE = analysis_HwU_qv2_mpair.o', open(fc).read()))
     res = dict(tag=tag, spin=spin, lhaid=lhaid, fixed_scale=fixed, req_acc_FO=acc, pdfunc=pdfunc,
                node=socket.gethostname(), start=time.strftime('%Y-%m-%d %H:%M:%S %z'), points=[])
     for m in masses:
         for o in orders:
             run = f'{spin}{m}_{o}'
-            mg(mgdir, f'launch {d} -n {run}\nfixed_order=ON\norder={o}\ndone\nset {MASSPAR[spin]} {m}\ndone\nexit\n',
+            setm = f'set {MASSPAR[spin]} {m}\n' if MASSPAR[spin] else ''
+            mg(mgdir, f'launch {d} -n {run}\nfixed_order=ON\norder={o}\ndone\n{setm}done\nexit\n',
                f'launch_{run}', work, f'fo_{o}_m{m}')
             r = parse_summary(os.path.join(d, 'Events', run))
+            if mhist:
+                r['mpair_hist'] = parse_hwu(os.path.join(d, 'Events', run))
             r.update(mass=m, order=o, cpu_s=STEPS[-1]['cpu_s'])
             res['points'].append(r)
             log.info('%s m=%d %s: %.6g +- %.2g pb', spin, m, o, r['sigma_pb'], r['err_pb'])
@@ -408,6 +487,182 @@ def cmd_lotree(a):
     json.dump(res, open(os.path.join(out, f'{tag}.json'), 'w'), indent=1)
 
 
+FXFX_PTJ, FXFX_QCUT = 30.0, 45.0   # JUDGMENT (logged): v1's MLM xqcut / qCut (produce.py l.51) reused as FxFx mu_Q / qCut
+
+
+def fxfx_py8_card(sd, nev, qedfsr=True):
+    """FxFx shower card: settings of Pythia 8.313 examples/main164fxfx.cmnd (local HEPTools copy) with our qCut/qCutME,
+    then v1's CP5 + quirk cards (+ QED-FSR, the S2-d nominal)."""
+    L = [f'Main:numberOfEvents = {nev}', 'HEPMCoutput:file = events.hepmc', 'Beams:frameType = 4', 'Check:epTolErr = 2e-2',
+         'JetMatching:merge = on', 'JetMatching:scheme = 1', 'JetMatching:setMad = off', f'JetMatching:qCut = {FXFX_QCUT}',
+         'JetMatching:coneRadius = 1.0', 'JetMatching:etaJetMax = 10.0', 'SpaceShower:MEcorrections = off',
+         'TimeShower:pTmaxMatch = 1', 'TimeShower:pTmaxFudge = 1', 'TimeShower:MEcorrections = off',
+         'TimeShower:globalRecoil = on', 'TimeShower:limitPTmaxGlobal = on', 'TimeShower:nMaxGlobalRecoil = 1',
+         'TimeShower:globalRecoilMode = 2', 'TimeShower:nMaxGlobalBranch = 1',
+         'JetMatching:doFxFx = on', f'JetMatching:qCutME = {FXFX_PTJ}', 'JetMatching:nJetMax = 1']
+    for c in ['pythia8_tune_CP5.dat', 'pythia8_quirk_common.dat'] + (['pythia8_quirk_qedfsr.dat'] if qedfsr else []):
+        L += strip_comments(open(os.path.join(CARDS, c)).read())
+    L += ['LHEFInputs:nSubruns = 1', 'Main:subrun = 0', 'Beams:LHEF = events.lhe.gz', 'Random:setSeed = on',
+          f'Random:seed = {sd}']
+    return '\n'.join(L) + '\n'
+
+
+def cmd_fxfx(a):
+    """fxfx <tag> <E|S> <mass> <nev> [--shower]: MC@NLO 0-1j (FxFx) events with loop_quirkE.  The process directory
+    lives in node-local /home/scratch/jdochoa/cache/fxfx/<spin>_m<mass> (kept between jobs on the same node): the first
+    job makes it (output, compile, grids, first events); later jobs reuse the grids (launch -o)."""
+    tag, spin, mass, nev = a[0], a[1], int(a[2]), int(a[3])
+    out = os.environ.get('QV2_OUT_DIR', os.getcwd())
+    work = os.path.join(os.environ.get('QV2_SCRATCH_DIR', os.getcwd()), 'work')
+    os.makedirs(work, exist_ok=True)
+    mgdir = local_mg()
+    base = os.path.join(LOCAL, 'cache', 'fxfx', f'{spin}_m{mass}')
+    d = os.path.join(base, f'{spin}_FXFX')
+    ready = os.path.join(base, 'READY')
+    info = dict(tag=tag, spin=spin, mass=mass, nev=nev, ptj=FXFX_PTJ, qcut=FXFX_QCUT, node=socket.gethostname(),
+                start=time.strftime('%Y-%m-%d %H:%M:%S %z'))
+    os.makedirs(os.path.join(LOCAL, '.locks'), exist_ok=True)
+    with open(os.path.join(LOCAL, '.locks', f'fxfx_{spin}_m{mass}.lock'), 'w') as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        first = not os.path.exists(ready)
+        if first:
+            shutil.rmtree(base, ignore_errors=True)
+            models = os.path.join(base, 'models')
+            os.makedirs(models)
+            timed('make_loop_model', [sys.executable, '-I', os.path.join(QV2, 'phase1_strategy', 'src', 'generators',
+                                      'make_loop_quirkE.py'), mgdir, os.path.join(models, 'loop_quirkE')], base,
+                  os.path.join(base, 'make_loop.log'))
+            pp = 'xe' if spin == 'E' else 'sxe'
+            mg(mgdir, f'import model {models}/loop_quirkE-no_b_mass\ndefine p = p b b~\ndefine j = j b b~\n'
+                      f'generate p p > {pp}+ {pp}- [QCD] @0\nadd process p p > {pp}+ {pp}- j [QCD] @1\noutput {d}\nexit\n',
+               'output_fxfx', base, 'mg_output_fxfx')
+            set_conf(os.path.join(d, 'Cards', 'amcatnlo_configuration.txt'),
+                     {'lhapdf': LHAPDF_CONFIG, 'lhapdf_py3': LHAPDF_CONFIG, 'run_mode': '0', 'nb_core': '1',
+                      'automatic_html_opening': 'False', 'notification_center': 'False', 'fortran_compiler': 'gfortran'})
+            set_run(os.path.join(d, 'Cards', 'run_card.dat'),
+                    {'ebeam1': '7000.0', 'ebeam2': '7000.0', 'pdlabel': 'lhapdf', 'lhaid': '14400',
+                     'parton_shower': 'PYTHIA8', 'ickkw': '3', 'jetalgo': '1', 'jetradius': '1.0',
+                     'ptj': f'{FXFX_PTJ:.1f}', 'reweight_scale': 'True', 'reweight_PDF': 'False', 'req_acc': '-1'})
+        sd = seed(f's2.fxfx.{spin}{mass}', tag, 30000000)
+        set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'nevents': str(nev), 'iseed': str(sd)})
+        run = tag.replace('-', '_')
+        opt = '' if first else ' -o'
+        rec, txt = mg(mgdir, f'launch {d} -n {run}{opt}\nfixed_order=OFF\norder=NLO\nshower=OFF\nmadspin=OFF\n'
+                             f'reweight=OFF\ndone\nset {MASSPAR[spin]} {mass}\ndone\nexit\n',
+                      f'launch_{run}', base, 'amcatnlo_first' if first else 'amcatnlo_onlygen')
+        if first:
+            open(ready, 'w').write(time.ctime() + '\n')
+    rd = os.path.join(d, 'Events', run)
+    lhe = glob.glob(os.path.join(rd, 'events.lhe.gz'))[0]
+    m = re.findall(r'Total cross section:\s*([0-9.eE+-]+)\s*\+-\s*([0-9.eE+-]+)\s*pb', txt)
+    info.update(first=first, seed_mg=sd, sigma_pb=float(m[-1][0]) if m else None, err_pb=float(m[-1][1]) if m else None)
+    with gzip.open(lhe, 'rt') as f:
+        nlhe = sum(1 for l in f if l.startswith('<event'))
+    info['n_lhe'] = nlhe
+    if '--shower' in a:
+        pd = os.path.join(work, 'py8')
+        os.makedirs(pd)
+        shutil.copy(lhe, os.path.join(pd, 'events.lhe.gz'))
+        spy = seed(f's2.fxfx.{spin}{mass}', tag + '.py8', 900000000)
+        open(os.path.join(pd, 'PY8Card.dat'), 'w').write(fxfx_py8_card(spy, nlhe))
+        timed('py8_fxfx', [PY8_EXE, 'PY8Card.dat'], pd, os.path.join(pd, 'PY8_log.txt'), mg_env())
+        e = dict(os.environ, NUMBA_CACHE_DIR=os.path.join(work, 'numba'), PYTHONDONTWRITEBYTECODE='1')
+        timed('convert_npz', [ANA_PY, os.path.join(SIM, 'scripts', 'convert_hepmc.py'), os.path.join(pd, 'events.hepmc'),
+                              os.path.join(out, f'{tag}.npz'), '--mq', str(mass), '--spin', 'F' if spin == 'E' else 'S',
+                              '--sigma-lhe-pb', repr(info['sigma_pb'] or 0.0), '--nlhe', str(nlhe), '--tag', tag,
+                              '--norm', 'auto'], SIM, os.path.join(work, 'convert.log'), e)
+        os.remove(os.path.join(pd, 'events.hepmc'))
+    else:
+        open(os.path.join(out, f'{tag}.npz'), 'wb').close()
+    shutil.copy(lhe, os.path.join(out, f'{tag}.lhe.gz'))
+    info['steps'] = STEPS
+    info['end'] = time.strftime('%Y-%m-%d %H:%M:%S %z')
+    with tarfile.open(os.path.join(out, f'{tag}.aux.tar.gz'), 'w:gz') as tf:
+        for f in (glob.glob(os.path.join(base, '*.log')) + glob.glob(os.path.join(rd, '*banner.txt')) +
+                  glob.glob(os.path.join(work, '*.log')) + glob.glob(os.path.join(work, 'py8', 'PY8*'))):
+            tf.add(f, arcname=os.path.basename(os.path.dirname(f)) + '/' + os.path.basename(f))
+    json.dump(info, open(os.path.join(out, f'{tag}.timing.json'), 'w'), indent=1)
+    log.info('fxfx done: %s', {k: info[k] for k in ('sigma_pb', 'err_pb', 'n_lhe', 'first')})
+
+
+VARIANTS = {   # S2-c re-shower variants of the same LHE (STR §4.14 (b)); nominal = CP5, qCut 45, QED-FSR on (S2-d)
+    'nom': dict(qc=QCUT, tune='CP5', qedfsr=True),
+    'qc30': dict(qc=30.0, tune='CP5', qedfsr=True),
+    'qc60': dict(qc=60.0, tune='CP5', qedfsr=True),
+    'monash': dict(qc=QCUT, tune='Monash', qedfsr=True),
+    'nofsr': dict(qc=QCUT, tune='CP5', qedfsr=False),
+}
+
+
+def shower_convert(lhe, tag, variant, mass, spin, sig_pb, nlhe, work, out, matched=True):
+    v = VARIANTS[variant]
+    pd = os.path.join(work, f'py8_{variant}')
+    os.makedirs(pd)
+    shutil.copy(lhe, os.path.join(pd, 'events.lhe.gz'))
+    spy = seed(f's2.inc.{tag}', f'py8.{variant}', 900000000)
+    open(os.path.join(pd, 'PY8Card.dat'), 'w').write(py8_card(matched, 2, spy, nlhe, qc=v['qc'], tune=v['tune'],
+                                                             qedfsr=v['qedfsr']))
+    timed(f'py8_{variant}', [PY8_EXE, 'PY8Card.dat'], pd, os.path.join(pd, 'PY8_log.txt'), mg_env())
+    e = dict(os.environ, NUMBA_CACHE_DIR=os.path.join(work, 'numba'), PYTHONDONTWRITEBYTECODE='1')
+    cmd = [ANA_PY, os.path.join(SIM, 'scripts', 'convert_hepmc.py'), os.path.join(pd, 'events.hepmc'),
+           os.path.join(out, f'{tag}.{variant}.npz'), '--mq', str(mass), '--spin', spin, '--sigma-lhe-pb', repr(sig_pb),
+           '--nlhe', str(nlhe), '--tag', f'{tag}.{variant}', '--norm', 'auto']
+    if matched:
+        cmd += ['--merging-nominal', f'{v["qc"]:.3f}']
+    timed(f'convert_{variant}', cmd, SIM, os.path.join(work, f'convert_{variant}.log'), e)
+    os.remove(os.path.join(pd, 'events.hepmc'))
+    return dict(seed_py8=spy, **v)
+
+
+def cmd_inc(a):
+    """inc <tag> <F_INC|S_INC> <mass> <nev>: one S2-c chunk: MLM 0-2j inclusive LHE (v1 INC cards) + nominal shower
+    (CP5, qCut 45, QED-FSR) + npz.  Outputs <tag>.lhe.gz, <tag>.nom.npz, <tag>.json, <tag>.aux.tar.gz."""
+    tag, proc, mass, nev = a[0], a[1], int(a[2]), int(a[3])
+    out = os.environ.get('QV2_OUT_DIR', os.getcwd())
+    work = os.path.join(os.environ.get('QV2_SCRATCH_DIR', os.getcwd()), 'work')
+    os.makedirs(work, exist_ok=True)
+    mgdir = local_mg()
+    d = mg_output(mgdir, proc, work, None)
+    sd = seed(f's2.inc.{tag}', 'mg', 30000000)
+    rd, n, s = mg_launch(mgdir, d, tag.replace('-', '_'), nev, sd, mass, True, 'mg_launch')
+    lhe = os.path.join(rd, 'unweighted_events.lhe.gz')
+    spin = 'S' if proc.startswith('S') else 'F'
+    sh = shower_convert(lhe, tag, 'nom', mass, spin, s, n, work, out)
+    shutil.copy(lhe, os.path.join(out, f'{tag}.lhe.gz'))
+    info = dict(tag=tag, proc=proc, mass=mass, spin=spin, n_lhe=n, sigma_lhe_pb=s, err_pb=STEPS[-3].get('err_pb'),
+                seed_mg=sd, xqcut=XQCUT, nominal=sh, node=socket.gethostname(), steps=STEPS,
+                end=time.strftime('%Y-%m-%d %H:%M:%S %z'))
+    with tarfile.open(os.path.join(out, f'{tag}.aux.tar.gz'), 'w:gz') as tf:
+        for f in glob.glob(os.path.join(rd, '*banner.txt')) + glob.glob(os.path.join(work, '*.log')) + \
+                glob.glob(os.path.join(work, 'py8_*', 'PY8*')):
+            tf.add(f, arcname=os.path.relpath(f, work))
+    json.dump(info, open(os.path.join(out, f'{tag}.json'), 'w'), indent=1)
+
+
+def cmd_reshower(a):
+    """reshower <tag> <inc_dir_on_cajuela> <variant>[,<variant>]: re-shower the LHE of an inc chunk (read from its
+    published file; the inc job's done marker is checked by the runner campaign order, and the sha256 here)."""
+    tag, src, variants = a[0], a[1], a[2].split(',')
+    out = os.environ.get('QV2_OUT_DIR', os.getcwd())
+    work = os.path.join(os.environ.get('QV2_SCRATCH_DIR', os.getcwd()), 'work')
+    os.makedirs(work, exist_ok=True)
+    meta = json.load(open(os.path.join(src, f'{tag}.json')))
+    lhe = os.path.join(work, 'in.lhe.gz')
+    shutil.copy(os.path.join(src, f'{tag}.lhe.gz'), lhe)
+    res = dict(tag=tag, src=src, lhe_sha256=hashlib.sha256(open(lhe, 'rb').read()).hexdigest(), variants={})
+    for v in variants:
+        res['variants'][v] = shower_convert(lhe, tag, v, meta['mass'], meta['spin'], meta['sigma_lhe_pb'],
+                                            meta['n_lhe'], work, out)
+    res.update(steps=STEPS, node=socket.gethostname(), end=time.strftime('%Y-%m-%d %H:%M:%S %z'))
+    json.dump(res, open(os.path.join(out, f'{tag}.rs.{"_".join(variants)}.json'), 'w'), indent=1)
+
+
 if __name__ == '__main__':
     args = sys.argv[1:]
+    if args[0] in ('inc', 'reshower'):
+        {'inc': cmd_inc, 'reshower': cmd_reshower}[args[0]](args[1:])
+        sys.exit(0)
+    if args[0] == 'fxfx':
+        cmd_fxfx(args[1:])
+        sys.exit(0)
     {'mlmtime': cmd_mlmtime, 'nlo': cmd_nlo, 'lotree': cmd_lotree}[args[0]](args[1:])
