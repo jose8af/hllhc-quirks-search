@@ -219,6 +219,26 @@ are 0.1–0.16 %.
   0.971 / 0.980 / 0.991 at 200 / 500 / 1000 GeV [VERIFIED, this run]. This is for the scalar only; Resummino does not
   ship a fermion E.
 
+### 2.4 S2-a validation 3: process independence, differential (PASS)
+Campaign p2-b-s2-kdy; `src/s2/kdy_eval.py` → `outputs/s2/kdy.json`.
+- Settings: aMC@NLO fixed order with loop_quirkE (DY is p p > e⁺e⁻ in the same model). μ_R = μ_F = M(pair) via MG's
+  user-scale block (dynamical_scale_choice 10, patched in the job). CT18NLO.
+- K(M) = (dσ_NLO/dM)/(dσ_LO/dM) in 100-GeV bins (200-GeV bins for the 500 GeV case), from a custom FO analysis
+  (pair mass of particles 3 + 4).
+- Criterion per bin: |K_E − K_DY| ≤ max(2 % of K_DY, 3σ), with σ from the four independent integration errors.
+
+| comparison | bins | verdict | agreement where the test has power |
+|---|---|---|---|
+| E (m = 200) vs DY, M = 400–1600 GeV | 12 | PASS | 400–700 GeV: \|ΔK\| ≤ 0.014 at σ = 0.004–0.013 (K ≈ 1.168–1.186) |
+| E (m = 500) vs DY, M = 1000–3000 GeV | 10 | PASS | 1000–1800 GeV: \|ΔK\| ≤ 0.012 at σ = 0.004–0.019 (K ≈ 1.20–1.24) |
+| Ẽ (m = 200) vs DY | 12 | PASS | 400–900 GeV: \|ΔK\| ≤ 0.013 at σ = 0.006–0.019 |
+| E vs Ẽ at m = 200 (v1's "spin-independent" assumption, reported) | 12 | PASS | 400–700 GeV: \|ΔK\| ≤ 0.004 at σ = 0.007–0.012 |
+
+**Power caveat (stated, not a verdict change):** above the first 3–5 bins of each comparison the integration errors
+grow to σ = 3–8 %, so the 3σ arm sets the tolerance and the 2 % statement is not tested there. The total K of these
+runs (E 200, μ = M) is 0.1083/0.0922 = 1.175, against 1.163 at μ = H_T/2 (scale choice, not a test). **S2-a status:
+validation 1 PASS, validation 2 criterion met (reference-status call open, §2.3), validation 3 PASS.**
+
 ### 2.5 K(m), CT18NLO (partial; campaign p2-b-s2-kscan)
 `src/s2/kscan_eval.py` → `outputs/s2/kfactors.json`. E, μ = H_T/2, fixed order.
 

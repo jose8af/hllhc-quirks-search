@@ -573,3 +573,18 @@ the cost with full loops, and whether the Geant4 comparison then passes. Then a 
 - Orchestrator: user notified (DECISION). Meanwhile ordered: (1) a proper looper gun (Geant4 trajectories injected
   as hits) to measure whether loopers make candidates; (2) option (a) for DIF-C / NI-C on a slice. The third review
   of the addendum waits for the user's choice on the chain.
+
+## 2026-11-16 16:12 -05 (measured) — Channel (ii) report 4: S2-a verdicts, K(m), P1 costs
+- S2-a: (1) model identity PASS (|z| ≤ 0.40, ≤ 0.024 %); (2) fixed-order reference: no published fixed-order NLO
+  slepton number exists (public tables are NLO+NLL), so the reference is Resummino 3.1.2 run by us at the same
+  settings; ratio ours/Resummino 1.0006 / 1.0001 / 1.0018 with squarks and gluino decoupled (±0.12–0.16 %), inside
+  the 3 % criterion. Orchestrator ruling: recorded as **PASS, with the qualifier "reference = an independent public
+  code run by us (independent authors, matrix elements and integration; shared inputs); not a published number"**;
+  the qualifier travels with the verdict into the note. (3) differential K(M) against Drell–Yan PASS (|ΔK| ≤ 0.014
+  where the test has power; the 3σ arm sets the tolerance in the upper bins).
+- K(m) with CT18NLO complete: E 1.163 / 1.154 / 1.178 / 1.206 at 200 / 500 / 1000 / 1500 GeV (VERIFIED,
+  p2-b-s2-kscan); PDF4LHC21 scan running.
+- P1 costs about 6 CPU-h against 51 planned; P1-d Linux check agrees to 10⁻¹²; floor test 1 not implemented
+  (fallback [DT3]).
+- FxFx job does not fit 30 minutes (13 min of wall time for 82 s of CPU: looks like I/O, to be diagnosed before any
+  exception to the 30-minute rule is considered).
