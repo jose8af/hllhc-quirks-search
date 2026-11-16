@@ -238,6 +238,10 @@ def slices(n_znn=None, sub='slices_pa', ver=''):
     a = lambda k: (p['beta_min'], vf('all-full', k), tr(k), p['n_road_orientations'], p['seam_ns'])  # noqa: E731
     j.append(job_b1(f'{b}-dif-xl', 'dif', ['dif', 'k0l'], 45000, 'pa.c0.dif', 4, 27000, *a('dif')))        # job-size scan
     j.append(job_b1(f'{b}-difc-xl', 'difc', ['difc'], 38000, 'pa.c0.difc', 4, 27000, *a('difc')))
+    j.append(job_b1(f'{b}-nix-xl', 'nix', ['nix'], 38000, 'pa.c0.nix', 4, 27000, *a('nix')))
+    # beta-cut scan on the events and seeds of nix-full (a slow fragment above the cut can get hits at unphysical times)
+    for tagb, beta in (('b15', 0.15), ('b20', 0.2), ('b30', 0.3)):
+        j.append(job_b1(f'{b}-nix-{tagb}', 'nix', ['nix'], 25000, 'pa.c0.nix', 2, 2000, beta, *a('nix')[1:]))
     # regression of the unchanged default path: the arguments of p2-c-px-hy-difc-r0 (hits must be bit-identical: sha_hits)
     j.append(PG.job_b1(f'{b}-reg-difc', 'difc', ['difc'], 2000, 'px.c0.difc', 0, 0, 0.1,
                        PG.dpath('p2c/px_validation', 'p2-c-px-g4', 'p2-c-px-g4-all-big.difc.npz'), 'hybrid', 21))

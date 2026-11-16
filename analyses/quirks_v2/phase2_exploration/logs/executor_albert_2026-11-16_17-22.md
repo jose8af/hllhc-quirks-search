@@ -129,3 +129,14 @@ then append the dated section to `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md`
 - 17:58 Slice queue started on my one lane (pgrep before: 2 = the pilot lanes; SLOTS.md line):
   p2-c-pa-val0, -htg, -hsp, -g4, -b1, -val1; log schrodinger:/home/scratch/jdochoa/drivers/p2a_slices_1.log. The slice
   campaign files were regenerated at 17:58 before the launch (hsp-big = 6 finished Z(νν) files).
+- 2026-11-16 18:13 **val0 read [V: p2-c-pa-val0-0.json; 28.4 CPU-s].** Xavier's vertex files (p2-c-px-g4, 40 group files): every hard check
+  passes, classes recomputed equal, yields against the partition within |z| ≤ 1.6, reruns identical. p2-c-px-b1 (24 files,
+  radius cut): first-arc streams pass everything, parent crossings without a hit 0.00–0.18 %; difc / nic / hs / lowpt fail
+  the ≤ 2 % criterion as known (58.5 / 66.5 / 37.9 / 60.2 %). **NEW: in the 25,000-event files the hard check "no product
+  hit before the vertex time" fails: 6 hits in nix-big, 1 in nic-big (0 in dif-big and in every 2,000-event file).** Not seen
+  before because no file of that size had been validated. Diagnostic job p2-c-pa-dg1 (src/p2a_diag_early.py) written;
+  queue 1 stopped by its STOP file after p2-c-pa-htg; queue 2 (log p2a_slices_2.log, started 18:12, pgrep before: 2):
+  p2-c-pa-dg1, -hsp, -g4. The chain slices p2-c-pa-b1 wait for the diagnosis.
+- 2026-11-16 18:13 Half-turn reference corrected [V: p2-c-pa-htg 2/2, 0.20 CPU-h]: section appended to
+  outputs/HALF_TURN_xavier_2026-11-16_16-08.md (crossings 958 → 965 per Z(νν) event, missing 209 → 210; 312 → 314, 91.0 → 91.5
+  per minimum-bias interaction; no statement changes).

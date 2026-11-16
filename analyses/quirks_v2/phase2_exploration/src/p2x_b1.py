@@ -22,7 +22,8 @@
   seam_ns   (Albert, 2026-11-16) the seam window of the hybrid parent, HybridParent.T_EPS; default = the validated
             0.005 ns.  Recorded in meta['seam_window_ns'] with the mode; per event the arrays `ev_mode` (0 radius cut,
             1 time cut, 2 both, 3 time cut + Geant4 crossings beyond the last Fatras hit) and `n_parent_inj` (parent
-            SimHits added from Geant4 crossings) say what was done to the parent of that event.
+            SimHits added from Geant4 crossings) say what was done to the parent of that event; `n_early_prod` counts the
+            written product hits earlier than their own production time (an unphysical Fatras time: see early_product_hits).
 
 Chain and hand-over as Tatiana's p2c_b1.py / p2c_handover.py (imported, not modified): Fatras parent, truncated as
 chosen (variant A), Geant4 products from the slab exit, run_chain.build_sequencer unchanged with CKF, SimHits of the
@@ -145,6 +146,26 @@ class HybridParent(acts.examples.IAlgorithm):
         return acts.examples.ProcessCode.SUCCESS
 
 
+def early_product_hits(h, P, col, btl_sids, tol=0.010):
+    """Written hits of a product (vsec >= 1; any generation) EARLIER than the production time of that product's Fatras
+    input row (- tol ns), BTL excluded.  Barcode -> input row: particle = running count per vsec in input order
+    (run_chain.ParticleSource).  Returns (number of such hits, product hits without an input row).  Found on 25,000-event
+    files (p2-c-pa-dg1): a slow heavy fragment just above the beta cut can get Fatras hits at unphysical times."""
+    cnt = {}; tprod = {}
+    for r in P:
+        v = int(r[1]); cnt[v] = cnt.get(v, 0) + 1; tprod[(v, cnt[v])] = r[8]
+    n = 0; nomatch = 0
+    for k in np.nonzero(h[:, col['vsec']] >= 1)[0]:
+        if int(h[k, col['sid']]) in btl_sids:
+            continue
+        tp = tprod.get((int(h[k, col['vsec']]), int(h[k, col['particle']])))
+        if tp is None:
+            nomatch += 1
+        elif h[k, col['t']] < tp - tol:
+            n += 1
+    return n, nomatch
+
+
 def load(vfile, classes, first, n):
     z, meta = C.load_job(vfile)
     assert meta.get('mode') == 'g4prod', f'{vfile} is not a p2x_g4prod vertex file'
@@ -226,8 +247,13 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
             st.setdefault(e, {})[nm] = t
         evt = np.zeros((n_events, len(EVT_COLS)))
         hits = []; tru = []; vzs = []; toys = []; inj = []
+        hcol = {k: j for j, k in enumerate(rc.COLS)}
+        n_early = np.zeros(n_events, np.int16); n_nomatch = 0
         for i in range(n_events):
             r = store[i]; ev = r['ev']
+            if len(ev):
+                n_early[i], nm_ = early_product_hits(np.asarray(ev, float), aux[i][0], hcol, rc.BTL_SIDS)
+                n_nomatch += nm_
             v41[i] = (r['nh'], r['nm'], r['nmap'], r['bij'], r['nunm'], len(ev), r['onsurf'], 0, 0, 0, r['ntr'],
                       r['nckf'], r['n_in'])
             x = st.get(i, {})
@@ -275,6 +301,9 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
                                    'hybrid (time cut + Geant4 crossings later than the last Fatras hit + seam window)': 3},
                     n_per_ev_mode={str(k): int((ev_mode_arr == k).sum()) for k in (-1, 0, 1, 2, 3)},
                     after_turn_classes=list(AFTER_TURN),
+                    n_product_hits_before_own_production=int(n_early.sum()),
+                    n_events_with_product_hits_before_own_production=int((n_early > 0).sum()),
+                    n_product_hits_without_input_row=int(n_nomatch),
                     handover=f'A (Fatras parent, truncated at the vertex by {trunc_mode}); products from the slab exit; beta < {HO.BETA_MIN} not handed over; '
                              'Geant4 parent crossings stored (variant B input)',
                     chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS, evt_cols=EVT_COLS,
@@ -297,7 +326,7 @@ def run(sample, classes, out, n_events, stream, chunk, first, beta_min, vfile, t
                     mean_parent_hits_injected_from_geant4=float(np.mean([store[i].get('n_parent_injected', 0) for i in range(n_events)])))
         arrays = dict(hits=H, hit_off=hoff, tru=T, vz=VZ, vz_off=voff, v41=v41, timing=tim, evt=evt,
                       gvtx=np.array(V, float).reshape(-1, len(vcols)), gprod=GP, gprod_off=gpoff, gcross=GC, gcross_off=gcoff,
-                      inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff, ev_mode=ev_mode_arr, n_parent_inj=n_pinj)
+                      inj=INJ, inj_off=ioff, toy=TOY, toy_off=toff, ev_mode=ev_mode_arr, n_parent_inj=n_pinj, n_early_prod=n_early)
         X.save(out, arrays, meta)
         X.write_sha(str(out) + '.sha.json', dict(job=dict(sample=sample, stream=stream, chunk=chunk, job_seed=job_seed,
                                                           first=first, n_events=n_events),

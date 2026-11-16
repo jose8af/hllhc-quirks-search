@@ -24,6 +24,9 @@ Albert, 2026-11-16 (files written before that date are checked exactly as before
            was at larger radii before its vertex).  The parent phase space and the road condition are those recorded
            in the vertex file's meta (pool selection, pool prefix), so the optional samples are checked against
            their own definition.
+  b1x      (all files) "no product hit before its production time" is checked against the production time of the
+           product's own Fatras input row (`product_hits_earlier_than_own_production`, hard); the count against the
+           vertex time (`product_hits_earlier_than_vertex`) is kept as information.
 Reproducibility: files with the same (mode, stream, chunk, size, sample/group/pass, first vertex) must have the same
 content hash; files of the same kind with another chunk must differ.
 """
@@ -43,7 +46,7 @@ log = C.setup_logging('p2x_validate')
 def key_of(m):
     return (m['mode'], m.get('sample', m.get('group', '')), m.get('g4_pass', ''), m['stream'], m['chunk'],
             m.get('n_events', m.get('n_fire', m.get('n_int'))), m.get('first_vertex', 0), m.get('vertex_file', ''),
-            m.get('pool_prefix', ''), m.get('trunc_mode', ''))
+            m.get('pool_prefix', ''), m.get('trunc_mode', ''), m.get('beta_min', ''), m.get('seam_window_ns', ''))
 
 
 def chk_mb(z, m, part):
@@ -207,6 +210,38 @@ def per_mode_parent_checks(z, m):
                 parent_hits_beyond_vertex_radius_in_radius_mode=beyond_r, parent_hits_later_than_vertex_time_in_time_mode=late_t)
 
 
+def early_product_hits_file(z, m, tol=0.010):
+    """Product hits (vsec >= 1) earlier than the production time of their own Fatras input row (`inj`), BTL excluded;
+    the precise form of "no product hit before its production time".  p2c_validate.one compares with the VERTEX time
+    instead, which also counts the correct hits of secondaries that Geant4 made along the parent's path before the
+    vertex (delta rays, bremsstrahlung photons: they are stored as products with their own, earlier production point)."""
+    import p2c_validate as PV
+    H = z['hits']; ho = z['hit_off']; inj = z['inj']; io = z['inj_off']
+    col = {k: i for i, k in enumerate(m['columns'])}
+    btl = {i for i, nm in PV.SID_NAME.items() if nm == 'BTL'}
+    n = nomatch = nev = 0
+    for i in range(len(ho) - 1):
+        h = H[ho[i]:ho[i + 1]]
+        ks = np.nonzero(h[:, col['vsec']] >= 1)[0]
+        if not len(ks):
+            continue
+        cnt = {}; tprod = {}
+        for r in inj[io[i]:io[i + 1]]:
+            v = int(r[1]); cnt[v] = cnt.get(v, 0) + 1; tprod[(v, cnt[v])] = r[8]
+        ne = 0
+        for k in ks:
+            if int(h[k, col['sid']]) in btl:
+                continue
+            tp = tprod.get((int(h[k, col['vsec']]), int(h[k, col['particle']])))
+            if tp is None:
+                nomatch += 1
+            elif h[k, col['t']] < tp - tol:
+                ne += 1
+        n += ne; nev += ne > 0
+    return dict(product_hits_earlier_than_own_production=int(n), events_with_product_hits_earlier_than_own_production=int(nev),
+                product_hits_without_input_row=int(nomatch))
+
+
 def chk_b1(path, z, m, part):
     import p2c_g4vtx as GV
     import p2c_validate as PV
@@ -227,6 +262,7 @@ def chk_b1(path, z, m, part):
     pt = ev[:, ec['parent_pt0']]; aeta = np.abs(ev[:, ec['parent_eta0']]); ard = np.abs(ev[:, ec['road_dphi']])
     H = z['hits']; hc = {k: i for i, k in enumerate(m['columns'])}
     r.update(parent_crossings(z, m))
+    r.update(early_product_hits_file(z, m))
     r.update(trunc_mode=m.get('trunc_mode', 'radius'), a1_ok=bool(r['a1_frac_g4_without_fatras'] <= A1_MAX),
              sample=m['sample'], classes=m['classes'], n_per_class=m['n_per_class'],
              class_recomputed_equal=bool(np.array_equal(code, ev[:, ec['cls']].astype(np.int8))),
@@ -252,7 +288,8 @@ def chk_b1(path, z, m, part):
                      and r['parent_hits_later_than_vertex_time_in_time_mode'] == 0 and r['ev_mode_consistent'])
     r['parent_truncation_ok'] = bool(radius_ok)
     r['hard'] = bool(r['v41_pass'] and r['nan_hits'] == 0 and r['offsets_ok'] and r['seeds_distinct']
-                     and radius_ok and r['product_hits_earlier_than_vertex'] == 0
+                     and radius_ok and r['product_hits_earlier_than_own_production'] == 0
+                     and r['product_hits_without_input_row'] == 0
                      and r['class_recomputed_equal'] and r['class_in_sample'] and r['first_arc_equal']
                      and r['parent_in_phase_space'] and r['road_offset_ok'] and r['hits_all_gun'] and r['evt_nan'] == 0
                      and r['provenance'] and r['mean_injected_slow'] == 0)

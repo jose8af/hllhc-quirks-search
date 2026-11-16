@@ -137,3 +137,26 @@ The Z(νν) pilot as prepared is the v1 chain: self-consistent with C1 and with 
 the 204 crossings per event that particles below ≈ 0.63 GeV make after half a turn. Under (a), (b) or (d) it is
 final as generated. Under (c) or (c′) it would be regenerated. `pilot.mb` is generator level and does not depend on
 the choice.
+
+## Corrected Geant4 reference with the transportation-ended tracks included (2026-11-16 18:13; appended by Albert, successor of Xavier)
+
+The Geant4 reference of section b lacked the tracks that end by transportation only ("no record 1 %", see the 17:20
+addendum of `LOOPER_GUN_xavier_2026-11-16_16-38.md`). Rerun of the comparison on the same chain events with the fixed
+`g4hv.cc` (55b434a3…) [V: campaign `p2-c-pa-htg`, 2 jobs, 0.20 CPU-h; `data/p2c/pa_validation/p2-c-pa-htg/000/
+p2-c-pa-htg-{znn,mb}.json` against `data/p2c/px_validation/p2-c-px-htg/000/`]. The Fatras side is unchanged (the same
+chain files). **No statement of the note changes; the missing-crossing numbers rise by about 0.5 %.**
+
+| per event (first value: as published above → corrected) | Z(νν), no pile-up | one minimum-bias interaction |
+|---|---|---|
+| Geant4 crossings of barrel counting surfaces | 958.3 → 965.4 | 311.6 → 314.4 |
+| of which after half a turn | 204.1 (21.3 %) → 205.1 (21.2 %) | 88.8 (28.5 %) → 89.3 (28.4 %) |
+| Geant4 crossings without a Fatras hit | 209.2 → 210.3 | 91.0 → 91.5 |
+| the same relative to the written hits | 25.1 % → 25.2 % | 37.3 % → 37.5 % |
+| Fatras hits without a Geant4 crossing | 39.7 → 33.6 | 13.8 → 11.5 |
+| central particles with p_T < 0.63 GeV without a Geant4 record | 375 of 38,665 → 0 (now `Stopped`: 375) | 1,676 of 174,722 → 0 (`Stopped`: 1,676) |
+| of those particles, alive after one full turn | 29,717 (76.9 %) → 30,071 (77.8 %) | 133,891 (76.6 %) → 135,512 (77.6 %) |
+
+Missing crossings per layer and Z(νν) event, corrected: TBPX L1–L4 6.0 / 7.7 / 7.9 / 7.5; TBPS L1–L3 (inner sensor)
+34.1 / 24.3 / 15.8; TB2S L1–L3 9.3 / 5.2 / 2.2 (were 6.0 / 7.7 / 7.9 / 7.5; 33.8 / 24.1 / 15.7; 9.2 / 5.2 / 2.1). The
+recovered tracks also had crossings on the first half turn (crossings before a quarter turn 695.3 → 700.7 per Z(νν)
+event), which is why the "Fatras hits without a Geant4 crossing" fall.

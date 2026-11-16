@@ -667,3 +667,13 @@ decisions D1–D10 for the user with recommendations. Zoe reports one read-only 
 Open for the reviewer: the design of the robustness test; the validator flag for turned parents (not class-aware);
 whether a quirk pair exceeds half a turn in Stage 3 (unknown); a C3 erratum item for v1's looper bound.
 The third review starts when the looper rerun is filled in.
+
+## 2026-11-16 18:15 -05 (measured) — Albert: full-size validation of the B1 slices; a slow-fragment residue
+VERIFIED (`p2-c-pa-val0`, `p2-c-pa-dg1`): vertex files and first-arc streams pass at full job size (0.00–0.18 % of
+parent crossings without a hit). New at 25,000-event size: 7 product hits before the vertex time. Five are correct
+(secondaries made along the parent's path before its final vertex; the check compared with the wrong time and is
+now per product). Two (1 event in 25,000 NI-X events) are a fragment with β = 0.134, just above the β cut of 0.1,
+with Fatras hits at t = −32 ns: a residue of the slow-fragment pathology, about 4×10⁻⁵ per NI-X event (ESTIMATE
+from one event). Being measured: per-event flag, rate on 1.5×10⁵ NI events, a β scan (0.15, 0.2, 0.3). A change of
+the β cut would change addendum P6 and needs the user. Half-turn fractions corrected with the full Geant4
+reference: 25.2 % (Z(νν)) and 37.5 % (minimum bias); no statement changes.
