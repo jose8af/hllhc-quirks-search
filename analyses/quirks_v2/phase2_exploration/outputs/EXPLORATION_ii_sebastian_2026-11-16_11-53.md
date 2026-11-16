@@ -198,7 +198,39 @@ runs use μ_R = μ_F = m (fixed; banner checked), CT18NLO, 14 TeV, N_IC = 1. Cam
   public code. It is independent in implementation, not in inputs. It may contain SUSY-QCD terms absent from our model.
   COM S2-a allows NOT EVALUABLE "if no such reference".
 
-### 2.4 Pending in S2
+**Result (2026-11-16 14:00, campaign p2-b-hw-smoke; `src/s2/kref_eval.py` → `outputs/s2/kref.json`).** Ẽ (scalar,
+~e_R-like), N_IC = 1, 14 TeV, CT18NLO, μ_R = μ_F = m. Our σ_NLO is quoted to 4 digits by aMC@NLO; integration errors
+are 0.1–0.16 %.
+
+| m [GeV] | σ_NLO loop_quirkE [pb] | Resummino NLO, example SUSY spectrum [pb] | ratio | Resummino NLO, squarks and gluino at 10⁵ GeV [pb] | ratio | LO ratio (set-up check) | K ours / Resummino (decoupled) |
+|---|---|---|---|---|---|---|---|
+| 200 | 9.754e-3 | 9.7543e-3 | 1.0000 ± 0.0016 | 9.7485e-3 | 1.0006 ± 0.0016 | 0.9985 | 1.1743 / 1.1719 |
+| 500 | 2.330e-4 | 2.3364e-4 | 0.9972 ± 0.0014 | 2.3297e-4 | 1.0001 ± 0.0014 | 1.0001 | 1.1450 / 1.1450 |
+| 1000 | 5.897e-6 | 5.9449e-6 | 0.9919 ± 0.0012 | 5.8864e-6 | 1.0018 ± 0.0012 | 1.0009 | 1.1629 / 1.1618 |
+
+- **Criterion (within 3 % at each mass): met at all three masses, with either Resummino spectrum.** The verdict label
+  (PASS vs NOT EVALUABLE) depends on whether a self-run public code counts as the reference: orchestrator's call.
+- The parameter log confirms the SUSY-QCD content: with the example spectrum (gluino 1298 GeV, squarks 0.94–1.30 TeV)
+  Resummino is 0.3–0.8 % above ours. With squarks and gluino decoupled it agrees with ours to ≤ 0.2 %, i.e. within
+  1.5σ of the integration errors. So the residual difference was the SUSY-QCD loops, and the pure-QCD NLO of the two
+  codes agree.
+- EW inputs are identical: Resummino's log shows x_W = 0.22225 = 1 − M_W²/M_Z² of the UFO.
+- By-product for the resummed cross-check of S2-b: Resummino's (NLO+NLL)/NLO for ~e_R at μ = m (example spectrum) is
+  0.971 / 0.980 / 0.991 at 200 / 500 / 1000 GeV [VERIFIED, this run]. This is for the scalar only; Resummino does not
+  ship a fermion E.
+
+### 2.5 K(m), CT18NLO (partial; campaign p2-b-s2-kscan)
+`src/s2/kscan_eval.py` → `outputs/s2/kfactors.json`. E, μ = H_T/2, fixed order.
+
+| m [GeV] | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 |
+|---|---|---|---|---|---|---|---|---|
+| K | 1.1628 | 1.1561 | 1.1535 | 1.1536 | 1.1545 | 1.1596 | 1.1672 | 1.1693 |
+| NLO scale +/− [%] | 1.5/1.1 | 1.6/1.3 | 1.7/1.6 | 1.9/1.9 | 2.0/2.1 | 2.1/2.3 | 2.2/2.5 | 2.3/2.7 |
+| CT18NLO PDF +/− [%] (90 % CL) | 3.3/4.3 | 3.7/4.9 | 4.2/5.6 | 4.8/6.3 | 5.5/7.0 | 6.1/7.8 | 6.9/8.6 | 7.8/9.5 |
+
+K error ±0.002 (integration). K(200) reproduces FEAS_B's 1.165 ± 0.002.
+
+### 2.6 Pending in S2
 K(m) with CT18NLO and PDF4LHC21; validation 3 (DY, μ = M_pair); validation 2 runs; S2-c inclusive samples, f₂₀₀ and its
 uncertainty pieces; FxFx timing.
 

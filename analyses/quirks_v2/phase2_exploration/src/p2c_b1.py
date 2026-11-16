@@ -109,7 +109,7 @@ def run(term, out, n_events, stream, chunk, first, files):
         v41_pass = bool(np.all(v41[:, 3] == 1) and np.all(v41[:, 4] == 0) and np.all(v41[:, 6] < 1.0)
                         and np.all(v41[:, 0] - v41[:, 1] <= np.maximum(2, 1e-5 * v41[:, 0])))
         meta = dict(mode='b1', term=term, stream=stream, chunk=chunk, job_seed=job_seed, n_events=n_events,
-                    first_vertex=first, vertex_files=[str(f) for f in files], handover='A (Fatras parent, v1 Truncate)',
+                    first_vertex=first, vertex_files=[str(f) for f in files], handover=f'A (Fatras parent, v1 Truncate); products with beta < {HO.BETA_MIN} not handed over',
                     chain=rc.CHAIN, columns=rc.COLS, v41_cols=rc.V41_COLS, timing_cols=rc.T_COLS, evt_cols=EVT_COLS,
                     vcols=vcols, toy_cols=rc.TOY_COLS, pcols=s4pu.PCOLS, surface_names=surf_names,
                     prod_cols=['pdg', 'px', 'py', 'pz', 'E', 'x', 'y', 'z', 't'],

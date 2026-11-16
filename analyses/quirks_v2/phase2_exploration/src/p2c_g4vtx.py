@@ -24,7 +24,10 @@ log = C.setup_logging('p2c_g4vtx')
 G4SH = str(C.HERE / 'g4' / 'g4hv.sh')
 VCOLS = ['fire', 'pass', 'proc', 'vol', 'parent_pdg', 'x', 'y', 'z', 't', 'px', 'py', 'pz', 'nprod', 'ncross',
          'x0', 'y0', 'z0', 't0', 'px0', 'py0', 'pz0']
-PASSES = {'dif': dict(species=(211, 321), rmax=1200.0), 'ni': dict(species=(211, 321, 2212, 130, 2112, 22), rmax=70.0)}
+PASSES = {'dif': dict(species=(211, 321), rmax=1200.0), 'ni': dict(species=(211, 321, 2212, 130, 2112, 22), rmax=70.0),
+          'all': dict(species=(211, 321, 2212, 130, 2112, 22), rmax=1200.0)}
+MASS = {211: 0.13957039, 321: 0.493677, 2212: 0.93827209, 130: 0.497611, 2112: 0.93956542, 22: 0.0}     # s4cp.py l.33-34; n: PDG
+B_T = 3.8112
 CHUNK = 500_000
 
 
@@ -118,17 +121,86 @@ def pack(recs):
     return dict(vtx=V, prod=P, prod_off=poff, cross=X, cross_off=xoff)
 
 
+def first_arc(V):
+    """True if the vertex lies on the parent's first outward arc: transverse path from the origin <= pi R, with the
+    path from the vertex time and the initial momentum, R = pT / (0.29979e-3 B) mm.  Neutral parents: always True."""
+    c = {k: i for i, k in enumerate(VCOLS)}
+    ap = np.abs(V[:, c['parent_pdg']]).astype(np.int64)
+    m = np.array([MASS.get(int(a), 0.13957039) for a in ap])
+    pt = np.hypot(V[:, c['px0']], V[:, c['py0']]); p = np.sqrt(pt ** 2 + V[:, c['pz0']] ** 2)
+    beta = p / np.hypot(p, m)
+    st = beta * 299.792458 * (V[:, c['t']] - V[:, c['t0']]) * pt / np.maximum(p, 1e-12)
+    rad = pt / (0.299792458e-3 * B_T)
+    return np.isin(ap, (130, 2112, 22)) | (st <= np.pi * rad)
+
+
 def classify(V, names):
-    """Pilot classes of plan O4/O6: 'dif' = Decay of pi/K at 30 < r < 1000 mm; 'ni22/30/61' = inelastic (hadronic or
-    photonuclear) in the beam pipe / TBPX L1 / TBPX L2.  Returns a dict of boolean masks."""
+    """Classes of addendum 1 (v2).  'dif' = decay of pi+-/K+- on the first arc (any radius); 'difc' = the same
+    after the first turn; 'k0l' = decay of K0L; 'ni22/30/61' = inelastic (hadronic or photonuclear)
+    in the beam pipe / TBPX L1 / TBPX L2 on the first arc; 'nix' = inelastic elsewhere, first arc; 'nic' = inelastic
+    anywhere after the first turn.  Returns a dict of boolean masks."""
     pn = {v: k for k, v in names.proc.items()}; vn = {v: k for k, v in names.vol.items()}
     proc = np.array([pn[int(x)] for x in V[:, 2]]); vol = np.array([vn[int(x)] for x in V[:, 3]])
     r = np.hypot(V[:, 5], V[:, 6])
     inel = np.array([('Inelastic' in p) or (p == 'photonNuclear') for p in proc], bool)
-    m = dict(dif=(proc == 'Decay') & (r > 30.0) & (r < 1000.0) & np.isin(np.abs(V[:, 4]), (211, 321)),
-             ni22=inel & (vol == 'BeamPipe'), ni30=inel & (vol == 'TBPX_L1'), ni61=inel & (vol == 'TBPX_L2'),
-             ni_any=inel)
+    fa = first_arc(V)
+    dec = (proc == 'Decay')          # v2 of addendum 1: every radius inside the Geant4 world (r < 1200 mm), nothing dropped
+    in_v1_range = (r > 30.0) & (r < 1000.0)
+    ap = np.abs(V[:, 4])
+    three = np.isin(vol, ('BeamPipe', 'TBPX_L1', 'TBPX_L2'))
+    m = dict(dif=dec & np.isin(ap, (211, 321)) & fa, difc=dec & np.isin(ap, (211, 321)) & ~fa, k0l=dec & (ap == 130),
+             ni22=inel & (vol == 'BeamPipe') & fa, ni30=inel & (vol == 'TBPX_L1') & fa, ni61=inel & (vol == 'TBPX_L2') & fa,
+             nix=inel & ~three & fa, nic=inel & ~fa, ni_any=inel, dif_all=dec & np.isin(ap, (211, 321)),
+             dif_v1range=dec & np.isin(ap, (211, 321)) & fa & in_v1_range)
     return m, proc, vol
+
+
+def partition(out, n_int, n_fire, stream, chunk):
+    """Complete partition of the Geant4 vertices of the pool (addendum 1 v2, findings A1, A2, B1, B9, C6): every pool
+    species through the whole tracker (r < 1200 mm), slab-exit hand-over; counts per (class, species) and per layer
+    group, the pool and the v1 parent counts per interaction.  Every vertex is in exactly one class."""
+    import p2c_mbgen
+    t0 = time.time()
+    arrays, mmeta = p2c_mbgen.generate(n_int, stream, chunk)
+    pool = dict(pdg=arrays['pool_pdg'], pt=arrays['pool_pt'], eta=arrays['pool_eta'])
+    names = Names()
+    seed = C.qv2_seed(stream + '.g4', chunk, mod=2 ** 62)
+    rec, st = fire(pool, n_fire, 'all', seed + 3, geom_file(), 'FTFP_BERT', names, handover='exit')
+    A = pack([rec]); V = A['vtx']
+    m, proc, vol = classify(V, names)
+    ap = np.abs(V[:, 4]).astype(np.int64)
+    excl = ['dif', 'difc', 'k0l', 'ni22', 'ni30', 'ni61', 'nix', 'nic']
+    cls = np.full(len(V), 'other', dtype=object)
+    r = np.hypot(V[:, 5], V[:, 6])
+    cls[(proc == 'conv')] = 'conversion'
+    cls[(proc == 'Decay')] = 'decay of another species'
+    n_in = np.zeros(len(V), int)
+    for k in excl:
+        cls[m[k]] = k; n_in += m[k]
+    assert n_in.max() <= 1, 'a vertex is in two classes'
+    sp_frac = {int(a): float((np.abs(pool['pdg']) == a).mean()) for a in PASSES['all']['species']}
+    table = {}
+    for k in sorted(set(cls)):
+        table[k] = {str(a): int(((cls == k) & (ap == a)).sum()) for a in PASSES['all']['species']}
+        table[k]['all'] = int((cls == k).sum())
+    grp = {}
+    fa = first_arc(V)
+    for v, k, f in zip(vol, cls, fa):
+        if k in ('nix', 'nic'):
+            g = v.split('_in')[0].split('_out')[0]
+            g = 'discs' if g.startswith(('TFPX', 'TEPX', 'TEDD')) else g
+            grp.setdefault(g, {'nix': 0, 'nic': 0})[k] += 1
+    road = 0.30 / (2 * np.pi)
+    meta = dict(mode='partition', stream=stream, chunk=chunk, n_fire=n_fire, n_vertices=int(len(V)), counts=table,
+                counts_sum=int(sum(t['all'] for t in table.values())), species_fraction_of_pool=sp_frac,
+                pool_per_interaction=mmeta['n_pool_per_interaction'], pool_in_road_per_interaction=mmeta['n_pool_per_interaction'] * road,
+                v1_rates=mmeta['rate_per_interaction_in_road'], layer_groups=grp, g4=st, vcols=VCOLS, proc_names=names.proc,
+                vol_names=names.vol, product_handover='exit', prod_cols=['pdg', 'px', 'py', 'pz', 'E', 'x', 'y', 'z', 't'],
+                cross_cols=['surface', 'x', 'y', 'z', 't', 'px', 'py', 'pz'], t_total_s=round(time.time() - t0, 1),
+                yield_per_firing={k: t['all'] / n_fire for k, t in table.items()},
+                code_sha256=C.code_hashes([__file__, C.HERE / 'g4' / 'g4hv.cc', C.HERE / 'p2c_mbgen.py']))
+    meta['bytes'] = C.save_job(out, dict(A, pool_pdg=pool['pdg'], pool_pt=pool['pt'], pool_eta=pool['eta']), meta)
+    log.info('%s', json.dumps(dict(counts=table, sum=meta['counts_sum'], n_vertices=meta['n_vertices'], groups=grp, g4_ms=st['cpu_ms_per_firing'])))
 
 
 def main(argv):
@@ -148,6 +220,8 @@ def main(argv):
         C.save_job(out, dict(scan=S), meta)
         log.info('scan: %d rows, %d volumes, overlap messages %d', len(S), len(names), len(ovl))
         return
+    if mode == 'part':
+        return partition(out, int(argv[2]), int(argv[3]), argv[4], int(argv[5]))
     n_int, n_dif, n_ni, stream, chunk = int(argv[2]), int(argv[3]), int(argv[4]), argv[5], int(argv[6])
     physlist = argv[7] if len(argv) > 7 else 'FTFP_BERT'
     handover = argv[8] if len(argv) > 8 else 'vertex'

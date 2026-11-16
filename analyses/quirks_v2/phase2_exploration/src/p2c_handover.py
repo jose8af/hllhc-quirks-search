@@ -24,6 +24,8 @@ import s4pu  # noqa: E402
 import pythia8  # noqa: E402
 
 GUN_VP = s4pu.GUN_VP
+import os  # noqa: E402
+BETA_MIN = float(os.environ.get('P2C_BETA_MIN', '0'))      # O13 (b): products below it are not handed over (0 = O13 (a))
 SAFE_PDG = {11, 13, 22, 211, 321, 2212}
 CHARGE3 = {11: -3, 13: -3, 211: 3, 321: 3, 2212: 3}
 MASS = {11: 0.51099895e-3, 13: 0.1056583755, 211: 0.13957039, 321: 0.493677, 2212: 0.93827209}    # s4cp.py l.33
@@ -93,6 +95,8 @@ def fatras_rows(final):
         code = int(pdg)
         if abs(code) not in SAFE_PDG:
             code = 2212 if q > 0 else -2212
+        if beta < BETA_MIN:
+            continue
         nslow += beta < 0.1
         rows.append((GUN_VP, vsec, code, q, m, x, y, z, t, px, py_, pz))
     return rows, nslow

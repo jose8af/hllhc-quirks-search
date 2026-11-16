@@ -134,6 +134,23 @@ def main(argv):
                      command=pre + f'v1pt $QV2_OUT_DIR/{name}-mu{m}.json {m} 1000 {20261200 + m}') for m in mus]
         jobs.insert(0, dict(id=f'{name}-diag', outputs=[f'{name}-diag.json'], command=pre + f'v1diag $QV2_OUT_DIR/{name}-diag.json'))
         write(name, jobs, 1.0, 600, me, 'T1-b refined: hybrid toys with q-tilde per mu; fine asymptotic scan; v1-statistic diagnostic')
+    elif what == 'fix1':          # addendum-1 fix measurements: partition, Fatras no-decay check
+        jobs = [dict(id='p2-c-part-0', outputs=['p2-c-part-0.npz'],
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_g4vtx.py part $QV2_OUT_DIR/p2-c-part-0.npz 25000 1500000 fix.part 0'),
+                dict(id='p2-c-part-fatras', outputs=['p2-c-part-fatras.json'],
+                     command=ENV + f'{ACTSPY} {SRC}/p2c_fatras_check.py $QV2_OUT_DIR/p2-c-part-fatras.json 4000')]
+        write('p2-c-part', jobs, 0.5, 2500, me, 'addendum 1 fix: complete Geant4 vertex partition; Fatras no-decay check')
+    elif what == 'fix2':          # O13 (b) slices on every proposed pilot stream, from the partition vertices
+        vf = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-part/000/p2-c-part-0.npz'
+        terms = ('dif', 'difc', 'k0l', 'ni22', 'ni30', 'ni61', 'nix', 'nic')
+        jobs = [dict(id=f'p2-c-b1y-{t}', outputs=[f'p2-c-b1y-{t}.npz'],
+                     command='export P2C_BETA_MIN=0.1 && ' + ENV + f'{ACTSPY} {SRC}/p2c_b1.py {t} $QV2_OUT_DIR/p2-c-b1y-{t}.npz '
+                             f'{int(argv[1]) if len(argv) > 1 else 1000} fix.c0.{t} 0 0 {vf}') for t in terms]
+        d = '/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-b1y/000'
+        files = ' '.join(f'{d}/p2-c-b1y-{t}.npz' for t in terms)
+        jobs.append(dict(id='p2-c-b1y-val', outputs=['p2-c-b1y-val.json'],
+                         command=ENV + f'{ACTSPY} {SRC}/p2c_validate.py $QV2_OUT_DIR/p2-c-b1y-val.json {files}'))
+        write('p2-c-b1y', jobs, 0.3, 1500, me, 'addendum 1 fix: hand-over O13 (b) validated on every proposed pilot stream')
     else:
         raise SystemExit(f'unknown campaign {what}')
 

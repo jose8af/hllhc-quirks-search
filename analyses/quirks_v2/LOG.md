@@ -464,3 +464,10 @@ Critical reviewer Ulrich (Fable): `phase1_strategy/review/critical/ADDENDUM_1_CR
   chain change, 517–521 [451–453] as timed. The floor the user accepted (36–42) would have given 692–708.
 - Orchestrator: channel (iii) fixes the addendum (v2, new file) with the missing measurements; a fresh reviewer
   re-reviews; a separate short executor tests the toy remedies (stop-rule item).
+
+## 2026-11-16 14:11 -05 (measured) — Notification channel by empty commits on main (user instruction)
+The user asked to be alerted by git when a decision is needed, an important result exists or a problem occurs:
+"make an empty git commit and push it to origin main to notify me. Or ... the commit itself can contain the
+information". Frequency left to the orchestrator. Implemented as `tools/notify/notify.sh` (git plumbing: no
+checkout, fast-forward only, never force; pushes `v2-jfc` with it). Policy in `ORCHESTRATOR_STATE.md`;
+DEVIATIONS V15.
