@@ -90,3 +90,28 @@ at 1.3 / 6.4 / 19.8 / 24.9 ns. A window of 25 ns keeps all of them by constructi
 bunch crossing removes none of the late arcs**. They are 1–20 ns later than a prompt particle at the same radius
 (a prompt track reaches r = 1.1 m in 3.7 ns), so a per-hit time measurement at the 0.1 ns level would separate
 them; the chain has no per-hit tracker time, and the BTL time tag sees a looper only if it reaches the BTL.
+
+## Addendum 17:20: the two loose ends [V: p2-c-px-lpc (rerun of job nat-008 with records kept), p2-c-px-pv1 not involved]
+
+1. **The V4-1 flag of `p2-c-px-lp-nat-008`.** One injected SimHit of about 1.1×10⁵ in that job has no measurement: event 4,793, a
+   crossing of the endcap surface `TEDD_D2_p_2S_in` at r = 663.4 mm, 6.5 mm inside the inner edge of that disc
+   (r = 656.9–1,074.4 mm, `surfaces_s3.json`). This is the loss that `run_chain.py` l.141-143 documents for Fatras hits
+   ("ACTS's bounded smearing fails minMaxRetries = 10 times at a surface/sector bound"; 3 of 3.0×10⁶ there): the
+   digitisation redraws a smeared position until it is inside the surface and gives up after ten tries; a 2S hit
+   close to an edge in its coarse coordinate can fail. My flag used v1's strict form (injected SimHits = injected
+   measurements), hence "false". It is not a barrel counting surface, so the finder input is unaffected. **Can it
+   happen in option (a) production? Yes, at the same rate as for any hit (order 10⁻⁶ per SimHit near an edge);** the
+   B1 job's closure (`p2x_b1.py`) uses v1's tolerance for lost SimHits (≤ max(2, 10⁻⁵ of the hits) per event), counts
+   them in `meta['n_lost_simhits']`, and does not fail on one.
+2. **The 1 % without a Geant4 record.** They are not stopped protons: in job nat-008, 44 of 5,000, all π± (39) and
+   K± (5), p_T 0.16–0.59 GeV. Their track ended with no process other than transportation, for which the first
+   version of the `allx` option wrote no record, so the event had no hits at all. With the record added (`g4hv.cc`
+   55b434a3…, label `Stopped`), these particles have on average 13.2 counting-surface crossings and up to 5 crossings
+   of one layer: they are multi-turn loopers, presumably ended by Geant4's own killing of looping tracks in the
+   field [U: not read from a Geant4 message]. **So the first two runs were missing 0.9 % of the events, and those were
+   among the most looping ones: a bias against candidates, small in number.** The rerun of this job with them
+   included still has no seed above threshold and no candidate (4,853 trials). The whole gun is being rerun with the
+   fixed record on one lane (`p2-c-px-lpd`, summary `p2-c-px-lpds/000/p2-c-px-lpds-0.json`); until it is read, the
+   table above stands for 99.1 % of the sample. Even with the record these tracks end where Geant4 stops them, before
+   25 ns. The same 1 % ("no record") is in the Geant4 reference of `HALF_TURN_xavier_2026-11-16_16-08.md`: its
+   missing-crossing numbers are low by at most that share of the particles.

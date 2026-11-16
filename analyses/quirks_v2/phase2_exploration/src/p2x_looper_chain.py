@@ -135,8 +135,10 @@ def run(out, n, job_seed, kind, ev0, pool_file):
                     code_sha256=C.code_hashes([__file__, C.HERE / 'g4' / 'g4hv.cc']))
         meta['ev_info'] = [{k: v for k, v in store[i]['info'].items()} for i in range(n)]
         meta = rc.finish(out, store, n, meta, t0)
+        lost = [np.c_[np.full(len(store[i]['lost']), i), store[i]['lost']] for i in range(n) if len(store[i]['lost'])]
+        lost = np.concatenate(lost) if lost else np.zeros((0, 9))          # event, sid, volume, layer, sensitive, x, y, z, vp of SimHits without a measurement
         tmp = Path(str(out) + '.truth.tmp.npz')
-        np.savez_compressed(tmp, truth=truth, cols=np.array(TCOLS), layer_cross=laycnt, layers=np.array(XV.BARREL_COUNT), proc=np.array(json.dumps(proc_code)),
+        np.savez_compressed(tmp, truth=truth, cols=np.array(TCOLS), layer_cross=laycnt, lost=lost, layers=np.array(XV.BARREL_COUNT), proc=np.array(json.dumps(proc_code)),
                             n_meas=np.array(meta['n_meas']), n_written=np.array(meta['n_written']))
         tmp.replace(str(out) + '.truth.npz')
         log.info('%s', json.dumps(dict(set=kind, n=n, v41_pass=meta['v41_pass'], t_total_s=meta['t_total_s'],

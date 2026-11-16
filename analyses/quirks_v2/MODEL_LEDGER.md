@@ -20,3 +20,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-16 | Phase-2 executor channel (iii) successor: pilot campaigns ready to submit (session Xavier) | fable | default | same reason as Tatiana: the pilot's content and classes are the only input of the binding day-15 rule | pending |
 | 2026-11-16 | fixer of strategy addendum 1 v2 → v3 (session Yvonne) | fable | default | third version of a document that changes the binding day-15 readings; two iterations already (brief §4: go up after failures) | pending |
 | 2026-11-16 | fixer of strategy addendum 1 v3 → v4 (session Zoe) | fable | default | same reason as v3; must integrate the half-turn finding and the looper result without softening | pending |
+| 2026-11-16 | Phase-2 executor channel (iii), second successor: B1 pilot code and campaign files, looper rerun (session Albert) | fable | default | same reason as Tatiana and Xavier | pending |

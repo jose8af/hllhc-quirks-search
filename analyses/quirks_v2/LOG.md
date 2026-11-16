@@ -641,3 +641,16 @@ is delegated to Xavier's lane, since it needs the ACTS environment on a worker.
   Geant4 parent crossings beyond it: 0.04 % / 0.05 % of pre-vertex crossings without a hit for DIF-C / NI-C (before:
   40–67 %), 1.5 % duplicate hits at the seam, V4-1 passes, reruns identical. **Adopted for DIF-C and NI-C.**
 - Next: addendum v4 by a fresh fixer (Zoe), then the third review.
+
+## 2026-11-16 17:20 -05 (measured) — Pilot files validated; looper gun being rerun after a 1 % loss; Xavier hands over
+- Pilot output (3 Z(νν) files, 1 minimum-bias file) passes every hard check read-only (campaign p2-c-px-pv1);
+  content and code hashes agree with the PLAN.
+- **Looper gun is provisional.** The first runs lacked 0.9 % of the events (π±/K± whose Geant4 track ended by
+  transportation only; the first code version wrote no record for them), and those are among the most looping
+  ones (13 counting crossings on average). Fixed; the full gun is being rerun (`p2-c-px-lpd`, started 17:18). One
+  fixed job rerun still shows no seed above threshold. The same 1 % is missing in the Geant4 reference of the
+  half-turn note, so its missing-crossing fractions are slightly low. The user was told "no candidates" at 17:17
+  on the first run; to be confirmed or corrected with the rerun.
+- The V4-1 failure in one looper job is the documented digitisation loss on an endcap disc, not a barrel surface.
+- Xavier (context about 0.76 M tokens) wrote his successor section and hands step 3 (B1 production code and
+  campaign files) to a successor, session Albert (Fable).

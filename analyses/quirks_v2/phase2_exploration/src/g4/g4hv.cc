@@ -26,7 +26,8 @@
 //          S <eta> <volume> <path_mm> <x_over_X0> <x_over_lambdaI> <r_mid_mm> <z_mid_mm>
 //        Option 'allx' (added 2026-11-16 by Xavier for the half-turn study; default behaviour unchanged): a record is
 //        written for EVERY primary, also for one that ends without a vertex: its V line then carries the pseudo-process
-//        "LeftWorld" (r > RMAX or |z| > ZMAX) or "TimeLimit" (t > 25 ns) and the point where it was dropped, with all its
+//        "LeftWorld" (r > RMAX or |z| > ZMAX), "TimeLimit" (t > 25 ns) or "Stopped" (came to rest with no process that
+//        kills it, e.g. a proton ranging out; added 17:20) and the point where it was dropped or stopped, with all its
 //        crossings of sensitive surfaces as X lines.  Products are recorded at the vertex and killed, as without 'exit'.
 // Usage: g4hv <geom.txt> <physlist> <seed> <out.txt> prim <primaries.txt> [rmax_mm] [exit|allx] | scan <n_per_eta> [overlap]
 #include "G4RunManagerFactory.hh"
@@ -81,7 +82,8 @@ static std::map<std::string, long> gCount;                           // "process
 static long gNvtx = 0, gNcut = 0, gNprim = 0;
 static bool gOverlap = false;
 static bool gExit = false;
-static bool gAllX = false;                                           // option 'allx' (Xavier, 2026-11-16): see usage
+static bool gAllX = false;
+static char gLast[512] = "";                                         // 'allx': last post-step state of the primary                                           // option 'allx' (Xavier, 2026-11-16): see usage
 static long gNstop = 0, gNexit = 0;
 struct Prod { int pdg; double px, py, pz, e, x, y, z, t; };
 static std::vector<Prod> gProd;
@@ -166,9 +168,10 @@ static std::map<std::string, ScanAcc> gAcc;
 
 class EvAct : public G4UserEventAction {
  public:
-  void BeginOfEventAction(const G4Event*) override { gCross.clear(); gAcc.clear(); gProd.clear(); gHaveVtx = false; }
+  void BeginOfEventAction(const G4Event*) override { gCross.clear(); gAcc.clear(); gProd.clear(); gHaveVtx = false; gLast[0] = 0; }
   void EndOfEventAction(const G4Event*) override {
     if (!gScan) {
+      if (!gHaveVtx && gAllX && gLast[0]) { gVtxHead = gLast; gHaveVtx = true; }   // primary ended with no killing process: it stopped
       if (!gHaveVtx) return;
       std::fprintf(gOut, "%s %zu %zu\n", gVtxHead.c_str(), gProd.size(), gCross.size());
       for (auto& q : gProd)
@@ -219,6 +222,14 @@ class Step : public G4UserSteppingAction {
         ++gNstop;
       }
       return;
+    }
+    if (gAllX) {       // remembered for a primary that comes to rest without a process that kills it (e.g. a proton ranging out)
+      auto xl = post->GetPosition(); auto pl = post->GetMomentum();
+      auto pvl = post->GetPhysicalVolume();
+      std::snprintf(gLast, sizeof gLast, "V %ld %s %s %d %.6f %.6f %.6f %.6f %.9g %.9g %.9g",
+                    gPrim[G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID()].id, "Stopped",
+                    pvl ? base(pvl->GetName()).c_str() : "none", tr->GetDefinition()->GetPDGEncoding(), xl.x() / mm, xl.y() / mm,
+                    xl.z() / mm, post->GetGlobalTime() / ns, pl.x() / GeV, pl.y() / GeV, pl.z() / GeV);
     }
     // crossing of a sensitive surface: boundary between the two halves of one slab
     if (post->GetStepStatus() == fGeomBoundary) {
