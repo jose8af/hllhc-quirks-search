@@ -264,3 +264,8 @@ TRAPS: failed/timeout/oom jobs are never retried by the runner → rerun under n
   by job_id when summing CPU); the a2/a5 jobs build their Stage-3 index from markers and fail if Stage 3 is incomplete;
   keep PYTHONDONTWRITEBYTECODE=1 / remove src/__pycache__ after importing make_campaigns locally.
 CPU-h so far (14:40, ledger): C1 6.7, C2 0.6, day-0 0.95.
+- 18:36 p2-a-c1-s3 done (30/30) and p2-a-c1-cp0 done (16/16); index written to outputs/c1_s3/STAGE3_INDEX.json.
+  p2-a-c2-v45time3 FAILED after its fine scan (NameError in the global-scan summary line: my bug, fixed): full-size
+  band fine scan (3001² normals, 0.2 mrad, ±0.3 rad) 20.7 s on trial 1; band vs direct self-check on a 41 × 41
+  sub-grid: max relative difference 6.0e-5 (1 trial). New timing job p2-a-c2-v45time4 (2 trials, + --full-sphere 0.01)
+  queued after p2-a-c1-siga2 (which started 18:36).

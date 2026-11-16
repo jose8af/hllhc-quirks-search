@@ -231,7 +231,7 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
         ng /= np.linalg.norm(ng)
         sF0_road = score(*R_, n0)[0]
         out.update(global_best_score_road=float(GG[gi, gj]), score_F0_road=sF0_road, dn_F0_global_mrad=1e3 * ang(n0, ng),
-                   global_better_elsewhere=bool(gb[k] > sF0_road and ang(n0, ng) > half), t_global_s=time.time() - t0)
+                   global_better_elsewhere=bool(GG[gi, gj] > sF0_road and ang(n0, ng) > half), t_global_s=time.time() - t0)
     if FULL_SPHERE:          # closing check of the ±50 deg restriction: direct sum over the whole half sphere, all road hits
         t0 = time.time()
         R_ = sel(road)

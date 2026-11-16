@@ -710,3 +710,17 @@ sha256 `dd45b3eaac09134b54e043dcddf79f4f16522b1b11b2b026b88e04723da98deb`.
 Review status, stated as it is: three critical reviews (ITERATE 3 A/10 B; ITERATE 2 A/5 B; ITERATE 0 A/4 B with
 exact texts and the statement that no further review of the text is needed), then a mechanical check PASS. The
 1-bot gate's three-round limit was reached; the user decides. DECISION notice sent with decisions D1–D10.
+
+## 2026-11-16 18:56 -05 (measured) — Channel (ii) report 5: FxFx needs an exception to the 30-minute rule; K(m) with PDF4LHC21
+- FxFx (the f₂₀₀ uncertainty piece of COM S2-c, at 500 and 1,500 GeV): after a real attempt (everything node-local;
+  compile as its own job, 8.6 min; lower accuracy gives no gain) the first launch per mass needs about 70–80 min on
+  one core (ESTIMATE; integration step 0 alone used 1,755 s for 55 of 56 channels when the limit hit); later event
+  batches from saved grids fit 30 minutes. The earlier "82 s of CPU in 13 min" was an accounting artefact (MG's
+  integration processes are not waited-for children, so the marker misses their CPU; FxFx is charged at wall time).
+  Options: (a) the user allows two single-core jobs of about 1.5 h; (b) a channel-farming driver, several hours of
+  engineering. The 30-minute rule is the user's (brief §5.3): asked. Not urgent (deadline Phase 4a).
+- K(m) with PDF4LHC21 (nominal set): within 0.6 % of the CT18NLO K at every mass; PDF uncertainty ±2.1 % (E 200) to
+  ±20.8 % (E 1500), Ẽ 1500 ±30.5 % (VERIFIED, `phase2_exploration/outputs/s2/kfactors.json`).
+- Tunes: Herwig 7.3's general tune is an e⁺e⁻ tune with minimum-bias retuning "ongoing"; Pythia CP5 is fitted to
+  underlying-event data including 13 TeV. The Herwig/Pythia K/π difference is therefore a generator spread, not a
+  measurement.
