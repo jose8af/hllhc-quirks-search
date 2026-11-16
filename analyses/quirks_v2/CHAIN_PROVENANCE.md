@@ -96,3 +96,7 @@ needs the v2 re-freeze (REPRODUCE §5.1-4).
   ≈ 15 lines): `mdot()` truncates every product and the result to a 44-bit mantissa (P1 floor test 2, STR §4.15), and
   `CODE` is an absolute path to `analyses/quirks_v2/code`.
 - Phase-2 jobs import the chain code read-only, with `PYTHONDONTWRITEBYTECODE=1` and `NUMBA_CACHE_DIR` in job scratch.
+- Node-local generator env (not chain code): maxwell `/home/scratch/jdochoa/envs/herwig`, manifest and lock in
+  `phase2_exploration/src/herwig/pixi.{toml,lock}` (lock sha256 8d045f81…66a). Herwig 7.3.0 / ThePEG 2.3.0 for [DP5];
+  Resummino 3.1.2 (conda-forge build h154ca16_2, sha256 c58d442d…e23d) as the fixed-order reference of S2-a validation 2.
+  Package checksums: retrieval_log #21.

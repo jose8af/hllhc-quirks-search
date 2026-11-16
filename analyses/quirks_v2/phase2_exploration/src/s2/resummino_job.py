@@ -29,8 +29,13 @@ def mw():
     return math.sqrt(MZ ** 2 / 2 + math.sqrt(MZ ** 4 / 4 - aew * math.pi * MZ ** 2 / (GF * math.sqrt(2))))
 
 
+DECOUPLE = '--decouple' in sys.argv   # squarks (PDG 100000[1-6], 200000[1-6]) and gluino (1000021) at 1e5 GeV
+
+
 def slha(m):
     t = open(os.path.join(RETR, 'slha.in')).read()
+    if DECOUPLE:
+        t = re.sub(r'(?m)^(\s*(?:[12]00000[1-6]|1000021)\s+)\S+(\s*#.*)$', r'\g<1>1.00000000E+05\2', t)
     t = re.sub(r'(?m)^(\s*1\s+)\S+(\s*#\s*alpha_em\^-1.*)$', rf'\g<1>{AEWM1:.8E}\2', t)
     t = re.sub(r'(?m)^(\s*4\s+)\S+(\s*#\s*M_Z pole mass.*)$', rf'\g<1>{MZ:.8E}\2', t)
     t = re.sub(r'(?m)^(\s*24\s+)\S+(\s*#\s*W\+.*)$', rf'\g<1>{mw():.8E}\2', t)
@@ -67,7 +72,7 @@ def main():
     env = dict(os.environ, LHAPDF_DATA_PATH='/home/users/jdochoa/sw/lhapdf_data',
                PATH=os.path.join(ENV, 'bin') + ':' + os.environ['PATH'])
     env.pop('LD_LIBRARY_PATH', None)
-    res = dict(code='Resummino 3.1.2 (conda-forge)', mw_gev=mw(), aewm1=AEWM1, gf=GF, mz=MZ, points=[])
+    res = dict(code='Resummino 3.1.2 (conda-forge)', decouple=DECOUPLE, mw_gev=mw(), aewm1=AEWM1, gf=GF, mz=MZ, points=[])
     open(os.path.join(work, 'resummino.in'), 'w').write(card())
     for m in masses:
         open(os.path.join(work, 'slha.in'), 'w').write(slha(m))

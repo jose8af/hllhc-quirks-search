@@ -168,11 +168,72 @@ runs use μ_R = μ_F = m (fixed; banner checked), CT18NLO, 14 TeV, N_IC = 1. Cam
 | 500 | 2.654e-3 ± 1.2e-6 | 2.654e-3 ± 1.0e-6 | 0.000 % | 0.00 | PASS |
 | 1000 | 8.218e-5 ± 3.7e-8 | 8.216e-5 ± 3.4e-8 | +0.024 % | +0.40 | PASS |
 
-(in progress: K(m) with CT18NLO and PDF4LHC21, validation 3 (DY), validation 2 (Resummino), S2-c inclusive samples
-and f₂₀₀, FxFx timing)
+### 2.3 S2-a validation 2: what the reference is, and how independent it is (facts for the NOT-EVALUABLE call)
+
+- **Public tables.** The LHC SUSY cross-section WG right-slepton tables give NLO+NLL only, with no fixed-order NLO
+  column (retrieval_log #16; 13 TeV; PDF4LHC15 or CT10). By STR §4.14 (a) 2 they are not a like-with-like reference.
+- **Reference used instead:** a self-run fixed-order calculation.
+  - Code: Resummino 3.1.2 (conda-forge build h154ca16_2, sha256 c58d442d…; retrieval_log #18, #21), option `--nlo`
+    (LO and NLO, stops before resummation). Script: `src/s2/resummino_job.py`.
+  - Process ~e_R⁺ ~e_R⁻ (PDG 2000011) at 14 TeV, N_IC = 1; CT18NLO for both LO and NLO; μ_R = μ_F = (m₁ + m₂)/2 = m
+    (Resummino's central scale); precision 0.1 %.
+  - SM inputs set to the v1 UFO values (α⁻¹ 132.507, G_F 1.16639×10⁻⁵, M_Z 91.188, M_W = 80.419 GeV from the UFO's own
+    formula). The remaining SLHA blocks are the code's example spectrum.
+  - Our side: `loop_quirkE` Ẽ at the same fixed μ = m (`nlo … --fixed m`, job kref-s-fixm).
+  - Both run in campaign p2-b-hw-smoke on maxwell, queued.
+- **Independent of `loop_quirkE`:**
+  - different authors and code base;
+  - its own analytic and numerical implementation of the real and virtual NLO corrections, against MG5_aMC's FKS
+    subtraction plus MadLoop;
+  - its own phase-space integration;
+  - its own coupling set-up from the SLHA.
+- **Shared, by construction:** the PDF grid (CT18NLO through LHAPDF), the SM input values, the scale choice, √s. These
+  are the "same settings" the strategy asks for, so these sources are common, not tested.
+- **Known difference in content** (UNVERIFIED until checked in the code's parameter log or by a decoupling run):
+  Resummino's slepton-pair NLO is SUSY-QCD. Its virtual corrections may include squark and gluino loops with the
+  masses of the SLHA file; `loop_quirkE`'s NLO is pure QCD. If those loops are present, the size of the contribution
+  is unknown until a decoupling run is done (squark and gluino masses raised in the SLHA). Without that run the
+  comparison is not strictly like-with-like.
+- **Facts for the call (not made here):** a true fixed-order NLO reference exists only in the form of this self-run
+  public code. It is independent in implementation, not in inputs. It may contain SUSY-QCD terms absent from our model.
+  COM S2-a allows NOT EVALUABLE "if no such reference".
+
+### 2.4 Pending in S2
+K(m) with CT18NLO and PDF4LHC21; validation 3 (DY, μ = M_pair); validation 2 runs; S2-c inclusive samples, f₂₀₀ and its
+uncertainty pieces; FxFx timing.
 
 ## 3. P1: thickness-law clean-ups
-(in progress: v1 B*-off configuration resolved, re-timing next)
+
+### 3.1 Deviation: P1 runs on new events, not on v1's events
+Phase 1 assumed the P1 tests could be run on v1's events. Phase 2 found otherwise:
+- v1's P1 event summary `data/sim_stage3/summary/events_p1.npz`, read by `sim/stage3/scripts/fix_bstar_off.py` l.63,
+  is not in the repo. The Stage-2 TRGS files it came from are also absent.
+- The T2 kinematics cache behind the Stage-1 M3/FIX2 events (`code/T3_propagator.py` l.517-525, about 170 MB, kept
+  outside the v1 project) is absent as well.
+- `results/FIX_bstar_off.json` keeps per-event c values but not the momenta.
+
+The tests therefore run on new events: Phase-1 toy Stage-3 inputs for timing, and the S2-c inclusive samples, with v1's
+P1 selection |η_pair| < 1, for the physics runs. Consequence per criterion:
+- **P1-b (paired B*-off):** STR already asks for ≈ 970 new events at 5 keV plus new events at 1 keV. No change to the
+  criterion. v1's 171-event result stays a separate, unpaired-in-sample reference; it cannot be extended with the same
+  events.
+- **P1-c (population estimator):** STR already asks for 300 *new* events per point with new seeds. No change.
+- **P1-a (floor tests):**
+  - The pre-declared reading of test 1 quotes v1's Δc(20) of +0.01–0.02 on v1's M3 events. On new events, "floor"
+    and "physical" are read from the same events in nominal vs high precision, so the reading is unchanged in form.
+    The "+0.01–0.02" is then a property of the new sample, measured in the same run in double precision, not a v1
+    number re-tested.
+  - Test 2 compares the two kernels on the same new events. Not affected.
+- **P1-d (validity window, Linux difference):** uses tracked results (`P1.json`) and the M2 conformal run, which is
+  regenerable from its inputs in `analytic/numerics/M2_single.py`. Not affected.
+- **Lost:** an event-by-event re-run of v1's exact B*-off sample. The comparability of the new paired median with v1's
+  171-event numbers is statistical only.
+
+### 3.2 State
+- v1 configuration resolved: 4 nm_kernel runs per event (on/off × B, B/2); 17.7 s/event on the M3.
+- Timing campaign p2-b-p1-time is queued on landau: B*-off at 5 and 1 keV, and floor test 2 with the 44-bit kernel
+  `src/p1/nm_kernel_t44.py`.
+- Floor test 1 (≥ 30-digit step map) not started.
 
 ## 4. Herwig install attempt (DP5)
 (queued on maxwell from 13:30)
