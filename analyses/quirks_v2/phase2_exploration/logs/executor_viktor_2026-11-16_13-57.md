@@ -116,3 +116,15 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   and hesse() (N² calls) in every fit. Profiles (cProfile, numpy): 85–90 % of the time in pyhf's model evaluation
   (60 par: concatenate 22 s, where 20 s, einsum 14 s, power [normsys code1] 14 s, make_pdf 5 s of 90 s); SLSQP itself
   negligible. jax vs numpy at 100 par on the 20 paired toys: |Δq| ≤ 0.0076. p2-c-toy-ref launched 15:32:52 by the waiter.
+- 2026-11-16 16:05 p2-c-toy-ref done (16:02) [V]: 31 par, μ = 5, 1000 + 1000 paired toys, CLs (numpy+scipy reference)
+  0.1372 ± 0.0165; jax+scipy, jax+scipy merged+stitch, jax+scipy chain: 0.1372 (identical); merged+stitch+prev 0.132,
+  +prev2 0.136, although their q agree with numpy to ≤ 1.4e-6. Cause: discrete counts give exactly tied q values; the
+  observed q (median of the b ensemble, 0.60892) is such a tie value and 3 s+b toys sit on it, so "q ≥ q_obs" flips with
+  1e-7 minimiser noise. With ties identified to 1e-5 in q, every 1000-toy configuration gives CLs = 0.1372 exactly.
+  Recommendation for T1 code (implementation, not a change of the statistic): compare q with q_obs to a tolerance
+  (1e-5) so that ties count as "≥" whatever the minimiser. Minuit runs (500 / 300 toys, other b medians) 0.159 ± 0.025,
+  0.133 ± 0.030: consistent. Costs at 31 par (s per unit): numpy 483, jax 85, jax chain 72, jax merged+stitch 53,
+  jax merged+stitch+prev / prev2 30 / 30, jax minuit 1,279, numpy minuit 1,434. NLL: jax with the std start leaves 467
+  of 2,000 free fits above the numpy minimum by > 1e-3 (max 0.032 in twice-NLL); chain start reaches the numpy minima
+  (|Δ| ≤ 1.3e-6); prev / prev2: 2 of 2,000 free fits worse by > 1e-3 (max 0.0047), both with μ̂ > μ (q = 0 either way).
+  0 failed fits in every run so far. p2-c-toy-tune launched 16:02:48.

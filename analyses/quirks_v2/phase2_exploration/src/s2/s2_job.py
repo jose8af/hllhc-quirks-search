@@ -439,7 +439,11 @@ def cmd_nlo(a):
         open(os.path.join(d, 'FixedOrderAnalysis', 'analysis_HwU_qv2_mpair.f'), 'w').write(
             MPAIR_ANA.replace('@NB@', str(int(nb))).replace('@MLO@', f'{lo:.1f}').replace('@MHI@', f'{hi:.1f}'))
         fc = os.path.join(d, 'Cards', 'FO_analyse_card.dat')
-        open(fc, 'w').write(re.sub(r'(?m)^FO_ANALYSE\s*=.*$', 'FO_ANALYSE = analysis_HwU_qv2_mpair.o', open(fc).read()))
+        card = open(fc).read()             # read BEFORE opening for write (the first version truncated the card)
+        new, nsub = re.subn(r'(?m)^FO_ANALYSE\s*=.*$', 'FO_ANALYSE = analysis_HwU_qv2_mpair.o', card)
+        if nsub != 1:
+            sys.exit('FO_ANALYSE line not found in FO_analyse_card.dat')
+        open(fc, 'w').write(new)
     res = dict(tag=tag, spin=spin, lhaid=lhaid, fixed_scale=fixed, req_acc_FO=acc, pdfunc=pdfunc,
                node=socket.gethostname(), start=time.strftime('%Y-%m-%d %H:%M:%S %z'), points=[])
     for m in masses:

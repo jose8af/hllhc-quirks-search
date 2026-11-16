@@ -551,3 +551,25 @@ regenerating it.
 Orchestrator: `pilot.mb` (generator level, unaffected) starts now. The Z(νν) pilot is held for a few hours for a
 quantification: how many barrel crossings are missing per sample type, the mechanism and whether it is configurable,
 the cost with full loops, and whether the Geant4 comparison then passes. Then a decision, with the user informed.
+
+## 2026-11-16 16:10 -05 (measured) — Half-turn limit quantified; pilot.mb launch refused by the permission system
+`phase2_exploration/outputs/HALF_TURN_xavier_2026-11-16_16-08.md` (VERIFIED, campaigns p2-c-px-ht, p2-c-px-htg):
+- Mechanism: `run_chain.py` calls `addFatras` with no loop or path setting; pyacts 48.0.0 exposes none; the
+  compiled library carries a path-limit aborter; the cut sits at 0.50 turn. Inference: ACTS's default loop
+  protection. Not configurable from Python; only by a rebuild (not attempted).
+- Size against Geant4 (lower bounds; detector secondaries not included): Geant4 crossings without a Fatras hit are
+  25 % of the written hits in Z(νν) events and 37 % in a minimum-bias interaction; by layer up to 34–42 % / 53–58 %
+  in the TBPS. 48 % / 70 % of central charged particles are below the looping threshold (0.63 GeV); 77 % of them are
+  still alive after one full turn.
+- v1: no file mentions the limit. v1 lists in-time loopers with repeated crossings as simulated, and its looper gun
+  counted 0 of 10⁵ (`INV_STATS_BKG.md` l.247-249): with the limit a particle cannot cross a layer twice, so that
+  zero follows from the limit and measured nothing.
+- **Strategy-revision input.** Phase 1 assumed the chain simulates curling particles. Phase 2 found it stops every
+  particle at half a turn. Implications: a named background topology (repeated crossings of the same layers by a
+  looper) is absent from every v1 and v2 sample, and the pile-up hit pattern lacks about a third of its correlated
+  hits (the occupancy top-up restores the number of hits, not their arrangement).
+- Xavier's launch of `pilot.mb` was denied by the session's permission system. Per the rules the orchestrator
+  does not run a command on behalf of an agent that was denied it; the user is asked.
+- Orchestrator: user notified (DECISION). Meanwhile ordered: (1) a proper looper gun (Geant4 trajectories injected
+  as hits) to measure whether loopers make candidates; (2) option (a) for DIF-C / NI-C on a slice. The third review
+  of the addendum waits for the user's choice on the chain.

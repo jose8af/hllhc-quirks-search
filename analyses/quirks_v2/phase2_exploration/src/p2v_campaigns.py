@@ -97,6 +97,8 @@ def main(argv):
                 job(c, 'jsms-n80-mu3', 80, 100, 3, J + MS + R, 'new'),
                 job(c, 'jsms-n100-mu3', 100, 100, 3, J + MS + R, 'new'),
                 job(c, 'jsmsc-n100-mu3', 100, 100, 3, J + MS + ',start=chain' + R, 'new'),
+                job(c, 'jsmsc-n60-mu3-a', 60, 100, 3, J + MS + ',start=chain' + R, 'new'),
+                job(c, 'jsmsc-n80-mu3', 80, 100, 3, J + MS + ',start=chain' + R, 'new'),
                 job(c, 'jsmsp-n60-mu3-a', 60, 100, 3, J + MS + ',start=prev' + R, 'new'),
                 job(c, 'jsmsp-n80-mu3', 80, 100, 3, J + MS + ',start=prev' + R, 'new'),
                 job(c, 'jsmsp-n100-mu3', 100, 100, 3, J + MS + ',start=prev' + R, 'new'),

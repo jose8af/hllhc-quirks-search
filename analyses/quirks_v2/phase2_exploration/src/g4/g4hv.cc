@@ -24,7 +24,11 @@
 //        and one summary line "G4HV ..." on stdout.
 //   scan <n_per_eta> : geantinos from the origin at eta = -3.0 ... 3.0 in steps of 0.1 (uniform phi); output
 //          S <eta> <volume> <path_mm> <x_over_X0> <x_over_lambdaI> <r_mid_mm> <z_mid_mm>
-// Usage: g4hv <geom.txt> <physlist> <seed> <out.txt> prim <primaries.txt> [rmax_mm] [exit] | scan <n_per_eta> [overlap]
+//        Option 'allx' (added 2026-11-16 by Xavier for the half-turn study; default behaviour unchanged): a record is
+//        written for EVERY primary, also for one that ends without a vertex: its V line then carries the pseudo-process
+//        "LeftWorld" (r > RMAX or |z| > ZMAX) or "TimeLimit" (t > 25 ns) and the point where it was dropped, with all its
+//        crossings of sensitive surfaces as X lines.  Products are recorded at the vertex and killed, as without 'exit'.
+// Usage: g4hv <geom.txt> <physlist> <seed> <out.txt> prim <primaries.txt> [rmax_mm] [exit|allx] | scan <n_per_eta> [overlap]
 #include "G4RunManagerFactory.hh"
 #include "G4PhysListFactory.hh"
 #include "G4VModularPhysicsList.hh"
@@ -77,6 +81,7 @@ static std::map<std::string, long> gCount;                           // "process
 static long gNvtx = 0, gNcut = 0, gNprim = 0;
 static bool gOverlap = false;
 static bool gExit = false;
+static bool gAllX = false;                                           // option 'allx' (Xavier, 2026-11-16): see usage
 static long gNstop = 0, gNexit = 0;
 struct Prod { int pdg; double px, py, pz, e, x, y, z, t; };
 static std::vector<Prod> gProd;
@@ -264,6 +269,16 @@ class Step : public G4UserSteppingAction {
     auto x = post->GetPosition();
     if (x.perp() > RMAX * mm || std::fabs(x.z()) > ZMAX * mm || post->GetGlobalTime() > TMAX * ns) {
       tr->SetTrackStatus(fStopAndKill); ++gNcut;
+      if (gAllX && !gHaveVtx) {
+        long id = gPrim[G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID()].id;
+        auto p = post->GetMomentum();
+        char buf[512];
+        std::snprintf(buf, sizeof buf, "V %ld %s %s %d %.6f %.6f %.6f %.6f %.9g %.9g %.9g", id,
+                      post->GetGlobalTime() > TMAX * ns ? "TimeLimit" : "LeftWorld", "none",
+                      tr->GetDefinition()->GetPDGEncoding(), x.x() / mm, x.y() / mm, x.z() / mm, post->GetGlobalTime() / ns,
+                      p.x() / GeV, p.y() / GeV, p.z() / GeV);
+        gVtxHead = buf; gVtxVol = "none"; gHaveVtx = true;
+      }
     }
   }
 };
@@ -312,6 +327,7 @@ int main(int argc, char** argv) {
     nev = (int)gPrim.size(); gNprim = nev;
     if (argc > 7) RMAX = std::atof(argv[7]);
     gExit = argc > 8 && std::string(argv[8]) == "exit";
+    gAllX = argc > 8 && std::string(argv[8]) == "allx";
   }
   G4Random::setTheSeed(seed);
   auto rm = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
