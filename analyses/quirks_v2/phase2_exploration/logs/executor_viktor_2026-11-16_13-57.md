@@ -82,3 +82,20 @@ CPU estimate ≈ 3–4 CPU-h (ESTIMATE), cap 6. One job at a time on schrodinger
   migrad). The 60-par minuit job (50+50) projected > 30 min: driver and job stopped by pid at 14:18 (orphan `started`
   marker p2-c-toy-jax-jm-n60-mu3-a, attempt 1, no output); campaign edited: jm4-n60-mu3-a (4+4 toys), no 100-par minuit
   job; numpy minuit at 60 par cut to 6+6 toys in p2-c-toy-base. Driver relaunched 14:18:51 (done jobs are skipped).
+- 2026-11-16 14:22 Runner lesson: removing a job id whose marker exists crashes the ssh driver (KeyError in ssh.py l.95);
+  the id was restored (jm-n60-mu3-a, now 4+4 toys), the driver marked the old attempt lost and re-ran it. 14:22:42 relaunch.
+- 2026-11-16 14:29 Readings [V: p2-c-toy-jax]: merged layout identical q (|Δq| ≤ 3e-11, same nfev), ×1.1 faster (76 / 375 s
+  at 31 / 60 par); stitch identical q (4e-12), ×1.2 at 60; chain start: nfev 45 → 32, ×1.3–1.4, but |Δq| up to 0.033
+  (2 of 200 toys > 0.01 at 100 par); jax+minuit: |Δq| up to 6.3 at 31 par (77 of 400 toys > 0.01) and 0.27 at 60 —
+  minuit at pyhf's default tolerance (0.1) does not reproduce the scipy minima; jm 60 par = 17.5×10³ s per unit.
+  Which minimum is right needs the NLL values: option `record=1` added to p2v_toys.py (direct pyhf fits, same formula;
+  defaults unchanged, so the queued base jobs are unaffected). p2-c-toy-ref rewritten with record=1 (and minuit jobs
+  shortened, merged+stitch added) before its launch; new p2-c-toy-tune (NLL accuracy at 100 par: default, tol 1e-10,
+  chain; minuit default and tol 1e-4/strategy 1 at 31 par; merged+stitch at 60/80/100; merged+stitch+chain at 100)
+  queued after p2-c-toy-ref.
+- 2026-11-16 14:33 p2-c-toy-jax all done 14:31:42. Warm start from the previous toy (start=prev, jax+scipy, 60 par):
+  175 ± 7 s per unit, ×2.4 against jax+scipy, 16–17 calls per fit, |Δq| ≤ 0.0034 (0 of 100 > 0.01) [V]. stitch at 100
+  par 1732 s (×1.1, identical q). New option start=prev2 (fixed fit from the previous fixed-fit result, free fit from the
+  previous free-fit result). Added before launch: ref jobs jsmsp-n31-mu5, jsmsp2-n31-mu5 (merged+stitch+prev/prev2,
+  1000+1000 at μ = 5); tune jobs jsmsp at 60/80/100, jsmsp2 at 31/100 (all with NLL record). p2-c-toy-base started
+  14:31:51.

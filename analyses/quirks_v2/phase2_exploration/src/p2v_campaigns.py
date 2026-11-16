@@ -76,13 +76,33 @@ def main(argv):
         write(name, jobs, 1.0, 'T1 toy cost: jax backend with scipy and minuit, merged layout, start values, stitch')
     elif name == 'p2-c-toy-ref':       # CLs check at mu_c = 5 (pilot p2-c-toy-jax: CLs 0.24 at 4, 0.04 at 6), 31 par
         J = 'backend=jax'
-        jobs = [job(c, 'np-n31-mu5', 31, 1000, 5),
-                job(c, 'js-n31-mu5', 31, 1000, 5, J, 'new'),
-                job(c, 'jsmerged-n31-mu5', 31, 1000, 5, J + ',layout=merged', 'new'),
-                job(c, 'jschain-n31-mu5', 31, 1000, 5, J + ',start=chain', 'new'),
-                job(c, 'jm-n31-mu5', 31, 1000, 5, J + ',opt=minuit', 'new'),
-                job(c, 'mina-n31-mu5', 31, 500, 5, 'opt=minuit')]
+        R = ',record=1'
+        jobs = [job(c, 'np-n31-mu5', 31, 1000, 5, 'record=1'),
+                job(c, 'js-n31-mu5', 31, 1000, 5, J + R, 'new'),
+                job(c, 'jsms-n31-mu5', 31, 1000, 5, J + ',layout=merged,stitch=1' + R, 'new'),
+                job(c, 'jschain-n31-mu5', 31, 1000, 5, J + ',start=chain' + R, 'new'),
+                job(c, 'jsmsp2-n31-mu5', 31, 1000, 5, J + ',layout=merged,stitch=1,start=prev2' + R, 'new'),
+                job(c, 'jsmsp-n31-mu5', 31, 1000, 5, J + ',layout=merged,stitch=1,start=prev' + R, 'new'),
+                job(c, 'jm-n31-mu5', 31, 500, 5, J + ',opt=minuit' + R, 'new'),
+                job(c, 'mina-n31-mu5', 31, 300, 5, 'opt=minuit' + R)]
         write(name, jobs, 0.6, 'T1 toy cost: CLs correctness check at mu = 5 on 31 parameters, 1000 + 1000 paired toys')
+    elif name == 'p2-c-toy-tune':      # accuracy of the minima (NLL recorded) and the combined configuration
+        J = 'backend=jax'; R = ',record=1'; MS = ',layout=merged,stitch=1'
+        jobs = [job(c, 'rec-js-n100-mu3', 100, 100, 3, J + R, 'new'),
+                job(c, 'rec-jstight-n100-mu3', 100, 100, 3, J + ',tol=1e-10' + R, 'new'),
+                job(c, 'rec-jschain-n100-mu3', 100, 100, 3, J + ',start=chain' + R, 'new'),
+                job(c, 'rec-jm-n31-mu3', 31, 100, 3, J + ',opt=minuit' + R, 'new'),
+                job(c, 'rec-jmtight-n31-mu3', 31, 50, 3, J + ',opt=minuit,tol=1e-4,strategy=1' + R, 'new'),
+                job(c, 'jsms-n60-mu3-a', 60, 100, 3, J + MS + R, 'new'),
+                job(c, 'jsms-n80-mu3', 80, 100, 3, J + MS + R, 'new'),
+                job(c, 'jsms-n100-mu3', 100, 100, 3, J + MS + R, 'new'),
+                job(c, 'jsmsc-n100-mu3', 100, 100, 3, J + MS + ',start=chain' + R, 'new'),
+                job(c, 'jsmsp-n60-mu3-a', 60, 100, 3, J + MS + ',start=prev' + R, 'new'),
+                job(c, 'jsmsp-n80-mu3', 80, 100, 3, J + MS + ',start=prev' + R, 'new'),
+                job(c, 'jsmsp-n100-mu3', 100, 100, 3, J + MS + ',start=prev' + R, 'new'),
+                job(c, 'jsmsp2-n100-mu3', 100, 100, 3, J + MS + ',start=prev2' + R, 'new'),
+                job(c, 'jsmsp2-n31-mu3', 31, 200, 3, J + MS + ',start=prev2' + R, 'new')]
+        write(name, jobs, 0.6, 'T1 toy cost: minimum accuracy with recorded NLL; merged + stitch at 60/80/100')
     elif name == 'p2-c-toy-base':      # step 1: baseline reproduction, profile; (a) minuit on numpy; stitch; 100 par pair
         jobs = [job(c, 'n31-mu3', 31, 200, 3),
                 job(c, 'n60-mu3-a', 60, 50, 3),

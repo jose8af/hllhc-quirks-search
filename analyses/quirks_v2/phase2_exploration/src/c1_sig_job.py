@@ -5,8 +5,8 @@ Runs v1's acts.stage4.run_g1b.run_signal_job unchanged with the frozen configura
       E 200 with 1.5 and 2 keV
   a5  full chain (quirk hits through ACTS digitisation + CKF, PU 200), as v1 at E 500 / 3 keV and for the full-chain
       "twins" of the two E 200 points (COM C1-e)
-Stage-3 points come from the v2 C1 Stage-3 index: QV2_S3_DATA = phase2_exploration/outputs/c1_s3 (STAGE3_INDEX.json
-with absolute file paths); run_g1b.index() is pointed to it here (v1 hard-codes data/sim_stage3).
+Stage-3 points come from the v2 C1 Stage-3 index, built at job start from the done markers of p2-a-c1-s3 (absolute
+cajuela paths) into the job scratch (QV2_S3_DATA); run_g1b.index() is pointed to it here (v1 hard-codes data/sim_stage3).
 Rows: all |eta| < 2.5 rows of both splits (400 per point; a2 status1 = False as v1 A2, a5 status1 = True as v1 A5), cut
 into chunks of --size.  Job seed = hash_seed("qv2|c1.sig.<kind>|<point>|<chunk>"); the per-row PU / smearing / top-up
 seeds are v1's hseed(spin, m, row) rules.  Probe-row exclusion: QV2_ALLOW_NO_F1R=1 (the v1 file is lost and its rows
@@ -42,7 +42,14 @@ def main():
     work = Path.cwd() / "s4work"
     (work / "prod").mkdir(parents=True, exist_ok=True)
     os.environ["QV2_S4_DATA"] = str(work)
-    os.environ.setdefault("QV2_S3_DATA", str(HERE.parent / "outputs" / "c1_s3"))
+    # Stage-3 index built here from the done markers of p2-a-c1-s3 (refuses unless all 30 jobs are done), written to the
+    # job scratch (the acts-env chain subprocess of a5 reads it through QV2_S3_DATA too)
+    sys.path.insert(0, str(HERE))
+    import c1_s3_index
+    s3dir = work / "s3"
+    s3dir.mkdir()
+    (s3dir / "STAGE3_INDEX.json").write_text(json.dumps(c1_s3_index.build(require_complete=True)))
+    os.environ["QV2_S3_DATA"] = str(s3dir)
     os.environ["QV2_ALLOW_NO_F1R"] = "1"
     os.environ.setdefault("PYTHONDONTWRITEBYTECODE", "1")
     sys.path.insert(0, str(QV2))
@@ -61,8 +68,14 @@ def main():
     P = S.Point(key0, idx)
     rows_all = P.rows(template=False, counting=True, status1=(a.kind == "a5"))
     rows = rows_all[a.chunk * a.size:(a.chunk + 1) * a.size]
-    if not rows:
-        raise SystemExit("empty chunk")
+    if not rows:      # the last chunk can be empty when status != 1 rows are dropped (a5): write a stub, flagged
+        import numpy as np
+        outd = Path(os.environ.get("QV2_OUT_DIR", "."))
+        np.savez(outd / f"{a.id}.npz", job_id=np.array(a.id), complete=np.array(1), n_trials=np.array(0),
+                 **{"g1b.n_events": np.array(0)}, meta_json=np.array(json.dumps(dict(empty_chunk=True,
+                                                                                    n_rows_point=len(rows_all)))))
+        log.info("empty chunk (%d rows in the point): stub written", len(rows_all))
+        return
     seed = RS.hash_seed(f"qv2|c1.sig.{a.kind}|{key0 if a.kind == 'a5' else 'F' + str(a.m)}|{a.chunk}")
     job = dict(id=a.id, campaign="C1", sample=a.kind.upper(), kind=a.kind, chunk=a.chunk, n_events=len(rows), roads=1,
                rho=1, seed=seed, dump_events=len(rows) if a.kind == "a5" else 0, est_s=0.0, mem_gb=1.5, rows=rows,

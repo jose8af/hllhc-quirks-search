@@ -85,6 +85,8 @@ def entries(paths, masked):
         with np.load(p, allow_pickle=False) as z:
             d = {k: z[k] for k in z.files}
         meta = json.loads(str(d["meta_json"]))
+        if meta.get("empty_chunk"):
+            continue
         if masked:
             d = mask_open(d)
         ents, _ = SG.analyse_file(dict(d=d, job=meta["job"], path=p), want_f1=not masked, obs=False)

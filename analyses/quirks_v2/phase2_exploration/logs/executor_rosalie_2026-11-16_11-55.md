@@ -196,3 +196,35 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
     python phase2_exploration/src/c1_signal_compare.py sealed --a2 p2-a-c1-siga2 --a5 p2-a-c1-siga5 \
         --key-file <orchestrator key> --out /nfs/cajuela/jdochoa/quirks_v2/data/sealed/c1_sealed.json.enc
   (inputs: the done-marker outputs of the two signal campaigns; QV2_S3_DATA = phase2_exploration/outputs/c1_s3).
+- 14:00 p2-a-c1-s2 done (4 × 20,000 LHE, ≈ 16 min each). 14:30 p2-a-c1-s3in done [VERIFIED, data/phase2/p2-a-c1-s3in/000/
+  c1_inputs_m*.json]: m 200: TRGS 22,994 rows (11,678 from the INC complement); unweighted |eta| < 2.5 accepted per
+  split 218 / 223 (≥ 200 needed: enough, no top-up); p2 list 473 events. m 500: 401 / 421 per split, p2 list 478.
+  Stitch diagnostic (v1 claims closure within MC stat): sigma(pT > 200) stitched / INC = 4.475 / 4.026 fb at m 200
+  (+11 %), 0.2580 / 0.2452 fb at m 500 (+5 %): INC has only 20,000 LHE; to be checked with its MC error before reading
+  anything into it (diagnostic, not a C1 quantity).
+- 14:30 V4-5 timing job FAILED (timeout at 1800 s, 1781 CPU-s, no trial finished; the script logged nothing inside
+  the scan). Added grid options + progress logs; reduced-grid timing job p2-a-c2-v45time2 (±10 mrad fine, 50 mrad
+  global) queued to measure the window size and cost per normal before choosing an affordable exact scheme.
+- 14:31 p2-a-c1-s3 written (30 jobs: E200 1.5 / 2 keV 5 × 100 events each, E500 3 keV 20 × 25 events) and queued after
+  c2-tstime and c2-v45time2.
+- 14:38 p2-a-c2-tstime done [VERIFIED, markers]: T_seed = 2 reruns cost no more than T_seed = 4: rho = 1 5 events
+  245.4 CPU-s (49 s/event; the T_seed 4 day-0 job 314.6 s incl. cold start), RSS 465 MB; rho = 2 1 event 179.6 CPU-s
+  (T_seed 4: 179.6 / 194.1 s), RSS 1185 MB. → C2-c cost ≈ 500 × 50 s + 200 × 180 s ≈ 17 CPU-h (STR guess 44).
+  Campaigns written: p2-a-c2-tseed1 (25 × 20 events, rho = 1, reruns of c1pu1-0000..0024 at T_seed 2) and
+  p2-a-c2-tseed2 (40 × 5 events, rho = 2, reruns of c1pu2-0000..0039 at T_seed 2, store off).
+- 14:38 p2-a-c2-v45time2 (±10 mrad, 101² normals): window 17,951 hits, road 29,457 hits; 3.5 s for 101² normals →
+  the direct sum would take ≈ 52 min per trial at full size (×100 trials: 86 CPU-h > 30 budgeted). On that trial
+  dn(F0, opt) = 0.283 mrad, dn(F0, fit) = 0.196 mrad. REVISION (method, same definition of the score): band
+  accumulation (each hit adds to the grid cells with |u.n| ≤ 4 sigma; cells outside get ≤ exp(-8) from it), with a
+  band-vs-direct self-check on a 41 × 41 sub-grid; global scan = same accumulation with all road hits, 5 mrad,
+  ±1.2 tangent coordinates (±50°) around n_F0 (STR "5 mrad global scan over the road"; the full half sphere is not
+  scanned: logged as a deviation). Timing job p2-a-c2-v45time3 (2 trials, full size) queued after p2-a-c1-s3.
+- 14:40 signal Stage 4 campaigns written: p2-a-c1-siga2 (14 × 30 rows, a2 fast path E200 at 1.5 and 2 keV) and
+  p2-a-c1-siga5 (42 × 30 rows: E500 3 keV + twins at E200 1.5 / 2 keV). Each job builds the Stage-3 index from the
+  p2-a-c1-s3 done markers and refuses unless all 30 Stage-3 jobs are done; an empty last a5 chunk writes a flagged stub.
+  Queues: landau A = p2-a-c1-pu1 driver; landau B = …→ c1-s3 → c2-v45time3 → c1-siga2 → c1-siga5 → c1-gen → c1-cp0 →
+  c1-sm → c2-tseed1 → c2-v44a → c2-v44b; maxwell 1 = c1-pu2 (watch) → c2-tseed2; maxwell 2 = c1-pu2 (watch) → c2-v44c.
+  Still to define: C'_PU (after c1-cp0: its sources), V4-5 production (after the timing), V4-5 signal mode.
+  Check: ssh -x landau "tail /home/scratch/jdochoa/drivers/queue_landau_B.log"; qv2run status <campaign> --live.
+  CPU-h spent (ledger, per job): C1 6.71 (pu1 2.86, pu2 2.90, s2 0.95, s3in 0.00); C2 0.62 (tstime 0.12, v45time 0.50,
+  v45time2 0.00); day-0 0.95.

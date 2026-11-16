@@ -19,3 +19,5 @@
   Runs now: nothing of mine. Pilot held until re-review and user approval.
 - 2026-11-16 14:18 channel (iii) Tatiana: session made replaceable: successor section in logs/executor_tatiana_2026-11-16_11-57.md; interim outputs/EXPLORATION_iii_tatiana_2026-11-16_14-18.md (24 campaigns, 4.58 CPU-h; B1-d PASS; hand-over validated; T1-b no verdict; pilot not generated).
   Runs now: nothing of mine. Pilot held until addendum v2 is re-reviewed and approved.
+- 2026-11-16 14:41 -05 channel (i) Rosalie: C1 signal inputs regenerated (Stage 2 at E 200/500, 4 × 20k LHE, 46 ms/LHE; Stage-3 inputs: 473/478-event p2 lists, enough for 400 rows); T_seed = 2 measured as cheap as T_seed 4 (C2-c ≈ 17 CPU-h); V4-5 direct scan too slow (52 min/trial) -> band-accumulated scan, timing queued. All C2 campaigns defined and queued.
+  Running: c1-pu1 (9/200), c1-pu2 (10/200), c1-s3 (Stage 3, 30 jobs); then signal, C', SM, rates, C2 queued. Spent C1 6.7, C2 0.6 CPU-h.

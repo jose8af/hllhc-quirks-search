@@ -497,3 +497,21 @@ The user dropped the empty-commit-on-main idea (no mail without GitHub Actions) 
 push in the same fashion of the daily reports": they look at the repository by hand and a new file means something
 happened. `tools/notify/notify.sh` now writes a file in `notices/` and pushes `v2-jfc`; DEVIATIONS V15b. The
 empty commit `db07909` on `main` is left in place.
+
+## 2026-11-16 14:41 -05 (measured) — Addendum 1 v2 re-review: ITERATE (2 A, 5 B, 12 C)
+Reviewer Wanda (Fable, fresh): `phase1_strategy/review/critical/ADDENDUM_1_v2_CRITICAL_REVIEW_wanda_2026-11-16_14-37.md`.
+The arithmetic of version 2 reproduces in independent code (partition, every N_t, rule-1 rows, reach, projection
+4,784 / 7,707 CPU-h). Expected outcome unchanged and supported. Blocking: A-1 v1's radius-based Truncate removes
+parent hits before the vertex for the two after-a-turn streams (433 of 1,464 and 514 of 1,463 parent crossings
+without a Fatras hit; not reported by the author); A-2 the hard-scatter-parent sample is in the text but not in the
+script or the table (with it an empty pilot reads 196 at R09 and 273–319 at R08). B: all 21 road orientations to be
+pinned; the low-p_T check sample bounds nothing; closure family K 10 → 13 and several rows not updated; B1 production
+code not written; B1 pool floor double-charges Geant4 (about 24, not 43).
+**The Z(νν) pilot (81 CPU-h) and `pilot.mb` (10 CPU-h) are not touched by any finding.**
+Orchestrator decisions:
+- The Z(νν) pilot at the strategy's literal size (2.3×10⁶ generated events, STR l.869) and `pilot.mb` may start as
+  soon as their campaigns are verified ready, including the reviewer's C item (ΣE_T and the hadron list in the
+  generator-level summary). Reason: it is the sample the frozen strategy names; more events can be added later if
+  the user chooses a larger size; nothing in the addendum changes its content. Cost 81 CPU-h against 29: an overrun
+  of 52 CPU-h, reported (brief D6). The B1 streams stay held.
+- Addendum v3 by a fresh fixer; then a third (last) 1-bot review: the JFC 1-bot limit is "escalate after 3".
