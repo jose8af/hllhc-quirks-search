@@ -573,7 +573,12 @@ def cmd_fxfx(a):
     """fxfx <tag> <E|S> <mass> <nev> [--shower] [--stage compile|grids|gen] [--acc X]: MC@NLO 0-1j (FxFx) events with
     loop_quirkE, staged so that every runner job stays below 30 min: 'compile' = output + `compile MC` (stamp COMPILED);
     'grids' = first launch without compilation (-x), MINT grids + a few events (stamp READY); 'gen' = launch -x -o
-    reusing the grids.  The process directory
+    reusing the grids.  Edgar 2026-11-17 (user exception to the 30-min rule for the first launch, see campaign
+    p2-b-s2-fxfx): --save-procdir writes <tag>.procdir.tar.gz (the whole node-local base dir: models, process dir with
+    compiled code and MINT grids, COMPILED/READY stamps) to the output dir after the first launch, so that the runner
+    publishes it to cajuela; --restore <tar.gz> unpacks such a tarball into the node-local base dir when this node has
+    no compiled dir yet (later 'gen' jobs on any worker; the MG copy and env paths are the same on every node).
+    The process directory
     lives in node-local /home/scratch/jdochoa/cache/fxfx/<spin>_m<mass> (kept between jobs on the same node): the first
     job makes it (output, compile, grids, first events); later jobs reuse the grids (launch -o)."""
     tag, spin, mass, nev = a[0], a[1], int(a[2]), int(a[3])
@@ -592,6 +597,12 @@ def cmd_fxfx(a):
     os.makedirs(os.path.join(LOCAL, '.locks'), exist_ok=True)
     with open(os.path.join(LOCAL, '.locks', f'fxfx_{spin}_m{mass}.lock'), 'w') as lk:
         fcntl.flock(lk, fcntl.LOCK_EX)
+        if '--restore' in a and not os.path.exists(compiled):
+            shutil.rmtree(base, ignore_errors=True)
+            os.makedirs(os.path.dirname(base), exist_ok=True)
+            with tarfile.open(a[a.index('--restore') + 1], 'r:gz') as tf:
+                tf.extractall(os.path.dirname(base))
+            info['restored_from'] = a[a.index('--restore') + 1]
         if stage in ('compile', 'all') and not os.path.exists(compiled):
             shutil.rmtree(base, ignore_errors=True)
             models = os.path.join(base, 'models')
@@ -646,6 +657,11 @@ def cmd_fxfx(a):
                       f'launch_{run}', base, 'amcatnlo_grids_and_events' if first else 'amcatnlo_onlygen')
         if first:
             open(ready, 'w').write(time.ctime() + '\n')
+            if '--save-procdir' in a:
+                t0 = time.time()
+                with tarfile.open(os.path.join(out, f'{tag}.procdir.tar.gz'), 'w:gz') as tf:
+                    tf.add(base, arcname=os.path.basename(base))
+                info['procdir_tar_s'] = time.time() - t0
     rd = os.path.join(d, 'Events', run)
     lhe = glob.glob(os.path.join(rd, 'events.lhe.gz'))[0]
     m = re.findall(r'Total cross section:\s*([0-9.eE+-]+)\s*\+-\s*([0-9.eE+-]+)\s*pb', txt)

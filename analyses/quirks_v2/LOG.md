@@ -888,3 +888,9 @@ Frozen FAIL verdicts stay on record; amendments are labelled as made after the r
 with a Fable advisor: the installed CLI (2.1.325) shows no `--advisor` flag in `claude --help`; the advisor is
 implemented by the orchestrator spawning a Fable subagent (state file §0 rule 1), so the session only needs
 `--model opus`.
+
+## 2026-11-17 10:28 -05 (measured) — FxFx: runner hard-codes the 30-minute limit; change deferred until the pilot is complete
+Edgar found that the runner rejects any job above 1800 s (`tools/runner/qv2run/paths.py:24`, `campaign.py:109-110`)
+and did not touch it. The orchestrator does not change the runner while about 1,200 pilot and reproduction jobs run
+through it. FxFx stays prepared (compile jobs, campaign file, process-directory save/restore) and is submitted after
+a small runner change once the running campaigns are complete; recorded in the state file.

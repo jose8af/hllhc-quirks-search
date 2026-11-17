@@ -79,7 +79,11 @@ Nothing at 2026-11-17 11:00. Decided on 17 Nov ("use your recommended answers"):
   needs the restriction to F0's inliers + hits within 3σ of the plane; channel (i) successor). If it fails, part (i)
   alone is the accuracy test and the scan is reported as failed. Until it is read, C2-a under the amendment is
   "(i) PASS, (ii) pending": decision point 1 (day 5) needs it.
-- FxFx: see Edgar's final report for whether the two jobs were submitted.
+- FxFx: prepared by Edgar, NOT submitted. The runner hard-codes the 30-minute limit (`tools/runner/qv2run/paths.py:24`
+  MAX_JOB_SECONDS = 1800; `campaign.py:109-110`). After BOTH pilot parts and the channel (i) campaigns are complete
+  (never while campaigns run: the node-side runner cache is keyed on its code), the orchestrator adds a per-job
+  `timeout_exception` for the SSH mechanism only (cap 7200 s, recorded in the marker; Edgar's proposal, about 6 lines,
+  plus a unit test in `tools/runner/tests`), then submits `p2-b-s2-fxfx` (commands in Edgar's final file).
 
 Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defaults; 4,609 CPU-h, stop-and-ask
 5,992, about 60 days); pool at fixed CPU; option B on the half-turn limit; **addendum 1 D1–D9 as recommended
