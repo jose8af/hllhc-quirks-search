@@ -729,3 +729,19 @@ exact texts and the statement that no further review of the text is needed), the
 `daily/2026-11-16.tex` / `.pdf` (4 pages). Ledger: 53.3 CPU-h in 643 jobs (reproduction 25.7, theory 10.9, pilot
 channel 11.8, pilot 4.9); 23 failed and 3 timed-out jobs, all in test campaigns; pilot 25 of 500 jobs done, none
 failed. cajuela 25 GB for this project, 3.9 TB free. STATUS.md rewritten. Committed, bundled and pushed.
+
+## 2026-11-16 20:27 -05 (measured) — B1 pilot campaigns generated and slice-validated (Albert); slow-fragment residue measured
+`phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md`. 39 campaign files (762 jobs) in
+`tools/runner/examples/p2x/b1/`, PLAN with frozen list, LAUNCH scripts for 1–3 lanes, pre-flight 0 failed checks;
+optional populations as separate plans. ESTIMATE from measured unit costs: 48.4 CPU-h, 90.8 GB, 26.3 h on 2 lanes,
+19.1 h on 3. Slices VERIFIED: parent crossings without a hit (with multiplicity) at most 0.26 % in all 11 sample
+types in production mode at 25,000 events per job; reruns identical; validator class-aware; end-to-end from
+generated campaign files passes. Launch test passed on one lane; the 2- and 3-lane scripts are untested (needs
+three slots for 20 minutes).
+Slow-fragment residue: protons or a deuteron with β 0.13–0.21 born in an outer layer get Fatras hits 12–35 ns
+before their production; 4 events in 4.3×10⁵ slice events (about 1×10⁻⁵ per event); a β scan (0.1 / 0.15 / 0.2 /
+0.3 → 2 / 1 / 2 / 0 flagged of 25,000) shows no cut that removes it short of losing 20 % of the products. Every B1
+file flags these events per event (`n_early_prod`).
+Orchestrator proposal for the user (with D9): keep the β cut at 0.1 (no change of the addendum's definition), read
+"one validated job per stream" as "all hard checks pass except the flagged events, whose rate is reported", and
+have Phase 3 classify with and without the flagged events. About 170 flagged events expected in 1.7×10⁷ (ESTIMATE).

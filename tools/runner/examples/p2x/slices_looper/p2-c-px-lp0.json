@@ -1,0 +1,33 @@
+{
+ "campaign": "p2-c-px-lp0",
+ "tier": "regenerable",
+ "data_prefix": "p2c/px_validation",
+ "regenerate": "inline (log of Xavier)",
+ "description": "looper gun smoke: 200 events per set",
+ "expected_hours": 0.05,
+ "defaults": {
+  "max_rss_mb": 2000,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-px-lp0-nat-000",
+   "outputs": [
+    "p2-c-px-lp0-nat-000.npz",
+    "p2-c-px-lp0-nat-000.truth.npz",
+    "p2-c-px-lp0-nat-000.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp0-nat-000 --set nat --chunk 0 --start 0 --n 200 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp0-flat-000",
+   "outputs": [
+    "p2-c-px-lp0-flat-000.npz",
+    "p2-c-px-lp0-flat-000.truth.npz",
+    "p2-c-px-lp0-flat-000.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp0-flat-000 --set flat --chunk 0 --start 0 --n 200 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  }
+ ]
+}

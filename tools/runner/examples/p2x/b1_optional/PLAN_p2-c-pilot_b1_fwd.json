@@ -1,0 +1,577 @@
+{
+ "name": "",
+ "params": {
+  "name": "",
+  "only": [
+   "fwd"
+  ],
+  "prefix": "p2-c-pilot",
+  "data_prefix": "pilot",
+  "plan_suffix": "",
+  "beta_min": 0.1,
+  "n_road_orientations": 21,
+  "seam_ns": 0.005,
+  "trunc": {
+   "default": "radius",
+   "difc": "hybrid",
+   "nic": "hybrid",
+   "hs": "autoh",
+   "lowpt": "autoh",
+   "fwd": "autoh",
+   "offroad": "autoh"
+  },
+  "yields": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/outputs/b1_yields_albert.json",
+  "wait_for_inputs": true,
+  "mb": {
+   "campaign_file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json",
+   "first": 0,
+   "n_files": 40
+  },
+  "znn": {
+   "campaign_glob": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-znn-??.json",
+   "chunk_lo": 0,
+   "chunk_hi": 460
+  },
+  "g4": {
+   "stream": "pilot.g4",
+   "all_per_job": 2000000,
+   "ni_per_job": 12500000,
+   "pool_files_per_job": 2,
+   "chunk0": {
+    "all": 0,
+    "ni": 1000,
+    "hs": 2000,
+    "lowpt": 3000,
+    "fwd": 4000,
+    "offroad": 5000
+   },
+   "pool_file_offset": {
+    "all": 0,
+    "ni": 17,
+    "lowpt": 5,
+    "fwd": 11
+   },
+   "files_per_part": 16,
+   "margin_sigma": 5.0,
+   "margin_yield_err": 3.0,
+   "extra_firings": 0.03
+  },
+  "samples": {
+   "dif": {
+    "classes": [
+     "dif",
+     "k0l"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.dif",
+    "per_job": 40000
+   },
+   "difc": {
+    "classes": [
+     "difc"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.difc",
+    "per_job": 40000
+   },
+   "ni22": {
+    "classes": [
+     "ni22"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni22",
+    "per_job": 40000
+   },
+   "ni30": {
+    "classes": [
+     "ni30"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni30",
+    "per_job": 40000
+   },
+   "ni61": {
+    "classes": [
+     "ni61"
+    ],
+    "events": 1000000,
+    "pass": "ni",
+    "stream": "pilot.c0.ni61",
+    "per_job": 40000
+   },
+   "nix": {
+    "classes": [
+     "nix"
+    ],
+    "events": 4000000,
+    "pass": "all",
+    "stream": "pilot.c0.nix",
+    "per_job": 40000
+   },
+   "nic": {
+    "classes": [
+     "nic"
+    ],
+    "events": 2000000,
+    "pass": "all",
+    "stream": "pilot.c0.nic",
+    "per_job": 36000
+   }
+  },
+  "hs": {
+   "enabled": true,
+   "stream": "pilot.c0.hs",
+   "pool_stream": "pilot.c0.hs.pool",
+   "events": 2000000,
+   "per_job": 30000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "pool",
+   "draw": "weighted",
+   "sel": null,
+   "source": "znn",
+   "znn_files_per_pool_job": 46,
+   "pool_files_per_g4_job": 0,
+   "pool_margin": 0.1
+  },
+  "lowpt": {
+   "enabled": true,
+   "stream": "pilot.c0.lowpt",
+   "events": 200000,
+   "per_job": 30000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "sel": [
+    0.3,
+    0.5,
+    0.0,
+    1.0
+   ],
+   "source": "mb",
+   "pool_margin": 0.1,
+   "g4_per_job": 500000
+  },
+  "fwd": {
+   "enabled": true,
+   "stream": "pilot.c0.fwd",
+   "events": 200000,
+   "per_job": 40000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "sel": [
+    0.5,
+    20.0,
+    1.0,
+    1.5
+   ],
+   "source": "mb",
+   "pool_margin": 0.1,
+   "g4_per_job": 1000000
+  },
+  "offroad": {
+   "enabled": false,
+   "stream": "pilot.c0.offroad",
+   "pool_stream": "pilot.c0.offroad.pool",
+   "events": 7300000,
+   "per_job": 30000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "opool",
+   "draw": "weighted",
+   "sel": null,
+   "source": "znn",
+   "znn_files_per_pool_job": 23,
+   "pool_files_per_g4_job": 1,
+   "pool_margin": 0.1,
+   "g4_per_job": 1000000
+  },
+  "costs": {
+   "g4_ms": {
+    "all": 0.335,
+    "ni": 0.054,
+    "hs": 0.31,
+    "lowpt": 0.42,
+    "fwd": 0.265,
+    "offroad": 0.265
+   },
+   "b1_ms": {
+    "default": 4.8,
+    "dif": 3.7,
+    "difc": 4.9,
+    "ni22": 4.8,
+    "ni30": 4.8,
+    "ni61": 4.4,
+    "nix": 4.0,
+    "nic": 5.8,
+    "hs": 4.5,
+    "lowpt": 4.5,
+    "fwd": 3.2,
+    "offroad": 4.6
+   },
+   "b1_bytes": {
+    "default": 4000.0,
+    "dif": 2575.0,
+    "difc": 4370.0,
+    "ni22": 3305.0,
+    "ni30": 3545.0,
+    "ni61": 3442.0,
+    "nix": 3456.0,
+    "nic": 5312.0,
+    "hs": 3749.0,
+    "lowpt": 3529.0,
+    "fwd": 3385.0,
+    "offroad": 4010.0
+   },
+   "vtx_bytes": 900.0,
+   "job_overhead_s": 5.0,
+   "hsp_s_per_file": 1.0,
+   "hsp_bytes_per_event": {
+    "hs": 30.0,
+    "offroad": 560.0
+   },
+   "rss_mb": {
+    "g4": 1500,
+    "g4_ni": 600,
+    "g4_lowpt": 1300,
+    "g4_fwd": 1300,
+    "g4_offroad": 1000,
+    "b1": 1500,
+    "hsp": 600
+   }
+  },
+  "slots": [
+   1,
+   2,
+   3
+  ]
+ },
+ "blocks": [
+  "fwd"
+ ],
+ "campaigns": [
+  {
+   "campaign": "p2-c-pilot-g4f",
+   "block": "fwd",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-g4f.json",
+   "jobs": 3,
+   "cpu_h": 0.19,
+   "max_job_min": 3.7,
+   "rss_request_mb": 1300,
+   "storage_gb": 0.21,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": true,
+   "size": 2475000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pilot-c0-fwd",
+   "block": "fwd",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-c0-fwd.json",
+   "jobs": 6,
+   "cpu_h": 0.19,
+   "max_job_min": 1.9,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.68,
+   "after": [
+    "p2-c-pilot-g4f"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 200000,
+   "unit": "events"
+  }
+ ],
+ "samples": {
+  "fwd": {
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "events": 200000,
+   "g4_pass": "all",
+   "firings_per_file": 825000,
+   "files_made": 3,
+   "usable_per_file": 67679,
+   "jobs_per_file": 2,
+   "events_per_job": 33839,
+   "files_used": 3,
+   "stream": "pilot.c0.fwd",
+   "handover": "autoh",
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "window": [
+    0.5,
+    20.0,
+    1.0,
+    1.5
+   ],
+   "vertices_per_firing": 0.093755
+  }
+ },
+ "warnings": [],
+ "inputs": {
+  "mb": {
+   "campaign_file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json",
+   "files": [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0000.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0001.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0002.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0003.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0004.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0005.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0006.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0007.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0008.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0009.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0010.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0011.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0012.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0013.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0014.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0015.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0016.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0017.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0018.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0019.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0020.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0021.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0022.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0023.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0024.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0025.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0026.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0027.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0028.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0029.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0030.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0031.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0032.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0033.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0034.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0035.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0036.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0037.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0038.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0039.npz"
+   ],
+   "job_ids": [
+    "p2-c-pilot-mb-0000",
+    "p2-c-pilot-mb-0001",
+    "p2-c-pilot-mb-0002",
+    "p2-c-pilot-mb-0003",
+    "p2-c-pilot-mb-0004",
+    "p2-c-pilot-mb-0005",
+    "p2-c-pilot-mb-0006",
+    "p2-c-pilot-mb-0007",
+    "p2-c-pilot-mb-0008",
+    "p2-c-pilot-mb-0009",
+    "p2-c-pilot-mb-0010",
+    "p2-c-pilot-mb-0011",
+    "p2-c-pilot-mb-0012",
+    "p2-c-pilot-mb-0013",
+    "p2-c-pilot-mb-0014",
+    "p2-c-pilot-mb-0015",
+    "p2-c-pilot-mb-0016",
+    "p2-c-pilot-mb-0017",
+    "p2-c-pilot-mb-0018",
+    "p2-c-pilot-mb-0019",
+    "p2-c-pilot-mb-0020",
+    "p2-c-pilot-mb-0021",
+    "p2-c-pilot-mb-0022",
+    "p2-c-pilot-mb-0023",
+    "p2-c-pilot-mb-0024",
+    "p2-c-pilot-mb-0025",
+    "p2-c-pilot-mb-0026",
+    "p2-c-pilot-mb-0027",
+    "p2-c-pilot-mb-0028",
+    "p2-c-pilot-mb-0029",
+    "p2-c-pilot-mb-0030",
+    "p2-c-pilot-mb-0031",
+    "p2-c-pilot-mb-0032",
+    "p2-c-pilot-mb-0033",
+    "p2-c-pilot-mb-0034",
+    "p2-c-pilot-mb-0035",
+    "p2-c-pilot-mb-0036",
+    "p2-c-pilot-mb-0037",
+    "p2-c-pilot-mb-0038",
+    "p2-c-pilot-mb-0039"
+   ]
+  }
+ },
+ "lanes": {
+  "1": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-g4f.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-c0-fwd.json"
+    ]
+   ],
+   "cpu_h": [
+    0.4
+   ],
+   "wall_h": 0.4
+  },
+  "2": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-g4f.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-c0-fwd.json"
+    ],
+    []
+   ],
+   "cpu_h": [
+    0.4,
+    0
+   ],
+   "wall_h": 0.4
+  },
+  "3": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-g4f.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/p2-c-pilot-c0-fwd.json"
+    ],
+    [],
+    []
+   ],
+   "cpu_h": [
+    0.4,
+    0,
+    0
+   ],
+   "wall_h": 0.4
+  }
+ },
+ "total": {
+  "cpu_h": 0.4,
+  "storage_gb": 0.9,
+  "jobs": 9,
+  "b1_events": 200000,
+  "by_block": {
+   "fwd": {
+    "cpu_h": 0.4,
+    "storage_gb": 0.9,
+    "jobs": 9
+   }
+  }
+ },
+ "hashes": {
+  "scripts": {
+   "p2x_g4prod.py": "4ad5ae2f173e5b66a54be5bad628f26aa8552392c5a2cd7e431324b46c8568ce",
+   "p2x_b1.py": "2a4db016495a677a3cb803303d139b371dcf07b29b6e9481460a3bb12149e5bd",
+   "p2a_hspool.py": "b5c2ef358514cc56888d541442e0f7eca600f81a923668762e294cd2833edb0f",
+   "p2x_common.py": "076b36af5dd02ebd9aa1c3f33904bbc57f7d6df980ac4811aeb527770c551ab1",
+   "p2c_common.py": "8049f805df5a66c0f681b3c3a83ed4ceffc7ec38313bb19b0cfe84db0d8764c3",
+   "p2c_g4vtx.py": "287beb8fd39bab8d797df1e49cb46e42c0fc0681dcb63eb0d9ba36df1bb35958",
+   "p2c_handover.py": "434eca8c2d1d9b0c1af037f4042a4c721ed6e72b099ec0aaccbd57b0569ad157",
+   "p2c_b1.py": "2243df59d09febd4d5c9034a747c371980fd5117ccfbc70abf2fc2bc11ed6a7b",
+   "p2c_campaigns.py": "c618ffd001ee4b1f3795baba3ba81dee12d29fe211df0719c2653f784fad3c97",
+   "p2x_queue.sh": "1ba0ddf772329995af4c216f7cf3a14f4e9596a77fb78c924e02a386f923b95d",
+   "g4/g4hv.cc": "55b434a3032c125d1f93968f03ddaa04bfbb0d68189481f1c9428b4121c94aa6",
+   "g4/g4hv.sh": "f9e768d5a853b00fd26d5ecbf2a4172e26d7012ceae73a9f84eadb78d2a38eaa",
+   "g4/make_geom_g4.py": "7248b01b9ba0c81364cc5b111899c601591074e470896e20e281123ac3b49293",
+   "g4/CMakeLists.txt": "e26b0ce7068c72c8615633550118ecac620e4f808eebb9b871b4fe42d302c206",
+   "p2a_b1_campaigns.py": "0b14e9f8e855c4f46a20e01209663ce1f874ced1c1e090339d58ab89859718aa",
+   "p2x_pilot_campaigns.py": "b59bf2ae2aa7deddaa52936f1ab0f4f8f5f9b3a5f9370ef5dcaf41526d3ad629",
+   "p2x_validate.py": "5a29dcb7d420276182081c647f8a8333ee10346e4efbc8e7112d4a677a801c4e",
+   "p2c_validate.py": "2a6e4b73fcee2ecbaebdca3976314f29f0d6e8499ec17d554c43c10c4250c2da"
+  },
+  "inputs": {
+   "acts/stage4/code/run_chain.py": "bdea0e276e30473908f93b7b23e75d3876e4d6b43893b78077accf21f24aec8d",
+   "acts/stage4/code/s4pu.py": "75e2f06c3280d086b1c4fa007ec49a3f75365ff548ce08ef7bb9e4c7fd818438",
+   "acts/stage4/code/s4geo.py": "753c5f0bdee986fe80f8f47cc54ca6ce62682a64f2235c2b81e70863851034bb",
+   "acts/stage4/code/s4cp.py": "0d15212e56f2fde5e0f57598c2f6de55731d0289c1622689ac1e250b4147eda5",
+   "acts/geometry/cms_phase2_public.json": "5a948cce91b4be94a59d6633de0103e14fda5ed17e0b5df64999d5fdaed2b543",
+   "sim/stage3/code/surfaces_s3.json": "f4c664f608531861cd4a5052f39cc2f2c7492cbfb80d96ad96edf21daa975b40",
+   "acts/scripts/pythia8_tune_CP5.dat": "3002a2a36b8118be0c9c526eff8b4909f6fabb1f70467e170595df21edadddc7",
+   "acts/pixi.lock": "260822560ccde207daaadee952d6934c2e3212d9a0c66be857adc6207196d36b",
+   "../../tools/install/g4/pixi.lock": "edbcef2450615c1db45dc9cbed8000faca9a21f4b0164f8541dd4a76dfe07291"
+  },
+  "yields": "050389290aaa9c31537c4b5e184ff84e2972ea9c58f91002228b33a20e1a4fd4"
+ },
+ "frozen_from_launch": [
+  "phase2_exploration/src/p2x_g4prod.py",
+  "phase2_exploration/src/p2x_b1.py",
+  "phase2_exploration/src/p2a_hspool.py",
+  "phase2_exploration/src/p2x_common.py",
+  "phase2_exploration/src/p2c_common.py",
+  "phase2_exploration/src/p2c_g4vtx.py",
+  "phase2_exploration/src/p2c_handover.py",
+  "phase2_exploration/src/p2c_b1.py",
+  "phase2_exploration/src/p2c_campaigns.py",
+  "phase2_exploration/src/p2x_queue.sh",
+  "phase2_exploration/src/g4/g4hv.cc",
+  "phase2_exploration/src/g4/g4hv.sh",
+  "phase2_exploration/src/g4/make_geom_g4.py",
+  "phase2_exploration/src/g4/CMakeLists.txt",
+  "acts/stage4/code/run_chain.py",
+  "acts/stage4/code/s4pu.py",
+  "acts/stage4/code/s4geo.py",
+  "acts/stage4/code/s4cp.py",
+  "acts/geometry/cms_phase2_public.json",
+  "sim/stage3/code/surfaces_s3.json",
+  "acts/scripts/pythia8_tune_CP5.dat",
+  "acts/pixi.lock",
+  "../../tools/install/g4/pixi.lock"
+ ],
+ "campaign_file_sha256": {
+  "p2-c-pilot-g4f": "8405889683e25a10fd67c8628f88e62a1d40a7655ad6c75c2a502d233f5f62d0",
+  "p2-c-pilot-c0-fwd": "96a60752396680fe07f0afca29e54a0146ea19592d9b14fb6aa3bc733c34651c"
+ },
+ "scripts": {
+  "launch_1slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/LAUNCH_p2-c-pilot_b1_fwd_1slots.sh",
+  "launch_2slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/LAUNCH_p2-c-pilot_b1_fwd_2slots.sh",
+  "launch_3slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/LAUNCH_p2-c-pilot_b1_fwd_3slots.sh",
+  "status": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_optional/STATUS_p2-c-pilot_b1_fwd.sh",
+  "stop": "touch /home/scratch/jdochoa/drivers/STOP.<first campaign of the lane> on its node: the lane ends after its running campaign; running jobs are never killed by it"
+ }
+}

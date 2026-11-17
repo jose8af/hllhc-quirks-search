@@ -1,0 +1,273 @@
+{
+ "campaign": "p2-c-pilot-c0-difc-02",
+ "tier": "regenerable",
+ "data_prefix": "pilot",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2a_b1_campaigns.py b1 (parameters: the PLAN file of this directory -> params)",
+ "description": "pilot: no-pile-up events of sample difc = difc, stream pilot.c0.difc, hand-over hybrid",
+ "expected_hours": 1.49,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "after": [
+  "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1/p2-c-pilot-g4a-02.json"
+ ],
+ "jobs": [
+  {
+   "id": "p2-c-pilot-c0-difc-0064",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0064.npz",
+    "p2-c-pilot-c0-difc-0064.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0064.npz 33265 pilot.c0.difc 64 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0032.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0065",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0065.npz",
+    "p2-c-pilot-c0-difc-0065.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0065.npz 33265 pilot.c0.difc 65 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0032.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0066",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0066.npz",
+    "p2-c-pilot-c0-difc-0066.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0066.npz 33265 pilot.c0.difc 66 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0033.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0067",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0067.npz",
+    "p2-c-pilot-c0-difc-0067.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0067.npz 33265 pilot.c0.difc 67 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0033.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0068",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0068.npz",
+    "p2-c-pilot-c0-difc-0068.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0068.npz 33265 pilot.c0.difc 68 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0034.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0069",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0069.npz",
+    "p2-c-pilot-c0-difc-0069.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0069.npz 33265 pilot.c0.difc 69 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0034.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0070",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0070.npz",
+    "p2-c-pilot-c0-difc-0070.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0070.npz 33265 pilot.c0.difc 70 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0035.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0071",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0071.npz",
+    "p2-c-pilot-c0-difc-0071.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0071.npz 33265 pilot.c0.difc 71 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0035.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0072",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0072.npz",
+    "p2-c-pilot-c0-difc-0072.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0072.npz 33265 pilot.c0.difc 72 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0036.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0073",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0073.npz",
+    "p2-c-pilot-c0-difc-0073.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0073.npz 33265 pilot.c0.difc 73 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0036.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0074",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0074.npz",
+    "p2-c-pilot-c0-difc-0074.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0074.npz 33265 pilot.c0.difc 74 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0037.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0075",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0075.npz",
+    "p2-c-pilot-c0-difc-0075.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0075.npz 33265 pilot.c0.difc 75 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0037.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0076",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0076.npz",
+    "p2-c-pilot-c0-difc-0076.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0076.npz 33265 pilot.c0.difc 76 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0038.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0077",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0077.npz",
+    "p2-c-pilot-c0-difc-0077.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0077.npz 33265 pilot.c0.difc 77 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0038.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0078",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0078.npz",
+    "p2-c-pilot-c0-difc-0078.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0078.npz 33265 pilot.c0.difc 78 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0039.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0079",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0079.npz",
+    "p2-c-pilot-c0-difc-0079.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0079.npz 33265 pilot.c0.difc 79 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0039.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0080",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0080.npz",
+    "p2-c-pilot-c0-difc-0080.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0080.npz 33265 pilot.c0.difc 80 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0040.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0081",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0081.npz",
+    "p2-c-pilot-c0-difc-0081.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0081.npz 33265 pilot.c0.difc 81 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0040.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0082",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0082.npz",
+    "p2-c-pilot-c0-difc-0082.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0082.npz 33265 pilot.c0.difc 82 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0041.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0083",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0083.npz",
+    "p2-c-pilot-c0-difc-0083.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0083.npz 33265 pilot.c0.difc 83 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0041.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0084",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0084.npz",
+    "p2-c-pilot-c0-difc-0084.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0084.npz 33265 pilot.c0.difc 84 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0042.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0085",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0085.npz",
+    "p2-c-pilot-c0-difc-0085.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0085.npz 33265 pilot.c0.difc 85 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0042.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0086",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0086.npz",
+    "p2-c-pilot-c0-difc-0086.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0086.npz 33265 pilot.c0.difc 86 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0043.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0087",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0087.npz",
+    "p2-c-pilot-c0-difc-0087.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0087.npz 33265 pilot.c0.difc 87 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0043.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0088",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0088.npz",
+    "p2-c-pilot-c0-difc-0088.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0088.npz 33265 pilot.c0.difc 88 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0044.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0089",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0089.npz",
+    "p2-c-pilot-c0-difc-0089.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0089.npz 33265 pilot.c0.difc 89 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0044.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0090",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0090.npz",
+    "p2-c-pilot-c0-difc-0090.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0090.npz 33265 pilot.c0.difc 90 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0045.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0091",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0091.npz",
+    "p2-c-pilot-c0-difc-0091.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0091.npz 33265 pilot.c0.difc 91 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0045.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0092",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0092.npz",
+    "p2-c-pilot-c0-difc-0092.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0092.npz 33265 pilot.c0.difc 92 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0046.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0093",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0093.npz",
+    "p2-c-pilot-c0-difc-0093.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0093.npz 33265 pilot.c0.difc 93 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0046.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0094",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0094.npz",
+    "p2-c-pilot-c0-difc-0094.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0094.npz 33265 pilot.c0.difc 94 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0047.difc.npz hybrid 21 0.005"
+  },
+  {
+   "id": "p2-c-pilot-c0-difc-0095",
+   "outputs": [
+    "p2-c-pilot-c0-difc-0095.npz",
+    "p2-c-pilot-c0-difc-0095.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py difc difc $QV2_OUT_DIR/p2-c-pilot-c0-difc-0095.npz 33265 pilot.c0.difc 95 33265 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-g4a-02/000/p2-c-pilot-g4a-0047.difc.npz hybrid 21 0.005"
+  }
+ ]
+}

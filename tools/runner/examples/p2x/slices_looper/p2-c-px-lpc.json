@@ -1,0 +1,31 @@
+{
+ "campaign": "p2-c-px-lpc",
+ "tier": "regenerable",
+ "data_prefix": "p2c/px_validation",
+ "regenerate": "inline (log of Xavier)",
+ "description": "looper gun loose ends: rerun of job nat-008 with the lost-hit record and the Stopped record; diagnostic",
+ "expected_hours": 0.05,
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-px-lpc-nat-008",
+   "outputs": [
+    "p2-c-px-lpc-nat-008.npz",
+    "p2-c-px-lpc-nat-008.truth.npz",
+    "p2-c-px-lpc-nat-008.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lpc-nat-008 --set nat --chunk 8 --start 36000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lpc-diag",
+   "outputs": [
+    "p2-c-px-lpc-diag.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_diag_lp.py $QV2_OUT_DIR/p2-c-px-lpc-diag.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-lpb/000/p2-c-px-lpb-nat-008.truth.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-lpc/000/p2-c-px-lpc-nat-008.truth.npz"
+  }
+ ]
+}

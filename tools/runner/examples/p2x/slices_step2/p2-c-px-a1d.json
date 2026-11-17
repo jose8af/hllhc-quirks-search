@@ -1,0 +1,22 @@
+{
+ "campaign": "p2-c-px-a1d",
+ "tier": "regenerable",
+ "data_prefix": "p2c/px_validation",
+ "regenerate": "inline, see log of Xavier 15:40",
+ "description": "A-1 diagnostic: Fatras parent hits against Geant4 crossings by turn",
+ "expected_hours": 0.05,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-px-a1d-0",
+   "outputs": [
+    "p2-c-px-a1d-0.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_diag_a1.py $QV2_OUT_DIR/p2-c-px-a1d-0.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-difc-time.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-nic-time.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-difc-radius.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-dif-radius.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-nix-radius.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-nix-time.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-lowpt-time.npz /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-tr/000/p2-c-px-tr-hs-time.npz"
+  }
+ ]
+}

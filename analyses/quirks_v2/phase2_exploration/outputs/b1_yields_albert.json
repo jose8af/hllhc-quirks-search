@@ -1,0 +1,229 @@
+{
+ "all": {
+  "n_fire": 6300000,
+  "counts": {
+   "dif": 222514,
+   "difc": 215078,
+   "k0l": 12051,
+   "ni22": 10798,
+   "ni30": 14752,
+   "ni61": 14578,
+   "nix": 211205,
+   "nic": 110025,
+   "conversion": 221190,
+   "other": 162
+  },
+  "sources": [
+   "partition_p2-c-part-0.json (1500000 firings)",
+   "p2-c-px-g4-all-r0 (stream px.g4, chunk 0, 200000 firings)",
+   "p2-c-px-g4-all-d (stream px.g4, chunk 1, 200000 firings)",
+   "p2-c-px-g4-all-big (stream px.g4, chunk 2, 2000000 firings)",
+   "p2-c-pa-g4-all-r0 (stream pa.g4, chunk 0, 200000 firings)",
+   "p2-c-pa-g4-all-d (stream pa.g4, chunk 1, 200000 firings)",
+   "p2-c-pa-g4-all-full (stream pa.g4, chunk 2, 2000000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.315990075,
+   0.314482655,
+   0.3165206695,
+   0.30492197499999996,
+   0.30781629,
+   0.3074539485
+  ],
+  "per_firing": {
+   "dif": 0.03531968253968254,
+   "difc": 0.03413936507936508,
+   "k0l": 0.0019128571428571428,
+   "ni22": 0.001713968253968254,
+   "ni30": 0.0023415873015873016,
+   "ni61": 0.002313968253968254,
+   "nix": 0.03352460317460317,
+   "nic": 0.017464285714285713,
+   "conversion": 0.03510952380952381,
+   "other": 2.5714285714285714e-05
+  },
+  "b1_vertices_per_firing": 0.12873031746031746
+ },
+ "ni": {
+  "n_fire": 23500000,
+  "counts": {
+   "dif": 42915,
+   "difc": 0,
+   "k0l": 2763,
+   "ni22": 40736,
+   "ni30": 54554,
+   "ni61": 54330,
+   "nix": 0,
+   "nic": 0,
+   "conversion": 123569,
+   "other": 1
+  },
+  "sources": [
+   "p2-c-px-g4-ni-r0 (stream px.g4, chunk 100, 1000000 firings)",
+   "p2-c-px-g4-ni-big (stream px.g4, chunk 101, 10000000 firings)",
+   "p2-c-pa-g4-ni-full (stream pa.g4, chunk 101, 12500000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.047450773999999994,
+   0.0478244169,
+   0.047006915360000005
+  ],
+  "per_firing": {
+   "dif": 0.0018261702127659574,
+   "difc": 0.0,
+   "k0l": 0.00011757446808510638,
+   "ni22": 0.0017334468085106382,
+   "ni30": 0.0023214468085106382,
+   "ni61": 0.002311914893617021,
+   "nix": 0.0,
+   "nic": 0.0,
+   "conversion": 0.005258255319148936,
+   "other": 4.25531914893617e-08
+  },
+  "b1_vertices_per_firing": 0.00831055319148936,
+  "note": "only ni22, ni30, ni61 are complete in the 'ni' pass"
+ },
+ "hs": {
+  "n_fire": 2200000,
+  "counts": {
+   "dif": 67622,
+   "difc": 59587,
+   "k0l": 3455,
+   "ni22": 3686,
+   "ni30": 4911,
+   "ni61": 4873,
+   "nix": 70060,
+   "nic": 30449,
+   "conversion": 85183,
+   "other": 35
+  },
+  "sources": [
+   "p2-c-pa-g4-hs-r0 (stream pa.g4, chunk 200, 200000 firings)",
+   "p2-c-pa-g4-hs-full (stream pa.g4, chunk 201, 2000000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.28763525,
+   0.2853895265
+  ],
+  "per_firing": {
+   "dif": 0.030737272727272728,
+   "difc": 0.027085,
+   "k0l": 0.0015704545454545455,
+   "ni22": 0.0016754545454545455,
+   "ni30": 0.0022322727272727273,
+   "ni61": 0.002215,
+   "nix": 0.031845454545454545,
+   "nic": 0.013840454545454545,
+   "conversion": 0.03871954545454546,
+   "other": 1.590909090909091e-05
+  },
+  "b1_vertices_per_firing": 0.11120136363636364
+ },
+ "lowpt": {
+  "n_fire": 1000000,
+  "counts": {
+   "dif": 38055,
+   "difc": 95413,
+   "k0l": 2090,
+   "ni22": 1604,
+   "ni30": 2068,
+   "ni61": 2123,
+   "nix": 28262,
+   "nic": 54775,
+   "conversion": 53727,
+   "other": 3907
+  },
+  "sources": [
+   "p2-c-pa-g4-lowpt-r0 (stream pa.g4, chunk 300, 1000000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.378396096
+  ],
+  "per_firing": {
+   "dif": 0.038055,
+   "difc": 0.095413,
+   "k0l": 0.00209,
+   "ni22": 0.001604,
+   "ni30": 0.002068,
+   "ni61": 0.002123,
+   "nix": 0.028262,
+   "nic": 0.054775,
+   "conversion": 0.053727,
+   "other": 0.003907
+  },
+  "b1_vertices_per_firing": 0.22439
+ },
+ "fwd": {
+  "n_fire": 1000000,
+  "counts": {
+   "dif": 34613,
+   "difc": 1944,
+   "k0l": 1962,
+   "ni22": 2831,
+   "ni30": 3713,
+   "ni61": 3674,
+   "nix": 44170,
+   "nic": 848,
+   "conversion": 48046,
+   "other": 1
+  },
+  "sources": [
+   "p2-c-pa-g4-fwd-r0 (stream pa.g4, chunk 400, 1000000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.24592954300000003
+  ],
+  "per_firing": {
+   "dif": 0.034613,
+   "difc": 0.001944,
+   "k0l": 0.001962,
+   "ni22": 0.002831,
+   "ni30": 0.003713,
+   "ni61": 0.003674,
+   "nix": 0.04417,
+   "nic": 0.000848,
+   "conversion": 0.048046,
+   "other": 1e-06
+  },
+  "b1_vertices_per_firing": 0.093755
+ },
+ "offroad": {
+  "n_fire": 1000000,
+  "counts": {
+   "dif": 20318,
+   "difc": 16008,
+   "k0l": 1061,
+   "ni22": 1407,
+   "ni30": 1863,
+   "ni61": 1899,
+   "nix": 26480,
+   "nic": 8451,
+   "conversion": 51044,
+   "other": 11
+  },
+  "sources": [
+   "p2-c-pa-g4-offroad-r0 (stream pa.g4, chunk 500, 1000000 firings)"
+  ],
+  "cpu_ms_per_firing": [
+   0.24581935900000002
+  ],
+  "per_firing": {
+   "dif": 0.020318,
+   "difc": 0.016008,
+   "k0l": 0.001061,
+   "ni22": 0.001407,
+   "ni30": 0.001863,
+   "ni61": 0.001899,
+   "nix": 0.02648,
+   "nic": 0.008451,
+   "conversion": 0.051044,
+   "other": 1.1e-05
+  },
+  "b1_vertices_per_firing": 0.077487
+ },
+ "validation_jsons": [
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2c/pa_validation/p2-c-pa-val0/000/p2-c-pa-val0-0.json",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2c/pa_validation/p2-c-pa-val1/000/p2-c-pa-val1-g4.json"
+ ],
+ "files_failing_validation_not_used": []
+}

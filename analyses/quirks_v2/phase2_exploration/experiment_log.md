@@ -92,3 +92,6 @@ DECISION: keep β_min = 0.1 as the campaign default for now (it is the variant t
 ALTERNATIVES: raise the cut now without a measurement; filter early hits in the job (new hand-over code).
 CONFIDENCE: MEDIUM — one event; the scan decides.
 FLAG FOR HUMAN: YES — whether a known rate of flagged events is acceptable or the cut moves (addendum P6 names 0.1).
+
+### 2026-11-16 20:27 channel (iii) Albert — launch test: relative output directory
+Tried: `p2a_b1_campaigns.py b1 --outdir tools/runner/examples/p2x/launch_test_b1` (relative). The LAUNCH script then carried relative campaign paths and the queue on the worker died at its first status call (no job started). Fixed: the generator resolves the directory to an absolute path; test repeated and passed on one lane (p2-c-pa-lt-*, 33 of 33 jobs).

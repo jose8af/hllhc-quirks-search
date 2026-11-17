@@ -98,28 +98,6 @@ val1; (4) yields, generator, campaign files, preflight, launch test; (5) B1_READ
   Design change against the plan: a Geant4 pass is cut into campaigns of 16 jobs and each class sample into one chain
   campaign per part (parameter `g4.files_per_part`), so that 2 or 3 lanes share the work (3 lanes: 20 h instead of ≈ 24).
 
-## State for a successor (LAST UPDATE 2026-11-16 17:34)
-
-**Rules that bind (in addition to Xavier's list, his log l.149).** I NEVER launch `p2-c-pilot-*` (the orchestrator does).
-ONE lane on schrodinger while the pilot runs: `p2x_queue.sh schrodinger 1 …`, and never two queues of mine at once (two
-drivers with max 1 each can put 4 jobs on the node). Check `ssh -x schrodinger "pgrep -u jdochoa -af '[q]v2run job' | wc -l"`
-(≤ 2 before adding one) and append a line to `SLOTS.md`. Never edit a script or campaign file a running queue reads.
-`date` for every time. No git, no subagents. Frozen files: list in `tools/runner/examples/p2x/pilot/PLAN_p2-c-pilot_mb-znn.json`.
-
-**Task A (looper rerun)**: waiting for `p2-c-px-lpd` + `p2-c-px-lpds` (queue log `schrodinger:/home/scratch/jdochoa/drivers/p2x_lpd.log`);
-then append the dated section to `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md` from
-`data/p2c/px_validation/p2-c-px-lpds/000/p2-c-px-lpds-0.json`; half-turn corrected fractions from `p2-c-pa-htg` (queued by me).
-
-**Task B (B1 launch-ready)**: code written, NOT yet run on any slice. Next steps in order:
-1. `python3 -I src/p2a_b1_campaigns.py slices` (regenerate), then ONE queue on schrodinger:
-   `p2x_queue.sh schrodinger 1 <slices_pa>/p2-c-pa-{val0,htg,hsp,g4,b1,val1}.json` (≈ 2.7 CPU-h).
-2. Read `data/p2c/pa_validation/p2-c-pa-val{0,1}/000/*.json`; regression: content hashes of `p2-c-pa-g4-reg.*` =
-   those of `p2-c-px-g4-all-r0.*` (`.sha.json` side files); `sha_hits` of `p2-c-pa-b1-reg-difc` = that of
-   `p2-c-px-hy-difc-r0` in `p2-c-px-val3-0.json`.
-3. `python3 -I src/p2a_b1_campaigns.py yields outputs/b1_yields_albert.json <val0 json> <val1-g4 json>`; put measured costs
-   into DEFAULTS['costs'] and the events per chain job into the samples; `… b1` → `tools/runner/examples/p2x/b1/`;
-   `… preflight <PLAN>`; launch test with `--set prefix=p2-c-pa-lt --set data_prefix=p2c/pa_validation` and pa.* streams
-   on a node with room for 2–3 lanes (ask the orchestrator); write `outputs/B1_READY_albert_<stamp>.md`.
 - 2026-11-16 17:59 **Task A done [V: p2-c-px-lpd 40/40 (0.55 CPU-h), p2-c-px-lpds].** Rerun against first run: events recovered 985 (nat) /
   1,003 (flat); finder trials 96,153 → 97,137 / 96,147 → 97,149; seed triple 72,105 → 72,773 / 73,756 → 74,446; seed ≥ T_seed
   33 → 33 / 34 → 34; candidates 0 / 0; every rung 0. Section "Rerun with the transportation-ended tracks included" appended
@@ -140,3 +118,47 @@ then append the dated section to `outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md`
 - 2026-11-16 18:13 Half-turn reference corrected [V: p2-c-pa-htg 2/2, 0.20 CPU-h]: section appended to
   outputs/HALF_TURN_xavier_2026-11-16_16-08.md (crossings 958 → 965 per Z(νν) event, missing 209 → 210; 312 → 314, 91.0 → 91.5
   per minimum-bias interaction; no statement changes).
+- 18:13–20:11 Slices [V; markers]: queue 2 (p2-c-pa-dg1, -hsp 4/4, -g4 12/12, 0.91 CPU-h), queue 3 (p2-c-pa-b1 51/51, 0.65 CPU-h;
+  p2-c-pa-val1 2/2), queue 4 (p2-c-pa-dg2). Regressions pass (g4-reg = px-g4-all-r0 hashes; b1 reg-difc sha_hits = px-hy-difc-r0).
+  val1-g4: 48 of 48 files pass. val1-b1: 47 of 51 pass; 4 fail only "product hit before its own production time" (nix-full,
+  offroad-full, nix-b15, nix-b20): slow protons / deuteron, β 0.13–0.21, Fatras hits 12–35 ns before production; 4 events in
+  4.3×10⁵; β scan 0.1 / 0.15 / 0.2 / 0.3 → 2 / 1 / 2 / 0 events of 25,000. Parent-crossing criterion: ≤ 0.26 % in all 11 sample types.
+  Added after dg1: `n_early_prod` per event in p2x_b1.py, own-production-time check in p2x_validate.py, β and seam in its rerun key,
+  β-scan and nix-xl jobs in the b1 slice file (edited while no job read these scripts).
+- 20:11 `yields` → outputs/b1_yields_albert.json; costs into DEFAULTS; `b1` → tools/runner/examples/p2x/b1/ (39 campaigns, 762 jobs,
+  48.4 CPU-h, 90.8 GB; 26.3 h on 2 lanes, 19.1 h on 3); preflight 0 failed checks. Optional plans → …/p2x/b1_optional/ (fwd, offroad).
+- 20:12–20:23 Launch test on ONE lane (p2-c-pa-lt-*, 33 jobs; SLOTS.md line): first attempt died at once (relative --outdir → relative
+  campaign paths on the worker; fixed: the generator resolves the path); then launch, double-launch guard, STOP, resume, completion,
+  relaunch, STATUS, preflight-on-finished all behave as intended. p2-c-pa-val2 on its 48 outputs: all hard checks pass.
+  The real plan was regenerated after the last generator edit (hashes in the PLAN are the final ones) and preflighted again.
+- 2026-11-16 20:27 outputs/B1_READY_albert_2026-11-16_20-24.md written. CPU of my campaigns [V: markers]: 1.90 CPU-h (p2-c-pa-*), plus Xavier's
+  p2-c-px-lpd 0.55. Pilot markers at 20:24: mb 14 done, znn-00 19 done, 0 failed.
+
+## State for a successor (LAST UPDATE 2026-11-16 20:27)
+
+**Rules that bind (besides Xavier's list, his log l.149).** I NEVER launch `p2-c-pilot-*` (the orchestrator does). ONE lane on
+schrodinger while the pilot runs (`p2x_queue.sh schrodinger 1 …`), never two queues of mine at once; check
+`ssh -x schrodinger "pgrep -u jdochoa -af '[q]v2run job' | wc -l"` (≤ 2) and append a line to SLOTS.md. Never edit a script or
+campaign file a running queue reads. Give the generator ABSOLUTE paths. `date` for every time. No git, no subagents.
+Frozen (pilot part 1): list in tools/runner/examples/p2x/pilot/PLAN_p2-c-pilot_mb-znn.json. **Once the B1 plan is launched, the
+files of its `frozen_from_launch` are frozen too (p2x_g4prod.py, p2x_b1.py, p2a_hspool.py, …): do not regenerate or edit.**
+
+**Nothing of mine is running.** Task A is done (LOOPER_GUN and HALF_TURN notes have their appended sections).
+
+**Task B: launch-ready except two points.** Read outputs/B1_READY_albert_2026-11-16_20-24.md (it has every number and command).
+1. DECISION PENDING (orchestrator / user): the slow-proton residue (§2 of B1_READY): keep β_min 0.1 with events flagged by
+   `n_early_prod` (as generated), or another cut (regenerate: `--set beta_min=… --set unvalidated_ok=true`, then a full-size NI
+   slice + validation), or a hit filter (new code).
+2. TO DO on the morning of 17 Nov: 2- and 3-lane launch test. Ask the orchestrator for 3 slots for 20 min, then
+   `python3 -I src/p2a_b1_campaigns.py b1 --params <abs>/launch_test_b1/params_lt.json --set name=t2 --outdir <abs>/launch_test_b1_t2`,
+   preflight, `bash …/LAUNCH_p2-c-pa-lt-t2_b1_2slots.sh NODE` (then a third set, name=t3, for the 3-lane script), STATUS, and a
+   validation job as tools/runner/examples/p2x/slices_pa/p2-c-pa-val2.json. Record the result in B1_READY §6.
+3. If addendum v4's review changes sizes / populations: B1_READY §7 (regenerate; preflight). After ANY regeneration the PLAN,
+   campaign files and scripts in tools/runner/examples/p2x/b1/ are rewritten: tell the orchestrator.
+4. After the launch (by the orchestrator): validate one job per stream (B1_READY §5 step 6).
+
+**Files.** Code: src/p2a_hspool.py, p2a_b1_campaigns.py, p2a_diag_early.py (mine); p2x_g4prod.py, p2x_b1.py, p2x_validate.py
+(Xavier's, extended; CHAIN_PROVENANCE.md). Yields: outputs/b1_yields_albert.json. Campaign files: tools/runner/examples/p2x/
+{b1, b1_optional, launch_test_b1, slices_pa}. Slice data: data/p2c/pa_validation/<campaign>/000/; validation JSONs
+p2-c-pa-val0-0.json, p2-c-pa-val1-{g4,b1}.json, p2-c-pa-val2-0.json; diagnostics p2-c-pa-dg{1,2}-0.json.
+Queue logs: schrodinger:/home/scratch/jdochoa/drivers/p2a_slices_{1..5}.log, p2-c-pa-lt_b1_1slots_lane0.log.

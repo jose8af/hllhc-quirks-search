@@ -82,29 +82,40 @@ DEFAULTS = {
         'ni30': {'classes': ['ni30'], 'events': 1_000_000, 'pass': 'ni', 'stream': 'pilot.c0.ni30', 'per_job': 40_000},
         'ni61': {'classes': ['ni61'], 'events': 1_000_000, 'pass': 'ni', 'stream': 'pilot.c0.ni61', 'per_job': 40_000},
         'nix':  {'classes': ['nix'], 'events': 4_000_000, 'pass': 'all', 'stream': 'pilot.c0.nix', 'per_job': 40_000},
-        'nic':  {'classes': ['nic'], 'events': 2_000_000, 'pass': 'all', 'stream': 'pilot.c0.nic', 'per_job': 40_000},
+        'nic':  {'classes': ['nic'], 'events': 2_000_000, 'pass': 'all', 'stream': 'pilot.c0.nic', 'per_job': 36_000},
     },
     # mixed samples: every B1 class in its natural mixture, class recorded per event
     # hs = H1 of ADD3 P2: parents = in-road pool-phase-space hadrons of the Z(nunu) pilot events, drawn ~ w_v1
-    'hs': {'enabled': True, 'stream': 'pilot.c0.hs', 'pool_stream': 'pilot.c0.hs.pool', 'events': 2_000_000, 'per_job': 40_000,
+    'hs': {'enabled': True, 'stream': 'pilot.c0.hs', 'pool_stream': 'pilot.c0.hs.pool', 'events': 2_000_000, 'per_job': 30_000,
            'classes': B1_CLASSES, 'pool_prefix': 'pool', 'draw': 'weighted', 'sel': None, 'source': 'znn',
            'znn_files_per_pool_job': 46, 'pool_files_per_g4_job': 0, 'pool_margin': 0.10},      # 0 = every pool file
     # ADD3 P2 "Lower pT edge": alarm sample of 2e5 vertices in the draft (decision D4 may make it a term: 1.0-2.1e7)
-    'lowpt': {'enabled': True, 'stream': 'pilot.c0.lowpt', 'events': 200_000, 'per_job': 40_000, 'classes': B1_CLASSES,
+    'lowpt': {'enabled': True, 'stream': 'pilot.c0.lowpt', 'events': 200_000, 'per_job': 30_000, 'classes': B1_CLASSES,
               'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.3, 0.5, 0.0, 1.0], 'source': 'mb', 'pool_margin': 0.10,
               'g4_per_job': 500_000},            # these parents curl: 1,793 MB at 1e6 firings (p2-c-pa-g4-lowpt-r0)
     # ADD3 P2 "|eta| > 1": no sample in the draft
     'fwd': {'enabled': False, 'stream': 'pilot.c0.fwd', 'events': 200_000, 'per_job': 40_000, 'classes': B1_CLASSES,
-            'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.5, 20.0, 1.0, 1.5], 'source': 'mb', 'pool_margin': 0.10},
+            'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.5, 20.0, 1.0, 1.5], 'source': 'mb', 'pool_margin': 0.10,
+            'g4_per_job': 1_000_000},
     # ADD3 D2 "second stratum": hard-scatter hadrons outside the road (7.3e6 vertices as a term; not in the draft)
     'offroad': {'enabled': False, 'stream': 'pilot.c0.offroad', 'pool_stream': 'pilot.c0.offroad.pool', 'events': 7_300_000,
-                'per_job': 40_000, 'classes': B1_CLASSES, 'pool_prefix': 'opool', 'draw': 'weighted', 'sel': None,
-                'source': 'znn', 'znn_files_per_pool_job': 23, 'pool_files_per_g4_job': 1, 'pool_margin': 0.10},
+                'per_job': 30_000, 'classes': B1_CLASSES, 'pool_prefix': 'opool', 'draw': 'weighted', 'sel': None,
+                'source': 'znn', 'znn_files_per_pool_job': 23, 'pool_files_per_g4_job': 1, 'pool_margin': 0.10,
+                'g4_per_job': 1_000_000},
     # unit costs for the CPU, wall and storage estimates (measured on the slices p2-c-pa-*; see B1_READY)
-    'costs': {'g4_ms': {'all': 0.338, 'ni': 0.054, 'hs': 0.40, 'lowpt': 0.40, 'fwd': 0.40, 'offroad': 0.40},
-              'b1_ms': {'default': 4.5}, 'b1_bytes': {'default': 3500.0}, 'vtx_bytes': 800.0, 'job_overhead_s': 12.0,
-              'hsp_s_per_file': 3.0, 'hsp_bytes_per_event': {'hs': 30.0, 'offroad': 800.0},
-              'rss_mb': {'g4': 1500, 'g4_ni': 600, 'b1': 1500, 'hsp': 1500}},
+    # all-in CPU per unit (job total / units) of the full-size slice jobs [V: markers of p2-c-pa-g4, p2-c-pa-b1, p2-c-pa-hsp]:
+    # g4 'all' 657 s / 2e6 firings, 1,204 MB; 'ni' 662 s / 1.25e7, 417 MB; hs 609 s / 2e6, 903 MB; lowpt 414 s / 1e6, 1,793 MB;
+    # fwd 262 s / 1e6, 921 MB; offroad 262 s / 1e6, 695 MB.  chain, 25,000 events: dif 92.5 s 519 MB; difc 120 s 790 MB
+    # (38,000: 185 s, 1,117 MB); ni22 (15,000) 72 s; ni30 120 s; ni61 111 s; nix 99 s 606 MB; nic 144 s 865 MB; hs 113 s 933 MB;
+    # lowpt 113 s 943 MB; fwd 80 s 634 MB; offroad 115 s 717 MB.  bytes per event from the file sizes.
+    'costs': {'g4_ms': {'all': 0.335, 'ni': 0.054, 'hs': 0.31, 'lowpt': 0.42, 'fwd': 0.265, 'offroad': 0.265},
+              'b1_ms': {'default': 4.8, 'dif': 3.7, 'difc': 4.9, 'ni22': 4.8, 'ni30': 4.8, 'ni61': 4.4, 'nix': 4.0, 'nic': 5.8,
+                        'hs': 4.5, 'lowpt': 4.5, 'fwd': 3.2, 'offroad': 4.6},
+              'b1_bytes': {'default': 4000.0, 'dif': 2575.0, 'difc': 4370.0, 'ni22': 3305.0, 'ni30': 3545.0, 'ni61': 3442.0,
+                           'nix': 3456.0, 'nic': 5312.0, 'hs': 3749.0, 'lowpt': 3529.0, 'fwd': 3385.0, 'offroad': 4010.0},
+              'vtx_bytes': 900.0, 'job_overhead_s': 5.0,
+              'hsp_s_per_file': 1.0, 'hsp_bytes_per_event': {'hs': 30.0, 'offroad': 560.0},
+              'rss_mb': {'g4': 1500, 'g4_ni': 600, 'g4_lowpt': 1300, 'g4_fwd': 1300, 'g4_offroad': 1000, 'b1': 1500, 'hsp': 600}},
     'slots': [1, 2, 3],
 }
 
@@ -348,7 +359,7 @@ def b1(p, outdir=None):
     assert set(only) <= set(['class'] + list(MIXED)), f'only: {only}'
     for k in only:
         assert k == 'class' or p[k].get('enabled'), f'block {k} is in `only` but not enabled'
-    outdir = Path(outdir) if outdir else CAMP_DIR / 'b1'
+    outdir = Path(outdir).resolve() if outdir else CAMP_DIR / 'b1'        # absolute: the queue runs on a worker
     me = f'python3 -I {SRC}/p2a_b1_campaigns.py b1 (parameters: the PLAN file of this directory -> params)'
     Y = json.loads(Path(p['yields']).read_text())
     cost = p['costs']; ovh = cost['job_overhead_s']; g4 = p['g4']
@@ -464,8 +475,7 @@ def b1(p, outdir=None):
                                                 campaign_files=sorted({x[3] for x in zall}))
         else:
             pools_all = None; after_ext = [mb_cf]
-        per_job = m.get('g4_per_job') or g4['all_per_job']
-        assert per_job <= g4['all_per_job']
+        per_job = min(m.get('g4_per_job') or g4['all_per_job'], g4['all_per_job'])
         n_fire_total = m['events'] / (nm / y['n_fire']) * 1.05
         nj = max(1, math.ceil(n_fire_total / per_job))
         while True:                              # nj jobs of equal size whose files hold `events` usable vertices

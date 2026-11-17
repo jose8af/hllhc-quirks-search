@@ -1,0 +1,375 @@
+{
+ "campaign": "p2-c-px-lp",
+ "tier": "regenerable",
+ "data_prefix": "p2c/px_validation",
+ "regenerate": "inline (log of Xavier)",
+ "description": "proper looper gun: 1e5 events per set (nat, flat) through Geant4 + Inject + v1 C'0 job",
+ "expected_hours": 1.5,
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-px-lp-nat-001",
+   "outputs": [
+    "p2-c-px-lp-nat-001.npz",
+    "p2-c-px-lp-nat-001.truth.npz",
+    "p2-c-px-lp-nat-001.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-001 --set nat --chunk 1 --start 1000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-001",
+   "outputs": [
+    "p2-c-px-lp-flat-001.npz",
+    "p2-c-px-lp-flat-001.truth.npz",
+    "p2-c-px-lp-flat-001.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-001 --set flat --chunk 1 --start 1000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-002",
+   "outputs": [
+    "p2-c-px-lp-nat-002.npz",
+    "p2-c-px-lp-nat-002.truth.npz",
+    "p2-c-px-lp-nat-002.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-002 --set nat --chunk 2 --start 6000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-002",
+   "outputs": [
+    "p2-c-px-lp-flat-002.npz",
+    "p2-c-px-lp-flat-002.truth.npz",
+    "p2-c-px-lp-flat-002.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-002 --set flat --chunk 2 --start 6000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-003",
+   "outputs": [
+    "p2-c-px-lp-nat-003.npz",
+    "p2-c-px-lp-nat-003.truth.npz",
+    "p2-c-px-lp-nat-003.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-003 --set nat --chunk 3 --start 11000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-003",
+   "outputs": [
+    "p2-c-px-lp-flat-003.npz",
+    "p2-c-px-lp-flat-003.truth.npz",
+    "p2-c-px-lp-flat-003.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-003 --set flat --chunk 3 --start 11000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-004",
+   "outputs": [
+    "p2-c-px-lp-nat-004.npz",
+    "p2-c-px-lp-nat-004.truth.npz",
+    "p2-c-px-lp-nat-004.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-004 --set nat --chunk 4 --start 16000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-004",
+   "outputs": [
+    "p2-c-px-lp-flat-004.npz",
+    "p2-c-px-lp-flat-004.truth.npz",
+    "p2-c-px-lp-flat-004.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-004 --set flat --chunk 4 --start 16000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-005",
+   "outputs": [
+    "p2-c-px-lp-nat-005.npz",
+    "p2-c-px-lp-nat-005.truth.npz",
+    "p2-c-px-lp-nat-005.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-005 --set nat --chunk 5 --start 21000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-005",
+   "outputs": [
+    "p2-c-px-lp-flat-005.npz",
+    "p2-c-px-lp-flat-005.truth.npz",
+    "p2-c-px-lp-flat-005.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-005 --set flat --chunk 5 --start 21000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-006",
+   "outputs": [
+    "p2-c-px-lp-nat-006.npz",
+    "p2-c-px-lp-nat-006.truth.npz",
+    "p2-c-px-lp-nat-006.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-006 --set nat --chunk 6 --start 26000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-006",
+   "outputs": [
+    "p2-c-px-lp-flat-006.npz",
+    "p2-c-px-lp-flat-006.truth.npz",
+    "p2-c-px-lp-flat-006.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-006 --set flat --chunk 6 --start 26000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-007",
+   "outputs": [
+    "p2-c-px-lp-nat-007.npz",
+    "p2-c-px-lp-nat-007.truth.npz",
+    "p2-c-px-lp-nat-007.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-007 --set nat --chunk 7 --start 31000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-007",
+   "outputs": [
+    "p2-c-px-lp-flat-007.npz",
+    "p2-c-px-lp-flat-007.truth.npz",
+    "p2-c-px-lp-flat-007.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-007 --set flat --chunk 7 --start 31000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-008",
+   "outputs": [
+    "p2-c-px-lp-nat-008.npz",
+    "p2-c-px-lp-nat-008.truth.npz",
+    "p2-c-px-lp-nat-008.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-008 --set nat --chunk 8 --start 36000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-008",
+   "outputs": [
+    "p2-c-px-lp-flat-008.npz",
+    "p2-c-px-lp-flat-008.truth.npz",
+    "p2-c-px-lp-flat-008.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-008 --set flat --chunk 8 --start 36000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-009",
+   "outputs": [
+    "p2-c-px-lp-nat-009.npz",
+    "p2-c-px-lp-nat-009.truth.npz",
+    "p2-c-px-lp-nat-009.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-009 --set nat --chunk 9 --start 41000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-009",
+   "outputs": [
+    "p2-c-px-lp-flat-009.npz",
+    "p2-c-px-lp-flat-009.truth.npz",
+    "p2-c-px-lp-flat-009.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-009 --set flat --chunk 9 --start 41000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-010",
+   "outputs": [
+    "p2-c-px-lp-nat-010.npz",
+    "p2-c-px-lp-nat-010.truth.npz",
+    "p2-c-px-lp-nat-010.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-010 --set nat --chunk 10 --start 46000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-010",
+   "outputs": [
+    "p2-c-px-lp-flat-010.npz",
+    "p2-c-px-lp-flat-010.truth.npz",
+    "p2-c-px-lp-flat-010.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-010 --set flat --chunk 10 --start 46000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-011",
+   "outputs": [
+    "p2-c-px-lp-nat-011.npz",
+    "p2-c-px-lp-nat-011.truth.npz",
+    "p2-c-px-lp-nat-011.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-011 --set nat --chunk 11 --start 51000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-011",
+   "outputs": [
+    "p2-c-px-lp-flat-011.npz",
+    "p2-c-px-lp-flat-011.truth.npz",
+    "p2-c-px-lp-flat-011.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-011 --set flat --chunk 11 --start 51000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-012",
+   "outputs": [
+    "p2-c-px-lp-nat-012.npz",
+    "p2-c-px-lp-nat-012.truth.npz",
+    "p2-c-px-lp-nat-012.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-012 --set nat --chunk 12 --start 56000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-012",
+   "outputs": [
+    "p2-c-px-lp-flat-012.npz",
+    "p2-c-px-lp-flat-012.truth.npz",
+    "p2-c-px-lp-flat-012.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-012 --set flat --chunk 12 --start 56000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-013",
+   "outputs": [
+    "p2-c-px-lp-nat-013.npz",
+    "p2-c-px-lp-nat-013.truth.npz",
+    "p2-c-px-lp-nat-013.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-013 --set nat --chunk 13 --start 61000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-013",
+   "outputs": [
+    "p2-c-px-lp-flat-013.npz",
+    "p2-c-px-lp-flat-013.truth.npz",
+    "p2-c-px-lp-flat-013.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-013 --set flat --chunk 13 --start 61000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-014",
+   "outputs": [
+    "p2-c-px-lp-nat-014.npz",
+    "p2-c-px-lp-nat-014.truth.npz",
+    "p2-c-px-lp-nat-014.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-014 --set nat --chunk 14 --start 66000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-014",
+   "outputs": [
+    "p2-c-px-lp-flat-014.npz",
+    "p2-c-px-lp-flat-014.truth.npz",
+    "p2-c-px-lp-flat-014.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-014 --set flat --chunk 14 --start 66000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-015",
+   "outputs": [
+    "p2-c-px-lp-nat-015.npz",
+    "p2-c-px-lp-nat-015.truth.npz",
+    "p2-c-px-lp-nat-015.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-015 --set nat --chunk 15 --start 71000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-015",
+   "outputs": [
+    "p2-c-px-lp-flat-015.npz",
+    "p2-c-px-lp-flat-015.truth.npz",
+    "p2-c-px-lp-flat-015.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-015 --set flat --chunk 15 --start 71000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-016",
+   "outputs": [
+    "p2-c-px-lp-nat-016.npz",
+    "p2-c-px-lp-nat-016.truth.npz",
+    "p2-c-px-lp-nat-016.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-016 --set nat --chunk 16 --start 76000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-016",
+   "outputs": [
+    "p2-c-px-lp-flat-016.npz",
+    "p2-c-px-lp-flat-016.truth.npz",
+    "p2-c-px-lp-flat-016.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-016 --set flat --chunk 16 --start 76000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-017",
+   "outputs": [
+    "p2-c-px-lp-nat-017.npz",
+    "p2-c-px-lp-nat-017.truth.npz",
+    "p2-c-px-lp-nat-017.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-017 --set nat --chunk 17 --start 81000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-017",
+   "outputs": [
+    "p2-c-px-lp-flat-017.npz",
+    "p2-c-px-lp-flat-017.truth.npz",
+    "p2-c-px-lp-flat-017.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-017 --set flat --chunk 17 --start 81000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-018",
+   "outputs": [
+    "p2-c-px-lp-nat-018.npz",
+    "p2-c-px-lp-nat-018.truth.npz",
+    "p2-c-px-lp-nat-018.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-018 --set nat --chunk 18 --start 86000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-018",
+   "outputs": [
+    "p2-c-px-lp-flat-018.npz",
+    "p2-c-px-lp-flat-018.truth.npz",
+    "p2-c-px-lp-flat-018.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-018 --set flat --chunk 18 --start 86000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-019",
+   "outputs": [
+    "p2-c-px-lp-nat-019.npz",
+    "p2-c-px-lp-nat-019.truth.npz",
+    "p2-c-px-lp-nat-019.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-019 --set nat --chunk 19 --start 91000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-019",
+   "outputs": [
+    "p2-c-px-lp-flat-019.npz",
+    "p2-c-px-lp-flat-019.truth.npz",
+    "p2-c-px-lp-flat-019.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-019 --set flat --chunk 19 --start 91000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-nat-020",
+   "outputs": [
+    "p2-c-px-lp-nat-020.npz",
+    "p2-c-px-lp-nat-020.truth.npz",
+    "p2-c-px-lp-nat-020.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-nat-020 --set nat --chunk 20 --start 96000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  },
+  {
+   "id": "p2-c-px-lp-flat-020",
+   "outputs": [
+    "p2-c-px-lp-flat-020.npz",
+    "p2-c-px-lp-flat-020.truth.npz",
+    "p2-c-px-lp-flat-020.summary.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2x_looper_job.py --id p2-c-px-lp-flat-020 --set flat --chunk 20 --start 96000 --n 5000 --pool /nfs/cajuela/jdochoa/quirks_v2/data/p2c/px_validation/p2-c-px-ht/000/p2-c-px-ht-mb.npz"
+  }
+ ]
+}

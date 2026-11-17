@@ -1,7 +1,7 @@
 """p2a_diag_early.py -- diagnostic (Albert, 2026-11-16): the product hits EARLIER than the Geant4 vertex time that the
 hard check of p2c_validate.one counts (found in 25,000-event files of p2-c-px-b1: 6 in nix-big, 1 in nic-big).
 
-  <acts python> p2a_diag_early.py <out.json> <b1 file.npz> [...]
+  <acts python> p2a_diag_early.py <out.json> [own] <b1 file.npz> [...]   (own: hits earlier than their product's OWN production time)
 
 Per offending hit: the hit (surface, time, barcode, truth radius), the vertex (time, radius, z, volume, process, parent),
 the Fatras input rows of the event (inj: vsec, pdg, production point and time, momentum, beta) and the Geant4 products.
@@ -32,10 +32,17 @@ def one(path):
         btl = np.array([PV.SID_NAME[int(s)] == 'BTL' for s in h[:, col['sid']]], bool)
         n_prod_hits += int((pr & ~btl).sum())
         dts += list(h[pr & ~btl, col['t']] - g[vc['t']])
-        bad = np.nonzero(pr & ~btl & (h[:, col['t']] < g[vc['t']] - 0.010))[0]
+        P = inj[io[i]:io[i + 1]]
+        if OWN:                                   # hits earlier than the production time of their own input row
+            cnt = {}; tprod = {}
+            for r in P:
+                v = int(r[1]); cnt[v] = cnt.get(v, 0) + 1; tprod[(v, cnt[v])] = r[8]
+            tp = np.array([tprod.get((int(a), int(b)), -1e9) for a, b in zip(h[:, col['vsec']], h[:, col['particle']])])
+            bad = np.nonzero(pr & ~btl & (h[:, col['t']] < tp - 0.010))[0]
+        else:
+            bad = np.nonzero(pr & ~btl & (h[:, col['t']] < g[vc['t']] - 0.010))[0]
         if not len(bad):
             continue
-        P = inj[io[i]:io[i + 1]]
         rows = []
         for r in P:
             p = float(np.sqrt(r[9] ** 2 + r[10] ** 2 + r[11] ** 2)); e = float(np.hypot(p, r[4]))
@@ -61,8 +68,11 @@ def one(path):
                 n_dt_below={str(c): int((dts < c).sum()) for c in (-1.0, -0.1, -0.03, -0.01, -0.003, 0.0)}, events=out)
 
 
+OWN = False
+
 if __name__ == '__main__':
-    res = [one(f) for f in sys.argv[2:]]
+    OWN = sys.argv[2] == 'own'
+    res = [one(f) for f in sys.argv[2:] if f != 'own']
     Path(sys.argv[1] + '.tmp').write_text(json.dumps(res, indent=1)); Path(sys.argv[1] + '.tmp').replace(sys.argv[1])
     for r in res:
         log.info('%s', json.dumps({k: v for k, v in r.items() if k != 'events'}))

@@ -1,0 +1,22 @@
+{
+ "prefix": "p2-c-pa-lt",
+ "data_prefix": "p2c/pa_validation",
+ "plan_suffix": "",
+ "wait_for_inputs": false,
+ "mb": {"first": 0, "n_files": 2},
+ "znn": {"chunk_lo": 0, "chunk_hi": 4},
+ "g4": {"stream": "pa.lt.g4", "all_per_job": 100000, "ni_per_job": 600000, "files_per_part": 1, "pool_files_per_job": 1},
+ "samples": {
+  "dif":  {"events": 5000, "stream": "pa.lt.c0.dif", "per_job": 2000},
+  "difc": {"events": 5000, "stream": "pa.lt.c0.difc", "per_job": 2000},
+  "ni22": {"events": 1200, "stream": "pa.lt.c0.ni22", "per_job": 2000},
+  "ni30": {"events": 1200, "stream": "pa.lt.c0.ni30", "per_job": 2000},
+  "ni61": {"events": 1200, "stream": "pa.lt.c0.ni61", "per_job": 2000},
+  "nix":  {"events": 5000, "stream": "pa.lt.c0.nix", "per_job": 2000},
+  "nic":  {"events": 2500, "stream": "pa.lt.c0.nic", "per_job": 2000}
+ },
+ "hs": {"stream": "pa.lt.c0.hs", "pool_stream": "pa.lt.c0.hs.pool", "events": 3000, "per_job": 2000, "znn_files_per_pool_job": 2},
+ "lowpt": {"stream": "pa.lt.c0.lowpt", "events": 2000, "per_job": 2000},
+ "fwd": {"stream": "pa.lt.c0.fwd"},
+ "offroad": {"stream": "pa.lt.c0.offroad", "pool_stream": "pa.lt.c0.offroad.pool"}
+}

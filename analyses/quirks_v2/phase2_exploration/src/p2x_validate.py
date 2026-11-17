@@ -294,6 +294,12 @@ def chk_b1(path, z, m, part):
                      and r['parent_in_phase_space'] and r['road_offset_ok'] and r['hits_all_gun'] and r['evt_nan'] == 0
                      and r['provenance'] and r['mean_injected_slow'] == 0)
     r['hard_without_a1'] = r['hard']
+    # the same verdict with the early-product-hit check left out (the events are flagged per event in new files): information
+    r['hard_except_early_product_hits'] = bool(r['hard'] or (r['product_hits_earlier_than_own_production'] > 0 and bool(
+        r['v41_pass'] and r['nan_hits'] == 0 and r['offsets_ok'] and r['seeds_distinct'] and radius_ok
+        and r['product_hits_without_input_row'] == 0 and r['class_recomputed_equal'] and r['class_in_sample']
+        and r['first_arc_equal'] and r['parent_in_phase_space'] and r['road_offset_ok'] and r['hits_all_gun']
+        and r['evt_nan'] == 0 and r['provenance'] and r['mean_injected_slow'] == 0)) and r['a1_frac_g4_without_fatras'] <= A1_MAX)
     r['hard'] = bool(r['hard'] and r['a1_ok'])
     return r
 
