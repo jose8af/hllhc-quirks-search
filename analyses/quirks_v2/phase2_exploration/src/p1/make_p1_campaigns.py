@@ -30,7 +30,7 @@ def main():
     sets = [(p, 1.0) for p in POINTS] + [('e500', 5.0), ('e1000', 5.0), ('e500', 3.0), ('e1000', 3.0)]
     for p, lam in sets:
         sh, pre, m, sp = POINTS[p]
-        name = f'p1ev-{p}-L{lam:g}'
+        name = f'p1ev-{p}-l{lam:g}'
         ev.append(job(name, f'{PY} {SRC}/make_p1_events.py $QV2_OUT_DIR/{name}.npz {INC}/{sh}/{pre} {m} {sp} {lam}',
                       [f'{name}.npz']))
     runs = []
@@ -38,16 +38,16 @@ def main():
         for k, i0 in enumerate(range(0, 485, 60)):
             n = min(60, 485 - i0)
             name = f'bstar5-{p}-{k:02d}'
-            runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-L5.npz bstar 5.0 {i0} {n}',
+            runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-l5.npz bstar 5.0 {i0} {n}',
                             [f'{name}.json']))
     for p in POINTS:                                              # P1-b at 1 keV and P1-c: 300 events per point
         name = f'bstar1-{p}'
-        runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-L1.npz bstar 1.0 0 300',
+        runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-l1.npz bstar 1.0 0 300',
                         [f'{name}.json']))
     for p in ('e500', 'e1000'):                                   # P1-a floor test 2 and the dd diagnostic
         for kern in ('nominal', 't44', 'dd'):
             name = f'floor-{p}-{kern}'
-            runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-L3.npz floor 3.0 0 40 '
+            runs.append(job(name, f'{PY} {SRC}/p1_runs.py $QV2_OUT_DIR/{name}.json {EV}/p1ev-{p}-l3.npz floor 3.0 0 40 '
                                   f'--kernel {kern} --s 0.1111111111 --fr 1,0.5,0.4,0.25,0.05', [f'{name}.json']))
     json.dump(dict(campaign='p2-b-p1-ev', tier='regenerable', expected_hours=0.5,
                    description='channel (ii) P1: new event sets (|eta_pair| < 1, pT(QQ) > 200, w > 0) from p2-b-s2c-inc, '

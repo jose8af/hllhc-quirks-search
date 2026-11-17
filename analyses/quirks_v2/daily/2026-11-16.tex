@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=3pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\est}{\textsc{est}}
+\newcommand{\ver}{\textsc{ver}}
+\title{HL-LHC electroweak quirks, study v2\\[2pt]\large Daily report, day 0}
+\author{Private work (simulation). Public information only.}
+\date{16 November 2026, 19:20 (day 0 of the approved calendar)}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Tags.} \ver{} = measured or read in this study, with the campaign or file in the repository.
+\est{} = estimate. All reach and background numbers are \est{} on v1 placeholder efficiencies. No v2 signal
+efficiency has been computed; six v1 signal counts of the reproduction test stay sealed.
+
+\section{Summary}
+\begin{itemize}
+\item Gate A was passed this morning with every default; Phase 2 started at midday.
+\item \textbf{Waiting for you:} approval of strategy addendum 1 (decisions D1--D9), by 18 November about 14:00,
+      and a small exception to the 30-minute job rule (Section~\ref{sec:dec}).
+\item \textbf{Main finding of the day:} the fast simulation inherited from v1 records no hit beyond half a turn of
+      any particle. Against Geant4, 25.2\,\% of the hits of a Z($\nu\nu$) event and 37.5\,\% of a pile-up
+      interaction are missing (\ver, lower bounds). v1's looper test could not have counted anything.
+\item The first part of the pilot (minimum-bias pool and Z($\nu\nu$)) runs since 16:39 with no failed job.
+\item The expected outcome is unchanged: a pause at day 15 with a background of about $10^{4}$ events (\est).
+\end{itemize}
+
+\section{What finished today}
+\begin{enumerate}
+\item \textbf{Phase 1 review} passed in cycle 10; \textbf{Gate A} answered: 4{,}609 CPU-h, stop-and-ask at
+      5{,}992 CPU-h, about 60 days.
+\item \textbf{Unit costs measured} (\ver), replacing the guesses of the strategy:
+\begin{center}
+\begin{tabular}{L{7.4cm}L{3.2cm}L{3.2cm}}
+\toprule
+Unit & Measured & Assumed \\
+\midrule
+Hard-scatter event without pile-up, Z($\nu\nu$) / W($\tau\nu$) / $t\bar t$ & 0.13 / 0.17 / 0.57 s & 0.045 s \\
+$t\bar t$ with forced decays & 0.33 s & -- \\
+Pile-up event, nominal / double density & 57--59 / 195 CPU-s & 60.4 / 206 CPU-s \\
+Plane finder, one trial & 11.3 s & $0.77\times11.7$ s \\
+Geant4, one particle through the tracker & 0.41 ms & 0.134 ms \\
+Signal generation, one event & 41--46 ms & 50 ms \\
+Stored pre-merge candidates, per trial & 34 MB & 3.6--14 MB \\
+\bottomrule
+\end{tabular}
+\end{center}
+\item \textbf{Theory inputs.} The NLO calculation passes its three validations (\ver): model identity to
+      0.024\,\%; agreement with an independent public code run by us to 0.2\,\% (no published fixed-order number
+      exists, and this qualifier travels with the verdict); differential K-factor against Drell--Yan. K-factors:
+      1.163, 1.154, 1.178, 1.206 at 200, 500, 1000, 1500~GeV. PDF uncertainty with PDF4LHC21: $\pm2.1\,\%$ at
+      200~GeV to $\pm20.8\,\%$ at 1500~GeV.
+\item \textbf{Public sources.} The trigger turn-on is sourced from the public Level-1 trigger design report (90\,\%
+      of plateau at 200~GeV). With the CMS note you supplied, the missing-momentum model has two pile-up-200
+      sources, so one can supply parameters and the other can validate. A non-Gaussian jet-response tail is not
+      sourced.
+\item \textbf{Toys.} With a gradient-based fitting backend and warm starts the toy programme costs 47 / 108 / 228
+      CPU-h at 60 / 80 / 100 fit parameters, against 183 budgeted (\ver{} on a synthetic workspace; factor 1.6
+      either way). Before the remedy the projection was above the stop-and-ask threshold.
+\item \textbf{Geometry and hand-over.} The Geant4 geometry matches the tracking geometry (positions identical,
+      material to $4\times10^{-7}$). The fast simulation does not decay or interact hadrons by itself, so nothing
+      is counted twice (\ver).
+\end{enumerate}
+
+\section{Findings that change the plan}
+\subsection*{The half-turn limit}
+\begin{itemize}
+\item The installed fast simulation stops every particle at half a turn. It cannot be changed without rebuilding
+      the tracking software (\ver{} for the behaviour; the mechanism is an inference).
+\item v1 never mentions it. v1's looper test counted 0 of $10^{5}$, but a particle stopped at half a turn cannot
+      cross a layer twice.
+\item You chose to measure first. A looper test with full Geant4 trajectories found 0 candidates in
+      $2\times10^{5}$ single loopers (\ver). The zero is weak: one count would stand for $1.9\times10^{4}$ events.
+      A looper together with pile-up is untested.
+\item The chain is kept, and this is drafted as a named limitation. A robustness test on the pile-up term is
+      proposed (decision D2).
+\end{itemize}
+\subsection*{Single-interaction background}
+\begin{itemize}
+\item Geant4 gives $3.66\times10^{8}$ decay and interaction vertices in the dataset, against $6.8\times10^{7}$
+      assumed (\est{} from \ver{} counts). Half of the decays and a third of the interactions come from particles
+      that have curled back; 87\,\% of first-arc interactions lie outside the three radii v1 modelled.
+\item The addendum reads seven classes in the day-15 rule instead of four.
+\end{itemize}
+\subsection*{Day-15 rule and reach (\est)}
+\begin{center}
+\begin{tabular}{L{7.2cm}L{3.0cm}L{3.6cm}}
+\toprule
+ & Gate A & Addendum, version 5 \\
+\midrule
+Empty pilot reads, R09 candidate (pause above 300) & 76 & 161 \\
+Empty pilot reads, R08 candidate & 156--204 & 238--284 \\
+Pause at Z($\nu\nu$) pilot counts, R09 / R08 & 12 / 6--8 & 4 / 1--2 \\
+Summed pool floor at the fixed budget & 12.6 events & 201 as timed; 121 with two cost measures \\
+Upside reach, all ceilings empty & 790 GeV & 514--584 GeV \\
+Pilot cost & 54.5 CPU-h, 52 GB & 142 CPU-h, 167 GB \\
+\bottomrule
+\end{tabular}
+\end{center}
+The pool floor I quoted when you decided to keep the budget (36--60 events) was wrong; the table has the corrected
+values.
+
+\section{Decisions waiting for you}\label{sec:dec}
+\begin{enumerate}
+\item \textbf{Strategy addendum 1, decisions D1--D9.} The list with recommendations is in the notice
+      \path{notices/2026-11-16_1833_DECISION_approve-strategy-addendum-1-d1-d9-by-18-nov-14-0.md} and in §0 of
+      the addendum. Review status: three independent reviews, each asking for changes (3 must-resolve and 10
+      must-fix, then 2 and 5, then 0 and 4 with exact texts); the texts were applied and a mechanical check
+      passed. The three-round limit of that gate is reached, so it comes to you without a formal pass.
+\item \textbf{Exception to the 30-minute job rule.} One generator comparison needs two single-core jobs of about
+      1.5~h each (\est). The alternative is several hours of engineering. Not urgent.
+\end{enumerate}
+
+\section{Running now}
+\begin{center}
+\begin{tabular}{L{3.6cm}L{10.6cm}}
+\toprule
+Pilot, part 1 & Minimum-bias pool (40 jobs) and Z($\nu\nu$) ($2.3\times10^{6}$ events, 460 jobs) on two lanes;
+                25 jobs done, none failed; 135.5 ms and 33.9 kB per event (\ver); ends about 18 November 16:15 \\
+v1 reproduction & Pile-up campaigns (4{,}000 and 1{,}000 events), signal inputs regenerated with v1's settings,
+                  finder cross-checks queued; no verdict yet \\
+Theory inputs & Inclusive samples, generator comparison, thickness-law runs \\
+Pilot, part 2 & Code and test slices for the single-interaction samples; not launched (needs the addendum) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Budget and storage}
+\begin{center}
+\begin{tabular}{L{7.6cm}L{6.4cm}}
+\toprule
+CPU used (ledger, 643 jobs) & 53.3 CPU-h of 4{,}609 approved (\ver) \\
+\quad of which reproduction / theory / pilot channel / pilot & 25.7 / 10.9 / 11.8 / 4.9 CPU-h \\
+Projected total & 4{,}663--4{,}844 CPU-h (\est), threshold 5{,}992 \\
+Reported overrun & pilot 142 CPU-h against 54.5 budgeted \\
+Storage, this study & 25 GB of 1.5 TB; projected about 515 GB (\est) \\
+Shared volume free & 3.9 TB of 4.5 TB \\
+\bottomrule
+\end{tabular}
+\end{center}
+The projection holds only if the faster toy configuration is confirmed on the first real workspace.
+
+\section{Problems}
+\begin{itemize}
+\item \textbf{Check against v1's limit not passing yet.} The new likelihood with v1's inputs gives a limit
+      1.05--1.16 times v1's 789.7 (criterion: within 10\,\%). v1 used a different test statistic. The criterion is
+      evaluated as frozen; no verdict yet.
+\item \textbf{Slow-fragment artefact.} One nuclear fragment in 25{,}000 interaction events has simulated hits
+      before its production time (\ver). It holds the nuclear-interaction samples until measured.
+\item \textbf{Failed development jobs.} 23 failed and 3 timed-out jobs, all in test campaigns and all from
+      script bugs since fixed; none in the pilot.
+\item \textbf{Sessions.} Two executors of the pilot channel were replaced after their sessions grew too long; each
+      left written hand-over notes.
+\item \textbf{Launch permission.} An executor's pilot launch was refused by the permission system; I launched it
+      on your approval.
+\end{itemize}
+
+\section{Plan for 17 November (day 1)}
+\begin{itemize}
+\item Single-interaction pilot campaigns launch-ready by 18 November midday; slow-fragment rate and speed-cut scan.
+\item First reproduction verdicts (arithmetic check, finder reproducibility).
+\item Generator-cut fraction with its uncertainty pieces; thickness-law readings.
+\item Likelihood check against v1 resumed with the new fitting configuration.
+\end{itemize}
+
+\section{Your next interventions}
+\begin{center}
+\begin{tabular}{L{4.2cm}L{10.0cm}}
+\toprule
+18 November, 14:00 & Addendum decisions D1--D9 (needed for the second part of the pilot) \\
+21 November (day 5) & Only if the reproduction fails or the stop rule fires \\
+1 December (day 15) & Binding background projection; a pause is expected \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Files}
+\begin{itemize}
+\item \path{analyses/quirks_v2/phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/HALF_TURN_xavier_2026-11-16_16-08.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/LOOPER_GUN_xavier_2026-11-16_16-38.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/TOY_COST_viktor_2026-11-16_16-33.md}
+\item \path{analyses/quirks_v2/LOG.md}
+\end{itemize}
+\end{document}

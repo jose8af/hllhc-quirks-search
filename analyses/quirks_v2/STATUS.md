@@ -1,28 +1,36 @@
 # Status — quirks v2
 
-**2026-11-16 11:52 -05 (measured), day 0.** Gate A passed by the user (all defaults; 4,609 CPU-h approved). **Phase 2 running**: three executors (C1/C2; theory inputs and retrievals; pilot and Geant4 hand-over). Daily reports in `daily/`.
-
-- Gate package: `gates/GATE_A.md` (five questions Q1–Q5, eleven overridable defaults, budget, risks).
-- Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md` (v10,
-  sha256 `d806bb36…020b779`), `COMMITMENTS.md`, `phase1_strategy/outputs/budget_stdout_v9.txt`.
-- Verdict: `phase1_strategy/review/arbiter/STRATEGY_ARBITER_v10_quentin_2026-11-16_10-51.md` (0 A, 0 B, 2 C; the one
-  C edit is applied).
-- Nothing runs. No production, no worker job and no CPU-h are spent until Gate A is answered.
+**2026-11-16 19:18 -05 (measured), day 0.** Phase 2 (Exploration) running. **Waiting for the user:** approval of strategy
+addendum 1 (decisions D1–D9) by 18 November about 14:00; an exception to the 30-minute job rule for one generator
+comparison (not urgent). Daily report: `daily/2026-11-16.pdf`. Notices: `notices/`.
 
 | | |
 |---|---|
-| Schedule | proposed at Gate A: 4,609 CPU-h, stop-and-ask at 5,992, about 60 days (ESTIMATE) |
-| CPU-h used / planned | 0 of production / to be approved at Gate A |
-| cajuela, this project | under 1 GB of 1.5 TB soft budget (bundles only) |
-| last repo bundle | `repo-2026-11-16.bundle` |
-| Review history | A 11→4→1→0→0→0→0→0→0→0; B 24→14→15→5→3→1→4→1→1→0 |
+| Approved schedule | 4,609 CPU-h, stop-and-ask at 5,992, about 60 days (Gate A, 16 Nov) |
+| CPU-h used | 53.3 (ledger, 643 jobs) |
+| Projected total | 4,663–4,844 CPU-h (ESTIMATE; holds if the faster toy configuration is confirmed on a real workspace) |
+| Reported overruns | pilot 142 CPU-h against 54.5 budgeted |
+| cajuela, this project | 25 GB of 1.5 TB; projected about 515 GB |
+| cajuela pool free | 3.9 TB of 4.5 TB |
+| last repo bundle | `repo-2026-11-16.bundle` (refreshed with the daily report) |
 
-**Incidents so far:** 13 Nov 14:06 stale file handle after a directory rename on cajuela (admin fix); 13 Nov 15:12
-einstein out of memory (orchestrator now capped at 10 GB); 14 Nov about 00:47 to 16 Nov cajuela NFS and ssh to the
-workers hung (cause not established by us; the user confirmed the cluster healthy on 16 Nov).
+**Running:** pilot part 1 (minimum-bias pool + Z(νν), 2 lanes on schrodinger, 25 of 500 jobs done, none failed, ends
+about 18 Nov 16:15); v1 reproduction campaigns (landau, maxwell); theory inputs; preparation of the
+single-interaction pilot samples (not launched).
 
-**Limits in force:** 10 GB cap, nothing heavy on einstein, one pixi install at a time, at most 3 subagents, never
-rename a directory on cajuela, no push.
+**Main findings today:** the v1 fast simulation records no hit beyond half a turn (25.2 % / 37.5 % of hits missing
+in Z(νν) / pile-up events); Geant4 gives 3.66×10⁸ single-interaction vertices against 6.8×10⁷ assumed; hard-scatter
+events cost 0.13–0.57 s against the guessed 0.045 s; toys fit the budget with a gradient backend up to about 80 fit
+parameters; the NLO calculation passes its three validations.
 
-**Open risks:** see `gates/GATE_A.md` §7. The expected outcome on v1 placeholder efficiencies is a real background
-and a reach near existing bounds; the day-15 rule is expected to pause the study.
+**Day-15 outlook (ESTIMATE):** an empty pilot reads 161 (R09 candidate) and 238–284 (R08) against the threshold 300;
+the pause remains expected. Upside reach 514–584 GeV (790 at Gate A).
+
+**Open problems:** likelihood check against v1's limit not passing yet (ratio 1.05–1.16; different test statistic
+in v1); a slow-fragment artefact holds the nuclear-interaction samples; jet-response tail not sourced.
+
+**Limits in force:** 10 GB cap, nothing heavy on einstein, one pixi install at a time, never rename a directory on
+cajuela, pushes only of `v2-jfc` for daily reports and notices, never forced.
+
+**Next interventions:** 18 Nov 14:00 addendum decisions; 21 Nov (day 5) only if the reproduction fails or the stop
+rule fires; 1 Dec (day 15) binding projection, pause expected.

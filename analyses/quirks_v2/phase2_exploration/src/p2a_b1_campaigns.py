@@ -91,7 +91,8 @@ DEFAULTS = {
            'znn_files_per_pool_job': 46, 'pool_files_per_g4_job': 0, 'pool_margin': 0.10},      # 0 = every pool file
     # ADD3 P2 "Lower pT edge": alarm sample of 2e5 vertices in the draft (decision D4 may make it a term: 1.0-2.1e7)
     'lowpt': {'enabled': True, 'stream': 'pilot.c0.lowpt', 'events': 200_000, 'per_job': 40_000, 'classes': B1_CLASSES,
-              'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.3, 0.5, 0.0, 1.0], 'source': 'mb', 'pool_margin': 0.10},
+              'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.3, 0.5, 0.0, 1.0], 'source': 'mb', 'pool_margin': 0.10,
+              'g4_per_job': 500_000},            # these parents curl: 1,793 MB at 1e6 firings (p2-c-pa-g4-lowpt-r0)
     # ADD3 P2 "|eta| > 1": no sample in the draft
     'fwd': {'enabled': False, 'stream': 'pilot.c0.fwd', 'events': 200_000, 'per_job': 40_000, 'classes': B1_CLASSES,
             'pool_prefix': 'xpool', 'draw': 'uniform', 'sel': [0.5, 20.0, 1.0, 1.5], 'source': 'mb', 'pool_margin': 0.10},
@@ -463,7 +464,8 @@ def b1(p, outdir=None):
                                                 campaign_files=sorted({x[3] for x in zall}))
         else:
             pools_all = None; after_ext = [mb_cf]
-        per_job = g4['all_per_job']
+        per_job = m.get('g4_per_job') or g4['all_per_job']
+        assert per_job <= g4['all_per_job']
         n_fire_total = m['events'] / (nm / y['n_fire']) * 1.05
         nj = max(1, math.ceil(n_fire_total / per_job))
         while True:                              # nj jobs of equal size whose files hold `events` usable vertices
@@ -484,7 +486,7 @@ def b1(p, outdir=None):
             return pools_all if not npj else [pools_all[(i * npj + k) % len(pools_all)] for k in range(npj)]
         jobs = [job_g4(f'{cg}-{i:04d}', 'all', fire, g4['stream'], g4['chunk0'][key] + i, m['pool_prefix'], {key: m['classes']},
                        pools_of(i), sel=m.get('sel'), draw=m.get('draw', 'uniform')) for i in range(nj)]
-        add(cg, jobs, nj * fire * cost['g4_ms'][key] * 1e-3 + nj * ovh, cost['rss_mb']['g4'],
+        add(cg, jobs, nj * fire * cost['g4_ms'][key] * 1e-3 + nj * ovh, cost['rss_mb'].get(f'g4_{key}', cost['rss_mb']['g4']),
             f"pilot: Geant4 vertices of the {key} parents (pool {m['pool_prefix']}, draw {m.get('draw', 'uniform')}, window {m.get('sel')}), stream {g4['stream']}",
             nj * fire * nm / y['n_fire'] * cost['vtx_bytes'], after=after, after_ext=after_ext, events=nj * fire, unit='firings',
             per_job_s=fire * cost['g4_ms'][key] * 1e-3 + ovh, block=key)

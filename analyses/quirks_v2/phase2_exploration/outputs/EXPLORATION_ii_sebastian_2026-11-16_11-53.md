@@ -273,7 +273,20 @@ K error ±0.002 (integration). K(200) reproduces FEAS_B's 1.165 ± 0.002. All 14
 CT18NLO [VERIFIED, campaign p2-b-s2-kscan]. PDF4LHC21 (68 % CL) is queued (p2-b-s2-kscan-p4l). K_E/K_Ẽ = 1.0008 /
 0.9954 / 0.9920 / 0.9892 at 200 / 500 / 1000 / 1500 GeV.
 
-### 2.6 Pending in S2
+### 2.6 FxFx (S2-c piece): diagnosis and status; plus a CPU accounting artefact
+- Measured (session log 18:55): compile stage 8.6 min; MINT step 0 ≈ 30 min of compute for 56 channels on one core
+  (P1 channels up to 99 s each); the first launch per mass needs ≈ 70–80 min [ESTIMATE]. It does not fit the 30-min job
+  rule; the orchestrator has asked the user for an exception (two single-core jobs of ≈ 1.5 h). Not run, pending.
+- **Accounting artefact.** In aMC@NLO *event* mode (MC@NLO/FxFx), MG starts its integration processes so that they are
+  not waited-for descendants of the job process. The runner's ru_children (marker user_s/sys_s) therefore misses them:
+  fxfx-e500-a recorded 82 s CPU for 794 s wall, and fxfx-diag-a 88 s for 1800 s, while the process sampler showed the
+  integrators CPU-bound (ps CPU ≈ elapsed).
+  - **Affected campaigns:** p2-b-s2-fxfx-time, p2-b-s2-fxfx-diag, p2-b-s2-fxfx-diag2 (grids stage).
+  - **Charging:** these are charged at wall time × 1 core in my tally (≈ 1.4 core-h).
+  - **Not affected** (marker CPU ≈ wall checked): fixed-order NLO (kval, kscan, kscan-p4l, kdy, kref-s-fixm), LO/MLM
+    (mlmtime, s2c-inc), the shower and conversion steps, and the compile stage of fxfx-diag2.
+
+### 2.7 Pending in S2
 K(m) with CT18NLO and PDF4LHC21; validation 3 (DY, μ = M_pair); validation 2 runs; S2-c inclusive samples, f₂₀₀ and its
 uncertainty pieces; FxFx timing.
 
@@ -341,5 +354,15 @@ Job p1d-m2-linux reran `analytic/numerics/M2_single.py all` (416 runs) and `M2_a
 9 of 30 pass v1's 1.5 % rule, as STR states. The cells that fail are at Λ = 5 keV everywhere (+9.5 to +17 %), at
 Λ ≤ 0.6 keV for the heavy points (negative Dc), and around 2–3 % elsewhere.
 
-## 4. Herwig install attempt (DP5)
-(queued on maxwell from 13:30)
+## 4. Herwig install attempt and generator comparison ([DP5])
+- **Install: succeeded.** Herwig 7.3.0 / ThePEG 2.3.0 from conda-forge, node-local on maxwell (27 s; retrieval_log #21).
+  Its MB setup also needs the LHAPDF sets CT14lo and CT14nlo, kept node-local (#17, #22).
+- **What the comparison is.** It is reported as a **generator spread** (string vs cluster hadronisation at generator
+  level), not as an uncertainty of the decays-in-flight rate. Tune facts next to it (retrieval_log #23):
+  - Herwig 7.3's general tune is an e⁺e⁻ tune (LEP, PETRA, SLAC, SLC, TRISTAN), and its release note states that MB/UE
+    retuning is "currently ongoing".
+  - Pythia CP5 (v1 card) is a CMS tune fitted to underlying-event data that include √s = 13 TeV.
+- **Status.** Smoke run (2k events each) gave K/π (Herwig/Pythia − 1) of +28 % (0.5–1 GeV) and +37 % (1–2 GeV), with
+  statistical errors only. The 10⁶ + 10⁶ event campaign p2-b-hw-mb is queued on maxwell. For channel (iii) it will give
+  K/π, p/π, the charged multiplicity and the charged p_T spectrum ratio in |η| < 1, 1–1.5 (and 1.5–2.5), with errors
+  (`src/herwig/mb_species.py`, `mb_eval.py`).

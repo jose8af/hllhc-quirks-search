@@ -724,3 +724,8 @@ exact texts and the statement that no further review of the text is needed), the
 - Tunes: Herwig 7.3's general tune is an e⁺e⁻ tune with minimum-bias retuning "ongoing"; Pythia CP5 is fitted to
   underlying-event data including 13 TeV. The Herwig/Pythia K/π difference is therefore a generator spread, not a
   measurement.
+
+## 2026-11-16 19:18 -05 (measured) — Daily report, day 0
+`daily/2026-11-16.tex` / `.pdf` (4 pages). Ledger: 53.3 CPU-h in 643 jobs (reproduction 25.7, theory 10.9, pilot
+channel 11.8, pilot 4.9); 23 failed and 3 timed-out jobs, all in test campaigns; pilot 25 of 500 jobs done, none
+failed. cajuela 25 GB for this project, 3.9 TB free. STATUS.md rewritten. Committed, bundled and pushed.
