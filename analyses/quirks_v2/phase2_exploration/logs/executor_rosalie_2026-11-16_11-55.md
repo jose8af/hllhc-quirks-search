@@ -269,3 +269,15 @@ CPU-h so far (14:40, ledger): C1 6.7, C2 0.6, day-0 0.95.
   band fine scan (3001² normals, 0.2 mrad, ±0.3 rad) 20.7 s on trial 1; band vs direct self-check on a 41 × 41
   sub-grid: max relative difference 6.0e-5 (1 trial). New timing job p2-a-c2-v45time4 (2 trials, + --full-sphere 0.01)
   queued after p2-a-c1-siga2 (which started 18:36).
+- 22:39 p2-a-c1-siga2 done (14/14; 979–1111 CPU-s per 30-row job, RSS 650–780 MB; outputs NOT opened). siga5 running.
+- 22:39 p2-a-c2-v45time4 done (2 PU trials, c1pu1-0000 trials 0 and 1) [VERIFIED, data/phase2/p2-a-c2-v45time4/000/]:
+  per trial ≈ 48 s (fine band scan 20 s, global 2 s, full half sphere 10 mrad 25 s); self-check band vs direct 1e-4
+  (2 trials; 6e-5 on v45time3: 3 trials in all); pool reproduced (n_road and PV identical to the stored trial).
+  F0 vs independent fit: 0.196 and 0.217 mrad (agree). F0 vs brute-force optimum: 201.5 and 221.9 mrad (DISAGREE): the
+  maximum of the frozen score within ±0.3 rad is a different plane (score 50.6 vs 39.1 at n_F0; 53.7 vs 40.5), not a
+  refinement of F0's. With ±10 mrad (v45time2) the optimum was 0.28 mrad from F0. Reading: at PU 200 the ±75 mm window
+  holds 18–24k hits, and a plane tilted by 0.2 rad collects more random hits (and the 2S strips' 14.5 mm z resolution
+  makes the score favour normals with a z component). As frozen, C2-a would FAIL on PU trials for a reason that says
+  nothing about F0's fit. DECISION NEEDED (sent to the orchestrator 22:4x): options (1) local optimum: steepest ascent
+  on the exhaustive 0.2 mrad grid from n_F0, |dn| < 1 mrad against that maximum (global maxima reported, no criterion);
+  (2) a score closer to the finder's objective (layers with an inlier); (3) keep as frozen (FAIL expected).

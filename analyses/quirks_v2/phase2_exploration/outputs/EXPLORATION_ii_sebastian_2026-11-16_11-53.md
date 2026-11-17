@@ -366,3 +366,38 @@ Job p1d-m2-linux reran `analytic/numerics/M2_single.py all` (416 runs) and `M2_a
   statistical errors only. The 10⁶ + 10⁶ event campaign p2-b-hw-mb is queued on maxwell. For channel (iii) it will give
   K/π, p/π, the charged multiplicity and the charged p_T spectrum ratio in |η| < 1, 1–1.5 (and 1.5–2.5), with errors
   (`src/herwig/mb_species.py`, `mb_eval.py`).
+
+**Result (10⁶ + 10⁶ events; campaign p2-b-hw-mb, maxwell, 2026-11-16 19:06–22:12; `outputs/dp5/mb_compare.json`)
+[VERIFIED counts; errors Poisson, statistical only].**
+- Generators: Herwig 7.3.0, LHC-MB + Diffraction snippets, CT14lo, 14 TeV; Pythia 8.312 CP5, SoftQCD:inelastic,
+  14 TeV.
+- Stable-particle definition common to both: cτ > 1000 mm stays stable, so π±, K± and K_L are final and K_S and
+  hyperons decay.
+- Selection: charged particles with p_T > 0.1 GeV.
+
+| quantity | \|η\| < 1 | 1 < \|η\| < 1.5 |
+|---|---|---|
+| charged multiplicity per event, Herwig / Pythia | 11.43 / 12.09 → ratio 0.946 ± 0.0004 | 5.88 / 6.40 → ratio 0.919 ± 0.0005 |
+
+| p_T [GeV] | K/π Herwig | K/π Pythia | K/π (H/P − 1), \|η\| < 1 | same, 1–1.5 | p/π (H/P − 1), \|η\| < 1 | charged p_T spectrum H/P, \|η\| < 1 | same, 1–1.5 |
+|---|---|---|---|---|---|---|---|
+| 0.1–0.2 | 0.0306 | 0.0282 | +8.5 ± 0.7 % | +9.2 ± 0.9 % | −35.2 ± 0.9 % | 0.973 ± 0.001 | 0.955 ± 0.001 |
+| 0.2–0.3 | 0.0520 | 0.0466 | +11.6 ± 0.5 % | +10.5 ± 0.7 % | −33.4 ± 0.6 % | 0.955 ± 0.001 | 0.935 ± 0.001 |
+| 0.3–0.5 | 0.0877 | 0.0783 | +12.0 ± 0.3 % | +9.9 ± 0.4 % | −21.2 ± 0.4 % | 0.904 ± 0.001 | 0.878 ± 0.001 |
+| 0.5–0.7 | 0.146 | 0.118 | +23.9 ± 0.4 % | +21.5 ± 0.6 % | +7.6 ± 0.5 % | 0.854 ± 0.001 | 0.826 ± 0.001 |
+| 0.7–1.0 | 0.206 | 0.155 | +32.7 ± 0.5 % | +31.4 ± 0.6 % | +41.4 ± 0.6 % | 0.937 ± 0.001 | 0.910 ± 0.002 |
+| 1.0–1.5 | 0.273 | 0.203 | +34.3 ± 0.5 % | +33.7 ± 0.7 % | +54.2 ± 0.7 % | 1.079 ± 0.002 | 1.031 ± 0.002 |
+| 1.5–2.0 | 0.323 | 0.247 | +30.5 ± 0.8 % | +29.7 ± 1.1 % | +48.8 ± 0.9 % | 1.126 ± 0.003 | 1.073 ± 0.003 |
+| 2.0–3.0 | 0.350 | 0.283 | +23.5 ± 0.9 % | +25.4 ± 1.3 % | +52.9 ± 1.1 % | 1.179 ± 0.003 | 1.130 ± 0.005 |
+| 3.0–5.0 | 0.369 | 0.334 | +10.5 ± 1.4 % | +8.8 ± 1.9 % | +69 ± 2 % | 1.280 ± 0.006 | 1.254 ± 0.009 |
+| 5–10 | 0.379 | 0.395 | −4.2 ± 2.9 % | −9.3 ± 3.9 % | +90 ± 6 % | 1.20 ± 0.01 | 1.21 ± 0.02 |
+| > 10 | 0.44 | 0.43 | +3 ± 12 % | −10 ± 16 % | +80 ± 24 % | 0.77 ± 0.04 | 0.82 ± 0.06 |
+
+(K/π values in the first two columns are for \|η\| < 1; the 1–1.5 values are in the JSON.)
+
+**Reading (generator spread, not an uncertainty).** At p_T = 0.5–3 GeV the cluster model gives 20–34 % more K± per π±
+than CP5, 5–8 % fewer charged particles per event, and a harder charged spectrum (H/P rising from 0.85 at 0.5–0.7 GeV
+to 1.28 at 3–5 GeV). The tunes are not equivalent: Herwig 7.3's general tune is an e⁺e⁻ tune with MB/UE retuning
+announced as ongoing, while CP5 is fitted to UE data including 13 TeV (retrieval_log #23). The spread therefore mixes
+the hadronisation model with tune quality. These numbers are for channel (iii) (decays-in-flight parent mix); how they
+enter rate_DIF is not decided here.
