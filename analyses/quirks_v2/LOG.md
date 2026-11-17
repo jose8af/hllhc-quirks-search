@@ -858,3 +858,15 @@ bracket refinement and an empty-tail rule. Traps documented: pyhf `hypotest` ret
 guard is in the builder. Cost 10.7 s per 1000 + 1000 toys on the v1 workspace.
 With C1-b (B₈₄ tolerance) and C2-a (V4-5) this makes three Gate-A criteria that fail as frozen for reasons of
 wording; DECISION notice sent with the evidence and a proposed rewording for each. Decision point 1 (day 5).
+
+## 2026-11-17 10:12 -05 (measured) — USER APPROVES ADDENDUM 1 (D1–D9 as recommended); PILOT PART 2 LAUNCHED
+The user: "I accept all D1-D9 answers with your recomendations." Recorded in `COMMITMENTS.md` (addendum 1 in
+force; document v5, sha256 dd45b3ea…da98deb). The slow-fragment residue is handled as proposed under D9 (β cut 0.1
+kept, events flagged). Not yet answered by the user: the 30-minute exception for FxFx; the three criteria E1–E3.
+Launch by the orchestrator at 10:10: pre-flight 0 failed checks; node counts before 2 / 2 / 3;
+`NODECAPS="3 3 4" bash tools/runner/examples/p2x/b1/LAUNCH_p2-c-pilot_b1_3slots.sh schrodinger landau maxwell`:
+three lanes started (762 jobs, 48.4 CPU-h, 90.8 GB ESTIMATE; class blocks about 16 h; the hard-scatter block starts
+after the last Z(νν) file). Status: `bash tools/runner/examples/p2x/b1/STATUS_p2-c-pilot_b1.sh schrodinger landau maxwell`;
+resume: the same LAUNCH line. Pilot part 1: 169 of 500 done, 0 failed; projected end about 18 Nov 19:00.
+The user also asked for the orchestrator's call on the next session (Opus or Fable) and is unsure about capping
+subagent context; answered in chat.

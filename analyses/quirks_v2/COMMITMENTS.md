@@ -283,7 +283,19 @@ calendar of STR §11 is 2026-11-16.
 | VC-3 | Goodness of fit (5) and look-elsewhere (6): not applicable to data; closure p-values reported; Bonferroni in C1 and C2-c; family-wise rules for the closure battery (K = 10), the ceiling family (19 terms) and the T1 coverage family (10 checks), with their sizes at the declared widths | STR §5.2, §4.0, §4.11 | 4a | 4a | open |
 | NA-1 | Declared not applicable (STR §5.1): beam energy; background shape as written; data/MC detector comparison as written; dE/dx calibration; b-tagging heavy-flavour treatment | justification in STR §5.1 | — | 4a (re-check) | n/a |
 
-## Changes of rows by addendum 1 (pending review and user approval)
+## Addendum 1: APPROVED BY THE USER on 2026-11-17 (decisions D1–D9 as recommended; IN FORCE)
+
+User's message: "I accept all D1-D9 answers with your recomendations." Decisions as recommended in
+`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md` §0.3 (sha256 dd45b3ea…da98deb):
+D1 chain kept, limitation [L15], with the 25th C3 item and looper overlays from Geant4 crossings; D2 robustness test
+accepted, a measured increase enters the binding day-15 reading; D3 B1 pilot sizes as proposed; D4 seven B1 terms;
+D5 hard-scatter sample H1 as one term; D6 the three populations stated as untested, alarm sample only; D7 pool
+confirmed at 457 + 208 CPU-h (floor 201 as timed / 121 with both measures); D8 an R08 candidate pauses on 1–3 counts,
+Z(νν) top-up decided at day 7; D9 hand-over rule per stream, with the slow-fragment residue handled by keeping the
+β cut at 0.1 and flagging the affected events (notice of 16 Nov 20:28). D10 for information. The rows below are in
+force from this date; the phrase "pending review and user approval" in them is superseded by this paragraph.
+
+## Changes of rows by addendum 1 (approved 2026-11-17)
 
 Version 5: `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md` (version 4 drafted 2026-11-16 by Zoe,
 fix report `FIX_REPORT_addendum1_v4_zoe.md`; the exact texts of the third review applied by Clara, `FIX_REPORT_addendum1_v5_clara.md`;
