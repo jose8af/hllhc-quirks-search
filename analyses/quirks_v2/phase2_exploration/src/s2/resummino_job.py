@@ -8,7 +8,9 @@ W mass computed with the UFO's own formula (parameters.py: MW = sqrt(MZ^2/2 + sq
 The SLHA file is the HEPcodes/resummino example input/slha.in (sha256 cef17bfc..., retrieval_log #18) with SMINPUTS,
 MASS 24 and MASS 2000011 replaced.  The card is the example input/resummino.in (sha256 c938e187...) with the collider,
 particles, PDF and precision lines replaced.
-Usage: python3 -I resummino_job.py <out.json> <m1,m2,...> [--modes lo_nlo,nll]
+Usage: python3 -I resummino_job.py <out.json> <m1,m2,...> [--modes lo_nlo,nll] [--decouple] [--pdf LHAPDF_SET]
+Edgar 2026-11-17: --pdf sets pdf_lo and pdf_nlo (default CT18NLO), e.g. PDF4LHC21_40, for the S2-b resummed
+cross-check (NLO+NLL)/NLO at all reach-curve masses with both PDF sets.
 """
 import json
 import math
@@ -43,10 +45,13 @@ def slha(m):
     return t
 
 
+PDFSET = sys.argv[sys.argv.index('--pdf') + 1] if '--pdf' in sys.argv else 'CT18NLO'
+
+
 def card():
     t = open(os.path.join(RETR, 'resummino.in')).read()
-    rep = {'center_of_mass_energy': '14000', 'particle1': '2000011', 'particle2': '-2000011', 'pdf_lo': 'CT18NLO',
-           'pdfset_lo': '0', 'pdf_nlo': 'CT18NLO', 'pdfset_nlo': '0', 'precision': '0.001', 'max_iters': '10',
+    rep = {'center_of_mass_energy': '14000', 'particle1': '2000011', 'particle2': '-2000011', 'pdf_lo': PDFSET,
+           'pdfset_lo': '0', 'pdf_nlo': PDFSET, 'pdfset_nlo': '0', 'precision': '0.001', 'max_iters': '10',
            'slha': 'slha.in'}
     for k, v in rep.items():
         t, n = re.subn(rf'(?m)^{k}\s*=\s*\S+', f'{k} = {v}', t)
@@ -72,7 +77,7 @@ def main():
     env = dict(os.environ, LHAPDF_DATA_PATH='/home/users/jdochoa/sw/lhapdf_data',
                PATH=os.path.join(ENV, 'bin') + ':' + os.environ['PATH'])
     env.pop('LD_LIBRARY_PATH', None)
-    res = dict(code='Resummino 3.1.2 (conda-forge)', decouple=DECOUPLE, mw_gev=mw(), aewm1=AEWM1, gf=GF, mz=MZ, points=[])
+    res = dict(code='Resummino 3.1.2 (conda-forge)', decouple=DECOUPLE, pdf=PDFSET, mw_gev=mw(), aewm1=AEWM1, gf=GF, mz=MZ, points=[])
     open(os.path.join(work, 'resummino.in'), 'w').write(card())
     for m in masses:
         open(os.path.join(work, 'slha.in'), 'w').write(slha(m))

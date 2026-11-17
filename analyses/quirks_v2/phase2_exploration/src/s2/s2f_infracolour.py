@@ -10,12 +10,15 @@ p_qm_hard; status-23 LHE kinematics).  Average weighted by the nominal merged we
 Limiting check printed: alpha_IC -> 0 gives delta = 0 (Lambda -> 0 is alpha -> 0 logarithmically); substitution check
 against STR: alpha_IC(200 GeV, 1 keV) = 0.045, delta = +3.3/+6.3/+13.3 % at beta = 0.7/0.5/0.3.
 Lambda grid: the eight Stage-3 values 0.45, 0.6, 0.85, 1, 1.5, 2, 3, 5 keV (STR §4.0 l.369-370 and §4.13).
-Usage (worker, sim ana env): python s2f_infracolour.py <out.json> <label>=<npz_glob> ...
+Usage (worker, numpy env): python s2f_infracolour.py <out.json> <label>=<campaign>:<file prefix> ...
+(Edgar 2026-11-17: files are the '.nom.npz' outputs listed in the campaign's done markers, sha256 re-checked;
+ delta averaged vectorised; the weighted beta quantiles and the weight fraction at beta < 0.1, where the O(alpha)
+ expansion is least reliable, are recorded.)
 """
-import glob
 import json
 import logging
 import math
+import os
 import sys
 
 import numpy as np
@@ -53,28 +56,38 @@ def main():
                delta_v_pct=[100 * delta_v(b, a) for b in (0.7, 0.5, 0.3)])
     log.info('substitution check: %s', chk)
     res = dict(check=chk, form='STR §4.14 (a\'): review P-B5 / arbiter; not sourced (R-12 pending)', points={})
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from marker_files import done_outputs
     for arg in sys.argv[2:]:
-        label, pat = arg.split('=', 1)
-        files = sorted(glob.glob(pat))
+        label, spec = arg.split('=', 1)
+        camp, prefix = spec.split(':', 1)
+        files = done_outputs(camp, suffix='.nom.npz', prefix=prefix, verify=True)
         if not files:
+            log.warning('%s: no done files', label)
             continue
-        b, w, m = [], [], None
+        b, w, m, spin = [], [], None, None
         for f in files:
             d = np.load(f)
             pos = d['w'] > 0
             b.append(beta_cm(d['p_qp_hard'][pos], d['p_qm_hard'][pos]))
             w.append(d['w'][pos])
-            m = float(d['mq'])
+            m, spin = float(d['mq']), str(d['spin'])
         b = np.concatenate(b)
         w = np.concatenate(w)
         ok = b > 1e-6
-        r = dict(mass=m, n=int(ok.sum()), beta_median=float(np.median(b[ok])), files=len(files), by_lambda={})
+        bo, wo = b[ok], w[ok]
+        srt = np.argsort(bo)
+        cw = np.cumsum(wo[srt]) / wo.sum()
+        q = {str(x): float(bo[srt][np.searchsorted(cw, x)]) for x in (0.05, 0.16, 0.5, 0.84, 0.95)}
+        r = dict(mass=m, spin=spin, n=int(ok.sum()), n_dropped_beta0=int((~ok).sum()), files=len(files),
+                 beta_weighted_quantiles=q, weight_frac_beta_lt_0p1=float(wo[bo < 0.1].sum() / wo.sum()),
+                 mean_inv_beta=float(np.average(1 / bo, weights=wo)), by_lambda={})
         for lam in LAMS_KEV:
             al = alpha_ic(m, lam)
-            dl = np.array([delta(x, al) for x in b[ok]])
-            dv = np.array([delta_v(x, al) for x in b[ok]])
-            r['by_lambda'][str(lam)] = dict(alpha_ic=al, mean_delta=float(np.average(dl, weights=w[ok])),
-                                            mean_delta_v=float(np.average(dv, weights=w[ok])))
+            dl = CF * al * (math.pi / (2 * bo) - 4 / math.pi)
+            dv = CF * al * (math.pi / (2 * bo) - (3 + bo) / (4 * math.pi) * (math.pi ** 2 / 2 - 0.75))
+            r['by_lambda'][str(lam)] = dict(alpha_ic=al, mean_delta=float(np.average(dl, weights=wo)),
+                                            mean_delta_v=float(np.average(dv, weights=wo)))
         res['points'][label] = r
         log.info('%s m=%g n=%d: delta(1 keV) = %.4f', label, m, r['n'], r['by_lambda']['1.0']['mean_delta'])
     json.dump(res, open(out, 'w'), indent=1)

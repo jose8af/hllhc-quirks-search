@@ -6,7 +6,7 @@ layers (layer id < 10), c2 = (2 Delta_s(B0/2)/Delta_s(B0) - 1)/ln 2.
 Modes:
   bstar : 4 runs per event (arms on/off x fields B0, B0/2)      -> P1-b (paired B*-off test)
   pop   : 2 runs per event (arm on, fields B0, B0/2)           -> P1-c (population estimator: paired median c2 - c_ev)
-  floor : FIX2 'off' arm at fractions f with kernel nominal|t44|dd, detector scaled by s, hmax 0.02 cm x s, qcap 2^21
+  floor : FIX2 'off' arm at fractions f with kernel nominal|t44|dd|rn44|rn47 (rn*: round-to-nearest diagnostic), detector scaled by s, hmax 0.02 cm x s, qcap 2^21
           (analytic/numerics/FIX2_runs.py l.27-50)                -> P1-a floor test 2 / dd diagnostic
 Usage: python p1_runs.py <out.json> <events.npz> <mode> <lam_keV> <i0> <n> [--kernel K] [--s S] [--fr 1,0.5,...]
 """
@@ -42,7 +42,8 @@ def main():
     kern = a[a.index('--kernel') + 1] if '--kernel' in a else 'nominal'
     s = float(a[a.index('--s') + 1]) if '--s' in a else 1.0
     frs = [float(x) for x in a[a.index('--fr') + 1].split(',')] if '--fr' in a else [1, 0.5, 0.4, 0.25, 0.05]
-    run = __import__({'nominal': 'nm_kernel', 't44': 'nm_kernel_t44', 'dd': 'nm_kernel_dd'}[kern]).run
+    run = __import__({'nominal': 'nm_kernel', 't44': 'nm_kernel_t44', 'dd': 'nm_kernel_dd',
+                      'rn44': 'nm_kernel_rn44', 'rn47': 'nm_kernel_rn47'}[kern]).run   # rn*: Edgar 2026-11-17 diagnostic
     from nm_bstar import bstar_off_fields
     E = np.load(evf)
     m = float(E['mass'])

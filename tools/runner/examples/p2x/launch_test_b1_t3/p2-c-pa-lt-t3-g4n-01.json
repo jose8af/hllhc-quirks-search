@@ -1,0 +1,25 @@
+{
+ "campaign": "p2-c-pa-lt-t3-g4n-01",
+ "tier": "regenerable",
+ "data_prefix": "p2c/pa_validation",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2a_b1_campaigns.py b1 (parameters: the PLAN file of this directory -> params)",
+ "description": "pilot: Geant4 vertices of the pilot.mb pool, pass 'ni', stream pa.lt.g4, part 1",
+ "expected_hours": 0.01,
+ "defaults": {
+  "max_rss_mb": 600,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-pa-lt-t3-g4n-0001",
+   "outputs": [
+    "p2-c-pa-lt-t3-g4n-0001.ni22.npz",
+    "p2-c-pa-lt-t3-g4n-0001.ni30.npz",
+    "p2-c-pa-lt-t3-g4n-0001.ni61.npz",
+    "p2-c-pa-lt-t3-g4n-0001.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_g4prod.py $QV2_OUT_DIR/p2-c-pa-lt-t3-g4n-0001 ni 600000 pa.lt.g4 1001 pool ni22=ni22,ni30=ni30,ni61=ni61 /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0000.npz"
+  }
+ ]
+}

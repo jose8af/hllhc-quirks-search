@@ -286,7 +286,7 @@ UPDATE 22:47: landau B queue order now: … c1-siga2 ✓, c1-siga5 (running), c2
   maximum of the frozen score within ±0.3 rad is a different plane (score 50.6 vs 39.1 at n_F0; 53.7 vs 40.5), not a
   refinement of F0's. With ±10 mrad (v45time2) the optimum was 0.28 mrad from F0. Reading: at PU 200 the ±75 mm window
   holds 18–24k hits, and a plane tilted by 0.2 rad collects more random hits (and the 2S strips' 14.5 mm z resolution
-  makes the score favour normals with a z component). As frozen, C2-a would FAIL on PU trials for a reason that says
+  makes the score favour normals with a z component — NOT supported by the production run: |n_z| median 0.92 at the optimum vs 0.90 at F0, V45_RESULT §2). As frozen, C2-a would FAIL on PU trials for a reason that says
   nothing about F0's fit. DECISION NEEDED (sent to the orchestrator 22:4x): options (1) local optimum: steepest ascent
   on the exhaustive 0.2 mrad grid from n_F0, |dn| < 1 mrad against that maximum (global maxima reported, no criterion);
   (2) a score closer to the finder's objective (layers with an inlier); (3) keep as frozen (FAIL expected).
@@ -298,3 +298,72 @@ UPDATE 22:47: landau B queue order now: … c1-siga2 ✓, c1-siga5 (running), c2
   (as frozen: FAIL on 29), all consistent with v1's 1e5-draw MC noise (max |pull| 1.76). EXPLORATION §5b. NOTE: the
   C1-b runs (≈ 3 CPU-min each) and mc_power (≈ 1 CPU-min) ran directly on landau with nice 19 next to my 2 runner
   jobs, not through the runner (light, but a third process on my share for minutes).
+
+## STATE FOR A SUCCESSOR — 2026-11-17 08:15 -05 (SUPERSEDES the earlier successor section)
+Brief: PHASE2_BRIEF.md. Rulings: SLOTS.md "ORCHESTRATOR RULING" (shares: channel (i) = landau 2 slots, maxwell 2).
+Results so far: outputs/EXPLORATION_i_rosalie_2026-11-16_14-43.md (§1 unit costs, §2 deviations D-i-1..5, §3 stitch,
+§5b C1-b, §6 V4-5 ruling), outputs/V45_RESULT_rosalie_2026-11-17_08-13.md, outputs/c1b_arith.json,
+outputs/day0_measurements.json, outputs/c1_s3/STAGE3_INDEX.json. CPU-h (ledger 08:14): C1 72.1/198, C2 1.33/81, day-0 0.95.
+Paths: QV2=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2, R=/home/users/jdochoa/hllhc-quirks-search/tools/runner,
+campaign files $R/campaigns/p2-a-*.json (written by $QV2/phase2_exploration/src/make_campaigns.py or inline python, see log),
+data /nfs/cajuela/jdochoa/quirks_v2/data/phase2/<campaign>/000/, job logs /nfs/cajuela/jdochoa/quirks_v2/logs/phase2/<campaign>/000/,
+markers $QV2/ledger/markers/<campaign>/000/. Status: ssh -x landau "$R/bin/qv2run status $R/campaigns/<c>.json --live -v".
+CPU: ssh -x landau "$R/bin/qv2run rebuild-ledger"; then sum jobs.tsv cpu_s DEDUPLICATED by job_id (one row per output).
+
+DONE (all jobs done unless stated): p2-a-day0-pu1/pu2b/pu2c (pu2: 3 failed, my bug, superseded), c1-s2 (4), c1-s3in (2),
+c1-s3 (30), c1-cp0 (16), c1-siga2 (14), c1-siga5 (42), c2-tstime (2), c2-v45time2/4 (v45time, v45time3 failed: superseded),
+c2-v45pu (3), c2-v45sig (3). Verdicts: C1-b (full ladder) DONE; C2-a numbers DONE (V45_RESULT; decision with the user).
+
+RUNNING / QUEUED (08:14):
+  landau slot A: driver of p2-a-c1-pu1 (--max-per-node 1), 64/200 done, ≈ 20 min/job → ends ≈ Thu 19 Nov 05:00.
+    If it slips past Thursday morning the orchestrator offers channel (ii)'s slots. Restart:
+    ssh -x landau "$R/bin/qv2run ssh launch $R/campaigns/p2-a-c1-pu1.json --nodes landau --max-per-node 1 --on landau"
+  landau slot B: queue $QV2/phase2_exploration/src/queue_slot.sh with $QV2/phase2_exploration/logs/queue_landau_B.txt
+    (re-read after each campaign; first unseen line runs next; 'STOP' ends). Now: c1-s2inc (1/5 running) → c1-gen (12)
+    → c1-sm (50) → c2-tseed1 (25) → c2-v44a (20) → c2-v44b (20). Log: /home/scratch/jdochoa/drivers/queue_landau_B.log.
+    Restart: ssh -x landau "setsid nohup $QV2/phase2_exploration/src/queue_slot.sh landau $QV2/phase2_exploration/logs/queue_landau_B.txt > /home/scratch/jdochoa/drivers/queue_landau_B.log 2>&1 < /dev/null &"
+  maxwell: driver of p2-a-c1-pu2 (--max-per-node 2), 126/200 done → ends ≈ Tue 17 Nov 19:00; then queue 1
+    (logs/queue_maxwell_1.txt: c2-tseed2 → c1-cppub) and queue 2 (logs/queue_maxwell_2.txt: c2-v44c → c1-cppua), both
+    running now (watching pu2). c1-cppua/b use --sources auto: they need all C'0 jobs done (they are).
+
+WHAT REMAINS (code to write/finish, then the verdicts):
+ 1. c1_compare.py (src/) has the PU families (pu1 R04-R09, pu2 R04-R06, T1/T1w). Still to add, with the definitions of
+    v1 acts/stage4/analysis/background.py: (i) closure trend slope (-0.3608) and c-factor (1.1964): v1 G3.trend_test /
+    c_test (background.json closure.trend, c_test); (ii) C'0 f_pre for dif, ni22, pvpair (cp0 meta_json v410 n_pre /
+    n_events summed over jobs; v1 0.9495, 0.7593, 0.9031); (iii) C'_PU attributed counts at R04/R05 for dif, gamma, v0
+    and PV pair at R02 (v1 background.cprime_term on cppu outputs: 166/81, 153/86, 859/358 per 500; 24/500), scaled to
+    the v2 slot counts (1000/1000/1000/2000); (iv) rates DIF, PV pair, gamma per triggered event and N_trig total and
+    Z(nunu) share from the p2-a-c1-gen JSONs (v1 1.5945, 30.31, 0.379; 4.0848e7, 2.508e7; v1 bsum_wp n_trig and
+    background.json cprime.<t>.rate); (v) SM Z(nunu) HS candidates per event at R04/R05/R06 (v1 19.52, 4.51, 0.0162,
+    presel-weighted): needs the generator-level preselection weights: v1 gen_d123.py smregen on the c1-sm outputs.
+    TRAP: smregen looks for the MPI init file at TT/data/acts_stage4/g1/pythia_init/mpi_cp5_14tev_hs_Znunu_j.dat; in v2
+    it is node-local in /home/scratch/jdochoa/cache/pythia_init/ on the node that ran c1-sm (landau): run it as a runner
+    job on landau through a wrapper that sets gen_d123.TT to a scratch root with symlinks data/acts_stage4/g1/pythia_init
+    -> /home/scratch/jdochoa/cache/pythia_init and acts -> $QV2/acts.
+    Statistics are fixed in the script docstring (STR §4.1): z on logs with bootstrap / conditional binomial / Fisher,
+    Bonferroni 0.05/41, chi2_41 99 %, family coherence |z| < 3, power stated.
+    Run: ssh -x <worker> "cd $QV2 && PYTHONDONTWRITEBYTECODE=1 nice -n 19 envs/tt/.pixi/envs/default/bin/python -B phase2_exploration/src/c1_compare.py"
+ 2. Signal open tier (4 quantities + twin R04 ratios): READY, not yet run:
+    ssh -x <worker> "cd $QV2 && PYTHONDONTWRITEBYTECODE=1 nice -n 19 envs/tt/.pixi/envs/default/bin/python -B phase2_exploration/src/c1_signal_compare.py open"
+    It zeroes every rung bit outside R01–R06 before v1's signal.analyse_file sees a file (blinding). Output outputs/c1_signal_open.json.
+ 3. SEALED tier (R07 x3, FB2/FB3 x3): NOT channel (i). The dedicated session runs, on a worker, from $QV2:
+    envs/tt/.pixi/envs/default/bin/python phase2_exploration/src/c1_signal_compare.py sealed --a2 p2-a-c1-siga2 \
+      --a5 p2-a-c1-siga5 --key-file <orchestrator key> --out /nfs/cajuela/jdochoa/quirks_v2/data/sealed/c1_sealed.json.enc
+    (needs outputs/c1_s3/STAGE3_INDEX.json, present; selftest-sealed passed on synthetic numbers). The global chi2 and
+    signal family coherence must then be computed by that session too and reported PASS/FAIL only.
+ 4. C2-b V4-4: after c2-v44a/b/c: compare outputs of c2v44-NN-a vs -b (same node: bit-identical expected) and vs -c
+    (maxwell: report identity), and c2v44x-00/01 vs the others (must differ); seeds in meta_json. Use
+    day0_summary.identical() (src/day0_summary.py) which skips timing keys. Not yet scripted.
+ 5. C2-c T_seed: after c2-tseed1/2: pair c2ts2-pu1-NNNN with c1pu1-NNNN (NNNN 0000-0024) and c2ts2-pu2-NNNN with
+    c1pu2-NNNN (0000-0039); check evstats/PV identical; per-trial pass fraction per rung family (counting R04, width
+    R05-R06, chi2 R09-R11, 2S R12-R14) at T_seed 4 vs 2, paired event bootstrap, |z| < 2.73 (8 tests). v1 metric:
+    acts/stage4/g3/analyse_g3.py (section "(iv) WP_RULE §6.4"). Not yet scripted.
+ 6. Stitch: after c1-s2inc: TRG c00 vs INC c00..c05 at m 200, sigma(pT>200 & pT_ME>=100) with sqrt(sum w^2) errors
+    (merge weights by N_LHE as merge_chunks.py). Snippet in the log at 2026-11-16 14:4x (EXPLORATION §3).
+ 7. C1-c (container recipe + one C1 job rerun in it with identical hash): not started.
+ 8. EXPLORATION final artifact + self-review against phase2_exploration/CLAUDE.md.
+TRAPS: failed/timeout/oom jobs are never retried (rerun under new ids); never `pkill -f` a pattern that is in your own
+ssh command line; jobs.tsv one row per output; signal outputs hold sealed bits: read them only through
+c1_signal_compare.py; a2/a5 jobs need all 30 Stage-3 jobs done; keep PYTHONDONTWRITEBYTECODE=1 and remove
+src/__pycache__ after importing make_campaigns locally; use `date` for every time; light analysis runs should go
+through the runner (I ran C1-b directly on landau with nice 19: logged).

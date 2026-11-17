@@ -1,0 +1,39 @@
+{
+ "campaign": "p2-c-t1f-setup",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1-b set-up checks: asymptotic 828.67 and mu_a; Viktor CLs 0.1372; numpy vs jax paired on the v1 workspace",
+ "expected_hours": 0.2,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-setup-asym",
+   "outputs": [
+    "p2-c-t1f-setup-asym.json",
+    "p2-c-t1f-setup-workspace.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py setup $QV2_OUT_DIR/p2-c-t1f-setup-asym.json $QV2_OUT_DIR/p2-c-t1f-setup-workspace.json"
+  },
+  {
+   "id": "p2-c-t1f-setup-vcheck",
+   "outputs": [
+    "p2-c-t1f-setup-viktor-jsmsp-n31-mu5.json",
+    "p2-c-t1f-setup-vcheck.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2v_toys.py $QV2_OUT_DIR/p2-c-t1f-setup-viktor-jsmsp-n31-mu5.json 25 5 1000 5 'backend=jax,layout=merged,stitch=1,start=prev,record=1' && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py vcheck $QV2_OUT_DIR/p2-c-t1f-setup-vcheck.json $QV2_OUT_DIR/p2-c-t1f-setup-viktor-jsmsp-n31-mu5.json"
+  },
+  {
+   "id": "p2-c-t1f-setup-pair",
+   "outputs": [
+    "p2-c-t1f-setup-pt-jax.json",
+    "p2-c-t1f-setup-pt-numpy.json",
+    "p2-c-t1f-setup-pair.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup-pt-jax.json jax 621.5 300 2026111700 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup-pt-numpy.json numpy 621.5 300 2026111700 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pair $QV2_OUT_DIR/p2-c-t1f-setup-pair.json $QV2_OUT_DIR/p2-c-t1f-setup-pt-jax.json $QV2_OUT_DIR/p2-c-t1f-setup-pt-numpy.json"
+  }
+ ]
+}

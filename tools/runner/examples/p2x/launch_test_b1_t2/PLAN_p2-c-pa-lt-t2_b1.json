@@ -1,0 +1,1160 @@
+{
+ "name": "t2",
+ "params": {
+  "name": "t2",
+  "only": [],
+  "prefix": "p2-c-pa-lt",
+  "data_prefix": "p2c/pa_validation",
+  "plan_suffix": "",
+  "beta_min": 0.1,
+  "n_road_orientations": 21,
+  "seam_ns": 0.005,
+  "trunc": {
+   "default": "radius",
+   "difc": "hybrid",
+   "nic": "hybrid",
+   "hs": "autoh",
+   "lowpt": "autoh",
+   "fwd": "autoh",
+   "offroad": "autoh"
+  },
+  "yields": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/outputs/b1_yields_albert.json",
+  "wait_for_inputs": false,
+  "mb": {
+   "campaign_file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json",
+   "first": 0,
+   "n_files": 2
+  },
+  "znn": {
+   "campaign_glob": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-znn-??.json",
+   "chunk_lo": 0,
+   "chunk_hi": 4
+  },
+  "g4": {
+   "stream": "pa.lt.g4",
+   "all_per_job": 100000,
+   "ni_per_job": 600000,
+   "pool_files_per_job": 1,
+   "chunk0": {
+    "all": 0,
+    "ni": 1000,
+    "hs": 2000,
+    "lowpt": 3000,
+    "fwd": 4000,
+    "offroad": 5000
+   },
+   "pool_file_offset": {
+    "all": 0,
+    "ni": 17,
+    "lowpt": 5,
+    "fwd": 11
+   },
+   "files_per_part": 1,
+   "margin_sigma": 5.0,
+   "margin_yield_err": 3.0,
+   "extra_firings": 0.03
+  },
+  "samples": {
+   "dif": {
+    "classes": [
+     "dif",
+     "k0l"
+    ],
+    "events": 5000,
+    "pass": "all",
+    "stream": "pa.lt.c0.dif",
+    "per_job": 2000
+   },
+   "difc": {
+    "classes": [
+     "difc"
+    ],
+    "events": 5000,
+    "pass": "all",
+    "stream": "pa.lt.c0.difc",
+    "per_job": 2000
+   },
+   "ni22": {
+    "classes": [
+     "ni22"
+    ],
+    "events": 1200,
+    "pass": "ni",
+    "stream": "pa.lt.c0.ni22",
+    "per_job": 2000
+   },
+   "ni30": {
+    "classes": [
+     "ni30"
+    ],
+    "events": 1200,
+    "pass": "ni",
+    "stream": "pa.lt.c0.ni30",
+    "per_job": 2000
+   },
+   "ni61": {
+    "classes": [
+     "ni61"
+    ],
+    "events": 1200,
+    "pass": "ni",
+    "stream": "pa.lt.c0.ni61",
+    "per_job": 2000
+   },
+   "nix": {
+    "classes": [
+     "nix"
+    ],
+    "events": 5000,
+    "pass": "all",
+    "stream": "pa.lt.c0.nix",
+    "per_job": 2000
+   },
+   "nic": {
+    "classes": [
+     "nic"
+    ],
+    "events": 2500,
+    "pass": "all",
+    "stream": "pa.lt.c0.nic",
+    "per_job": 2000
+   }
+  },
+  "hs": {
+   "enabled": true,
+   "stream": "pa.lt.c0.hs",
+   "pool_stream": "pa.lt.c0.hs.pool",
+   "events": 3000,
+   "per_job": 2000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "pool",
+   "draw": "weighted",
+   "sel": null,
+   "source": "znn",
+   "znn_files_per_pool_job": 2,
+   "pool_files_per_g4_job": 0,
+   "pool_margin": 0.1
+  },
+  "lowpt": {
+   "enabled": true,
+   "stream": "pa.lt.c0.lowpt",
+   "events": 2000,
+   "per_job": 2000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "sel": [
+    0.3,
+    0.5,
+    0.0,
+    1.0
+   ],
+   "source": "mb",
+   "pool_margin": 0.1,
+   "g4_per_job": 500000
+  },
+  "fwd": {
+   "enabled": false,
+   "stream": "pa.lt.c0.fwd",
+   "events": 200000,
+   "per_job": 40000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "sel": [
+    0.5,
+    20.0,
+    1.0,
+    1.5
+   ],
+   "source": "mb",
+   "pool_margin": 0.1,
+   "g4_per_job": 1000000
+  },
+  "offroad": {
+   "enabled": false,
+   "stream": "pa.lt.c0.offroad",
+   "pool_stream": "pa.lt.c0.offroad.pool",
+   "events": 7300000,
+   "per_job": 30000,
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "pool_prefix": "opool",
+   "draw": "weighted",
+   "sel": null,
+   "source": "znn",
+   "znn_files_per_pool_job": 23,
+   "pool_files_per_g4_job": 1,
+   "pool_margin": 0.1,
+   "g4_per_job": 1000000
+  },
+  "costs": {
+   "g4_ms": {
+    "all": 0.335,
+    "ni": 0.054,
+    "hs": 0.31,
+    "lowpt": 0.42,
+    "fwd": 0.265,
+    "offroad": 0.265
+   },
+   "b1_ms": {
+    "default": 4.8,
+    "dif": 3.7,
+    "difc": 4.9,
+    "ni22": 4.8,
+    "ni30": 4.8,
+    "ni61": 4.4,
+    "nix": 4.0,
+    "nic": 5.8,
+    "hs": 4.5,
+    "lowpt": 4.5,
+    "fwd": 3.2,
+    "offroad": 4.6
+   },
+   "b1_bytes": {
+    "default": 4000.0,
+    "dif": 2575.0,
+    "difc": 4370.0,
+    "ni22": 3305.0,
+    "ni30": 3545.0,
+    "ni61": 3442.0,
+    "nix": 3456.0,
+    "nic": 5312.0,
+    "hs": 3749.0,
+    "lowpt": 3529.0,
+    "fwd": 3385.0,
+    "offroad": 4010.0
+   },
+   "vtx_bytes": 900.0,
+   "job_overhead_s": 5.0,
+   "hsp_s_per_file": 1.0,
+   "hsp_bytes_per_event": {
+    "hs": 30.0,
+    "offroad": 560.0
+   },
+   "rss_mb": {
+    "g4": 1500,
+    "g4_ni": 600,
+    "g4_lowpt": 1300,
+    "g4_fwd": 1300,
+    "g4_offroad": 1000,
+    "b1": 1500,
+    "hsp": 600
+   }
+  },
+  "slots": [
+   1,
+   2,
+   3
+  ]
+ },
+ "blocks": [
+  "class",
+  "hs",
+  "lowpt"
+ ],
+ "campaigns": [
+  {
+   "campaign": "p2-c-pa-lt-t2-g4a-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-00.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 100000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4a-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-01.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 100000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4a-02",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-02.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 100000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-dif-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-00.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 3394,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-dif-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-01.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1606,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-difc-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-00.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 3098,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-difc-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-01.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1902,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-nix-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-00.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 3040,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-nix-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-01.json",
+   "jobs": 2,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1960,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-nic-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-00.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1521,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-nic-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-01.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4a-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 979,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4n-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-00.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 600,
+   "storage_gb": 0.0,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 600000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4n-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-01.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 600,
+   "storage_gb": 0.0,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 600000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4n-02",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-02.json",
+   "jobs": 1,
+   "cpu_h": 0.01,
+   "max_job_min": 0.6,
+   "rss_request_mb": 600,
+   "storage_gb": 0.0,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 600000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni22-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-00.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 863,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni22-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-01.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.1,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 337,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni30-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-00.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1188,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni30-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-01.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.1,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 12,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni61-00",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-00.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-00"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 1183,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-ni61-01",
+   "block": "class",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-01.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.1,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-g4n-01"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 17,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-hph",
+   "block": "hs",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-hph.json",
+   "jobs": 2,
+   "cpu_h": 0.0,
+   "max_job_min": 0.1,
+   "rss_request_mb": 600,
+   "storage_gb": 0.0,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-znn-00.json"
+   ],
+   "waits_for_external": false,
+   "size": 4,
+   "unit": "Z(nunu) files"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4h",
+   "block": "hs",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4h.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.3,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.0,
+   "after": [
+    "p2-c-pa-lt-t2-hph"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 33000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-hs",
+   "block": "hs",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-hs.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4h"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 3000,
+   "unit": "events"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-g4l",
+   "block": "lowpt",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4l.json",
+   "jobs": 1,
+   "cpu_h": 0.0,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1300,
+   "storage_gb": 0.0,
+   "after": [],
+   "after_external": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json"
+   ],
+   "waits_for_external": false,
+   "size": 12000,
+   "unit": "firings"
+  },
+  {
+   "campaign": "p2-c-pa-lt-t2-c0-lowpt",
+   "block": "lowpt",
+   "file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-lowpt.json",
+   "jobs": 2,
+   "cpu_h": 0.01,
+   "max_job_min": 0.2,
+   "rss_request_mb": 1500,
+   "storage_gb": 0.01,
+   "after": [
+    "p2-c-pa-lt-t2-g4l"
+   ],
+   "after_external": [],
+   "waits_for_external": false,
+   "size": 2000,
+   "unit": "events"
+  }
+ ],
+ "samples": {
+  "dif": {
+   "classes": [
+    "dif",
+    "k0l"
+   ],
+   "events": 5000,
+   "g4_pass": "all",
+   "expected_per_file": 3723.3,
+   "usable_per_file": 3395,
+   "jobs_per_file": 2,
+   "events_per_job": 1697,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.dif",
+   "handover": "radius",
+   "vertices_unused_fraction": 0.552
+  },
+  "difc": {
+   "classes": [
+    "difc"
+   ],
+   "events": 5000,
+   "g4_pass": "all",
+   "expected_per_file": 3413.9,
+   "usable_per_file": 3099,
+   "jobs_per_file": 2,
+   "events_per_job": 1549,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.difc",
+   "handover": "hybrid",
+   "vertices_unused_fraction": 0.512
+  },
+  "nix": {
+   "classes": [
+    "nix"
+   ],
+   "events": 5000,
+   "g4_pass": "all",
+   "expected_per_file": 3352.5,
+   "usable_per_file": 3041,
+   "jobs_per_file": 2,
+   "events_per_job": 1520,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.nix",
+   "handover": "radius",
+   "vertices_unused_fraction": 0.503
+  },
+  "nic": {
+   "classes": [
+    "nic"
+   ],
+   "events": 2500,
+   "g4_pass": "all",
+   "expected_per_file": 1746.4,
+   "usable_per_file": 1521,
+   "jobs_per_file": 1,
+   "events_per_job": 1521,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.nic",
+   "handover": "hybrid",
+   "vertices_unused_fraction": 0.523
+  },
+  "ni22": {
+   "classes": [
+    "ni22"
+   ],
+   "events": 1200,
+   "g4_pass": "ni",
+   "expected_per_file": 1040.1,
+   "usable_per_file": 863,
+   "jobs_per_file": 1,
+   "events_per_job": 863,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.ni22",
+   "handover": "radius",
+   "vertices_unused_fraction": 0.615
+  },
+  "ni30": {
+   "classes": [
+    "ni30"
+   ],
+   "events": 1200,
+   "g4_pass": "ni",
+   "expected_per_file": 1392.9,
+   "usable_per_file": 1188,
+   "jobs_per_file": 1,
+   "events_per_job": 1188,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.ni30",
+   "handover": "radius",
+   "vertices_unused_fraction": 0.713
+  },
+  "ni61": {
+   "classes": [
+    "ni61"
+   ],
+   "events": 1200,
+   "g4_pass": "ni",
+   "expected_per_file": 1387.1,
+   "usable_per_file": 1183,
+   "jobs_per_file": 1,
+   "events_per_job": 1183,
+   "files_used": 2,
+   "files_needed_by_largest": 2,
+   "files_made": 3,
+   "stream": "pa.lt.c0.ni61",
+   "handover": "radius",
+   "vertices_unused_fraction": 0.712
+  },
+  "hs": {
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "events": 3000,
+   "g4_pass": "all",
+   "firings_per_file": 33000,
+   "files_made": 1,
+   "usable_per_file": 3009,
+   "jobs_per_file": 2,
+   "events_per_job": 1504,
+   "files_used": 1,
+   "stream": "pa.lt.c0.hs",
+   "handover": "autoh",
+   "pool_prefix": "pool",
+   "draw": "weighted",
+   "window": null,
+   "vertices_per_firing": 0.11120136363636364
+  },
+  "lowpt": {
+   "classes": [
+    "dif",
+    "difc",
+    "k0l",
+    "ni22",
+    "ni30",
+    "ni61",
+    "nix",
+    "nic"
+   ],
+   "events": 2000,
+   "g4_pass": "all",
+   "firings_per_file": 12000,
+   "files_made": 1,
+   "usable_per_file": 2174,
+   "jobs_per_file": 2,
+   "events_per_job": 1087,
+   "files_used": 1,
+   "stream": "pa.lt.c0.lowpt",
+   "handover": "autoh",
+   "pool_prefix": "xpool",
+   "draw": "uniform",
+   "window": [
+    0.3,
+    0.5,
+    0.0,
+    1.0
+   ],
+   "vertices_per_firing": 0.22439
+  }
+ },
+ "warnings": [],
+ "inputs": {
+  "mb": {
+   "campaign_file": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-mb.json",
+   "files": [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0000.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-mb/000/p2-c-pilot-mb-0001.npz"
+   ],
+   "job_ids": [
+    "p2-c-pilot-mb-0000",
+    "p2-c-pilot-mb-0001"
+   ]
+  },
+  "znn_hs": {
+   "files": [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00000.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00001.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00002.npz",
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00003.npz"
+   ],
+   "job_ids": [
+    "p2-c-pilot-znn-00000",
+    "p2-c-pilot-znn-00001",
+    "p2-c-pilot-znn-00002",
+    "p2-c-pilot-znn-00003"
+   ],
+   "campaign_files": [
+    "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/pilot/p2-c-pilot-znn-00.json"
+   ]
+  }
+ },
+ "lanes": {
+  "1": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-02.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-02.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4l.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-lowpt.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-hph.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4h.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-hs.json"
+    ]
+   ],
+   "cpu_h": [
+    0.1
+   ],
+   "wall_h": 0.1
+  },
+  "2": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-02.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4l.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-lowpt.json"
+    ],
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-02.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-hph.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4h.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-hs.json"
+    ]
+   ],
+   "cpu_h": [
+    0.1,
+    0.1
+   ],
+   "wall_h": 0.1
+  },
+  "3": {
+   "lanes": [
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-02.json"
+    ],
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-dif-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni22-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni30-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-ni61-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-00.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nic-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-nix-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4l.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-lowpt.json"
+    ],
+    [
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4a-02.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-difc-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4n-01.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-hph.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-g4h.json",
+     "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/p2-c-pa-lt-t2-c0-hs.json"
+    ]
+   ],
+   "cpu_h": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "wall_h": 0.0
+  }
+ },
+ "total": {
+  "cpu_h": 0.1,
+  "storage_gb": 0.1,
+  "jobs": 33,
+  "b1_events": 26100,
+  "by_block": {
+   "class": {
+    "cpu_h": 0.1,
+    "storage_gb": 0.1,
+    "jobs": 25
+   },
+   "hs": {
+    "cpu_h": 0.0,
+    "storage_gb": 0.0,
+    "jobs": 5
+   },
+   "lowpt": {
+    "cpu_h": 0.0,
+    "storage_gb": 0.0,
+    "jobs": 3
+   }
+  }
+ },
+ "hashes": {
+  "scripts": {
+   "p2x_g4prod.py": "4ad5ae2f173e5b66a54be5bad628f26aa8552392c5a2cd7e431324b46c8568ce",
+   "p2x_b1.py": "2a4db016495a677a3cb803303d139b371dcf07b29b6e9481460a3bb12149e5bd",
+   "p2a_hspool.py": "b5c2ef358514cc56888d541442e0f7eca600f81a923668762e294cd2833edb0f",
+   "p2x_common.py": "076b36af5dd02ebd9aa1c3f33904bbc57f7d6df980ac4811aeb527770c551ab1",
+   "p2c_common.py": "8049f805df5a66c0f681b3c3a83ed4ceffc7ec38313bb19b0cfe84db0d8764c3",
+   "p2c_g4vtx.py": "287beb8fd39bab8d797df1e49cb46e42c0fc0681dcb63eb0d9ba36df1bb35958",
+   "p2c_handover.py": "434eca8c2d1d9b0c1af037f4042a4c721ed6e72b099ec0aaccbd57b0569ad157",
+   "p2c_b1.py": "2243df59d09febd4d5c9034a747c371980fd5117ccfbc70abf2fc2bc11ed6a7b",
+   "p2c_campaigns.py": "c618ffd001ee4b1f3795baba3ba81dee12d29fe211df0719c2653f784fad3c97",
+   "p2x_queue.sh": "1ba0ddf772329995af4c216f7cf3a14f4e9596a77fb78c924e02a386f923b95d",
+   "g4/g4hv.cc": "55b434a3032c125d1f93968f03ddaa04bfbb0d68189481f1c9428b4121c94aa6",
+   "g4/g4hv.sh": "f9e768d5a853b00fd26d5ecbf2a4172e26d7012ceae73a9f84eadb78d2a38eaa",
+   "g4/make_geom_g4.py": "7248b01b9ba0c81364cc5b111899c601591074e470896e20e281123ac3b49293",
+   "g4/CMakeLists.txt": "e26b0ce7068c72c8615633550118ecac620e4f808eebb9b871b4fe42d302c206",
+   "p2a_b1_campaigns.py": "ea9424b771b906173a45b24451f44262f569f4d9a48b5bb14ba1b060d8e301fc",
+   "p2x_pilot_campaigns.py": "b59bf2ae2aa7deddaa52936f1ab0f4f8f5f9b3a5f9370ef5dcaf41526d3ad629",
+   "p2x_validate.py": "5a29dcb7d420276182081c647f8a8333ee10346e4efbc8e7112d4a677a801c4e",
+   "p2c_validate.py": "2a6e4b73fcee2ecbaebdca3976314f29f0d6e8499ec17d554c43c10c4250c2da"
+  },
+  "inputs": {
+   "acts/stage4/code/run_chain.py": "bdea0e276e30473908f93b7b23e75d3876e4d6b43893b78077accf21f24aec8d",
+   "acts/stage4/code/s4pu.py": "75e2f06c3280d086b1c4fa007ec49a3f75365ff548ce08ef7bb9e4c7fd818438",
+   "acts/stage4/code/s4geo.py": "753c5f0bdee986fe80f8f47cc54ca6ce62682a64f2235c2b81e70863851034bb",
+   "acts/stage4/code/s4cp.py": "0d15212e56f2fde5e0f57598c2f6de55731d0289c1622689ac1e250b4147eda5",
+   "acts/geometry/cms_phase2_public.json": "5a948cce91b4be94a59d6633de0103e14fda5ed17e0b5df64999d5fdaed2b543",
+   "sim/stage3/code/surfaces_s3.json": "f4c664f608531861cd4a5052f39cc2f2c7492cbfb80d96ad96edf21daa975b40",
+   "acts/scripts/pythia8_tune_CP5.dat": "3002a2a36b8118be0c9c526eff8b4909f6fabb1f70467e170595df21edadddc7",
+   "acts/pixi.lock": "260822560ccde207daaadee952d6934c2e3212d9a0c66be857adc6207196d36b",
+   "../../tools/install/g4/pixi.lock": "edbcef2450615c1db45dc9cbed8000faca9a21f4b0164f8541dd4a76dfe07291"
+  },
+  "yields": "050389290aaa9c31537c4b5e184ff84e2972ea9c58f91002228b33a20e1a4fd4"
+ },
+ "frozen_from_launch": [
+  "phase2_exploration/src/p2x_g4prod.py",
+  "phase2_exploration/src/p2x_b1.py",
+  "phase2_exploration/src/p2a_hspool.py",
+  "phase2_exploration/src/p2x_common.py",
+  "phase2_exploration/src/p2c_common.py",
+  "phase2_exploration/src/p2c_g4vtx.py",
+  "phase2_exploration/src/p2c_handover.py",
+  "phase2_exploration/src/p2c_b1.py",
+  "phase2_exploration/src/p2c_campaigns.py",
+  "phase2_exploration/src/p2x_queue.sh",
+  "phase2_exploration/src/g4/g4hv.cc",
+  "phase2_exploration/src/g4/g4hv.sh",
+  "phase2_exploration/src/g4/make_geom_g4.py",
+  "phase2_exploration/src/g4/CMakeLists.txt",
+  "acts/stage4/code/run_chain.py",
+  "acts/stage4/code/s4pu.py",
+  "acts/stage4/code/s4geo.py",
+  "acts/stage4/code/s4cp.py",
+  "acts/geometry/cms_phase2_public.json",
+  "sim/stage3/code/surfaces_s3.json",
+  "acts/scripts/pythia8_tune_CP5.dat",
+  "acts/pixi.lock",
+  "../../tools/install/g4/pixi.lock"
+ ],
+ "campaign_file_sha256": {
+  "p2-c-pa-lt-t2-g4a-00": "e4c570c315e3f3baaa691b3e0c321c47fcc2cf06066131f9d40a9a29266f815d",
+  "p2-c-pa-lt-t2-g4a-01": "936c235f37d74e606789f0f344d061b2963160e1b225a42c85f4ac885a9fb485",
+  "p2-c-pa-lt-t2-g4a-02": "60e2da98d51726ceb1e208d264e11d609ab0b3578f0b80f49dc3e406f5799b75",
+  "p2-c-pa-lt-t2-c0-dif-00": "507100f5d33ad1fccecee79ccc49d6e7631307efe80d4cfa380a02d7d16a544c",
+  "p2-c-pa-lt-t2-c0-dif-01": "428efb2a2f8d5a3f309ef5732bc7e463904753005e927fea3b8605fad3ff726d",
+  "p2-c-pa-lt-t2-c0-difc-00": "0fb75528ca67894e9d4f7668b7e50436678abd231f032be0647efec5552abd77",
+  "p2-c-pa-lt-t2-c0-difc-01": "dfda0b3feedde503fbcbe345a8b674a9266d553187544e9ce281f82cc75e4f62",
+  "p2-c-pa-lt-t2-c0-nix-00": "1ce38ba84784891b65d3f88aed3c277efbdd6420f4c35e30d51db8feea7c6106",
+  "p2-c-pa-lt-t2-c0-nix-01": "afa30b4220a4797734e57b5021d3f87cd307ce1754cd4cc4b8c4f92ddc3e9218",
+  "p2-c-pa-lt-t2-c0-nic-00": "7412282287a053b126a41fbe6edb213c41ba160958c4c721a0cabf7b218166df",
+  "p2-c-pa-lt-t2-c0-nic-01": "1caa7f9077db0b45d4a7c613c6d697d87631c65f422f24d49a0fa4baf3ef24f1",
+  "p2-c-pa-lt-t2-g4n-00": "32105ac429b6eaa78422042300808583e284fbe84b106df18e914c61897a4911",
+  "p2-c-pa-lt-t2-g4n-01": "78a0bffab1a76bb3344f41631783aaabaee2126fcf98f58a875ace30cdda3932",
+  "p2-c-pa-lt-t2-g4n-02": "6bfd105d0f29410503d50bc4cbc7ac947498d9fad3bb268206408faf632fcaac",
+  "p2-c-pa-lt-t2-c0-ni22-00": "b5bbb2f640f2ea8cd65392dc1c2d76165a2042e135822cb02819d273ebb3f036",
+  "p2-c-pa-lt-t2-c0-ni22-01": "9fa2581808f6ad1ae7529f5d0ed4a15b5a208d2233459f9c7234142168d66094",
+  "p2-c-pa-lt-t2-c0-ni30-00": "2540bba4298d1706134ae5705f3cb98c0b2b5e8a042257410e193f40a6eb12d4",
+  "p2-c-pa-lt-t2-c0-ni30-01": "86e480a47af2057e000ac0a64b171042cbdc9086a8a056395431669091139d88",
+  "p2-c-pa-lt-t2-c0-ni61-00": "93be874a8f426d6a7229c25f7f1ddd3674df97696d2610936ea7ca8111f1b185",
+  "p2-c-pa-lt-t2-c0-ni61-01": "b945c40e5e0f534937dec6a060d24b2e8e87dd25c419f3162023f15adc569358",
+  "p2-c-pa-lt-t2-hph": "21a4531e90f64810375e2d4d447647313f6e03003f82b693a203820a2333e7d1",
+  "p2-c-pa-lt-t2-g4h": "53b245e21786ff79cfe0988178fe2873e18905d38866f78b66c6f557e9bb4a18",
+  "p2-c-pa-lt-t2-c0-hs": "dc763d4dccbd8cced5029039dca6c1617f60c887c8ceb2ac31d8a1b51fd4b3ec",
+  "p2-c-pa-lt-t2-g4l": "c420959ee3065a1950164712c68d8b850914a84938b05bddbe2770ebbeba750b",
+  "p2-c-pa-lt-t2-c0-lowpt": "6c4674b0f129cb00e88fcd90db02430c5ee2832cfca6fdfc3e9b1d57edcfaa2f"
+ },
+ "scripts": {
+  "launch_1slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/LAUNCH_p2-c-pa-lt-t2_b1_1slots.sh",
+  "launch_2slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/LAUNCH_p2-c-pa-lt-t2_b1_2slots.sh",
+  "launch_3slots": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/LAUNCH_p2-c-pa-lt-t2_b1_3slots.sh",
+  "status": "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t2/STATUS_p2-c-pa-lt-t2_b1.sh",
+  "stop": "touch /home/scratch/jdochoa/drivers/STOP.<first campaign of the lane> on its node: the lane ends after its running campaign; running jobs are never killed by it"
+ }
+}

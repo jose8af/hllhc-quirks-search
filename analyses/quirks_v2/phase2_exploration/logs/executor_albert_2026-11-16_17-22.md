@@ -162,3 +162,11 @@ files of its `frozen_from_launch` are frozen too (p2x_g4prod.py, p2x_b1.py, p2a_
 {b1, b1_optional, launch_test_b1, slices_pa}. Slice data: data/p2c/pa_validation/<campaign>/000/; validation JSONs
 p2-c-pa-val0-0.json, p2-c-pa-val1-{g4,b1}.json, p2-c-pa-val2-0.json; diagnostics p2-c-pa-dg{1,2}-0.json.
 Queue logs: schrodinger:/home/scratch/jdochoa/drivers/p2a_slices_{1..5}.log, p2-c-pa-lt_b1_1slots_lane0.log.
+- 2026-11-17 08:38 (17 Nov) **Multi-lane launch test done on the orchestrator's instruction of 08:15** (one lent slot on each of schrodinger,
+  landau, maxwell; SLOTS.md lines at start and release): sets p2-c-pa-lt-t3 (3 lanes, 3 nodes), -t2 (2 lanes, 2 nodes), -t4 (wait
+  across nodes), validation p2-c-pa-val3 (96 files pass); 0.22 CPU-h. Every item PASS (table in B1_READY §9). Generator change: LAUNCH
+  scripts take NODECAPS (per-lane node cap; maxwell needs 4); real plan + optional plans regenerated 08:37, the 39 campaign files
+  byte-identical (b72b6fd5…), preflight 0 failed. Decision received: residue handled as option (a), β stays 0.1, no regeneration.
+  **State for a successor, update:** point 1 (decision) and point 2 (multi-lane test) of the section above are CLOSED. Nothing of
+  mine runs. Remaining: after the orchestrator's launch, one validation job per stream (B1_READY §5 step 6); regenerate only if the
+  addendum review changes a parameter (B1_READY §7), and never once the B1 plan is launched.

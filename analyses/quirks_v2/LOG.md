@@ -821,3 +821,13 @@ through the runner.
 - T1-b: successor **Flora** (Fable) resumes the likelihood check against v1 with the jax configuration on one lane
   of schrodinger; the procedure is fixed in writing before any toy is run.
 - cajuela: 3.8 TB free.
+
+## 2026-11-17 08:39 -05 (measured) — B1 pilot launch-ready (multi-lane test PASS)
+Albert (VERIFIED, dummy sets p2-c-pa-lt-t3-*, -t2-*, -t4-*, validation p2-c-pa-val3; 0.22 CPU-h): launch,
+double-launch guard, STOP, resume, completion, relaunch, STATUS, pre-flight and lane isolation pass with 3 lanes on
+three nodes and 2 lanes on two nodes; the retry branch of the queue script (node above its cap) passes; first Geant4
+runs of this code on landau and maxwell pass all hard checks. LAUNCH scripts now take a per-lane node cap
+(`NODECAPS`); plans regenerated at 08:37, the 39 campaign files byte-identical. Pre-flight 0 failed checks.
+Launch options when the user approves: (A) 3 lanes over schrodinger, landau, maxwell now (15–16 h for the class
+blocks; the hard-scatter block follows the last Z(νν) file); (B) 2 lanes on schrodinger after Z(νν), 26.3 h;
+(C) 3 lanes on schrodinger after Z(νν), 19.1 h. Not launched: waits for the user's approval of D1–D9.

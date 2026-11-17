@@ -1,0 +1,47 @@
+{
+ "campaign": "p2-c-t1f-setup2",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1-b set-up check 2b repeated with tighter SLSQP tolerance (fit accuracy), same pseudo-data",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-setup2-a",
+   "outputs": [
+    "p2-c-t1f-setup2-a-jax-m0621.json",
+    "p2-c-t1f-setup2-a-jax-m0828.json",
+    "p2-c-t1f-setup2-a-jax-m1118.json",
+    "p2-c-t1f-setup2-a-numpy-m0621.json",
+    "p2-c-t1f-setup2-a-pair.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-a-jax-m0621.json jax 621.5 300 2026111700 tol=1e-10 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-a-jax-m0828.json jax 828.7069 300 2026111700 tol=1e-10 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-a-jax-m1118.json jax 1118.754 300 2026111700 tol=1e-10 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-a-numpy-m0621.json numpy 621.5 300 2026111700 tol=1e-10 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pair $QV2_OUT_DIR/p2-c-t1f-setup2-a-pair.json $QV2_OUT_DIR/p2-c-t1f-setup2-a-jax-m0621.json $QV2_OUT_DIR/p2-c-t1f-setup2-a-numpy-m0621.json"
+  },
+  {
+   "id": "p2-c-t1f-setup2-b",
+   "outputs": [
+    "p2-c-t1f-setup2-b-jax-m0621.json",
+    "p2-c-t1f-setup2-b-jax-m0828.json",
+    "p2-c-t1f-setup2-b-jax-m1118.json",
+    "p2-c-t1f-setup2-b-numpy-m0621.json",
+    "p2-c-t1f-setup2-b-pair.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-b-jax-m0621.json jax 621.5 300 2026111700 tol=1e-10,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-b-jax-m0828.json jax 828.7069 300 2026111700 tol=1e-10,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-b-jax-m1118.json jax 1118.754 300 2026111700 tol=1e-10,newton_t=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-b-numpy-m0621.json numpy 621.5 300 2026111700 tol=1e-10,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pair $QV2_OUT_DIR/p2-c-t1f-setup2-b-pair.json $QV2_OUT_DIR/p2-c-t1f-setup2-b-jax-m0621.json $QV2_OUT_DIR/p2-c-t1f-setup2-b-numpy-m0621.json"
+  },
+  {
+   "id": "p2-c-t1f-setup2-c",
+   "outputs": [
+    "p2-c-t1f-setup2-c-jax-m0621.json",
+    "p2-c-t1f-setup2-c-jax-m0828.json",
+    "p2-c-t1f-setup2-c-jax-m1118.json",
+    "p2-c-t1f-setup2-c-numpy-m0621.json",
+    "p2-c-t1f-setup2-c-pair.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-c-jax-m0621.json jax 621.5 300 2026111700 tol=1e-12,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-c-jax-m0828.json jax 828.7069 300 2026111700 tol=1e-12,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-c-jax-m1118.json jax 1118.754 300 2026111700 tol=1e-12,newton_t=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-setup2-c-numpy-m0621.json numpy 621.5 300 2026111700 tol=1e-12,newton_t=1 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pair $QV2_OUT_DIR/p2-c-t1f-setup2-c-pair.json $QV2_OUT_DIR/p2-c-t1f-setup2-c-jax-m0621.json $QV2_OUT_DIR/p2-c-t1f-setup2-c-numpy-m0621.json"
+  }
+ ]
+}

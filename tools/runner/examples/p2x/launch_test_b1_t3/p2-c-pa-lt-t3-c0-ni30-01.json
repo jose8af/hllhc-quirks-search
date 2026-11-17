@@ -1,0 +1,25 @@
+{
+ "campaign": "p2-c-pa-lt-t3-c0-ni30-01",
+ "tier": "regenerable",
+ "data_prefix": "p2c/pa_validation",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2a_b1_campaigns.py b1 (parameters: the PLAN file of this directory -> params)",
+ "description": "pilot: no-pile-up events of sample ni30 = ni30, stream pa.lt.c0.ni30, hand-over radius",
+ "expected_hours": 0.0,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "after": [
+  "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/launch_test_b1_t3/p2-c-pa-lt-t3-g4n-01.json"
+ ],
+ "jobs": [
+  {
+   "id": "p2-c-pa-lt-t3-c0-ni30-0001",
+   "outputs": [
+    "p2-c-pa-lt-t3-c0-ni30-0001.npz",
+    "p2-c-pa-lt-t3-c0-ni30-0001.npz.sha.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_b1.py ni30 ni30 $QV2_OUT_DIR/p2-c-pa-lt-t3-c0-ni30-0001.npz 12 pa.lt.c0.ni30 1 0 0.1 /nfs/cajuela/jdochoa/quirks_v2/data/p2c/pa_validation/p2-c-pa-lt-t3-g4n-01/000/p2-c-pa-lt-t3-g4n-0001.ni30.npz radius 21 0.005"
+  }
+ ]
+}

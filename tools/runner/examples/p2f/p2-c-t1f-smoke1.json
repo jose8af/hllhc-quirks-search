@@ -1,0 +1,30 @@
+{
+ "campaign": "p2-c-t1f-smoke1",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1-b: smoke of every code path of p2f_t1.py (no result)",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-smoke1-all",
+   "outputs": [
+    "p2-c-t1f-smoke1-setup.json",
+    "p2-c-t1f-smoke1-ws.json",
+    "p2-c-t1f-smoke1-ptj.json",
+    "p2-c-t1f-smoke1-ptn.json",
+    "p2-c-t1f-smoke1-pair.json",
+    "p2-c-t1f-smoke1-r1.json",
+    "p2-c-t1f-smoke1-r2.json",
+    "p2-c-t1f-smoke1-sum.json",
+    "p2-c-t1f-smoke1-v1stat.json",
+    "p2-c-t1f-smoke1-ref.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py setup $QV2_OUT_DIR/p2-c-t1f-smoke1-setup.json $QV2_OUT_DIR/p2-c-t1f-smoke1-ws.json quick && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-smoke1-ptj.json jax 621.5 20 999001 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase1_strategy/src/pyhf_bench/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pt $QV2_OUT_DIR/p2-c-t1f-smoke1-ptn.json numpy 621.5 20 999001 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py pair $QV2_OUT_DIR/p2-c-t1f-smoke1-pair.json $QV2_OUT_DIR/p2-c-t1f-smoke1-ptj.json $QV2_OUT_DIR/p2-c-t1f-smoke1-ptn.json && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-smoke1-r1.json 828.67 999001 30 2 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-smoke1-r2.json 828.67 999002 30 2 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py summary $QV2_OUT_DIR/p2-c-t1f-smoke1-sum.json 828.67 $QV2_OUT_DIR/p2-c-t1f-smoke1-r1.json $QV2_OUT_DIR/p2-c-t1f-smoke1-r2.json && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py v1stat $QV2_OUT_DIR/p2-c-t1f-smoke1-v1stat.json 300 && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py ref $QV2_OUT_DIR/p2-c-t1f-smoke1-ref.json 828.67 3000"
+  }
+ ]
+}
