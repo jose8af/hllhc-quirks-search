@@ -870,3 +870,11 @@ after the last Z(νν) file). Status: `bash tools/runner/examples/p2x/b1/STATUS_
 resume: the same LAUNCH line. Pilot part 1: 169 of 500 done, 0 failed; projected end about 18 Nov 19:00.
 The user also asked for the orchestrator's call on the next session (Opus or Fable) and is unsure about capping
 subagent context; answered in chat.
+
+## 2026-11-17 10:17 -05 (measured) — Restart instructions written; next orchestrator = Opus with Fable on call (user decision)
+The user: "go with Opus orchestrator and Fable advisor. Lets have ready the instructions for the restart. And notify
+me when everything is done and safe for the restart." `ORCHESTRATOR_STATE.md` rewritten as the restart document
+(the prompt to paste; rules changed since the brief with the advisor triggers; what runs unattended with commands;
+what waits on the user; item-by-item state; first actions; dates). DEVIATIONS V16. Still to do before the session
+is safe to close: Edgar's final report (channel (ii), this evening), the first-markers check of pilot part 2, the
+day-1 report, a final update of the state file, then an INFO notice "safe to restart".
