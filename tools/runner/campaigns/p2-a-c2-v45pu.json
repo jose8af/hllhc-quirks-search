@@ -1,0 +1,38 @@
+{
+ "campaign": "p2-a-c2-v45pu",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C2-a V4-5 production, PU-only half (STR \u00a74.2): the first 50 trials of p2-a-c1-pu1 (file order) with an aligned F0 candidate at R04; frozen comparison (exhaustive 0.2 mrad grid within \u00b10.3 rad, band accumulation, D-i-2) + independent fit + local-climb diagnostic + plane diagnostics; full half-sphere 10 mrad check on the first 17 trials",
+ "expected_hours": 1.0,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "v45-pu-0",
+   "shard": 0,
+   "outputs": [
+    "v45-pu-0.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --skip 0 --n 17 --tag v45-pu-0 --selfcheck --full-sphere 0.01"
+  },
+  {
+   "id": "v45-pu-1",
+   "shard": 0,
+   "outputs": [
+    "v45-pu-1.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --skip 17 --n 17 --tag v45-pu-1 --selfcheck"
+  },
+  {
+   "id": "v45-pu-2",
+   "shard": 0,
+   "outputs": [
+    "v45-pu-2.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --skip 34 --n 16 --tag v45-pu-2 --selfcheck"
+  }
+ ]
+}

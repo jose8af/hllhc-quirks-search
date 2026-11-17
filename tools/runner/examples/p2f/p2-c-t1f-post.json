@@ -1,0 +1,42 @@
+{
+ "campaign": "p2-c-t1f-post",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1-b: verdict assembly; diagnostics without verdict; reproduction of the pyhf default-start trap",
+ "expected_hours": 0.4,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-post-verdict",
+   "outputs": [
+    "p2-c-t1f-post-verdict.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py summary $QV2_OUT_DIR/p2-c-t1f-post-verdict.json 828.7069115492852 /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111701.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111702.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111703.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111704.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111705.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111706.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111707.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111708.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111709.json /nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-prod/000/p2-c-t1f-prod-s2026111710.json"
+  },
+  {
+   "id": "p2-c-t1f-post-v1stat",
+   "outputs": [
+    "p2-c-t1f-post-v1stat.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py v1stat $QV2_OUT_DIR/p2-c-t1f-post-v1stat.json 5000"
+  },
+  {
+   "id": "p2-c-t1f-post-ref",
+   "outputs": [
+    "p2-c-t1f-post-ref.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py ref $QV2_OUT_DIR/p2-c-t1f-post-ref.json 828.7069115492852 200000"
+  },
+  {
+   "id": "p2-c-t1f-post-hypo",
+   "outputs": [
+    "p2-c-t1f-post-hypo.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py hyporepro $QV2_OUT_DIR/p2-c-t1f-post-hypo.json"
+  }
+ ]
+}

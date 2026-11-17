@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-c-t1f-guard",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1: minimal reproduction of the pyhf default-start trap with the guard (Newton decrement)",
+ "expected_hours": 0.01,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-guard-hypo",
+   "outputs": [
+    "p2-c-t1f-guard-hypo.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py hyporepro $QV2_OUT_DIR/p2-c-t1f-guard-hypo.json"
+  }
+ ]
+}

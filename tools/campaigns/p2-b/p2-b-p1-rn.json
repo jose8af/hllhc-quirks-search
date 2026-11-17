@@ -1,0 +1,48 @@
+{
+ "campaign": "p2-b-p1-rn",
+ "tier": "final",
+ "expected_hours": 0.2,
+ "description": "channel (ii) Edgar: P1 floor DIAGNOSTIC (not pre-declared): round-to-nearest mdot at 44 and 47 significand bits, same 40 events, settings and fractions as floor-*-t44 of p2-b-p1-run",
+ "jobs": [
+  {
+   "id": "floor-e500-rn44",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/p1_runs.py $QV2_OUT_DIR/floor-e500-rn44.json /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-p1-ev/000/p1ev-e500-l3.npz floor 3.0 0 40 --kernel rn44 --s 0.1111111111 --fr 1,0.5,0.4,0.25,0.05",
+   "outputs": [
+    "floor-e500-rn44.json"
+   ]
+  },
+  {
+   "id": "floor-e500-rn47",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/p1_runs.py $QV2_OUT_DIR/floor-e500-rn47.json /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-p1-ev/000/p1ev-e500-l3.npz floor 3.0 0 40 --kernel rn47 --s 0.1111111111 --fr 1,0.5,0.4,0.25,0.05",
+   "outputs": [
+    "floor-e500-rn47.json"
+   ]
+  },
+  {
+   "id": "floor-e1000-rn44",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/p1_runs.py $QV2_OUT_DIR/floor-e1000-rn44.json /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-p1-ev/000/p1ev-e1000-l3.npz floor 3.0 0 40 --kernel rn44 --s 0.1111111111 --fr 1,0.5,0.4,0.25,0.05",
+   "outputs": [
+    "floor-e1000-rn44.json"
+   ]
+  },
+  {
+   "id": "floor-e1000-rn47",
+   "shard": 0,
+   "max_rss_mb": 800,
+   "timeout_s": 1800,
+   "command": "export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/p1_runs.py $QV2_OUT_DIR/floor-e1000-rn47.json /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-p1-ev/000/p1ev-e1000-l3.npz floor 3.0 0 40 --kernel rn47 --s 0.1111111111 --fr 1,0.5,0.4,0.25,0.05",
+   "outputs": [
+    "floor-e1000-rn47.json"
+   ]
+  }
+ ]
+}

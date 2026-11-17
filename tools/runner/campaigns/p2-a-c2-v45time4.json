@@ -1,0 +1,22 @@
+{
+ "campaign": "p2-a-c2-v45time4",
+ "tier": "scratch",
+ "data_prefix": "phase2",
+ "description": "C2 V4-5 timing, full size (band scan), global \u00b150 deg at 5 mrad and the 10 mrad full half-sphere direct check, 2 PU trials; v45time3 failed on a NameError after its fine scan (20.7 s, self-check 6e-5)",
+ "expected_hours": 0.5,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "v45-time4-pu",
+   "shard": 0,
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --n 2 --tag v45-time4-pu --selfcheck --full-sphere 0.01",
+   "outputs": [
+    "v45-time4-pu.json"
+   ]
+  }
+ ]
+}

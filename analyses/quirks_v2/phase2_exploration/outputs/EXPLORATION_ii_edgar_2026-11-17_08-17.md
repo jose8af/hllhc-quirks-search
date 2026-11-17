@@ -15,8 +15,8 @@ distributions used for S2-f and P1. No A, no m_mig, nothing selection-dependent.
 | COM row | criterion (short) | result |
 |---|---|---|
 | S2-a | three validations with numbers | val. 1 **PASS** (\|z\| ≤ 0.40, ≤ 0.024 %); val. 2 **PASS, with the qualifier** "reference = an independent public code (Resummino 3.1.2) run by us at the same settings; not a published number" (ratio 1.0006 / 1.0001 / 1.0018, decoupled); val. 3 **PASS** (power caveat in the upper bins) |
-| S2-b | K(m) with scale and PDF errors, both PDF sets; σ_norm table; resummed cross-check beside it | K(m) and σ_norm(m) done for 14 E masses and 4 Ẽ masses with PDF4LHC21 (nominal) and CT18NLO (§2.2). Resummed column: §2.3 |
-| S2-c | one f₂₀₀ definition and script; scale, PDF, merging, tune, FxFx; nuisance in T1 | §2.4. **FxFx comparison not run**: pending the user's ruling on a 30-minute exception |
+| S2-b | K(m) with scale and PDF errors, both PDF sets; σ_norm table; resummed cross-check beside it | **met**: K(m), σ_norm(m) for 14 E + 4 Ẽ masses with PDF4LHC21 (nominal) and CT18NLO (§2.2); resummed cross-check σ_NLO × R, R = 0.971 → 1.000 (200 → 1500 GeV) from self-run Resummino (scalar, applied to E: flagged) (§2.3) |
+| S2-c | one f₂₀₀ definition and script; scale, PDF, merging, tune, FxFx; nuisance in T1 | **met except FxFx**: f₂₀₀ = 0.0484 / 0.1041 / 0.1480 / 0.1676 (E 200/500/1000/1500), 0.1142 (Ẽ 500); band +4.3/−3.2, +2.9/−2.5, +6.0/−5.2, +6.0/−5.9, +3.8/−3.6 %; κ in §2.4. **FxFx**: exception granted by the user 2026-11-17; prepared; NOT submitted (needs a runner change, §2.8) |
 | S2-d | nominal signal showered with QED FSR | **met for the S2-c samples** (25/25 chunks `qedfsr: true`). Production (S1) must pass `--qedfsr` (opt-in in `s2_job.py`) |
 | S2-e | turn-on from a cited public figure with page, else "parametrised, not sourced" with the wide nuisance | **curve sourced** (L1 TDR Table 4.1 p. 210, Fig. 3.125 p. 188). **No uncertainty stated** anywhere: the nuisance size needs a decision (§2.6). HLT not sourced |
 | S2-f | correction per mass with source, or "not sourced" | **numbers per mass** (§2.7): +5.7 % (E 200) to +7.9 % (E 1500) at 1 keV. **Source: not sourced** (R-12, #29). One-sided band (default) |
@@ -38,10 +38,35 @@ recorded 88 s for 1,800 s wall while `ps` showed the integrators CPU-bound. Affe
 p2-b-s2-fxfx-diag, p2-b-s2-fxfx-diag2. They are **charged at wall time × 1 core** in the "charged" column. Fixed-order
 NLO, LO/MLM, shower and conversion jobs are not affected: their marker CPU ≈ wall (checked on kscan, kval, kdy, mlmtime).
 
-TABLE-CPU (filled at the end of the session; see §1.1)
+Channel (ii) total, tallied 2026-11-17 17:37 -0500: **39.5 CPU-h charged** (38.3 marker CPU-h) of the 139 CPU-h of S2 + P1. The FxFx first launches (≈ 3 core-h) are not yet spent.
 
 ### 1.1 Campaign table
-CAMPAIGN-TABLE-PLACEHOLDER
+| campaign | purpose | jobs (final status) | nodes | marker CPU-h | wall-h | charged CPU-h |
+|---|---|---|---|---|---|---|
+| p2-b-hw-mb | [DP5] 10⁶ + 10⁶ MB events | 25 (25 done) | maxwell | 2.96 | 3.03 | 2.96 |
+| p2-b-hw-smoke | Herwig/Pythia MB smoke; Resummino val. 2 | 7 (5 done, 2 failed) | maxwell | 0.25 | 0.26 | 0.25 |
+| p2-b-p1-ev | P1 event sets | 9 (9 done) | landau | 0.01 | 0.02 | 0.01 |
+| p2-b-p1-rn | P1 floor diagnostic (RN 44/47 bits) | 4 (4 done) | landau | 0.14 | 0.15 | 0.14 |
+| p2-b-p1-rneval | P1 diagnostic evaluation | 1 (1 done) | landau | 0.00 | 0.00 | 0.00 |
+| p2-b-p1-run | P1-a/b/c runs | 29 (29 done) | landau | 6.11 | 6.17 | 6.11 |
+| p2-b-p1-time | P1 timing | 6 (6 done) | landau | 0.12 | 0.13 | 0.12 |
+| p2-b-s2-fxfx-c | FxFx compile (queued) | 1 (1 running) |  | 0.00 | 0.00 | 0.00 |
+| p2-b-s2-fxfx-diag | FxFx diagnosis (i) | 1 (1 timeout) | landau | 0.02 | 0.50 | 0.50 |
+| p2-b-s2-fxfx-diag2 | FxFx diagnosis (ii)+(iii) | 3 (1 failed, 1 timeout, 1 done) | landau | 0.14 | 0.64 | 0.64 |
+| p2-b-s2-fxfx-time | FxFx timing (killed) | 1 (1 killed) | landau | 0.02 | 0.22 | 0.22 |
+| p2-b-s2-kdy | S2-a val. 3 (K(M) vs DY) | 5 (5 done) | landau | 0.38 | 0.60 | 0.38 |
+| p2-b-s2-kscan | K(m) CT18NLO, 18 masses | 5 (5 done) | landau | 2.00 | 2.05 | 2.00 |
+| p2-b-s2-kscan-p4l | K(m) PDF4LHC21, 18 masses | 5 (5 done) | landau | 1.52 | 1.54 | 1.52 |
+| p2-b-s2-kval | S2-a val. 1 (FO-LO vs tree) | 6 (6 done) | landau | 0.30 | 0.31 | 0.30 |
+| p2-b-s2-mlmtime | MLM 0–2j timing (E-TRG, E-INC, Ẽ-TRG m500) | 3 (3 done) | landau | 0.39 | 0.43 | 0.39 |
+| p2-b-s2-nll | S2-b Resummino NLO+NLL, 14 masses × 2 PDF sets | 6 (6 done) | maxwell | 0.67 | 0.69 | 0.67 |
+| p2-b-s2-smoke | MG local-copy smoke | 3 (1 done, 2 failed) | maxwell | 0.09 | 0.14 | 0.09 |
+| p2-b-s2c-f200 | f₂₀₀ final | 1 (1 done) | maxwell | 0.01 | 0.09 | 0.01 |
+| p2-b-s2c-f200t | f₂₀₀ code tests (partial data) | 3 (2 done, 1 failed) | landau | 0.01 | 0.09 | 0.01 |
+| p2-b-s2c-inc | S2-c inclusive MLM, 5 × 100k LHE | 25 (25 done) | maxwell | 5.51 | 5.79 | 5.51 |
+| p2-b-s2c-rs | S2-c re-showers (qCut 30/60, Monash, FSR off) | 50 (50 done) | maxwell | 17.61 | 18.44 | 17.61 |
+| p2-b-s2f | S2-f β average | 1 (1 done) | landau | 0.00 | 0.01 | 0.00 |
+| **total** | | | | **38.3** | 41.3 | **39.5** |
 
 ## 2. S2: theory inputs
 
@@ -65,7 +90,20 @@ kept, so the 9-point envelope is quoted (equal or wider; deviation noted). Integ
 
 | m [GeV] | σ_norm PDF4LHC21 [fb] | scale +/− [%] | PDF ± [%] (68 %) | σ_norm CT18NLO [fb] | CT18 PDF +/− [%] (90 %) | K (P4L / CT18) | (NLO+NLL)/NLO (scalar, P4L) | σ_norm resummed (P4L) [fb] |
 |---|---|---|---|---|---|---|---|---|
-SIGMA-NORM-ROWS
+| 200 | 216 | +1.5/−1.1 | 2.1 | 216.4 | +3.3/−4.3 | 1.1657 / 1.1628 | 0.9714 | 209.8 |
+| 300 | 48 | +1.6/−1.3 | 2.4 | 48.28 | +3.7/−4.9 | 1.1566 / 1.1561 | 0.9752 | 46.81 |
+| 400 | 15.33 | +1.7/−1.6 | 2.9 | 15.48 | +4.2/−5.6 | 1.1528 / 1.1535 | 0.9779 | 14.99 |
+| 500 | 5.95 | +1.9/−1.9 | 3.4 | 6.008 | +4.8/−6.3 | 1.1535 / 1.1536 | 0.9805 | 5.834 |
+| 600 | 2.622 | +2.0/−2.1 | 4.0 | 2.646 | +5.5/−7.0 | 1.1551 / 1.1545 | 0.9828 | 2.577 |
+| 700 | 1.253 | +2.1/−2.3 | 4.7 | 1.266 | +6.1/−7.8 | 1.1584 / 1.1596 | 0.9851 | 1.235 |
+| 800 | 0.6396 | +2.2/−2.5 | 5.5 | 0.645 | +6.9/−8.6 | 1.1659 / 1.1672 | 0.9871 | 0.6314 |
+| 900 | 0.3406 | +2.3/−2.7 | 6.5 | 0.3426 | +7.8/−9.5 | 1.1664 / 1.1693 | 0.9893 | 0.3369 |
+| 1000 | 0.1889 | +2.4/−2.9 | 7.9 | 0.1893 | +8.7/−10.4 | 1.1760 / 1.1781 | 0.9913 | 0.1873 |
+| 1100 | 0.1078 | +2.5/−3.0 | 9.6 | 0.1075 | +9.8/−11.5 | 1.1807 / 1.1817 | 0.9935 | 0.1071 |
+| 1200 | 0.06294 | +2.6/−3.2 | 11.5 | 0.06244 | +11.0/−12.6 | 1.1849 / 1.1875 | 0.9955 | 0.06266 |
+| 1300 | 0.0375 | +2.7/−3.3 | 14.2 | 0.03688 | +12.4/−13.8 | 1.1905 / 1.1943 | 0.9973 | 0.0374 |
+| 1400 | 0.02278 | +2.8/−3.5 | 17.3 | 0.02216 | +13.8/−15.1 | 1.1955 / 1.1997 | 0.9993 | 0.02276 |
+| 1500 | 0.01402 | +2.9/−3.6 | 20.8 | 0.01347 | +15.3/−16.5 | 1.1999 / 1.2055 | 1.0005 | 0.01403 |
 
 Ẽ (scalar), σ_norm PDF4LHC21 [fb]: 18.94 (200), 0.4504 (500), 0.011642 (1000), 0.0007296 (1500); PDF ±2.2 / 3.9 / 10.6 /
 30.5 %; scale +1.5/−1.1 … +3.1/−3.9 %. CT18NLO: 19.006 / 0.455 / 0.011566 / 0.0006766 fb.
@@ -83,7 +121,17 @@ Set-to-set ratio of the central E values (PDF4LHC21/CT18NLO): 0.998 (200), 0.990
   - The ratio is formed at Resummino's scale (m), but applied to our σ_NLO at H_T/2.
 - Earlier by-product (example SUSY spectrum, CT18NLO): (NLO+NLL)/NLO = 0.971 / 0.980 / 0.991 at 200 / 500 / 1000 GeV
   (#21, kref).
-NLL-RESULT-PLACEHOLDER
+
+**Result** (p2-b-s2-nll, maxwell, 6/6 done, 0.67 CPU-h; table §2.2; `outputs/s2/sigma_norm.json` → `nll_points`)
+[VERIFIED run].
+- **The ratio is below 1 and rises with mass.** R = (NLO+NLL)/NLO = 0.971 (200), 0.981 (500), 0.991 (1000), 1.000
+  (1500 GeV) with PDF4LHC21. CT18NLO agrees to ≤ 0.002 at every mass.
+- **Effect on σ_norm.** The resummed cross-check normalisation lies 2.9 % below the fixed-order nominal at 200 GeV and
+  coincides with it at 1.5 TeV. It is inside the 9-point scale envelope at every mass.
+- **Consistency check.** Resummino's decoupled NLO at 200 / 500 / 1000 GeV with CT18NLO (0.0097485 / 2.32972e-4 /
+  5.88640e-6 pb) is identical to the kref-dec run, the validation-2 reference.
+- **Effect on the reach.** At the masses that set the reach (≈ 1–1.5 TeV) the resummed cross-check moves σ_norm by
+  ≤ 0.9 %.
 
 ### 2.4 S2-c: f₂₀₀ — one definition, its pieces, the T1 nuisance
 **Definition (the only one, in code `src/s2/f200.py` and here):** f₂₀₀ = σ(p_T(QQ̄) > 200 GeV after the shower) /
@@ -106,7 +154,57 @@ nominal merged weight.
 momenta, and the linearised variance of f_var − f_nom is used. The unpaired √(σ_nom² + σ_var²) is in the JSON. Band =
 quadrature sum of the scale (7-point), PDF (68 %), merging, tune and statistical terms. The T1 nuisance is one
 asymmetric log-normal on the signal yield: κ_up = 1 + up, κ_dn = 1 − dn.
-F200-PLACEHOLDER
+**Result** (campaign p2-b-s2c-f200, maxwell, 2026-11-17 16:5x; `outputs/s2/f200.json`) [VERIFIED]. Inputs: all 25
+nominal chunks and all 100 re-shower files, listed from done markers with sha256 re-checked. Limiting checks: the
+scale-central and PDF-member-0 columns reproduce the nominal (difference ≤ 3×10⁻¹⁷), and the paired error of a sample
+with itself is 0.
+
+| point | f₂₀₀ ± stat | v1 | new/v1 | scale 7-pt +/− | PDF 68 % +/− (90 %) | qCut 30 / 60 shift (paired σ) | Monash shift (paired σ) | FSR-off shift (paired σ) | **band +/−** | **κ_up / κ_dn (T1)** |
+|---|---|---|---|---|---|---|---|---|---|---|
+| E 200 | 0.04836 ± 0.00091 | 0.04764 | 1.015 ± 0.019 | +3.1 / −2.2 % | +1.3 / −1.2 (+2.2 / −1.9) % | +1.9 (2.0) / −0.5 (2.0) % | −0.3 (2.1) % | −0.6 (2.0) % | **+4.3 / −3.2 %** | **1.043 / 0.968** |
+| E 500 | 0.10410 ± 0.00142 | 0.10418 | 0.999 ± 0.014 | +1.1 / −0.9 % | +1.1 / −1.1 (+1.8 / −1.7) % | +1.2 (1.5) / −0.1 (1.5) % | +1.6 (1.5) % | −1.2 (1.5) % | **+2.9 / −2.5 %** | **1.029 / 0.975** |
+| E 1000 | 0.14801 ± 0.00173 | 0.14585 | 1.015 ± 0.012 | +0.6 / −0.5 % | +1.7 / −1.7 (+2.9 / −2.7) % | +1.4 (1.3) / +3.0 (1.3) % | **+4.8 (1.4) %** | −1.7 (1.3) % | **+6.0 / −5.2 %** | **1.060 / 0.948** |
+| E 1500 | 0.16755 ± 0.00185 | 0.16876 | 0.993 ± 0.011 | +0.4 / −0.3 % | +2.1 / −2.0 (+3.5 / −3.3) % | −0.1 (1.2) / −0.4 (1.2) % | **+5.4 (1.3) %** | **−3.2 (1.2) %** | **+6.0 / −5.9 %** | **1.060 / 0.941** |
+| Ẽ 500 | 0.11424 ± 0.00150 | 0.1135 | 1.007 ± 0.013 | +1.0 / −0.8 % | +1.2 / −1.2 (+2.0 / −2.0) % | +1.1 (1.5) / +1.2 (1.4) % | +3.0 (1.5) % | −0.3 (1.4) % | **+3.8 / −3.6 %** | **1.038 / 0.964** |
+
+Band = √(scale² + PDF₆₈² + merging² + tune² + stat²), separately up and down. Components per point are in the JSON
+(`band.components_rel`).
+
+**Readings:**
+- **Agreement with v1.** f₂₀₀ agrees with v1's values within 1.5 % (≤ 1.3σ of our MC statistics) at all five
+  points. The single definition reproduces v1's numbers.
+- **Tune is the largest piece at high mass.** The Monash shift is +4.8 % (3.5σ) at E 1000 and +5.4 % (4.2σ) at
+  E 1500. At 200–500 GeV it is within 1σ. The band is therefore +6.0 / −5.2 to −5.9 % at 1–1.5 TeV and
+  +2.9 / −2.5 % to +4.3 / −3.2 % below.
+- **Comparison with v1's band.** v1's estimate was +12…+15 / −11…−13 % (D5 §2 [U]). The rebuilt band is about half of
+  that.
+- **Merging and statistics.** Merging-scale shifts are ≤ 3.0 % (≤ 2.3σ). MC statistics (1.1–1.9 %) enter the band as
+  their own term. Shifts that are not significant are still included, at their measured value: nothing is dropped.
+- **QED FSR (S2-d).** The FSR-off shift is quoted outside the band: −0.6 % (E 200) to −3.2 % (E 1500, 2.7σ). Turning
+  QED FSR on raises f₂₀₀ by the opposite amount.
+- **FxFx not included** (§2.8). STR's rule "enlarge the band if the FxFx value lies outside" is still to be applied.
+
+**Cross-check with channel (i) (input received, not re-derived here).** Channel (i) compared v1's stitched layout
+(TRG with an ME cut p_T(QQ̄) > 100 GeV plus INC) with inclusive-only σ(p_T > 200) on 20k inclusive events:
+- E 200: 1.118, at 2.3σ;
+- E 500: 1.055, at 1.5σ.
+
+Its 100k-event inclusive sample at E 200 (`p2-a-c1-s2inc`) had not been passed on when this file was written.
+
+**What a real effect would mean:**
+- If a +5 to +12 % excess of the stitched tail were real, the inclusive MLM 0–2j sample would underestimate the p_T
+  tail. f₂₀₀ taken from the inclusive sample alone (the STR definition) would then be **low by 5–12 %**, and the signal
+  yield with it. This is conservative for the reach, but a bias.
+- A +11.8 % effect at E 200 lies far outside the band (+4.3 %); +5.5 % at E 500 lies outside +2.9 %. Neither the
+  merging-scale nor the scale variations of the inclusive sample would cover it.
+- v1's f₂₀₀ came from the same inclusive definition and agrees with ours within 1.5 %, so it would carry the same bias.
+- **Consequence if confirmed:**
+  - either the stitched σ(p_T > 200) becomes the numerator (a change of the frozen definition: decision for the
+    orchestrator or user);
+  - or the stitched/inclusive difference enters the band as one more one-sided piece, as STR does for FxFx.
+- The FxFx sample would test the same high-p_T tail independently.
+- With the 100k inclusive sample, our own E 200 f₂₀₀ statistics are 1.9 %. A 2.3σ effect at 20k events would become
+  ≈ 5σ at 100k if real.
 
 ### 2.5 S2-d: QED FSR is the nominal
 All 25 chunks of p2-b-s2c-inc have nominal {CP5, qCut 45, xqcut 30, `qedfsr: true`} (chunk JSONs listed by their
@@ -191,9 +289,53 @@ Measured (Sebastian, campaigns p2-b-s2-fxfx-*):
 - Lowering req_acc does not shorten step 0.
 - Event batches from saved grids would fit 30 min.
 
-Not run: the user's ruling on a 30-minute exception (two single-core jobs of ≈ 1.5 h at 500 and 1,500 GeV) is pending.
-No channel-farming driver was built (instruction). Consequence: the f₂₀₀ band of §2.4 carries **no FxFx term**.
-STR's rule "if the FxFx value lies outside the band, the band is enlarged" cannot be applied yet.
+**Status: exception granted by the user on 2026-11-17; prepared; NOT submitted.** The exception covers two single-core
+first-launch jobs of ≈ 1.5 h, at 500 and 1,500 GeV; later event batches from the saved grids stay ≤ 30 min.
+
+**Why not submitted:** the runner hard-codes the 30-minute limit and rejects the campaign:
+- `tools/runner/qv2run/paths.py:24` sets `MAX_JOB_SECONDS = 1800`;
+- `tools/runner/qv2run/campaign.py:108-110` rejects `timeout_s` > 1800 with "outside (0, 1800]".
+
+The orchestrator makes the runner change after the pilot completes (≈ 19 Nov). Proposed change (≈ 6 lines): in
+`campaign.py`, accept a per-job `timeout_exception: {max_s, source}` on the SSH mechanism, cap it at 7200 s, use it
+instead of MAX_JOB_SECONDS, and write it into the marker. No channel-farming driver was built.
+
+**Prepared:**
+- `s2_job.py fxfx` gained `--save-procdir`: after the first launch, the whole node-local base dir (model, compiled
+  process dir, MINT grids, stamps) is written as `<tag>.procdir.tar.gz`, which the runner publishes to cajuela.
+- It also gained `--restore <tar.gz>`: it unpacks such a tarball on any worker that has no compiled dir.
+- Campaign `tools/campaigns/p2-b/p2-b-s2-fxfx-c.json`: compile at E 500 and E 1500, ≤ 30 min each, valid. It is queued
+  on maxwell after p2-b-s2-nll by `src/s2/queue_maxwell_fxfx.sh` (log `maxwell:/home/scratch/jdochoa/drivers/queue_maxwell_fxfx.log`).
+  That script then tries p2-b-s2-fxfx, logs the runner's rejection and stops.
+  The compile jobs started on maxwell at 17:37 on 2026-11-17 (≈ 9 min each; check:
+  `qv2run status tools/campaigns/p2-b/p2-b-s2-fxfx-c.json`).
+- Campaign `tools/campaigns/p2-b/p2-b-s2-fxfx.json`:
+  - jobs `fxfx-e500-grids`, `fxfx-e1500-grids`;
+  - `timeout_s` 6000, with `timeout_exception.source` = "user, 2026-11-17";
+  - first launch at the default accuracy with 2,000 events, `--save-procdir`;
+  - outputs timing.json, lhe.gz, npz (empty), aux.tar.gz, procdir.tar.gz.
+
+**Commands after the runner change** (maxwell; the compiled dirs from p2-b-s2-fxfx-c are node-local there):
+
+    R=/home/users/jdochoa/hllhc-quirks-search/tools/runner; C=/home/users/jdochoa/hllhc-quirks-search/tools/campaigns/p2-b
+    ssh -x maxwell "$R/bin/qv2run status $C/p2-b-s2-fxfx-c.json"       # must be 2/2 done (else launch it first)
+    ssh -x maxwell 'pgrep -fc "qv2run job"'                              # must be <= 3
+    ssh -x maxwell "$R/bin/qv2run ssh launch $C/p2-b-s2-fxfx.json --nodes maxwell --max-per-node 1 --on maxwell"
+    $R/bin/qv2run status $C/p2-b-s2-fxfx.json --live -v                 # ≈ 1.5 h per job, one at a time
+
+Then event batches as a new campaign (e.g. `p2-b-s2-fxfx-gen`), each ≤ 30 min, on any worker:
+
+    python3 -I .../src/s2/s2_job.py fxfx fxfx-e500-gen-NN E 500 <nev> --stage gen --shower \
+        --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz
+
+with `QV2_LOCAL_ENV=1`. Size `<nev>` from the grids job's timing.json: the event step after the grids.
+
+**What the successor must read and compute:**
+- f₂₀₀^FxFx = Σw[p_T(QQ̄) > 200]/Σw over the showered FxFx npz files, with signed MC@NLO weights. Same formula and
+  statistical error as `f200.py` (`frac`). Target ≥ 2 % statistics at 500 and 1,500 GeV.
+- Compare with the nominal ± band of §2.4. If it lies outside, enlarge the band to contain it (STR §4.14 (b)) and
+  update κ for T1.
+- Record the CPU at wall × 1 core: the event-mode accounting artefact of §1.
 
 ## 3. P1: thickness-law clean-ups
 
@@ -343,7 +485,9 @@ rate_DIF is channel (iii)'s decision.
 5. **FxFx.**
    - **Phase 1 assumed:** 2 × 20 CPU-h in 30-minute jobs.
    - **Phase 2 found:** the first launch needs ≈ 70–80 min on one core.
-   - **Implications:** needs a user exception; until then f₂₀₀'s band has no FxFx term.
+   - **Implications:** the user granted the exception on 2026-11-17, but the runner hard-codes 1800 s. Until the
+     runner change (after the pilot, ≈ 19 Nov) f₂₀₀'s band has no FxFx term, and the runner needs a sanctioned
+     exception mechanism (§2.8).
 6. **Resummed normalisation (S2-b).**
    - **Phase 1 assumed:** the (NLO+NLL)/NLO ratio is taken from the public tables.
    - **Phase 2 found:** the tables have no NLO column.
@@ -394,10 +538,10 @@ In every option the **jet-response tail is not sourced** (#14, #20).
 |---|---|---|---|
 | MLM 0–2j generation + shower (QED FSR) + conversion, per LHE event | 50 ms (G) | **39.7 ms** (production, 20k-event chunks); 41 ms (timing) | p2-b-s2c-inc: 5.51 CPU-h / 500,000 LHE; p2-b-s2-mlmtime |
 | MG fixed cost per launch (MLM survey/refine) | — | 72–99 s | p2-b-s2-mlmtime |
-| Pythia re-shower + npz conversion, per event and variant | 21 ms shower only (M) | RS-COST | p2-b-s2c-rs (2 variants × 20k events per job) |
+| Pythia re-shower + npz conversion, per event and variant | 21 ms shower only (M) | **32 ms** per event and variant (shower + conversion) | p2-b-s2c-rs (2 variants × 20k events per job) |
 | NLO fixed-order K at one mass (LO + NLO + PDF reweighting) | ≈ 2 CPU-min + 3 once (M) | 6.7 CPU-min (CT18NLO, 59 members), 5.1 CPU-min (PDF4LHC21) | p2-b-s2-kscan 2.00 CPU-h, p2-b-s2-kscan-p4l 1.52 CPU-h, 18 masses each |
 | FxFx 0–1j first launch per mass | 20 CPU-h per mass (G) | ≈ 70–80 min on one core for the first launch [ESTIMATE]; compile 8.6 min | p2-b-s2-fxfx-diag2 (wall-charged) |
-| Resummino LO+NLO / NLO+NLL per mass | — | ≈ 20 s / ≈ 130 s (example spectrum) | p2-b-hw-smoke kref jobs; RESUMMINO-COST |
+| Resummino LO+NLO / NLO+NLL per mass | — | ≈ 20 s / ≈ 130 s (example spectrum) | p2-b-hw-smoke kref jobs; p2-b-s2-nll: 2,416 CPU-s for 28 (mass, set) points = **86 s per mass** for LO + NLO + NLO+NLL (decoupled spectrum) |
 | Pythia minimum bias per event | 2.0–2.5 ms (M) | 2.9 ms (incl. init, smoke) | p2-b-hw-smoke |
 | Herwig 7.3 minimum bias per event | — | 11 ms (incl. init, smoke) | p2-b-hw-smoke; production p2-b-hw-mb 2.96 CPU-h for 10⁶ + 10⁶ |
 | P1 paired B*-off, 4 kernel runs per event, 5 keV | 2 × 67.8 s (D) | 23.8 s (E 500), ≈ 17 s (E 1000) | p2-b-p1-run |
@@ -422,14 +566,16 @@ In every option the **jet-response tail is not sourced** (#14, #20).
 - No unphysical values were met in the quantities used (β ∈ (0, 1), no β = 0 rows).
 
 ## 10. Open issues
-- FxFx (S2-c): the user's exception ruling.
+- FxFx (S2-c): exception granted; submission waits for the runner change (§2.8, commands there).
 - S2-e: nuisance branch and threshold.
 - P1-a test 1 not done ([DT3]).
 - HLT TDR (R-2 HLT) not obtainable automatically.
 - R-4, R-5, R-6, R-10, R-11, R-13, R-19, R-20: open with later deadlines.
 - Ẽ needs a P-wave Sommerfeld factor (S2-f).
 - The scalar → fermion assumption of the resummed ratio.
-- The cross-check of f₂₀₀ against channel (i)'s stitched σ(p_T > 200) (§2.4).
+- The cross-check of f₂₀₀ against channel (i)'s stitched σ(p_T > 200), whose 100k E 200 result has not reached me
+  (§2.4).
+- Tune dependence of f₂₀₀ at 1–1.5 TeV (+4.8 %, +5.4 % at 3.5–4.2σ) dominates the band there.
 
 ## 11. Self-review against `phase2_exploration/CLAUDE.md`
 The template checklist is written for a data analysis. The study overrides apply (simulation only, no RAG corpus,

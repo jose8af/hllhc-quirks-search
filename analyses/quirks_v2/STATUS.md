@@ -1,36 +1,38 @@
 # Status — quirks v2
 
-**2026-11-16 19:18 -05 (measured), day 0.** Phase 2 (Exploration) running. **Waiting for the user:** approval of strategy
-addendum 1 (decisions D1–D9) by 18 November about 14:00; an exception to the 30-minute job rule for one generator
-comparison (not urgent). Daily report: `daily/2026-11-16.pdf`. Notices: `notices/`.
+**2026-11-17 17:40 -05 (measured), day 1.** Phase 2 (Exploration) running. **Waiting for the user:** nothing urgent; two
+small choices (trigger turn-on uncertainty; a thickness-law diagnostic) come with a recommendation before the selection
+freeze. Daily report: `daily/2026-11-17.pdf`. Notices: `notices/`. The orchestrator session is being replaced
+(restart instructions at the top of `ORCHESTRATOR_STATE.md`).
 
 | | |
 |---|---|
 | Approved schedule | 4,609 CPU-h, stop-and-ask at 5,992, about 60 days (Gate A, 16 Nov) |
-| CPU-h used | 53.3 (ledger, 643 jobs) |
-| Projected total | 4,663–4,844 CPU-h (ESTIMATE; holds if the faster toy configuration is confirmed on a real workspace) |
-| Reported overruns | pilot 142 CPU-h against 54.5 budgeted |
-| cajuela, this project | 25 GB of 1.5 TB; projected about 515 GB |
-| cajuela pool free | 3.9 TB of 4.5 TB |
-| last repo bundle | `repo-2026-11-16.bundle` (refreshed with the daily report) |
+| CPU-h used | 228 (ledger, 1,611 jobs; VERIFIED): reproduction 110, theory 38, pilot channel 13, pilot 67 |
+| Projected total | 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for the robustness test D2; redone at the day-5 checkpoint |
+| cajuela, this project | 127 GB of 1.5 TB |
+| cajuela pool free | 3.8 TB of 4.5 TB |
+| last repo bundle | `repo-2026-11-17.bundle` |
 
-**Running:** pilot part 1 (minimum-bias pool + Z(νν), 2 lanes on schrodinger, 25 of 500 jobs done, none failed, ends
-about 18 Nov 16:15); v1 reproduction campaigns (landau, maxwell); theory inputs; preparation of the
-single-interaction pilot samples (not launched).
+**Running:** pilot part 1 (242 of 500 jobs, none failed, ends about 18 Nov 20:00); pilot part 2 (single-interaction
+samples, 128 of 762 jobs, none failed); v1 reproduction campaigns (all by about 19 Nov midday); compile jobs of the
+generator comparison.
 
-**Main findings today:** the v1 fast simulation records no hit beyond half a turn (25.2 % / 37.5 % of hits missing
-in Z(νν) / pile-up events); Geant4 gives 3.66×10⁸ single-interaction vertices against 6.8×10⁷ assumed; hard-scatter
-events cost 0.13–0.57 s against the guessed 0.045 s; toys fit the budget with a gradient backend up to about 80 fit
-parameters; the NLO calculation passes its three validations.
+**Decided today by the user:** addendum 1 (D1–D9 as recommended); amendments E1–E3 (three Gate-A criteria failed as
+frozen; the FAIL verdicts stay on record); exception to the 30-minute rule for the generator comparison; Opus
+orchestrator with Fable on call, one session per phase (V16).
 
-**Day-15 outlook (ESTIMATE):** an empty pilot reads 161 (R09 candidate) and 238–284 (R08) against the threshold 300;
-the pause remains expected. Upside reach 514–584 GeV (790 at Gate A).
+**Results today:** f₂₀₀ within 1.5 % of v1 at five points (0.0484 / 0.1041 / 0.1480 / 0.1676; scalar 0.1142; VERIFIED);
+cross-section tables with resummed ratio 0.971–1.000; theory channel finished except the generator comparison.
 
-**Open problems:** likelihood check against v1's limit not passing yet (ratio 1.05–1.16; different test statistic
-in v1); a slow-fragment artefact holds the nuclear-interaction samples; jet-response tail not sourced.
+**Open problems:** stitching cross-check of the inclusive sample not read (20k reading: 12 % excess at 200 GeV, 2.3σ);
+restricted scan of amendment E2 not run; robustness test D2 not started; jet-response tail not sourced.
+
+**Reach (ESTIMATE):** Gate A expected below 243 GeV (existing bounds about 180 GeV); nothing measured tests it yet;
+the findings since Gate A point down. Upside 514–584 GeV. A pause at day 15 remains expected.
 
 **Limits in force:** 10 GB cap, nothing heavy on einstein, one pixi install at a time, never rename a directory on
 cajuela, pushes only of `v2-jfc` for daily reports and notices, never forced.
 
-**Next interventions:** 18 Nov 14:00 addendum decisions; 21 Nov (day 5) only if the reproduction fails or the stop
-rule fires; 1 Dec (day 15) binding projection, pause expected.
+**Next interventions:** restart the session (tonight); 21 Nov (day 5) only if the reproduction fails or the stop rule
+fires; 23 Nov (day 7) preliminary projection; 1 Dec (day 15) binding projection, pause expected.

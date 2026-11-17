@@ -44,17 +44,30 @@
  },
  "p2-b-p1-rn": {
   "jobs": 4,
-  "attempts": 3,
+  "attempts": 4,
   "status": {
-   "done": 3,
-   "running": 1
+   "done": 4
   },
-  "cpu_h": 0.1060086111111111,
-  "wall_h": 0.11274916666666665,
+  "cpu_h": 0.14085944444444443,
+  "wall_h": 0.14833694444444442,
   "nodes": [
    "landau"
   ],
-  "charged_h": 0.1060086111111111,
+  "charged_h": 0.14085944444444443,
+  "charging": "marker cpu_s"
+ },
+ "p2-b-p1-rneval": {
+  "jobs": 1,
+  "attempts": 1,
+  "status": {
+   "done": 1
+  },
+  "cpu_h": 0.00075,
+  "wall_h": 0.0037108333333333333,
+  "nodes": [
+   "landau"
+  ],
+  "charged_h": 0.00075,
   "charging": "marker cpu_s"
  },
  "p2-b-p1-run": {
@@ -83,6 +96,18 @@
    "landau"
   ],
   "charged_h": 0.1224475,
+  "charging": "marker cpu_s"
+ },
+ "p2-b-s2-fxfx-c": {
+  "jobs": 1,
+  "attempts": 0,
+  "status": {
+   "running": 1
+  },
+  "cpu_h": 0.0,
+  "wall_h": 0.0,
+  "nodes": [],
+  "charged_h": 0.0,
   "charging": "marker cpu_s"
  },
  "p2-b-s2-fxfx-diag": {
@@ -199,6 +224,20 @@
   "charged_h": 0.3941511111111111,
   "charging": "marker cpu_s"
  },
+ "p2-b-s2-nll": {
+  "jobs": 6,
+  "attempts": 6,
+  "status": {
+   "done": 6
+  },
+  "cpu_h": 0.6711202777777778,
+  "wall_h": 0.6891186111111112,
+  "nodes": [
+   "maxwell"
+  ],
+  "charged_h": 0.6711202777777778,
+  "charging": "marker cpu_s"
+ },
  "p2-b-s2-smoke": {
   "jobs": 3,
   "attempts": 3,
@@ -212,6 +251,35 @@
    "maxwell"
   ],
   "charged_h": 0.08859805555555555,
+  "charging": "marker cpu_s"
+ },
+ "p2-b-s2c-f200": {
+  "jobs": 1,
+  "attempts": 1,
+  "status": {
+   "done": 1
+  },
+  "cpu_h": 0.005101111111111111,
+  "wall_h": 0.09222722222222221,
+  "nodes": [
+   "maxwell"
+  ],
+  "charged_h": 0.005101111111111111,
+  "charging": "marker cpu_s"
+ },
+ "p2-b-s2c-f200t": {
+  "jobs": 3,
+  "attempts": 3,
+  "status": {
+   "done": 2,
+   "failed": 1
+  },
+  "cpu_h": 0.009745833333333332,
+  "wall_h": 0.09354527777777777,
+  "nodes": [
+   "landau"
+  ],
+  "charged_h": 0.009745833333333332,
   "charging": "marker cpu_s"
  },
  "p2-b-s2c-inc": {
@@ -229,23 +297,36 @@
   "charging": "marker cpu_s"
  },
  "p2-b-s2c-rs": {
-  "jobs": 28,
-  "attempts": 27,
+  "jobs": 50,
+  "attempts": 50,
   "status": {
-   "done": 27,
-   "running": 1
+   "done": 50
   },
-  "cpu_h": 9.654414444444445,
-  "wall_h": 9.985410277777778,
+  "cpu_h": 17.60888694444445,
+  "wall_h": 18.44436111111111,
   "nodes": [
    "maxwell"
   ],
-  "charged_h": 9.654414444444445,
+  "charged_h": 17.60888694444445,
+  "charging": "marker cpu_s"
+ },
+ "p2-b-s2f": {
+  "jobs": 1,
+  "attempts": 1,
+  "status": {
+   "done": 1
+  },
+  "cpu_h": 0.0003286111111111111,
+  "wall_h": 0.008061111111111111,
+  "nodes": [
+   "landau"
+  ],
+  "charged_h": 0.0003286111111111111,
   "charging": "marker cpu_s"
  },
  "_total": {
-  "cpu_h": 29.60589472222222,
-  "wall_h": 31.943122499999998,
-  "charged_h": 30.780509444444444
+  "cpu_h": 38.28226388888889,
+  "wall_h": 41.32432416666666,
+  "charged_h": 39.45687861111111
  }
 }

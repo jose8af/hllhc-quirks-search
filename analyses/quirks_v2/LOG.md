@@ -894,3 +894,10 @@ Edgar found that the runner rejects any job above 1800 s (`tools/runner/qv2run/p
 and did not touch it. The orchestrator does not change the runner while about 1,200 pilot and reproduction jobs run
 through it. FxFx stays prepared (compile jobs, campaign file, process-directory save/restore) and is submitted after
 a small runner change once the running campaigns are complete; recorded in the state file.
+- 2026-11-17 10:36 orchestrator: pilot part 2 first markers done, no failed marker
+- 2026-11-17 17:40 orchestrator: Edgar's final report received 17:38 (channel (ii) finished except FxFx; f200 within 1.5 % of v1
+  at five points; S2-b, S2-d met; S2-e sourced without uncertainty; open choices S2-e and P1 diagnostic recorded in the
+  state file §2). Pilot part 1 242/500, part 2 128/762, no failed marker. Ledger rebuilt: 228 CPU-h on 1,611 jobs
+  after de-duplication (jobs.tsv has one row per output file; summing it raw doubles the total). Day-1 report written;
+  STATUS and ORCHESTRATOR_STATE updated for the restart; session cron for the daily report deleted (the new session
+  re-creates it). This Fable orchestrator session ends here (V16).

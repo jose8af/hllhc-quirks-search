@@ -1,0 +1,21 @@
+{
+ "campaign": "p2-b-s2-fxfx-diag",
+ "tier": "scratch",
+ "expected_hours": 0.6,
+ "description": "channel (ii) FxFx diagnosis step (i): everything node-local (MG install, MG python env, LHAPDF sets), timestamped MG log and a process sampler; E 500, 1000 events, req_acc 0.01",
+ "jobs": [
+  {
+   "id": "fxfx-diag-a",
+   "shard": 0,
+   "max_rss_mb": 2000,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-diag-a E 500 1000 --acc 0.01",
+   "outputs": [
+    "fxfx-diag-a.timing.json",
+    "fxfx-diag-a.lhe.gz",
+    "fxfx-diag-a.npz",
+    "fxfx-diag-a.aux.tar.gz"
+   ]
+  }
+ ]
+}

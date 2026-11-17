@@ -1,0 +1,68 @@
+{
+ "campaign": "p2-b-s2-nll",
+ "tier": "final",
+ "expected_hours": 1.5,
+ "description": "channel (ii) Edgar: S2-b resummed cross-check: Resummino 3.1.2 LO, NLO, NLO+NLL for ~e_R pairs (scalar), squarks/gluino decoupled, 14 TeV, CT18NLO and PDF4LHC21_40, all 14 reach-curve masses (maxwell only: node-local env)",
+ "jobs": [
+  {
+   "id": "nll-ct18-0",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-ct18-0.json 200,300,400,500,600 --modes lo_nlo,nll --decouple --pdf CT18NLO",
+   "outputs": [
+    "nll-ct18-0.json"
+   ]
+  },
+  {
+   "id": "nll-ct18-1",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-ct18-1.json 700,800,900,1000,1100 --modes lo_nlo,nll --decouple --pdf CT18NLO",
+   "outputs": [
+    "nll-ct18-1.json"
+   ]
+  },
+  {
+   "id": "nll-ct18-2",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-ct18-2.json 1200,1300,1400,1500 --modes lo_nlo,nll --decouple --pdf CT18NLO",
+   "outputs": [
+    "nll-ct18-2.json"
+   ]
+  },
+  {
+   "id": "nll-p4l-0",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-p4l-0.json 200,300,400,500,600 --modes lo_nlo,nll --decouple --pdf PDF4LHC21_40",
+   "outputs": [
+    "nll-p4l-0.json"
+   ]
+  },
+  {
+   "id": "nll-p4l-1",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-p4l-1.json 700,800,900,1000,1100 --modes lo_nlo,nll --decouple --pdf PDF4LHC21_40",
+   "outputs": [
+    "nll-p4l-1.json"
+   ]
+  },
+  {
+   "id": "nll-p4l-2",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 1800,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/resummino_job.py $QV2_OUT_DIR/nll-p4l-2.json 1200,1300,1400,1500 --modes lo_nlo,nll --decouple --pdf PDF4LHC21_40",
+   "outputs": [
+    "nll-p4l-2.json"
+   ]
+  }
+ ]
+}

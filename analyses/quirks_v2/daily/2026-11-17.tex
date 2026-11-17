@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=3pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\est}{\textsc{est}}
+\newcommand{\ver}{\textsc{ver}}
+\title{HL-LHC electroweak quirks, study v2\\[2pt]\large Daily report, day 1}
+\author{Private work (simulation). Public information only.}
+\date{17 November 2026, 17:50 (day 1 of the approved calendar)}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Tags.} \ver{} = measured or read in this study, with the campaign or file in the repository.
+\est{} = estimate. All reach and background numbers are \est{} on v1 placeholder efficiencies. No v2 signal
+efficiency has been computed; six v1 signal counts of the reproduction test stay sealed.
+
+\section{Summary}
+\begin{itemize}
+\item \textbf{Waiting for you:} nothing urgent. Two small choices from the theory channel are listed in
+      Section~\ref{sec:dec}; they are needed before the selection freeze, not now.
+\item You approved addendum 1 (D1--D9), the amendments E1--E3 and the exception for the generator comparison.
+      The second part of the pilot was launched at 10:10 on your approval.
+\item Both pilot parts run with no failed job: part 1 at 242 of 500 jobs, part 2 at 128 of 762.
+\item Three reproduction criteria failed as worded at Gate A and were amended by you (E1--E3). The failed
+      verdicts stay on record.
+\item The theory channel is finished except one generator comparison.
+\item This orchestrator session closes tonight. The next one runs on a cheaper model with the stronger model on
+      call, one session per phase (deviation V16).
+\end{itemize}
+
+\section{What finished today}
+\begin{enumerate}
+\item \textbf{Arithmetic check against v1 (C1-b).} Central values pass. The 84\,\% background edge fails as frozen
+      on 29 of 86 entries, inside v1's own Monte Carlo scatter (\ver). Amended by E1: pass.
+\item \textbf{Plane-fit accuracy (C2-a).} Fails as frozen in both halves: an independent fit agrees on 50 of 50
+      and 50 of 50 events, but the brute-force optimum is reached on 0 of 50 and 6 of 50 (\ver). Amended by E2:
+      first half passes; a restricted scan is still to be run.
+\item \textbf{Likelihood against v1's limit (T1-b).} Fails as frozen: $902\pm32$ against $789.7\pm10\,\%$ (\ver).
+      The likelihood itself agrees with v1 (asymptotic limit 828.7069 against 828.7067); the difference is the test
+      statistic. Amended by E3: pass.
+\item \textbf{Generator-cut fraction $f_{200}$} (\ver), within 1.5\,\% of v1 at all five points:
+\begin{center}
+\begin{tabular}{L{2.0cm}L{2.0cm}L{2.0cm}L{2.0cm}L{2.0cm}L{2.0cm}}
+\toprule
+ & E 200 & E 500 & E 1000 & E 1500 & $\tilde{\mathrm E}$ 500 \\
+\midrule
+$f_{200}$ & 0.0484 & 0.1041 & 0.1480 & 0.1676 & 0.1142 \\
+Band, \% & $+4.3/-3.2$ & $+2.9/-2.5$ & $+6.0/-5.2$ & $+6.0/-5.9$ & $+3.8/-3.6$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+      The shower-tune shift dominates from 1~TeV: $+4.8\,\%$ and $+5.4\,\%$. The cross-check of the sample stitching
+      on $10^{5}$ events is not read yet; an earlier 20{,}000-event reading showed a 12\,\% excess at 200~GeV
+      ($2.3\sigma$). If real, $f_{200}$ is biased low outside its band.
+\item \textbf{Cross sections.} Tabulated for 14 fermion and 4 scalar masses with two PDF sets. Resummed over
+      fixed-order ratio 0.971 at 200~GeV rising to 1.000 at 1500~GeV, from a public code run by us (\ver). The
+      scalar's ratio is applied to the fermion (flagged).
+\item \textbf{Bound-state correction to the rate:} $+5.7$ to $+7.9\,\%$ (\est). It has no public source and is
+      one-sided.
+\item \textbf{Public sources.} Seven more retrievals done. Hit resolution, hit efficiency and material have no
+      stated uncertainty in the public documents, so they take the pre-registered ``no nuisance'' branch. The
+      trigger TDR of the high-level trigger could not be obtained. Eight retrievals remain, all with later dates.
+\item \textbf{Thickness-law diagnostic.} A precision quoted by v1 as ``44 bits'' is in fact a coarser one; at the
+      precision v1 meant, the numerical-floor pattern reappears (\ver). It affects only what the paper may say about
+      that law.
+\end{enumerate}
+
+\section{Decisions for you (not urgent)}\label{sec:dec}
+\begin{enumerate}
+\item \textbf{Trigger turn-on uncertainty.} The public curve has no stated uncertainty. Options: a nuisance from the
+      statistical bars of the curve; a wide nuisance ($-10.6\,\%$ at 250~GeV); or raising the threshold to
+      275--300~GeV. The next session will bring this with a recommendation before the selection is frozen.
+\item \textbf{Thickness-law diagnostic.} Whether to record the new reading beside the earlier ``not the floor
+      pattern'' statement. I recommend recording it.
+\end{enumerate}
+
+\section{Running now}
+\begin{center}
+\begin{tabular}{L{3.6cm}L{10.6cm}}
+\toprule
+Pilot, part 1 & Minimum-bias pool complete (40 jobs); Z($\nu\nu$) at 202 of 460 jobs; none failed; ends about
+                18 November 20:00 (\est) \\
+Pilot, part 2 & Single-interaction samples on three nodes; 128 of 762 jobs; none failed. The hard-scatter block
+                starts after the last Z($\nu\nu$) file \\
+v1 reproduction & Pile-up, signal and SM campaigns; all by about 19 November midday (\est) \\
+Generator comparison & Compile jobs only (20 minutes). The two long jobs wait for a runner change, which is made
+                       after the campaigns above are complete \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Budget and storage}
+\begin{center}
+\begin{tabular}{L{7.6cm}L{6.4cm}}
+\toprule
+CPU used (ledger, 1{,}611 jobs) & 228 CPU-h of 4{,}609 approved (\ver) \\
+\quad of which reproduction / theory / pilot channel / pilot & 110 / 38 / 13 / 67 CPU-h \\
+Projected total & 4{,}663--4{,}844 CPU-h (\est), plus 22--28 for the robustness test D2; threshold 5{,}992 \\
+Storage, this study & 127 GB of 1.5 TB \\
+Shared volume free & 3.8 TB of 4.5 TB \\
+\bottomrule
+\end{tabular}
+\end{center}
+The projection has not been redone today. It is redone with measured costs at the checkpoint of day 5.
+
+\section{Problems}
+\begin{itemize}
+\item \textbf{Usage limit.} The session limit stopped three executors in the morning. Two were resumed and
+      finished; the third had already written its result.
+\item \textbf{Stitching excess} (item 4 above) is unresolved until the larger sample is read.
+\item \textbf{Failed jobs.} 36 failed, 3 timed out and 1 killed in total since day 0, all in development campaigns;
+      none in the pilot.
+\end{itemize}
+
+\section{Reach: where it stands (\est)}
+Gate A expected a reach below 243~GeV, with existing bounds near 180~GeV. Nothing measured today tests that. The
+findings since Gate A point down: five times more single-interaction vertices than assumed, three new background
+classes, and smaller simulated samples. The first indication comes with the preliminary projection of day 7.
+
+\section{Plan for 18--19 November}
+\begin{itemize}
+\item Pilot part 1 completes; one validation job per single-interaction stream.
+\item Reproduction campaigns complete; a new executor reads the 41 comparisons, then the sealed comparison.
+\item Restricted scan for E2; stitching ratio on $10^{5}$ events.
+\end{itemize}
+
+\section{Your next interventions}
+\begin{center}
+\begin{tabular}{L{4.2cm}L{10.0cm}}
+\toprule
+Tonight & Restart: open a new session as described at the top of \path{ORCHESTRATOR_STATE.md} \\
+21 November (day 5) & Decision point 1, only if the reproduction fails or the stop rule fires \\
+23 November (day 7) & Preliminary background projection (to read, no decision) \\
+1 December (day 15) & Binding background projection; a pause is expected \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Files}
+\begin{itemize}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/EXPLORATION_ii_edgar_2026-11-17_08-17.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/V45_RESULT_rosalie_2026-11-17_08-13.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/T1B_RESULT_flora_2026-11-17_09-35.md}
+\item \path{analyses/quirks_v2/COMMITMENTS.md} (amendments E1--E3, addendum 1)
+\item \path{analyses/quirks_v2/ORCHESTRATOR_STATE.md}
+\end{itemize}
+\end{document}

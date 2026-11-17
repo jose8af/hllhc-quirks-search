@@ -1,0 +1,44 @@
+{
+ "campaign": "p2-b-s2-fxfx",
+ "tier": "final",
+ "expected_hours": 3.2,
+ "description": "channel (ii) Edgar: FxFx first launch (MINT grids + 2000 events, default accuracy) at E 500 and 1500 GeV, maxwell, one job at a time, everything node-local; the node-local process dir incl. grids is published as <tag>.procdir.tar.gz for later <= 30-min gen jobs (--restore). EXCEPTION to the 30-minute rule granted by the user on 2026-11-17 (relayed by the orchestrator) for these two jobs only: timeout_s 6000. Requires a runner that accepts timeout_exception (MAX_JOB_SECONDS = 1800 otherwise)",
+ "jobs": [
+  {
+   "id": "fxfx-e500-grids",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 6000,
+   "timeout_exception": {
+    "max_s": 6000,
+    "source": "user, 2026-11-17 (relayed by the orchestrator): FxFx first launch only, two single-core jobs of about 1.5 h, one per mass; later event batches from saved grids stay <= 30 min"
+   },
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-grids E 500 2000 --stage grids --save-procdir",
+   "outputs": [
+    "fxfx-e500-grids.timing.json",
+    "fxfx-e500-grids.lhe.gz",
+    "fxfx-e500-grids.npz",
+    "fxfx-e500-grids.aux.tar.gz",
+    "fxfx-e500-grids.procdir.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e1500-grids",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 6000,
+   "timeout_exception": {
+    "max_s": 6000,
+    "source": "user, 2026-11-17 (relayed by the orchestrator): FxFx first launch only, two single-core jobs of about 1.5 h, one per mass; later event batches from saved grids stay <= 30 min"
+   },
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-grids E 1500 2000 --stage grids --save-procdir",
+   "outputs": [
+    "fxfx-e1500-grids.timing.json",
+    "fxfx-e1500-grids.lhe.gz",
+    "fxfx-e1500-grids.npz",
+    "fxfx-e1500-grids.aux.tar.gz",
+    "fxfx-e1500-grids.procdir.tar.gz"
+   ]
+  }
+ ]
+}

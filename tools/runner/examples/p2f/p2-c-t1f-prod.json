@@ -1,0 +1,84 @@
+{
+ "campaign": "p2-c-t1f-prod",
+ "tier": "regenerable",
+ "data_prefix": "p2c",
+ "regenerate": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_campaigns.py (see docstring)",
+ "description": "T1-b: the frozen toy procedure (STR 4.11 pt 2) in v1 mode, 10 replicas, mu_a = 828.7069115492852",
+ "expected_hours": 2.0,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "p2-c-t1f-prod-s2026111701",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111701.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111701.json 828.7069115492852 2026111701 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111702",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111702.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111702.json 828.7069115492852 2026111702 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111703",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111703.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111703.json 828.7069115492852 2026111703 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111704",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111704.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111704.json 828.7069115492852 2026111704 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111705",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111705.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111705.json 828.7069115492852 2026111705 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111706",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111706.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111706.json 828.7069115492852 2026111706 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111707",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111707.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111707.json 828.7069115492852 2026111707 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111708",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111708.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111708.json 828.7069115492852 2026111708 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111709",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111709.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111709.json 828.7069115492852 2026111709 1000 6 tol=1e-10"
+  },
+  {
+   "id": "p2-c-t1f-prod-s2026111710",
+   "outputs": [
+    "p2-c-t1f-prod-s2026111710.json"
+   ],
+   "command": "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && /home/scratch/jdochoa/envs/pyhf_toys/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2f_t1.py t1b $QV2_OUT_DIR/p2-c-t1f-prod-s2026111710.json 828.7069115492852 2026111710 1000 6 tol=1e-10"
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "campaign": "p2-a-c1-s2inc",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "Stitch diagnostic (orchestrator 2026-11-16): 5 more F_INC chunks x 20,000 LHE at E 200 (FSR off, v1 cards, stream c1.s2) so that sigma_INC(pT>200, pT_ME>=100) reaches ~2 %; compared with the TRG chunk c1s2-trg-m200-c00",
+ "expected_hours": 1.5,
+ "regenerate": "python3 -I phase2_exploration/src/make_campaigns.py (see description)",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1s2-inc-m200-c01",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c01 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c01.lhe.gz",
+    "c1s2-inc-m200-c01.npz",
+    "c1s2-inc-m200-c01.json",
+    "c1s2-inc-m200-c01.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m200-c02",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c02 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c02.lhe.gz",
+    "c1s2-inc-m200-c02.npz",
+    "c1s2-inc-m200-c02.json",
+    "c1s2-inc-m200-c02.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m200-c03",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c03 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c03.lhe.gz",
+    "c1s2-inc-m200-c03.npz",
+    "c1s2-inc-m200-c03.json",
+    "c1s2-inc-m200-c03.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m200-c04",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c04 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c04.lhe.gz",
+    "c1s2-inc-m200-c04.npz",
+    "c1s2-inc-m200-c04.json",
+    "c1s2-inc-m200-c04.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "c1s2-inc-m200-c05",
+   "shard": 0,
+   "command": "python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/c1_s2_job.py c1gen c1s2-inc-m200-c05 F_INC 200 20000",
+   "outputs": [
+    "c1s2-inc-m200-c05.lhe.gz",
+    "c1s2-inc-m200-c05.npz",
+    "c1s2-inc-m200-c05.json",
+    "c1s2-inc-m200-c05.aux.tar.gz"
+   ]
+  }
+ ]
+}

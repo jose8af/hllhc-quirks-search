@@ -1,0 +1,665 @@
+{
+ "definition": "f200.py -- S2-c (COM S2-c; STR \u00a74.14 (b)): f200 with ONE definition, its uncertainty pieces and the T1 nuisance.\nChannel (ii): written by Sebastian (2026-11-16), reworked by Edgar (2026-11-17): file list from done markers, 7- and\n9-point scale envelopes, asymmetric Hessian PDF, variant shifts with statistical errors, combination, v1 comparison.\nOrchestrator ruling 2026-11-16 12:14: f200 is allowed in Phase 2 (COM BL-1, selection-independent); A and m_mig are not\ncomputed here, and nothing else is computed from the signal samples.\n\nDEFINITION (the only one; STR \u00a74.14 (b)): f200 = sigma(pT(QQbar) > 200 GeV after the shower) / sigma(matched, inclusive),\nNO eta cut.  Numerator and denominator come from the SAME inclusive MLM 0-2j sample (p2-b-s2c-inc):\n    f200 = sum_i w_i [pt_pair_i > 200] / sum_i w_i\nwith w = nominal merged weight (npz 'w', fb per event; sum w = sigma_matched at qCut 45) and pt_pair = pT of the\nquirk pair after the shower (npz 'pt_pair'; convert_hepmc.py).  Rows with w = 0 contribute nothing.\n\nPIECES (each computed as the same ratio with another weight column or on a re-shower of the same LHE events):\n  stat   : weighted binomial, var = [sum_pass w^2 (1-f)^2 + sum_fail w^2 f^2] / (sum w)^2\n  scale  : LHE weights 'MUF=a_MUR=b_PDF=14400_MERGING=45.000', a, b in {0.5, 1, 2}; envelope relative to (1, 1);\n           7-point (without (0.5, 2), (2, 0.5)) = nominal choice, 9-point reported beside it\n  pdf    : CT18NLO Hessian members 14401..14458 (eigenvector pairs 2k-1, 2k) relative to member 0 (= 14400, the\n           generation PDF); asymmetric master formula\n             up = sqrt(sum_k max(X_{2k-1} - X0, X_{2k} - X0, 0)^2),  dn = sqrt(sum_k max(X0 - X_{2k-1}, X0 - X_{2k}, 0)^2)\n           and symmetric 1/2 sqrt(sum_k (X_{2k-1} - X_{2k})^2); quoted at the set's 90 % C.L. (CT18NLO.info,\n           retrieval_log #19) and converted to 68 % under a Gaussian assumption (divide by Phi^-1(0.95), computed here;\n           CT18 itself prints no factor, retrieval_log #30): ESTIMATE\n  merging: re-showers with qCut 30 and 60 GeV against 45 (p2-b-s2c-rs, same LHE); envelope of the two shifts\n  tune   : Monash re-shower against CP5; one-sided shift, symmetrised (|shift| up and down) by convention\n  fsr    : FSR-off re-shower; the shift is QUOTED (S2-d), it is NOT part of the band\n  fxfx   : not run (orchestrator / user: on hold, 30-minute exception pending); the band carries no FxFx term\nShift errors: (i) unpaired sqrt(stat_nom^2 + stat_var^2), conservative; (ii) PAIRED: the re-showers use the same LHE\nevents, which are matched by chunk and by the bit-identical hard-process quirk momenta (p_qp_hard, p_qm_hard; status-23\nLHE kinematics); the linearised variance of f_var - f_nom is sum over the union of events of (b_i - a_i)^2 with\na_i = w_i (I_i - f)/sum w for each sample (0 where an event is absent).  (ii) is the error quoted for the shift.\nBAND = quadrature sum of scale (7-point), pdf (68 %), merging, tune and stat, separately up and down; the T1 nuisance is\none asymmetric log-normal on the signal yield with kappa_up = 1 + up, kappa_dn = 1 - dn (pyhf normsys hi/lo).\nLimiting checks done in the code: a weight column identical to w gives a zero shift; the central scale and PDF-member-0\ncolumns reproduce the nominal f200.\n",
+ "points": {
+  "E200": {
+   "nom": {
+    "f200": 0.048355420551777495,
+    "stat": 0.0009122245899520987,
+    "n_rows": 67311,
+    "n_rows_w_pos": 55300,
+    "n_files": 5,
+    "sigma_matched_fb_NIC1": 93.62004981441328,
+    "sigma_matched_note": "sum w over all chunks divided by the number of chunks (each chunk normalised to sigma)"
+   },
+   "check_weight_Weight_equals_w": 0.0,
+   "scale": {
+    "central": 0.048355420551777495,
+    "points": {
+     "muF0.5_muR0.5": 0.049860465740472225,
+     "muF0.5_muR1.0": 0.049333644829171214,
+     "muF0.5_muR2.0": 0.04888045818331575,
+     "muF1.0_muR0.5": 0.04884774400724444,
+     "muF1.0_muR1.0": 0.048355420551777495,
+     "muF1.0_muR2.0": 0.04793200565367912,
+     "muF2.0_muR0.5": 0.048137785447566674,
+     "muF2.0_muR1.0": 0.047674828621763525,
+     "muF2.0_muR2.0": 0.047276748449435434
+    },
+    "7pt": {
+     "n": 7,
+     "up": 0.031124642729209118,
+     "dn": 0.022307159983999125
+    },
+    "9pt": {
+     "n": 9,
+     "up": 0.031124642729209118,
+     "dn": 0.022307159983999125
+    }
+   },
+   "pdf": {
+    "member0": 0.048355420551777495,
+    "n_members": 58,
+    "n_pairs": 29,
+    "cl90": {
+     "up": 0.02165278804543663,
+     "dn": 0.0190451972202985,
+     "sym": 0.01840799699601355
+    },
+    "cl68_gauss": {
+     "up": 0.013163960422160687,
+     "dn": 0.011578657765187513,
+     "sym": 0.011191267535537765,
+     "factor": 1.6448536269514715
+    }
+   },
+   "check_central_reproduces_nominal": {
+    "scale_central_minus_nom": 0.0,
+    "pdf_member0_minus_nom": 0.0
+   },
+   "check_paired_self": [
+    0.0,
+    67311
+   ],
+   "variants": {
+    "qc30": {
+     "f200": 0.04927827324306474,
+     "stat": 0.0009468760947094302,
+     "n_rows": 67467,
+     "n_files": 5,
+     "shift": 0.01908478265221758,
+     "shift_err_unpaired": 0.0271905613417795,
+     "shift_err_paired": 0.02032295560982452,
+     "n_events_matched": 49084,
+     "shift_signif_paired": 0.939075153172678
+    },
+    "qc60": {
+     "f200": 0.04811078206918768,
+     "stat": 0.0009038470064006792,
+     "n_rows": 65330,
+     "n_files": 5,
+     "shift": -0.005059173920902271,
+     "shift_err_unpaired": 0.026556902816687416,
+     "shift_err_paired": 0.019690031303611112,
+     "n_events_matched": 53092,
+     "shift_signif_paired": -0.25694087748730066
+    },
+    "monash": {
+     "f200": 0.048198495289799685,
+     "stat": 0.0009446167586751081,
+     "n_rows": 64906,
+     "n_files": 5,
+     "shift": -0.003245246555342862,
+     "shift_err_unpaired": 0.027156932207715742,
+     "shift_err_paired": 0.020465651159191755,
+     "n_events_matched": 51199,
+     "shift_signif_paired": -0.15857040316478216
+    },
+    "nofsr": {
+     "f200": 0.04806224288962782,
+     "stat": 0.0009092167153974646,
+     "n_rows": 67151,
+     "n_files": 5,
+     "shift": -0.006062974094822482,
+     "shift_err_unpaired": 0.02663517843477711,
+     "shift_err_paired": 0.019744067787720924,
+     "n_events_matched": 52929,
+     "shift_signif_paired": -0.30707826573575314
+    }
+   },
+   "band": {
+    "components_rel": {
+     "scale7_up": 0.031124642729209118,
+     "scale7_dn": 0.022307159983999125,
+     "pdf68_up": 0.013163960422160687,
+     "pdf68_dn": 0.011578657765187513,
+     "merging_up": 0.01908478265221758,
+     "merging_dn": 0.005059173920902271,
+     "tune_sym": 0.003245246555342862,
+     "stat": 0.01886499134001568
+    },
+    "up": 0.043274492387124996,
+    "dn": 0.03199514754491434,
+    "fxfx": "not run: on hold pending the user ruling on a 30-minute exception",
+    "fsr_off_shift_quoted_not_in_band": -0.006062974094822482
+   },
+   "T1_nuisance": {
+    "type": "asymmetric log-normal on the signal yield (pyhf normsys)",
+    "kappa_up": 1.043274492387125,
+    "kappa_dn": 0.9680048524550857
+   },
+   "v1": {
+    "f200_v1": 0.04764,
+    "ratio_new_over_v1": 1.0150172240087636,
+    "ratio_stat": 0.01914829114089208
+   }
+  },
+  "E500": {
+   "nom": {
+    "f200": 0.10409623915903314,
+    "stat": 0.0014212612313732687,
+    "n_rows": 58623,
+    "n_rows_w_pos": 46170,
+    "n_files": 5,
+    "sigma_matched_fb_NIC1": 2.488115264169092,
+    "sigma_matched_note": "sum w over all chunks divided by the number of chunks (each chunk normalised to sigma)"
+   },
+   "check_weight_Weight_equals_w": 0.0,
+   "scale": {
+    "central": 0.10409623915903314,
+    "points": {
+     "muF0.5_muR0.5": 0.10524748217261883,
+     "muF0.5_muR1.0": 0.10481909516585924,
+     "muF0.5_muR2.0": 0.10444752044367356,
+     "muF1.0_muR0.5": 0.10449943493358615,
+     "muF1.0_muR1.0": 0.10409623915903314,
+     "muF1.0_muR2.0": 0.10374656304396074,
+     "muF2.0_muR0.5": 0.10389043932817056,
+     "muF2.0_muR1.0": 0.10350876359930926,
+     "muF2.0_muR2.0": 0.10317779084277258
+    },
+    "7pt": {
+     "n": 7,
+     "up": 0.011059410242735712,
+     "dn": 0.008823069149091922
+    },
+    "9pt": {
+     "n": 9,
+     "up": 0.011059410242735712,
+     "dn": 0.008823069149091922
+    }
+   },
+   "pdf": {
+    "member0": 0.10409623915903314,
+    "n_members": 58,
+    "n_pairs": 29,
+    "cl90": {
+     "up": 0.017783737272525576,
+     "dn": 0.017365727477589438,
+     "sym": 0.01619892281956411
+    },
+    "cl68_gauss": {
+     "up": 0.0108117445717559,
+     "dn": 0.010557612661118437,
+     "sym": 0.009848245797765462,
+     "factor": 1.6448536269514715
+    }
+   },
+   "check_central_reproduces_nominal": {
+    "scale_central_minus_nom": 0.0,
+    "pdf_member0_minus_nom": 0.0
+   },
+   "check_paired_self": [
+    0.0,
+    58623
+   ],
+   "variants": {
+    "qc30": {
+     "f200": 0.10530320943818229,
+     "stat": 0.0014763161293027155,
+     "n_rows": 58288,
+     "n_files": 5,
+     "shift": 0.011594753940199487,
+     "shift_err_unpaired": 0.019686267460134705,
+     "shift_err_paired": 0.01504372000805291,
+     "n_events_matched": 37113,
+     "shift_signif_paired": 0.7707371537088453
+    },
+    "qc60": {
+     "f200": 0.10401228557573514,
+     "stat": 0.00140793040067454,
+     "n_rows": 57381,
+     "n_files": 5,
+     "shift": -0.0008064996773777811,
+     "shift_err_unpaired": 0.019218396478242087,
+     "shift_err_paired": 0.014562733344695418,
+     "n_events_matched": 41321,
+     "shift_signif_paired": -0.055381064686705644
+    },
+    "monash": {
+     "f200": 0.10577616506399905,
+     "stat": 0.0015040156244944692,
+     "n_rows": 55526,
+     "n_files": 5,
+     "shift": 0.0161381997902863,
+     "shift_err_unpaired": 0.019878822207850966,
+     "shift_err_paired": 0.01531988055709569,
+     "n_events_matched": 38562,
+     "shift_signif_paired": 1.0534155100061562
+    },
+    "nofsr": {
+     "f200": 0.10289026315268504,
+     "stat": 0.0014113308069398738,
+     "n_rows": 58755,
+     "n_files": 5,
+     "shift": -0.01158520246351713,
+     "shift_err_unpaired": 0.019241399721175532,
+     "shift_err_paired": 0.014486808183133134,
+     "n_events_matched": 40711,
+     "shift_signif_paired": -0.7997070380903981
+    }
+   },
+   "band": {
+    "components_rel": {
+     "scale7_up": 0.011059410242735712,
+     "scale7_dn": 0.008823069149091922,
+     "pdf68_up": 0.0108117445717559,
+     "pdf68_dn": 0.010557612661118437,
+     "merging_up": 0.011594753940199487,
+     "merging_dn": 0.0008064996773777811,
+     "tune_sym": 0.0161381997902863,
+     "stat": 0.013653338899227044
+    },
+    "up": 0.02864433364740984,
+    "dn": 0.025235200249053298,
+    "fxfx": "not run: on hold pending the user ruling on a 30-minute exception",
+    "fsr_off_shift_quoted_not_in_band": -0.01158520246351713
+   },
+   "T1_nuisance": {
+    "type": "asymmetric log-normal on the signal yield (pyhf normsys)",
+    "kappa_up": 1.0286443336474098,
+    "kappa_dn": 0.9747647997509467
+   },
+   "v1": {
+    "f200_v1": 0.10418,
+    "ratio_new_over_v1": 0.9991959988388668,
+    "ratio_stat": 0.013642361598898721
+   }
+  },
+  "E1000": {
+   "nom": {
+    "f200": 0.14800584655415658,
+    "stat": 0.0017266740875279635,
+    "n_rows": 54603,
+    "n_rows_w_pos": 42296,
+    "n_files": 5,
+    "sigma_matched_fb_NIC1": 0.07569400224687113,
+    "sigma_matched_note": "sum w over all chunks divided by the number of chunks (each chunk normalised to sigma)"
+   },
+   "check_weight_Weight_equals_w": 0.0,
+   "scale": {
+    "central": 0.14800584655415658,
+    "points": {
+     "muF0.5_muR0.5": 0.14884219664296253,
+     "muF0.5_muR1.0": 0.1486183393138814,
+     "muF0.5_muR2.0": 0.1484227417823136,
+     "muF1.0_muR0.5": 0.14821633230980155,
+     "muF1.0_muR1.0": 0.14800584655415658,
+     "muF1.0_muR2.0": 0.14782194830310297,
+     "muF2.0_muR0.5": 0.1476907975499502,
+     "muF2.0_muR1.0": 0.14749172077345934,
+     "muF2.0_muR2.0": 0.14731780332341682
+    },
+    "7pt": {
+     "n": 7,
+     "up": 0.005650790886155388,
+     "dn": 0.004648757104929624
+    },
+    "9pt": {
+     "n": 9,
+     "up": 0.005650790886155388,
+     "dn": 0.004648757104929624
+    }
+   },
+   "pdf": {
+    "member0": 0.14800584655415658,
+    "n_members": 58,
+    "n_pairs": 29,
+    "cl90": {
+     "up": 0.028506382405282592,
+     "dn": 0.02727942845207852,
+     "sym": 0.027116197323200426
+    },
+    "cl68_gauss": {
+     "up": 0.01733064993638101,
+     "dn": 0.01658471489808944,
+     "sym": 0.016485477418107332,
+     "factor": 1.6448536269514715
+    }
+   },
+   "check_central_reproduces_nominal": {
+    "scale_central_minus_nom": 0.0,
+    "pdf_member0_minus_nom": 0.0
+   },
+   "check_paired_self": [
+    0.0,
+    54603
+   ],
+   "variants": {
+    "qc30": {
+     "f200": 0.15006816541783652,
+     "stat": 0.001796306351910896,
+     "n_rows": 53955,
+     "n_files": 5,
+     "shift": 0.013934036470142575,
+     "shift_err_unpaired": 0.016834537027818116,
+     "shift_err_paired": 0.013009125652353154,
+     "n_events_matched": 31912,
+     "shift_signif_paired": 1.0710970777365116
+    },
+    "qc60": {
+     "f200": 0.15244809952549082,
+     "stat": 0.0017349394599132035,
+     "n_rows": 53493,
+     "n_files": 5,
+     "shift": 0.030014037112437997,
+     "shift_err_unpaired": 0.01653811283637529,
+     "shift_err_paired": 0.012799191041320497,
+     "n_events_matched": 35910,
+     "shift_signif_paired": 2.344994852841991
+    },
+    "monash": {
+     "f200": 0.15504103861736687,
+     "stat": 0.001882724334036584,
+     "n_rows": 50465,
+     "n_files": 5,
+     "shift": 0.04753320376865022,
+     "shift_err_unpaired": 0.017260225722126276,
+     "shift_err_paired": 0.013583463107338477,
+     "n_events_matched": 32608,
+     "shift_signif_paired": 3.4993435321343282
+    },
+    "nofsr": {
+     "f200": 0.14542901687442106,
+     "stat": 0.0017097201277607957,
+     "n_rows": 54718,
+     "n_files": 5,
+     "shift": -0.017410323576593556,
+     "shift_err_unpaired": 0.016417778633627592,
+     "shift_err_paired": 0.012556133345284345,
+     "n_events_matched": 35360,
+     "shift_signif_paired": -1.3865991303072835
+    }
+   },
+   "band": {
+    "components_rel": {
+     "scale7_up": 0.005650790886155388,
+     "scale7_dn": 0.004648757104929624,
+     "pdf68_up": 0.01733064993638101,
+     "pdf68_dn": 0.01658471489808944,
+     "merging_up": 0.030014037112437997,
+     "merging_dn": 0.0,
+     "tune_sym": 0.04753320376865022,
+     "stat": 0.011666255946829499
+    },
+    "up": 0.060238129759913724,
+    "dn": 0.05188613205087176,
+    "fxfx": "not run: on hold pending the user ruling on a 30-minute exception",
+    "fsr_off_shift_quoted_not_in_band": -0.017410323576593556
+   },
+   "T1_nuisance": {
+    "type": "asymmetric log-normal on the signal yield (pyhf normsys)",
+    "kappa_up": 1.0602381297599137,
+    "kappa_dn": 0.9481138679491282
+   },
+   "v1": {
+    "f200_v1": 0.14585,
+    "ratio_new_over_v1": 1.0147812585132436,
+    "ratio_stat": 0.01183869789186125
+   }
+  },
+  "E1500": {
+   "nom": {
+    "f200": 0.16754717890436566,
+    "stat": 0.0018483716643218201,
+    "n_rows": 53199,
+    "n_rows_w_pos": 40824,
+    "n_files": 5,
+    "sigma_matched_fb_NIC1": 0.0051581348967918135,
+    "sigma_matched_note": "sum w over all chunks divided by the number of chunks (each chunk normalised to sigma)"
+   },
+   "check_weight_Weight_equals_w": 0.0,
+   "scale": {
+    "central": 0.16754717890436568,
+    "points": {
+     "muF0.5_muR0.5": 0.16823975733145827,
+     "muF0.5_muR1.0": 0.16810685435932102,
+     "muF0.5_muR2.0": 0.16799039420725984,
+     "muF1.0_muR0.5": 0.16767153728068535,
+     "muF1.0_muR1.0": 0.16754717890436568,
+     "muF1.0_muR2.0": 0.16743821196414166,
+     "muF2.0_muR0.5": 0.16719419111838602,
+     "muF2.0_muR1.0": 0.16707698169291943,
+     "muF2.0_muR2.0": 0.16697428366340508
+    },
+    "7pt": {
+     "n": 7,
+     "up": 0.00413363227970498,
+     "dn": 0.003419306995837923
+    },
+    "9pt": {
+     "n": 9,
+     "up": 0.00413363227970498,
+     "dn": 0.003419306995837923
+    }
+   },
+   "pdf": {
+    "member0": 0.16754717890436568,
+    "n_members": 58,
+    "n_pairs": 29,
+    "cl90": {
+     "up": 0.03522318246241032,
+     "dn": 0.0334455971991557,
+     "sym": 0.03366550351537557
+    },
+    "cl68_gauss": {
+     "up": 0.021414174419697174,
+     "dn": 0.020333479314595847,
+     "sym": 0.020467172861922265,
+     "factor": 1.6448536269514715
+    }
+   },
+   "check_central_reproduces_nominal": {
+    "scale_central_minus_nom": 2.7755575615628914e-17,
+    "pdf_member0_minus_nom": 2.7755575615628914e-17
+   },
+   "check_paired_self": [
+    0.0,
+    53199
+   ],
+   "variants": {
+    "qc30": {
+     "f200": 0.1674274601347897,
+     "stat": 0.0018989746584640692,
+     "n_rows": 52721,
+     "n_files": 5,
+     "shift": -0.0007145376625188327,
+     "shift_err_unpaired": 0.015816533559082756,
+     "shift_err_paired": 0.012337620134821233,
+     "n_events_matched": 30510,
+     "shift_signif_paired": -0.05791535601766051
+    },
+    "qc60": {
+     "f200": 0.16682526805865472,
+     "stat": 0.001828287744793993,
+     "n_rows": 52008,
+     "n_files": 5,
+     "shift": -0.004308701885831212,
+     "shift_err_unpaired": 0.01551700007791662,
+     "shift_err_paired": 0.011941911021123493,
+     "n_events_matched": 34142,
+     "shift_signif_paired": -0.36080505693014614
+    },
+    "monash": {
+     "f200": 0.1766632742534911,
+     "stat": 0.0020358194815354664,
+     "n_rows": 48334,
+     "n_files": 5,
+     "shift": 0.05440912469393955,
+     "shift_err_unpaired": 0.01641170163008549,
+     "shift_err_paired": 0.012952282310801234,
+     "n_events_matched": 30511,
+     "shift_signif_paired": 4.200736471638399
+    },
+    "nofsr": {
+     "f200": 0.16226260468199247,
+     "stat": 0.0018175322709400085,
+     "n_rows": 53251,
+     "n_files": 5,
+     "shift": -0.03154081290374677,
+     "shift_err_unpaired": 0.015471924216682156,
+     "shift_err_paired": 0.011849914469125405,
+     "n_events_matched": 33704,
+     "shift_signif_paired": -2.6616911865419315
+    }
+   },
+   "band": {
+    "components_rel": {
+     "scale7_up": 0.00413363227970498,
+     "scale7_dn": 0.003419306995837923,
+     "pdf68_up": 0.021414174419697174,
+     "pdf68_dn": 0.020333479314595847,
+     "merging_up": 0.0,
+     "merging_dn": 0.004308701885831212,
+     "tune_sym": 0.05440912469393955,
+     "stat": 0.011031947397794463
+    },
+    "up": 0.059646546381575176,
+    "dn": 0.059378141320339556,
+    "fxfx": "not run: on hold pending the user ruling on a 30-minute exception",
+    "fsr_off_shift_quoted_not_in_band": -0.03154081290374677
+   },
+   "T1_nuisance": {
+    "type": "asymmetric log-normal on the signal yield (pyhf normsys)",
+    "kappa_up": 1.0596465463815752,
+    "kappa_dn": 0.9406218586796604
+   },
+   "v1": {
+    "f200_v1": 0.16876,
+    "ratio_new_over_v1": 0.9928133379021431,
+    "ratio_stat": 0.010952664519565182
+   }
+  },
+  "S500": {
+   "nom": {
+    "f200": 0.11424456347575958,
+    "stat": 0.0014958011540317517,
+    "n_rows": 57622,
+    "n_rows_w_pos": 45227,
+    "n_files": 5,
+    "sigma_matched_fb_NIC1": 0.1873999804724411,
+    "sigma_matched_note": "sum w over all chunks divided by the number of chunks (each chunk normalised to sigma)"
+   },
+   "check_weight_Weight_equals_w": 0.0,
+   "scale": {
+    "central": 0.11424456347575958,
+    "points": {
+     "muF0.5_muR0.5": 0.11540052744915115,
+     "muF0.5_muR1.0": 0.11501713634645831,
+     "muF0.5_muR2.0": 0.11468410602017333,
+     "muF1.0_muR0.5": 0.1146064254976404,
+     "muF1.0_muR1.0": 0.11424456347575958,
+     "muF1.0_muR2.0": 0.11393027626355473,
+     "muF2.0_muR0.5": 0.11394671175590088,
+     "muF2.0_muR1.0": 0.11360330435399539,
+     "muF2.0_muR2.0": 0.11330508031185645
+    },
+    "7pt": {
+     "n": 7,
+     "up": 0.010118328069386395,
+     "dn": 0.008223438694327623
+    },
+    "9pt": {
+     "n": 9,
+     "up": 0.010118328069386395,
+     "dn": 0.008223438694327623
+    }
+   },
+   "pdf": {
+    "member0": 0.11424456347575958,
+    "n_members": 58,
+    "n_pairs": 29,
+    "cl90": {
+     "up": 0.020443325185013395,
+     "dn": 0.019466503196233574,
+     "sym": 0.01863209536469006
+    },
+    "cl68_gauss": {
+     "up": 0.01242865921322283,
+     "dn": 0.011834793611582496,
+     "sym": 0.011327509669794933,
+     "factor": 1.6448536269514715
+    }
+   },
+   "check_central_reproduces_nominal": {
+    "scale_central_minus_nom": 0.0,
+    "pdf_member0_minus_nom": 0.0
+   },
+   "check_paired_self": [
+    0.0,
+    57622
+   ],
+   "variants": {
+    "qc30": {
+     "f200": 0.11545363834907696,
+     "stat": 0.001554228965989964,
+     "n_rows": 57134,
+     "n_files": 5,
+     "shift": 0.010583215835683335,
+     "shift_err_unpaired": 0.01888135943366303,
+     "shift_err_paired": 0.01460129387459284,
+     "n_events_matched": 35672,
+     "shift_signif_paired": 0.72481356286505
+    },
+    "qc60": {
+     "f200": 0.11560448962196206,
+     "stat": 0.0014898343902635118,
+     "n_rows": 56310,
+     "n_files": 5,
+     "shift": 0.011903639917981934,
+     "shift_err_unpaired": 0.018479368218872656,
+     "shift_err_paired": 0.014099749691889606,
+     "n_events_matched": 39962,
+     "shift_signif_paired": 0.8442447687443089
+    },
+    "monash": {
+     "f200": 0.11764381077008293,
+     "stat": 0.0015943730835405435,
+     "n_rows": 54522,
+     "n_files": 5,
+     "shift": 0.029754127381690365,
+     "shift_err_unpaired": 0.019136092660439922,
+     "shift_err_paired": 0.014783475845816175,
+     "n_events_matched": 37273,
+     "shift_signif_paired": 2.0126611422110794
+    },
+    "nofsr": {
+     "f200": 0.11387555412295561,
+     "stat": 0.0014972313073262013,
+     "n_rows": 57424,
+     "n_files": 5,
+     "shift": -0.003229994859950347,
+     "shift_err_unpaired": 0.018525116005133117,
+     "shift_err_paired": 0.01400010486227781,
+     "n_events_matched": 39316,
+     "shift_signif_paired": -0.23071219049603525
+    }
+   },
+   "band": {
+    "components_rel": {
+     "scale7_up": 0.010118328069386395,
+     "scale7_dn": 0.008223438694327623,
+     "pdf68_up": 0.01242865921322283,
+     "pdf68_dn": 0.011834793611582496,
+     "merging_up": 0.011903639917981934,
+     "merging_dn": 0.0,
+     "tune_sym": 0.029754127381690365,
+     "stat": 0.01309297447969269
+    },
+    "up": 0.03814816972053672,
+    "dn": 0.035558703024152316,
+    "fxfx": "not run: on hold pending the user ruling on a 30-minute exception",
+    "fsr_off_shift_quoted_not_in_band": -0.003229994859950347
+   },
+   "T1_nuisance": {
+    "type": "asymmetric log-normal on the signal yield (pyhf normsys)",
+    "kappa_up": 1.0381481697205368,
+    "kappa_dn": 0.9644412969758477
+   },
+   "v1": {
+    "f200_v1": 0.1135,
+    "ratio_new_over_v1": 1.0065600306234324,
+    "ratio_stat": 0.013178864793231292
+   }
+  }
+ }
+}

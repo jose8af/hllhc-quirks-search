@@ -1,0 +1,38 @@
+{
+ "campaign": "p2-b-s2c-f200t",
+ "tier": "final",
+ "expected_hours": 0.1,
+ "description": "channel (ii) Edgar: TEST of f200.py on the re-showers done so far (code check only; not the result)",
+ "jobs": [
+  {
+   "id": "f200-partial-test",
+   "shard": 0,
+   "max_rss_mb": 3000,
+   "timeout_s": 1800,
+   "command": "export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/f200.py $QV2_OUT_DIR/f200-partial-test.json --allow-partial",
+   "outputs": [
+    "f200-partial-test.json"
+   ]
+  },
+  {
+   "id": "f200-partial-test2",
+   "shard": 0,
+   "max_rss_mb": 3000,
+   "timeout_s": 1800,
+   "command": "export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/f200.py $QV2_OUT_DIR/f200-partial-test2.json --allow-partial",
+   "outputs": [
+    "f200-partial-test2.json"
+   ]
+  },
+  {
+   "id": "f200-partial-test3",
+   "shard": 0,
+   "max_rss_mb": 3000,
+   "timeout_s": 1800,
+   "command": "export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/f200.py $QV2_OUT_DIR/f200-partial-test3.json --allow-partial",
+   "outputs": [
+    "f200-partial-test3.json"
+   ]
+  }
+ ]
+}

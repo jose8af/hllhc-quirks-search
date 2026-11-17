@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-17 10:40 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
+**Updated:** 2026-11-17 17:40 -05 (measured; final update of the closing Fable session) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -60,10 +60,10 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 
 | what | where | status / end (ESTIMATE) | commands |
 |---|---|---|---|
-| Pilot part 1: `p2-c-pilot-mb` + `p2-c-pilot-znn-00…15` (2.3×10⁶ Z(νν) events) | schrodinger, 2 lanes | 169/500 at 10:10 on 17 Nov, 0 failed; about 18 Nov 19:00 | status `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh` |
-| Pilot part 2 (B1 streams): `p2-c-pilot_b1`, 762 jobs | schrodinger + landau + maxwell, 1 lane each | launched 17 Nov 10:10; class blocks about 16 h; the hard-scatter block starts after the last Z(νν) file | status `bash tools/runner/examples/p2x/b1/STATUS_p2-c-pilot_b1.sh schrodinger landau maxwell`; resume `NODECAPS="3 3 4" bash tools/runner/examples/p2x/b1/LAUNCH_p2-c-pilot_b1_3slots.sh schrodinger landau maxwell` (a lane stops after 4 h of retries: then run this line again) |
+| Pilot part 1: `p2-c-pilot-mb` + `p2-c-pilot-znn-00…15` (2.3×10⁶ Z(νν) events) | schrodinger, 2 lanes | 242/500 at 17:38 on 17 Nov, 0 failed; about 18 Nov 20:00 | status `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh` |
+| Pilot part 2 (B1 streams): `p2-c-pilot_b1`, 762 jobs | schrodinger + landau + maxwell, 1 lane each | launched 17 Nov 10:10; 128/762 at 17:38 on 17 Nov, 0 failed; class blocks about 16 h; the hard-scatter block starts after the last Z(νν) file | status `bash tools/runner/examples/p2x/b1/STATUS_p2-c-pilot_b1.sh schrodinger landau maxwell`; resume `NODECAPS="3 3 4" bash tools/runner/examples/p2x/b1/LAUNCH_p2-c-pilot_b1_3slots.sh schrodinger landau maxwell` (a lane stops after 4 h of retries: then run this line again) |
 | Channel (i) reproduction campaigns `p2-a-*` (c1-pu1, c1-pu2, signal, rates, SM, C′_PU, T_seed, V4-4) | landau 2 slots, maxwell 2 slots, detached queues | all by about Thu 19 Nov midday | queue logs `ssh -x landau "tail /home/scratch/jdochoa/drivers/queue_landau_B.log"`; successor section at the end of `phase2_exploration/logs/executor_rosalie_2026-11-16_11-55.md` |
-| Channel (ii) re-showers `p2-b-s2c-rs` | maxwell, 1 slot | about 17 Nov 17:30 | `ssh -x maxwell tail -2 /home/scratch/jdochoa/drivers/queue_maxwell5.log` |
+| Channel (ii) FxFx compile jobs `p2-b-s2-fxfx-c` (under 30 min; re-showers finished 16:47) | maxwell, 1 slot | started 17 Nov 17:37, about 20 min | `ssh -x maxwell tail -2 /home/scratch/jdochoa/drivers/queue_maxwell_fxfx.log` |
 
 Do not edit files listed under `frozen_from_launch` in the two PLAN files while the pilot runs. Failed markers:
 `grep -lsE '"(failed|timeout|oom|killed|lost|corrupt|verify_failed)"' ledger/markers/p2-c-pilot-*/*/*.marker`.
@@ -72,7 +72,7 @@ see `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md` §9).
 
 ## 2. Waiting on the user
 
-Nothing at 2026-11-17 11:00. Decided on 17 Nov ("use your recommended answers"): **E1–E3 amended as recommended**
+Nothing urgent at 2026-11-17 17:50. Two open choices from Edgar's final report, to bring to the user with a recommendation before the selection freeze (advisor first): (1) S2-e trigger turn-on uncertainty: nuisance from the curve's statistical bars, the wide nuisance (−10.6 % at 250 GeV), or a threshold of 275–300 GeV; (2) P1: record the round-to-nearest diagnostic (v1's "44 bits" is 512u; at 64u the floor pattern reappears, KS p 0.53 / 0.47) beside "not the floor pattern" (orchestrator's recommendation given to the user in the day-1 report: record it). Decided on 17 Nov ("use your recommended answers"): **E1–E3 amended as recommended**
 (`COMMITMENTS.md`, section "Amendments E1–E3"; frozen FAIL verdicts stay on record) and the **FxFx exception to the
 30-minute rule** (two single-core jobs of about 1.5 h). Follow-ups for the orchestrator:
 - **E2 part (ii): the restricted V4-5 scan is NOT yet run** (about 1.5 CPU-h; code `phase2_exploration/src/v45_bruteforce.py`
@@ -100,7 +100,7 @@ Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defa
 | C2-b V4-4, C2-c T_seed | queued behind C1 campaigns | — |
 | Stitch check for f₂₀₀ | 100k inclusive sample `p2-a-c1-s2inc` generated; ratio not yet read (20k result: 1.118 at E 200, 2.3σ) | Rosalie's EXPLORATION §3 |
 | S2-a | three validations PASS (validation 2 with the qualifier "independent public code run by us") | Sebastian's EXPLORATION §2 |
-| S2-b…f, f₂₀₀, retrievals R-1…R-20, final channel (ii) file | **Edgar (Opus) running**, one final report expected the evening of 17 Nov | `phase2_exploration/logs/executor_edgar_*.md` |
+| S2-b…f, f₂₀₀, retrievals | **DONE (Edgar, 17 Nov 17:38)** except FxFx. S2-b met (σ tables, R = 0.971→1.000 from Resummino run by us; scalar's R applied to E, flagged). f₂₀₀ E 200/500/1000/1500 = 0.0484/0.1041/0.1480/0.1676, Ẽ 500 = 0.1142, within 1.5 % of v1; tune shift dominates at ≥ 1 TeV. S2-d met (production must pass `--qedfsr`). S2-e sourced, no uncertainty stated (user choice, §2). S2-f +5.7…+7.9 %, not sourced (R-12). Open retrievals R-4, R-5, R-6, R-10, R-11, R-13, R-19, R-20 (later deadlines). Channel (ii) charged 39.5 CPU-h of 139. **Channel (i)'s 100k stitch cross-check never reached Edgar: a real 5–12 % excess would bias f₂₀₀ low outside its band** | `phase2_exploration/outputs/EXPLORATION_ii_edgar_2026-11-17_08-17.md` (FxFx successor task in §2.8) |
 | P1 | executed and read: B\* attribution not supported at 3σ; population estimator fails at 3 of 5 points; floor test 2 "not the floor pattern"; floor test 1 not done ([DT3]). Limits the paper's statements; no effect on the search | Sebastian's EXPLORATION §3 |
 | T1-a | workspace validates | `outputs/t1_v1mode_workspace_flora.json` |
 | T1-b | FAIL as frozen (902 ± 32 against 789.7 ± 10 %); likelihood agrees with v1 (asymptotic 828.7069 vs 828.7067) → amended E3: PASS. The toy recipe needs a bracket refinement and an empty-tail rule (pre-registration) | `outputs/T1B_RESULT_flora_2026-11-17_09-35.md` |
@@ -111,16 +111,15 @@ Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defa
 | MET model inputs (R-2, R-3) | sourced (L1 TDR; ATLAS notes; CMS NOTE-2018/006 supplied by the user); jet-response tail NOT sourced; construction choice is Phase-3 work (by day 10) | Sebastian's EXPLORATION §1 |
 | Forced tt̄ decays in `s4pu.py` | measured (0.327 s per event); the file edit waits until the C1 campaigns are complete | `CHAIN_PROVENANCE.md` |
 
-CPU used: 53 CPU-h at the end of day 0 (ledger); projection 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for D2. Storage
-about 480 GB used on the pool in total, 3.8 TB free.
+CPU used: 228 CPU-h at 17:40 on 17 Nov (ledger, 1,611 jobs: reproduction 110, theory 38, pilot channel 13, pilot 67). **Ledger pitfall:** `tools/runner/bin/qv2run rebuild-ledger` writes one row per output FILE in `ledger/jobs.tsv`; de-duplicate on (campaign, job_id, attempts) before summing cpu_s, or the total doubles. Projection 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for D2. Storage
+127 GB for this study; 525 GB used on the pool in total, 3.8 TB free.
 
 ## 4. First actions of a new session
 
 1. `date`; read this file; skim the last 15 entries of `LOG.md`; check `git status` and `git log --oneline -5`.
 2. Check §1 (both pilot parts, failed markers, lanes alive; relaunch a dead lane with its LAUNCH line).
 3. Re-create the daily-report cron (rule 4). Check for the user's answers to §2.
-4. If Edgar's final report is not on disk (`phase2_exploration/outputs/EXPLORATION_ii_edgar_*.md`), spawn an Opus
-   successor for channel (ii) from his log's successor section.
+4. Edgar's final report is in (17 Nov 17:38). Channel (ii) needs a successor only for FxFx (after the runner change, §2).
 5. When channel (i)'s campaigns finish (about Thu 19 Nov): spawn an Opus successor for the 41 C1 comparisons,
    V4-4, T_seed and the channel (i) EXPLORATION file; then the sealed C1 comparison session (advisor first).
 6. Pilot validation jobs per stream (§1); when both pilot parts are complete, record sizes and CPU-h from the ledger.

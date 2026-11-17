@@ -1,0 +1,18 @@
+{
+ "campaign": "p2-b-p1-rneval",
+ "tier": "final",
+ "expected_hours": 0.05,
+ "description": "channel (ii) Edgar: evaluation of the P1 floor diagnostic (p2-b-p1-run floor-* and p2-b-p1-rn) -> p1_rn_eval.json",
+ "jobs": [
+  {
+   "id": "p1-rn-eval",
+   "shard": 0,
+   "max_rss_mb": 1500,
+   "timeout_s": 900,
+   "command": "export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1; /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/envs/tt/.pixi/envs/default/bin/python -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p1/p1_rn_eval.py $QV2_OUT_DIR/p1_rn_eval.json",
+   "outputs": [
+    "p1_rn_eval.json"
+   ]
+  }
+ ]
+}
