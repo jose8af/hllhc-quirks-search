@@ -807,3 +807,17 @@ through the runner.
   is idle and can be lent. CPU: about 24 of 139 CPU-h.
 - Sebastian's session is at about 0.93 M tokens: not resumed; a successor takes f₂₀₀, S2-f, the round-to-nearest
   floor diagnostic, FxFx (after the user's ruling) and the final EXPLORATION file from his RESUME STATE block.
+
+## 2026-11-17 08:14 -05 (measured) — Morning check, day 1
+- Pilot part 1: 149 of 500 jobs done at 08:12, 0 failed; both lanes alive; projected end about 18 Nov 17:30.
+- The user has not yet answered the addendum decisions D1–D9 or the 30-minute exception; nothing of pilot part 2
+  is launched.
+- Albert resumed for the multi-lane launch test: one slot each on schrodinger, landau (channel (ii)'s idle slot)
+  and maxwell, about 20 minutes, tiny jobs under the validation prefix.
+- Rosalie resumed to read the V4-5 production (campaigns finished overnight) and write the result file; the rest
+  of channel (i) then goes to a successor (her context is about 0.67 M tokens).
+- Channel (ii): Sebastian retired (0.93 M tokens); successor **Edgar** (Opus) takes f₂₀₀, S2-b/d/e/f, retrievals,
+  the round-to-nearest floor diagnostic and the final EXPLORATION file. FxFx stays on hold for the user.
+- T1-b: successor **Flora** (Fable) resumes the likelihood check against v1 with the jax configuration on one lane
+  of schrodinger; the procedure is fixed in writing before any toy is run.
+- cajuela: 3.8 TB free.

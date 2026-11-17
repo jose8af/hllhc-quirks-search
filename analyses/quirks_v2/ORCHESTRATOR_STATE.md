@@ -2,35 +2,36 @@
 
 A fresh session reads `prompt.md` (the brief), then this file, then resumes at "Next action".
 
-**Updated:** 2026-11-16 16:40 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 0 of the calendar = 2026-11-16
+**Updated:** 2026-11-17 08:14 -05 (measured) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 0 of the calendar = 2026-11-16
 
 **Gate A passed by the user 2026-11-16** with all defaults (`COMMITMENTS.md`, "Gate A answers"): 4,609 CPU-h approved,
 stop-and-ask 5,992, about 60 days. Artifact of record: `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md`.
 
-**Running (2026-11-16 16:40):**
-- **PILOT part 1 RUNNING** on schrodinger, 2 lanes, launched by the orchestrator 16:39 on the user's approval:
-  `p2-c-pilot-mb` (40 jobs) + `p2-c-pilot-znn-00…15` (460 jobs, 2.3×10⁶ events), ~95 CPU-h, ~48 h. Status:
-  `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume = `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh`
-  (idempotent). Do not edit files under `frozen_from_launch` of the PLAN. Verify first done markers + one file check.
-- channel (i) Rosalie (Opus): C1 campaigns, C1 signal chain, C2 queued; landau 2, maxwell 2. Next report at first verdicts.
-- channel (ii) Sebastian (Opus): S2-a 3× PASS (validation 2 with qualifier); K(m) done (CT18), PDF4LHC21 running;
-  f₂₀₀, P1 runs, FxFx diagnosis (no 30-min exception yet), Herwig comparison. landau 1, maxwell 1.
-- channel (iii) **Xavier** (Fable): ONE lane on schrodinger: looper gun (Geant4 trajectories injected; informs the
-  chain decision) then option (a) slices for DIF-C/NI-C; then B1 production code/campaign files (not launched).
-  Xavier may not launch pilot campaigns (permission system); the orchestrator launches on user approval.
-- Toys solved up to ~80 parameters (jax + warm start; `phase2_exploration/outputs/TOY_COST_viktor_2026-11-16_16-33.md`).
-- **Chain finding:** Fatras stops every particle at half a turn (v1 behaviour; 25–37 % of crossings missing;
-  `phase2_exploration/outputs/HALF_TURN_xavier_2026-11-16_16-08.md`). User chose option B (measure loopers first;
-  pilot on the present chain). If the looper gun shows candidates → notify (RESULT/DECISION): fix chain, regenerate pilot.
-- **Addendum 1:** v3 written (`phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v3_yvonne_2026-11-16_15-04.md`), NOT yet
-  reviewed a third time. Before the third (last 1-bot) review it needs a fresh fixer pass (v4): A-1 result
-  (`phase2_exploration/outputs/A1_TRUNCATION_xavier_2026-11-16_15-40.md`), the half-turn finding and the treatment of
-  DIF-C/NI-C (option (a) result), looper-gun result, jets stored to 10 GeV (not 15), toy projection with jax
-  (47/108/228 CPU-h), pilot part 1 already launched. Then review → user approval (DECISION notice) → B1 pilot streams.
-  User decisions still owed: B1 pilot sizes; number of terms; hard-scatter sample; unread populations; pool decision
-  at the corrected floor (121–201 events; upside 514–584 GeV).
-- Open: T1-b no verdict (resume with the jax configuration, successor session); MET-model construction (Phase 3);
-  jet-response tail not sourced; R-15–R-17 open; `s4pu.py` forced-tt̄ edit waits for C1 campaigns to finish.
+**Running (2026-11-17 08:20, day 1):**
+- **PILOT part 1** on schrodinger, 2 lanes (launched by the orchestrator 16 Nov 16:39): 149 of 500 jobs at 08:12,
+  0 failed; ends about 18 Nov 17:30. Status `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`;
+  resume = `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh` (idempotent).
+- **PILOT part 2 (B1 streams) READY, NOT LAUNCHED:** `tools/runner/examples/p2x/b1/` (762 jobs, 48 CPU-h, 91 GB;
+  `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md`). Launch ONLY after the user approves addendum
+  D1–D9; the orchestrator launches (agents are refused by the permission system). The hs block needs the finished
+  Z(νν) files. Slow-fragment residue: option (a) (β 0.1 kept, events flagged) unless the user objects.
+- **WAITING FOR THE USER:** (1) addendum 1 v5 decisions D1–D9, deadline 18 Nov 14:00 (notice 16 Nov 18:33 + INFO
+  20:28; document `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`); (2) exception to the
+  30-minute job rule for FxFx (two single-core jobs of ~1.5 h); (3) COMING: one DECISION notice on three Gate-A
+  criteria that do not match what they can test — C1-b B₈₄ tolerance (FAIL as frozen on 29/86, within v1's MC
+  scatter), C2-a V4-5 (expected FAIL as frozen on PU trials; Rosalie's result file pending), T1-b (Flora) — to be
+  sent when V4-5 and T1-b numbers exist; they bear on decision point 1 (day 5 = 21 Nov).
+- Agents: **Rosalie** (i; V4-5 result, then a successor takes the 41 C1 comparisons, T_seed, V4-4, sealed-comparison
+  prep; projected all verdicts by Thu 19 Nov midday). **Edgar** (ii, Opus; f₂₀₀ after re-showers ~17:30, S2-b/d/e/f,
+  retrievals, final EXPLORATION). **Albert** (iii; multi-lane launch test, then idle until the B1 launch).
+  **Flora** (T1-b with jax on one schrodinger lane). Node shares: landau (i) 2 + (ii) 1; maxwell (i) 2 + (ii) 1;
+  schrodinger pilot 2 + one lane for Albert/Flora (cap 3, graphical login).
+- Settled on 16 Nov: toys (jax; 47/108/228 CPU-h at 60/80/100 parameters); half-turn limit kept as limitation
+  [L15] by the user's option B (looper gun 0 of 2×10⁵); P1 readings (B* attribution not supported; population
+  estimator fails at 3 of 5 points; no effect on the search); S2-a three validations PASS.
+- After Phase-2 items close: consolidate `EXPLORATION.md` (channel files of Rosalie/successor, Edgar, Tatiana,
+  Xavier, Albert, Flora), self-review + plot validator (JFC Phase-2 tier), decision point 1 and stop-rule
+  checkpoint 1 at day 5, then Phase 3 (read the deferred JFC files first, DEVIATIONS V11).
 
 **Orchestrator duties now:** commit on each report; resume executors; spawn the separate sealed C1 comparison session
 when channel (i) has the campaigns and the tested script (writes only PASS/FAIL per criterion; six sealed points);

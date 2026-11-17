@@ -545,15 +545,17 @@ def b1(p, outdir=None):
                  '# (default schrodinger for every lane; lane i runs on NODEi, or on the last node given).',
                  '# Run on einstein AFTER: preflight ok, a line in phase2_exploration/SLOTS.md, the approval (orchestrator launches).',
                  '# Resume after any stop: run this script again with the same nodes (complete campaigns and done jobs are skipped).',
-                 'NODES=("$@"); [ ${#NODES[@]} -eq 0 ] && NODES=(schrodinger)']
+                 '# Node cap per lane (jobs of this user on the node, this lane included): NODECAPS="3 3 4" in the environment,',
+                 '# default 3 (a node with a graphical session); a lane waits while (other jobs + 1) exceeds its cap.',
+                 'NODES=("$@"); [ ${#NODES[@]} -eq 0 ] && NODES=(schrodinger); CAPS=(${NODECAPS:-})']
         for i, lane in enumerate(v['lanes']):
             if not lane:
                 continue
             first = Path(lane[0]).stem
             pid = f'/home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.pid'
             logf = f'/home/scratch/jdochoa/drivers/{stem}_{nslot}slots_lane{i}.log'
-            inner = f'echo \\$\\$ > {pid}; exec {q} $NODE 1 ' + ' '.join(lane)
-            lines.append(f'NODE=${{NODES[{i}]:-${{NODES[-1]}}}}')
+            inner = f'echo \\$\\$ > {pid}; NODECAP=$CAP exec {q} $NODE 1 ' + ' '.join(lane)
+            lines.append(f'NODE=${{NODES[{i}]:-${{NODES[-1]}}}}; CAP=${{CAPS[{i}]:-3}}')
             lines.append('echo "lane ' + str(i) + ' on $NODE; qv2run jobs there now: $(ssh -x -o BatchMode=yes $NODE "pgrep -u jdochoa -af \'[q]v2run job\' | wc -l")"')
             lines.append(f'ssh -x -o BatchMode=yes $NODE "mkdir -p /home/scratch/jdochoa/drivers; rm -f /home/scratch/jdochoa/drivers/STOP.{first}; '
                          f'if [ -e {pid} ] && kill -0 \\$(cat {pid}) 2>/dev/null; then echo lane {i} already runs; else '

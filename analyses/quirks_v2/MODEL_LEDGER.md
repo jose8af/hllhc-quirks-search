@@ -23,3 +23,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-16 | Phase-2 executor channel (iii), second successor: B1 pilot code and campaign files, looper rerun (session Albert) | fable | default | same reason as Tatiana and Xavier | pending |
 | 2026-11-16 | critical reviewer of strategy addendum 1 v4, third and last 1-bot round (session Bruno) | fable | default | last review before the user's approval of changes to Gate-A-frozen numbers; two ITERATEs before (brief §4) | ITERATE 0 A / 4 B / 12 C with exact text; 42 numbers recomputed; read Stage 3 to close the signal gap |
 | 2026-11-16 | fixer v4 → v5 of addendum 1 (session Clara) and mechanical check (session Dario) | opus | default | default: exact-text application and its verification | v5 delivered, all items applied; check PASS with 9 C edits |
+| 2026-11-17 | Phase-2 executor channel (ii) successor (session Edgar) | opus | default | default model | pending |
+| 2026-11-17 | T1-b likelihood check against v1 (session Flora) | fable | default | statistical procedure with unstable numerics and a frozen criterion that may fail as worded; error-prone (brief §4) | pending |
