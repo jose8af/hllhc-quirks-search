@@ -1,0 +1,89 @@
+{
+ "version": "1.0.0",
+ "channels": [
+  {
+   "name": "SR",
+   "samples": [
+    {
+     "name": "signal",
+     "data": [
+      0.0,
+      709.875
+     ],
+     "modifiers": [
+      {
+       "name": "mu",
+       "type": "normfactor",
+       "data": null
+      }
+     ]
+    },
+    {
+     "name": "bkg_SR_T",
+     "data": [
+      451026.8793655472,
+      0.0
+     ],
+     "modifiers": [
+      {
+       "name": "bkg_own_SR_T",
+       "type": "normsys",
+       "data": {
+        "hi": 5.743626020837092,
+        "lo": 0.1741060431811083
+       }
+      }
+     ]
+    },
+    {
+     "name": "bkg_SR_G",
+     "data": [
+      0.0,
+      591129.3053623956
+     ],
+     "modifiers": [
+      {
+       "name": "bkg_own_SR_G",
+       "type": "normsys",
+       "data": {
+        "hi": 15.012866971836942,
+        "lo": 0.06660952913763428
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "name": "SR",
+   "data": [
+    0.0,
+    0.0
+   ]
+  }
+ ],
+ "measurements": [
+  {
+   "name": "qv2",
+   "config": {
+    "poi": "mu",
+    "parameters": [
+     {
+      "name": "mu",
+      "bounds": [
+       [
+        0.0,
+        100000.0
+       ]
+      ],
+      "inits": [
+       1.0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

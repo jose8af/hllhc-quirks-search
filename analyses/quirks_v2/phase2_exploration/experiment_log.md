@@ -95,3 +95,19 @@ FLAG FOR HUMAN: YES — whether a known rate of flagged events is acceptable or 
 
 ### 2026-11-16 20:27 channel (iii) Albert — launch test: relative output directory
 Tried: `p2a_b1_campaigns.py b1 --outdir tools/runner/examples/p2x/launch_test_b1` (relative). The LAUNCH script then carried relative campaign paths and the queue on the worker died at its first status call (no job started). Fixed: the generator resolves the directory to an absolute path; test repeated and passed on one lane (p2-c-pa-lt-*, 33 of 33 jobs).
+
+### 2026-11-17 08:43 -0500 channel (iii) Flora — T1-b: procedure fixed, set-up checks, fit accuracy
+What was tried: the T1 hybrid-toy procedure in v1 mode on pyhf 0.7.6 + jax + SLSQP (code src/p2f_t1.py), with an
+exact one-dimensional profile as accuracy reference; campaigns p2-c-t1f-smoke1, -setup, -setup2 (175 CPU-s).
+What worked: asymptotic limit (4-unit grid interpolation 828.667 as Tatiana's 828.668; root 828.7069 = v1's own
+828.7067); Viktor's CLs 0.1372 reproduced with his script; closed-form start values + SLSQP tol 1e-10 on jax: 0 failed
+or inaccurate fits in 1,800 toys, q̃ equal to the exact profile to 1.5e-7.
+What did not: (1) pyhf's own asymptotic hypotest with default starts returns CLs = 0.0 without raising (true 0.06–0.31);
+(2) SLSQP's default tolerance stops 4 of 600 toys above the minimum (by 0.07–3.8 in q̃) and reports success: curvatures
+of 1e6 beside 1–40 cut the first line search; (3) the numpy backend at tol 1e-10 raises in 0.8 % of toys.
+DECISION: production with jax, closed-form starts, tol = 1e-10; failed-fit rule and 2 % limit unchanged; the change of
+tolerance was made before any production toy, by a selection rule on fit-quality counters only.
+ALTERNATIVES: start the pyhf fits at the exact profile solution (rejected: the reference would no longer be an
+independent check); Newton step on the SR-T start (no gain); minuit (Viktor: slower; Tatiana: 3 % failed).
+CONFIDENCE: HIGH on the fit accuracy (every toy is checked against the exact profile).
+FLAG FOR HUMAN: NO

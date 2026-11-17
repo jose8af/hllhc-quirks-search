@@ -24,7 +24,10 @@ PIECES (each computed as the same ratio with another weight column or on a re-sh
   tune   : Monash re-shower against CP5; one-sided shift, symmetrised (|shift| up and down) by convention
   fsr    : FSR-off re-shower; the shift is QUOTED (S2-d), it is NOT part of the band
   fxfx   : not run (orchestrator / user: on hold, 30-minute exception pending); the band carries no FxFx term
-Shift errors: sqrt(stat_nom^2 + stat_var^2), conservative (the samples share the LHE events, a positive correlation).
+Shift errors: (i) unpaired sqrt(stat_nom^2 + stat_var^2), conservative; (ii) PAIRED: the re-showers use the same LHE
+events, which are matched by chunk and by the bit-identical hard-process quirk momenta (p_qp_hard, p_qm_hard; status-23
+LHE kinematics); the linearised variance of f_var - f_nom is sum over the union of events of (b_i - a_i)^2 with
+a_i = w_i (I_i - f)/sum w for each sample (0 where an event is absent).  (ii) is the error quoted for the shift.
 BAND = quadrature sum of scale (7-point), pdf (68 %), merging, tune and stat, separately up and down; the T1 nuisance is
 one asymmetric log-normal on the signal yield with kappa_up = 1 + up, kappa_dn = 1 - dn (pyhf normsys hi/lo).
 Limiting checks done in the code: a weight column identical to w gives a zero shift; the central scale and PDF-member-0
@@ -55,18 +58,38 @@ CL90_TO_68 = NormalDist().inv_cdf(0.95)
 
 def load(files):
     cols = None
-    for f in sorted(files):
+    for j, f in enumerate(sorted(files)):
         d = np.load(f)
         names = [str(x) for x in d['wvar_names']]
-        c = dict(pt=d['pt_pair'], w=d['w'], W=d['wvar'], names=names)
+        n = len(d['w'])
+        chunk = float(int(str(d['tag']).split('.')[0].rsplit('-c', 1)[1]))      # chunk number from the tag
+        key = np.ascontiguousarray(np.hstack([np.full((n, 1), chunk), d['p_qp_hard'], d['p_qm_hard']]))
+        c = dict(pt=d['pt_pair'], w=d['w'], W=d['wvar'], names=names, key=key.view('V72').ravel(),
+                 tags=[str(d['tag']).split('.')[0]])
         if cols is None:
             cols = c
         else:
             if names != cols['names']:
                 raise SystemExit(f'weight names differ in {f}')
-            for k in ('pt', 'w', 'W'):
-                cols[k] = np.concatenate([cols[k], c[k]])
+            for k in ('pt', 'w', 'W', 'key', 'tags'):
+                cols[k] = np.concatenate([cols[k], c[k]]) if k != 'tags' else cols[k] + c[k]
     return cols
+
+
+def paired_shift_err(cn, cv):
+    """sigma of f_var - f_nom with events matched on (chunk, hard quirk momenta); see the docstring."""
+    def contrib(c):
+        w, p = c['w'], c['pt'] > PT
+        f = w[p].sum() / w.sum()
+        return w * (p - f) / w.sum()
+    a, b = contrib(cn), contrib(cv)
+    if len(np.unique(cn['key'])) != len(cn['key']) or len(np.unique(cv['key'])) != len(cv['key']):
+        return None, None
+    common, ia, ib = np.intersect1d(cn['key'], cv['key'], return_indices=True)
+    only_a = np.setdiff1d(np.arange(len(a)), ia)
+    only_b = np.setdiff1d(np.arange(len(b)), ib)
+    var = ((b[ib] - a[ia]) ** 2).sum() + (a[only_a] ** 2).sum() + (b[only_b] ** 2).sum()
+    return float(np.sqrt(var)), int(len(common))
 
 
 def frac(pt, w):
@@ -133,6 +156,9 @@ def main():
         r['pdf'] = piece_pdf(c)
         r['check_central_reproduces_nominal'] = dict(scale_central_minus_nom=r['scale']['central'] - f0,
                                                      pdf_member0_minus_nom=r['pdf']['member0'] - f0)
+        cn = dict(pt=c['pt'], w=c['w'], key=c['key'])
+        cn_tags = c['tags']
+        r['check_paired_self'] = paired_shift_err(cn, cn)        # limiting case: identical samples -> 0
         del c
         r['variants'] = {}
         for var in ('qc30', 'qc60', 'monash', 'nofsr'):
@@ -142,10 +168,14 @@ def main():
             if not files:
                 continue
             cv = load(files)
+            if cv['tags'] != cn_tags and not partial:
+                raise SystemExit(f'{label} {var}: chunk tags differ: {cv["tags"]} vs {cn_tags}')
             fv, ev = frac(cv['pt'], cv['w'])
+            pe, nm = paired_shift_err(cn, cv)
             r['variants'][var] = dict(f200=fv, stat=ev, n_rows=int(len(cv['w'])), n_files=len(files),
-                                      shift=fv / f0 - 1, shift_err=float(np.hypot(e0, ev) / f0),
-                                      shift_signif=(fv / f0 - 1) / float(np.hypot(e0, ev) / f0))
+                                      shift=fv / f0 - 1, shift_err_unpaired=float(np.hypot(e0, ev) / f0),
+                                      shift_err_paired=None if pe is None else pe / f0, n_events_matched=nm,
+                                      shift_signif_paired=None if pe is None else (fv - f0) / pe)
             del cv
         V = r['variants']
         sh = [V[v]['shift'] for v in ('qc30', 'qc60') if v in V]

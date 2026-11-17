@@ -27,6 +27,7 @@ ENV = ('export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHON
        "XLA_FLAGS='--xla_cpu_multi_thread_eigen=false intra_op_parallelism_threads=1' JAX_PLATFORMS=cpu && ")
 T1 = f'{SRC}/p2f_t1.py'
 SEEDS = tuple(2026111701 + i for i in range(10))
+CONF = 'tol=1e-10'       # SLSQP tolerance selected by p2-c-t1f-setup2 (variant a), log 2026-11-17 08:42
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 log = logging.getLogger('p2f_campaigns')
 
@@ -94,7 +95,7 @@ def main(argv):
     elif key == 'prod':
         mu_a = argv[1]
         c = 'p2-c-t1f-prod'
-        jobs = [job(f'{c}-s{sd}', [f"{PYJ} -I {T1} t1b {O}/{c}-s{sd}.json {mu_a} {sd} 1000 6"], [f'{c}-s{sd}.json'])
+        jobs = [job(f'{c}-s{sd}', [f"{PYJ} -I {T1} t1b {O}/{c}-s{sd}.json {mu_a} {sd} 1000 6 {CONF}"], [f'{c}-s{sd}.json'])
                 for sd in SEEDS]
         write(c, jobs, 2.0, f'T1-b: the frozen toy procedure (STR 4.11 pt 2) in v1 mode, 10 replicas, mu_a = {mu_a}')
     elif key == 'diag':

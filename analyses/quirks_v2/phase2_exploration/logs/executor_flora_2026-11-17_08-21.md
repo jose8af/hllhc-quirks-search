@@ -186,3 +186,40 @@ pages), `experiment_log.md` entry, two lines in `DAILY_NOTES.md` per report, SLO
     the variant with the fewest first-attempt failures (exception or inaccurate) summed over the three μ; ties → the
     smaller change (a before b before c). Nothing else of §2 changes.
 - Timing seen so far [V]: ≈ 9–12 s per 1000 + 1000 on the v1 workspace (3 parameters), numpy and jax alike.
+- 2026-11-17 08:41 **`p2-c-t1f-setup2` done (3 jobs, 93 CPU-s)** [V: data/p2c/p2-c-t1f-setup2/000/]. Fit-quality
+  counters only were read (no limit). jax, 300 + 300 toys at each of μ = 621.5, 828.7069, 1118.754:
+  variant a (`tol=1e-10`): **0 first-attempt failures in 1,800 toys (3,600 fits)**, max |q̃ − exact| = 1.5×10⁻⁷;
+  variant b: 1 inaccurate first attempt (recovered); variant c: 0. **Selected by the rule fixed at 08:38: variant a**
+  (`tol=1e-10`, start values as in plan §2.2 item 1). 12.9–13.2 s per 1000 + 1000 (11.5 with the Newton start).
+  Check 2b repeated with variant a: paired q̃ agree (max |Δq̃| 2.4×10⁻⁶ on s+b, 1.8×10⁻⁴ on b-only values of 10⁴; none
+  beyond tolerance), but the **numpy backend** (finite-difference gradient) raises in 5 of 600 toys at this
+  tolerance and drops 2 after the retry, so k_sb is 108/300 (jax) against 106/298 (numpy), k_b 150/150: the "within
+  one toy count" clause of my criterion is **not met (2 counts)**; the q̃ clause is met. Reading: the jax
+  configuration is validated against the exact profile on every toy (stronger than the comparison with numpy) and
+  by check 2a; the numpy backend is not usable for T1 toys at this tolerance (0.3–0.8 % failed fits, 31 s per unit).
+  The set-up requirement of the task (828.67 and Viktor's CLs, "or an equivalent check") is met by checks 1 and 2a.
+- 2026-11-17 08:42 production defined: `p2-c-t1f-prod`, μ_a = 828.7069115492852, conf `tol=1e-10`, seeds as §2.2.
+- 2026-11-17 08:42 launched `p2-c-t1f-prod` (10 jobs, one at a time; pgrep before: 2). First job started 08:42.
+  **No output of the production has been read by me** (not even the job log): the interim report goes to the
+  orchestrator first, so that the plan can be reviewed before any toy result is looked at. `outputs/
+  t1_v1mode_workspace_flora.json` = copy of the schema-valid v1-mode workspace (sha256 ef09b0ee…, T1-a).
+  CPU so far [V: markers of p2-c-t1f-smoke1, -setup, -setup2]: 175 CPU-s.
+
+## State for a successor (written 2026-11-17 08:43)
+- **Plan and rules:** §2 of this file (fixed 08:22, before anything ran) + the one logged change (SLSQP `tol=1e-10`,
+  entries 08:37–08:42). Nothing else may change before the verdict is read.
+- **Running:** `p2-c-t1f-prod` on schrodinger (driver detached there, log
+  `schrodinger:/home/scratch/jdochoa/drivers/p2-c-t1f-prod.ssh.log`), 10 jobs × a few minutes, one at a time.
+  Status: `R=/home/users/jdochoa/hllhc-quirks-search/tools/runner; ssh -x schrodinger "$R/bin/qv2run status $R/examples/p2f/p2-c-t1f-prod.json -v"`.
+- **Next, in this order** (pgrep ≤ 2 before each launch; `--nodes schrodinger --max-per-node 1 --on schrodinger`):
+  1. `p2-c-t1f-diag` (file written): v1 statistic over 12 seeds, exact-q̃ large ensemble.
+  2. `python3 -I src/p2f_campaigns.py sum 828.7069115492852` → `p2-c-t1f-sum` → `data/p2c/p2-c-t1f-sum/000/
+     p2-c-t1f-sum-verdict.json`: key `verdict` is the T1-b reading by §2.3; `primary`, `replicas`, `variant_stats`
+     (diagnostics, no verdict), `pooled`, `fits`, `timing`.
+  3. Write `outputs/T1B_RESULT_flora_<stamp>.md`, experiment_log entry, DAILY_NOTES, SLOTS release line.
+- **Files:** code `src/p2f_t1.py`, `src/p2f_campaigns.py`; campaign files `tools/runner/examples/p2f/`; outputs
+  `/nfs/cajuela/jdochoa/quirks_v2/data/p2c/p2-c-t1f-*/000/`; job logs `/nfs/cajuela/jdochoa/quirks_v2/logs/p2c/…`.
+- **Traps:** einstein's python has no numpy (every numerical step is a runner job); the driver refuses to start when
+  the node's 1-minute load is high ("no capacity"): relaunch the same campaign; done/failed jobs are never rerun
+  (new campaign name or job id); pyhf's default-start fits are wrong in this workspace without raising (use
+  `Fitter` with the closed-form starts and `tol=1e-10`); the numpy backend fails 0.3–0.8 % of fits at that tolerance.
