@@ -761,3 +761,14 @@ have Phase 3 classify with and without the flagged events. About 170 flagged eve
 - C1-b: to be done with new, self-contained v2 arithmetic code.
 - Deviations D-i-2…D-i-5 written; probe-row exclusion: v1 excluded 0 rows at the three C1 points (no effect).
 - Projected: every C1 family and C2 verdict by Thu 19 Nov midday.
+
+## 2026-11-16 22:47 -05 (measured) — C1-b: PASS on the evaluated part; V4-5 production defined
+- C1-b (VERIFIED, `phase2_exploration/outputs/c1b_arith.json`; new module `phase2_exploration/src/v2arith/`, numpy
+  only, no v1 import, 6 unit tests): every term of SR-G R01–R14 and every non-pile-up term of SR-T recomputed from
+  v1's recorded counts; worst relative difference 2.2×10⁻¹⁶ (criterion 10⁻⁶); B₈₄ worst difference 0.77 % with
+  4×10⁶ draws (criterion 1 %; v1's own B₈₄ used 10⁵ draws, which scatter by about 1 %). **Not evaluated yet:** the 28
+  SR-T pile-up terms and the rungs R15–R23 and fallback. Recorded as "PASS on the evaluated part; remainder pending";
+  the full ladder is ordered, since the fallback rung is v1's best point.
+- The T1 builder's v1-mode inputs (one log-normal per category from v1's Monte Carlo median) and v2arith (individual
+  terms) are two representations of the same v1 numbers; no number disagrees.
+- V4-5 production campaigns defined as ruled (`p2-a-c2-v45pu`, `p2-a-c2-v45sig`); they run Tuesday morning.

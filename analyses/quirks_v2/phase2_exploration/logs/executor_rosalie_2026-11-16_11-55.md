@@ -229,7 +229,7 @@ Mechanism: SSH runner for the day-0 jobs (`--max-per-node 1`, one node each); Ar
   CPU-h spent (ledger, per job): C1 6.71 (pu1 2.86, pu2 2.90, s2 0.95, s3in 0.00); C2 0.62 (tstime 0.12, v45time 0.50,
   v45time2 0.00); day-0 0.95.
 
-## STATE FOR A SUCCESSOR (kept current; last update 2026-11-16 14:43 -05)
+## STATE FOR A SUCCESSOR (kept current; last update 2026-11-16 22:47 -05)
 Read first: PHASE2_BRIEF.md, this log's §1 (blinding), outputs/EXPLORATION_i_rosalie_2026-11-16_14-43.md (deviations).
 R=/home/users/jdochoa/hllhc-quirks-search/tools/runner ; campaigns in $R/campaigns/p2-a-*.json (made by
 src/make_campaigns.py) ; data /nfs/cajuela/jdochoa/quirks_v2/data/phase2/<campaign>/000/ ; markers ledger/markers/<campaign>/.
@@ -263,7 +263,16 @@ TRAPS: failed/timeout/oom jobs are never retried by the runner → rerun under n
   a pattern that is also in your ssh command line (it kills the ssh shell); jobs.tsv has one row per OUTPUT (deduplicate
   by job_id when summing CPU); the a2/a5 jobs build their Stage-3 index from markers and fail if Stage 3 is incomplete;
   keep PYTHONDONTWRITEBYTECODE=1 / remove src/__pycache__ after importing make_campaigns locally.
-CPU-h so far (14:40, ledger): C1 6.7, C2 0.6, day-0 0.95.
+CPU-h so far (22:40, ledger): C1 ≈ 17, C2 ≈ 0.8, day-0 0.95.
+UPDATE 22:47: landau B queue order now: … c1-siga2 ✓, c1-siga5 (running), c2-v45pu, c2-v45sig, c1-s2inc, c1-gen, c1-sm,
+  c2-tseed1, c2-v44a, c2-v44b. Done so far: c1-s2, c1-s3in, c1-s3, c1-cp0, c1-siga2, c2-tstime, c2-v45time2/4 (time/time3 failed).
+  C1-b DONE (src/v2arith, outputs/c1b_arith.json). V4-5 ruling: evaluate as frozen + diagnostics (EXPLORATION §6).
+  STILL TO DO: SM preselection weights (v1 gen_d123 smregen needs the MPI init file at TT/data/acts_stage4/g1/pythia_init;
+  in v2 it is node-local in $QV2_SCRATCH/cache/pythia_init: run it on the node of the SM jobs with a wrapper whose fake
+  TT root links data/acts_stage4/g1/pythia_init -> that cache and acts -> $QV2/acts); c1_compare.py families C'0 f_pre
+  (cp0 meta v410 n_pre/n_events), C'_PU attributed counts (v1 background.cprime_term), SM (sm_term, needs smregen),
+  rates (gen JSONs), closure trend slope and c-factor (v1 analyse_g3 / c_test); C2-b and C2-c statistics; stitch ratio
+  after p2-a-c1-s2inc (TRG c00 vs INC c00..c05, errors sqrt(sum w^2)); C1-c container rerun.
 - 18:36 p2-a-c1-s3 done (30/30) and p2-a-c1-cp0 done (16/16); index written to outputs/c1_s3/STAGE3_INDEX.json.
   p2-a-c2-v45time3 FAILED after its fine scan (NameError in the global-scan summary line: my bug, fixed): full-size
   band fine scan (3001² normals, 0.2 mrad, ±0.3 rad) 20.7 s on trial 1; band vs direct self-check on a 41 × 41
@@ -281,3 +290,7 @@ CPU-h so far (14:40, ledger): C1 6.7, C2 0.6, day-0 0.95.
   nothing about F0's fit. DECISION NEEDED (sent to the orchestrator 22:4x): options (1) local optimum: steepest ascent
   on the exhaustive 0.2 mrad grid from n_F0, |dn| < 1 mrad against that maximum (global maxima reported, no criterion);
   (2) a score closer to the finder's objective (layers with an inlier); (3) keep as frozen (FAIL expected).
+- 22:46 Orchestrator rulings (after the 22:40 report): V4-5 evaluated as frozen with diagnostics (done: code + campaigns
+  p2-a-c2-v45pu, p2-a-c2-v45sig queued after c1-siga5); C1-b as new self-contained code (done: src/v2arith/, PASS on
+  SR-G R01–R14 and SR-T non-PU terms, see EXPLORATION §5); stitch: 5 × 20k more INC at E200 (p2-a-c1-s2inc, queued
+  after v45sig); report at C1-b / V4-5 numbers / failure / decision.

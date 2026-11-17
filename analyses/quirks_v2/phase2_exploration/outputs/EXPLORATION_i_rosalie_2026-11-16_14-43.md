@@ -82,3 +82,47 @@ TRG-based tail at these masses. A 100k INC chunk at m = 200 (≈ 1.3 CPU-h) woul
 
 ## 4. Results (to be filled)
 C1 families, C1-b arithmetic, C1-c container rerun, C2-a/b/c verdicts: pending (campaign states in the log).
+
+## 5. C1-b — v2 arithmetic on v1's recorded counts (COM C1-b) [VERIFIED, outputs/c1b_arith.json, 2026-11-16 22:46]
+Code: `src/v2arith/` (core.py: factor chain with the zero/low-count rule, SM / C′ / PU values, log-normal sum with
+shared components, B84; test_core.py: 6 unit tests, all pass; run_c1b.py). Self-contained (numpy only, no v1 import).
+Inputs: v1 `background.json` (recorded N/M chains, end-state PU factors, rates, σ, K) and `bsum_wp.json` (v1's terms
+and B84 per rung).
+- Central values: every term of SR-G R01–R14 and every non-PU term of SR-T R01–R14 recomputed from the recorded counts:
+  worst relative difference 2.2×10⁻¹⁶; term widths identical. **PASS** (criterion 10⁻⁶).
+- B84 (4×10⁶ draws, own RNG): worst relative difference 0.77 % (R03), 0.61 % at R14. **PASS** (criterion 1 %).
+  Power: v1's own B84 used 10⁵ draws, whose Monte-Carlo spread is ≈ 1 % (sd over 20 seeds at 10⁵ draws: 0.95 % at R04,
+  1.0 % at R14); at 2×10⁵ draws the v2 values differed from v1's by up to 1.55 %, i.e. the 1 % criterion sits at v1's
+  MC precision. Stated with the verdict.
+- NOT EVALUATED in this version (reason): the 28 SR-T pile-up terms (2 per rung; PC-19 time-tag factors from srt.json)
+  and the F1 / fallback rungs R15–R23 and FB (h, o factorisation of wp.py). They feed the T1 inputs only at the fallback
+  point; adding them is a few hours of work if the orchestrator wants the full ladder.
+- Input schema against channel (iii)'s T1 builder (p2c_t1.py v1 mode): it reads v1 `limits.json` per point,
+  b = [4.510×10⁵, 5.911×10⁵] (T, G) and σ_ln = [1.748, 2.709]. These are v1's Monte-Carlo **median** of the B sum and
+  ln(B84/median) of the fallback rung FB2&h>5&o>5 (bsum_wp: median 4.510×10⁵ / 5.911×10⁵, B84 2.591×10⁶ / 8.875×10⁶;
+  ln(2.591/0.4510) = 1.748), not the sum of the term values (2.05×10⁵ / 2.35×10⁵) and not the mean (1.9×10⁹ / 9.2×10⁹,
+  heavy tails). Same source numbers, two representations: v2arith keeps the terms; T1-b collapses them into one
+  log-normal per category. No disagreement on a number.
+
+## 6. C2-a V4-5 — ruling of 2026-11-16 (orchestrator) and status
+Evaluated **as frozen** (STR §4.2): PASS/FAIL separately for the PU-only and signal + PU halves and for the two
+comparisons (F0 vs brute-force optimum within ±0.3 rad; F0 vs independent fit). Recorded per event in the same pass:
+scores at n_F0 and at the optimum; the local optimum reached by steepest ascent on the same grid from n_F0 ("diagnostic,
+no verdict"); the global scan ±50° (deviation D-i-2) and the 10 mrad full half sphere (first 17 PU trials); for PU-only
+trials where the optimum is another plane: whether it is a stored candidate of the same trial (≤ 2 mrad), whether that
+candidate passes R04, layers with an inlier, |n_z|. Signal + PU: direction differences and scores only.
+Campaigns p2-a-c2-v45pu (3 jobs) and p2-a-c2-v45sig (3 jobs: 17 / 17 / 16 events from the a5 outputs at E200 1.5,
+E200 2, E500 3 keV) queued on landau B after the signal full chain.
+**Phase 1 assumed** that the maximum of the resolution-weighted inlier count within ±0.3 rad of the F0 normal is the
+F0 plane's own optimum, so that a correct finder agrees with it to 1 mrad. **Phase 2 found** (two PU trials,
+p2-a-c2-v45time4) that at pile-up 200 the ±75 mm window holds 18–24k hits and the maximum within ±0.3 rad is a
+different plane 0.20–0.22 rad away with a higher score (50.6 vs 39.1; 53.7 vs 40.5), while F0 sits on a local maximum
+(0.28 mrad within ±10 mrad) and agrees with the independent fit (0.20, 0.22 mrad). **Implications:** as frozen, C2-a is
+expected to FAIL on PU trials for a reason unrelated to the accuracy of F0's plane; it tests global optimality of a
+random plane in pile-up, which is the "optimality" question STR moved to Phase 4c.
+**Proposed rewording (NOT applied; for the orchestrator and the user):** "|Δn| < 1 mrad between F0 and the maximum of
+the resolution-weighted inlier count reached by steepest ascent from n_F0 on the exhaustive 0.2 mrad grid within
+±0.3 rad (the plane's own optimum), and between F0 and the independent fit, in ≥ 48 of 50 events per half; the global
+maximum within ±0.3 rad and over the road is reported with its score, without a criterion." Reasoning: it keeps the
+exhaustive grid and the independent fit, removes the dependence on unrelated planes of the pile-up, and leaves global
+optimality to the Phase-4c count where it was placed.

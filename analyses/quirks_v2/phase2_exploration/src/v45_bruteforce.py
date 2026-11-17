@@ -175,7 +175,29 @@ def lsq_fit(U, EPX, EPY, S0, S1, n0):
     return nvec(r.x), int(inl.sum()), bool(r.success)
 
 
-def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=None):
+def climb(G, i, j):
+    """Steepest ascent on the grid (8-neighbourhood) from cell (i, j) to a local maximum."""
+    m = G.shape[0]
+    while True:
+        best = (G[i, j], i, j)
+        for di in (-1, 0, 1):
+            for dj in (-1, 0, 1):
+                ii, jj = i + di, j + dj
+                if 0 <= ii < m and 0 <= jj < m and G[ii, jj] > best[0]:
+                    best = (G[ii, jj], ii, jj)
+        if best[1] == i and best[2] == j:
+            return i, j
+        i, j = best[1], best[2]
+
+
+def layers_with_inlier(U, EPX, EPY, S0, S1, LC, n):
+    _, v = score(U, EPX, EPY, S0, S1, n)
+    inl = np.abs(U @ n) <= 3 * np.sqrt(v)
+    return int(len(np.unique(LC[inl & (LC >= 0)])))
+
+
+def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=None, cands=None):
+    """cands (PU-only trials): dict(normal (k, 3), r04 (k,), idx (k,)) of the trial's stored candidates."""
     half = GRID_HALF if half is None else half
     step = GRID_STEP if step is None else step
     gstep = GLOBAL_STEP if gstep is None else gstep
@@ -216,11 +238,28 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
     nb_ = n0 + a * e1 + b * e2; nb_ /= np.linalg.norm(nb_)
     t_fine = time.time() - t0
     nf, n_inl, ok = lsq_fit(*W, n0)
+    c0 = int(round(half / step))                     # grid cell of n_F0
+    li, lj = climb(G, c0, c0)
+    nl_ = n0 + (-half + li * step) * e1 + (-half + lj * step) * e2; nl_ /= np.linalg.norm(nl_)
+    from acts.stage4.finder import finder as FF
+    LCw = FF.LC_OF[H[win, 0].astype(np.int64)]
     out = dict(selfcheck_band_vs_direct=selfcheck if SELFCHECK else None, n_window=int(win.sum()), n_road=int(road.sum()), score_F0=score(*W, n0)[0], score_opt=float(best[i]),
                dn_F0_opt_mrad=1e3 * ang(n0, nb_), dn_F0_fit_mrad=1e3 * ang(n0, nf), dn_opt_fit_mrad=1e3 * ang(nb_, nf),
                opt_on_grid_edge=bool(i in (0, len(best) - 1) or j in (0, len(best) - 1)), n_inliers_fit=n_inl,
                half=half, step=step,
-               fit_success=ok, t_fine_s=t_fine, n_opt=nb_.tolist(), n_fit=nf.tolist(), n_F0=n0.tolist())
+               fit_success=ok, t_fine_s=t_fine, n_opt=nb_.tolist(), n_fit=nf.tolist(), n_F0=n0.tolist(),
+               local_dn_F0_mrad=1e3 * ang(n0, nl_), local_score=float(G[li, lj]), score_F0_grid=float(G[c0, c0]),
+               local_is_global=bool(li == i and lj == j), n_local=nl_.tolist(),
+               nz_F0=float(abs(n0[2])), nz_opt=float(abs(nb_[2])))
+    if cands is not None:     # PU-only trials (background): what is the other plane?
+        dn = np.array([ang(nb_, c) for c in cands["normal"]]) if len(cands["normal"]) else np.zeros(0)
+        k = int(np.argmin(dn)) if len(dn) else -1
+        out.update(opt_layers_with_inlier=layers_with_inlier(*W, LCw, nb_),
+                   F0_layers_with_inlier=layers_with_inlier(*W, LCw, n0),
+                   opt_nearest_stored_cand_mrad=float(1e3 * dn[k]) if k >= 0 else None,
+                   opt_is_stored_cand=bool(k >= 0 and dn[k] < 2e-3),
+                   opt_cand_passes_R04=bool(k >= 0 and dn[k] < 2e-3 and cands["r04"][k]),
+                   opt_cand_rank=int(cands["idx"][k]) if k >= 0 and dn[k] < 2e-3 else None)
     if do_global:
         t0 = time.time()
         R_ = sel(road)
@@ -242,7 +281,10 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
                    sphere_best_outside_50deg=bool(ang(n0, ns) > np.arctan(GLOBAL_HALF)),
                    sphere_best_minus_global_best=float(sb[k] - out.get("global_best_score_road", np.nan)),
                    t_sphere_s=time.time() - t0)
-    out["agree"] = bool(out["dn_F0_opt_mrad"] < 1.0 and out["dn_F0_fit_mrad"] < 1.0)
+    out["agree_opt"] = bool(out["dn_F0_opt_mrad"] < 1.0)
+    out["agree_fit"] = bool(out["dn_F0_fit_mrad"] < 1.0)
+    out["agree"] = bool(out["agree_opt"] and out["agree_fit"])
+    out["agree_local_diag"] = bool(out["local_dn_F0_mrad"] < 1.0)
     return out
 
 
@@ -284,7 +326,9 @@ def pu_trials(files, n_want):
                        n_road_stored=int(z["trials.n_road"][t]),
                        pv_reproduced=bool(np.allclose(pv_chk, pv)), H=part["H"], pv=pv,
                        phimet=float(z["trials.phimet"][t]), n0=z["cand.normal"][k].astype(np.float64),
-                       a0=z["cand.axis"][k].astype(np.float64), road_cfg=float(meta["finder_cfg"]["road"]))
+                       a0=z["cand.axis"][k].astype(np.float64), road_cfg=float(meta["finder_cfg"]["road"]),
+                       cands=dict(normal=z["cand.normal"][ctr == t].astype(np.float64), r04=R04[ctr == t],
+                                  idx=cidx[ctr == t]))
             got += 1
             if got >= n_want:
                 z.close()
@@ -292,10 +336,51 @@ def pu_trials(files, n_want):
         z.close()
 
 
+def sig_events(files, n_want):
+    """First n_want F0-accepted events in file order of C1 full-chain (a5) outputs: the in-job R04 bit (open tier) of
+    sig.eff is set; n_F0 = the lowest-index signal-matched candidate (sig.cand, frac >= 0.5) passing R04.  The hit
+    pool is rebuilt from the event's S6 dump with v1's per-row top-up seed.  No count of scanned rows is kept."""
+    from acts.stage4.code import s4sig as S
+    from acts.stage4.finder import g1b_tt as GT
+    got = 0
+    for p in files:
+        z = np.load(p, allow_pickle=False)
+        meta = json.loads(str(z["meta_json"]))
+        if meta.get("empty_chunk"):
+            z.close(); continue
+        job = meta["job"]
+        m = float(job["point"].split("_m")[1].split("/")[0])
+        eff = np.unpackbits(z["sig.eff"], axis=1)[:, 3].astype(bool)
+        tab = z["sig.tab"]; strial = z["sig.trial"]
+        scr = np.unpackbits(z["sig.cand.rungs"], axis=1)[:, 3].astype(bool) if "sig.cand.rungs" in z.files else None
+        for e in np.where(eff)[0]:
+            t = int(strial[e]); row = int(tab[e, 0])
+            mk = (z["sig.cand.trial"] == t) & scr & (z["sig.cand.frac"] >= 0.5)
+            if not mk.any():
+                continue
+            k = np.where(mk)[0][np.argmin(z["sig.cand.idx"][mk])]
+            ie = int(z["trials.ev"][t]); pre = f"dump.{ie}_0."
+            n = len(z[pre + "sid"]); ev = np.zeros((n, 13))
+            ev[:, 0] = z[pre + "sid"]; ev[:, 1:4] = z[pre + "xyz"]; ev[:, 4:6] = z[pre + "s01"]; ev[:, 6] = z[pre + "flag"]
+            ev[:, 7] = z[pre + "vp"]; ev[:, 8] = z[pre + "particle"]; ev[:, 9] = z[pre + "gen"]
+            ev[:, 10] = z[pre + "vsec"]; ev[:, 11] = z[pre + "dE"]; ev[:, 12] = z[pre + "t"]
+            rs = np.random.default_rng(S.hseed("sig-topup", "F", m, row))
+            Pp = GT.assemble(ev, z[pre + "tru"], 0, rs, inserted_vp=(GT.SIG_VP,), do_topup=True)
+            yield dict(file=Path(p).name, trial=t, ev=ie, road=0, n_road_stored=int(z["trials.n_road"][t]),
+                       pv_reproduced=True, H=Pp["H"], pv=z["trials.pv"][t].astype(np.float64),
+                       phimet=float(z["trials.phimet"][t]), n0=z["sig.cand.normal"][k].astype(np.float64),
+                       a0=z["sig.cand.axis"][k].astype(np.float64), road_cfg=float(meta["finder_cfg"]["road"]),
+                       cands=None, point=job["point"])
+            got += 1
+            if got >= n_want:
+                z.close(); return
+        z.close()
+
+
 def main():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", stream=sys.stderr)
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["pu"])
+    ap.add_argument("mode", choices=["pu", "sig"])
     ap.add_argument("--files", required=True)
     ap.add_argument("--n", type=int, default=50)
     ap.add_argument("--skip", type=int, default=0, help="skip the first K selected trials (job splitting)")
@@ -311,13 +396,14 @@ def main():
     SELFCHECK = a.selfcheck
     FULL_SPHERE = a.full_sphere
     res = []
-    for i, tr in enumerate(pu_trials(a.files.split(","), a.skip + a.n)):
+    gen = pu_trials if a.mode == "pu" else sig_events
+    for i, tr in enumerate(gen(a.files.split(","), a.skip + a.n)):
         if i < a.skip:
             continue
         assert abs(tr["road_cfg"] - ROAD) < 1e-12
         t0 = time.time()
         r = analyse(tr["H"], tr["pv"], tr["phimet"], tr["n0"], tr["a0"], do_global=not a.no_global, half=a.half, step=a.step,
-                    gstep=a.gstep)
+                    gstep=a.gstep, cands=tr["cands"])
         r.update({k: tr[k] for k in ("file", "trial", "ev", "road", "pv_reproduced", "n_road_stored")},
                  t_total_s=time.time() - t0)
         r["pool_reproduced"] = bool(r["n_road"] == r["n_road_stored"] and r["pv_reproduced"])
@@ -326,6 +412,8 @@ def main():
         res.append(r)
     out = Path(os.environ.get("QV2_OUT_DIR", "."))
     summ = dict(mode=a.mode, n=len(res), n_agree=sum(r["agree"] for r in res),
+                n_agree_opt=sum(r["agree_opt"] for r in res), n_agree_fit=sum(r["agree_fit"] for r in res),
+                n_agree_local_diag=sum(r["agree_local_diag"] for r in res),
                 definition=__doc__.split("Definition")[1].split("BLINDING")[0], trials=res)
     (out / f"{a.tag}.json").write_text(json.dumps(summ, indent=1))
 
