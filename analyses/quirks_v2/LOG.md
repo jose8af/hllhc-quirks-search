@@ -831,3 +831,18 @@ runs of this code on landau and maxwell pass all hard checks. LAUNCH scripts now
 Launch options when the user approves: (A) 3 lanes over schrodinger, landau, maxwell now (15–16 h for the class
 blocks; the hard-scatter block follows the last Z(νν) file); (B) 2 lanes on schrodinger after Z(νν), 26.3 h;
 (C) 3 lanes on schrodinger after Z(νν), 19.1 h. Not launched: waits for the user's approval of D1–D9.
+
+## 2026-11-17 09:32 -05 (measured) — Usage-limit stop of three agents; V4-5 result; user asks for a token-cost review
+- At about 09:00 Flora, Edgar and Rosalie were terminated by the account's weekly usage limit; the user reset the
+  limits. Flora and Edgar resumed with the instruction to send one final report only. Rosalie (0.68 M tokens) is not
+  resumed: her V4-5 result file and successor section were already on disk; her campaigns run from detached drivers
+  and need no agent until they finish (Wed–Thu); a lean successor is spawned then.
+- **V4-5 (C2-a), VERIFIED** (`phase2_exploration/outputs/V45_RESULT_rosalie_2026-11-17_08-13.md`; campaigns
+  p2-a-c2-v45pu, -v45sig): F0 against the independent fit: 50/50 and 50/50 within 1 mrad (max 0.64 and 0.85 mrad).
+  F0 against the frozen brute-force optimum: 0/50 (PU-only) and 6/50 (signal + PU). **C2-a FAILS as frozen in both
+  halves.** Diagnostic (local optimum, no verdict): 42/50 and 43/50, so the executor's proposed rewording would not
+  reach 48 of 50 either. At pile-up 200 every plane through the PV in the road has inliers on nearly all layers;
+  the frozen optimum coincides with a stored candidate of the same trial in 3 of 50 PU trials.
+- The user reports that token use is far above expectation (the Fable orchestrator costing about as much as all
+  Opus subagents) and asks for the orchestrator's opinion and options; no new work is to be started beyond letting
+  the running agents finish.
