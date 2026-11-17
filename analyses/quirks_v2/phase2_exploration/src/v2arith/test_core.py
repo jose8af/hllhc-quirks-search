@@ -3,7 +3,8 @@ import unittest
 
 import numpy as np
 
-from v2arith.core import Factor, Term, b84, b84_analytic_single, chain, cprime_value, sm_value
+from v2arith.core import (Factor, Term, b84, b84_analytic_single, chain, cprime_value, guarded, sm_value, srt_pu,
+                          times_f1, trend_at)
 
 
 class TestChain(unittest.TestCase):
@@ -42,6 +43,36 @@ class TestB84(unittest.TestCase):
     def test_shared_components_add_linearly(self):  # two terms with one shared width = one term of the summed value
         q2, _, _ = b84([Term('a', 1.0, {'normalisation': 0.5}), Term('b', 3.0, {'normalisation': 0.5})], 400_000, 5)
         self.assertLess(abs(q2 / (4.0 * np.exp(0.5)) - 1), 0.01)
+
+
+class TestF1SrtTrend(unittest.TestCase):
+    def test_guard(self):          # a second zero in a term that holds its bound enters as 1
+        f = guarded(0, 46, 0.0, True)
+        self.assertEqual((f.value, f.s_ln), (1.0, 0.0))
+        self.assertEqual(guarded(0, 46, 0.0, False).N, 0)
+
+    def test_times_f1(self):
+        v, s, zb = times_f1(100.0, 0.3, False, dict(N=23, M=46, s_ln=0.0))
+        self.assertAlmostEqual(v, 50.0, places=12)
+        self.assertAlmostEqual(s, np.hypot(0.3, 1 / np.sqrt(23)), places=12)
+        self.assertEqual(times_f1(100.0, 0.3, False, dict(N=3, M=5, s_ln=0.0)), (100.0, 0.3, False))   # M < 10: none
+
+    def test_trend(self):
+        tr = dict(significant=True, intercept_at_x0=1.85, slope=-0.36, direction='conservative')
+        self.assertAlmostEqual(trend_at(tr, 9)[0], abs(1.85 - 3.24), places=12)
+        self.assertEqual(trend_at(dict(significant=False), 9), (0.0, 1.0))
+        s, f = trend_at(dict(significant=True, intercept_at_x0=0.1, slope=0.1, direction='anti-conservative'), 2)
+        self.assertAlmostEqual(f, np.exp(0.3), places=12)
+
+    def test_srt(self):            # both reachable: P(no BTL) = P - P(BTL); timing factors N/M
+        esA = dict(P_per_trial=10.0, reachable_rho2=True, sigma_ln_components=dict(stat=0.1))
+        esT = dict(P_per_trial=4.0, reachable_rho2=True, sigma_ln_components=dict(stat=0.2))
+        srt = dict(P_late=dict(N=50, M=1000), P_oot=dict(N=20, M=10000), sigma_ln_PV=0.3, sigma_ln_sigma_t=0.4)
+        (n1, v1, c1, _), (n2, v2, c2, _) = srt_pu(esT, esA, None, srt, 2.0)
+        self.assertAlmostEqual(v1, 2.0 * 4.0 * 0.05, places=12)
+        self.assertAlmostEqual(v2, 2.0 * 6.0 * 0.002, places=12)
+        self.assertAlmostEqual(c1['stat'], np.hypot(0.2, 1 / np.sqrt(50)), places=12)
+        self.assertEqual((c2['srt_pv'], c2['srt_sigt']), (0.3, 0.4))
 
 
 if __name__ == '__main__':

@@ -294,3 +294,7 @@ UPDATE 22:47: landau B queue order now: … c1-siga2 ✓, c1-siga5 (running), c2
   p2-a-c2-v45pu, p2-a-c2-v45sig queued after c1-siga5); C1-b as new self-contained code (done: src/v2arith/, PASS on
   SR-G R01–R14 and SR-T non-PU terms, see EXPLORATION §5); stitch: 5 × 20k more INC at E200 (p2-a-c1-s2inc, queued
   after v45sig); report at C1-b / V4-5 numbers / failure / decision.
+- 22:54 C1-b full ladder done (86 entries): central values exact (PASS); B84 within 1 % at 57/86, worst 3.4 %
+  (as frozen: FAIL on 29), all consistent with v1's 1e5-draw MC noise (max |pull| 1.76). EXPLORATION §5b. NOTE: the
+  C1-b runs (≈ 3 CPU-min each) and mc_power (≈ 1 CPU-min) ran directly on landau with nice 19 next to my 2 runner
+  jobs, not through the runner (light, but a third process on my share for minutes).

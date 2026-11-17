@@ -126,3 +126,21 @@ the resolution-weighted inlier count reached by steepest ascent from n_F0 on the
 maximum within ±0.3 rad and over the road is reported with its score, without a criterion." Reasoning: it keeps the
 exhaustive grid and the independent fit, removes the dependence on unrelated planes of the pile-up, and leaves global
 optimality to the Phase-4c count where it was placed.
+
+## 5b. C1-b completed — full ladder (supersedes the partial §5; VERIFIED, outputs/c1b_arith.json, 2026-11-16 22:54)
+Scope: all 86 entries of v1's bsum_wp: SR-T and SR-G at the 23 ladder rungs (incl. the 28 SR-T pile-up terms with the
+PC-19 time-tag factors of srt.json, the F1 h/o factorisation at R15–R23 with the trend re-evaluated at R15–R20) and the
+20 fallback selections FB_k[e] & h>5 & o>5 in both categories (incl. v1's best point, FB2&h>5&o>5). Every term is
+recomputed by `src/v2arith` (10 unit tests pass) from the recorded counts; no term is unmatched in either direction.
+- **Central values: PASS.** Worst relative difference 0 (terms) and 2.2×10⁻¹⁶ (widths); criterion 10⁻⁶.
+- **B84, criterion as frozen (within 1 %):** 57 of 86 entries within 1 %; **29 entries outside, worst 3.4 %**
+  (SR-T R20 and FB4&h>5&o>5). Best point FB2&h>5&o>5: SR-T 0.87 %, SR-G 2.07 %. **As frozen: FAIL on 29 entries.**
+- **Power, next to the verdict:** v2 B84 with 4×10⁶ draws; v1 computed each B84 with 10⁵ draws. The relative
+  Monte-Carlo spread of a 10⁵-draw B84 (10 seeds) ranges 0.12–3.6 % over the 86 entries (1.85 % / 2.83 % at the best
+  point T / G). The pull of v1's B84 against the 4×10⁶ value in units of that spread: max |pull| = 1.76, none above 3;
+  best point 0.47 (T), 0.74 (G). Reading (no verdict change): every B84 difference is consistent with v1's own
+  Monte-Carlo noise; the 1 % tolerance is tighter than v1's 10⁵-draw precision at the deep rungs, so the criterion
+  cannot pass there even for identical arithmetic. Proposed (not applied): "within 1 % or within 3 times v1's own
+  Monte-Carlo standard deviation".
+- T1 input schema: v2arith reproduces channel (iii)'s limits.json inputs at the best point: median of the B sum
+  4.503×10⁵ / 5.912×10⁵ (v1 4.510×10⁵ / 5.911×10⁵) and ln(B84/median) 1.741 / 2.688 (v1 1.748 / 2.709).

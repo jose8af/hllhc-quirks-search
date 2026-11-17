@@ -772,3 +772,18 @@ have Phase 3 classify with and without the flagged events. About 170 flagged eve
 - The T1 builder's v1-mode inputs (one log-normal per category from v1's Monte Carlo median) and v2arith (individual
   terms) are two representations of the same v1 numbers; no number disagrees.
 - V4-5 production campaigns defined as ruled (`p2-a-c2-v45pu`, `p2-a-c2-v45sig`); they run Tuesday morning.
+
+## 2026-11-16 22:55 -05 (measured) — C1-b on the full ladder: central values PASS; B₈₄ FAILS as frozen on 29 of 86 entries
+VERIFIED (`phase2_exploration/outputs/c1b_arith.json`, module `v2arith`, 10 unit tests): all 86 entries (both
+categories, 23 rungs, 20 fallback selections) recomputed from v1's recorded counts; no term unmatched. Central
+values: worst difference 2.2×10⁻¹⁶ (criterion 10⁻⁶): PASS. B₈₄ within 1 %: 57 of 86 within; worst 3.4 %; at v1's best
+point 0.87 % (SR-T) and 2.07 % (SR-G): **FAIL as frozen**. Explanation with numbers: v1's B₈₄ used 10⁵ draws, which
+scatter by 0.12–3.6 % depending on the entry (1.85 % / 2.83 % at the best point); every difference is within 1.76σ
+of that scatter (0.47σ / 0.74σ at the best point). The 1 % tolerance is tighter than v1's own Monte Carlo precision
+at the deep rungs, so identical arithmetic cannot pass it.
+Orchestrator: recorded as frozen (central values PASS; B₈₄ FAIL, explained by v1's Monte Carlo noise, not tuned).
+Together with T1-b (no verdict yet) and C2-a V4-5 (expected to fail as frozen on pile-up trials) this is the third
+Gate-A criterion whose wording does not match what it can test; all three go to the user in one DECISION notice
+when the V4-5 numbers exist (about Wed 18 Nov), with a proposed rewording for each and the evidence.
+Rule slip reported by the executor: a few CPU-minutes of C1-b arithmetic ran directly on landau at nice 19, not
+through the runner.
