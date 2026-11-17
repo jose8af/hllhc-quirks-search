@@ -72,12 +72,16 @@ see `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md` §9).
 
 ## 2. Waiting on the user
 
-| item | notice | deadline | consequence |
-|---|---|---|---|
-| **E1–E3: three Gate-A criteria fail as worded** (C1-b B₈₄ tolerance; C2-a V4-5 brute-force comparison; T1-b toy limit) | `notices/2026-11-17_0937_DECISION_…` | 20 Nov | C2-a FAIL blocks decision point 1 (day 5 = 21 Nov) by STR §4.2 unless the user amends or lifts it. Recommendation given: accept E1 and E3 rewordings; for E2 run the restricted scan (1.5 CPU-h, not yet run: wait for the user's answer) |
-| Exception to the 30-minute job rule for FxFx (two single-core jobs of about 1.5 h) | chat and `daily/2026-11-16` | none (S2-c deadline Phase 4a) | FxFx piece of the f₂₀₀ uncertainty stays "pending" |
+Nothing at 2026-11-17 11:00. Decided on 17 Nov ("use your recommended answers"): **E1–E3 amended as recommended**
+(`COMMITMENTS.md`, section "Amendments E1–E3"; frozen FAIL verdicts stay on record) and the **FxFx exception to the
+30-minute rule** (two single-core jobs of about 1.5 h). Follow-ups for the orchestrator:
+- **E2 part (ii): the restricted V4-5 scan is NOT yet run** (about 1.5 CPU-h; code `phase2_exploration/src/v45_bruteforce.py`
+  needs the restriction to F0's inliers + hits within 3σ of the plane; channel (i) successor). If it fails, part (i)
+  alone is the accuracy test and the scan is reported as failed. Until it is read, C2-a under the amendment is
+  "(i) PASS, (ii) pending": decision point 1 (day 5) needs it.
+- FxFx: see Edgar's final report for whether the two jobs were submitted.
 
-Already decided by the user (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defaults; 4,609 CPU-h, stop-and-ask
+Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defaults; 4,609 CPU-h, stop-and-ask
 5,992, about 60 days); pool at fixed CPU; option B on the half-turn limit; **addendum 1 D1–D9 as recommended
 (17 Nov; in force; `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`)**.
 
@@ -85,17 +89,17 @@ Already decided by the user (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all 
 
 | item | state | file |
 |---|---|---|
-| C1-b arithmetic | central values PASS; B₈₄ FAIL as frozen on 29/86 (within v1's Monte Carlo scatter) → E1 | `phase2_exploration/outputs/c1b_arith.json`, module `src/v2arith/` |
+| C1-b arithmetic | central values PASS; B₈₄ FAIL as frozen on 29/86 (within v1's Monte Carlo scatter) → amended E1: PASS | `phase2_exploration/outputs/c1b_arith.json`, module `src/v2arith/` |
 | C1-a/c/e, the 41 comparisons | campaigns running; comparison script prepared and tested on open quantities only; **needs a successor executor (Opus) when campaigns finish** | Rosalie's log (successor section), `outputs/EXPLORATION_i_rosalie_2026-11-16_14-43.md` |
 | C1-d sealed comparison | NOT done: a separate short session reads the six sealed counts and writes PASS/FAIL only (advisor trigger: blinding). The command is in Rosalie's successor section | — |
-| C2-a V4-5 | FAIL as frozen in both halves (independent fit 50/50, 50/50; brute-force optimum 0/50, 6/50) → E2 | `outputs/V45_RESULT_rosalie_2026-11-17_08-13.md` |
+| C2-a V4-5 | FAIL as frozen in both halves (independent fit 50/50, 50/50; brute-force optimum 0/50, 6/50) → amended E2: (i) PASS, (ii) restricted scan pending | `outputs/V45_RESULT_rosalie_2026-11-17_08-13.md` |
 | C2-b V4-4, C2-c T_seed | queued behind C1 campaigns | — |
 | Stitch check for f₂₀₀ | 100k inclusive sample `p2-a-c1-s2inc` generated; ratio not yet read (20k result: 1.118 at E 200, 2.3σ) | Rosalie's EXPLORATION §3 |
 | S2-a | three validations PASS (validation 2 with the qualifier "independent public code run by us") | Sebastian's EXPLORATION §2 |
 | S2-b…f, f₂₀₀, retrievals R-1…R-20, final channel (ii) file | **Edgar (Opus) running**, one final report expected the evening of 17 Nov | `phase2_exploration/logs/executor_edgar_*.md` |
 | P1 | executed and read: B\* attribution not supported at 3σ; population estimator fails at 3 of 5 points; floor test 2 "not the floor pattern"; floor test 1 not done ([DT3]). Limits the paper's statements; no effect on the search | Sebastian's EXPLORATION §3 |
 | T1-a | workspace validates | `outputs/t1_v1mode_workspace_flora.json` |
-| T1-b | FAIL as frozen (902 ± 32 against 789.7 ± 10 %); likelihood agrees with v1 (asymptotic 828.7069 vs 828.7067) → E3. The toy recipe needs a bracket refinement and an empty-tail rule (pre-registration) | `outputs/T1B_RESULT_flora_2026-11-17_09-35.md` |
+| T1-b | FAIL as frozen (902 ± 32 against 789.7 ± 10 %); likelihood agrees with v1 (asymptotic 828.7069 vs 828.7067) → amended E3: PASS. The toy recipe needs a bracket refinement and an empty-tail rule (pre-registration) | `outputs/T1B_RESULT_flora_2026-11-17_09-35.md` |
 | Toys | jax + warm start: 47 / 108 / 228 CPU-h at 60 / 80 / 100 parameters against 183; re-measure on the first real v2 workspace | `outputs/TOY_COST_viktor_2026-11-16_16-33.md` |
 | B1-d geometry, Fatras physics | PASS | Tatiana's EXPLORATION |
 | Pilot | part 1 and part 2 running (§1) | `outputs/PILOT_READY_xavier_…`, `outputs/B1_READY_albert_…` |

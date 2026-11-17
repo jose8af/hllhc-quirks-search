@@ -283,6 +283,20 @@ calendar of STR §11 is 2026-11-16.
 | VC-3 | Goodness of fit (5) and look-elsewhere (6): not applicable to data; closure p-values reported; Bonferroni in C1 and C2-c; family-wise rules for the closure battery (K = 10), the ceiling family (19 terms) and the T1 coverage family (10 checks), with their sizes at the declared widths | STR §5.2, §4.0, §4.11 | 4a | 4a | open |
 | NA-1 | Declared not applicable (STR §5.1): beam energy; background shape as written; data/MC detector comparison as written; dE/dx calibration; b-tagging heavy-flavour treatment | justification in STR §5.1 | — | 4a (re-check) | n/a |
 
+## Amendments E1–E3 to three Gate-A criteria (user, 2026-11-17: "Use your recomended answers for the 2 open questions")
+
+The frozen verdicts stay on record as FAIL; the amended criteria below are amendments made AFTER the results were
+known and are labelled as such wherever they are quoted (notice `notices/2026-11-17_0937_DECISION_…`).
+| row | frozen verdict (VERIFIED) | amended criterion (in force from 2026-11-17) | status under the amendment |
+|---|---|---|---|
+| C1-b | central values PASS (2.2×10⁻¹⁶); B₈₄ within 1 %: FAIL on 29 of 86 (worst 3.4 %) | B₈₄ "within 1 %, or within 3 times v1's own Monte Carlo standard deviation" | PASS as measured (largest difference 1.76σ) |
+| C2-a (V4-5) | independent fit 50/50 and 50/50: PASS; brute-force optimum 0/50 and 6/50: FAIL | (i) as frozen, F0 against the independent fit; (ii) the same exhaustive 0.2 mrad scan restricted to F0's inlier hits and the hits within 3σ of the F0 plane, \|Δn\| < 1 mrad in ≥ 48 of 50 per half; the unrestricted and global scans reported without a criterion. **If (ii) also fails: (i) alone is the accuracy test and the scan is reported as failed** | (i) PASS; (ii) NOT YET RUN (about 1.5 CPU-h; channel (i) successor) |
+| T1-b | 902 ± 32 against 789.7 ± 10 %: FAIL | (a) asymptotic limits agree within 1 %; (b) v1's statistic on the builder's inputs reproduces v1's number with v1's seed, seed scatter reported; (c) the T1 toy limit reported with its replica scatter, no tolerance | PASS as measured ((a) 2×10⁻⁴; (b) identical, sd 38) |
+Also from T1-b, for the pre-registration: the toy recipe of STR §4.11 gets a bracket refinement (bisection to 2 %)
+and a stated empty-tail rule before it is used for v2 limits.
+**30-minute job rule:** exception granted by the user for FxFx only: two single-core jobs of about 1.5 h (one per
+mass, 500 and 1,500 GeV); later event batches from saved grids stay ≤ 30 min.
+
 ## Addendum 1: APPROVED BY THE USER on 2026-11-17 (decisions D1–D9 as recommended; IN FORCE)
 
 User's message: "I accept all D1-D9 answers with your recomendations." Decisions as recommended in

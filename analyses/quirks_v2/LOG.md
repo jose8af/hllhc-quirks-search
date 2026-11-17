@@ -878,3 +878,13 @@ me when everything is done and safe for the restart." `ORCHESTRATOR_STATE.md` re
 what waits on the user; item-by-item state; first actions; dates). DEVIATIONS V16. Still to do before the session
 is safe to close: Edgar's final report (channel (ii), this evening), the first-markers check of pilot part 2, the
 day-1 report, a final update of the state file, then an INFO notice "safe to restart".
+
+## 2026-11-17 10:27 -05 (measured) — User decides E1–E3 and the FxFx exception as recommended
+The user: "Use your recomended answers for the 2 open questions." Recorded in `COMMITMENTS.md` ("Amendments E1–E3"):
+C1-b and T1-b amended and passing as measured; C2-a amended to (i) the independent fit (PASS) and (ii) a scan
+restricted to the plane's own hits (not yet run; if it fails, (i) alone stands and the scan is reported as failed).
+Frozen FAIL verdicts stay on record; amendments are labelled as made after the results. FxFx: exception to the
+30-minute rule granted (two single-core jobs of about 1.5 h). The user also asked how to start the next session
+with a Fable advisor: the installed CLI (2.1.325) shows no `--advisor` flag in `claude --help`; the advisor is
+implemented by the orchestrator spawning a Fable subagent (state file §0 rule 1), so the session only needs
+`--model opus`.
