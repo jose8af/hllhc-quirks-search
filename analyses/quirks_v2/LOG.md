@@ -745,3 +745,19 @@ file flags these events per event (`n_early_prod`).
 Orchestrator proposal for the user (with D9): keep the β cut at 0.1 (no change of the addendum's definition), read
 "one validated job per stream" as "all hard checks pass except the flagged events, whose rate is reported", and
 have Phase 3 classify with and without the flagged events. About 170 flagged events expected in 1.7×10⁷ (ESTIMATE).
+
+## 2026-11-16 22:41 -05 (measured) — Channel (i): Stage 3, C′₀ and signal fast path done; V4-5 will fail as frozen on pile-up trials
+- Finished: Stage 3 (30/30), C′₀ (16/16), signal fast path (14/14; outputs not opened). CPU: C1 about 17 of 198,
+  C2 about 0.8 of 81.
+- **V4-5 (COM C2-a).** On the two timing trials (VERIFIED, p2-a-c2-v45time4) F0 agrees with the independent fit
+  (0.20, 0.22 mrad) and sits on a local maximum (0.28 mrad), but the maximum of the frozen score within ±0.3 rad is
+  a different plane 201 and 222 mrad away (score 50.6 against 39.1): at pile-up 200 the 75 mm window holds 18–24
+  thousand hits and a tilted plane collects more of them. As frozen, C2-a would fail on pile-up trials.
+  Orchestrator ruling: evaluated as frozen, not redefined; the production run records the frozen comparison, the
+  independent fit, the executor's proposed local-optimum comparison (diagnostic, no verdict) and what the other
+  plane is; the user decides on any rewording with the full numbers (expected about Wed 18 Nov).
+- Stitch check for f₂₀₀: stitched σ(p_T > 200) over inclusive-only = 1.118 (2.3σ) at E 200 and 1.055 (1.5σ) at
+  E 500; a 100k-event inclusive sample at E 200 is ordered (1.3 CPU-h).
+- C1-b: to be done with new, self-contained v2 arithmetic code.
+- Deviations D-i-2…D-i-5 written; probe-row exclusion: v1 excluded 0 rows at the three C1 points (no effect).
+- Projected: every C1 family and C2 verdict by Thu 19 Nov midday.
