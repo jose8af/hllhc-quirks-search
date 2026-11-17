@@ -143,3 +143,10 @@ R=/home/users/jdochoa/hllhc-quirks-search/tools/runner; C=/home/users/jdochoa/hl
 - 2026-11-16 19:36 P1 run unit cost on real events: bstar5-e500-00 = 60 events, 1430 s CPU (23.8 s/event, max 72.6 s), wall 1447 s, under the 30-min limit with little margin; 60/60 events status OK. ETA of p2-b-p1-run ≈ 01:30–02:00.
 - 2026-11-16 22:12 [DP5] 10⁶ + 10⁶ comparison DONE (EXPLORATION §4, outputs/dp5/mb_compare.json). maxwell is now on p2-b-s2c-rs (50 jobs, ≈ 10 h → ≈ 08:30 on 11-17).
 - 2026-11-16 22:36 s2c-rs unit cost: one job (two re-showers of 20k events + conversion) = 1380 s wall, 1310 s CPU. 50 jobs on one slot ≈ 19 h, so maxwell is busy until ≈ 17:30 on 11-17 unless paused.
+- 2026-11-17 01:26 P1 READINGS done (EXPLORATION §3.6): P1-b 5 keV not supported at 3σ (combined +0.00085 ± 0.00051; k_B ≥ 6 +0.0052 ± 0.0041); 1 keV compatible with zero at all 5 points; P1-c FAIL (3 of 5); floor test 2 'not the floor pattern' (KS p 1.6e-7, 2.8e-6; truncation caveat); the dd diagnostic lowers Δc(20) by ≈ 1/3 (3–4σ); floor test 1 not done.
+
+## RESUME STATE update (2026-11-17 01:26 -0500)
+- DONE: S2-a (all three), K(m) both PDF sets, [DP5] 10⁶ comparison, P1-a (test 2 + dd), P1-b, P1-c, P1-d. Ledger 22.77 CPU-h (FxFx under-counted by ≈ 1.2 h: wall-charged total ≈ 24.0).
+- RUNNING: maxwell queue_maxwell5.sh → p2-b-s2c-rs (8/50 at 01:16; ≈ 23 min per job; ETA ≈ 17:30 11-17). Check: `ssh -x maxwell tail -2 /home/scratch/jdochoa/drivers/queue_maxwell5.log`. Pause: kill the rs driver pid (`ps -eo pid,args | grep "[q]v2run ssh launch.*s2c-rs"`) and queue_maxwell5.sh; resume with `qv2run ssh launch .../p2-b-s2c-rs.json --nodes maxwell --max-per-node 1 --on maxwell`.
+- landau: my slot idle.
+- TODO after rs: f200.py on a worker (TT or sim ana env with numpy): `python f200.py out.json E200='/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2c-*:finc-m200' E500=…:finc-m500 E1000=…:finc-m1000 E1500=…:finc-m1500 S500=…:sinc-m500` (the glob takes data/p2-b-s2c-*/<shard>/<prefix>*.<variant>.npz). Then S2-f (s2f_infracolour.py on the nom npz files). FxFx: wait for the user's exception ruling. Optional: P1 floor test 2 with round-to-nearest 44-bit (minutes).

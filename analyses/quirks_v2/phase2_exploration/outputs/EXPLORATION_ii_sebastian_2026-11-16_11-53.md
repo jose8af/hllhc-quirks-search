@@ -349,6 +349,69 @@ Job p1d-m2-linux reran `analytic/numerics/M2_single.py all` (416 runs) and `M2_a
 `B_g1.3_e3.162e-05_th90_conf256` is one of these floor-level runs and does not change the M2b fit at γ* = 1.3
 (K_odd −2.00181 vs −2.00162, rel. 10⁻⁴).
 
+### 3.6 P1-a, P1-b, P1-c readings on new events (campaign p2-b-p1-run, landau, 2026-11-16 19:12 – 11-17 01:24)
+
+Inputs and method:
+- Events: new event sets from p2-b-s2c-inc (|η_pair| < 1, p_T(QQ̄) > 200 GeV, w > 0; 842–1513 per point).
+- Kernel settings: v1's (fix_bstar_off.py): vacuum, vertex at the origin, max_boost 1e-3, hmax 0.2 cm.
+- Evaluation: `src/p1/p1_eval.py` → `outputs/p1/p1_eval.json`; paired kernel comparisons → `outputs/p1/floor_paired.json`.
+- σ from the paired bootstrap (2,000 resamples). All 29 jobs done; 0 event-level failures except 1 (E1000) at 5 keV
+  and 1 per point in the t44 floor runs.
+- Unit cost: 23.8 s per event at 5 keV for E500 and ≈ 17 s for E1000 (4 runs). The whole campaign used ≈ 6.1 core-h.
+
+**P1-b, paired B*-off at 5 keV** (969 events: E500 485, E1000 484). Pre-declared reading: "B* attribution supported" if
+the paired median (on − off) of c is positive at ≥ 3σ overall AND for k_B ≥ 6.
+
+| sample | paired median (c_on − c_off) | σ | significance |
+|---|---|---|---|
+| combined, all (969) | +0.00085 | 0.00051 | 1.7σ |
+| combined, k_B ≥ 6 (334) | +0.0052 | 0.0041 | 1.3σ |
+| E500 all / k_B ≥ 6 | +0.0027 / +0.0075 | 0.0011 / 0.0098 | 2.4σ / 0.8σ |
+| E1000 all / k_B ≥ 6 | +0.00025 / +0.0043 | 0.00024 / 0.0052 | 1.1σ / 0.8σ |
+
+→ **Reading: "B* attribution not supported at 3σ"** (positive, 1.3–1.7σ). This is a reportable outcome. v1's
+171-event paired 2.1σ is not strengthened by ×5.7 more events: the paired median is smaller in this sample.
+
+**P1-b at 1 keV** (300 events per point): paired median compatible with zero (≤ 2σ) at all five points.
+E200 +0.00020 ± 0.00020; E500 +0.00017 ± 0.00018; E1000 +0.000003 ± 0.00021; E1500 −0.00006 ± 0.00016;
+Ẽ500 +0.0008 ± 0.0007. → **reading met.** The 1 keV gate excess is not attributable to B*.
+
+**P1-c, population estimator at 1 keV** (same 300 events per point). Criterion: |paired median(c2 − c_ev)|/median(c_ev)
+≤ 1.5 % and ≤ 2σ, at all five points.
+
+| point | paired median (c2 − c_ev) | σ | rel. to median c_ev | pass |
+|---|---|---|---|---|
+| E200 | +0.00178 | 0.00109 | +1.58 % | no (rel.) |
+| E500 | +0.00078 | 0.00058 | +0.74 % | yes |
+| E1000 | +0.00090 | 0.00035 | +0.90 % | no (2.6σ) |
+| E1500 | −0.00024 | 0.00031 | −0.24 % | yes |
+| Ẽ500 | +0.00202 | 0.00093 | +1.96 % | no (rel. and 2.2σ) |
+
+→ **P1-c FAIL** (3 of 5 points), as pre-declared. The failures are small: 0.9–2 % of c, at 1.6–2.6σ.
+
+**P1-a, floor test 2 (44-bit mantissa) and the double-double diagnostic** (40 events each at E500, E1000; 3 keV,
+detector scaled by 1/9, B* off).
+
+| quantity | E500 | E1000 |
+|---|---|---|
+| nominal Δc(20) median (Δc = c_k − c_ev) | +0.0032 | +0.0080 |
+| 44-bit Δc(2.5) median | +0.020 | +0.052 |
+| KS p (nominal Δc(20) vs 44-bit Δc(2.5)) | 1.6×10⁻⁷ | 2.8×10⁻⁶ |
+| paired nominal − dd at k = 20 | +0.0011 ± 0.0003 | +0.0025 ± 0.0008 |
+| paired nominal − dd at k = 2 | +0.0001 ± 0.00002 | +0.0001 ± 0.00003 |
+
+- **Reading of floor test 2 as pre-declared: "not the floor pattern".** The 44-bit kernel does not reproduce the
+  nominal Δc(20) distribution at 8× larger ε⊥. It degrades c far more, at every k (Δc(2) +0.016/+0.038; Δc(20) ≈ −0.36).
+- Caveat on the emulation: STR specifies *truncation* of the mantissa. Truncation is a biased rounding (always toward
+  zero), and its error accumulates coherently over many steps, unlike the random round-off of round-to-nearest double
+  precision. So "8× larger ε⊥ at 64× larger u" need not hold for this emulation. A round-to-nearest 44-bit emulation
+  would be the like-for-like test (not run; ≈ minutes of CPU).
+- **Diagnostic, not a pre-declared test:** evaluating only the Minkowski products in double-double lowers Δc(20) by
+  +0.0011 ± 0.0003 (E500, 4σ) and +0.0025 ± 0.0008 (E1000, 3σ), about one third of Δc(20), while k = 2 is unchanged at
+  the 10⁻⁴ level. Part of the per-period excess is therefore round-off in the Minkowski products. The rest is either
+  round-off elsewhere in the step map or physical. **Floor test 1** (the whole step map at ≥ 30 digits) is **not done**,
+  and STR's [DT3] applies.
+
 ### 3.5 P1-d: validity-window table (done, v1 numbers)
 `src/p1/p1d_table.py` → `outputs/p1/p1d_table.json`. 30 (point, Λ) cells from v1's tracked P1.json (`v2b_revisit`).
 9 of 30 pass v1's 1.5 % rule, as STR states. The cells that fail are at Λ = 5 keV everywhere (+9.5 to +17 %), at

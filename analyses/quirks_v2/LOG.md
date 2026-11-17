@@ -787,3 +787,23 @@ Gate-A criterion whose wording does not match what it can test; all three go to 
 when the V4-5 numbers exist (about Wed 18 Nov), with a proposed rewording for each and the evidence.
 Rule slip reported by the executor: a few CPU-minutes of C1-b arithmetic ran directly on landau at nice 19, not
 through the runner.
+
+## 2026-11-17 01:27 -05 (measured) — Channel (ii) report 6: P1 readings; generator spread; session to be replaced
+- **P1 (thickness law), on new events** (VERIFIED, `phase2_exploration/outputs/p1/p1_eval.json`, about 6.1 core-h).
+  The item's criterion is "all rows executed and reported with their pre-declared reading, whatever the outcome"
+  (STR §4.15; P1 is not needed by the search, it decides what the paper may say). Readings:
+  P1-b at 5 keV: **"B\* attribution not supported at 3σ"** (paired median +0.00085 ± 0.00051, 1.7σ overall; 1.3σ for
+  k_B ≥ 6); at 1 keV compatible with zero at all five points (reading met). P1-c population estimator: **fails its
+  rule at three of five points** (E 200 +1.58 %; E 1000 2.6σ; Ẽ 500 +1.96 % and 2.2σ). P1-a floor test 2 (44-bit
+  truncation): "not the floor pattern" (KS p = 1.6×10⁻⁷, 2.8×10⁻⁶), with the caveat that truncation rounds with a
+  bias; a double-double diagnostic lowers the per-period excess by about a third (3–4σ). Floor test 1 not done
+  ([DT3]). P1-d: Linux rerun moves no fitted number.
+  Consequence: the paper's thickness-law statements are limited to what these readings support (no B\* attribution
+  claim; the population estimator reported as failed at three points). No effect on the search.
+- **Herwig against Pythia, 10⁶ events each** (generator spread, tunes stated): charged multiplicity 0.946 (|η| < 1)
+  and 0.919 (1–1.5); K/π +24 to +34 % at 0.5–2 GeV; p/π +41 to +90 % above 0.7 GeV; p_T spectrum ratio 0.85 at
+  0.5–0.7 GeV to 1.28 at 3–5 GeV. Relevant to the single-interaction rates.
+- Re-showers for f₂₀₀ take 23 min per job; maxwell slot busy until about 17:30 on 17 Nov. Channel (ii)'s landau slot
+  is idle and can be lent. CPU: about 24 of 139 CPU-h.
+- Sebastian's session is at about 0.93 M tokens: not resumed; a successor takes f₂₀₀, S2-f, the round-to-nearest
+  floor diagnostic, FxFx (after the user's ruling) and the final EXPLORATION file from his RESUME STATE block.
