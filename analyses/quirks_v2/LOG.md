@@ -846,3 +846,15 @@ blocks; the hard-scatter block follows the last Z(νν) file); (B) 2 lanes on sc
 - The user reports that token use is far above expectation (the Fable orchestrator costing about as much as all
   Opus subagents) and asks for the orchestrator's opinion and options; no new work is to be started beyond letting
   the running agents finish.
+
+## 2026-11-17 09:37 -05 (measured) — T1-b: FAIL as frozen; three Gate-A criteria to the user
+`phase2_exploration/outputs/T1B_RESULT_flora_2026-11-17_09-35.md` (VERIFIED; plan committed before any toy was read):
+replica 1 μ₉₅ = 937.6 ± 113.8 (straddles 868.72); pooled escalation 902.0 ± 31.9, outside [710.77, 868.72] by 1.5
+units: **FAIL as frozen**, on a thin margin. 0 failed fits in 160,000 toys. The likelihood itself agrees with v1:
+asymptotic 828.7069 against v1's 828.7067; v1's statistic with v1's seed reproduces 789.7438 to 7×10⁻¹⁰, and over 12
+seeds scatters by 38 (4.7 %). Cause: the b-only median sits on a jump of the statistic, and the frozen grid with
+ln-CLs interpolation returns 704–963 from identical inputs. Strategy-revision input for T1-i: the toy recipe needs a
+bracket refinement and an empty-tail rule. Traps documented: pyhf `hypotest` returns CLs 0.0 from a false fit; a
+guard is in the builder. Cost 10.7 s per 1000 + 1000 toys on the v1 workspace.
+With C1-b (B₈₄ tolerance) and C2-a (V4-5) this makes three Gate-A criteria that fail as frozen for reasons of
+wording; DECISION notice sent with the evidence and a proposed rewording for each. Decision point 1 (day 5).

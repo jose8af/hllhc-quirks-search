@@ -54,3 +54,9 @@ Reports: (1) after B–D (except f₂₀₀ and the NLL scan); (2) at f₂₀₀
 - 08:37 S2-f done (p2-b-s2f → outputs/s2/s2f_infracolour.json): substitution check reproduces STR (α 0.0448; δ 3.26/6.28/13.32 %). Mean δ at 1 keV: E200 5.68 %, E500 6.14 %, E1000 7.03 %, E1500 7.94 %, Ẽ500 3.60 % (S-wave form; the P-wave scalar needs its own factor).
 - 08:38 D done (p2-b-p1-rn 4 jobs, p2-b-p1-rneval → outputs/p1/p1_rn_eval.json): rn44 ≈ t44 (KS p 1.4e-10 / 1.2e-7: the rounding mode is not the cause); rn47 (u′ = 64u): KS(nominal Δc(20), rn47 Δc(2.5)) p = 0.53 / 0.47; medians 0.0043 vs 0.0032 (E500), 0.0109 vs 0.0080 (E1000). Diagnostic only.
 - 08:40–08:46 f200.py tested on partial re-showers (p2-b-s2c-f200t; test2 failed by design on a partial chunk-tag mismatch, fixed: key on chunk number). Paired shift errors via LHE-momentum matching work (self-check 0). Orchestrator 08:4x: no interim reports; one final report ≤ 15 lines.
+- 09:35 EXPLORATION_ii_edgar_2026-11-17_08-17.md written except the placeholders CAMPAIGN-TABLE-PLACEHOLDER, TABLE-CPU, SIGMA-NORM-ROWS, NLL-RESULT-PLACEHOLDER, F200-PLACEHOLDER, RS-COST, RESUMMINO-COST (filled after maxwell's p2-b-s2c-rs → p2-b-s2c-f200 → p2-b-s2-nll). Experiment log appended.
+
+## State for a successor (update 2026-11-17 09:35 -0500)
+- Waiting (background) for maxwell: queue_maxwell_edgar.sh → p2-b-s2c-f200 then p2-b-s2-nll. Check: `ssh -x maxwell tail -3 /home/scratch/jdochoa/drivers/queue_maxwell_edgar.log`.
+- Then: cp data/p2-b-s2c-f200/000/f200.json → outputs/s2/f200.json; rerun `python3 -I src/s2/sigma_norm_table.py outputs/s2/sigma_norm.json` and `python3 -I src/s2/cpu_tally.py outputs/s2/cpu_tally.json` (einstein, stdlib); fill the placeholders; one final report ≤ 15 lines (orchestrator instruction), DAILY_NOTES two lines.
+- landau slot: idle (all my landau work done).

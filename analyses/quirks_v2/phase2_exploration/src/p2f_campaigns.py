@@ -104,6 +104,19 @@ def main(argv):
         jobs = [job(f'{c}-v1stat', [f"{PYJ} -I {T1} v1stat {O}/{c}-v1stat.json 5000"], [f'{c}-v1stat.json']),
                 job(f'{c}-ref', [f"{PYJ} -I {T1} ref {O}/{c}-ref.json {mu_a} 200000"], [f'{c}-ref.json'])]
         write(c, jobs, 0.3, 'T1-b diagnostics (no verdict): v1 number-count statistic over 12 seeds; exact-q large ensemble')
+    elif key == 'post':            # diagnostics, the pyhf-trap reproduction and the verdict, one after another
+        mu_a = argv[1]
+        c = 'p2-c-t1f-post' + (argv[2] if len(argv) > 2 else '')
+        files = ' '.join(f'{DATA}/p2-c-t1f-prod/000/p2-c-t1f-prod-s{sd}.json' for sd in SEEDS)
+        jobs = [job(f'{c}-verdict', [f"{PYJ} -I {T1} summary {O}/{c}-verdict.json {mu_a} {files}"], [f'{c}-verdict.json']),
+                job(f'{c}-v1stat', [f"{PYJ} -I {T1} v1stat {O}/{c}-v1stat.json 5000"], [f'{c}-v1stat.json']),
+                job(f'{c}-ref', [f"{PYJ} -I {T1} ref {O}/{c}-ref.json {mu_a} 200000"], [f'{c}-ref.json']),
+                job(f'{c}-hypo', [f"{PYJ} -I {T1} hyporepro {O}/{c}-hypo.json"], [f'{c}-hypo.json'])]
+        write(c, jobs, 0.4, 'T1-b: verdict assembly; diagnostics without verdict; reproduction of the pyhf default-start trap')
+    elif key == 'guard':           # the pyhf-trap reproduction again, with the Newton-decrement guard evaluated
+        c = 'p2-c-t1f-guard' + (argv[1] if len(argv) > 1 else '')
+        write(c, [job(f'{c}-hypo', [f"{PYJ} -I {T1} hyporepro {O}/{c}-hypo.json"], [f'{c}-hypo.json'])], 0.01,
+              'T1: minimal reproduction of the pyhf default-start trap with the guard (Newton decrement)')
     elif key == 'sum':
         mu_a = argv[1]
         c = 'p2-c-t1f-sum' + (argv[2] if len(argv) > 2 else '')

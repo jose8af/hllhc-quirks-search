@@ -111,3 +111,30 @@ ALTERNATIVES: start the pyhf fits at the exact profile solution (rejected: the r
 independent check); Newton step on the SR-T start (no gain); minuit (Viktor: slower; Tatiana: 3 % failed).
 CONFIDENCE: HIGH on the fit accuracy (every toy is checked against the exact profile).
 FLAG FOR HUMAN: NO
+
+## 2026-11-17 channel (ii), executor Edgar
+- P1 floor diagnostic: v1's spec "44 bits (u′ ≈ 64u)" is inconsistent (44-bit significand → 512u; 64u ↔ 47 bits). Round-to-nearest at 44 bits behaves like truncation (test 2 fails either way); at 47 bits the nominal Δc(20) pattern reappears at k = 2.5 (KS p 0.53 / 0.47, 40 events). Diagnostic only; the pre-declared reading is unchanged (p2-b-p1-rn, outputs/p1/p1_rn_eval.json).
+- f₂₀₀ shift errors: the re-showers share the LHE events; paired errors from matching events on (chunk, LHE quirk momenta) are ≈ 25 % smaller than the unpaired ones (partial-data test). Unpaired kept in the JSON.
+  DECISION: f₂₀₀ band = quadrature of 7-point scale, CT18 PDF converted 90→68 % by Gaussian Φ⁻¹(0.95), merging envelope (qCut 30/60), tune (Monash, symmetrised) and MC stat; FSR-off shift quoted outside the band; no FxFx term.
+  ALTERNATIVES: PDF at 90 % as given (wider); tune one-sided; stat left out of the nuisance (it is MC precision, could go into a separate MC-stat term).
+  CONFIDENCE: MEDIUM. FLAG FOR HUMAN: YES (conventions of a nuisance entering T1).
+- S2-e: the L1 TDR curve is sourced (Table 4.1 p. 210, Fig. 3.125 p. 188), but no uncertainty is stated. DECISION: none taken. Options (a) statistical bars, (b) pre-declared wide nuisance, (c) raise the threshold to 275–300 GeV are left to the orchestrator before A. FLAG FOR HUMAN: YES.
+- S2-b resummed: the WG tables have no NLO column; (NLO+NLL)/NLO is taken from self-run Resummino 3.1.2 (decoupled ~e_R, both PDF sets) and applied to E. CONFIDENCE: MEDIUM (scalar → fermion, scale m vs H_T/2). FLAG FOR HUMAN: YES.
+- Retrievals R-7, R-12, R-14–R-18 done from INSPIRE public files and arXiv (retrieval_log #24–#31): resolution, budget and occupancy values found; no uncertainties for hit resolution, hit efficiency or material → B6-d "no nuisance" branch.
+
+### 2026-11-17 09:36 -0500 channel (iii) Flora — T1-b verdict: FAIL as frozen; the toy recipe, not the likelihood
+What was tried: ten replicas of the frozen T1 toy procedure in v1 mode (p2-c-t1f-prod), read by the rule fixed
+before any toy; diagnostics p2-c-t1f-post; trap reproduction p2-c-t1f-guard. 0.51 CPU-h in all.
+What worked: fits (0 failed in 160,000 toys, q̃ = exact profile to 1.2e-5); asymptotic limit = v1's to 2e-4; v1's
+statistic reproduces 789.7438 exactly with v1's seed.
+What did not: the limit of the recipe: 704–963 over replicas (sd 114), pooled 902.0 ± 31.9, outside 789.7 ± 10 %.
+The b-only median sits on a jump of q̃ at μ_a by construction; CLs at μ_a is 0 or 0.26–0.73, and 0 at the next grid
+point; the ln interpolation over a 25–35 % step lands at neither crossing. Even 2e5 exact toys give a non-monotone
+CLs between 810 and 833. v1's own number scatters by 38 between seeds. My written expectation (NOT RESOLVED) was
+wrong on the high branch.
+DECISION: verdict recorded as FAIL, no rewording applied, no extra toys (rule fixed in advance).
+ALTERNATIVES: refined bracket (mean 844, sd 73, 7 of 10 inside), linear CLs, other empty-tail values: reported as
+diagnostics without verdict; proposal for the wording in the result file §7.
+CONFIDENCE: HIGH that the likelihood is right and that the recipe is unstable here; MEDIUM on the FAIL/STRADDLES
+label itself (margin 1.5 units against a bootstrap error of 32).
+FLAG FOR HUMAN: YES — wording of T1-b, and the grid/empty-tail rule of the toy procedure used by T1-i.

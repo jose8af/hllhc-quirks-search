@@ -223,3 +223,31 @@ pages), `experiment_log.md` entry, two lines in `DAILY_NOTES.md` per report, SLO
   the node's 1-minute load is high ("no capacity"): relaunch the same campaign; done/failed jobs are never rerun
   (new campaign name or job id); pyhf's default-start fits are wrong in this workspace without raising (use
   `Fitter` with the closed-form starts and `tol=1e-10`); the numpy backend fails 0.3–0.8 % of fits at that tolerance.
+- 2026-11-17 09:09 `p2-c-t1f-prod` finished (10 jobs, 1,595 CPU-s, 0 failed). Orchestrator accepted the plan as
+  committed before any read; first read of production outputs 09:33 through `p2-c-t1f-post` (verdict, v1stat, ref,
+  hypo; replaces the planned `-diag` and `-sum`, whose files were written but never launched).
+- 2026-11-17 09:33 **T1-b: FAIL as frozen.** Replica 1: 937.6 ± 113.8 (ratio 1.187) straddles 868.72 → pooled
+  escalation 902.0 ± 31.9 (ratio 1.142), interval [870.2, 933.9] outside the window (margin 1.5). Replicas: 937.6,
+  941.2, 953.1, 704.3, 717.4, 957.1, 717.5, 929.6, 963.3, 951.3; 2 inside. 0 failed fits in 160,000 toys; max
+  |q̃ − exact| 1.2e-5 over 560,000 fits. My §2.4 expectation was right on the mechanism and the low branch, wrong on
+  the high branch (CLs(μ_a) is 0.26–0.73 when the median is below the jump, not 0.05), hence wrong on the reading.
+  Diagnostics: v1 statistic reproduces 789.7438 to 7e-10 with v1's seed; 12 seeds mean 815.4, sd 38.1; exact-q̃
+  ensemble of 2e5 toys non-monotone between 810 and 833, first crossing 825.0. 10.7 ± 0.4 s per 1000 + 1000 toys.
+- 2026-11-17 09:35 `p2-c-t1f-guard`: pyhf trap reproduced (hypotest default → CLs 0.0 without raising; fit returned
+  at its start, 3.3e5 above the minimum); `newton_decrement` guard 1.8e5 on the false fits, ≤ 2e-7 on converged ones.
+- 2026-11-17 09:36 -0500 result file `outputs/T1B_RESULT_flora_2026-11-17_09-35.md` written. CPU of the item 0.51 CPU-h in 22 jobs
+  [V: markers p2-c-t1f-*]. Nothing of mine runs. SLOTS release line appended.
+
+## State for a successor (rewritten 2026-11-17 09:36 -0500; replaces the section above)
+- **Done:** T1-b verdict (FAIL as frozen, thin; cause = toy recipe at a discontinuity, not the likelihood), T1-a
+  schema validation, diagnostics, pyhf-trap reproduction and guard, result file. Nothing is running.
+- **Waiting on the user (through the orchestrator):** rewording of T1-b (proposal in the result file §7, not
+  applied) together with C1-b and C2-a; whether the toy recipe of STR §4.11 pt 2 gets a bracket refinement and an
+  empty-tail rule (strategy-revision input).
+- **Not done:** cost of SLSQP tol 1e-10 and of the guard at 60–100 parameters; start-value rule for the v2 builder;
+  the guard is tested on the 3-parameter workspace only. `p2-c-t1f-diag.json` (campaign file) was never launched.
+- **Reproduce:** `python3 -I src/p2f_campaigns.py setup|setup2|prod <mu_a>|post <mu_a>|guard` then the launch line in
+  that file's docstring; μ_a = 828.7069115492852; all results in `data/p2c/p2-c-t1f-post/000/` (verdict, v1stat, ref,
+  hypo) and `data/p2c/p2-c-t1f-prod/000/` (every q̃ of every toy, exact values beside them).
+- **Traps:** as listed in the earlier section (no numpy on einstein; driver "no capacity" at high load; done jobs
+  never rerun; pyhf default starts; numpy backend at tight tolerance).

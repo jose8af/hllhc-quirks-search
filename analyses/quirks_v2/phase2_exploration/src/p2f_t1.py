@@ -863,8 +863,76 @@ def mode_summary(out, mu_a, files):
              prim['mu95'] / v1, np.round(mus, 1).tolist())
 
 
+def newton_decrement(model, data, pars, bounds, fixed_idx=()):
+    """GUARD for any workspace (jax backend): g^T H^-1 g / 2 of twice_nll at a returned fit point, over the parameters
+    that are neither fixed nor at a bound.  It estimates how far the objective is above its minimum: ~0 for a
+    converged fit (accept below 1e-4), 1e5 at the false "success" of the pyhf trap.  inf if the Hessian is not
+    positive definite.  Use it after every pyhf fit where no exact profile exists (the v2 workspace)."""
+    import jax
+    tl = pyhf.tensorlib
+    f = lambda q: pyhf.infer.mle.twice_nll(q, data, model)[0]                         # noqa: E731
+    p = tl.astensor(pars)
+    g = np.asarray(tl.tolist(jax.grad(f)(p)), float); H = np.asarray(tl.tolist(jax.hessian(f)(p)), float)
+    pv = np.asarray(tl.tolist(p), float); b = np.asarray(bounds, float)
+    free = [i for i in range(len(pv)) if i not in fixed_idx and b[i, 0] + 1e-8 < pv[i] < b[i, 1] - 1e-8]
+    if not free:
+        return 0.0
+    gs = g[free]; Hs = H[np.ix_(free, free)]
+    try:
+        np.linalg.cholesky(Hs)
+    except np.linalg.LinAlgError:
+        return float('inf')
+    return float(0.5 * gs @ np.linalg.solve(Hs, gs))
+
+
+def mode_hyporepro(out):
+    """Minimal reproduction of the pyhf trap (log 08:37): with default start values the fixed-mu fit of this
+    workspace stops far from the minimum and reports success, so pyhf.infer.hypotest returns CLs = 0.0 without
+    raising.  Recorded per mu: the true CLs (exact profile), hypotest as called by default, the fixed-mu fit from the
+    default start (excess of twice-NLL over the exact minimum, gradient at the returned point), the same from the
+    closed-form start, and all of it again with SLSQP tolerance 1e-10."""
+    import jax
+    inp = v1_inputs('limits'); truth = V1Truth(inp)
+    res = dict(mode='hyporepro', rows=[])
+    for tol in (None, 1e-10):
+        CONF['tol'] = tol
+        set_backend('jax')
+        tl = pyhf.tensorlib
+        ws, model = v1_model(inp); fit = Fitter(model, truth)
+        asimov = fit.data(truth.b)
+        gradf = jax.grad(lambda p: pyhf.infer.mle.twice_nll(p, asimov, model)[0])
+        for mu in (780.0, 820.0, 828.0):
+            t_exact = float(truth.ref_T(truth.b[0:1])[1][0] + truth.ref_fixed_G(truth.b[1:2], mu)[1][0])
+            r = dict(tol=tol, mu=mu, cls_true=cls_asym(float(truth.q_ref(truth.b[1:2], mu)[0][0])),
+                     twice_nll_exact_fixed=t_exact, default_init=list(model.config.suggested_init()))
+            th_t, thg_fix, mu0, thg_free = truth.starts(truth.b, mu)
+            start = fit.pars(mu, th_t, thg_fix)
+            for lab, kw in (('hypotest_default', {}), ('hypotest_closed_form_init', dict(init_pars=list(start)))):
+                try:
+                    h = pyhf.infer.hypotest(mu, asimov, model, test_stat='qtilde', return_expected=True, **kw)
+                    r[lab] = [float(h[0]), float(h[1])]
+                except Exception as e:  # noqa: BLE001
+                    r[lab] = repr(e)[:200]
+            for lab, ini in (('fit_default_start', None), ('fit_closed_form_start', list(start))):
+                try:
+                    pf, t = pyhf.infer.mle.fixed_poi_fit(mu, asimov, model, ini, return_fitted_val=True)
+                    g = np.asarray(tl.tolist(gradf(pf)), float)
+                    r[lab] = dict(newton_decrement=newton_decrement(model, asimov, pf, fit.bounds, (fit.i_mu,)),
+                                  pars=[float(x) for x in tl.tolist(pf)], twice_nll=float(t),
+                                  excess_over_exact=float(t) - t_exact, grad=g.tolist(),
+                                  par_order=list(model.config.par_order))
+                except Exception as e:  # noqa: BLE001
+                    r[lab] = repr(e)[:200]
+            res['rows'].append(r)
+            log.info('hyporepro tol %s mu %.0f: true %.4f hypotest %s / %s', tol, mu, r['cls_true'],
+                     r['hypotest_default'], r['hypotest_closed_form_init'])
+    dump(out, res)
+
+
 def main(argv):
     mode = argv[0]
+    if mode == 'hyporepro':
+        return mode_hyporepro(argv[1])
     if mode == 'setup':
         return mode_setup(argv[1], argv[2], quick=len(argv) > 3)
     if mode == 'pt':
