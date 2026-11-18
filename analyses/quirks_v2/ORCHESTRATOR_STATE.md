@@ -82,7 +82,9 @@ see `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md` §9).
 bug; Q2 v1 width = v2's; Q3 no rerun; Q4 remediation 1 of 3 + PREREG_v2). No silent default on Q1: without an
 answer the SM family stays "FAIL (frozen) / corrected PASS pending E4" and decision point 1 stays blocked.
 Fixer Lisbet (Opus): stage A code → orchestrator COMMITS before any C′_PU number (hash pre-registers the rule) →
-stage B SM rerun only. The C′_PU family is run later by the channel (i) successor with the committed code.
+stage B SM rerun only — DONE 18 Nov: code 54610b6, SM PASS 3/3 coherent (pending E4). The channel (i) successor runs
+C′_PU with 54610b6 (disclose Ignatius's 12:17 partial C′_PU file, 1/√N, pre-rule, superseded) and first fixes the
+joint-replica coherence of pu1/pu2/closure (nested rungs treated as independent).
 
 Nothing urgent at 2026-11-17 17:50. Two open choices from Edgar's final report, to bring to the user with a recommendation before the selection freeze (advisor first): (1) S2-e trigger turn-on uncertainty: nuisance from the curve's statistical bars, the wide nuisance (−10.6 % at 250 GeV), or a threshold of 275–300 GeV; (2) P1: record the round-to-nearest diagnostic (v1's "44 bits" is 512u; at 64u the floor pattern reappears, KS p 0.53 / 0.47) beside "not the floor pattern" (orchestrator's recommendation given to the user in the day-1 report: record it). Decided on 17 Nov ("use your recommended answers"): **E1–E3 amended as recommended**
 (`COMMITMENTS.md`, section "Amendments E1–E3"; frozen FAIL verdicts stay on record) and the **FxFx exception to the

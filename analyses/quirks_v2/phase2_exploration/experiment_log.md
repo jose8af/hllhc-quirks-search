@@ -236,3 +236,8 @@ CONFIDENCE: MEDIUM. FLAG FOR HUMAN: NO
 OPEN (not in scope, flagged): pu1/pu2 and clos family coherence still treat the nested rungs R04–R06 as independent
   (their per-entry widths are event-bootstrap and correct; boot_mean already has joint replicas). Same correlation issue
   as the SM coherence, opposite of the ticket's scope. FLAG FOR HUMAN: YES (orchestrator decides whether to extend).
+
+## 2026-11-18 12:40 — Lisbet: SM family rerun with clustered widths (commit 54610b6) — amendment E4, pending approval
+Frozen script FAIL reproduced and kept on record. Corrected: 3/3 pass and coherent with both v1-width choices
+(outputs/SM_FIX_lisbet_2026-11-18.md). Block χ² 1.53 (primary) exceeds Σz² 0.71 because R04/R05 are 98 % correlated
+but differ in ln ratio by 0.018; expected. C′_PU not run (inputs incomplete).

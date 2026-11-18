@@ -1,0 +1,251 @@
+{
+ "n_declared": 41,
+ "bonferroni_p": 0.0012195121951219512,
+ "entries": {
+  "sm.R04": {
+   "v1": 19.516264807513515,
+   "v1_s_ln": 0.052881020097748144,
+   "v1_source": "v1 background.json sm.Znunu_j.rows[3] HS cand direct",
+   "v2": 20.02852689766642,
+   "v2_s_ln": 0.052200380825804894,
+   "z": 0.3486881980522122,
+   "p": 0.7273234054398061,
+   "mde_2sigma": 0.16022118041146804,
+   "gross_check_only": false,
+   "test": "log-ratio z",
+   "v1_width_rule": "v1 1/sqrt(N) x (v2 cluster-bootstrap s_ln / v2 1/sqrt(N)) of the same entry [ESTIMATE]",
+   "v2_width": "cluster bootstrap (joint replicas)",
+   "v1_s_ln_poisson": 0.005061586359311132,
+   "v2_s_ln_poisson": 0.004996437947875209,
+   "inflation_v2": 10.447519086673275,
+   "n_boot_dropped": 0,
+   "v1_counts": "39032.5/2000",
+   "v2_counts": "40057.1/2000",
+   "n_events": 2000,
+   "n_boot": 2000,
+   "joint_family": "sm",
+   "criterion": "amendment E4 (pending the user's approval, after the result)",
+   "v1_width_zero": {
+    "v1_s_ln": 0.0,
+    "z": 0.4963448764762284,
+    "p": 0.6196511094459745,
+    "mde_2sigma": 0.11004522934483599,
+    "gross_check_only": false,
+    "v1_width_rule": "v1 width = 0 (strict bound)"
+   }
+  },
+  "sm.R05": {
+   "v1": 4.509172081816905,
+   "v1_s_ln": 0.054997295697341145,
+   "v1_source": "v1 background.json sm.Znunu_j.rows[4] HS cand direct",
+   "v2": 4.712896266703988,
+   "v2_s_ln": 0.05379548154269638,
+   "z": 0.5743853394349056,
+   "p": 0.5657070714724818,
+   "mde_2sigma": 0.16633413083172063,
+   "gross_check_only": false,
+   "test": "log-ratio z",
+   "v1_width_rule": "v1 1/sqrt(N) x (v2 cluster-bootstrap s_ln / v2 1/sqrt(N)) of the same entry [ESTIMATE]",
+   "v2_width": "cluster bootstrap (joint replicas)",
+   "v1_s_ln_poisson": 0.010530199457695715,
+   "v2_s_ln_poisson": 0.010300091002379372,
+   "inflation_v2": 5.222816141165098,
+   "n_boot_dropped": 0,
+   "v1_counts": "9018.3/2000",
+   "v2_counts": "9425.8/2000",
+   "n_events": 2000,
+   "n_boot": 2000,
+   "joint_family": "sm",
+   "criterion": "amendment E4 (pending the user's approval, after the result)",
+   "v1_width_zero": {
+    "v1_s_ln": 0.0,
+    "z": 0.8214272576545425,
+    "p": 0.4114029427356677,
+    "mde_2sigma": 0.11359215191759513,
+    "gross_check_only": false,
+    "v1_width_rule": "v1 width = 0 (strict bound)"
+   }
+  },
+  "sm.R06": {
+   "v1": 0.016150231496770057,
+   "v1_s_ln": 0.24448453493955755,
+   "v1_source": "v1 background.json sm.Znunu_j.rows[5] HS cand direct",
+   "v2": 0.019095823782957894,
+   "v2_s_ln": 0.2248389608697451,
+   "z": 0.5043927276816663,
+   "p": 0.613985427420358,
+   "mde_2sigma": 0.9431393528552752,
+   "gross_check_only": true,
+   "test": "log-ratio z",
+   "v1_width_rule": "v1 1/sqrt(N) x (v2 cluster-bootstrap s_ln / v2 1/sqrt(N)) of the same entry [ESTIMATE]",
+   "v2_width": "cluster bootstrap (joint replicas)",
+   "v1_s_ln_poisson": 0.17595257470731784,
+   "v2_s_ln_poisson": 0.16181389170210692,
+   "inflation_v2": 1.3894910906887086,
+   "n_boot_dropped": 0,
+   "v1_counts": "32.3/2000",
+   "v2_counts": "38.2/2000",
+   "n_events": 2000,
+   "n_boot": 2000,
+   "joint_family": "sm",
+   "criterion": "amendment E4 (pending the user's approval, after the result)",
+   "v1_width_zero": {
+    "v1_s_ln": 0.0,
+    "z": 0.7451345472284252,
+    "p": 0.456190386114096,
+    "mde_2sigma": 0.5678071475647639,
+    "gross_check_only": true,
+    "v1_width_rule": "v1 width = 0 (strict bound)"
+   }
+  }
+ },
+ "samples": {
+  "sm": {
+   "n_class_events": 2000,
+   "f_presel": 0.4106615021923465,
+   "regen_met_match": 2000,
+   "regen_n": 2000,
+   "n_hs_cand_R04_unweighted": 94537,
+   "v1_n_hs_cand_R04_unweighted": 93404,
+   "v1_f_presel": 0.4189439061458041,
+   "n_events_w_gt0": 849
+  }
+ },
+ "families": {
+  "sm": {
+   "n": 3,
+   "mean_ln_ratio": 0.03808351079358054,
+   "s": 0.07506946249750404,
+   "z": 0.507310290050988,
+   "coherent": true,
+   "chi2_block": 1.5343155530061026,
+   "chi2_block_ndof": 3,
+   "chi2_block_p": 0.6743732636317094,
+   "correlation_v2": [
+    [
+     1.0,
+     0.9795,
+     0.1428
+    ],
+    [
+     0.9795,
+     1.0,
+     0.1721
+    ],
+    [
+     0.1428,
+     0.1721,
+     1.0
+    ]
+   ],
+   "s_independent": 0.05276778675436152,
+   "method": "joint replicas: diagonal inverse-variance weights, full covariance (v2 bootstrap + v1 scaled with the v2 correlation)",
+   "v1_width_rule": "v1 1/sqrt(N) x (v2 cluster-bootstrap s_ln / v2 1/sqrt(N)) of the same entry [ESTIMATE]",
+   "v1_width_zero": {
+    "n": 3,
+    "mean_ln_ratio": 0.038360354872254684,
+    "s": 0.05258139621605769,
+    "z": 0.7295423406908301,
+    "coherent": true,
+    "chi2_block": 3.1927567164813953,
+    "chi2_block_ndof": 3,
+    "chi2_block_p": 0.3628499641562463,
+    "correlation_v2": [
+     [
+      1.0,
+      0.9795,
+      0.1428
+     ],
+     [
+      0.9795,
+      1.0,
+      0.1721
+     ],
+     [
+      0.1428,
+      0.1721,
+      1.0
+     ]
+    ],
+    "s_independent": 0.03695303579004303,
+    "method": "joint replicas: diagonal inverse-variance weights, full covariance (v2 bootstrap + v1 scaled with the v2 correlation)"
+   },
+   "entries": [
+    "sm.R04",
+    "sm.R05",
+    "sm.R06"
+   ]
+  }
+ },
+ "frozen_script": {
+  "label": "frozen script: SM widths 1/sqrt(weighted candidate count) (c1_compare.py as run 2026-11-18, Ignatius); verdict on record",
+  "entries": {
+   "sm.R04": {
+    "v1": 19.516264807513515,
+    "v1_s_ln": 0.005061586359311132,
+    "v1_source": "v1 background.json sm.Znunu_j.rows[3] HS cand direct",
+    "v2": 20.02852689766642,
+    "v2_s_ln": 0.004996437947875209,
+    "z": 3.642926604448198,
+    "p": 0.00026955571746899734,
+    "mde_2sigma": 0.01432614226609335,
+    "gross_check_only": false,
+    "test": "log-ratio z",
+    "v1_counts": "39032.5/2000",
+    "v2_counts": "40057.1/2000"
+   },
+   "sm.R05": {
+    "v1": 4.509172081816905,
+    "v1_s_ln": 0.010530199457695715,
+    "v1_source": "v1 background.json sm.Znunu_j.rows[4] HS cand direct",
+    "v2": 4.712896266703988,
+    "v2_s_ln": 0.010300091002379372,
+    "z": 2.9999090220492186,
+    "p": 0.002700602574289533,
+    "mde_2sigma": 0.02989852365396016,
+    "gross_check_only": false,
+    "test": "log-ratio z",
+    "v1_counts": "9018.3/2000",
+    "v2_counts": "9425.8/2000"
+   },
+   "sm.R06": {
+    "v1": 0.016150231496770057,
+    "v1_s_ln": 0.17595257470731784,
+    "v1_source": "v1 background.json sm.Znunu_j.rows[5] HS cand direct",
+    "v2": 0.019095823782957894,
+    "v2_s_ln": 0.16181389170210692,
+    "z": 0.7008492013218514,
+    "p": 0.4833971291984851,
+    "mde_2sigma": 0.6129942362168024,
+    "gross_check_only": true,
+    "test": "log-ratio z",
+    "v1_counts": "32.3/2000",
+    "v2_counts": "38.2/2000"
+   }
+  },
+  "families": {
+   "sm": {
+    "n": 3,
+    "mean_ln_ratio": 0.029464393398291745,
+    "s": 0.006402452543811595,
+    "z": 4.602047917835968,
+    "coherent": false
+   }
+  },
+  "individual_fail": [
+   "sm.R04"
+  ],
+  "sum_z2": 22.761557988962252
+ },
+ "individual_fail": [],
+ "individual_fail_v1_width_zero": [],
+ "not_testable": [],
+ "global_partial": {
+  "n_available": 3,
+  "sum_z2": 1.5343155530061026,
+  "sum_z2_v1_width_zero": 3.1927567164813953,
+  "sum_z2_naive": 0.7059140013568019,
+  "chi2_99_at_n_available": 11.344866730144373,
+  "note": "the global test of STR \u00a74.1 uses all 41 quantities; partial value only. sum_z2: families sm enter as d' S^-1 d with the joint replicas (same dof); sum_z2_naive treats every entry as independent. pu1/pu2/clos keep the independent-entry form (not in the scope of the SM ticket)"
+ }
+}
