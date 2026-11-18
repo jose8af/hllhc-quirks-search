@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-17 17:40 -05 (measured; final update of the closing Fable session) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
+**Updated:** 2026-11-18 11:05 -05 (measured; Opus orchestrator session of day 2) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -57,6 +57,12 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 7. **Clock:** always run `date` before writing a time; git commit times are authoritative.
 
 ## 1. What is running unattended (check, do not disturb)
+
+**Active subagents (18 Nov 11:05):** Ignatius (Opus, channel (i) successor: c1-gen fix/rerun, E2(ii) restricted
+V4-5 scan, C2-b, C2-c, 100k stitch ratio, smregen, then the 41 C1 comparisons; holds landau slot B) · Hedda (Fable,
+per-stream B1 pilot validation jobs: prepares `p2-c-pilot-val-*`, the orchestrator launches, then she reads the
+verdicts). **c1-gen** (12 jobs) failed 17 Nov 09:12 at Pythia init, unseen (queue logged exit 0): Ignatius reruns it.
+Failed-marker check: use the LAST line of each marker (earlier attempt lines match the grep below).
 
 | what | where | status / end (ESTIMATE) | commands |
 |---|---|---|---|
