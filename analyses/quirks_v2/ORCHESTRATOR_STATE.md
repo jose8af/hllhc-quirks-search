@@ -95,6 +95,11 @@ Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defa
 5,992, about 60 days); pool at fixed CPU; option B on the half-turn limit; **addendum 1 D1–D9 as recommended
 (17 Nov; in force; `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`)**.
 
+**18 Nov 12:30: Ignatius finished** (results in LOG). **SM family (v) FAILS as frozen** (R04 +2.6 %, z +3.64):
+regression investigator Jorund (Fable) writes `phase2_exploration/REGRESSION_TICKET_SM.md`; blocks decision point 1.
+Channel (i) still needs a successor for the 41-comparison run once c1-pu1 (≈ 19 Nov 04:30) and c1-cppub finish
+(commands in Ignatius's log, STATE FOR A SUCCESSOR). C2-a: (ii) FAILED → (i) alone per E2. C2-c: PASS, no power (flag).
+
 **PREREG_v2 to-do (advisor ruling 18 Nov, LOG):** fix the early-product flag (n_early_prod > 0 at β_min 0.1), the
 binding variant per B1 term and day-15 reading (recommended WITH flagged events; WITHOUT as cross-check), what a
 with/without difference triggers (user sets the size), per-stream rates (Hedda §6) and the hs count. Before the
