@@ -915,3 +915,5 @@ c2-v45pu/sig complete; c1-pu1 147/200 (landau slot A), c1-cppua 46/50 and c1-cpp
 idle since 10:05. DECISION: spawn the channel (i) successor now instead of Thursday, on the work whose inputs
 exist (c1-gen fix and rerun, restricted V4-5 scan E2(ii), C2-b, C2-c, 100k stitch ratio, smregen, compare-script
 families), with landau slot B. ALTERNATIVES: wait for all campaigns (idle slot, c1-gen found later). CONFIDENCE: HIGH.
+- 2026-11-18 10:58 orchestrator: channel (i) successor Ignatius (Opus) spawned; landau slot B assigned
+- 2026-11-18 11:03 orchestrator: per-stream B1 pilot validation (P7) overdue (first chain campaigns done overnight); executor Hedda (Fable, rule 1(c)) prepares the jobs, the orchestrator launches
