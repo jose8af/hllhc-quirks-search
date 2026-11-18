@@ -95,6 +95,12 @@ Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defa
 5,992, about 60 days); pool at fixed CPU; option B on the half-turn limit; **addendum 1 D1–D9 as recommended
 (17 Nov; in force; `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`)**.
 
+**PREREG_v2 to-do (advisor ruling 18 Nov, LOG):** fix the early-product flag (n_early_prod > 0 at β_min 0.1), the
+binding variant per B1 term and day-15 reading (recommended WITH flagged events; WITHOUT as cross-check), what a
+with/without difference triggers (user sets the size), per-stream rates (Hedda §6) and the hs count. Before the
+freeze: check frozen criteria and the day-15 text for dependence on these events (DECISION notice only if one depends).
+`p2-c-pilot-val-s2` (hs stream, 3 jobs) queued on maxwell, waits for c0-hs: someone reads its verdict (Hedda's file §5).
+
 ## 3. State of Phase 2, item by item
 
 | item | state | file |

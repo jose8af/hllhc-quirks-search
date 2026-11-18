@@ -52,3 +52,10 @@
   Runs now: nothing. For the user: rewording proposal in outputs/T1B_RESULT_flora_2026-11-17_09-35.md §7; pyhf default-start trap and guard in §4; 10.7 s per 1000 + 1000 toys on the v1 workspace.
 - 2026-11-17 17:38 -0500 [ch. (ii) Edgar] FINAL: f₂₀₀ = 0.0484/0.1041/0.1480/0.1676 (E 200/500/1000/1500), 0.1142 (Ẽ 500), within 1.5 % of v1; band +4.3/−3.2 … +6.0/−5.9 % (tune dominates at ≥ 1 TeV); S2-b σ_norm both PDF sets + resummed R = 0.971→1.000; S2-f +5.7…+7.9 % (not sourced, one-sided); S2-e curve sourced, no uncertainty (decision); R-7, R-12, R-14–R-18 done; P1 RN diagnostic: 44 bits = 512u not 64u, at 47 bits KS p ≈ 0.5. 39.5 CPU-h.
   Runs now: maxwell FxFx compile (p2-b-s2-fxfx-c, ≈ 20 min); FxFx first launches prepared, NOT submitted (runner 1800 s limit). Final file outputs/EXPLORATION_ii_edgar_2026-11-17_08-17.md.
+
+## For the report of 2026-11-18 (orchestrator, 2026-11-18 11:03 -0500)
+- B1 per-stream validation (P7): 8 of 8 streams pass under hard_except_early_product_hits. Pilot-wide flagged events
+  318 (524 hits) in 1.72×10⁷ events, against "about 170" in the 16 Nov notice behind D9; nuclear-interaction classes
+  only (all of them, incl. nic); the 0001-chunk pattern seen first was chance. D9 stands (advisor ruling); the
+  with/without rule goes into PREREG_v2 for approval.
+- c1-gen (12 jobs, C1 rates) failed unseen on 17 Nov (Pythia init); Ignatius reruns it.
