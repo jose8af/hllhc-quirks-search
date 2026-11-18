@@ -204,3 +204,9 @@ path); treat the rates as untestable (no width); use Poisson D = 1 for all (unde
 CONFIDENCE: LOW–MEDIUM — the dispersion factors are a model (ESTIMATE); a failure of a rates entry must first be
 checked against this width before it is read as a port problem.
 FLAG FOR HUMAN: YES (if any rates entry fails or sits near the Bonferroni line).
+
+## 2026-11-18 12:21:08 — Ignatius: V4-5 restricted scan (amendment E2 (ii)) — FAIL 46/50 per half
+Restricted hit set = 3σ band of the F0 plane ∪ F0's stored hit record (record ⊂ band in all 37 events where stored).
+8 disagreements of 1.1–3.6 mrad, all with F0 vs fit ≤ 0.85 mrad: the score maximum is not the least-squares plane at
+the 0.2 mrad grid scale. Reported as failed per the amendment's wording. No re-definition attempted (would be a third
+post-hoc criterion). FLAG FOR HUMAN: YES (decision point 1).

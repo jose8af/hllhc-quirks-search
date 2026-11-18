@@ -1,0 +1,152 @@
+{
+ "definition": "v45r_summary.py -- channel (i), Ignatius 2026-11-18: COMMITMENTS amendment E2 part (ii) verdict from the restricted\nV4-5 scans (p2-a-c2-v45rpu, p2-a-c2-v45rsig; v45_bruteforce.py --restrict), next to part (i) (F0 vs independent fit).\n\nCriterion (E2 (ii), as worded): the exhaustive 0.2 mrad scan within \u00b10.3 rad restricted to F0's inlier hits and the hits\nwithin 3 sigma of the F0 plane, |dn| < 1 mrad in >= 48 of 50 per half.  If (ii) fails, (i) alone is the accuracy test\nand the scan is reported as failed.  Signal half: direction differences and scores only (no row counts, no fractions of\nscanned rows).  Reads only the done-marker JSON outputs (no npz).  Usage: python3 v45r_summary.py <out.json>\n",
+ "pu": {
+  "campaign": "p2-a-c2-v45rpu",
+  "n": 50,
+  "n_agree_restricted": 46,
+  "n_agree_fit": 50,
+  "pass_ii": false,
+  "dn_opt_max": 3.5999844481209538,
+  "dn_opt_median": 0.4236067718949602,
+  "dn_fit_max": 0.6377552502180942,
+  "dn_opt_fit_max": 3.6136649472018503,
+  "n_restricted_median": 70.0,
+  "n_restricted_range": [
+   47,
+   100
+  ],
+  "n_band3s_median": 70.0,
+  "f0_record_found": 9,
+  "f0_record_all_matched": 9,
+  "f0_record_outside_band_total": 0,
+  "pool_reproduced": 50,
+  "opt_on_edge": 0,
+  "selfcheck_max": 3.372216081823902e-05,
+  "local_is_global": 46,
+  "disagreements": [
+   {
+    "file": "c1pu1-0000.npz",
+    "trial": 2,
+    "dn_opt_mrad": 3.5999844481209538,
+    "dn_fit_mrad": 0.17954746209690015,
+    "dn_opt_fit_mrad": 3.6136649472018503,
+    "score_F0": 34.63129000758356,
+    "score_opt": 35.685697165539935,
+    "on_edge": false,
+    "n_restricted": 65,
+    "local_dn_mrad": 1.6970546456829358
+   },
+   {
+    "file": "c1pu1-0000.npz",
+    "trial": 10,
+    "dn_opt_mrad": 1.0770325447969982,
+    "dn_fit_mrad": 0.15685490459884524,
+    "dn_opt_fit_mrad": 0.921930289747348,
+    "score_F0": 42.75520048567031,
+    "score_opt": 44.350038172600044,
+    "on_edge": false,
+    "n_restricted": 84,
+    "local_dn_mrad": 1.0770325447969982
+   },
+   {
+    "file": "c1pu1-0000.npz",
+    "trial": 25,
+    "dn_opt_mrad": 1.6970546456829358,
+    "dn_fit_mrad": 0.1144339823782244,
+    "dn_opt_fit_mrad": 1.605379415805908,
+    "score_F0": 49.94806093501416,
+    "score_opt": 51.699818294231896,
+    "on_edge": false,
+    "n_restricted": 89,
+    "local_dn_mrad": 0.28284270470748135
+   },
+   {
+    "file": "c1pu1-0000.npz",
+    "trial": 39,
+    "dn_opt_mrad": 1.1313703671789577,
+    "dn_fit_mrad": 0.010010408888466724,
+    "dn_opt_fit_mrad": 1.122766120950202,
+    "score_F0": 44.09875209585143,
+    "score_opt": 45.043298320747645,
+    "on_edge": false,
+    "n_restricted": 78,
+    "local_dn_mrad": 1.1313703671789577
+   }
+  ]
+ },
+ "sig": {
+  "campaign": "p2-a-c2-v45rsig",
+  "n": 50,
+  "n_agree_restricted": 46,
+  "n_agree_fit": 50,
+  "pass_ii": false,
+  "dn_opt_max": 2.0396049771910856,
+  "dn_opt_median": 0.42360677188030904,
+  "dn_fit_max": 0.8493735608677102,
+  "dn_opt_fit_max": 2.112986613515955,
+  "n_restricted_median": 76.0,
+  "n_restricted_range": [
+   42,
+   151
+  ],
+  "n_band3s_median": 76.0,
+  "f0_record_found": 28,
+  "f0_record_all_matched": 28,
+  "f0_record_outside_band_total": 0,
+  "pool_reproduced": 50,
+  "opt_on_edge": 0,
+  "selfcheck_max": 2.9678061642680644e-05,
+  "local_is_global": 44,
+  "disagreements": [
+   {
+    "file": "c1sig-a5-m200-l1p5-c00.npz",
+    "trial": 24,
+    "dn_opt_mrad": 2.0396049771910856,
+    "dn_fit_mrad": 0.1090888090419385,
+    "dn_opt_fit_mrad": 2.112986613515955,
+    "score_F0": 45.96299644360466,
+    "score_opt": 46.32890550926849,
+    "on_edge": false,
+    "n_restricted": 86,
+    "local_dn_mrad": 0.28284270470748135
+   },
+   {
+    "file": "c1sig-a5-m200-l1p5-c00.npz",
+    "trial": 27,
+    "dn_opt_mrad": 1.2649103895459244,
+    "dn_fit_mrad": 0.06374422421988017,
+    "dn_opt_fit_mrad": 1.2659917009846091,
+    "score_F0": 33.69660013949765,
+    "score_opt": 36.76171248073973,
+    "on_edge": false,
+    "n_restricted": 74,
+    "local_dn_mrad": 0.4472135658430815
+   },
+   {
+    "file": "c1sig-a5-m200-l2-c00.npz",
+    "trial": 23,
+    "dn_opt_mrad": 1.0770325449000797,
+    "dn_fit_mrad": 0.33252206158161723,
+    "dn_opt_fit_mrad": 0.7552566022422418,
+    "score_F0": 54.94656281562553,
+    "score_opt": 55.63620545977238,
+    "on_edge": false,
+    "n_restricted": 92,
+    "local_dn_mrad": 1.0770325449000797
+   },
+   {
+    "file": "c1sig-a5-m500-l3-c01.npz",
+    "trial": 22,
+    "dn_opt_mrad": 1.399999085342647,
+    "dn_fit_mrad": 0.8493735608677102,
+    "dn_opt_fit_mrad": 0.5530177080057417,
+    "score_F0": 49.317220053205,
+    "score_opt": 51.977237548714,
+    "on_edge": false,
+    "n_restricted": 95,
+    "local_dn_mrad": 1.399999085342647
+   }
+  ]
+ },
+ "verdict_ii": "FAIL"
+}

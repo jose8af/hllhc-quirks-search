@@ -339,7 +339,10 @@ def fam_sm(res, a):
     v1 = json.loads(V1BG.read_text())["sm"]["Znunu_j"]
     res["samples"]["sm"] = dict(n_class_events=sm["Znunu_j"]["n_class_events"], f_presel=sm["Znunu_j"]["f_presel_class"],
                                 regen_met_match=sum(r["n_met_match"] for r in regen.values()),
-                                regen_n=sum(r["n"] for r in regen.values()))
+                                regen_n=sum(r["n"] for r in regen.values()),
+                                n_hs_cand_R04_unweighted=sm["Znunu_j"]["n_hs_cand_R04"],
+                                v1_n_hs_cand_R04_unweighted=v1["n_hs_cand_R04"], v1_f_presel=v1["f_presel_class"],
+                                n_events_w_gt0=int(sum(1 for r in regen.values() for x in r["rows"] if x["w_presel"] > 0)))
     for c in (3, 4, 5):
         def fac(row):
             return [f for f in row["factors"] if f["label"].startswith("HS cand") and "direct" in f["label"]][0]

@@ -1,0 +1,30 @@
+{
+ "campaign": "p2-a-c2-v45rtest",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "COMMITMENTS amendment E2 part (ii) (user 2026-11-17): V4-5 exhaustive 0.2 mrad scan within \u00b10.3 rad RESTRICTED to F0 stored hit record + window hits within 3 sigma of the F0 plane (v45_bruteforce.py --restrict); TEST: first PU trial and first signal event (E500 3 keV) only; not part of the verdict.",
+ "expected_hours": 1.0,
+ "regenerate": "inline python in phase2_exploration/logs/executor_ignatius_2026-11-18_10-46.md (from p2-a-c2-v45pu.json)",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "v45r-test-pu",
+   "shard": 0,
+   "outputs": [
+    "v45r-test-pu.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py pu --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --skip 0 --n 1 --tag v45r-test-pu --selfcheck --restrict"
+  },
+  {
+   "id": "v45r-test-sig",
+   "shard": 0,
+   "outputs": [
+    "v45r-test-sig.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/v45_bruteforce.py sig --files /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c00.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c01.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c02.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c03.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c04.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c05.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c06.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c07.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c08.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c09.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c10.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c11.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c12.npz,/nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-siga5/000/c1sig-a5-m500-l3-c13.npz --n 1 --tag v45r-test-sig --selfcheck --restrict"
+  }
+ ]
+}

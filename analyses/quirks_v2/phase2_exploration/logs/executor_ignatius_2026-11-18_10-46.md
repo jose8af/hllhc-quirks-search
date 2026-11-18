@@ -91,3 +91,80 @@ CPU-h budget check: C1 72.1/198 and C2 1.33/81 at Rosalie's 08:14 ledger; this s
   data/acts_stage4/g1/pythia_init → $QV2_PYTHIA_INIT_DIR and acts → $QV2/acts; v1 code unchanged); campaign
   p2-a-c1-smregen (2 jobs × 25 c1-sm files, ACTS env + Pythia vars) queued in slot B after v45rtest. The node-local
   init file /home/scratch/jdochoa/cache/pythia_init/mpi_cp5_14tev_hs_Znunu_j.dat (2078 B, 17 Nov 09:12) is on landau.
+- 2026-11-18 11:02:32 c1_compare.py extended (sha256 before 8673ba2d…24c3, backup /var/tmp/jdochoa/c1_compare.rosalie.py):
+  families closure (slope, c-factor via BG.closure / G3.c_test), cprime (cp0 f_pre, cppu attributed via BG.cprime_term),
+  rates (normalise.build on c1-gen2), sm (BG.sm_term with smregen); --families and --out options. Test of cprime on
+  partial data (landau, 43 s): cp0 f_pre dif 47538/50000 (z +0.93), ni22 22794/30000 (+0.14), pvpair 90182/100000
+  (−0.96) — complete inputs (cp0 16/16 done) [VERIFIED, /home/scratch/jdochoa/ign_c1cmp_test.json on landau];
+  cppu partial (cppua 47/50, cppub 20/75): not final. Rates-width DECISION in experiment_log. src/v45r_summary.py written.
+- 2026-11-18 11:05:15 closure family test (pu1 148/200 jobs = 11,840 trials, pu2 complete; landau 157 s, 515 MB): slope
+  v2 −0.3335 ± 0.0085 vs v1 −0.3608 ± 0.0045 (z +2.83, p 0.0046 > 0.05/41: individual pass, PROVISIONAL); v2 trend has
+  3 points (R04–R06; R07 < 10 B1 counts), v1 had 4 (R07: 35); v1 refitted on R04–R06 only: −0.3594 ± 0.0065 (WLS), so the
+  point set does not explain the difference. c-factor v2 1.1919 ± 0.0049 at the same cell (bin 2, layers 5,6,9) as v1
+  1.1964 ± 0.0022 (z −0.84). Final numbers need pu1 complete.
+- 2026-11-18 12:14:00 D1 DONE. p2-a-c1-gen2 12/12 done (10:47–12:13; ttbar_1l 1,549 s, ttbar_2l 993 s: inside 1,800 s).
+  Rates family (iv) [VERIFIED, outputs/c1_compare_rates_ignatius_2026-11-18.json; c1_compare.py --families rates]:
+  N_trig 4.187e7 vs 4.085e7 (z +0.86); N_trig(Z) 2.649e7 vs 2.508e7 (z +1.26); DIF 1.6275 vs 1.5945 (z +0.41, max = ZZ;
+  v1 ttbar_2l); PV pair 53.52 vs 30.31 (z +2.43, p 0.015 > 0.00122: pass; max = ttbar_2l with N_eff 14.9 → width
+  ESTIMATE s_ln 0.165); γ 0.566 vs 0.379 (z +0.58, ttbar_2l, s_ln 0.49). Family coherence z +1.68: coherent. All 5 pass.
+  Diagnostic (no verdict): N_trig-weighted mean rates v2/v1 = DIF 1.035, PV pair 1.007, γ 1.067; the max-over-
+  processes statistic is driven by ttbar_2l (presel-weighted N_eff ≈ 15 of 400 events) in v2 — power of the PV-pair
+  and γ entries is poor (2σ detectable shift ≈ ×1.6 and ×3.9): gross checks only.
+- 2026-11-18 12:14:44 p2-a-c2-v45rtest done (2/2; 12:12–12:13): PU trial: restricted set 72 hits = 3σ band (72); F0 stored
+  record 70 hits, 70/70 matched, 0 outside the band; Δn(F0, restricted opt) 0.28 mrad, Δn(F0, fit) 0.20; selfcheck
+  2.7e-5. Signal event: band 151 hits; F0 stored record NOT found (n_f0_record 0) → hit set = band only; Δn 0.00 mrad.
+  PERMISSION REFUSED (auto-mode classifier, "Unauthorized Access"): listing the key NAMES of one siga5 npz to see whether
+  signal outputs carry hit records. Not worked around. Consequence: the signal half uses the 3σ band only; the PU half
+  measures whether the finder's record ⊂ band. Queued p2-a-c2-v45rpu, p2-a-c2-v45rsig after p2-a-c1-smregen.
+- 2026-11-18 12:14:44 p2-a-c1-smregen-0 done (42 s wall; 25 jobs × 40 events, hs_met 40/40 each per the job log).
+- 2026-11-18 12:17:30 D5 SM family (v) [VERIFIED, outputs/c1_compare_sm_ignatius_2026-11-18.json]: smregen 2/2 done, hs_met
+  reproduced 2000/2000. Z(νν) HS cand per event (presel-weighted, factor "HS cand P(R) direct"): R04 20.03 vs 19.52
+  (+2.6 %, z +3.64, p 2.7e-4 < 0.05/41 → INDIVIDUAL FAIL), R05 4.713 vs 4.509 (+4.5 %, z +3.00, p 0.0027: pass),
+  R06 0.0191 vs 0.0162 (z +0.70). Family coherence z +4.60 → NOT COHERENT (FAIL). Decomposition: unweighted R04 HS cands
+  94,537 vs 93,404 (+1.2 %); mean presel weight 0.4107 vs 0.4189 (−2.0 %); events with w > 0: 849/2000. PU-only
+  families on 152/200 pu1 + pu2 agree (pu1 R04 −0.7 %, z −0.55; pu2 R04 0.0 %; T1 −0.7 %) → the shift is in the
+  hard-scatter (+ weight correlation) part, not the PU chain. STR §4.1 item 5: family failure → regression ticket, no
+  tuning; blocks decision point 1. NOT investigated further in this session (see successor section).
+- Partial (not final) family outputs saved: outputs/c1_compare_{pu,closure,cprime}_partial_ignatius_2026-11-18.json.
+- 2026-11-18 12:21:08 D2 DONE: outputs/V45_RESTRICTED_ignatius_2026-11-18.md (+ outputs/v45r_summary_ignatius.json).
+  E2 (ii): PU 46/50, signal 46/50 → FAIL as amended; (i) fit 50/50 + 50/50 → C2-a rests on (i), scan reported failed.
+  F0 records found 9 PU / 28 sig, all inside the 3σ band (union = band everywhere).
+
+## STATE FOR A SUCCESSOR — 2026-11-18 12:21 -05
+Read first: this log from §2, Rosalie's successor section (2026-11-17 08:15), PHASE2_BRIEF.md, AGENT_RULES.md.
+CPU (ledger rebuilt 12:21, dedup campaign+job+attempt): this session 1.49 CPU-h (gen2 1.40, v45r* 0.06,
+smregen 0.02) + ≈ 0.15 CPU-h of direct nice-19 analysis runs on landau (stitch, c2_verdicts, c1_compare tests).
+Channel (i) to date: p2-a-c1-* 158.6 CPU-h (C1 budget 198; pu1 and cppub still running, projected ≈ 190), p2-a-c2-* 22.5 (81).
+
+DONE (result files in outputs/):
+ 1. c1-gen: root cause PYTHIA8DATA (no conda activation); rerun p2-a-c1-gen2 12/12; rates family (iv) 5/5 pass,
+    coherent → c1_compare_rates_ignatius_2026-11-18.json. queue_slot.sh now prints status + FAILED JOBS warning.
+ 2. V45_RESTRICTED_ignatius_2026-11-18.md: E2 (ii) FAIL 46/50 + 46/50 → (i) alone (50/50, 50/50), scan reported failed.
+ 3. C2_VERDICTS_ignatius_2026-11-18.md: C2-b PASS; C2-c PASS as frozen but no power (FLAG).
+ 4. STITCH_100k_ignatius_2026-11-18.md: ratio 1.0001 ± 0.0252 (z 0.00): no f₂₀₀ bias.
+ 5. smregen done (p2-a-c1-smregen 2/2, hs_met 2000/2000). SM family (v): **FAIL** (R04 z +3.64, coherence z +4.6) →
+    c1_compare_sm_ignatius_2026-11-18.json. C′0 f_pre (ii) 3/3 pass (complete inputs). Closure (i) code works; partial.
+RUNNING (leave alone): landau slot A p2-a-c1-pu1 (≈152/200 at 12:20, ≈20 min/job → ≈ 19 Nov 04:30);
+ maxwell p2-a-c1-cppua (≈48/50), p2-a-c1-cppub (≈20/75, 2 queues?) → check: ssh -x landau "$R/bin/qv2run status $R/campaigns/<c>.json".
+Slot B queue: running and idle (file logs/queue_landau_B_ignatius.txt; log /home/scratch/jdochoa/drivers/queue_landau_B_ignatius.log;
+ restart command in §3 above). Append a campaign name to run it.
+
+WHAT REMAINS:
+ a. SM family FAIL (STR §4.1 item 5): open a regression ticket (orchestrator decision), investigate without tuning.
+    Leads: unweighted HS cands +1.2 %, mean presel weight −2.0 %, weighted +2.6 % → weight–multiplicity covariance;
+    PU-only families agree (−0.7 %). Checks to make: (1) per-event P(R04) vs w_presel scatter v1 vs v2 (v1 per-event
+    rows are not tracked; only aggregates) ; (2) Pythia version/settings of the HS in c1-sm (meta code hashes vs v1
+    s4pu, MPI init file regenerated 17 Nov 09:12 vs v1's); (3) bootstrap width sanity: the s_ln 0.5 % at R04 with 849
+    weighted events; (4) rerun of c1-sm with a second seed stream (2,000 events ≈ 14 CPU-h) to see whether it repeats.
+ b. When cppua/cppub complete: c1_compare.py --families cprime (C′_PU (iii), 7 entries; dif/gamma/v0 R04-R05, pvpair R02).
+ c. When pu1 completes: full run on a worker (≈ 4 min, ≈ 0.6 GB):
+    ssh -x landau "cd $QV2 && PYTHONDONTWRITEBYTECODE=1 nice -n 19 envs/tt/.pixi/envs/default/bin/python -B phase2_exploration/src/c1_compare.py"
+    (all families; writes outputs/c1_compare.json) + the open signal tier (c1_signal_compare.py open, Rosalie's item 2);
+    then 41 = 31 background (this script) + 4 open signal + 6 sealed (separate session). Closure slope partial z +2.83:
+    watch it (v2 trend has 3 points, v1 4; v1 refit on R04–R06 gives −0.3594, so not the cause).
+ d. outputs/EXPLORATION_i_ignatius_<date>.md (extend Rosalie's): campaign table, D-i-6 (gen2 rerun), the verdicts
+    above, rates-width DECISION (experiment_log), C2-c and V4-5 strategy-revision inputs, self-review.
+ e. Not started: C1-c container rerun (Rosalie item 7). E 500 stitch at 100k (not asked).
+TRAPS (new): the acts env python needs CONDA_PREFIX/PYTHIA8/PYTHIA8_DIR/PYTHIA8DATA exported in runner commands;
+ smregen must run on landau (node-local MPI init file); listing key names of signal npz files was refused by the
+ permission system — do not retry; signal files are read only by v45_bruteforce sig mode / c1_signal_compare.py.

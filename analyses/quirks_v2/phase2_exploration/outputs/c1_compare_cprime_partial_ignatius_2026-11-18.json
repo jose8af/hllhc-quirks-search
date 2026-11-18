@@ -1,0 +1,174 @@
+{
+ "n_declared": 41,
+ "bonferroni_p": 0.0012195121951219512,
+ "entries": {
+  "cp0.dif": {
+   "v1": "47473/50000",
+   "v2": "47538/50000",
+   "p": 0.35259012288052793,
+   "z": 0.9295770340378162,
+   "test": "Fisher exact (k/n)",
+   "v1_source": "v1 background.json cprime.dif.n_pre/n_c0",
+   "v1_f": 0.94946,
+   "v2_f": 0.95076,
+   "coh": [
+    0.00136826283568803,
+    0.0014492784689543502
+   ]
+  },
+  "cp0.ni22": {
+   "v1": "22778/30000",
+   "v2": "22794/30000",
+   "p": 0.8860618233913623,
+   "z": 0.1432891513476402,
+   "test": "Fisher exact (k/n)",
+   "v1_source": "v1 background.json cprime.ni22.n_pre/n_c0",
+   "v1_f": 0.7592666666666666,
+   "v2_f": 0.7598,
+   "coh": [
+    0.0007021855813842502,
+    0.004594185261755272
+   ]
+  },
+  "cp0.pvpair": {
+   "v1": "90310/100000",
+   "v2": "90182/100000",
+   "p": 0.3384879505075053,
+   "z": -0.9571571319508022,
+   "test": "Fisher exact (k/n)",
+   "v1_source": "v1 background.json cprime.pvpair.n_pre/n_c0",
+   "v1_f": 0.9031,
+   "v2_f": 0.90182,
+   "coh": [
+    -0.0014183456492053437,
+    0.0014702578682943709
+   ]
+  },
+  "cppu.dif.R04": {
+   "v1": 0.332,
+   "v1_s_ln": 0.07761505257063328,
+   "v1_source": "v1 background.json cprime.dif.rows[3] attributed direct",
+   "v2": 0.348,
+   "v2_s_ln": 0.05360562674188974,
+   "z": 0.49898022896018135,
+   "p": 0.6177933124694777,
+   "mde_2sigma": 0.20762402424635346,
+   "test": "log-ratio z",
+   "v1_counts": "166/500",
+   "v2_counts": "348/1000"
+  },
+  "cppu.dif.R05": {
+   "v1": 0.162,
+   "v1_s_ln": 0.1111111111111111,
+   "v1_source": "v1 background.json cprime.dif.rows[4] attributed direct",
+   "v2": 0.141,
+   "v2_s_ln": 0.0842151921066519,
+   "z": -0.9958159149866902,
+   "p": 0.3193395960915817,
+   "mde_2sigma": 0.3215953141752715,
+   "test": "log-ratio z",
+   "v1_counts": "81/500",
+   "v2_counts": "141/1000"
+  },
+  "cppu.gamma.R04": {
+   "v1": 0.306,
+   "v1_s_ln": 0.08084520834544433,
+   "v1_source": "v1 background.json cprime.gamma.rows[3] attributed direct",
+   "v2": 0.3465909090909091,
+   "v2_s_ln": 0.057259833431386825,
+   "z": 1.2573079354655596,
+   "p": 0.208642151610405,
+   "mde_2sigma": 0.2191302466148588,
+   "test": "log-ratio z",
+   "v1_counts": "153/500",
+   "v2_counts": "305/880"
+  },
+  "cppu.gamma.R05": {
+   "v1": 0.172,
+   "v1_s_ln": 0.10783277320343841,
+   "v1_source": "v1 background.json cprime.gamma.rows[4] attributed direct",
+   "v2": 0.15568181818181817,
+   "v2_s_ln": 0.0854357657716761,
+   "z": -0.7245458761429793,
+   "p": 0.4687306732354867,
+   "mde_2sigma": 0.31673100634902257,
+   "test": "log-ratio z",
+   "v1_counts": "86/500",
+   "v2_counts": "137/880"
+  },
+  "cppu.v0.R04": {
+   "v1": 1.718,
+   "v1_s_ln": 0.03411955969674702,
+   "v1_source": "v1 background.json cprime.v0.rows[3] attributed direct",
+   "v2": 1.60625,
+   "v2_s_ln": 0.027896417632583534,
+   "z": -1.5261010133412674,
+   "p": 0.12698470975927695,
+   "mde_2sigma": 0.09214570889468522,
+   "test": "log-ratio z",
+   "v1_counts": "859/500",
+   "v2_counts": "1285/800"
+  },
+  "cppu.v0.R05": {
+   "v1": 0.716,
+   "v1_s_ln": 0.05285164225816899,
+   "v1_source": "v1 background.json cprime.v0.rows[4] attributed direct",
+   "v2": 0.665,
+   "v2_s_ln": 0.043355498476206,
+   "z": -1.0809518955218325,
+   "p": 0.27971851231735645,
+   "mde_2sigma": 0.14650550064985254,
+   "test": "log-ratio z",
+   "v1_counts": "358/500",
+   "v2_counts": "532/800"
+  }
+ },
+ "samples": {
+  "cp": {
+   "dif": {
+    "n_c0": 50000,
+    "n_with_pu": 1000
+   },
+   "gamma": {
+    "n_c0": 100000,
+    "n_with_pu": 880
+   },
+   "ni22": {
+    "n_c0": 30000,
+    "n_with_pu": 0
+   },
+   "pvpair": {
+    "n_c0": 100000,
+    "n_with_pu": 0
+   },
+   "v0": {
+    "n_c0": 100000,
+    "n_with_pu": 800
+   }
+  }
+ },
+ "families": {
+  "cp0": {
+   "n": 3,
+   "mean_ln_ratio": 2.8960982155976093e-05,
+   "s": 0.0010070312339036328,
+   "z": 0.028758772499748994,
+   "coherent": true
+  },
+  "cppu": {
+   "n": 6,
+   "mean_ln_ratio": -0.04283789305281543,
+   "s": 0.030899062099878114,
+   "z": -1.3863816614998294,
+   "coherent": true
+  }
+ },
+ "individual_fail": [],
+ "not_testable": [],
+ "global_partial": {
+  "n_available": 9,
+  "sum_z2": 8.64465689835664,
+  "chi2_99_at_n_available": 21.665994333461924,
+  "note": "the global test of STR \u00a74.1 uses all 41 quantities; partial value only"
+ }
+}

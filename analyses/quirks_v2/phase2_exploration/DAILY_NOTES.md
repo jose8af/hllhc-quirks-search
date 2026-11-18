@@ -59,3 +59,5 @@
   only (all of them, incl. nic); the 0001-chunk pattern seen first was chance. D9 stands (advisor ruling); the
   with/without rule goes into PREREG_v2 for approval.
 - c1-gen (12 jobs, C1 rates) failed unseen on 17 Nov (Pythia init); Ignatius reruns it.
+- 2026-11-18 12:21 channel (i) Ignatius: c1-gen fixed (PYTHIA8DATA) and rerun 12/12, rates 5/5 pass; V4-5 E2(ii) 46/50 + 46/50 FAIL → (i) alone (100/100); C2-b PASS, C2-c PASS (no power); stitch 100k ratio 1.000 ± 0.025; SM Z(νν) family FAIL (R04 +2.6 %, z +3.6).
+  Running: c1-pu1 (≈152/200, ends ≈ 19 Nov 04:30), c1-cppub (≈20/75); remaining: C′_PU family, full 41-comparison run, EXPLORATION_i_ignatius.

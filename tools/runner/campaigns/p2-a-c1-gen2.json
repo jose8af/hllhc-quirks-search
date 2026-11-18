@@ -1,0 +1,110 @@
+{
+ "campaign": "p2-a-c1-gen2",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "RERUN of p2-a-c1-gen (all 12 jobs failed 2026-11-17 09:12 at Pythia init: PYTHIA8DATA unset because the acts env python is called without conda activation). Same jobs, args and seed tag qv2-c1-gen; new ids c1gen2-*; the command exports CONDA_PREFIX/PYTHIA8/PYTHIA8_DIR/PYTHIA8DATA as p2c_campaigns.py:20. C1 rates family (STR \u00a74.1): v1 acts/stage4/analysis/gen_d123.py 'nt' unchanged, one job per SM process at v1's NPROC sizes (generator level, production SM configuration of s4pu.py, preselection proxies), seed tag qv2-c1-gen (v1: fixer-r2-d123); minimum bias 1e5 interactions for the C' rates (DIF, NI) in job c1gen-minbias",
+ "expected_hours": 3.0,
+ "regenerate": "inline python in logs/executor_ignatius_2026-11-18_10-46.md (copy of p2-a-c1-gen.json with ENV export)",
+ "defaults": {
+  "max_rss_mb": 1000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1gen2-znunuj",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-znunuj.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-znunuj.json Znunu_j qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-wtaunuj",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-wtaunuj.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-wtaunuj.json Wtaunu_j qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-wtauhnuj",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-wtauhnuj.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-wtauhnuj.json Wtauhnu_j qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-wenuj",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-wenuj.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-wenuj.json Wenu_j qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-wmunuj",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-wmunuj.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-wmunuj.json Wmunu_j qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-ttbar1l",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-ttbar1l.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-ttbar1l.json ttbar_1l qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-ttbar2l",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-ttbar2l.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-ttbar2l.json ttbar_2l qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-topt",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-topt.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-topt.json top_t qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-ww",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-ww.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-ww.json WW qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-wz",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-wz.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-wz.json WZ qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-zz",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-zz.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 0 $QV2_OUT_DIR/c1gen2-zz.json ZZ qv2-c1-gen"
+  },
+  {
+   "id": "c1gen2-minbias",
+   "shard": 0,
+   "outputs": [
+    "c1gen2-minbias.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/acts/stage4/analysis/gen_d123.py nt 1 100000 $QV2_OUT_DIR/c1gen2-minbias.json ZZ qv2-c1-gen-mb 1"
+  }
+ ]
+}

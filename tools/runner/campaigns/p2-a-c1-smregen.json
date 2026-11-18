@@ -1,0 +1,30 @@
+{
+ "campaign": "p2-a-c1-smregen",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C1 family (v) SM (STR \u00a74.1): v1 gen_d123.py smregen (unchanged, via phase2_exploration/src/c1_smregen_job.py which points gen_d123.TT at a scratch root linking the node-local MPI init file) on the 50 outputs of p2-a-c1-sm: per-event preselection weight, tau class, hs_met check. MUST run on landau (the node with the hs_Znunu_j MPI init file of c1-sm).",
+ "expected_hours": 0.5,
+ "regenerate": "inline python in phase2_exploration/logs/executor_ignatius_2026-11-18_10-46.md",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1smregen-0",
+   "shard": 0,
+   "outputs": [
+    "c1smregen-0.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_smregen_job.py $QV2_OUT_DIR/c1smregen-0.json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0000.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0001.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0002.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0003.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0004.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0005.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0006.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0007.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0008.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0009.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0010.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0011.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0012.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0013.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0014.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0015.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0016.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0017.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0018.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0019.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0020.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0021.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0022.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0023.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0024.npz"
+  },
+  {
+   "id": "c1smregen-1",
+   "shard": 0,
+   "outputs": [
+    "c1smregen-1.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && export CONDA_PREFIX=$QV2/acts/.pixi/envs/default PYTHIA8=$QV2/acts/.pixi/envs/default PYTHIA8_DIR=$QV2/acts/.pixi/envs/default PYTHIA8DATA=$QV2/acts/.pixi/envs/default/share/Pythia8/xmldoc && cd $QV2_OUT_DIR && $QV2/acts/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_smregen_job.py $QV2_OUT_DIR/c1smregen-1.json /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0025.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0026.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0027.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0028.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0029.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0030.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0031.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0032.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0033.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0034.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0035.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0036.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0037.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0038.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0039.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0040.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0041.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0042.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0043.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0044.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0045.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0046.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0047.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0048.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-sm/000/c1sm-0049.npz"
+  }
+ ]
+}
