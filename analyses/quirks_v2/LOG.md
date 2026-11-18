@@ -917,3 +917,15 @@ exist (c1-gen fix and rerun, restricted V4-5 scan E2(ii), C2-b, C2-c, 100k stitc
 families), with landau slot B. ALTERNATIVES: wait for all campaigns (idle slot, c1-gen found later). CONFIDENCE: HIGH.
 - 2026-11-18 10:58 orchestrator: channel (i) successor Ignatius (Opus) spawned; landau slot B assigned
 - 2026-11-18 11:03 orchestrator: per-stream B1 pilot validation (P7) overdue (first chain campaigns done overnight); executor Hedda (Fable, rule 1(c)) prepares the jobs, the orchestrator launches
+- 2026-11-18 10:48 -0500 orchestrator: CORRECTION (rule 7): the three entries above stamped 10:55, 10:58 and 11:03, and the state-file stamp 11:05, were written without running `date`; the true times are between 10:42 and 10:48 (git commit times are authoritative).
+- 2026-11-18 10:48 -0500 orchestrator: launched p2-c-pilot-val-s1 (8 per-stream validation jobs, streams dif, difc, nix, nic, ni22, ni30, ni61, lowpt; ≈ 0.025 CPU-h ESTIMATE) on maxwell, 1 slot; node count before 3/4; SLOTS.md line written. c0-hs stream not yet eligible (val-s2 later).
+
+## 2026-11-18 10:55 -0500 (measured) — B1 per-stream validation (P7): 8 of 8 streams pass under hard_except_early_product_hits
+Hedda (Fable): `phase2_exploration/outputs/B1_STREAM_VALIDATION_hedda_2026-11-18.md`. Strict pass dif, difc, nic,
+ni22; strict fail on the early-product-hit item only in nix (13 hits / 5 events), ni30 (1/1), ni61 (2/1), lowpt (2/1):
+18 hits in 8 of 469,318 events (1.7e-5 per event) [VERIFIED, outputs p2c/pilot_validation/p2-c-pilot-val-s1]. All
+other hard checks true in 16/16 files; A1 ≤ 0.17 % (criterion 2 %). 90.2 CPU-s. Open: all 8 flagged events are in
+the 0001 chunks, none in 0000 (≈ 6 % by chance over 4 streams); pilot-wide scaling ≈ 3e2 flagged events [ESTIMATE]
+vs "order 1e2" in B1_READY. DECISION: a light pilot-wide count of n_early_prod per chain file (Hedda prepares, the
+orchestrator launches) before any reading; advisor call if the chunk pattern persists. p2-c-pilot-val-s2 (hs stream,
+3 jobs) queued on maxwell, waits for p2-c-pilot-c0-hs.

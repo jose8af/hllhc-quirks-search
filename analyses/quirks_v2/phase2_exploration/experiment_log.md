@@ -138,3 +138,37 @@ diagnostics without verdict; proposal for the wording in the result file §7.
 CONFIDENCE: HIGH that the likelihood is right and that the recipe is unstable here; MEDIUM on the FAIL/STRADDLES
 label itself (margin 1.5 units against a bootstrap error of 32).
 FLAG FOR HUMAN: YES — wording of T1-b, and the grid/empty-tail rule of the toy procedure used by T1-i.
+
+### 2026-11-18 10:55 -0500 channel (iii) Hedda — per-stream validation of the B1 pilot (P7): campaign prepared, not launched
+What was done: `tools/runner/examples/p2x/b1_val/p2-c-pilot-val-s1.json`, 8 jobs (dif, difc, nix, nic, ni22, ni30,
+ni61, lowpt), each `p2x_validate.py` on two done chain files; ≈ 0.025 CPU-h, ≤ ≈ 0.6 GB [E from p2-c-pa-val1-b1].
+DECISION: two files per stream (jobs 0000 and 0001 of the first chain campaign), not one; outputs under the data
+prefix `p2c/pilot_validation`, not under `pilot`; hs left for a second campaign when its chain campaign has run.
+ALTERNATIVES: one file per stream (half the cost, but then the validator's "another chunk gives another content
+hash" check has nothing to compare; with two files it runs in production for the first time); every file of the
+first campaign (≈ 0.5 CPU-h; more than "one validated job"); prefix `pilot` (verdict files next to the pilot data).
+CONFIDENCE: HIGH (cost is 90 CPU-s; nothing of the pilot is written or changed).
+FLAG FOR HUMAN: NO.
+Not done: `qv2run ssh launch --dry-run` (takes the driver lock and writes driver state in the ledger: left to the launch).
+
+## 2026-11-18 10:48:06 — Ignatius (channel (i)): p2-a-c1-gen failure, root cause and rerun
+All 12 jobs of p2-a-c1-gen failed on 2026-11-17 09:12 at Pythia init ("unmatched version numbers: in code 8.312 but
+in XML 0.000"). Cause: the command calls $QV2/acts/.pixi/envs/default/bin/python directly; the conda activation
+(activate-pythia8.sh, which sets PYTHIA8DATA) is not run, so Pythia finds no settings XML. c1-sm succeeded because it
+runs through envs/tt + c1_pu_job.py. Fix: rerun as p2-a-c1-gen2 (new ids c1gen2-*) with the four Pythia variables
+exported in the command (as channel (iii)'s p2c_campaigns.py:20); no code change. The failure went unnoticed for a day
+because queue_slot.sh logged the driver's exit code (0) only; it now prints the campaign status and a FAILED JOBS
+warning. Lesson: check `qv2run status` (failed count) after every campaign, not the driver exit code.
+
+### 2026-11-18 10:55 -0500 channel (iii) Hedda — per-stream validation of the B1 pilot: result
+What worked: p2-c-pilot-val-s1 (8 jobs, 90.2 CPU-s): 16 of 16 files pass `hard_except_early_product_hits`; every
+hard item except the early-product-hit one is true in all; other chunk → other hash in 8 of 8 streams.
+What did not: strict `hard` fails in 4 files (nix, ni30, ni61, lowpt; 18 hits in 8 events of 469,318) on the known
+slow-fragment residue; ni30, ni61 and lowpt show it for the first time. All 8 events are in the 0001 files, none in
+the 0000 files: not explained, not investigated (needs a worker slot; `n_early_prod` of all files would settle it).
+DECISION: streams reported as validated under the reading fixed on 17 Nov; the 0000 / 0001 pattern reported as an
+open observation, without a cause; p2-c-pilot-val-s2 (hs, its pool and vertex files) written with `after` = c0-hs.
+ALTERNATIVES: withhold the verdict of the four streams until the pattern is understood; open the event files on
+einstein (refused by the rules: nothing heavy there).
+CONFIDENCE: HIGH on the verdicts as defined; LOW on whether the pattern is chance (0.8 % by events, 12.5 % by streams).
+FLAG FOR HUMAN: YES — the pilot-wide count of flagged events (≈ 3×10² expected [E] against "order 10²") and the pattern.
