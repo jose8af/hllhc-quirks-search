@@ -901,3 +901,17 @@ a small runner change once the running campaigns are complete; recorded in the s
   after de-duplication (jobs.tsv has one row per output file; summing it raw doubles the total). Day-1 report written;
   STATUS and ORCHESTRATOR_STATE updated for the restart; session cron for the daily report deleted (the new session
   re-creates it). This Fable orchestrator session ends here (V16).
+
+## 2026-11-18 10:55 -05 (measured) — Opus orchestrator session starts (Phase 2, day 2); c1-gen found failed
+State file read; first actions run. Pilot part 1 at about 385/500 Z(νν) jobs, part 2 lanes alive (landau, schrodinger
+waiting on the hard-scatter block; maxwell lane complete 03:43); no pilot marker whose LAST line is a failure (the
+grep in the state file matches earlier attempt lines too: check the last line). Daily-report cron re-created
+(18:47 daily). No user answer pending on the remote.
+**Silent failure found:** all 12 jobs of `p2-a-c1-gen` (C1 generator-level rates: DIF, PV pair, γ per triggered
+event, N_trig, Z(νν) share) failed on 17 Nov 09:12 at Pythia init ("unmatched version numbers: in code 8.312 but in
+XML 0.000", `acts/stage4/code/s4pu.py:58`), 0.5 s each; `queue_slot.sh` logged "exit 0" for the campaign, so the
+failure went unseen. Channel (i) otherwise: c1-pu2, c1-sm, c1-cp0, c1-s2inc, siga2/5, c2-tseed1/2, c2-v44a/b/c,
+c2-v45pu/sig complete; c1-pu1 147/200 (landau slot A), c1-cppua 46/50 and c1-cppub 19/75 (maxwell); landau slot B
+idle since 10:05. DECISION: spawn the channel (i) successor now instead of Thursday, on the work whose inputs
+exist (c1-gen fix and rerun, restricted V4-5 scan E2(ii), C2-b, C2-c, 100k stitch ratio, smregen, compare-script
+families), with landau slot B. ALTERNATIVES: wait for all campaigns (idle slot, c1-gen found later). CONFIDENCE: HIGH.
