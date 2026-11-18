@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-18 11:05 -05 (measured; Opus orchestrator session of day 2) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
+**Updated:** 2026-11-18 18:58 -05 (measured; Opus orchestrator session of day 2; daily report 18 Nov done) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -136,8 +136,8 @@ freeze: check frozen criteria and the day-15 text for dependence on these events
 | MET model inputs (R-2, R-3) | sourced (L1 TDR; ATLAS notes; CMS NOTE-2018/006 supplied by the user); jet-response tail NOT sourced; construction choice is Phase-3 work (by day 10) | Sebastian's EXPLORATION §1 |
 | Forced tt̄ decays in `s4pu.py` | measured (0.327 s per event); the file edit waits until the C1 campaigns are complete | `CHAIN_PROVENANCE.md` |
 
-CPU used: 228 CPU-h at 17:40 on 17 Nov (ledger, 1,611 jobs: reproduction 110, theory 38, pilot channel 13, pilot 67). **Ledger pitfall:** `tools/runner/bin/qv2run rebuild-ledger` writes one row per output FILE in `ledger/jobs.tsv`; de-duplicate on (campaign, job_id, attempts) before summing cpu_s, or the total doubles. Projection 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for D2. Storage
-127 GB for this study; 525 GB used on the pool in total, 3.8 TB free.
+CPU used: 383 CPU-h at 18:55 on 18 Nov (ledger, 2,768 jobs: reproduction 195, theory 39, pilot channel 13, pilot 136). **Ledger pitfall:** `tools/runner/bin/qv2run rebuild-ledger` writes one row per output FILE in `ledger/jobs.tsv`; de-duplicate on (campaign, job_id, attempts) before summing cpu_s, or the total doubles. Projection 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for D2. Storage
+236 GB for this study (du, 18 Nov); 633 GB used on the pool in total, 3.7 TB free. Last bundle `repo-2026-11-18.bundle`. Pilot at 18:55: Z(νν) 457/460, B1 664/762 (hs block 98 pending), no failure; c1-pu1 173/200, c1-cppub 49/75.
 
 ## 4. First actions of a new session
 

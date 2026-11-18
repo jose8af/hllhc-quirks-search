@@ -1,0 +1,141 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=3pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\est}{\textsc{est}}
+\newcommand{\ver}{\textsc{ver}}
+\title{HL-LHC electroweak quirks, study v2\\[2pt]\large Daily report, day 2}
+\author{Private work (simulation). Public information only.}
+\date{18 November 2026, 18:55 (day 2 of the approved calendar)}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Tags.} \ver{} = measured or read in this study, with the campaign or file in the repository.
+\est{} = estimate. All reach and background numbers are \est{} on v1 placeholder efficiencies. No v2 signal
+efficiency has been computed; the sealed v1 signal counts of the reproduction test stay sealed.
+
+\section{Summary}
+\begin{itemize}
+\item \textbf{Waiting for you:} nothing. The two small choices of yesterday (trigger turn-on uncertainty,
+      thickness-law diagnostic) come with recommendations at decision point 1 on 21 November.
+\item You approved amendment E4 at 12:44 as recommended. With it the SM family of the reproduction test passes.
+      The frozen FAIL stays on record, labelled ``after the result''.
+\item Pilot part 1 is at 457 of 460 Z($\nu\nu$) jobs (minimum bias complete); part 2 at 664 of 762 jobs, all
+      class blocks done. No pilot job has failed.
+\item The new Opus orchestrator session started this morning. One reproduction campaign (C1 rates) had failed
+      unseen on 17 November; it was rerun and passes.
+\end{itemize}
+
+\section{What finished today}
+\begin{enumerate}
+\item \textbf{Per-stream validation of the single-interaction pilot.} 8 of 8 streams pass under the approved
+      reading (D9: events with hits before their production time are flagged, not dropped) (\ver). One line for
+      you, as the advisor asked: pilot-wide there are \textbf{318 flagged events} (524 hits) in
+      $1.72\times10^{7}$, against the ``about 170'' in the notice on which you decided D9. They appear in every
+      nuclear-interaction class, not only in the one seen before. D9 stands: it is a per-event rule with no
+      ceiling. The preregistration of v2 will state which variant (with or without these events) is binding;
+      the recommendation is \emph{with}, the other as a cross-check.
+\item \textbf{C1 rates} (rerun after a missing generator setting): 5 of 5 pass (\ver). The job script now
+      reports failed jobs instead of finishing silently.
+\item \textbf{SM family (Z($\nu\nu$) candidates per event).} Failed as frozen at rung R04: $+2.6\,\%$,
+      $z=+3.64$. A regression ticket and an independent advisor found the cause in the error, not the physics:
+      $1/\sqrt{N}$ treats the $\approx47$ candidates of one event as independent. With event-level errors
+      (amendment E4): $z=+0.35/+0.57/+0.50$ at R04--R06, block $\chi^2=1.53/3$; with v1's error set to zero,
+      at most $+0.82$ (\ver). The test is weak: a real 15\,\% shift at R04--R05 would be seen only about half the
+      time.
+\item \textbf{Plane-fit accuracy, second half (E2 restricted scan).} Fails: 46 of 50 and 46 of 50 against the
+      required 50 (\ver). The first half (100 of 100) stands alone, as E2 foresaw.
+\item \textbf{C2-b passes; C2-c passes but has no power} (flagged as such) (\ver).
+\item \textbf{Sample stitching on $10^{5}$ events:} ratio $1.0001\pm0.0252$ (\ver). The 12\,\% excess seen
+      on 20{,}000 events was a fluctuation; $f_{200}$ is not biased.
+\item \textbf{Pile-up family (C$'_{\mathrm{PU}}$):} the same error correction was committed \emph{before} its
+      numbers are read (commit \texttt{54610b6}). A partial file computed earlier with the old error is
+      superseded and was not used.
+\end{enumerate}
+
+\section{Decisions for you}
+None today. Coming at decision point 1 (21 November), each with a recommendation checked by an advisor:
+the trigger turn-on uncertainty and the thickness-law diagnostic.
+
+\section{Running now}
+\begin{center}
+\begin{tabular}{L{3.6cm}L{10.6cm}}
+\toprule
+Pilot, part 1 & Z($\nu\nu$) 457 of 460 jobs on schrodinger, two lanes; ends about 20:00 tonight (\est) \\
+Pilot, part 2 & 664 of 762 jobs. The hard-scatter block (98 jobs) starts after the last Z($\nu\nu$) file;
+                through about 20 November (\est). Its validation job is queued behind it \\
+v1 reproduction & Pile-up $\rho=1$: 173 of 200 (ends about 19 November 04:30); pile-up pairs: 49 of 75
+                (overnight). Then a new executor reads the pile-up family and all 41 comparisons \\
+Generator comparison & Waits for a runner change, made after the campaigns above are complete \\
+\bottomrule
+\end{tabular}
+\end{center}
+No agent is running tonight.
+
+\section{Budget and storage}
+\begin{center}
+\begin{tabular}{L{7.6cm}L{6.4cm}}
+\toprule
+CPU used (ledger, 2{,}768 jobs) & 383 CPU-h of 4{,}609 approved (\ver) \\
+\quad of which reproduction / theory / pilot channel / pilot & 195 / 39 / 13 / 136 CPU-h \\
+Projected total & 4{,}663--4{,}844 CPU-h (\est), plus 22--28 for D2; threshold 5{,}992 \\
+Storage, this study & 236 GB of 1.5 TB \\
+Shared volume free & 3.7 TB of 4.5 TB \\
+\bottomrule
+\end{tabular}
+\end{center}
+The projection is redone with measured costs at the checkpoint of day 5.
+
+\section{Problems}
+\begin{itemize}
+\item \textbf{Unseen failure.} The 12 C1-rate jobs failed on 17 November (generator data path not set) and the
+      queue did not report it. Fixed and rerun; the queue now reports failures.
+\item \textbf{Timestamps.} Three log entries this morning carried times written without reading the clock; a
+      correction entry gives the true times (10:42--10:48).
+\item \textbf{Open before the full reproduction read:} the coherence test of the pile-up and closure families
+      still treats nested rungs as independent; it is fixed before those numbers are read.
+\item \textbf{Failed jobs since day 0:} 36 failed, 3 timed out, 1 killed, all in development and reproduction
+      campaigns (the 12 above included); none in the pilot.
+\end{itemize}
+
+\section{Reach: where it stands (\est)}
+Unchanged: Gate A expected a reach below 243~GeV, near the existing bounds of about 180~GeV, and a pause at
+day 15 ($B_{50}$ expected $3\times10^{4}$--$3\times10^{5}$ against the cap of 300). Nothing measured today tests
+it. The stitching result removes one downward risk on the signal side. The first measured background number comes
+with the preliminary projection of day 7.
+
+\section{Plan for 19--20 November}
+\begin{itemize}
+\item Pilot part 1 completes; the hard-scatter block of part 2 runs, then its validation job.
+\item Reproduction campaigns complete; a new executor fixes the family coherence, reads the pile-up family and all
+      41 comparisons.
+\item Then the sealed comparison (advisor first), and the decision-point-1 package for 21 November.
+\end{itemize}
+
+\section{Your next interventions}
+\begin{center}
+\begin{tabular}{L{4.2cm}L{10.0cm}}
+\toprule
+21 November (day 5) & Decision point 1: reproduction result; two small choices with recommendations \\
+23 November (day 7) & Preliminary background projection (to read); possible Z($\nu\nu$) top-up decision \\
+1 December (day 15) & Binding background projection; a pause is expected \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Files}
+\begin{itemize}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/B1_STREAM_VALIDATION_hedda_2026-11-18.md}
+\item \path{analyses/quirks_v2/phase2_exploration/REGRESSION_TICKET_SM.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/SM_FIX_lisbet_2026-11-18.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/C2_VERDICTS_ignatius_2026-11-18.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/STITCH_100k_ignatius_2026-11-18.md}
+\item \path{analyses/quirks_v2/COMMITMENTS.md} (amendment E4)
+\item \path{analyses/quirks_v2/ORCHESTRATOR_STATE.md}
+\end{itemize}
+\end{document}
