@@ -32,6 +32,17 @@ Families added by Ignatius (2026-11-18); every v2 number comes from v1's own ana
         same width assumed for v1 (same generator, same sizes).  DECISION in experiment_log (2026-11-18, Ignatius).
   sm.<R> (v) Z(nunu) HS candidates per event (presel-weighted) at R04-R06: sm_term's factor "HS cand P(R) direct
         (presel-weighted)" N/M (STR's 19.52 / 4.51 / 0.0162) and s_ln; needs the smregen weights (p2-a-c1-smregen).
+
+Width fix (fix agent Lisbet, 2026-11-18; REGRESSION_TICKET_SM.md, advisor ruling in LOG.md 2026-11-18 12:29):
+  The s_ln_used of a v1 "direct" factor is 1/sqrt(N) on CANDIDATES (background.Term.evaluate l.205), which ignores that
+  candidates come in clusters (~47 per SM event; several per C'_PU source event).  sm.<R> and cppu.<t>.<R> now take
+  the v2 width from a cluster bootstrap of ln(sum N / sum M) (SM: per event, x_e = w_presel x n_cand, events without a
+  candidate included; C'_PU: per source C'0 event, slots as denominator), all rungs of a sample from the same resamples.
+  v1 width (per-cluster counts lost): primary = v1 1/sqrt(N) x (v2 bootstrap / v2 1/sqrt(N)); alternative = 0, both
+  reported.  Family coherence and the global chi2 use the joint replicas (joint_family).  The SM 1/sqrt(N) path is kept
+  only as res["frozen_script"] (the FAIL on record); C'_PU has no 1/sqrt(N) verdict.  C'_PU entries with N < 10 keep the
+  frozen conditional binomial, flagged.  SM verdicts with the fixed width are amendment E4 (pending the user's approval).
+  Unit tests: test_c1_compare.py (synthetic clustered data).
 """
 import argparse
 import json
@@ -141,8 +152,99 @@ def signed_exact(name, p, sign, v1, v2, test, **kw):
 def lr_entry(v1, s1, v2, s2, src, **kw):
     z = (np.log(v2) - np.log(v1)) / np.hypot(s1, s2) if (v1 > 0 and v2 > 0) else float("nan")
     p = 2 * stats.norm.sf(abs(z)) if np.isfinite(z) else float("nan")
+    mde = float(np.expm1(2 * np.hypot(s1, s2)))      # 2 sigma power: the shift of ln x detectable at 2 sigma (STR §4.1 item 4)
     return dict(v1=float(v1), v1_s_ln=float(s1), v1_source=src, v2=float(v2), v2_s_ln=float(s2), z=float(z), p=float(p),
-                mde_2sigma=float(np.expm1(2 * np.hypot(s1, s2))), test="log-ratio z", **kw)
+                mde_2sigma=mde, gross_check_only=bool(mde > 0.5), test="log-ratio z", **kw)
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Clustered widths (fix agent Lisbet, 2026-11-18; REGRESSION_TICKET_SM.md §3, advisor ruling LOG.md 2026-11-18 12:29).
+# Quantities counted per candidate (SM HS candidates per event, C'_PU attributed candidates per slot) are ratios
+# sum_c N_c / sum_c M_c over clusters c (SM: the event; C'_PU: the source C'0 event).  Their width is the cluster
+# bootstrap of ln(sum N / sum M); all rungs of one sample use the SAME resamples (joint replicas), so the nested rungs
+# keep their correlation in the family coherence and in the global chi2.  v1 per-cluster counts are lost: the v1 width
+# is v1's own 1/sqrt(N) times the v2 ratio (bootstrap / Poisson) of the same entry (primary), and 0 (strict bound).
+# ---------------------------------------------------------------------------------------------------------------------
+V1W_PRIMARY = "v1 1/sqrt(N) x (v2 cluster-bootstrap s_ln / v2 1/sqrt(N)) of the same entry [ESTIMATE]"
+V1W_ZERO = "v1 width = 0 (strict bound)"
+
+
+def cluster_boot_ln(N, M, nboot, rng, chunk=100):
+    """Joint cluster bootstrap of ln(sum N / sum M).  N: (C, K) per-cluster numerators (K rungs), M: (C,) denominators.
+    -> (estimate (K,), replicas (nboot', K) of ln ratio, n_dropped).  Replicas with a zero numerator in any column are
+    dropped (jointly) and counted."""
+    N = np.asarray(N, float).reshape(len(N), -1); M = np.asarray(M, float)
+    C_ = len(M)
+    est = N.sum(0) / M.sum()
+    reps = np.empty((nboot, N.shape[1]))
+    done = 0
+    while done < nboot:
+        k = min(chunk, nboot - done)
+        idx = rng.integers(0, C_, size=(k, C_))
+        W = np.zeros((k, C_))
+        np.add.at(W, (np.repeat(np.arange(k), C_), idx.ravel()), 1.0)    # multiplicity of every cluster per replica
+        with np.errstate(divide="ignore"):
+            reps[done:done + k] = np.log((W @ N) / (W @ M)[:, None])
+        done += k
+    ok = np.all(np.isfinite(reps), axis=1)
+    return est, reps[ok], int((~ok).sum())
+
+
+def v1_width_scaled(s1_poisson, s2_boot, s2_poisson):
+    """Primary v1 width rule: v1's 1/sqrt(N) scaled by the v2 clustering inflation of the same entry."""
+    return float(s1_poisson * s2_boot / s2_poisson)
+
+
+def clustered_entry(f1_, f2_, s2_boot, n_drop, src, **kw):
+    """Log-ratio z with the cluster-bootstrap v2 width and both v1-width choices (primary: scaled; alternative: 0)."""
+    s1p, s2p = f1_["s_ln_used"], f2_["s_ln_used"]                  # 1/sqrt(N) of v1 Term.evaluate (Poisson on candidates)
+    x1, x2 = f1_["N"] / f1_["M"], f2_["N"] / f2_["M"]
+    s1 = v1_width_scaled(s1p, s2_boot, s2p)
+    e = lr_entry(x1, s1, x2, s2_boot, src, v1_width_rule=V1W_PRIMARY, v2_width="cluster bootstrap (joint replicas)",
+                 v1_s_ln_poisson=float(s1p), v2_s_ln_poisson=float(s2p), inflation_v2=float(s2_boot / s2p),
+                 n_boot_dropped=n_drop, **kw)
+    z0 = lr_entry(x1, 0.0, x2, s2_boot, src)
+    e["v1_width_zero"] = {k: z0[k] for k in ("v1_s_ln", "z", "p", "mde_2sigma", "gross_check_only")}
+    e["v1_width_zero"]["v1_width_rule"] = V1W_ZERO
+    return e
+
+
+def joint_family(d, s1, reps_by_group):
+    """Family coherence and decorrelated chi2 with the joint replicas.
+    d: ln(x2/x1) per entry (K,); s1: v1 widths (K,); reps_by_group: list of (entry indices, replicas (B, k)) of
+    independent samples.  Covariance: v2 from the replicas (zero between groups); v1 = D1 rho_v2 D1 (v1 rungs are nested
+    on v1's events the same way; ESTIMATE).  Coherence: the frozen form (inverse-variance mean with the diagonal
+    weights), its variance w'Sw/(sum w)^2 with the full covariance.  chi2 block: d' S^-1 d (chi2 with K dof)."""
+    d = np.asarray(d, float); s1 = np.asarray(s1, float); K = len(d)
+    S2 = np.zeros((K, K))
+    for idx, r in reps_by_group:
+        S2[np.ix_(idx, idx)] = np.atleast_2d(np.cov(r, rowvar=False, ddof=1))
+    sd2 = np.sqrt(np.diag(S2))
+    rho = S2 / np.outer(sd2, sd2)
+    S = S2 + rho * np.outer(s1, s1)
+    w = 1.0 / np.diag(S)
+    mu = float(w @ d / w.sum()); smu = float(np.sqrt(w @ S @ w) / w.sum())
+    chi2 = float(d @ np.linalg.solve(S, d))
+    return dict(n=K, mean_ln_ratio=mu, s=smu, z=mu / smu, coherent=bool(abs(mu / smu) < 3), chi2_block=chi2,
+                chi2_block_ndof=K, chi2_block_p=float(stats.chi2.sf(chi2, K)), correlation_v2=rho.round(4).tolist(),
+                s_independent=float(1 / np.sqrt(w.sum())),
+                method="joint replicas: diagonal inverse-variance weights, full covariance (v2 bootstrap + v1 scaled with "
+                       "the v2 correlation)")
+
+
+def coherence_naive(v):
+    """Frozen-script family coherence (entries treated as independent)."""
+    d = np.array([x for x, _ in v]); s = np.array([x for _, x in v])
+    w = 1 / s ** 2
+    mu = float((w * d).sum() / w.sum()); smu = float(1 / np.sqrt(w.sum()))
+    return dict(n=len(v), mean_ln_ratio=mu, s=smu, z=mu / smu, coherent=bool(abs(mu / smu) < 3))
+
+
+def rung_col(label):
+    """Ladder column of a 'P(Rxx_...) direct' factor label."""
+    from acts.stage4.analysis import common as C
+    name = label.split("P(", 1)[1].split(")", 1)[0]
+    return C.RUNGS.index(name)
 
 
 def load_npz(p, keys=(), prefixes=()):
@@ -235,13 +337,18 @@ def fam_cprime(res, a):
                          coh=(float(np.log(f2_ / f1_)), float(np.hypot(np.sqrt((1 - f1_) / k1), np.sqrt((1 - f2_) / k2)))))
         res["entries"][f"cp0.{t}"] = e
     want = {"dif": (3, 4), "gamma": (3, 4), "v0": (3, 4), "pvpair": (1,)}
+    by_t = {}
+    for d in jp:
+        by_t.setdefault(d["job"]["topo"], []).append(d)
+    names, groups, k0 = [], [], 0
     for t, cols in want.items():
         if t not in cp or cp[t]["n_with_pu"] == 0:
             continue
+        def fac(row):
+            fs = [f for f in row["factors"] if "attributed" in f["label"] and "direct" in f["label"]]
+            return fs[0] if fs else None
+        lr_cols = []
         for c in cols:
-            def fac(row):
-                fs = [f for f in row["factors"] if "attributed" in f["label"] and "direct" in f["label"]]
-                return fs[0] if fs else None
             f1_, f2_ = fac(v1[t]["rows"][c]), fac(cp[t]["rows"][c])
             name = f"cppu.{t}.{C.RUNGS[c][:3]}"
             if f2_ is None:
@@ -250,15 +357,75 @@ def fam_cprime(res, a):
                                             v2_factors=[f["label"] for f in cp[t]["rows"][c]["factors"]])
                 continue
             if f2_["N"] >= 10 and f1_["N"] >= 10:
-                res["entries"][name] = lr_entry(f1_["N"] / f1_["M"], f1_["s_ln_used"], f2_["N"] / f2_["M"],
-                                                f2_["s_ln_used"], f"v1 background.json cprime.{t}.rows[{c}] attributed direct",
-                                                v1_counts=f"{f1_['N']:.0f}/{f1_['M']:.0f}",
-                                                v2_counts=f"{f2_['N']:.0f}/{f2_['M']:.0f}")
+                if "C'_PU attributed" not in f2_["label"]:     # low-gun branch (depth from C'0): no clustering defined here
+                    res["entries"][name] = dict(v1=f"{f1_['N']}/{f1_['M']}", v2=f"{f2_['N']}/{f2_['M']}", p=float("nan"),
+                                                z=float("nan"), test="NOT TESTABLE (v2 factor from C'0, low gun count)",
+                                                v2_factor=f2_["label"])
+                    continue
+                lr_cols.append((c, name, f1_, f2_))
             else:
+                # N < 10 branch FROZEN (advisor ruling 2026-11-18): exact test on the candidate counts as written
                 pb = float(stats.binomtest(int(f2_["N"]), int(f1_["N"] + f2_["N"]), f2_["M"] / (f1_["M"] + f2_["M"])).pvalue)
+                mde = float(np.expm1(2 * np.sqrt(1 / max(f1_["N"], 1) + 1 / max(f2_["N"], 1))))
                 res["entries"][name] = signed_exact(f"v1 cprime.{t}", pb, f2_["N"] / f2_["M"] - f1_["N"] / f1_["M"],
                                                     f"{f1_['N']:.0f}/{f1_['M']:.0f}", f"{f2_['N']:.0f}/{f2_['M']:.0f}",
-                                                    "conditional binomial")
+                                                    "conditional binomial",
+                                                    frozen_branch_flag="N < 10: conditional binomial on candidate counts "
+                                                    "treated as Poisson (not clustered); branch frozen by the advisor ruling "
+                                                    "2026-11-18, FLAG: clustered counts make this test anti-conservative",
+                                                    mde_2sigma=mde, mde_tag="ESTIMATE (Poisson, unclustered)",
+                                                    gross_check_only=bool(mde > 0.5))
+        if not lr_cols:
+            continue
+        Ncl, Mcl = cppu_clusters(by_t[t], [rung_col(f2_["label"]) for _, _, _, f2_ in lr_cols])
+        for j, (c, name, f1_, f2_) in enumerate(lr_cols):     # consistency with v1's own cprime_term
+            if not (np.isclose(Ncl[:, j].sum(), f2_["N"], rtol=1e-9) and np.isclose(Mcl.sum(), f2_["M"], rtol=1e-9)):
+                raise RuntimeError(f"C'_PU clusters do not reproduce cprime_term for {name}: {Ncl[:, j].sum()} vs "
+                                   f"{f2_['N']}, {Mcl.sum()} vs {f2_['M']}")
+        est, reps, ndrop = cluster_boot_ln(Ncl, Mcl, a.nboot_cl, np.random.default_rng([C.SEED, 11, len(groups)]))
+        s2b = reps.std(0, ddof=1)
+        for j, (c, name, f1_, f2_) in enumerate(lr_cols):
+            res["entries"][name] = clustered_entry(f1_, f2_, float(s2b[j]), ndrop,
+                                                   f"v1 background.json cprime.{t}.rows[{c}] attributed direct",
+                                                   v1_counts=f"{f1_['N']:.0f}/{f1_['M']:.0f}",
+                                                   v2_counts=f"{f2_['N']:.0f}/{f2_['M']:.0f}", n_clusters=int(len(Mcl)),
+                                                   n_boot=int(len(reps)), joint_family="cppu",
+                                                   v2_factor_rung=C.RUNGS[rung_col(f2_["label"])],
+                                                   v1_factor_rung=C.RUNGS[rung_col(f1_["label"])],
+                                                   criterion="clustered width committed before reading (advisor ruling "
+                                                             "2026-11-18); no 1/sqrt(N) verdict")
+            names.append(name)
+        groups.append((list(range(k0, k0 + len(lr_cols))), reps)); k0 += len(lr_cols)
+    if names:
+        res.setdefault("_joint", {})["cppu"] = dict(names=names, groups=groups)
+
+
+def cppu_clusters(js, cols):
+    """Per-cluster attributed-candidate counts at the given rung columns and slots per cluster for one topology's C'_PU
+    jobs, with the clusters of cprime_term.recs (B-7): source C'0 event (cp.ev[:, 1]) when cp.ev_cols has 'src', else
+    the trial.  -> N (C, len(cols)), M (C,).  Denominator: one slot per trial (cprime_term's n_with)."""
+    from acts.stage4.analysis import common as C
+    cn, cm = [], []                                   # (cluster id, rung flags) of candidates; cluster id of slots
+    for jn, d in enumerate(js):
+        dc = d["d_cp"]
+        tev = np.asarray(dc.get("trials.ev", []), np.int64)
+        src = "cp.ev" in dc and "src" in str(dc.get("cp.ev_cols", "")) and dc["cp.ev"].shape[1] >= 2
+        cm.append(dc["cp.ev"][tev, 1].astype(np.int64) if src else np.arange(len(tev), dtype=np.int64) + 10_000_000 * jn)
+        cc = {k[8:]: dc[k] for k in dc if isinstance(k, str) and k.startswith("cp.cand.")}
+        if not cc or "attributed" not in cc:
+            continue
+        a = cc["attributed"].astype(bool)
+        tr = np.asarray(cc["trial"])[a].astype(np.int64)
+        cid = dc["cp.ev"][tev[tr], 1].astype(np.int64) if src else tr + 10_000_000 * jn
+        cn.append((cid, C.rung_flags(cc["rungs"])[a][:, cols]))
+    ids = np.unique(np.concatenate(cm + [x for x, _ in cn]))
+    M = np.bincount(np.searchsorted(ids, np.concatenate(cm)), minlength=len(ids)).astype(float)
+    N = np.zeros((len(ids), len(cols)))
+    for cid, Fa in cn:
+        ii = np.searchsorted(ids, cid)
+        for j in range(len(cols)):
+            N[:, j] += np.bincount(ii[Fa[:, j]], minlength=len(ids))
+    return N, M
 
 
 def fam_rates(res, a):
@@ -343,14 +510,59 @@ def fam_sm(res, a):
                                 n_hs_cand_R04_unweighted=sm["Znunu_j"]["n_hs_cand_R04"],
                                 v1_n_hs_cand_R04_unweighted=v1["n_hs_cand_R04"], v1_f_presel=v1["f_presel_class"],
                                 n_events_w_gt0=int(sum(1 for r in regen.values() for x in r["rows"] if x["w_presel"] > 0)))
-    for c in (3, 4, 5):
-        def fac(row):
-            return [f for f in row["factors"] if f["label"].startswith("HS cand") and "direct" in f["label"]][0]
-        f1_, f2_ = fac(v1["rows"][c]), fac(sm["Znunu_j"]["rows"][c])
-        res["entries"][f"sm.{C.RUNGS[c][:3]}"] = lr_entry(f1_["N"] / f1_["M"], f1_["s_ln_used"], f2_["N"] / f2_["M"],
-                                                          f2_["s_ln_used"], f"v1 background.json sm.Znunu_j.rows[{c}] HS cand direct",
-                                                          v1_counts=f"{f1_['N']:.1f}/{f1_['M']:.0f}",
-                                                          v2_counts=f"{f2_['N']:.1f}/{f2_['M']:.0f}")
+    def fac(row):
+        return [f for f in row["factors"] if f["label"].startswith("HS cand") and "direct" in f["label"]][0]
+    cols = (3, 4, 5)
+    F1 = [fac(v1["rows"][c]) for c in cols]; F2 = [fac(sm["Znunu_j"]["rows"][c]) for c in cols]
+    names = [f"sm.{C.RUNGS[c][:3]}" for c in cols]
+    # frozen script (as run by Ignatius 2026-11-18): s_ln = 1/sqrt(weighted candidate count) on both sides; kept to
+    # reproduce the FAIL on record (STR §4.1 item 5); NOT used for any verdict of the amended criterion (E4, pending)
+    fz = {}
+    for n, c, f1_, f2_ in zip(names, cols, F1, F2):
+        fz[n] = lr_entry(f1_["N"] / f1_["M"], f1_["s_ln_used"], f2_["N"] / f2_["M"], f2_["s_ln_used"],
+                         f"v1 background.json sm.Znunu_j.rows[{c}] HS cand direct",
+                         v1_counts=f"{f1_['N']:.1f}/{f1_['M']:.0f}", v2_counts=f"{f2_['N']:.1f}/{f2_['M']:.0f}")
+    res["frozen_script"] = dict(
+        label="frozen script: SM widths 1/sqrt(weighted candidate count) (c1_compare.py as run 2026-11-18, Ignatius); "
+              "verdict on record",
+        entries=fz, families=dict(sm=coherence_naive([(np.log(e["v2"] / e["v1"]), np.hypot(e["v1_s_ln"], e["v2_s_ln"]))
+                                                      for e in fz.values()])),
+        individual_fail=[k for k, e in fz.items() if e["p"] <= 0.05 / N_DECL],
+        sum_z2=float(sum(e["z"] ** 2 for e in fz.values())))
+    # corrected: per-event x_e = w_presel(e) x n_cand(e, R) over ALL class events (events without a candidate = 0),
+    # the same candidate mask as sm_term (l.712: tag & 1, n_hs_band >= 1, rung flag), event bootstrap, joint replicas
+    X = []
+    for d in jobs:
+        if d["job"]["sample"] != "C_Znunu_j":
+            continue
+        rows = regen[d["job_id"]]["rows"]
+        wev = np.array([r["w_presel"] for r in rows], float)
+        cnd = d["cand"]
+        m = ((cnd["tag"] & 1) > 0) & (cnd["n_hs_band"] >= 1)
+        ie = (d["tr"]["ev"][cnd["trial"]] - int(d["job"].get("ev0", 0))).astype(np.int64)
+        if m.any() and (ie[m].min() < 0 or ie[m].max() >= len(rows)):
+            raise RuntimeError(f"SM event index outside the regen rows in {d['job_id']}")
+        Fr = C.rung_flags(cnd["rungs"])
+        x = np.zeros((len(rows), len(cols)))
+        for j, c in enumerate(cols):
+            k = m & Fr[:, c]
+            x[:, j] = np.bincount(ie[k], weights=wev[ie[k]], minlength=len(rows))
+        X.append(x)
+    X = np.concatenate(X)
+    for j, (c, f2_) in enumerate(zip(cols, F2)):     # consistency with v1's own sm_term (same N, M, same deep rung)
+        if rung_col(f2_["label"]) != c or not np.isclose(X[:, j].sum(), f2_["N"], rtol=1e-9) or len(X) != f2_["M"]:
+            raise RuntimeError(f"per-event SM arrays do not reproduce sm_term at {C.RUNGS[c]}: "
+                               f"{X[:, j].sum()} vs {f2_['N']}, {len(X)} vs {f2_['M']}, {f2_['label']}")
+    est, reps, ndrop = cluster_boot_ln(X, np.ones(len(X)), a.nboot_cl, np.random.default_rng([C.SEED, 5]))
+    s2b = reps.std(0, ddof=1)
+    for j, (n, c, f1_, f2_) in enumerate(zip(names, cols, F1, F2)):
+        res["entries"][n] = clustered_entry(f1_, f2_, float(s2b[j]), ndrop,
+                                            f"v1 background.json sm.Znunu_j.rows[{c}] HS cand direct",
+                                            v1_counts=f"{f1_['N']:.1f}/{f1_['M']:.0f}",
+                                            v2_counts=f"{f2_['N']:.1f}/{f2_['M']:.0f}", n_events=int(len(X)),
+                                            n_boot=int(len(reps)), joint_family="sm",
+                                            criterion="amendment E4 (pending the user's approval, after the result)")
+    res.setdefault("_joint", {})["sm"] = dict(names=names, groups=[(list(range(len(cols))), reps)])
 
 
 def main():
@@ -360,6 +572,7 @@ def main():
     ap.add_argument("--pu1", default="p2-a-c1-pu1")
     ap.add_argument("--pu2", default="p2-a-c1-pu2")
     ap.add_argument("--nboot-v1", type=int, default=1000, help="closure/trend/c-test bootstrap (run_all default)")
+    ap.add_argument("--nboot-cl", type=int, default=2000, help="cluster bootstrap replicas (SM events, C'_PU sources)")
     ap.add_argument("--cp0", default="p2-a-c1-cp0")
     ap.add_argument("--cppua", default="p2-a-c1-cppua")
     ap.add_argument("--cppub", default="p2-a-c1-cppub")
@@ -408,22 +621,42 @@ def main():
     # family coherence and global (family = first part of the entry name; pu1/pu2/clos as Rosalie, cp0, cppu, rates, sm)
     fam = {}
     for k, e in res["entries"].items():
+        if e.get("joint_family"):
+            continue                       # clustered families (sm, cppu): joint replicas below
         if e.get("test") == "log-ratio z":
             fam.setdefault(k.split(".")[0], []).append((np.log(e["v2"]) - np.log(e["v1"]), np.hypot(e["v1_s_ln"],
                                                                                                      e["v2_s_ln"])))
         elif e.get("coh") and e["coh"][0] is not None:
             fam.setdefault(k.split(".")[0], []).append(tuple(e["coh"]))
     for f, v in fam.items():
-        d = np.array([x for x, _ in v]); s = np.array([x for _, x in v])
-        w = 1 / s ** 2
-        mu = float((w * d).sum() / w.sum()); smu = float(1 / np.sqrt(w.sum()))
-        res["families"][f] = dict(n=len(v), mean_ln_ratio=mu, s=smu, z=mu / smu, coherent=bool(abs(mu / smu) < 3))
-    zs = [e["z"] for e in res["entries"].values() if np.isfinite(e.get("z", np.nan))]
+        res["families"][f] = coherence_naive(v)
+    joint = res.pop("_joint", {})
+    block = {}                             # entry names replaced in the global sum by their family's d' S^-1 d
+    for f, J in joint.items():
+        es = [res["entries"][n] for n in J["names"]]
+        d = [np.log(e["v2"] / e["v1"]) for e in es]
+        res["families"][f] = joint_family(d, [e["v1_s_ln"] for e in es], J["groups"])
+        res["families"][f]["v1_width_rule"] = V1W_PRIMARY
+        res["families"][f]["v1_width_zero"] = joint_family(d, np.zeros(len(d)), J["groups"])
+        res["families"][f]["entries"] = J["names"]
+        block.update({n: f for n in J["names"]})
+    zs = [e["z"] for k, e in res["entries"].items() if k not in block and np.isfinite(e.get("z", np.nan))]
+    zall = [e["z"] for e in res["entries"].values() if np.isfinite(e.get("z", np.nan))]
+    s_blk = sum(res["families"][f]["chi2_block"] for f in joint)
+    s_blk0 = sum(res["families"][f]["v1_width_zero"]["chi2_block"] for f in joint)
     res["individual_fail"] = [k for k, e in res["entries"].items() if e["p"] <= 0.05 / N_DECL]
+    res["individual_fail_v1_width_zero"] = [k for k, e in res["entries"].items()
+                                            if e.get("v1_width_zero", e)["p"] <= 0.05 / N_DECL]
     res["not_testable"] = [k for k, e in res["entries"].items() if not np.isfinite(e.get("p", np.nan))]
-    res["global_partial"] = dict(n_available=len(zs), sum_z2=float(np.sum(np.square(zs))),
-                                 chi2_99_at_n_available=float(stats.chi2.ppf(0.99, max(1, len(zs)))),
-                                 note="the global test of STR §4.1 uses all 41 quantities; partial value only")
+    n_av = len(zs) + len(block)
+    res["global_partial"] = dict(n_available=n_av, sum_z2=float(np.sum(np.square(zs)) + s_blk),
+                                 sum_z2_v1_width_zero=float(np.sum(np.square(zs)) + s_blk0),
+                                 sum_z2_naive=float(np.sum(np.square(zall))),
+                                 chi2_99_at_n_available=float(stats.chi2.ppf(0.99, max(1, n_av))),
+                                 note="the global test of STR §4.1 uses all 41 quantities; partial value only. sum_z2: "
+                                      "families " + (",".join(joint) or "none") + " enter as d' S^-1 d with the joint "
+                                      "replicas (same dof); sum_z2_naive treats every entry as independent. pu1/pu2/clos "
+                                      "keep the independent-entry form (not in the scope of the SM ticket)")
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".json.part")
@@ -432,7 +665,11 @@ def main():
     for k, e in res["entries"].items():
         v2 = e["v2"] if isinstance(e["v2"], str) or e["v2"] is None else f"{e['v2']:.5g}"
         log.info("%-16s v1 %-14s v2 %-14s z %+.2f p %.3g", k, e["v1"], v2, e.get("z", float("nan")), e["p"])
-    log.info("families: %s", json.dumps(res["families"]))
+    log.info("families: %s", json.dumps({f: {k: v for k, v in x.items() if k in ("n", "z", "coherent", "chi2_block")}
+                                         for f, x in res["families"].items()}))
+    if "frozen_script" in res:
+        log.info("frozen script (SM, 1/sqrt(N)): %s", json.dumps({k: round(e["z"], 3) for k, e in
+                                                                  res["frozen_script"]["entries"].items()}))
 
 
 if __name__ == "__main__":

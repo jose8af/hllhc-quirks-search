@@ -210,3 +210,29 @@ Restricted hit set = 3σ band of the F0 plane ∪ F0's stored hit record (record
 8 disagreements of 1.1–3.6 mrad, all with F0 vs fit ≤ 0.85 mrad: the score maximum is not the least-squares plane at
 the 0.2 mrad grid scale. Reported as failed per the amendment's wording. No re-definition attempted (would be a third
 post-hoc criterion). FLAG FOR HUMAN: YES (decision point 1).
+
+## 2026-11-18 12:36 — Lisbet (fix agent): clustered widths in c1_compare.py (SM ticket §3; advisor ruling Kestrel)
+Implemented as scoped; tests on synthetic clustered data only (test_c1_compare.py, 11/11 pass on landau). Judgment calls:
+
+DECISION: family coherence keeps the frozen form (inverse-variance mean with the DIAGONAL weights) and only its variance
+  uses the full joint-replica covariance, w'Σw/(Σw)²; not a GLS mean.
+ALTERNATIVES: GLS mean with Σ⁻¹ weights (minimum variance, but changes the estimator named in STR §4.1 item 2).
+CONFIDENCE: HIGH (smallest change that makes the error correct). FLAG FOR HUMAN: NO
+
+DECISION: v1 covariance between nested rungs := D1 ρ_v2 D1 (v1 widths of the primary rule, correlation taken from the v2
+  replicas); v1 per-event counts are lost. With v1 width 0 only the v2 covariance enters.
+ALTERNATIVES: v1 rungs independent (understates the family error, the defect being fixed).
+CONFIDENCE: MEDIUM (ESTIMATE; same chain, same event structure). FLAG FOR HUMAN: NO (the v1 = 0 variant bounds it)
+
+DECISION: global χ²₄₁ — the clustered families (sm, cppu) enter as dᵀΣ⁻¹d with Σ from the joint replicas (same number of
+  dof as entries), instead of Σz² over correlated entries; sum_z2_naive also reported.
+ALTERNATIVES: keep Σz² and take its null distribution from the replicas (threshold no longer χ²₄₁).
+CONFIDENCE: HIGH. FLAG FOR HUMAN: NO
+
+DECISION: C′_PU 2σ power for the frozen N < 10 binomial entries stated as ESTIMATE expm1(2√(1/N1 + 1/N2)) (Poisson,
+  unclustered, labelled); a C′_PU entry whose v2 direct factor comes from C′0 (low-gun branch) is NOT TESTABLE here.
+CONFIDENCE: MEDIUM. FLAG FOR HUMAN: NO
+
+OPEN (not in scope, flagged): pu1/pu2 and clos family coherence still treat the nested rungs R04–R06 as independent
+  (their per-entry widths are event-bootstrap and correct; boot_mean already has joint replicas). Same correlation issue
+  as the SM coherence, opposite of the ticket's scope. FLAG FOR HUMAN: YES (orchestrator decides whether to extend).
