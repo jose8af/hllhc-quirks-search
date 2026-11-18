@@ -78,7 +78,7 @@ see `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md` §9).
 
 ## 2. Waiting on the user
 
-**DECISION E4 (notice 18 Nov 12:29, reply by Fri 20 Nov 12:00):** SM-family width correction (Q1 E4 approve /
+**DECISION E4: APPROVED by the user 18 Nov 12:44 (recommended answers; COMMITMENTS "Amendment E4"). Was:** SM-family width correction (Q1 E4 approve /
 bug; Q2 v1 width = v2's; Q3 no rerun; Q4 remediation 1 of 3 + PREREG_v2). No silent default on Q1: without an
 answer the SM family stays "FAIL (frozen) / corrected PASS pending E4" and decision point 1 stays blocked.
 Fixer Lisbet (Opus): stage A code → orchestrator COMMITS before any C′_PU number (hash pre-registers the rule) →

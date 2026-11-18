@@ -294,6 +294,20 @@ known and are labelled as such wherever they are quoted (notice `notices/2026-11
 | T1-b | 902 ± 32 against 789.7 ± 10 %: FAIL | (a) asymptotic limits agree within 1 %; (b) v1's statistic on the builder's inputs reproduces v1's number with v1's seed, seed scatter reported; (c) the T1 toy limit reported with its replica scatter, no tolerance | PASS as measured ((a) 2×10⁻⁴; (b) identical, sd 38) |
 Also from T1-b, for the pre-registration: the toy recipe of STR §4.11 gets a bracket refinement (bisection to 2 %)
 and a stated empty-tail rule before it is used for v2 limits.
+**C2-a (ii) result (2026-11-18, Ignatius):** the restricted scan FAILED (46/50 PU, 46/50 signal), so, as amended,
+(i) alone is the accuracy test (PASS 50/50, 50/50) and the scan is reported as failed (`phase2_exploration/outputs/V45_RESTRICTED_ignatius_2026-11-18.md`).
+
+## Amendment E4 to the C1 SM family (user, 2026-11-18 12:44: "Use your recommended answers for E4")
+
+Notice `notices/2026-11-18_1229_DECISION_c1-sm-family-check-fails-only-through-its-error-.md`; regression ticket
+`phase2_exploration/REGRESSION_TICKET_SM.md`; advisor ruling Kestrel (LOG 18 Nov). Made AFTER the result for the SM
+family and labelled as such wherever quoted; BEFORE the result for the C′_PU family (rule committed in 54610b6).
+| row | frozen verdict (VERIFIED) | amended criterion (in force from 2026-11-18) | status under the amendment |
+|---|---|---|---|
+| C1 SM family (v) (STR §4.1 item 5) | frozen script (1/√N width): R04 z +3.64 FAIL; coherence z +4.60 | Q1: event-level (clustered) bootstrap width for every quantity counted per candidate (SM, C′_PU); family coherence and χ² from joint replicas. Q2: v1's relative width = v2's event-level one (ESTIMATE; v1 per-event counts lost), with the v1-width-0 values and the 2σ power always quoted alongside | PASS 3/3, coherent: z +0.35/+0.57/+0.50 (v1 width 0: +0.50/+0.82/+0.75); 2σ power 16/17/94 % (`outputs/SM_FIX_lisbet_2026-11-18.md`, code 54610b6) |
+Q3: no second-seed rerun of c1-sm. Q4: counted as remediation attempt 1 of 3; the event-level error model goes into
+PREREG_v2. The N < 10 conditional-binomial branch of STR §4.1 item 1 is unchanged (frozen; its clustering is flagged).
+
 **30-minute job rule:** exception granted by the user for FxFx only: two single-core jobs of about 1.5 h (one per
 mass, 500 and 1,500 GeV); later event batches from saved grids stay ≤ 30 min.
 
