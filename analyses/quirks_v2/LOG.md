@@ -929,3 +929,5 @@ the 0001 chunks, none in 0000 (≈ 6 % by chance over 4 streams); pilot-wide sca
 vs "order 1e2" in B1_READY. DECISION: a light pilot-wide count of n_early_prod per chain file (Hedda prepares, the
 orchestrator launches) before any reading; advisor call if the chunk pattern persists. p2-c-pilot-val-s2 (hs stream,
 3 jobs) queued on maxwell, waits for p2-c-pilot-c0-hs.
+- 2026-11-18 10:56 -0500 orchestrator: launched p2-c-pilot-val-eph (pilot-wide n_early_prod count, 546 files) on maxwell
+- 2026-11-18 11:02 -0500 orchestrator: p2-c-pilot-val-eph read (Hedda, B1_STREAM_VALIDATION §6): 0001-only pattern NOT real (even/odd chunks 157/161; per-file counts Poisson). Pilot-wide 318 flagged events (524 hits) in 1.72e7 events, 1.85e-5/event, all in nuclear-interaction classes (nix 212, nic 59, ni22 10, ni30 15, ni61 18, lowpt 4; dif/difc 0) [VERIFIED]; ≈ 3× B1_READY's "order 1e2" on which D9 was decided (17 Nov). Strict hard check fails in 177/314 NI chain files: hard_except_early_product_hits is the only usable reading there. Advisor call (trigger: number behind an addendum-1 decision) before anything goes to the user.

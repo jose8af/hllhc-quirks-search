@@ -23,5 +23,10 @@ while true; do
     $R/bin/qv2-watch $f 60 300; echo "[queue $(date '+%F %T')] watched $next exit $?"
   fi
   $R/bin/qv2run ssh launch $f --nodes $node --max-per-node 1
-  echo "[queue $(date '+%F %T')] end $next exit $?"
+  rc=$?
+  # Ignatius 2026-11-18: the driver exits 0 even when jobs failed (p2-a-c1-gen, 12/12 failed, logged "exit 0").
+  # Report the campaign's job states and flag failed/timeout/oom jobs explicitly.
+  st=$($R/bin/qv2run status $f 2>&1); nf=$(sed -n 's/.*| failed \([0-9]*\) |.*/\1/p' <<< "$st")
+  echo "[queue $(date '+%F %T')] end $next exit $rc; $st"
+  [[ "${nf:-?}" != 0 ]] && echo "[queue $(date '+%F %T')] WARNING $next: FAILED JOBS ${nf:-unknown} (never retried; rerun under new ids)"
 done

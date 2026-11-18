@@ -1,0 +1,1228 @@
+{
+ "definition": "c2_verdicts.py -- channel (i), Ignatius 2026-11-18: verdicts of C2-b (V4-4 reproducibility) and C2-c (T_seed 4 -> 2).\n\nC2-b (STR \u00a74.2 row V4-4; COM C2-b): 20 production-type rho = 1 jobs (c2v44-NN, stream c2.v44) run twice on landau\n(-a, -b), once on maxwell (-c), plus two jobs with other seeds (c2v44x-00/01, stream c2.v44x).  Criteria: outputs\nbit-identical on the same node; cross-node identity reported (with the CPU models); different seeds give different\noutputs; all seeds recorded.  Comparison: day0_summary.identical() (every npz key except meta_json and timing keys);\n'job_id' is expected to differ (it is the job name) and is listed separately.  Seeds: meta_json job.seed, compared too.\n\nC2-c (STR \u00a74.2 row T_seed; COM C2-c; deviation D-i-4: regeneration from the same job seeds with T_seed = 2): pairs\nc2ts2-pu1-NNNN <-> c1pu1-NNNN (0000-0024, rho = 1, 20 events x 4 roads) and c2ts2-pu2-NNNN <-> c1pu2-NNNN (0000-0039,\nrho = 2, 5 events x 2 roads).  Pairing check: chain.evstats identical, trials.ev identical, trials.pv equal.\nMetric (v1 acts/stage4/g3/analyse_g3.py tseed_test, 'pass_frac'): per trial, g = n_grp (n_pass where n_grp < 0), a\ntrial passes a rung if g > 0.  Family statistic (one per family and density, STR: 'per-trial pass fraction of each rung\nfamily (counting R04, width R05-R06, chi2, 2S)'): the fraction of trials that pass at least one rung of the family;\nfamilies: counting = R04; width = R05, R06; chi2 = R09-R11; 2S = R12-R14 (v1 FAM, rungs as in STR / Rosalie's plan).\nz = (f_T2 - f_T4) / sd of the paired event bootstrap of the difference (2,000 replicas, events = (job, ev)).\nCriterion: |z| < 2.73 for all 8 tests (Bonferroni, family-wise 4.9 %).  The v1 per-rung table (R01-R14, pass_frac and\nmean_grp, paired z) is reported as a diagnostic.\nUsage (worker, TT env):  python c2_verdicts.py <out.json>\n",
+ "C2b": {
+  "same_node_bit_identical": true,
+  "cross_node_identical": true,
+  "different_seeds_differ": true,
+  "seeds_recorded": true,
+  "verdict": "PASS",
+  "pairs": [
+   {
+    "job": "c2v44-00",
+    "seed_a": 26379247137091,
+    "seed_b": 26379247137091,
+    "seed_c": 26379247137091,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-01",
+    "seed_a": 31517910024586,
+    "seed_b": 31517910024586,
+    "seed_c": 31517910024586,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-02",
+    "seed_a": 130138492879452,
+    "seed_b": 130138492879452,
+    "seed_c": 130138492879452,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-03",
+    "seed_a": 42401484842372,
+    "seed_b": 42401484842372,
+    "seed_c": 42401484842372,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-04",
+    "seed_a": 48122872698660,
+    "seed_b": 48122872698660,
+    "seed_c": 48122872698660,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-05",
+    "seed_a": 16322108353687,
+    "seed_b": 16322108353687,
+    "seed_c": 16322108353687,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-06",
+    "seed_a": 43442718500990,
+    "seed_b": 43442718500990,
+    "seed_c": 43442718500990,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-07",
+    "seed_a": 43059997597421,
+    "seed_b": 43059997597421,
+    "seed_c": 43059997597421,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-08",
+    "seed_a": 3698943401794,
+    "seed_b": 3698943401794,
+    "seed_c": 3698943401794,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-09",
+    "seed_a": 30432940893918,
+    "seed_b": 30432940893918,
+    "seed_c": 30432940893918,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-10",
+    "seed_a": 139096658696076,
+    "seed_b": 139096658696076,
+    "seed_c": 139096658696076,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-11",
+    "seed_a": 92867564282307,
+    "seed_b": 92867564282307,
+    "seed_c": 92867564282307,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-12",
+    "seed_a": 38307319466844,
+    "seed_b": 38307319466844,
+    "seed_c": 38307319466844,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-13",
+    "seed_a": 41214495984537,
+    "seed_b": 41214495984537,
+    "seed_c": 41214495984537,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-14",
+    "seed_a": 97523074947424,
+    "seed_b": 97523074947424,
+    "seed_c": 97523074947424,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-15",
+    "seed_a": 43107266481431,
+    "seed_b": 43107266481431,
+    "seed_c": 43107266481431,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-16",
+    "seed_a": 104145739951873,
+    "seed_b": 104145739951873,
+    "seed_c": 104145739951873,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-17",
+    "seed_a": 3713641554025,
+    "seed_b": 3713641554025,
+    "seed_c": 3713641554025,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-18",
+    "seed_a": 27412510152806,
+    "seed_b": 27412510152806,
+    "seed_c": 27412510152806,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44-19",
+    "seed_a": 12010412713906,
+    "seed_b": 12010412713906,
+    "seed_c": 12010412713906,
+    "ab_differing": [
+     "job_id"
+    ],
+    "ac_differing": [
+     "job_id"
+    ],
+    "n_keys": 89
+   }
+  ],
+  "other_seed": [
+   {
+    "job": "c2v44x-00",
+    "vs": "c2v44-00-a",
+    "seed_x": 20255362876062,
+    "seed_ref": 26379247137091,
+    "differing": [
+     "btl",
+     "cand.axis",
+     "cand.btl_dt0",
+     "cand.btl_n_band",
+     "cand.btl_n_int",
+     "cand.chi2_core",
+     "cand.chi2ndf",
+     "cand.cross",
+     "cand.dedx",
+     "cand.dphi_met",
+     "cand.dw_core",
+     "cand.dw_old",
+     "cand.eta_axis",
+     "cand.f_ckf",
+     "cand.group",
+     "cand.idx",
+     "cand.n2s2",
+     "cand.n_band",
+     "cand.n_ckf_band",
+     "cand.n_core",
+     "cand.nhit",
+     "cand.nip2",
+     "cand.nit2",
+     "cand.nl1",
+     "cand.nl2",
+     "cand.normal",
+     "cand.not2",
+     "cand.not2h",
+     "cand.nz",
+     "cand.p_chi2core",
+     "cand.rungs",
+     "cand.seed_n2",
+     "cand.tag",
+     "cand.trial",
+     "chain.evstats",
+     "chain.v41",
+     "hit.INT",
+     "hit.cand",
+     "hit.dE",
+     "hit.gen",
+     "hit.off",
+     "hit.particle",
+     "hit.ref",
+     "hit.s01",
+     "hit.sid",
+     "hit.t",
+     "hit.trial",
+     "hit.xyz",
+     "job_id",
+     "trials.dz_nearest_pu",
+     "trials.n_aligned",
+     "trials.n_btl",
+     "trials.n_btl_int",
+     "trials.n_btl_present",
+     "trials.n_ckf_hits",
+     "trials.n_groups",
+     "trials.n_grp",
+     "trials.n_grp_T",
+     "trials.n_ip2ge6",
+     "trials.n_ip2ge7",
+     "trials.n_kept_all",
+     "trials.n_loose",
+     "trials.n_pass",
+     "trials.n_pass_T",
+     "trials.n_refit",
+     "trials.n_road",
+     "trials.n_trip",
+     "trials.phimet",
+     "trials.pv",
+     "trials.seed",
+     "trials.trial_seed"
+    ],
+    "n_keys": 89
+   },
+   {
+    "job": "c2v44x-01",
+    "vs": "c2v44-01-a",
+    "seed_x": 89640624533665,
+    "seed_ref": 31517910024586,
+    "differing": [
+     "btl",
+     "cand.axis",
+     "cand.btl_dt0",
+     "cand.btl_n_band",
+     "cand.btl_n_int",
+     "cand.chi2_core",
+     "cand.chi2ndf",
+     "cand.cross",
+     "cand.dedx",
+     "cand.dphi_met",
+     "cand.dw_core",
+     "cand.dw_old",
+     "cand.eta_axis",
+     "cand.f_ckf",
+     "cand.group",
+     "cand.idx",
+     "cand.n2s2",
+     "cand.n_band",
+     "cand.n_ckf_band",
+     "cand.n_core",
+     "cand.nhit",
+     "cand.nip2",
+     "cand.nit2",
+     "cand.nl1",
+     "cand.nl2",
+     "cand.normal",
+     "cand.not2",
+     "cand.not2h",
+     "cand.nz",
+     "cand.p_chi2core",
+     "cand.rungs",
+     "cand.seed_n2",
+     "cand.tag",
+     "cand.trial",
+     "chain.evstats",
+     "chain.v41",
+     "hit.INT",
+     "hit.cand",
+     "hit.dE",
+     "hit.gen",
+     "hit.off",
+     "hit.particle",
+     "hit.ref",
+     "hit.s01",
+     "hit.sid",
+     "hit.t",
+     "hit.trial",
+     "hit.xyz",
+     "job_id",
+     "trials.dz_nearest_pu",
+     "trials.ev",
+     "trials.n_aligned",
+     "trials.n_btl",
+     "trials.n_btl_int",
+     "trials.n_btl_present",
+     "trials.n_ckf_hits",
+     "trials.n_groups",
+     "trials.n_grp",
+     "trials.n_grp_T",
+     "trials.n_ip2ge6",
+     "trials.n_ip2ge7",
+     "trials.n_kept_all",
+     "trials.n_loose",
+     "trials.n_pass",
+     "trials.n_pass_T",
+     "trials.n_refit",
+     "trials.n_road",
+     "trials.n_trip",
+     "trials.phimet",
+     "trials.pv",
+     "trials.seed",
+     "trials.trial_seed"
+    ],
+    "n_keys": 89
+   }
+  ]
+ },
+ "C2c": {
+  "rho1": {
+   "n_trials": 2000,
+   "n_events": 500,
+   "pairing_ok": true,
+   "pairing_failures": [],
+   "pv_bit_equal_all": true,
+   "families": {
+    "counting": {
+     "f_T4": 1.0,
+     "f_T2": 1.0,
+     "rel": 0.0,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 2000,
+     "n_trials_pass_T2": 2000,
+     "rungs": [
+      "R04"
+     ],
+     "pass_": true
+    },
+    "width": {
+     "f_T4": 0.9995,
+     "f_T2": 0.9995,
+     "rel": 0.0,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0006933882524490179,
+     "n_trials_pass_T4": 1999,
+     "n_trials_pass_T2": 1999,
+     "rungs": [
+      "R05",
+      "R06"
+     ],
+     "pass_": true
+    },
+    "chi2": {
+     "f_T4": 0.0,
+     "f_T2": 0.0,
+     "rel": null,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 0,
+     "n_trials_pass_T2": 0,
+     "rungs": [
+      "R09",
+      "R10",
+      "R11"
+     ],
+     "pass_": true
+    },
+    "2S": {
+     "f_T4": 0.0,
+     "f_T2": 0.0,
+     "rel": null,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 0,
+     "n_trials_pass_T2": 0,
+     "rungs": [
+      "R12",
+      "R13",
+      "R14"
+     ],
+     "pass_": true
+    }
+   },
+   "per_rung_diag": [
+    {
+     "rung": "R01",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 2000,
+      "n_trials_pass_T2": 2000
+     },
+     "mean_grp": {
+      "f_T4": 31789.7525,
+      "f_T2": 31951.9715,
+      "rel": 0.00510287080718852,
+      "sd_paired": 0.6032573083967755,
+      "z_paired": 268.90515496797923,
+      "sd_unpaired": 598.4476966967921,
+      "n_trials_pass_T4": 63579505,
+      "n_trials_pass_T2": 63903943
+     }
+    },
+    {
+     "rung": "R02",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 2000,
+      "n_trials_pass_T2": 2000
+     },
+     "mean_grp": {
+      "f_T4": 14999.707,
+      "f_T2": 15066.866,
+      "rel": 0.004477354124317268,
+      "sd_paired": 0.4191038198440036,
+      "z_paired": 160.24430420366292,
+      "sd_unpaired": 391.05734535102096,
+      "n_trials_pass_T4": 29999414,
+      "n_trials_pass_T2": 30133732
+     }
+    },
+    {
+     "rung": "R03",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 2000,
+      "n_trials_pass_T2": 2000
+     },
+     "mean_grp": {
+      "f_T4": 3527.2595,
+      "f_T2": 3541.19,
+      "rel": 0.003949383366888659,
+      "sd_paired": 0.1859475142043263,
+      "z_paired": 74.91630129936864,
+      "sd_unpaired": 129.66794145079922,
+      "n_trials_pass_T4": 7054519,
+      "n_trials_pass_T2": 7082380
+     }
+    },
+    {
+     "rung": "R04",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 2000,
+      "n_trials_pass_T2": 2000
+     },
+     "mean_grp": {
+      "f_T4": 163.4745,
+      "f_T2": 163.9955,
+      "rel": 0.0031870414040109374,
+      "sd_paired": 0.018493525628786752,
+      "z_paired": 28.17202141213169,
+      "sd_unpaired": 6.569028592639869,
+      "n_trials_pass_T4": 326949,
+      "n_trials_pass_T2": 327991
+     }
+    },
+    {
+     "rung": "R05",
+     "pass_frac": {
+      "f_T4": 0.9995,
+      "f_T2": 0.9995,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0006933882524490179,
+      "n_trials_pass_T4": 1999,
+      "n_trials_pass_T2": 1999
+     },
+     "mean_grp": {
+      "f_T4": 47.269,
+      "f_T2": 47.427,
+      "rel": 0.003342571241194081,
+      "sd_paired": 0.010621763256509667,
+      "z_paired": 14.875119712649326,
+      "sd_unpaired": 2.0776240661334677,
+      "n_trials_pass_T4": 94538,
+      "n_trials_pass_T2": 94854
+     }
+    },
+    {
+     "rung": "R06",
+     "pass_frac": {
+      "f_T4": 0.206,
+      "f_T2": 0.207,
+      "rel": 0.004854368932038833,
+      "sd_paired": 0.0007222538163884243,
+      "z_paired": 1.3845548162007997,
+      "sd_unpaired": 0.013108381463105622,
+      "n_trials_pass_T4": 412,
+      "n_trials_pass_T2": 414
+     },
+     "mean_grp": {
+      "f_T4": 0.241,
+      "f_T2": 0.242,
+      "rel": 0.004149377593360981,
+      "sd_paired": 0.0007222538163884244,
+      "z_paired": 1.3845548162007995,
+      "sd_unpaired": 0.01695627970578247,
+      "n_trials_pass_T4": 482,
+      "n_trials_pass_T2": 484
+     }
+    },
+    {
+     "rung": "R07",
+     "pass_frac": {
+      "f_T4": 0.0005,
+      "f_T2": 0.0005,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0007240656120167928,
+      "n_trials_pass_T4": 1,
+      "n_trials_pass_T2": 1
+     },
+     "mean_grp": {
+      "f_T4": 0.0005,
+      "f_T2": 0.0005,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0007240656120167928,
+      "n_trials_pass_T4": 1,
+      "n_trials_pass_T2": 1
+     }
+    },
+    {
+     "rung": "R08",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R09",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R10",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R11",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R12",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R13",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R14",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    }
+   ]
+  },
+  "rho2": {
+   "n_trials": 400,
+   "n_events": 200,
+   "pairing_ok": true,
+   "pairing_failures": [],
+   "pv_bit_equal_all": true,
+   "families": {
+    "counting": {
+     "f_T4": 1.0,
+     "f_T2": 1.0,
+     "rel": 0.0,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 400,
+     "n_trials_pass_T2": 400,
+     "rungs": [
+      "R04"
+     ],
+     "pass_": true
+    },
+    "width": {
+     "f_T4": 1.0,
+     "f_T2": 1.0,
+     "rel": 0.0,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 400,
+     "n_trials_pass_T2": 400,
+     "rungs": [
+      "R05",
+      "R06"
+     ],
+     "pass_": true
+    },
+    "chi2": {
+     "f_T4": 0.0,
+     "f_T2": 0.0,
+     "rel": null,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 0,
+     "n_trials_pass_T2": 0,
+     "rungs": [
+      "R09",
+      "R10",
+      "R11"
+     ],
+     "pass_": true
+    },
+    "2S": {
+     "f_T4": 0.0,
+     "f_T2": 0.0,
+     "rel": null,
+     "sd_paired": 0.0,
+     "z_paired": 0.0,
+     "sd_unpaired": 0.0,
+     "n_trials_pass_T4": 0,
+     "n_trials_pass_T2": 0,
+     "rungs": [
+      "R12",
+      "R13",
+      "R14"
+     ],
+     "pass_": true
+    }
+   },
+   "per_rung_diag": [
+    {
+     "rung": "R01",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 400,
+      "n_trials_pass_T2": 400
+     },
+     "mean_grp": {
+      "f_T4": 119310.165,
+      "f_T2": 119348.16,
+      "rel": 0.0003184556822968254,
+      "sd_paired": 1.2317970864369088,
+      "z_paired": 30.845177682563026,
+      "sd_unpaired": 1672.0524852533695,
+      "n_trials_pass_T4": 47724066,
+      "n_trials_pass_T2": 47739264
+     }
+    },
+    {
+     "rung": "R02",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 400,
+      "n_trials_pass_T2": 400
+     },
+     "mean_grp": {
+      "f_T4": 98933.6175,
+      "f_T2": 98963.64,
+      "rel": 0.0003034610555912032,
+      "sd_paired": 0.8235730112980374,
+      "z_paired": 36.45396290085781,
+      "sd_unpaired": 1549.3285181012561,
+      "n_trials_pass_T4": 39573447,
+      "n_trials_pass_T2": 39585456
+     }
+    },
+    {
+     "rung": "R03",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 400,
+      "n_trials_pass_T2": 400
+     },
+     "mean_grp": {
+      "f_T4": 58715.6425,
+      "f_T2": 58732.475,
+      "rel": 0.0002866782902017917,
+      "sd_paired": 0.3673072885138915,
+      "z_paired": 45.82675194957422,
+      "sd_unpaired": 1257.9982142075169,
+      "n_trials_pass_T4": 23486257,
+      "n_trials_pass_T2": 23492990
+     }
+    },
+    {
+     "rung": "R04",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 400,
+      "n_trials_pass_T2": 400
+     },
+     "mean_grp": {
+      "f_T4": 2927.9375,
+      "f_T2": 2928.235,
+      "rel": 0.00010160736012987392,
+      "sd_paired": 0.054962134502328175,
+      "z_paired": 5.412817436839636,
+      "sd_unpaired": 80.12613773959144,
+      "n_trials_pass_T4": 1171175,
+      "n_trials_pass_T2": 1171294
+     }
+    },
+    {
+     "rung": "R05",
+     "pass_frac": {
+      "f_T4": 1.0,
+      "f_T2": 1.0,
+      "rel": 0.0,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 400,
+      "n_trials_pass_T2": 400
+     },
+     "mean_grp": {
+      "f_T4": 1083.3025,
+      "f_T2": 1083.5625,
+      "rel": 0.00024000683096359055,
+      "sd_paired": 0.03890706272343122,
+      "z_paired": 6.682591329193547,
+      "sd_unpaired": 29.656504320078433,
+      "n_trials_pass_T4": 433321,
+      "n_trials_pass_T2": 433425
+     }
+    },
+    {
+     "rung": "R06",
+     "pass_frac": {
+      "f_T4": 0.535,
+      "f_T2": 0.5375,
+      "rel": 0.004672897196261516,
+      "sd_paired": 0.0024968664704155784,
+      "z_paired": 1.0012549848466052,
+      "sd_unpaired": 0.03559398953539099,
+      "n_trials_pass_T4": 214,
+      "n_trials_pass_T2": 215
+     },
+     "mean_grp": {
+      "f_T4": 0.7975,
+      "f_T2": 0.805,
+      "rel": 0.009404388714733702,
+      "sd_paired": 0.004274035264094035,
+      "z_paired": 1.754781965185735,
+      "sd_unpaired": 0.06904923382700237,
+      "n_trials_pass_T4": 319,
+      "n_trials_pass_T2": 322
+     }
+    },
+    {
+     "rung": "R07",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R08",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R09",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R10",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R11",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R12",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R13",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    },
+    {
+     "rung": "R14",
+     "pass_frac": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     },
+     "mean_grp": {
+      "f_T4": 0.0,
+      "f_T2": 0.0,
+      "rel": null,
+      "sd_paired": 0.0,
+      "z_paired": 0.0,
+      "sd_unpaired": 0.0,
+      "n_trials_pass_T4": 0,
+      "n_trials_pass_T2": 0
+     }
+    }
+   ]
+  },
+  "n_tests": 8,
+  "n_fail": 0,
+  "verdict": "PASS"
+ }
+}

@@ -103,3 +103,32 @@ ssh -x -o BatchMode=yes maxwell "mkdir -p /home/scratch/jdochoa/drivers; NODECAP
   hph 10 of 10 and g4h 11 of 11 are done too, by the plan's order). If a c0-hs job fails the queue waits for ever:
   stop it with `touch /home/scratch/jdochoa/drivers/STOP.p2-c-pilot-val-s2` on the node. Cost [E]: ≈ 30 CPU-s,
   ≤ ≈ 0.6 GB per job.
+
+## 10:57 Pilot-wide count of flagged events: campaign prepared (NOT launched), on the orchestrator's yes
+- `src/p2h_ephcount.py` (new, not in the frozen list, imports no pilot code): per file reads only the zip members
+  `meta` and `n_early_prod` (and `evt` when the file has flagged events, to record those rows); one JSON with a
+  record per file (stream, chunk, first_vertex, vertex file and its chunk, node, events, hits and events flagged,
+  the meta sums for a cross-check) and totals. **Not run by me anywhere** (numpy of the acts environment must not be
+  imported on einstein, and I hold no worker slot): syntax-checked only (stdlib `ast`). The job is its first run; it
+  is read-only, so a failure costs only the job id (a rerun would need a new campaign name, e.g. `-eph2`).
+- `tools/runner/examples/p2x/b1_val/p2-c-pilot-val-eph_files.json`: manifest of the 546 done chain files (dif 111,
+  difc 121, nix 123, nic 60, ni22 49, ni30 36, ni61 37, lowpt 9; 63.2 GB), each from the `done` line of its marker.
+  A first version listed 667 entries (my glob `c0-dif*` also matched difc): caught by the count, rewritten with an
+  assertion of 546 distinct paths.
+- `tools/runner/examples/p2x/b1_val/p2-c-pilot-val-eph.json`: campaign `p2-c-pilot-val-eph`, one job
+  `p2-c-pilot-val-eph-0`, `max_rss_mb` 1000, timeout 1800 s; `qv2run status` loads it (1 pending).
+- Cost [ESTIMATE, nothing measured: two small zip members per file over NFS, ≈ 0.2–0.5 s per file]: ≈ 1 CPU-min
+  (≤ 0.03 CPU-h), 2–5 min wall, RSS < 0.3 GB.
+- Node [V 10:55]: maxwell 2 jobs, load 2.1, 0 logins (the val-s2 queue there only waits); landau 2, schrodinger 2.
+  Proposal: maxwell (2 → 3 of 4). Launch line:
+```
+ssh -x -o BatchMode=yes maxwell "mkdir -p /home/scratch/jdochoa/drivers; NODECAP=4 setsid nohup /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2x_queue.sh maxwell 1 /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_val/p2-c-pilot-val-eph.json > /home/scratch/jdochoa/drivers/p2-c-pilot-val-eph.log 2>&1 < /dev/null &"
+```
+  Output: `/nfs/cajuela/jdochoa/quirks_v2/data/p2c/pilot_validation/p2-c-pilot-val-eph/000/p2-c-pilot-val-eph-0.json`.
+
+## 11:02 Pilot-wide count read (orchestrator: p2-c-pilot-val-eph-0 done 11:00, 7.8 CPU-s; marker: 47 MB, 236 s wall)
+546 of 546 files read, 0 errors, meta sums = array sums. 318 flagged events, 524 hits in 1.72×10⁷ events (1.85×10⁻⁵):
+dif 0, difc 0, nix 212, nic 59, ni22 10, ni30 15, ni61 18, lowpt 4. Even / odd chunk index 157 / 161; nix first /
+second half of the vertex file 106 / 106; chunk 0 / 1: 0 / 8 with 4.3 expected each; per-file counts Poisson in every
+stream (nix χ² 136.4 / 122). The 0001-only pattern of the 16 validated files was chance. No code search needed, no
+change. §6 added to outputs/B1_STREAM_VALIDATION_hedda_2026-11-18.md; §4 bullet marked resolved. Session ends.

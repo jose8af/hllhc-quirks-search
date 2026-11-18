@@ -172,3 +172,35 @@ ALTERNATIVES: withhold the verdict of the four streams until the pattern is unde
 einstein (refused by the rules: nothing heavy there).
 CONFIDENCE: HIGH on the verdicts as defined; LOW on whether the pattern is chance (0.8 % by events, 12.5 % by streams).
 FLAG FOR HUMAN: YES — the pilot-wide count of flagged events (≈ 3×10² expected [E] against "order 10²") and the pattern.
+
+## 2026-11-18 10:55:38 — Ignatius: C2-c family statistic and the degenerate outcome
+DECISION: the "per-trial pass fraction of each rung family" (STR §4.2) is computed as the fraction of trials passing
+at least one rung of the family (counting R04; width R05, R06; chi2 R09–R11; 2S R12–R14), with v1's per-trial pass
+rule (n_grp > 0, n_pass where n_grp < 0) and a paired event bootstrap; the v1 per-rung table (pass_frac, mean_grp) is
+reported as a diagnostic.
+ALTERNATIVES: one test per rung (would be 14×2 tests, not the frozen 8); the family's tightest populated rung (R06 for
+width: z +1.38 / +1.00, same conclusion); v1's conservative mean_grp reading (z +28 at R04 ρ=1 for +0.32 %: would FAIL a
+|z| < 2.73 rule, but it is not the frozen metric).
+CONFIDENCE: MEDIUM — the verdict PASS is robust to the family reading (R04/R05 saturated, R07–R14 empty in every
+reading), but the test has no power, and the mean-count reading shows a small significant shift.
+FLAG FOR HUMAN: YES — C2-c as frozen cannot fail at PU 200; proposed wording in outputs/C2_VERDICTS_ignatius_2026-11-18.md.
+
+### 2026-11-18 11:02 -0500 channel (iii) Hedda — pilot-wide count of flagged early-product-hit events
+p2-c-pilot-val-eph (7.8 CPU-s): 318 flagged events (524 hits) in 17.2×10⁶ events of 546 chain files; none in dif and
+difc (8×10⁶), all in nuclear-interaction classes (nix 212, nic 59, ni22 10, ni30 15, ni61 18, lowpt 4). The
+"all in files 0001" pattern of the first validation was chance: even / odd chunk index 157 / 161, per-file counts
+Poisson. My earlier flag on the pattern is withdrawn; the total is three times B1_READY's "order 10²" (rate
+1.85×10⁻⁵ against 0.9×10⁻⁵ estimated from 4 events). FLAG FOR HUMAN: information only.
+
+## 2026-11-18 11:01:59 — Ignatius: C1 rates family (iv) widths
+DECISION: v1 recorded no statistical width for the C′ rates (normalisation.json cprime_rates.<t>.sigma_ln = 0) and v2's
+gen_d123 'nt' output (v1 code, unchanged) stores only aggregates (sum_w, sum_w2, rates), so no event bootstrap is
+possible. Width of ln(rate) = sqrt(D r / N_eff)/r with N_eff = (Σw)²/Σw² of the process giving the maximum; D = 1 (HS
+DIF; plus the min-bias DIF term with gen_d123's own rel 1/√objects), D = 2 for γ (photons come in π⁰ pairs), D = 2√(2r)+1
+for PV pairs (pairs of a Poisson multiplicity with mean √(2r)). The same width is assumed for v1 (same generator, same
+sizes, same code). N_trig and N_trig(Z) use the recorded rel_stat of v1 and the same formula on v2.
+ALTERNATIVES: modify a copy of gen_d123 to store per-event object counts and rerun (≈1 CPU-h, a change of the C1 code
+path); treat the rates as untestable (no width); use Poisson D = 1 for all (underestimates PV-pair and γ widths).
+CONFIDENCE: LOW–MEDIUM — the dispersion factors are a model (ESTIMATE); a failure of a rates entry must first be
+checked against this width before it is read as a port problem.
+FLAG FOR HUMAN: YES (if any rates entry fails or sits near the Bonferroni line).

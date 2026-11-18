@@ -1,0 +1,74 @@
+{
+ "trg": {
+  "job": "c1s2-trg-m200-c00",
+  "nlhe": 20000,
+  "sigma_fb": 4.246791663032756,
+  "err_fb": 0.07401692572926862,
+  "rows": 4237
+ },
+ "inc_merged": {
+  "nlhe": 120000,
+  "sigma_fb": 4.2463961978243265,
+  "err_fb": 0.07738655052999377,
+  "rows": 3917,
+  "sigma_ptme_lt100_fb": 0.214330221941994,
+  "err_ptme_lt100_fb": 0.017384490769916015,
+  "sigma_all_pt200_fb": 4.4607264197663214
+ },
+ "ratio": 1.0000931296068492,
+ "ratio_err": 0.025219065594074407,
+ "z": 0.0036930050440296034,
+ "inc_chunks": [
+  {
+   "job": "c1s2-inc-m200-c00",
+   "nlhe": 20000,
+   "sigma_fb": 3.797842853344949,
+   "err_fb": 0.17903202903207205,
+   "rows": 606,
+   "ratio": 1.1182115287609637
+  },
+  {
+   "job": "c1s2-inc-m200-c01",
+   "nlhe": 20000,
+   "sigma_fb": 4.1969899514641575,
+   "err_fb": 0.18845041195901482,
+   "rows": 643,
+   "ratio": 1.0118660545163385
+  },
+  {
+   "job": "c1s2-inc-m200-c02",
+   "nlhe": 20000,
+   "sigma_fb": 4.671009514297755,
+   "err_fb": 0.1988113677141107,
+   "rows": 703,
+   "ratio": 0.9091806921038188
+  },
+  {
+   "job": "c1s2-inc-m200-c03",
+   "nlhe": 20000,
+   "sigma_fb": 4.213463046427574,
+   "err_fb": 0.18899964785298617,
+   "rows": 644,
+   "ratio": 1.0079100294076246
+  },
+  {
+   "job": "c1s2-inc-m200-c04",
+   "nlhe": 20000,
+   "sigma_fb": 4.28278233026764,
+   "err_fb": 0.19039289774247395,
+   "rows": 654,
+   "ratio": 0.9915964285692206
+  },
+  {
+   "job": "c1s2-inc-m200-c05",
+   "nlhe": 20000,
+   "sigma_fb": 4.316289491143886,
+   "err_fb": 0.1911285111828654,
+   "rows": 667,
+   "ratio": 0.9838987101644306
+  }
+ ],
+ "inc_chunk_chi2": 11.066201175649661,
+ "inc_chunk_ndf": 5,
+ "definition": "stitch_100k.py -- channel (i), Ignatius 2026-11-18: closure of v1's TRGS stitching with the 100k INC sample at m = 200.\n\nv1 stitch_trg.py (docstring, QV2/sim/scripts/stitch_trg.py l.4-5): the stitching is exact if\n    sigma_TRG(pT(QQ) > 200)  ==  sigma_INC(pT(QQ) > 200, pT(QQ)_ME >= 100),\npT(QQ) = column 'pt_pair' (after the shower), pT(QQ)_ME = hypot(p_qq_hard[:, 1], p_qq_hard[:, 2]) (stitch_trg.py l.40).\nInputs (done markers required): TRG = p2-a-c1-s2 c1s2-trg-m200-c00 (20k LHE); INC = p2-a-c1-s2 c1s2-inc-m200-c00 plus\np2-a-c1-s2inc c1s2-inc-m200-c01..c05 (6 x 20k LHE).  INC chunks merged as merge_chunks.py (l.2-3): w x N_LHE,chunk /\nN_LHE,total.  Errors sqrt(sum w^2) of the selected rows; z = (TRG - INC) / sqrt(err_T^2 + err_I^2) (independent samples).\nAlso per INC chunk (spread check) and the 20k-only result (c00, Rosalie's EXPLORATION \u00a73: 3.798 +- 0.179 fb).\nUsage (worker, TT env):  python stitch_100k.py <out.json>\n"
+}

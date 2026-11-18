@@ -16,6 +16,11 @@ rebuild the identical hit pool from the stored S6 dumps).  Definition (STR §4.2
   * independent fit: scipy.optimize.least_squares on the two angles of n, residuals (u_i . n) / s_i over the F0
     inliers (|u . n_F0| <= 3 s_i within the window), started from n_F0.
   * agreement: |dn| = arccos(|n . n'|) < 1 mrad for (F0, optimum) and (F0, fit).  Criterion: >= 48 of 50 per sample.
+  * --restrict (COMMITMENTS amendment E2 part (ii), user 2026-11-17; added by Ignatius 2026-11-18): the SAME exhaustive
+    0.2 mrad scan within ±0.3 rad and the same score, but over the hit set "F0's inlier hits and the hits within 3 sigma
+    of the F0 plane": the window hits with |u . n_F0| <= 3 s_i(n_F0) (s_i as in the score), united with the pool hits
+    that are the finder's stored hit record of the F0 candidate (hit.* CSR, matched by position within 1e-3 mm).
+    No global or half-sphere scan in this mode (the unrestricted scans are reported by the runs without --restrict).
 BLINDING: signal mode takes the first events in file order whose in-job R04 bit (open tier) is set; it prints and stores
 no count of rows scanned, so no pass fraction can be read from its output.
 Modes:  pu  --files a.npz,b.npz --n 50   (first trials of the C1 rho = 1 sample with an F0 candidate at R04)
@@ -196,8 +201,31 @@ def layers_with_inlier(U, EPX, EPY, S0, S1, LC, n):
     return int(len(np.unique(LC[inl & (LC >= 0)])))
 
 
-def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=None, cands=None):
-    """cands (PU-only trials): dict(normal (k, 3), r04 (k,), idx (k,)) of the trial's stored candidates."""
+def bit(packed, k):
+    """Rung bit k (0 = R01) of np.packbits rows, reading only that bit (no other rung bit is unpacked)."""
+    return ((packed[:, k // 8] >> (7 - k % 8)) & 1).astype(bool)
+
+
+def f0_record_xyz(z, t, n0):
+    """Positions of the finder's stored hit record (hit.* CSR, tag & 4) of the candidate of trial t whose normal is n0;
+    None if that candidate has no stored record."""
+    if "hit.cand" not in z.files:
+        return None
+    m = np.where((z["cand.trial"] == t) & (np.abs(z["cand.normal"].astype(np.float64) @ n0) > 1 - 1e-9))[0]
+    if not len(m):
+        return None
+    idx = int(z["cand.idx"][m[0]])
+    r = np.where((z["hit.trial"] == t) & (z["hit.cand"] == idx))[0]
+    if not len(r):
+        return None
+    off = z["hit.off"]
+    return z["hit.xyz"][z["hit.ref"][off[r[0]]:off[r[0] + 1]]].astype(np.float64)
+
+
+def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=None, cands=None, restrict=False,
+            f0_xyz=None):
+    """cands (PU-only trials): dict(normal (k, 3), r04 (k,), idx (k,)) of the trial's stored candidates.
+    restrict: amendment E2 (ii) hit set (see the module docstring); f0_xyz: the F0 stored hit record (or None)."""
     half = GRID_HALF if half is None else half
     step = GRID_STEP if step is None else step
     gstep = GLOBAL_STEP if gstep is None else gstep
@@ -213,6 +241,24 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
     S0, S1 = H[:, 4], H[:, 5]
     sel = lambda m: (np.ascontiguousarray(U0[m]), np.ascontiguousarray(EPX[m]), np.ascontiguousarray(EPY[m]),  # noqa
                      np.ascontiguousarray(S0[m]), np.ascontiguousarray(S1[m]))
+    rinfo = {}
+    if restrict:
+        _, vw = score(U0[win], EPX[win], EPY[win], S0[win], S1[win], n0)
+        band = np.zeros(len(H), bool)
+        band[np.where(win)[0][np.abs(U0[win] @ n0) <= 3 * np.sqrt(vw)]] = True
+        rec = np.zeros(len(H), bool)
+        n_rec = n_rec_matched = 0
+        if f0_xyz is not None and len(f0_xyz):
+            n_rec = len(f0_xyz)
+            for x in f0_xyz:
+                d2 = ((H[:, 1:4] - x[None, :]) ** 2).sum(1)
+                q = int(np.argmin(d2))
+                if d2[q] < 1e-6:
+                    rec[q] = True; n_rec_matched += 1
+        win = band | rec
+        rinfo = dict(restricted=True, n_band3s=int(band.sum()), n_f0_record=n_rec, n_f0_record_matched=n_rec_matched,
+                     n_f0_record_outside_band=int((rec & ~band).sum()), n_restricted=int(win.sum()))
+        do_global = False
     W = sel(win)
     e1, e2 = basis(n0)
     t0 = time.time()
@@ -250,7 +296,7 @@ def analyse(H, pv, phimet, n0, a0, do_global=True, half=None, step=None, gstep=N
                fit_success=ok, t_fine_s=t_fine, n_opt=nb_.tolist(), n_fit=nf.tolist(), n_F0=n0.tolist(),
                local_dn_F0_mrad=1e3 * ang(n0, nl_), local_score=float(G[li, lj]), score_F0_grid=float(G[c0, c0]),
                local_is_global=bool(li == i and lj == j), n_local=nl_.tolist(),
-               nz_F0=float(abs(n0[2])), nz_opt=float(abs(nb_[2])))
+               nz_F0=float(abs(n0[2])), nz_opt=float(abs(nb_[2])), **rinfo)
     if cands is not None:     # PU-only trials (background): what is the other plane?
         dn = np.array([ang(nb_, c) for c in cands["normal"]]) if len(cands["normal"]) else np.zeros(0)
         k = int(np.argmin(dn)) if len(dn) else -1
@@ -322,7 +368,8 @@ def pu_trials(files, n_want):
             pv = z["trials.pv"][t].astype(np.float64)
             m = (ctr == t) & R04
             k = np.where(m)[0][np.argmin(cidx[m])]
-            yield dict(file=Path(p).name, trial=t, ev=int(z["trials.ev"][t]), road=int(z["trials.road"][t]),
+            n0k = z["cand.normal"][k].astype(np.float64)
+            yield dict(f0_xyz=f0_record_xyz(z, t, n0k / np.linalg.norm(n0k)), file=Path(p).name, trial=t, ev=int(z["trials.ev"][t]), road=int(z["trials.road"][t]),
                        n_road_stored=int(z["trials.n_road"][t]),
                        pv_reproduced=bool(np.allclose(pv_chk, pv)), H=part["H"], pv=pv,
                        phimet=float(z["trials.phimet"][t]), n0=z["cand.normal"][k].astype(np.float64),
@@ -350,9 +397,9 @@ def sig_events(files, n_want):
             z.close(); continue
         job = meta["job"]
         m = float(job["point"].split("_m")[1].split("/")[0])
-        eff = np.unpackbits(z["sig.eff"], axis=1)[:, 3].astype(bool)
+        eff = bit(z["sig.eff"], 3)                      # R04 only (open tier); no other rung bit is unpacked
         tab = z["sig.tab"]; strial = z["sig.trial"]
-        scr = np.unpackbits(z["sig.cand.rungs"], axis=1)[:, 3].astype(bool) if "sig.cand.rungs" in z.files else None
+        scr = bit(z["sig.cand.rungs"], 3) if "sig.cand.rungs" in z.files else None
         for e in np.where(eff)[0]:
             t = int(strial[e]); row = int(tab[e, 0])
             mk = (z["sig.cand.trial"] == t) & scr & (z["sig.cand.frac"] >= 0.5)
@@ -366,7 +413,8 @@ def sig_events(files, n_want):
             ev[:, 10] = z[pre + "vsec"]; ev[:, 11] = z[pre + "dE"]; ev[:, 12] = z[pre + "t"]
             rs = np.random.default_rng(S.hseed("sig-topup", "F", m, row))
             Pp = GT.assemble(ev, z[pre + "tru"], 0, rs, inserted_vp=(GT.SIG_VP,), do_topup=True)
-            yield dict(file=Path(p).name, trial=t, ev=ie, road=0, n_road_stored=int(z["trials.n_road"][t]),
+            n0k = z["sig.cand.normal"][k].astype(np.float64)
+            yield dict(f0_xyz=f0_record_xyz(z, t, n0k / np.linalg.norm(n0k)),file=Path(p).name, trial=t, ev=ie, road=0, n_road_stored=int(z["trials.n_road"][t]),
                        pv_reproduced=True, H=Pp["H"], pv=z["trials.pv"][t].astype(np.float64),
                        phimet=float(z["trials.phimet"][t]), n0=z["sig.cand.normal"][k].astype(np.float64),
                        a0=z["sig.cand.axis"][k].astype(np.float64), road_cfg=float(meta["finder_cfg"]["road"]),
@@ -390,6 +438,7 @@ def main():
     ap.add_argument("--step", type=float, default=None, help="timing tests only (default 0.2 mrad)")
     ap.add_argument("--gstep", type=float, default=None, help="timing tests only (default 5 mrad)")
     ap.add_argument("--selfcheck", action="store_true")
+    ap.add_argument("--restrict", action="store_true", help="amendment E2 (ii): F0 record + 3 sigma band hit set")
     ap.add_argument("--full-sphere", type=float, default=0.0, help="also a direct half-sphere scan at this step (rad)")
     a = ap.parse_args()
     global SELFCHECK, FULL_SPHERE
@@ -403,7 +452,7 @@ def main():
         assert abs(tr["road_cfg"] - ROAD) < 1e-12
         t0 = time.time()
         r = analyse(tr["H"], tr["pv"], tr["phimet"], tr["n0"], tr["a0"], do_global=not a.no_global, half=a.half, step=a.step,
-                    gstep=a.gstep, cands=tr["cands"])
+                    gstep=a.gstep, cands=tr["cands"], restrict=a.restrict, f0_xyz=tr["f0_xyz"])
         r.update({k: tr[k] for k in ("file", "trial", "ev", "road", "pv_reproduced", "n_road_stored")},
                  t_total_s=time.time() - t0)
         r["pool_reproduced"] = bool(r["n_road"] == r["n_road_stored"] and r["pv_reproduced"])
@@ -411,7 +460,7 @@ def main():
                  r["dn_F0_opt_mrad"], r["dn_F0_fit_mrad"], r["n_window"], r["t_total_s"])
         res.append(r)
     out = Path(os.environ.get("QV2_OUT_DIR", "."))
-    summ = dict(mode=a.mode, n=len(res), n_agree=sum(r["agree"] for r in res),
+    summ = dict(mode=a.mode, restrict=a.restrict, n=len(res), n_agree=sum(r["agree"] for r in res),
                 n_agree_opt=sum(r["agree_opt"] for r in res), n_agree_fit=sum(r["agree_fit"] for r in res),
                 n_agree_local_diag=sum(r["agree_local_diag"] for r in res),
                 definition=__doc__.split("Definition")[1].split("BLINDING")[0], trials=res)

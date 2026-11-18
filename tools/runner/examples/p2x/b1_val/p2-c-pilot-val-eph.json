@@ -1,0 +1,22 @@
+{
+ "campaign": "p2-c-pilot-val-eph",
+ "tier": "regenerable",
+ "data_prefix": "p2c/pilot_validation",
+ "regenerate": "inline (session log logs/executor_hedda_2026-11-18_10-46.md)",
+ "description": "pilot part 2 (p2-c-pilot_b1): count of flagged early-product-hit events (n_early_prod) and events per chain file over all 546 done chain files of the streams dif, difc, nix, nic, ni22, ni30, ni61, lowpt. Reads only the members meta and n_early_prod of each file (evt of files with flagged events). Read-only on pilot files.",
+ "expected_hours": 0.05,
+ "defaults": {
+  "max_rss_mb": 1000,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-pilot-val-eph-0",
+   "outputs": [
+    "p2-c-pilot-val-eph-0.json"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2h_ephcount.py $QV2_OUT_DIR/p2-c-pilot-val-eph-0.json /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2x/b1_val/p2-c-pilot-val-eph_files.json"
+  }
+ ]
+}
