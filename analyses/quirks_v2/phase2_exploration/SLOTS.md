@@ -47,3 +47,4 @@
 - 2026-11-18 10:56 -0500 | maxwell | until p2-c-pilot-val-eph completes (1 job, ≈ 1 CPU-min) | orchestrator: early-product-hit count over 546 pilot chain files (Hedda)
 - 2026-11-19 10:08 -0500 | maxwell | 1 slot, until p2-c-pilot-val-ephhs completes (1 job, ≈ 1 CPU-min) | orchestrator: n_early_prod count over the 77 c0-hs chain files (requested by Nanna's val-s2 read); node count before 1, load 0.01
 - 2026-11-19 10:11 -0500 | landau | slot B (channel (i)), ≈ 30 min of short analysis runs, nice 19 | channel (i) Mattias: c1_compare.py unit tests and final C1 read (c1_compare.py all families; c1_signal_compare.py open), no campaigns; node count before 0, load 0.9
+- 2026-11-19 10:25 -0500 | landau | slot B RELEASED | channel (i) Mattias: tests + c1_compare + c1_signal_compare open done; nothing of mine runs
