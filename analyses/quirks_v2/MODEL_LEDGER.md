@@ -35,3 +35,6 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 10:07 -0500 | Mattias | opus | channel (i) successor: C1 comparisons | running |
 | 2026-11-19 10:25 -0500 | — | — | Mattias finished: C1 open read 34/35 frozen, 35/35 amended | done |
 | 2026-11-19 10:25 -0500 | — | — | Nanna finished: val-s2 3/3 PASS | done |
+| 2026-11-19 10:29 -0500 | Oddny | fable | advisor (blinding trigger): sealed C1-d readiness | NO-GO until 3 items closed |
+| 2026-11-19 10:29 -0500 | Petra | opus | fixer: sealed-mode coherence, global χ², guards (code + synthetic tests only) | running |
+| 2026-11-19 10:29 -0500 | Ragnar | opus | closure-slope seed scan (diagnostic) | running |
