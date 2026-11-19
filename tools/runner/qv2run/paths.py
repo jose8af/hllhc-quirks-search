@@ -22,4 +22,5 @@ NFS_SERVER = "192.168.10.254"
 WORKERS = ("landau", "maxwell", "schrodinger")
 UID, GID = 10015, 10000
 MAX_JOB_SECONDS = 1800  # 30-minute rule
+MAX_EXCEPTION_SECONDS = 7200  # cap of a per-job timeout_exception (user-approved, SSH mechanism only)
 OWNER_LABELS = {"owner": "jdochoa", "study": "quirks-v2"}

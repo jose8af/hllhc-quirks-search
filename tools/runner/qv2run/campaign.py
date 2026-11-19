@@ -27,6 +27,7 @@ class Job:
     max_rss_mb: float = 100
     timeout_s: int = paths.MAX_JOB_SECONDS
     tier: str = "scratch"
+    timeout_exception: dict = None  # {max_s, source}: user-approved exception to the 30-minute rule, SSH only
 
 
 @dataclass
@@ -106,14 +107,20 @@ def from_dict(raw, source=Path("<memory>")):
             if not o or "/" in o or o.endswith(".part") or o.startswith("."):
                 raise CampaignError(f"job {jid}: output {o!r} must be a bare file name (no '/', not .part)")
         timeout = int(j.get("timeout_s", d.get("timeout_s", paths.MAX_JOB_SECONDS)))
-        if not 0 < timeout <= paths.MAX_JOB_SECONDS:
-            raise CampaignError(f"job {jid}: timeout_s {timeout} outside (0, {paths.MAX_JOB_SECONDS}]")
+        exc, cap = j.get("timeout_exception"), paths.MAX_JOB_SECONDS
+        if exc is not None:
+            if not (isinstance(exc, dict) and str(exc.get("source", "")).strip()
+                    and 0 < int(exc.get("max_s", 0)) <= paths.MAX_EXCEPTION_SECONDS):
+                raise CampaignError(f"job {jid}: timeout_exception needs source and max_s in (0, {paths.MAX_EXCEPTION_SECONDS}]")
+            cap = int(exc["max_s"])
+        if not 0 < timeout <= cap:
+            raise CampaignError(f"job {jid}: timeout_s {timeout} outside (0, {cap}]")
         cmd = j.get("command", d.get("command"))
         if not cmd:
             raise CampaignError(f"job {jid}: no command")
         job = Job(id=jid, command=cmd.replace("{id}", jid), outputs=outs, shard=int(j.get("shard", d.get("shard", 0))),
                   cpu=float(j.get("cpu", d.get("cpu", 1))), max_rss_mb=float(j.get("max_rss_mb", d.get("max_rss_mb", 100))),
-                  timeout_s=timeout, tier=tier)
+                  timeout_s=timeout, tier=tier, timeout_exception=exc)
         if not 0 <= job.shard <= 999:
             raise CampaignError(f"job {jid}: shard {job.shard} outside 0..999")
         if job.max_rss_mb <= 0:

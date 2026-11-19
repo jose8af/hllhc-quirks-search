@@ -299,6 +299,9 @@ class Runner:
 
     def _run_locked(self, attempt):
         self.keep_scratch = False
+        if self.j.timeout_exception and self.mech != "ssh":
+            self.mark("setup_error", attempt=attempt, error="timeout_exception is allowed on the ssh mechanism only")
+            return "setup_error"
         orphans = stop_orphan_scopes(self.j.id, self.say) if self.mech != "argo" else []
         stash = self._load_stash()
         try:
@@ -331,7 +334,8 @@ class Runner:
         t0 = time.time()
         self.mark("started", attempt=attempt, scratch=str(self.scratch), mem_limit_mb=self.mem_limit_mb,
                   timeout_s=self.j.timeout_s, t_proc_start=proc_start_time(), t_wrapper=round(t0, 3),
-                  resumed_from_stash=stash is not None, runner_py=os.environ.get("QV2_RUNNER_PY", sys.executable))
+                  resumed_from_stash=stash is not None, runner_py=os.environ.get("QV2_RUNNER_PY", sys.executable),
+                  **({"timeout_exception": self.j.timeout_exception} if self.j.timeout_exception else {}))
         self.say(f"job {self.j.id} attempt {attempt} mechanism {self.mech} in {self.scratch}"
                  + (" (resuming from stash: command already finished)" if stash else ""))
         try:

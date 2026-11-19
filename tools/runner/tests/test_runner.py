@@ -68,6 +68,22 @@ class TestCampaign(unittest.TestCase):
                 campaign.from_dict(camp_dict(**b))
 
 
+    def test_timeout_exception(self):
+        exc = {"max_s": 6000, "source": "user, 2026-11-17"}
+        c = campaign.from_dict(camp_dict(jobs=[{"id": "a", "command": "x", "timeout_s": 6000, "timeout_exception": exc},
+                                               {"id": "b", "command": "y"}]))
+        self.assertEqual((c.jobs[0].timeout_s, c.jobs[0].timeout_exception), (6000, exc))
+        self.assertEqual((c.jobs[1].timeout_s, c.jobs[1].timeout_exception), (60, None))  # default unchanged
+        for e, t in [({"max_s": 7201, "source": "u"}, 7201), ({"max_s": 6000}, 6000), ({"max_s": 6000, "source": "u"}, 6001),
+                     ("6000", 6000)]:
+            with self.subTest(e=e), self.assertRaises(campaign.CampaignError):
+                campaign.from_dict(camp_dict(jobs=[{"id": "a", "command": "x", "timeout_s": t, "timeout_exception": e}]))
+        with self.assertRaises(campaign.CampaignError):  # the default may not carry an exception
+            campaign.from_dict(camp_dict(defaults={"timeout_s": 6000, "timeout_exception": exc}))
+        with self.assertRaises(campaign.CampaignError):  # never on Argo
+            argo.launch(c, ["landau"])
+
+
 class TestFsops(unittest.TestCase):
     def setUp(self):
         self.d = ROOT / "fs"
@@ -173,6 +189,16 @@ class TestWrapper(unittest.TestCase):
         r = markers.read(self.c.marker_path(j))[-1]
         self.assertLess(r["wall_s"], 10)
         self.assertFalse(self.c.scratch_dir(j).exists())
+
+    def test_timeout_exception_ssh_only_and_in_marker(self):
+        j = self.c.jobs[0]
+        j.timeout_exception = {"max_s": 6000, "source": "unit test"}
+        self.assertEqual(self.run_job(j), "setup_error")  # mechanism "local": refused before running
+        self.assertIn("ssh mechanism only", markers.read(self.c.marker_path(j))[-1]["error"])
+        self.assertEqual(wrapper.Runner(self.c, j, "ssh", mem_limit_mb=0).run(), "done")
+        started = [r for r in markers.read(self.c.marker_path(j)) if r["status"] == "started"]
+        self.assertEqual(started[-1]["timeout_exception"], j.timeout_exception)
+        self.assertEqual(started[-1]["mechanism"], "ssh")
 
     def test_stale_part_and_scratch_removed(self):
         j = self.c.jobs[1]

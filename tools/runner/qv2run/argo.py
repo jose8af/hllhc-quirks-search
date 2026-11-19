@@ -13,7 +13,7 @@ import time
 
 os.environ.setdefault("KUBECONFIG", "/etc/kubernetes/student.conf")  # unset in non-interactive ssh
 
-from . import markers, nodes, paths
+from . import campaign, markers, nodes, paths
 from .driver import DriverLock, write_state
 from .ledger import job_states
 
@@ -214,6 +214,8 @@ def reconcile(camp, cjobs):
 
 def launch(camp, node_list, max_parallel=None, keep=False, resubmit_rounds=1):
     """Resumable driver: for each chunk, wait for our running workflow or submit one for the not-done jobs."""
+    if any(j.timeout_exception for j in camp.jobs):
+        raise campaign.CampaignError("timeout_exception is allowed on the ssh mechanism only")
     lock = DriverLock(camp).acquire()
     try:
         for k, cjobs in enumerate(chunks(camp)):
