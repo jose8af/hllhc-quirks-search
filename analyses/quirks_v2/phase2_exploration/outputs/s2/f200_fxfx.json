@@ -1,0 +1,72 @@
+{
+ "point": "E500",
+ "definition": "f200 = sum w[pt_pair > 200] / sum w, signed MC@NLO weights, after FxFx matching, no eta cut",
+ "files": [
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-01.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-02.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-03.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-04.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-05.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-06.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen/000/fxfx-e500-gen-07.npz"
+ ],
+ "n_lhe": 140000,
+ "n_matched": 88319,
+ "matched_fraction": 0.63085,
+ "n_out_check": 88319,
+ "neg_weight_fraction": 0.1739036900327223,
+ "n_eff": 37566.94710085033,
+ "f200_fxfx": 0.10518914602177044,
+ "stat": 0.0016941965775668672,
+ "stat_rel": 0.016106191956499278,
+ "per_file_f200": [
+  0.1092650982294446,
+  0.10238240684178374,
+  0.1058135192331632,
+  0.10603668164703024,
+  0.10008430687703239,
+  0.10245901639344263,
+  0.11029500301023479
+ ],
+ "multiplicities": {
+  "n_me": {
+   "0": 31888,
+   "1": 41790,
+   "2": 14641
+  },
+  "njet30": {
+   "0": 28671,
+   "1": 33955,
+   "2": 17389,
+   "3": 5902,
+   "4": 1793,
+   "5": 460,
+   "6": 110,
+   "7": 34,
+   "8": 4,
+   "9": 1
+  },
+  "npnlo": {
+   "0": 32790,
+   "1": 55529
+  }
+ },
+ "nominal": {
+  "f200": 0.10409623915903314,
+  "stat": 0.0014212612313732687,
+  "band_up": 0.02864433364740984,
+  "band_dn": 0.025235200249053298
+ },
+ "rel_shift_fxfx_vs_nominal": 0.010499004301852022,
+ "rel_shift_stat": 0.02133620448980456,
+ "outside_band": false,
+ "band_after_fxfx": {
+  "up": 0.02864433364740984,
+  "dn": 0.025235200249053298
+ },
+ "T1_nuisance_after_fxfx": {
+  "kappa_up": 1.0286443336474098,
+  "kappa_dn": 0.9747647997509467
+ },
+ "rule": "STR l.2021-2022: if the FxFx value lies outside the band, the band is enlarged to contain it (central value)"
+}

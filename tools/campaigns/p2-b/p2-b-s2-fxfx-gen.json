@@ -1,0 +1,99 @@
+{
+ "campaign": "p2-b-s2-fxfx-gen",
+ "tier": "final",
+ "expected_hours": 1.8,
+ "description": "channel (ii) Sune 2026-11-19: FxFx E 500 event batches from the saved grids (p2-b-s2-fxfx, --restore), 7 x 20,000 LHE events, MG -o + our FxFx shower driver fxfx_shower.cc (commit b8f42ed); f200^FxFx for S2-c. Each job <= 30 min, no exception.",
+ "jobs": [
+  {
+   "id": "fxfx-e500-gen-01",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-01 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-01.timing.json",
+    "fxfx-e500-gen-01.lhe.gz",
+    "fxfx-e500-gen-01.npz",
+    "fxfx-e500-gen-01.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-02",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-02 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-02.timing.json",
+    "fxfx-e500-gen-02.lhe.gz",
+    "fxfx-e500-gen-02.npz",
+    "fxfx-e500-gen-02.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-03",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-03 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-03.timing.json",
+    "fxfx-e500-gen-03.lhe.gz",
+    "fxfx-e500-gen-03.npz",
+    "fxfx-e500-gen-03.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-04",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-04 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-04.timing.json",
+    "fxfx-e500-gen-04.lhe.gz",
+    "fxfx-e500-gen-04.npz",
+    "fxfx-e500-gen-04.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-05",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-05 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-05.timing.json",
+    "fxfx-e500-gen-05.lhe.gz",
+    "fxfx-e500-gen-05.npz",
+    "fxfx-e500-gen-05.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-06",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-06 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-06.timing.json",
+    "fxfx-e500-gen-06.lhe.gz",
+    "fxfx-e500-gen-06.npz",
+    "fxfx-e500-gen-06.aux.tar.gz"
+   ]
+  },
+  {
+   "id": "fxfx-e500-gen-07",
+   "shard": 0,
+   "max_rss_mb": 2500,
+   "timeout_s": 1800,
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e500-gen-07 E 500 20000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx/000/fxfx-e500-grids.procdir.tar.gz",
+   "outputs": [
+    "fxfx-e500-gen-07.timing.json",
+    "fxfx-e500-gen-07.lhe.gz",
+    "fxfx-e500-gen-07.npz",
+    "fxfx-e500-gen-07.aux.tar.gz"
+   ]
+  }
+ ]
+}
