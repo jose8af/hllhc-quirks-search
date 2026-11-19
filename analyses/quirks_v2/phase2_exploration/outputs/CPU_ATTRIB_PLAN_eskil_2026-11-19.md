@@ -52,3 +52,22 @@ source C′₀ events (cluster = `cp.ev[:, 1]`, the cluster of c1_compare `cppu_
 
 ## Compute
 One read job on landau (nice 19, ≤ 30 min, ≈ 0.1 CPU-h), SLOTS.md line first.
+
+## Addendum (2026-11-19 15:55 -0500, before generation): NI C′_PU sample — approved by the orchestrator (≈ 7 CPU-h, hard limit 9)
+- **Definition.** v1's C′_PU NI as used by cprime_term: topology `ni22` (NI at 22 mm; the only NI radius with C′₀ in C1,
+  `p2-a-c1-cp0` c1cp0-ni22-000/001, 30,000 events, v1 CP_N). Run with `c1_cp_job.py --kind cppu --topo ni22 --sources auto`
+  (v1 `run_g1b.run_cppu_job` unchanged, frozen configuration; stream c1.cpu; seed hash "qv2|c1.cpu|cppu|ni22|<chunk>").
+  Sources = the preselected C′₀ ni22 events (v1 rule for preselected topologies), slots cycle over them.
+- **Size.** 1,000 slots (as DIF/γ/V⁰ in C1; v1 had 500), 25 jobs × 40 slots, campaigns `p2-a-c1-cppuni-a` (jobs 0–12)
+  and `p2-a-c1-cppuni-b` (13–24), split only so the halves can run on whichever node has room. ≈ 0.29 CPU-h per job
+  (DIF cppu jobs: 1,033 s per 40 slots) → ≈ 7.2 CPU-h. Stop rule: after the first jobs finish, project; if the
+  projection exceeds 9 CPU-h, stop the drivers (no new jobs) and ask.
+- **Nodes.** SSH runner, absolute campaign paths, ≤ 2 jobs of mine per node on landau/schrodinger and ≤ 3 jobs in total
+  on a node (Cecilie, Ulrika share them); maxwell not used. SLOTS.md line first.
+- **Read.** The same `cpu_attrib.py` (topology glob extended to the new campaigns), same rules, same rungs; the
+  statistic of the main plan (ρ = N_j/N_v1, clustered bootstrap over source C′₀ events, event-level Poisson UL).
+  Main rung **R05** (the NI test rung, STR l.1059-1062); R04 bracket and R06 also reported.
+- **γ from more source events: not possible at no extra cost.** v1's gun topologies make only C′₀ events g < CPPU_N = 500
+  eligible as sources (`run_g1b.py` l.534); C1's 1,000 γ slots already use all 500 (two pile-up repeats each). More γ
+  slots would only re-overlay the same 500 events, so the γ ratio stays on its current source events; this is stated,
+  not run.
