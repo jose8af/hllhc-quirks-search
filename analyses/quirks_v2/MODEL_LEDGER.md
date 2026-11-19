@@ -38,3 +38,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 10:29 -0500 | Oddny | fable | advisor (blinding trigger): sealed C1-d readiness | NO-GO until 3 items closed |
 | 2026-11-19 10:29 -0500 | Petra | opus | fixer: sealed-mode coherence, global χ², guards (code + synthetic tests only) | running |
 | 2026-11-19 10:29 -0500 | Ragnar | opus | closure-slope seed scan (diagnostic) | running |
+| 2026-11-19 10:43 -0500 | Sigrid | opus | dedicated sealed C1-d session | done: all PASS |
+| 2026-11-19 10:43 -0500 | Petra | opus | fixer (sealed mode) | done, 0fcba56 |
