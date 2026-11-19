@@ -57,6 +57,8 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 7. **Clock:** always run `date` before writing a time; git commit times are authoritative.
 
 
+**Waiting on the user (19 Nov):** DECISION notice 2026-11-19_1115 (S2-e nuisance option and size; P1 record), reply by Mon 23 Nov 12:00, defaults at the freeze otherwise. Running agents: Sune (FxFx), Tove (Fable, preliminary rule-1 B₅₀), Ulrika (D2), Vidar (C1-c). C1 complete 41/41 with E1–E4 (sealed 6/6 PASS, file sha256 ae4de9ec…). Next: CPU re-projection for checkpoint 1 (advisor), DP1 RESULT notice on 21 Nov.
+
 **Standing user rule (19 Nov 11:20):** when no user decision is needed, start the next planned work at once; never leave nodes and agents idle while planned work remains.
 
 ## 1. What is running unattended (check, do not disturb)
