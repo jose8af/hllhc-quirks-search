@@ -41,3 +41,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 10:43 -0500 | Sigrid | opus | dedicated sealed C1-d session | done: all PASS |
 | 2026-11-19 10:43 -0500 | Petra | opus | fixer (sealed mode) | done, 0fcba56 |
 | 2026-11-19 10:45 -0500 | Ragnar | opus | closure seed scan (diagnostic) | done, no flip |
+| 2026-11-19 11:10 -0500 | Sune | opus | channel (ii) successor: runner exception + FxFx | running |
+| 2026-11-19 11:10 -0500 | Tove | fable | rule 1(c): pilot classification + preliminary B50 | running |
