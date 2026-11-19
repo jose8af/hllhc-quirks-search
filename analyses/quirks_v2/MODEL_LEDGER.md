@@ -46,3 +46,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 11:12 -0500 | Ulrika | opus | D2 robustness test | running |
 | 2026-11-19 11:12 -0500 | Vidar | opus | C1-c container rerun | running |
 | 2026-11-19 11:15 -0500 | Wenche | fable | advisor: DP1 choices S2-e, P1 | done |
+| 2026-11-19 11:19 -0500 | Vidar | opus | C1-c container | NOT TESTED (permission refused) |
+| 2026-11-19 11:19 -0500 | Yrsa | fable | advisor: C1-c | done |
