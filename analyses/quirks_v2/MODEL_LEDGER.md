@@ -43,3 +43,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 10:45 -0500 | Ragnar | opus | closure seed scan (diagnostic) | done, no flip |
 | 2026-11-19 11:10 -0500 | Sune | opus | channel (ii) successor: runner exception + FxFx | running |
 | 2026-11-19 11:10 -0500 | Tove | fable | rule 1(c): pilot classification + preliminary B50 | running |
+| 2026-11-19 11:12 -0500 | Ulrika | opus | D2 robustness test | running |
+| 2026-11-19 11:12 -0500 | Vidar | opus | C1-c container rerun | running |

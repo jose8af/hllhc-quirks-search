@@ -56,6 +56,9 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
    `phase2_exploration/SLOTS.md`.
 7. **Clock:** always run `date` before writing a time; git commit times are authoritative.
 
+
+**Standing user rule (19 Nov 11:20):** when no user decision is needed, start the next planned work at once; never leave nodes and agents idle while planned work remains.
+
 ## 1. What is running unattended (check, do not disturb)
 
 **Active subagents (18 Nov 11:05):** Ignatius (Opus, channel (i) successor: c1-gen fix/rerun, E2(ii) restricted
