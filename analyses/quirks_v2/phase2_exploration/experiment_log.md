@@ -241,3 +241,11 @@ OPEN (not in scope, flagged): pu1/pu2 and clos family coherence still treat the 
 Frozen script FAIL reproduced and kept on record. Corrected: 3/3 pass and coherent with both v1-width choices
 (outputs/SM_FIX_lisbet_2026-11-18.md). Block χ² 1.53 (primary) exceeds Σz² 0.71 because R04/R05 are 98 % correlated
 but differ in ln ratio by 0.018; expected. C′_PU not run (inputs incomplete).
+
+## 2026-11-19 11:17 — Vidar: C1-c container recipe; build refused by the permission system
+DECISION: container recipe on docker (the only runtime on the workers) from the local `ubuntu@sha256:e9569c25…`
+(22.04.3) with --pull=never, since the pinned `2198e4c6…` is not in any worker's docker store.
+ALTERNATIVES: pull 2198e4c6 from Docker Hub (rate-limit rule); Argo pod with runtime pixi install (no image recipe).
+CONFIDENCE: medium. FLAG FOR HUMAN: yes — base-image deviation; docker build refused by the permission system
+(11:17), not worked around; frozen "identical hash" criterion unattainable (timestamps/hostname in meta_json).
+C1-c NOT TESTED. Artifact outputs/C1C_CONTAINER_vidar_2026-11-19.md; recipe commit 26f4abe.
