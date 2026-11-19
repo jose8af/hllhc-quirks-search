@@ -63,3 +63,7 @@
   Running: c1-pu1 (≈152/200, ends ≈ 19 Nov 04:30), c1-cppub (≈20/75); remaining: C′_PU family, full 41-comparison run, EXPLORATION_i_ignatius.
 - 2026-11-19 10:07 channel (iii) Nanna: B1 hard-scatter validation p2-c-pilot-val-s2 read (3/3 jobs done, 21.96 CPU-s): -hs, -hspool, -g4h all PASS under `hard_except_early_product_hits` (6/6 files); strict `hard` fails on c0-hs-0001 only (1 flagged event, 2 hits in 52,250 events, 1.9×10⁻⁵); P7 now 9/9 streams. The hs stream-wide flagged count (77 files) is not given by the validator: needs one eph-count job (not launched). Detail: outputs/B1_STREAM_VALIDATION_hedda_2026-11-18.md §7.
 - 2026-11-19 10:25 channel (i) Mattias: C1 open read complete (code 29079b7): background 31/31 pass amended (frozen text 30/31: sm.R04 z +3.64, the FAIL on record, E4), open signal 4/4; C′_PU 7/7 under the 54610b6 rule; closure slope z −0.46 (partial +2.83 was a weight artefact, FLAG). C1 186.2/198 CPU-h. Nothing running.
+
+## For the report of 2026-11-19 (orchestrator, 2026-11-19 11:15 -0500)
+- CORRECTION of daily 17 Nov l.68-69: the floor pattern "is not excluded at the precision v1 meant (diagnostic, KS p 0.53/0.47 on 40 events)", not "reappears (VER)" (advisor Wenche).
+- S2-e −10.6 % is absolute efficiency at 250 GeV (erf width 56 GeV); STR's literal v1 function gives ≈ −6 %; −4.9 % at 275, −1.9 % at 300; curve 0.975 at 250 (= v1 0.974).
