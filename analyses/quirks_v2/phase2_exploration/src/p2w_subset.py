@@ -9,7 +9,9 @@ the barrel counting surfaces, CKF-flagged rows kept, chain_inputs.merge_pool, no
 Per (event, road orientation):
   planes   every pair (a, b) of road hits on two different IP layers (b the inner one, sin angle >= 1e-3) seeds the
            finder's own PV-constrained plane refit (kernels.refit_packed, unchanged, on the full pre-filter scan: hits
-           within 3 sigma_tot, forward, |u.n2| < W_c, `iters` refits).  No seed score, no seed cuts, no merge.
+           within 3 sigma_tot, forward, |u.n2| < W_c, `iters` refits).  No seed score, no seed cuts, no merge, and no
+           de-duplication of equal hit sets: two seeds can end on the same hits with different axes, hence different
+           w_core (found on pilot event znn-00062 / 3287, where a hit-set de-duplication lost a finder near-pass).
            A plane is used if its final axis is aligned (|dphi(axis, MET)| < delta95, |eta(axis)| < eta_max).
   subset   for width W the subset of the plane's hits with w_core < W (w_core = 1.4826 MAD of u.n2 over the subset's
            IP hits, as kernels.cand_vars; > 2 IP hits) that holds the most double-crossing IP layers; all 2S hits kept.
@@ -292,8 +294,6 @@ def subset_road(U, CX, CY, S0, S1, LC, SD, J, phimet, road, eta_max, wc, ttol, i
     wv = np.empty(n); lcv = np.empty(n, np.int64); sdv = np.empty(n, np.int64)
     kS = np.empty((nW, 2), np.int64); kF = np.empty((nW, 2), np.int64)
     pv_ = np.empty(n); aref = np.empty(3); n2ref = np.empty(3)
-    sigs = set()
-    sigs.add(np.int64(-1))
     nseed = 0; nplane = 0; ngreedy = 0
     if bad:
         return kb, nseed, nplane, ngreedy, bad
@@ -338,12 +338,6 @@ def subset_road(U, CX, CY, S0, S1, LC, SD, J, phimet, road, eta_max, wc, ttol, i
             eta = np.arcsinh(az / max(np.sqrt(ax * ax + ay * ay), 1e-12))
             if not (dph < road and abs(eta) < eta_max):
                 continue
-            sg = np.int64(nfin)
-            for q in range(nfin):
-                sg = (sg * 1000003 + sel[q] + 1) % 2305843009213693951
-            if sg in sigs:
-                continue
-            sigs.add(sg)
             n2x = ny * az - nz * ay; n2y = nz * ax - nx * az; n2z = nx * ay - ny * ax
             aref[0] = ax; aref[1] = ay; aref[2] = az; n2ref[0] = n2x; n2ref[1] = n2y; n2ref[2] = n2z
             for q in range(nfin):

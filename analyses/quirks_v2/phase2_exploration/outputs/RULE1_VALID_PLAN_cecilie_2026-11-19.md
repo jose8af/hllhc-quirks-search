@@ -91,7 +91,7 @@ by event count, ≤ 15 min target; SLOTS.md line first; no signal file; nothing 
 **If a timing slice projects the total above 10 CPU-h I stop and ask.** If only the exhaustive seeding of S2 is too
 slow, I do not restrict it silently: I stop and ask. Result file: `RULE1_VALID_cecilie_2026-11-19.md`.
 
-## Addendum, 2026-11-19 15:54 -05 (after the read of (a), before the run it describes)
+## Addendum, 2026-11-19 15:53 -05 (after the read of (a), before the run it describes)
 
 (a) as planned came out **NO POWER** at R04–R05: v1's own C′₀ output has no R04 candidate at all (DIF 0 loose
 candidates in 47,538 events; NI 22: 17 events with a loose candidate, none at R04; guns 0), D = 0 at every rung. The

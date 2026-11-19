@@ -45,7 +45,7 @@ def rung_counts(c, cols, nev, variant, orient0=True):
 
 def part_a(out):
     res = dict(jobs={}, topo={})
-    for f in sorted(glob.glob(f'{V}/p2-c-r1v-ctl*/000/r1v-ctl*-*.ref.npz')):
+    for f in sorted(glob.glob(f'{V}/p2-c-r1v-ctl/000/r1v-ctl-*.ref.npz') + glob.glob(f'{V}/p2-c-r1v-ctlq/000/r1v-ctl32-*.ref.npz')):
         jid = Path(f).name[:-8]
         ref = np.load(f); z = np.load(f[:-8] + '.npz')
         m = json.loads(str(z['meta'])); rm = json.loads(str(ref['meta']))
@@ -89,18 +89,20 @@ def part_a(out):
 
 def part_d(out):
     res = dict(control={}, z={})
-    for f in sorted(glob.glob(f'{V}/p2-c-r1v-ctlp/000/r1v-ctlp-*.npz')):
+    for f in sorted(glob.glob(f'{V}/p2-c-r1v-ctlq/000/r1v-ctlq-*.npz')):
         if f.endswith('.ref.npz'):
             continue
         jid = Path(f).name[:-4]
-        a = np.load(f); b = np.load(f.replace('p2-c-r1v-ctlp', 'p2-c-r1v-ctl').replace('r1v-ctlp-', 'r1v-ctl-'))
+        a = np.load(f); b = np.load(f.replace('p2-c-r1v-ctlq', 'p2-c-r1v-ctl').replace('r1v-ctlq-', 'r1v-ctl-'))
         ma = json.loads(str(a['meta'])); mb = json.loads(str(b['meta']))
+        nq = ma['files'][0]['n_events']
         ca = a['cand']; cb = b['cand']
+        cb = cb[(cb[:, 3] == 0) & (cb[:, 1] < nq)]              # the same events, variant 0, of the run without the option
         key = lambda c: len({tuple(r[:4]) for r in c})          # noqa: E731  (file, event, orient, variant)
         res['control'][jid] = dict(n_lost=ma['n_candidates_in_skipped_orientations'], check=ma['check_prefilter'],
-                                   n_find_with=ma['n_find'], n_find_without=mb['n_find'], n_cand_with=len(ca),
-                                   n_cand_without=len(cb), tables_identical=bool(ca.shape == cb.shape and np.array_equal(ca, cb, equal_nan=True)),
-                                   n_orient_variant_with_cand=key(ca))
+                                   n_events=nq, n_find_with=ma['n_find'], n_cand_with=len(ca), n_cand_without=len(cb),
+                                   tables_identical=bool(ca.shape == cb.shape and np.array_equal(ca, cb, equal_nan=True)),
+                                   n_orient_with_cand=key(ca), cpu_s=ma['cpu_s'])
     tove = {}
     for f in glob.glob(f'{D}/pilot_class/p2-c-pilot-cls*/000/*.npz'):
         z = np.load(f); m = json.loads(str(z['meta'])); c = z['cand']; cols = m['cand_cols']
@@ -119,10 +121,60 @@ def part_d(out):
                                            identical_to_tove_tables=same, n_errors=m['n_errors'], cpu_s=m['cpu_s'])
     for k in ('control', 'z'):
         res[k + '_total'] = dict(n_lost=sum(v['n_lost'] for v in res[k].values()),
-                                 n_with_cand=sum(v.get('n_orient_variant_with_cand', v.get('n_event_orient_with_cand', 0))
+                                 n_with_cand=sum(v.get('n_orient_with_cand', v.get('n_event_orient_with_cand', 0))
                                                  for v in res[k].values()))
     Path(out).write_text(json.dumps(res, indent=1))
     log.info('%s', json.dumps(res, indent=1))
+
+
+def part_a2(out):
+    """Injection control: B1 branch on re-packed Z events against Tove's stored Z-branch candidates (variant 0)."""
+    tove = {}
+    for f in glob.glob(f'{D}/pilot_class/p2-c-pilot-cls*/000/*.npz'):
+        z = np.load(f); m = json.loads(str(z['meta'])); c = z['cand']; cols = m['cand_cols']
+        for fi, fm in enumerate(m['files']):
+            if 'znn' in fm['path']:
+                tove[fm['path']] = c[(c[:, 0] == fi) & (c[:, cols.index('variant')] == 0)]
+    c0 = cols.index('nit2'); c1 = cols.index('n_particles') + 1
+    res = dict(columns_compared=cols[c0:c1], jobs={})
+    T = dict(n_events=0, n_ref_events_with_cand=0, n_ref_cands=0, n_b1_cands_orient0=0, n_b1_cands_other_orient=0, D2=0,
+             ref_events_R04=0, ref_events_near_R08=0, n_errors=0, examples=[])
+    for f in sorted(glob.glob(f'{V}/p2-c-r1v-zb1/000/*.npz')):
+        z = np.load(f); m = json.loads(str(z['meta'])); c = z['cand']
+        if m['cand_cols'] != cols or m['check_prefilter'] or m['variants'] != [0]:
+            raise SystemExit('unexpected zb1 output')
+        T['n_errors'] += m['n_errors']
+        res['jobs'][Path(f).name[:-4]] = dict(n_cand=len(c), n_find=m['n_find'], cpu_s=m['cpu_s'], p2t_sha256=m['script_sha256'])
+        # source paths and the event map: the re-packer wrote the w > 0 events in order; recover both from the campaign
+        camp = json.loads((QV2.parents[1] / 'tools/runner/examples/p2w/p2-c-r1v-zb1.json').read_text())
+        cmd = [j for j in camp['jobs'] if j['id'] == m['id']][0]['command']
+        srcs = cmd.split('--files ')[1].split(' ')[0].split(',')
+        for fi, path in enumerate(srcs):
+            zz = np.load(path); zm = json.loads(str(zz['meta'])); w = zz['evt'][:, zm['evt_cols'].index('w_v1')]
+            emap = np.where(w > 0)[0]
+            if len(emap) != m['files'][fi]['n_events']:
+                raise SystemExit('event map mismatch')
+            T['n_events'] += len(emap)
+            mine = c[c[:, 0] == fi]
+            T['n_b1_cands_other_orient'] += int((mine[:, 2] != 0).sum())
+            mine = mine[mine[:, 2] == 0]
+            T['n_b1_cands_orient0'] += len(mine)
+            ref = tove[path]; T['n_ref_cands'] += len(ref)
+            evs = set(ref[:, 1].astype(int)) | set(emap[mine[:, 1].astype(int)])
+            T['n_ref_events_with_cand'] += len(set(ref[:, 1].astype(int)))
+            for e in sorted(evs):
+                a_ = ref[ref[:, 1] == e][:, c0:c1]; b_ = mine[emap[mine[:, 1].astype(int)] == e][:, c0:c1]
+                if len(a_):
+                    nip = a_[:, cols.index('nip2') - c0]; wc_ = a_[:, cols.index('dw_core') - c0]
+                    T['ref_events_R04'] += int((nip >= 7).any()); T['ref_events_near_R08'] += int(((wc_ < 4.7) & (nip >= 4)).any())
+                if not (a_.shape == b_.shape and np.array_equal(a_, b_, equal_nan=True)):
+                    T['D2'] += 1
+                    if len(T['examples']) < 10:
+                        T['examples'].append([path, int(e), a_.tolist()[:2], b_.tolist()[:2]])
+    T['verdict'] = 'FAIL' if T['D2'] else ('PASS' if T['n_ref_events_with_cand'] >= 100 else 'NO POWER (D2 = 0)')
+    res['total'] = T
+    Path(out).write_text(json.dumps(res, indent=1))
+    log.info('%s', json.dumps(T, indent=1))
 
 
 def part_c(out):
@@ -131,7 +183,7 @@ def part_c(out):
     rows = {}; nev = {t: 0 for t in TERMS}; nfl = {t: 0 for t in TERMS}; seen = set()
     tot = dict(cpu_s=0.0, n_errors=0, n_pref=0, n_seeds=0, n_planes=0, n_greedy=0, max_seeds=0, max_road=0, n_jobs=0)
     zfull = 0; sha = set()
-    for f in sorted(glob.glob(f'{V}/p2-c-r1v-sub[ab]/000/*.npz')):
+    for f in sorted(glob.glob(f'{V}/p2-c-r1v-s2[ab]/000/*.npz')):
         z = np.load(f); m = json.loads(str(z['meta'])); r = z['rows']; cols = m['row_cols']
         ix = {k: i for i, k in enumerate(cols)}
         tot['cpu_s'] += m['cpu_s']; tot['n_errors'] += m['n_errors']; tot['n_jobs'] += 1; sha.add(m['script_sha256'])
@@ -227,4 +279,4 @@ def part_c(out):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(message)s', stream=sys.stderr)
-    dict(a=part_a, d=part_d, c=part_c)[sys.argv[1]](sys.argv[2])
+    dict(a=part_a, a2=part_a2, d=part_d, c=part_c)[sys.argv[1]](sys.argv[2])
