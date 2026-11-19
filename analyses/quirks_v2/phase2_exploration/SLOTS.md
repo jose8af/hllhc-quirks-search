@@ -48,3 +48,5 @@
 - 2026-11-19 10:08 -0500 | maxwell | 1 slot, until p2-c-pilot-val-ephhs completes (1 job, ≈ 1 CPU-min) | orchestrator: n_early_prod count over the 77 c0-hs chain files (requested by Nanna's val-s2 read); node count before 1, load 0.01
 - 2026-11-19 10:11 -0500 | landau | slot B (channel (i)), ≈ 30 min of short analysis runs, nice 19 | channel (i) Mattias: c1_compare.py unit tests and final C1 read (c1_compare.py all families; c1_signal_compare.py open), no campaigns; node count before 0, load 0.9
 - 2026-11-19 10:25 -0500 | landau | slot B RELEASED | channel (i) Mattias: tests + c1_compare + c1_signal_compare open done; nothing of mine runs
+- 2026-11-19 10:30 -0500 | landau | slot B (channel (i)), ≈ 15 min, nice 19 | Ragnar: DIAGNOSTIC closure seed scan (c1_compare.py unit tests, frozen-seed reproduction, then --families pu,closure with 10 other --closure-seed values one at a time, ≈ 30 CPU-s each); no campaigns, no signal files; node count before 0, load 0.18
+- 2026-11-19 10:45 -0500 | landau | slot B RELEASED | Ragnar: closure seed scan done (11 runs, 3.6 CPU-min); nothing of mine runs
