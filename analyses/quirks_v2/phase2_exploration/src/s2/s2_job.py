@@ -667,7 +667,7 @@ def cmd_fxfx(a):
     m = re.findall(r'Total cross section:\s*([0-9.eE+-]+)\s*\+-\s*([0-9.eE+-]+)\s*pb', txt)
     info.update(first=first, seed_mg=sd, sigma_pb=float(m[-1][0]) if m else None, err_pb=float(m[-1][1]) if m else None)
     with gzip.open(lhe, 'rt') as f:
-        nlhe = sum(1 for l in f if l.startswith('<event'))
+        nlhe = sum(1 for l in f if l.lstrip().startswith('<event'))  # MG indents '<event' (Sune 2026-11-19: was 0)
     info['n_lhe'] = nlhe
     if '--shower' in a:
         pd = os.path.join(work, 'py8')
