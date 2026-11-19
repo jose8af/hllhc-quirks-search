@@ -671,9 +671,14 @@ def cmd_fxfx(a):
             set_run(os.path.join(d, 'Cards', 'run_card.dat'), {'req_acc': a[a.index('--acc') + 1]})
         run = tag.replace('-', '_')
         opt = ' -x' + ('' if first else ' -o')
+        if os.path.exists(os.path.join(d, 'RunWeb')):   # we hold the per-dir flock, so it is stale (killed run; Sune 2026-11-19)
+            os.remove(os.path.join(d, 'RunWeb'))
+            info['removed_stale_runweb'] = True
         rec, txt = mg(mgdir, f'launch {d} -n {run}{opt}\nfixed_order=OFF\norder=NLO\nshower=OFF\nmadspin=OFF\n'
                              f'reweight=OFF\ndone\ndone\nexit\n',
                       f'launch_{run}', base, 'amcatnlo_grids_and_events' if first else 'amcatnlo_onlygen')
+        if not glob.glob(os.path.join(d, 'Events', run, 'events.lhe.gz')):   # MG can fail with rc 0 (AlreadyRunning)
+            sys.exit(f'MG launch produced no events.lhe.gz for run {run}; see the launch log in {base}')
         if first:
             open(ready, 'w').write(time.ctime() + '\n')
             if '--save-procdir' in a:

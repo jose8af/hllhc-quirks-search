@@ -1,7 +1,7 @@
 """f200_fxfx.py -- f200 from the FxFx (MC@NLO 0-1j) sample at E 500 against the S2-c band.  Channel (ii) successor
 Sune, 2026-11-19.  Run in the sim 'ana' env (numpy) on a worker:
 
-  sim/.pixi/envs/ana/bin/python -I phase2_exploration/src/s2/f200_fxfx.py
+  sim/.pixi/envs/ana/bin/python -I phase2_exploration/src/s2/f200_fxfx.py [E500|E1500]
 
 Definition: f200 = sum w [pt_pair > 200 GeV] / sum w, after the shower and the FxFx matching, no eta cut (the only
 definition, Edgar's file section 2.4 and f200.py). The weights are the signed MC@NLO weights. The statistical error
@@ -27,10 +27,13 @@ from marker_files import done_outputs  # noqa: E402
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 log = logging.getLogger('f200_fxfx')
 OUTD = os.path.join(HERE, '..', '..', 'outputs', 's2')
+POINTS = {'E500': ('p2-b-s2-fxfx-gen', 'f200_fxfx.json'), 'E1500': ('p2-b-s2-fxfx-gen1500', 'f200_fxfx_E1500.json')}
 
 
 def main():
-    files = done_outputs('p2-b-s2-fxfx-gen', suffix='.npz', verify=True)
+    point = sys.argv[1] if len(sys.argv) > 1 else 'E500'
+    camp, outname = POINTS[point]
+    files = done_outputs(camp, suffix='.npz', verify=True)
     if not files:
         sys.exit('no done npz files')
     cols = {k: [] for k in ('w', 'pt_pair', 'n_me', 'njet30', 'npnlo')}
@@ -49,13 +52,13 @@ def main():
     for fl in files:
         d = np.load(fl)
         per_file.append(frac(d['pt_pair'], d['w'])[0])
-    nom = json.load(open(os.path.join(OUTD, 'f200.json')))['points']['E500']
+    nom = json.load(open(os.path.join(OUTD, 'f200.json')))['points'][point]
     f0, up, dn = nom['nom']['f200'], nom['band']['up'], nom['band']['dn']
     rel = f / f0 - 1
     outside = not (-dn <= rel <= up)
     up2, dn2 = (max(up, rel), max(dn, -rel)) if outside else (up, dn)
     mult = {k: {int(u): int(n) for u, n in zip(*np.unique(c[k], return_counts=True))} for k in ('n_me', 'njet30', 'npnlo')}
-    r = dict(point='E500', definition='f200 = sum w[pt_pair > %g] / sum w, signed MC@NLO weights, after FxFx matching, no eta cut' % PT,
+    r = dict(point=point, definition='f200 = sum w[pt_pair > %g] / sum w, signed MC@NLO weights, after FxFx matching, no eta cut' % PT,
              files=files, n_lhe=n_lhe, n_matched=int(len(w)), matched_fraction=len(w) / n_lhe, n_out_check=n_out,
              neg_weight_fraction=float((w < 0).mean()), n_eff=float(neff),
              f200_fxfx=f, stat=e, stat_rel=e / f, per_file_f200=per_file, multiplicities=mult,
@@ -64,8 +67,8 @@ def main():
              outside_band=outside, band_after_fxfx=dict(up=up2, dn=dn2),
              T1_nuisance_after_fxfx=dict(kappa_up=1 + up2, kappa_dn=1 - dn2),
              rule='STR l.2021-2022: if the FxFx value lies outside the band, the band is enlarged to contain it (central value)')
-    json.dump(r, open(os.path.join(OUTD, 'f200_fxfx.json'), 'w'), indent=1)
-    log.info('E500 FxFx f200 = %.5f +- %.5f (%.1f %%) from %d matched / %d LHE events; nominal %.5f band +%.4f/-%.4f; '
+    json.dump(r, open(os.path.join(OUTD, outname), 'w'), indent=1)
+    log.info(point + ' FxFx f200 = %.5f +- %.5f (%.1f %%) from %d matched / %d LHE events; nominal %.5f band +%.4f/-%.4f; '
              'shift %+.4f +- %.4f; outside=%s; band -> +%.4f/-%.4f', f, e, 100 * e / f, len(w), n_lhe, f0, up, dn, rel,
              r['rel_shift_stat'], outside, up2, dn2)
 
