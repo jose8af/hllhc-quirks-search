@@ -31,3 +31,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-18 | regression investigator: SM family FAIL in C1 (session Jorund) | fable | default | brief §4: regression investigators go up; a frozen criterion failed | ticket: width in z-score (≈95 %), generator ruled out |
 | 2026-11-18 | advisor call: SM-family ticket, E4 vs bug, notice content (session Kestrel) | fable | default | advisor trigger: frozen criterion re-read + decision to user | diagnosis accepted; E4 to the user; C′_PU fixed before reading |
 | 2026-11-18 | fix agent: clustered widths in c1_compare.py (SM, C′_PU, joint replicas) (session Lisbet) | opus | default | default model | done: stage A 54610b6, SM PASS 3/3 pending E4 |
+| 2026-11-19 10:07 -0500 | Nanna | fable | rule 1(c): hs-stream validation (val-s2) feeds the day-15 reading | running |
+| 2026-11-19 10:07 -0500 | Mattias | opus | channel (i) successor: C1 comparisons | running |
