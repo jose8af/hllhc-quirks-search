@@ -52,3 +52,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 15:24 -0500 | Åsa | fable | advisor: preliminary rule-1 | done |
 | 2026-11-19 15:24 -0500 | Björn | fable | rule 1(c): independent review + ceiling cross-check | running |
 | 2026-11-19 15:24 -0500 | Cecilie | fable | rule 1(c): positive control, subset-pass, shortcut power | running |
+| 2026-11-19 15:35 -0500 | Björn | fable | independent review + ceiling | done |
