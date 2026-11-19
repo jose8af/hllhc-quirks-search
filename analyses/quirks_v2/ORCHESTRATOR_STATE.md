@@ -61,6 +61,8 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 
 **Strategy-revision inputs (19 Nov, advisor Dagny; for EXPLORATION.md and the pause package):** v1 SM counts are one-hit tags, not attributed (STR l.753 wrong); void: STR l.791-797, Table 4.4c m_H, B5 share l.1420; B4-c and B5 closures NOT EVALUABLE on SM → user question in the day-15 pause package; hold row-20 extra events (STR l.2116) until answered; attributed vs C′_PU-linked measurement (STR l.753-754) running. Rule-1 reading frozen-text clarifications (i)-(iii) in LOG 19 Nov (Åsa).
 
+**User away 20–22 Nov (decided 19 Nov 17:20):** reversible new decisions → advisor-checked default labelled "default, user absent"; irreversible/outward (installs, new permissions, unsealing, deleting data, budget beyond approved, the day-15 pause) wait with a DECISION notice. Continue into Phase 3 in this session after closing Phase 2 (write the Phase-2 closing state first). Heartbeat cron every 3 h + daily-report cron 18:47 (both session-only).
+
 **Standing user rule (19 Nov 11:20):** when no user decision is needed, start the next planned work at once; never leave nodes and agents idle while planned work remains.
 
 ## 1. What is running unattended (check, do not disturb)
