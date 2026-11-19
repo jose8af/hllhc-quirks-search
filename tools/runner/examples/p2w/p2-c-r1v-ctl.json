@@ -1,0 +1,71 @@
+{
+ "campaign": "p2-c-r1v-ctl",
+ "tier": "regenerable",
+ "data_prefix": "p2c/rule1_valid",
+ "regenerate": "inline generator in logs/executor_cecilie_2026-11-19_15-24.md",
+ "description": "Rule-1 validation (a): B1 positive control. Stored C'0 hit rows re-packed to the pilot layout and classified by p2t_classify.py unchanged (--ckf-pass-all); reference = v1 trials.n_pass of the same C1 files. Plan RULE1_VALID_PLAN_cecilie_2026-11-19.md. No signal file.",
+ "expected_hours": 0.5,
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "r1v-ctl-dif-000",
+   "outputs": [
+    "r1v-ctl-dif-000.npz",
+    "r1v-ctl-dif-000.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-dif-000.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-dif-000.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-dif-000 --out $QV2_OUT_DIR/r1v-ctl-dif-000.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-dif-001",
+   "outputs": [
+    "r1v-ctl-dif-001.npz",
+    "r1v-ctl-dif-001.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-dif-001.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-dif-001.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-dif-001 --out $QV2_OUT_DIR/r1v-ctl-dif-001.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-ni22-000",
+   "outputs": [
+    "r1v-ctl-ni22-000.npz",
+    "r1v-ctl-ni22-000.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-ni22-000.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-ni22-000.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-ni22-000 --out $QV2_OUT_DIR/r1v-ctl-ni22-000.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-ni22-001",
+   "outputs": [
+    "r1v-ctl-ni22-001.npz",
+    "r1v-ctl-ni22-001.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-ni22-001.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-ni22-001.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-ni22-001 --out $QV2_OUT_DIR/r1v-ctl-ni22-001.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-gamma-000",
+   "outputs": [
+    "r1v-ctl-gamma-000.npz",
+    "r1v-ctl-gamma-000.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-gamma-000.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-gamma-000.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-gamma-000 --out $QV2_OUT_DIR/r1v-ctl-gamma-000.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-v0-000",
+   "outputs": [
+    "r1v-ctl-v0-000.npz",
+    "r1v-ctl-v0-000.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-v0-000.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-v0-000.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-v0-000 --out $QV2_OUT_DIR/r1v-ctl-v0-000.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  },
+  {
+   "id": "r1v-ctl-pvpair-000",
+   "outputs": [
+    "r1v-ctl-pvpair-000.npz",
+    "r1v-ctl-pvpair-000.ref.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_cp0_to_pilot.py --src /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-cp0/000/c1cp0-pvpair-000.npz --out $PWD/ctl.npz --ref $QV2_OUT_DIR/r1v-ctl-pvpair-000.ref.npz && nice -n 10 $PY $S/p2t_classify.py --id r1v-ctl-pvpair-000 --out $QV2_OUT_DIR/r1v-ctl-pvpair-000.npz --files $PWD/ctl.npz --ckf-pass-all && rm -f $PWD/ctl.npz"
+  }
+ ]
+}

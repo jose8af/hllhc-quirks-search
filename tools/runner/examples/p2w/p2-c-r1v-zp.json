@@ -1,0 +1,43 @@
+{
+ "campaign": "p2-c-r1v-zp",
+ "tier": "regenerable",
+ "data_prefix": "p2c/rule1_valid",
+ "regenerate": "inline generator in logs/executor_cecilie_2026-11-19_15-24.md",
+ "description": "Rule-1 validation (d): the 20 Z(nunu) pilot files with the most stored candidates, p2t_classify.py --check-prefilter --no-ckf-pass. Read-only on pilot files.",
+ "expected_hours": 0.4,
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "r1v-zp-0",
+   "outputs": [
+    "r1v-zp-0.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2t_classify.py --id r1v-zp-0 --out $QV2_OUT_DIR/r1v-zp-0.npz --files /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00223.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00343.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00215.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00352.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz --check-prefilter --no-ckf-pass"
+  },
+  {
+   "id": "r1v-zp-1",
+   "outputs": [
+    "r1v-zp-1.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2t_classify.py --id r1v-zp-1 --out $QV2_OUT_DIR/r1v-zp-1.npz --files /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00049.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00125.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00200.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00255.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00021.npz --check-prefilter --no-ckf-pass"
+  },
+  {
+   "id": "r1v-zp-2",
+   "outputs": [
+    "r1v-zp-2.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2t_classify.py --id r1v-zp-2 --out $QV2_OUT_DIR/r1v-zp-2.npz --files /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00031.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00130.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00161.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00367.npz --check-prefilter --no-ckf-pass"
+  },
+  {
+   "id": "r1v-zp-3",
+   "outputs": [
+    "r1v-zp-3.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2t_classify.py --id r1v-zp-3 --out $QV2_OUT_DIR/r1v-zp-3.npz --files /nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00137.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00027.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00180.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz,/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00346.npz --check-prefilter --no-ckf-pass"
+  }
+ ]
+}

@@ -90,3 +90,17 @@ by event count, ≤ 15 min target; SLOTS.md line first; no signal file; nothing 
 
 **If a timing slice projects the total above 10 CPU-h I stop and ask.** If only the exhaustive seeding of S2 is too
 slow, I do not restrict it silently: I stop and ask. Result file: `RULE1_VALID_cecilie_2026-11-19.md`.
+
+## Addendum, 2026-11-19 15:54 -05 (after the read of (a), before the run it describes)
+
+(a) as planned came out **NO POWER** at R04–R05: v1's own C′₀ output has no R04 candidate at all (DIF 0 loose
+candidates in 47,538 events; NI 22: 17 events with a loose candidate, none at R04; guns 0), D = 0 at every rung. The
+criterion stays as written (not PASS). To have a control of the B1 branch with candidates at R04–R08 I add **(a2), an
+injection**: the w > 0 events of the 20 Z(νν) pilot files of (d) are re-packed, unchanged, as a B1-layout file
+(`p2w_znn_to_b1.py`: stream `ctl.znn.b1`, `phi_road` = the stored `phimet_reco_v1`, `pv_*` = the PV p2t_classify
+draws for the Z branch, 21 orientations) and run through the non-Z branch of `p2t_classify.py` (unchanged,
+`--no-ckf-pass`). Reference: Tove's stored variant-0 candidates of the same events (Z branch).
+**Statistic: D2 = events whose candidate rows at orientation 0 (N_IT2, N_IP2, N_2S2, N_L2, w_core, p(χ²), n_core,
+n_hit, Δφ, η, and the four hit-content counts) differ. PASS iff D2 = 0 with ≥ 100 candidate-holding events.**
+This tests the B1 branch (event record, PV, orientation loop, storage) against the Z branch of the same script, not
+against v1; the link to v1 is (a) (exact at the loose rungs, 17 events). ≈ 0.2 CPU-h.
