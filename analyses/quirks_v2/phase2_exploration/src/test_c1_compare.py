@@ -1,6 +1,6 @@
 """Unit tests of the clustered widths of c1_compare.py (fix agent Lisbet, 2026-11-18; REGRESSION_TICKET_SM.md §3).
 
-SYNTHETIC clustered data only: no C'_PU input and no signal file is read.  The only real file read is the SM output on
+SYNTHETIC clustered data only (TestPUJoint: synthetic pile-up-like data, added by Mattias 2026-11-19): no C'_PU input and no signal file is read.  The only real file read is the SM output on
 record (c1_compare_sm_ignatius_2026-11-18.json), to check that the frozen-script path reproduces the recorded z.
 Run on a worker (not einstein):  cd phase2_exploration/src && nice -n 19 <tt python> -B -m unittest -v test_c1_compare
 """
@@ -172,6 +172,88 @@ class TestJointFamily(unittest.TestCase):
         self.assertAlmostEqual(J["chi2_block"], float(((d / sd) ** 2).sum()), places=10)
         J0 = CC.joint_family(np.zeros(3), np.zeros(3), [([0], reps[0]), ([1], reps[1]), ([2], reps[2])])
         self.assertEqual(J0["chi2_block"], 0.0)               # chi2 -> 0 when v2 = v1 exactly
+
+
+def pu_like(rng, E, lam=(5.0, 1.2, 0.3), k=1.5):
+    """Synthetic PU sample: E events with 1-3 trials, a per-event Gamma rate shared by its trials (pile-up density),
+    nested rung counts R04 >= R05 >= R06 (binomial thinning).  -> per-event sums (E, 3), trials per event (E,)."""
+    nt = rng.integers(1, 4, E).astype(float)
+    g = rng.gamma(k, 1 / k, E)
+    r4 = rng.poisson(lam[0] * g * nt)
+    r5 = rng.binomial(r4, lam[1] / lam[0])
+    r6 = rng.binomial(r5, lam[2] / lam[1])
+    return np.stack([r4, r5, r6], 1).astype(float), nt
+
+
+class TestPUJoint(unittest.TestCase):
+    """pu1/pu2/clos joint replicas (executor Mattias, 2026-11-19): SYNTHETIC pile-up-like data only."""
+
+    def test_reproduces_v1_trend_test(self):
+        """Nominal slope and its replica width equal v1 analyse_g3.trend_test on the same resamples."""
+        from acts.stage4.g3 import analyse_g3 as G3
+        rng = np.random.default_rng(20)
+        g1, n1 = pu_like(rng, 800); s2, n2 = pu_like(rng, 600, lam=(3.4, 0.8, 0.12))
+        full1 = np.zeros((len(n1), 14)); full1[:, 3:6] = g1
+        full2 = np.zeros((len(n2), 14)); full2[:, 3:6] = s2
+        I1 = rng.integers(0, len(n1), (300, len(n1))); I2 = rng.integers(0, len(n2), (300, len(n2)))
+        tt = G3.trend_test([3, 4, 5], full1, n1, full2, n2, I1, I2)
+        self.assertEqual(len(tt["points"]), 3)
+        trend = dict(O=g1, P=s2, x=[p["x"] for p in tt["points"]], w=[1 / p["sig"] ** 2 for p in tt["points"]])
+        nom, reps, nd = CC.pu_joint_reps(g1, n1, s2, n2, I1, I2, trend=trend, chunk=70)
+        self.assertEqual(nd, 0)
+        self.assertEqual(reps.shape, (300, 9))
+        self.assertAlmostEqual(np.exp(nom[8]), abs(tt["slope"]), places=12)
+        self.assertAlmostEqual(np.exp(reps[:, 8]).std(ddof=1), tt["s_slope_boot"], places=12)
+        for j, c in enumerate((3, 4)):                        # T1 at R04 and R05 = ln_ratio_test's ln_r
+            self.assertAlmostEqual(nom[6 + j], G3.ln_ratio_test(full1, n1, full2, n2, I1, I2, c)["ln_r"], places=12)
+        np.testing.assert_allclose(reps[:, 6], reps[:, 0] - reps[:, 3], atol=1e-12)   # T1 = pu1 / pu2, replica by replica
+
+    def test_reproduces_v1_c_test(self):
+        """cfac_event_arrays + the joint replicas reproduce c and s_c of v1 analyse_g3.c_test at its c_max cell."""
+        from acts.stage4.g3 import analyse_g3 as G3
+        rng = np.random.default_rng(21)
+        jobs = []
+        for _ in range(4):
+            ntr = 60
+            ev = np.repeat(np.arange(30) + 100, 2)                # 30 events x 2 trials, ev numbers not from 0
+            nc = 400
+            p = rng.uniform(0.2, 0.6, 30)[ev - 100]               # per-event crossing probability (correlated layers)
+            trial = rng.integers(0, ntr, nc)
+            cross = (rng.random((nc, 10)) < p[trial][:, None]).astype(np.int64) * 2
+            flags = np.zeros((nc, 8), bool); flags[:, 0] = rng.random(nc) < 0.9
+            tag = np.where(rng.random(nc) < 0.85, 2, 1).astype(np.int64)
+            jobs.append(dict(tr=dict(ev=ev, n_road=rng.integers(50, 150, ntr)),
+                             cand=dict(tag=tag, rungs=np.packbits(flags, axis=1), trial=trial, cross=cross)))
+        ct = G3.c_test(jobs, np.random.default_rng(22), nboot=200)
+        cell = ct["c_max"]
+        cf, evn = CC.cfac_event_arrays(jobs, cell)
+        self.assertEqual(evn, 120)
+        I1 = np.random.default_rng(22).integers(0, evn, (200, evn))        # c_test's boot_idx, same stream
+        g1 = np.ones((evn, 3)); n1 = np.ones(evn); I2 = np.zeros((200, 5), int)
+        nom, reps, nd = CC.pu_joint_reps(g1, n1, np.ones((5, 3)), np.ones(5), I1, I2, cfac=cf)
+        self.assertEqual(nd, 0)
+        self.assertAlmostEqual(np.exp(nom[-1]), cell["c"], places=12)
+        self.assertAlmostEqual(np.exp(reps[:, -1]).std(ddof=1), cell["s_c"], places=12)
+
+    def test_coherence_width_nested_rungs(self):
+        """Family mean over nested rungs: the joint-replica width follows the ensemble scatter of the family mean; the
+        frozen independent form understates it."""
+        rng = np.random.default_rng(23)
+        s_joint, s_ind, ws = [], [], []
+        for _ in range(40):
+            g1, n1 = pu_like(rng, 400)
+            I1 = rng.integers(0, 400, (300, 400))
+            _, reps, _ = CC.pu_joint_reps(g1, n1, g1, n1, I1, I1)
+            J = CC.joint_family(np.log(g1.sum(0) / n1.sum()), np.zeros(3), [([0, 1, 2], reps[:, :3])])
+            s_joint.append(J["s"]); s_ind.append(J["s_independent"]); ws.append(1 / reps[:, :3].var(0, ddof=1))
+        w = np.mean(ws, 0)
+        ens = []
+        for _ in range(400):
+            g1, n1 = pu_like(rng, 400)
+            ens.append(float(w @ np.log(g1.sum(0) / n1.sum()) / w.sum()))
+        s_ens = np.std(ens, ddof=1)                           # relative error ~ 1/sqrt(800) ~ 4 %
+        self.assertLess(abs(np.mean(s_joint) / s_ens - 1), 0.15)
+        self.assertLess(np.mean(s_ind), 0.85 * s_ens)
 
 
 class TestEntries(unittest.TestCase):

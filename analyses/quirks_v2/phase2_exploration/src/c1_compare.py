@@ -43,6 +43,12 @@ Width fix (fix agent Lisbet, 2026-11-18; REGRESSION_TICKET_SM.md, advisor ruling
   only as res["frozen_script"] (the FAIL on record); C'_PU has no 1/sqrt(N) verdict.  C'_PU entries with N < 10 keep the
   frozen conditional binomial, flagged.  SM verdicts with the fixed width are amendment E4 (pending the user's approval).
   Unit tests: test_c1_compare.py (synthetic clustered data).
+
+Joint replicas for pu1, pu2, clos (executor Mattias, 2026-11-19; orchestrator decision LOG.md 2026-11-18 12:37 (b)):
+  the family coherence of pu1 (R04-R06), pu2 (R04-R06) and clos (T1, T1w, slope, c-factor) is computed by joint_family
+  on ONE set of paired event resamples of pu1 and pu2 (PUSamples bi1/bi2, the resamples of the v1 trend width), so
+  nested rungs and shared events keep their correlation (pu_joint).  Individual entries unchanged.  The frozen
+  independent-entry coherence is kept as families[f]["frozen_script_independent"].  Tests: TestPUJoint.
 """
 import argparse
 import json
@@ -240,6 +246,131 @@ def coherence_naive(v):
     return dict(n=len(v), mean_ln_ratio=mu, s=smu, z=mu / smu, coherent=bool(abs(mu / smu) < 3))
 
 
+# ---------------------------------------------------------------------------------------------------------------------
+# Joint replicas for the PU-derived families pu1, pu2, clos (executor Mattias, 2026-11-19; orchestrator decision LOG.md
+# 2026-11-18 12:37 (b), made before the full read).  pu1.R04-R06 (nested rungs, same trials), pu2.R04-R06 (nested),
+# clos.T1/T1w (= pu1/pu2 at R04/R05), clos.slope (v1 trend_test on the ln ratios at its points) and clos.cfac (v1
+# c_test at the c_max cell, pu1 events) are all functions of the same pu1 and pu2 events.  The frozen script treated the
+# entries of a family as independent in its coherence.  Here every entry is recomputed on ONE set of event resamples
+# (pu1 row b paired with pu2 row b), so the family coherence (joint_family) carries the correlations.  The individual
+# entries (values, widths, z, p) are NOT changed; the nominal values are recomputed from the per-event arrays and must
+# reproduce the entries (checked).
+# ---------------------------------------------------------------------------------------------------------------------
+PU_JOINT_NAMES = ["pu1.R04", "pu1.R05", "pu1.R06", "pu2.R04", "pu2.R05", "pu2.R06", "clos.T1", "clos.T1w"]
+
+
+def _counts(I, E):
+    """(B, E) resample indices -> (B, E) multiplicities."""
+    W = np.zeros((len(I), E))
+    for b, row in enumerate(I):
+        W[b] = np.bincount(row, minlength=E)
+    return W
+
+
+def pu_joint_stats(W1, W2, g1, n1, s2, n2, trend=None, cfac=None):
+    """ln of the PU-derived C1 quantities for event multiplicities W1 (B, E1) of pu1 and W2 (B, E2) of pu2.
+    g1 (E1, 3): pu1 per-event group sums at R04-R06, n1 (E1,): trials per event; s2 (E2, 3), n2 (E2,): pu2 S_ded sums.
+    trend: dict(O (E1, k), P (E2, k), x (k,), w (k,)) = the points of v1 trend_test with its fixed weights; cfac:
+    dict(n (E1,), J (E1,), S (E1, m)) = the c_max cell of v1 c_test.  -> (B, K) columns PU_JOINT_NAMES [+ clos.slope as
+    ln|b|] [+ clos.cfac as ln c]."""
+    m1 = (W1 @ g1) / (W1 @ n1)[:, None]
+    m2 = (W2 @ s2) / (W2 @ n2)[:, None]
+    with np.errstate(divide="ignore", invalid="ignore"):
+        cols = [np.log(m1), np.log(m2), np.log(m1[:, :2] / m2[:, :2])]
+        if trend is not None:
+            x, w = np.asarray(trend["x"], float), np.asarray(trend["w"], float)
+            xm = np.sum(w * x) / np.sum(w)
+            Y = np.log(((W1 @ trend["O"]) / (W1 @ n1)[:, None]) / ((W2 @ trend["P"]) / (W2 @ n2)[:, None]))
+            b = np.sum(w * (x - xm) * Y, axis=1) / np.sum(w * (x - xm) ** 2)
+            cols.append(np.log(np.abs(b))[:, None])
+        if cfac is not None:
+            Nb = W1 @ cfac["n"]
+            c = (W1 @ cfac["J"]) / Nb / np.prod((W1 @ cfac["S"]) / Nb[:, None], axis=1)
+            cols.append(np.log(c)[:, None])
+    return np.concatenate(cols, axis=1)
+
+
+def pu_joint_reps(g1, n1, s2, n2, I1, I2, trend=None, cfac=None, chunk=100):
+    """Nominal (K,) and joint replicas (B', K) of pu_joint_stats over the paired resamples I1 (B, E1), I2 (B, E2);
+    replicas with a non-finite column are dropped jointly (as trend_test drops O or P <= 0) and counted."""
+    E1, E2 = len(n1), len(n2)
+    nom = pu_joint_stats(np.ones((1, E1)), np.ones((1, E2)), g1, n1, s2, n2, trend, cfac)[0]
+    reps = np.concatenate([pu_joint_stats(_counts(I1[i:i + chunk], E1), _counts(I2[i:i + chunk], E2), g1, n1, s2, n2,
+                                          trend, cfac) for i in range(0, len(I1), chunk)])
+    ok = np.all(np.isfinite(reps), axis=1)
+    return nom, reps[ok], int((~ok).sum())
+
+
+def cfac_event_arrays(jobs, cell):
+    """Per-event arrays of v1 analyse_g3.c_test (same construction: loose F0 candidates with tag & 2, road-hit tercile
+    bins over all trials, events numbered per job in np.unique order) for one cell dict(bin, layers).
+    -> dict(n, J, S), number of events."""
+    X, B, EV = [], [], []
+    evn = 0
+    q = np.quantile(np.concatenate([d["tr"]["n_road"] for d in jobs]), [1 / 3, 2 / 3])
+    for d in jobs:
+        c = d["cand"]
+        F0 = np.unpackbits(c["rungs"][:, :1], axis=1)[:, 0].astype(bool)
+        m = ((c["tag"] & 2) > 0) & F0
+        X.append(c["cross"][m] >= 2)
+        B.append(np.digitize(d["tr"]["n_road"][c["trial"][m]], q))
+        ue, inv = np.unique(d["tr"]["ev"], return_inverse=True)
+        EV.append(inv[c["trial"][m]] + evn); evn += len(ue)
+    X = np.concatenate(X); B = np.concatenate(B); EV = np.concatenate(EV)
+    mb = B == cell["bin"]
+    Xe, Ee, L = X[mb], EV[mb], list(cell["layers"])
+    return dict(n=np.bincount(Ee, minlength=evn).astype(float),
+                J=np.bincount(Ee, weights=np.all(Xe[:, L], axis=1), minlength=evn),
+                S=np.stack([np.bincount(Ee, weights=Xe[:, l], minlength=evn) for l in L], 1)), evn
+
+
+def pu_joint(res):
+    """Register the joint families pu1, pu2, clos (coherence with joint replicas) from the context left by the pu and
+    closure families.  With the closure context: PUSamples resamples (bi1, bi2: the resamples of the slope width) for
+    all entries; without it: the paired rows of the pu bootstrap (pu1, pu2, T1, T1w only)."""
+    ctx = res.pop("_pu_ctx", {})
+    E = res["entries"]
+    if not all(n in E for n in PU_JOINT_NAMES):
+        return
+    if "S" in ctx:
+        S = ctx["S"]
+        g1, n1 = S.nobs_ev[:, 3:6], S.ntr1_ev
+        s2, n2 = S.s2_ev[:, 3:6], S.ntr2_ev
+        I1, I2 = S.bi1, S.bi2
+        src = "PUSamples event resamples bi1/bi2 (nboot_v1, the resamples of the v1 trend width)"
+    else:
+        g1, n1, s2, n2 = ctx["g1"], ctx["n1"], ctx["s2"], ctx["n2"]
+        I1, I2 = ctx["I1"], ctx["I2"]
+        src = "pu bootstrap resamples (pu1 row b paired with pu2 row b)"
+    names = list(PU_JOINT_NAMES)
+    trend = cfac = None
+    if "trend" in ctx and "clos.slope" in E and E["clos.slope"].get("v2") is not None:
+        trend = ctx["trend"]; names.append("clos.slope")
+    if "cfac" in ctx and "clos.cfac" in E:
+        cfac = ctx["cfac"]; names.append("clos.cfac")
+    nom, reps, ndrop = pu_joint_reps(g1, n1, s2, n2, I1, I2, trend, cfac)
+    for j, n in enumerate(names):                   # the per-event arrays must reproduce every entry
+        v2 = E[n]["v2"]
+        if not np.isclose(np.exp(nom[j]), abs(v2), rtol=1e-9):
+            raise RuntimeError(f"joint PU arrays do not reproduce {n}: {np.exp(nom[j])} vs {v2}")
+    d, s1 = [], []
+    for n in names:
+        e = E[n]
+        if n == "clos.slope":
+            d.append(e["coh"][0]); s1.append(e["v1_s"] / abs(e["v1"]))
+        else:
+            d.append(float(np.log(e["v2"] / e["v1"]))); s1.append(e["v1_s_ln"])
+        e["joint_family"] = n.split(".")[0]
+    groups = {}
+    for j, n in enumerate(names):
+        groups.setdefault(n.split(".")[0], []).append(j)
+    J = res.setdefault("_joint", {})
+    for f, idx in groups.items():
+        J[f] = dict(names=[names[j] for j in idx], groups=[(list(range(len(idx))), reps[:, idx])], clustered=False,
+                    d=[d[j] for j in idx], s1=[s1[j] for j in idx], replicas_source=src, n_boot=int(len(reps)),
+                    n_boot_dropped=ndrop)
+
+
 def rung_col(label):
     """Ladder column of a 'P(Rxx_...) direct' factor label."""
     from acts.stage4.analysis import common as C
@@ -304,6 +435,19 @@ def fam_closure_extra(res, a, rng_seed):
                                                "v1 background.json c_test.c_max (c, s_c)",
                                                v1_cell=dict(bin=c1v["bin"], layers=c1v["layers"]),
                                                v2_cell=dict(bin=c2v["bin"], layers=c2v["layers"]))
+    # context for the joint replicas of pu1/pu2/clos (pu_joint): the same resamples as the trend width
+    ctx = res.setdefault("_pu_ctx", {})
+    ctx["S"] = S
+    if t2.get("slope") is not None:
+        pts = t2["points"]
+        pc = [p["col"] for p in pts]
+        ctx["trend"] = dict(O=S.nobs_ev[:, pc], P=S.s2_ev[:, pc], x=[p["x"] for p in pts],
+                            w=[1 / p["sig"] ** 2 for p in pts])
+    if c2v:
+        cf, evn = cfac_event_arrays([dict(cand=d["cand"], tr=d["tr"]) for d in b1], c2v)
+        if evn != S.E1:
+            raise RuntimeError(f"c_test events {evn} != PUSamples B1 events {S.E1}")
+        ctx["cfac"] = cf
     _ = C
 
 
@@ -610,6 +754,9 @@ def main():
                 ratio = g1[2][i] / m2[i]
                 sl = float(np.hypot(np.std(np.log(g1[3][:, i]), ddof=1), np.std(np.log(b2[:, i]), ddof=1)))
                 res["entries"][f"clos.{t}"] = z_entry(f"clos.{t}", ratio, sl)
+            jr = np.random.default_rng([20261116, 1])      # fallback resamples for pu_joint (no closure context)
+            res["_pu_ctx"] = dict(g1=s[:, :3], n1=n, s2=s2, n2=n2, I1=jr.integers(0, len(n), (a.nboot, len(n))),
+                                  I2=jr.integers(0, len(n2), (a.nboot, len(n2))))
     if "closure" in fams:
         fam_closure_extra(res, a, 20261014)
     if "cprime" in fams:
@@ -618,11 +765,12 @@ def main():
         fam_rates(res, a)
     if "sm" in fams:
         fam_sm(res, a)
+    pu_joint(res)
     # family coherence and global (family = first part of the entry name; pu1/pu2/clos as Rosalie, cp0, cppu, rates, sm)
     fam = {}
     for k, e in res["entries"].items():
-        if e.get("joint_family"):
-            continue                       # clustered families (sm, cppu): joint replicas below
+        if e.get("joint_family") in ("sm", "cppu"):
+            continue                       # clustered families (sm, cppu): joint replicas only (no 1/sqrt(N) form)
         if e.get("test") == "log-ratio z":
             fam.setdefault(k.split(".")[0], []).append((np.log(e["v2"]) - np.log(e["v1"]), np.hypot(e["v1_s_ln"],
                                                                                                      e["v2_s_ln"])))
@@ -634,16 +782,28 @@ def main():
     block = {}                             # entry names replaced in the global sum by their family's d' S^-1 d
     for f, J in joint.items():
         es = [res["entries"][n] for n in J["names"]]
-        d = [np.log(e["v2"] / e["v1"]) for e in es]
-        res["families"][f] = joint_family(d, [e["v1_s_ln"] for e in es], J["groups"])
-        res["families"][f]["v1_width_rule"] = V1W_PRIMARY
-        res["families"][f]["v1_width_zero"] = joint_family(d, np.zeros(len(d)), J["groups"])
+        if J.get("clustered", True):       # sm, cppu (54610b6): v1 width primary (scaled) and 0
+            d = [np.log(e["v2"] / e["v1"]) for e in es]
+            res["families"][f] = joint_family(d, [e["v1_s_ln"] for e in es], J["groups"])
+            res["families"][f]["v1_width_rule"] = V1W_PRIMARY
+            res["families"][f]["v1_width_zero"] = joint_family(d, np.zeros(len(d)), J["groups"])
+        else:                              # pu1, pu2, clos (pu_joint): v1 widths as recorded by v1
+            naive = res["families"].get(f)
+            res["families"][f] = joint_family(J["d"], J["s1"], J["groups"])
+            res["families"][f].update(v1_width_rule="v1 widths as recorded (STR §4.1 table / background.json); v1 "
+                                                    "correlation = v2's (ESTIMATE)",
+                                      replicas_source=J["replicas_source"], n_boot=J["n_boot"],
+                                      n_boot_dropped=J["n_boot_dropped"],
+                                      frozen_script_independent=naive,
+                                      criterion="joint-replica coherence (orchestrator decision LOG 2026-11-18 12:37 (b), "
+                                                "committed before the full read); frozen script form kept as "
+                                                "frozen_script_independent")
         res["families"][f]["entries"] = J["names"]
         block.update({n: f for n in J["names"]})
     zs = [e["z"] for k, e in res["entries"].items() if k not in block and np.isfinite(e.get("z", np.nan))]
     zall = [e["z"] for e in res["entries"].values() if np.isfinite(e.get("z", np.nan))]
     s_blk = sum(res["families"][f]["chi2_block"] for f in joint)
-    s_blk0 = sum(res["families"][f]["v1_width_zero"]["chi2_block"] for f in joint)
+    s_blk0 = sum(res["families"][f].get("v1_width_zero", res["families"][f])["chi2_block"] for f in joint)
     res["individual_fail"] = [k for k, e in res["entries"].items() if e["p"] <= 0.05 / N_DECL]
     res["individual_fail_v1_width_zero"] = [k for k, e in res["entries"].items()
                                             if e.get("v1_width_zero", e)["p"] <= 0.05 / N_DECL]
@@ -655,8 +815,9 @@ def main():
                                  chi2_99_at_n_available=float(stats.chi2.ppf(0.99, max(1, n_av))),
                                  note="the global test of STR §4.1 uses all 41 quantities; partial value only. sum_z2: "
                                       "families " + (",".join(joint) or "none") + " enter as d' S^-1 d with the joint "
-                                      "replicas (same dof); sum_z2_naive treats every entry as independent. pu1/pu2/clos "
-                                      "keep the independent-entry form (not in the scope of the SM ticket)")
+                                      "replicas (same dof); sum_z2_naive treats every entry as independent (frozen "
+                                      "form). The pu1/pu2/clos blocks are decorrelated within each family only: "
+                                      "clos.T1/T1w are functions of pu1/pu2 (cross-family correlation not removed)")
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".json.part")
