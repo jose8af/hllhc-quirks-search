@@ -709,7 +709,10 @@ def fam_sm(res, a):
     res.setdefault("_joint", {})["sm"] = dict(names=names, groups=[(list(range(len(cols))), reps)])
 
 
-def main():
+CLOSURE_SEED = 20261014     # frozen closure-family seed (verdict on record); --closure-seed changes it for diagnostics
+
+
+def main(argv=None):
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     ap = argparse.ArgumentParser()
     ap.add_argument("--nboot", type=int, default=500)
@@ -725,8 +728,11 @@ def main():
     ap.add_argument("--smregen", default="p2-a-c1-smregen")
     ap.add_argument("--families", default="pu,closure,cprime,rates,sm",
                     help="subset to run (pu = pu1/pu2/T1/T1w of Rosalie; closure = slope and c-factor)")
+    ap.add_argument("--closure-seed", type=int, default=CLOSURE_SEED,
+                    help="rng seed of the closure family (PUSamples, trend, c-test); default = the frozen seed. Other "
+                         "values: DIAGNOSTIC seed scan only (advisor ruling LOG.md 2026-11-19 10:28), never a verdict")
     ap.add_argument("--out", default=str(OUT))
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     fams = set(a.families.split(","))
     rng = np.random.default_rng(20261116)
     res = dict(n_declared=N_DECL, bonferroni_p=0.05 / N_DECL, entries={}, samples={}, families={})
@@ -758,7 +764,10 @@ def main():
             res["_pu_ctx"] = dict(g1=s[:, :3], n1=n, s2=s2, n2=n2, I1=jr.integers(0, len(n), (a.nboot, len(n))),
                                   I2=jr.integers(0, len(n2), (a.nboot, len(n2))))
     if "closure" in fams:
-        fam_closure_extra(res, a, 20261014)
+        fam_closure_extra(res, a, a.closure_seed)
+        if a.closure_seed != CLOSURE_SEED:
+            res["closure_seed"] = dict(seed=a.closure_seed, frozen_seed=CLOSURE_SEED,
+                                       label="DIAGNOSTIC seed scan; the frozen verdict uses frozen_seed")
     if "cprime" in fams:
         fam_cprime(res, a)
     if "rates" in fams:

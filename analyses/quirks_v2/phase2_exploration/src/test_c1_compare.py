@@ -287,5 +287,31 @@ class TestEntries(unittest.TestCase):
         self.assertEqual(CC.rung_col(f"C'_PU attributed P({C.RUNGS[1]}) direct"), 1)
 
 
+class TestClosureSeedOption(unittest.TestCase):
+    """--closure-seed (Ragnar, 2026-11-19, diagnostic seed scan): the default is the frozen seed, so the frozen path
+    is unchanged; a non-default seed reaches fam_closure_extra and is labelled DIAGNOSTIC in the output."""
+    def _run(self, argv):
+        import tempfile
+        from unittest import mock
+        seen = []
+        with tempfile.TemporaryDirectory() as td, \
+                mock.patch.object(CC, "fam_closure_extra", lambda res, a, seed: seen.append(seed)):
+            out = Path(td) / "o.json"
+            CC.main(["--families", "closure", "--out", str(out)] + argv)
+            return seen, json.loads(out.read_text())
+
+    def test_default_is_frozen(self):
+        self.assertEqual(CC.CLOSURE_SEED, 20261014)
+        seen, res = self._run([])
+        self.assertEqual(seen, [20261014])
+        self.assertNotIn("closure_seed", res)
+
+    def test_other_seed(self):
+        seen, res = self._run(["--closure-seed", "7"])
+        self.assertEqual(seen, [7])
+        self.assertEqual(res["closure_seed"]["seed"], 7)
+        self.assertEqual(res["closure_seed"]["frozen_seed"], 20261014)
+
+
 if __name__ == "__main__":
     unittest.main()
