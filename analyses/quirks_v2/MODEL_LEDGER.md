@@ -33,3 +33,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-18 | fix agent: clustered widths in c1_compare.py (SM, C′_PU, joint replicas) (session Lisbet) | opus | default | default model | done: stage A 54610b6, SM PASS 3/3 pending E4 |
 | 2026-11-19 10:07 -0500 | Nanna | fable | rule 1(c): hs-stream validation (val-s2) feeds the day-15 reading | running |
 | 2026-11-19 10:07 -0500 | Mattias | opus | channel (i) successor: C1 comparisons | running |
+| 2026-11-19 10:25 -0500 | — | — | Mattias finished: C1 open read 34/35 frozen, 35/35 amended | done |
+| 2026-11-19 10:25 -0500 | — | — | Nanna finished: val-s2 3/3 PASS | done |
