@@ -317,10 +317,18 @@ def subset_road(U, CX, CY, S0, S1, LC, SD, J, phimet, road, eta_max, wc, ttol, i
             n0[0] = cx_ / nc; n0[1] = cy_ / nc; n0[2] = cz_ / nc
             ax0[0] = a0x / an; ax0[1] = a0y / an; ax0[2] = a0z / an
             m = 0
+            cnt[:, :] = 0
             for p in range(n):
                 if abs(P[0, p] * n0[0] + P[1, p] * n0[1] + P[2, p] * n0[2]) < (60.0 if LC[p] >= 7 else 5.0):
                     L[m] = p; m += 1
+                    cnt[LC[p], SD[p]] += 1
             nseed += 1
+            nl2p = 0                    # exact: the refit selects among L only, and a plane needs N_L2 >= 4 below
+            for l in range(10):
+                if (cnt[l, 0] if l < 4 else min(cnt[l, 1], cnt[l, 2])) >= 2:
+                    nl2p += 1
+            if nl2p < 4:
+                continue
             (st, nx, ny, nz, nl2, nit2, chi, nsel, ax, ay, az, dmax, nfin,
              itr) = refit(L, m, P, J, LC, SD, pid, n0, ax0, wc, iters, ttol, 2.5, SF, sel, M, cnt, sgu, selp, selw, 0,
                           n0[0], n0[1], n0[2])
