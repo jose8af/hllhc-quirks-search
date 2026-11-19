@@ -147,3 +147,71 @@ file; with hs about 3.5×10² are to be expected [E: 2×10⁶ × the low-p_T mix
 three times the "order 10²" on which the decision of 17 Nov was taken: the rate per event is the same order as
 estimated then (1.85×10⁻⁵ against 4 / 4.3×10⁵ = 0.9×10⁻⁵), the decision's basis is not changed in kind, but the
 orchestrator should see the measured value. FLAG FOR HUMAN: information only.
+
+## §7. Hard-scatter stream (val-s2), added 2026-11-19 10:07 (executor Nanna)
+**Verdict: 3 of 3 jobs PASS under the approved reading `hard_except_early_product_hits` (6 of 6 files). Under the
+strict `hard` check the job `-hs` FAILS on one file (c0-hs-0001), on the one known item "no product hit before its own
+production time": 1 flagged event, 2 hits, in 52,250 events. The two input jobs (`-hspool`, `-g4h`) pass `hard` as
+worded.** With this the per-stream validation of P7 covers 9 of 9 streams. Every number is VERIFIED from the files
+named, unless tagged [E]. Read only: nothing launched, no pilot file opened by me, no signal sample involved.
+
+Campaign `p2-c-pilot-val-s2` (file `tools/runner/examples/p2x/b1_val/p2-c-pilot-val-s2.json`, sha256 2836666e2cae…,
+equal to the value in §5), run on maxwell 19 Nov 00:17–00:18, 3 of 3 jobs `done`, exit 0, attempt 1 (last line of
+each marker in `analyses/quirks_v2/ledger/markers/p2-c-pilot-val-s2/000/`). Outputs `D2/p2-c-pilot-val-s2-<j>.json`,
+`D2 = /nfs/cajuela/jdochoa/quirks_v2/data/p2c/pilot_validation/p2-c-pilot-val-s2/000`; their sha256 recomputed by me
+equal the markers'. Cost (markers): **21.96 CPU-s = 0.0061 CPU-h** (§5 estimate: ≈ 30 CPU-s per job), max RSS
+87–383 MB, wall 2.9–40.6 s.
+
+### 7.1 Verdict per job
+| job | files validated (validator mode) | events / rows | `hard` (file 1, file 2) | approved reading | early hits: hits / events | A1, % | output sha256 (first 16); CPU-s; RSS MB |
+|---|---|---|---|---|---|---|---|
+| `-hs` (stream pilot.c0.hs, hand-over autoh) | p2-c-pilot-c0-hs-0000, -0001 (b1x) | 26,125 + 26,125 = 52,250 events | pass, **FAIL** | **pass, pass → PASS** | 0 + 2 / 0 + 1 | 0.085, 0.074 | 424c401606d134db; 10.06; 322 |
+| `-hspool` (pilot.c0.hs.pool) | p2-c-pilot-hph-000, -001 (hspool-x) | 230,000 + 230,000 generated events; 212,546 + 213,475 pool rows | pass, pass | **PASS** (see note) | not defined in this mode | not defined | c237277f29e4f472; 0.98; 87 |
+| `-g4h` (pilot.g4 chunks 2000, 2001, group hs, pass 'all') | p2-c-pilot-g4h-0000.hs, -0001.hs (g4prod) | 1,859,000 + 1,859,000 firings; 212,071 + 212,487 vertices | pass, pass | **PASS** (see note) | not defined in this mode | not defined | af68ca7ab28cec14; 10.92; 383 |
+
+Note: the field `hard_except_early_product_hits` exists only in chain files (mode b1x). The pool and vertex files
+carry only `hard`; both are true in both files, so they pass under either reading. Job summaries
+`all_hard_checks_pass`: false for `-hs` (`files_failing` = c0-hs-0001 only), true for `-hspool` and `-g4h`.
+
+### 7.2 Hard checks
+- **`-hs`, both files true:** `content_hash_recomputed_equal`, `v41_pass`, `offsets_ok`, `seeds_distinct`,
+  `parent_truncation_ok` (0 parent hits beyond the vertex radius in radius-mode events, 0 later than the vertex time
+  in time-mode events, `ev_mode_consistent`), `class_recomputed_equal`, `class_in_sample`, `first_arc_equal`,
+  `parent_in_phase_space` (window checked: p_T 0.5–20 GeV, |η| < 1, not offroad), `road_offset_ok`, `hits_all_gun`,
+  `provenance`, `a1_ok` (A1 = 314 / 367,726 and 272 / 364,973 crossings). Zero in both files: `nan_hits`, `evt_nan`,
+  `product_hits_without_input_row`, `mean_injected_slow`. `beta_min` = 0.1, `trunc_mode` = autoh in both.
+  **The only failing item:** `product_hits_earlier_than_own_production` = 2 in file 0001 (1 event); file 0000 has 0.
+  Hence `hard` and `hard_without_a1` false for file 0001, `hard_except_early_product_hits` true for both.
+- **`-hspool`, both files true:** `content_hash_recomputed_equal`, `pool_in_phase_space`, `pool_road_ok`,
+  `pool_species_ok`, `events_distinct`; `pool_nan` = 0; `hard` true.
+- **`-g4h`, both files true:** `content_hash_recomputed_equal`, `class_recomputed_equal`, `class_in_group`,
+  `first_arc_consistent`, `offsets_ok`, `partition_sum_ok` (the yield check against the partition file that §5 lists
+  as not yet run on pilot files: now run on these two hs vertex files); `nan` = 0; `hard` true.
+- **Another chunk gives another content hash:** true in 3 of 3 jobs (2 jobs, 2 hashes each;
+  `all_different_seeds_differ`). No rerun pair exists, so `all_reruns_identical` has nothing to compare (reads false
+  for that reason, 0 groups; not a failure, as in §3).
+
+Information, not criteria. hs chain: classes per file dif 7,242 / 7,247, difc 6,519 / 6,485, k0l 392 / 386,
+ni22 390 / 403, ni30 509 / 546, ni61 538 / 517, nix 7,303 / 7,257, nic 3,232 / 3,284; `n_per_ev_mode` −1: 1,412 /
+1,452, 0: 14,962 / 14,904, 3: 9,751 / 9,769; `a1_frac_fatras_without_g4` 1.04 %, 1.09 %;
+`product_hits_earlier_than_vertex` (old form) 0 and 2; `w_src_mean` 0.979 in both. Pool: `pool_per_event` 0.924,
+0.928; weights in [0, 0.98]. Vertex files: 71,008 / 70,686 conversions and 37 / 30 'other' outside the eight
+classes; 0.272 / 0.271 ms per firing.
+
+### 7.3 Flagged events of the hs stream (for PREREG_v2)
+- **What the validator gives: 1 flagged event (2 hits) in the two validated files = 52,250 events, rate
+  1.9×10⁻⁵ per event** (file 0000: 0; file 0001: 1). Compatible with the §6 pilot-wide rate 1.85×10⁻⁵ and with the
+  §6 expectation for hs (≈ 40 in 2×10⁶ [E]); from one event no rate can be quoted with a useful error (95 % interval
+  for 1 observed: 0.03–5.6 events [E, Poisson]).
+- **The stream-wide count (events with `n_early_prod` > 0 in all 77 chain files of p2-c-pilot-c0-hs) is NOT given by
+  this campaign**: it validated 2 of the 77 files. The class of the flagged event is not in the validator output
+  either. The pilot-wide total of §6 (318 in 17,200,000 events, 8 streams) therefore still excludes hs.
+- To obtain it: one light job of the §6 kind (`src/p2h_ephcount.py` with a manifest of the 77 c0-hs files; §6 cost
+  7.8 CPU-s for 546 files). Not done: launching is outside my task; it needs the orchestrator's word.
+- As in §2, the flagged event is in the file 0001 and none in the file 0000. §6 showed this pattern to be chance in
+  the other streams; at 1.9×10⁻⁵ a file of 26,125 events expects ≈ 0.5 [E], so 0 and 1 are ordinary.
+
+### 7.4 Not covered
+One job (two files) per stream, as P7 asks: the other 75 chain files of c0-hs, the other pool files of hph and the
+g4h vertex files beyond chunks 2000 and 2001 are not validated. The vertex files of the class block ('all', 'ni',
+low-p_T passes; §5 second item) remain unvalidated as files.
