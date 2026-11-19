@@ -569,6 +569,25 @@ def fxfx_py8_card(sd, nev, qedfsr=True):
     return '\n'.join(L) + '\n'
 
 
+FXFX_SHOWER_SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fxfx_shower.cc')
+FXFX_SHOWER_DIR = os.path.join(SW, 'fxfx_shower')   # binaries named by the source sha256 (build: build_fxfx_shower.sh)
+FXFX_OWN_DROP = ('HEPMCoutput:', 'LHEFInputs:', 'Main:subrun')   # MG5aMC_PY8_interface-only keys
+
+
+def fxfx_shower_exe():
+    """Our FxFx shower driver (fxfx_shower.cc, main164-style), built from exactly the committed source."""
+    h = hashlib.sha256(open(FXFX_SHOWER_SRC, 'rb').read()).hexdigest()[:16]
+    exe = os.path.join(FXFX_SHOWER_DIR, f'fxfx_shower-{h}')
+    if not os.access(exe, os.X_OK):
+        sys.exit(f'{exe} missing: build it from {FXFX_SHOWER_SRC} (build_fxfx_shower.sh)')
+    return exe, h
+
+
+def fxfx_own_card(sd, nev):
+    """fxfx_py8_card (same FxFx/CP5/quirk/QED-FSR settings) without the interface-only keys, for fxfx_shower."""
+    return '\n'.join(l for l in fxfx_py8_card(sd, nev).split('\n') if l and not l.startswith(FXFX_OWN_DROP)) + '\n'
+
+
 def cmd_fxfx(a):
     """fxfx <tag> <E|S> <mass> <nev> [--shower] [--stage compile|grids|gen] [--acc X]: MC@NLO 0-1j (FxFx) events with
     loop_quirkE, staged so that every runner job stays below 30 min: 'compile' = output + `compile MC` (stamp COMPILED);
@@ -674,14 +693,19 @@ def cmd_fxfx(a):
         os.makedirs(pd)
         shutil.copy(lhe, os.path.join(pd, 'events.lhe.gz'))
         spy = seed(f's2.fxfx.{spin}{mass}', tag + '.py8', 900000000)
-        open(os.path.join(pd, 'PY8Card.dat'), 'w').write(fxfx_py8_card(spy, nlhe))
-        timed('py8_fxfx', [PY8_EXE, 'PY8Card.dat'], pd, os.path.join(pd, 'PY8_log.txt'), mg_env())
-        e = dict(os.environ, NUMBA_CACHE_DIR=os.path.join(work, 'numba'), PYTHONDONTWRITEBYTECODE='1')
-        timed('convert_npz', [ANA_PY, os.path.join(SIM, 'scripts', 'convert_hepmc.py'), os.path.join(pd, 'events.hepmc'),
-                              os.path.join(out, f'{tag}.npz'), '--mq', str(mass), '--spin', 'F' if spin == 'E' else 'S',
-                              '--sigma-lhe-pb', repr(info['sigma_pb'] or 0.0), '--nlhe', str(nlhe), '--tag', tag,
-                              '--norm', 'auto'], SIM, os.path.join(work, 'convert.log'), e)
-        os.remove(os.path.join(pd, 'events.hepmc'))
+        # Sune 2026-11-19: MG5aMC_PY8_interface segfaults on FxFx (DJR histograms); our main164-style driver instead
+        exe, info['fxfx_shower_src_sha16'] = fxfx_shower_exe()
+        open(os.path.join(pd, 'PY8Card.dat'), 'w').write(fxfx_own_card(spy, nlhe))
+        timed('py8_fxfx', [exe, 'PY8Card.dat', 'shower.txt'], pd, os.path.join(pd, 'PY8_log.txt'), mg_env())
+        timed('txt_to_npz', [ANA_PY, '-I', '-c',
+                             'import sys, numpy as np; t = np.loadtxt(sys.argv[1], ndmin=2); '
+                             's = [l for l in open(sys.argv[1]) if l.startswith("# summary")][0].split()[2:]; '
+                             'k = "w pt_pair eta_pair m_pair pt_pair_hard n_me njet30 npnlo".split(); '
+                             'd = {n: t[:, i] for i, n in enumerate(k)}; '
+                             'd.update({"summary_" + s[j]: float(s[j + 1]) for j in range(0, len(s), 2)}); '
+                             'np.savez_compressed(sys.argv[2], **d)',
+                             os.path.join(pd, 'shower.txt'), os.path.join(out, f'{tag}.npz')],
+              pd, os.path.join(work, 'convert.log'))
     else:
         open(os.path.join(out, f'{tag}.npz'), 'wb').close()
     shutil.copy(lhe, os.path.join(out, f'{tag}.lhe.gz'))
