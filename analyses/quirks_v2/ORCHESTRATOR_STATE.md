@@ -63,6 +63,8 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 
 **User away 20–22 Nov (decided 19 Nov 17:20):** reversible new decisions → advisor-checked default labelled "default, user absent"; irreversible/outward (installs, new permissions, unsealing, deleting data, budget beyond approved, the day-15 pause) wait with a DECISION notice. Continue into Phase 3 in this session after closing Phase 2 (write the Phase-2 closing state first). Heartbeat cron every 3 h + daily-report cron 18:47 (both session-only).
 
+**User request (19 Nov 17:25): reach outlook at every step.** Every daily report and every RESULT notice carries a line "Reach outlook vs last report: more / less / equally promising, because …" (ESTIMATE, v1 placeholder efficiencies only; no v2 signal efficiency). Planned item: once Cecilie's rule-1 validation is in, an Opus executor recomputes the Gate A reach estimate with the pilot-based backgrounds (Z(νν) own-hit count, Eskil's attributed conversion scale), same script and placeholder efficiencies as Gate A, labelled ESTIMATE; note that the rule-1 B₅₀ is a ceiling, not a background estimate.
+
 **Standing user rule (19 Nov 11:20):** when no user decision is needed, start the next planned work at once; never leave nodes and agents idle while planned work remains.
 
 ## 1. What is running unattended (check, do not disturb)
