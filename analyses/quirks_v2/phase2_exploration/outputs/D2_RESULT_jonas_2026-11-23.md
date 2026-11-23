@@ -118,3 +118,6 @@ The 2 lost attempts (0014-a/b on landau, killed by the power loss after ≤ 3.0 
 3. 9 (not 8) events with a ±1-hit nominal mismatch; negligible (§4.2).
 4. The varied chain cost twice the plan's unit estimate; the total stayed under the stop rule.
 5. Plan §7 item 7: the 600 events are the C1 reproduction / B2 development events, not a closure sample.
+
+---
+**Orchestrator note, 2026-11-23 15:45 -0500 (supersedes wording at l.16 and l.113-114; text above left as written).** Advisor ruling Olav (LOG.md 2026-11-23 15:32), binding for EXPLORATION.md, [L15] and the paper: "conservative (it over-counts)" holds only at R04–R06, at fixed raw hit density, on 600 development events, assuming the TDR density; it is not a statement about the pile-up term at R08+. 1/r(R06) = 1.39 ± 0.08 is a nominal/varied ratio at R06, not a property of the top-up model, and is never used as a factor (no credit). "Robust" is the B6-b label = below the factor-2 threshold. "No trend" → "no significant trend (−0.062 ± 0.061)". Caveat: 55 of 427 varied R06 groups (12.9 %) are a same-particle-double class absent in v1; net r < 1 does not show it stays subdominant at R07+.

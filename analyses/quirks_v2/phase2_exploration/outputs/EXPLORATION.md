@@ -1,7 +1,7 @@
 # EXPLORATION — Phase 2 of the quirks v2 study (consolidated)
 
 **Status:** consolidated Phase-2 artifact, written 2026-11-23 from 15:38 -0500 (`date`) by Peder (Opus, executor).
-Six items are still running or undecided; each has a marked `PENDING` block (list in §11). Phase 2 is **not closed**
+Six items were running or undecided at writing (D8 decided since, 23 Nov 15:45); each has a marked `PENDING` block (list in §11). Phase 2 is **not closed**
 by this document: it closes when the PENDING blocks are filled or ruled on.
 
 **What this is.** A consolidation of the channel files of Phase 2 (16–23 Nov 2026). No new computation, no new
@@ -441,10 +441,14 @@ C′_PU samples."
 - Utilisation before the outage 0.63 (slot) / 0.58 (CPU) against 0.50 assumed; one full-queue day at 0.82 CPU
   [V: LEI l.187-193].
 
-> **PENDING: orchestrator, Z(νν) top-up decision (addendum D8, due day 7).** Leif's reading (ESTIMATE, his own): with
-> m_Z = 253 near-passes no enlargement is needed for statistics; cost if drawn +45 / +109 CPU-h [LEI l.159, l.164-165].
-> COM l.321: "D8 an R08 candidate pauses on 1–3 counts, Z(νν) top-up decided at day 7". To fill: the decision and
-> its basis.
+> **DECIDED 2026-11-23 (orchestrator, advisor Runa; LOG.md 2026-11-23): Z(νν) top-up (addendum D8) NOT drawn.** The top-up
+> exists only to keep an R08 candidate from pausing on 1–3 counts (ADD l.109). First counts at R08 = R09: 253 (finder,
+> lower bound) to 1,501 (subset pass, under review) [VERIFIED, ING §1], i.e. B₅₀ 10,777–63,170 events against a
+> pause level of 299.1 (≈ 7 counts at ≈ 42 events per count); a 1.5× or 2.3× larger sample changes the events per count,
+> not the side of 300. 0 CPU-h spent (+45 / +109 if drawn). Reopens (as a user decision, a launch needs approval) only if a
+> revised count at any T2 candidate falls to ≈ 10 counts or fewer; a FAIL of the subset review does not reopen it (the
+> finder lower bound alone is above by a factor 36). R14-type candidates (969 / 147 counts vs a pause level of 4) do not
+> reopen it. The user was told in the daily report of 23 Nov and may still ask for it.
 
 ## 9. Strategy-revision inputs
 
@@ -554,7 +558,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked | §7 |
 | 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
 | 4 | not started (Opus executor, after Kari) | reach re-estimate | §9 |
-| 5 | orchestrator | D8 Z(νν) top-up decision | §8 |
+| 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
 | 6 | Phase 3 | MET model and final pilot classification | §9 |
 
 ## 12. Disagreements between documents on a number (listed, not resolved)
