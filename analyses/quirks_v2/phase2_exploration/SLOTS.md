@@ -91,3 +91,4 @@
 - 2026-11-23 15:21 -0500 | maxwell | 1 slot, ≈ 1.2 h (6 jobs ≤ 30 min, one at a time) | channel (ii) Halvard: p2-b-s2-fxfx-gen1500 (FxFx E1500 gen + shower from grids4, done 15:19); node count before 2 (D2 find), load 2.6; driver on maxwell, log /home/scratch/jdochoa/drivers/p2-b-s2-fxfx-gen1500.ssh.log
 - 2026-11-23 15:25 -0500 | maxwell | 1 slot, ≈ 10 min | D2 executor Jonas (successor of Ulrika): p2-c-d2-find finished 15:25 (60/60); now p2-c-d2-sum (1 job, ≤ 4 GB RSS), driver on maxwell, --max-per-node 1; node count before: 1 (Sune FxFx gen), load 2.0
 - 2026-11-23 15:31 -0500 | maxwell | D2 slots RELEASED | orchestrator for Jonas: p2-c-d2-find 60/60 and p2-c-d2-sum done; nothing of D2 runs (Jonas's 15:25 line committed by me)
+- 2026-11-23 16:17 -0500 | maxwell | slot RELEASED | channel (ii) Halvard: p2-b-s2-fxfx-gen1500 6/6 done (16:15); nothing of mine runs

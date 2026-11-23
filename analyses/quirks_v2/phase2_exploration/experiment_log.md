@@ -309,3 +309,13 @@ classification). D2 worded by LOG l.991 (Olav); rule 1 by LOG l.975 (i)-(iii), s
 DECISION: tag each number with the status its source gives it, plus file:line; values re-read from JSON marked "re-read".
 ALTERNATIVES: tag every transcribed number UNVERIFIED. CONFIDENCE: medium. FLAG FOR HUMAN: none; twelve document
 disagreements listed in EXPLORATION.md §12, not resolved. PDF build test not run (einstein-only session).
+
+## 2026-11-23 16:17 -0500 — Halvard (channel (ii)): FxFx E 1500 done; S2-c FxFx piece met
+- fxfx-e1500-grids4 (user-approved single 7,200 s job, 19 Nov) done: 6,728 s wall, 6,688 CPU-s; σ 1.052e-5 ± 2.8e-8 pb.
+- p2-b-s2-fxfx-gen1500 (6 × 15k LHE, own FxFx shower driver, maxwell, 1 at a time, ≤ 559 s each): 3,163 CPU-s.
+- f200^FxFx(E1500) = 0.16353 ± 0.00242 (1.5 %) vs MLM nominal 0.16755 (band +5.96/−5.94 %): −2.40 ± 1.80 %, inside;
+  band and κ unchanged (1.060 / 0.941). With E 500 (+1.05 ± 2.13 %, inside) the frozen S2-c FxFx comparison is complete.
+- DECISION: reuse Sune's gen1500 campaign unchanged except the --restore path (grids3 → grids4).
+  ALTERNATIVES: resize the batches after gen-01. CONFIDENCE: HIGH (gen-01 559 s ≪ 1,800 s; 1.5 % reached).
+  FLAG FOR HUMAN: no.
+- Details: outputs/FXFX_E1500_halvard_2026-11-23.md; outputs/s2/f200_fxfx_E1500.json.

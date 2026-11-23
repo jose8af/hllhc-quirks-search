@@ -31,3 +31,7 @@ CPU budget (ESTIMATE): grids4 ≈ 1.9 CPU-h (already approved and running) + gen
 
 ## Entries
 - 2026-11-23 13:31 -0500 plan written; background wait on the grids4 marker started.
+- 2026-11-23 15:20 -0500 grids4 **done** (marker 15:19:48): wall 6,727.6 s, CPU 6,688.2 s (user 3,709 + sys 2,979), rc 0 [VERIFIED, marker]; margin 472 s against 7,200 s. σ = 1.052×10⁻⁵ ± 2.8×10⁻⁸ pb, 2,000 LHE events, 341 negative (17.1 %) [VERIFIED, timing.json, awk on lhe.gz]; procdir.tar.gz 188 MB (sha256 ec22d2a6…).
+- 2026-11-23 15:21 -0500 SLOTS line; p2-b-s2-fxfx-gen1500 driver on maxwell (pid 234445, --max-per-node 1, log maxwell:/home/scratch/jdochoa/drivers/p2-b-s2-fxfx-gen1500.ssh.log); gen-01 dispatched 15:21:16. Node-local E_m1500 has COMPILED + READY from grids4.
+- 2026-11-23 15:30 -0500 gen-01 done: wall 559 s, CPU 536 s (MG -o 377 s, shower 158 s), n_lhe 15,000, σ 1.053e-5 pb [VERIFIED, marker + timing.json]; well under 1,800 s → the remaining 5 run as planned (≈ 47 min).
+- 2026-11-23 16:17 -0500 f200_fxfx E1500 = 0.16353 ± 0.00242 (−2.40 ± 1.80 % vs nominal, inside the band, κ unchanged); output outputs/FXFX_E1500_halvard_2026-11-23.md; slot released; experiment_log + DAILY_NOTES appended.

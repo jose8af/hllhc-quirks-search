@@ -1,0 +1,70 @@
+{
+ "point": "E1500",
+ "definition": "f200 = sum w[pt_pair > 200] / sum w, signed MC@NLO weights, after FxFx matching, no eta cut",
+ "files": [
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-01.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-02.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-03.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-04.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-05.npz",
+  "/nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-gen1500/000/fxfx-e1500-gen-06.npz"
+ ],
+ "n_lhe": 90000,
+ "n_matched": 55979,
+ "matched_fraction": 0.6219888888888889,
+ "n_out_check": 55979,
+ "neg_weight_fraction": 0.1659550903017203,
+ "n_eff": 24985.891155611924,
+ "f200_fxfx": 0.16353378432578414,
+ "stat": 0.0024247866144992973,
+ "stat_rel": 0.014827435349192153,
+ "per_file_f200": [
+  0.1700209306069876,
+  0.15790312300828552,
+  0.17050175775007986,
+  0.16084250837721398,
+  0.15430314707771356,
+  0.16772203279753206
+ ],
+ "multiplicities": {
+  "n_me": {
+   "0": 18830,
+   "1": 29548,
+   "2": 7601
+  },
+  "njet30": {
+   "0": 16645,
+   "1": 20642,
+   "2": 11854,
+   "3": 4596,
+   "4": 1561,
+   "5": 507,
+   "6": 124,
+   "7": 41,
+   "8": 7,
+   "9": 2
+  },
+  "npnlo": {
+   "0": 19199,
+   "1": 36780
+  }
+ },
+ "nominal": {
+  "f200": 0.16754717890436566,
+  "stat": 0.0018483716643218201,
+  "band_up": 0.059646546381575176,
+  "band_dn": 0.059378141320339556
+ },
+ "rel_shift_fxfx_vs_nominal": -0.023953817693775248,
+ "rel_shift_stat": 0.018038556170086664,
+ "outside_band": false,
+ "band_after_fxfx": {
+  "up": 0.059646546381575176,
+  "dn": 0.059378141320339556
+ },
+ "T1_nuisance_after_fxfx": {
+  "kappa_up": 1.0596465463815752,
+  "kappa_dn": 0.9406218586796604
+ },
+ "rule": "STR l.2021-2022: if the FxFx value lies outside the band, the band is enlarged to contain it (central value)"
+}
