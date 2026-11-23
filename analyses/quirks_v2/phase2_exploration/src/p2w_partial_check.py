@@ -17,7 +17,7 @@ WN = ['R04', 'R05', 'R06', 'R07', 'R08']; WV = dict(R04=1e9, R05=37.5, R06=18.75
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s', stream=sys.stderr)
     rows = {}; files = set(); cpu = 0.0; nj = 0; ix = None
-    for f in glob.glob(D + '/rule1_valid/p2-c-r1v-s2[ab]/000/*.npz'):
+    for f in glob.glob(D + '/rule1_valid/p2-c-r1v-s[23][ab]/000/*.npz'):
         z = np.load(f); m = json.loads(str(z['meta'])); r = z['rows']; ix = {k: i for i, k in enumerate(m['row_cols'])}
         cpu += m['cpu_s']; nj += 1
         for fi, fm in enumerate(m['files']):

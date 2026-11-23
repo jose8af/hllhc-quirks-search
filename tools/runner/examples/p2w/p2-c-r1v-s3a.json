@@ -1,0 +1,148 @@
+{
+ "campaign": "p2-c-r1v-s3a",
+ "tier": "regenerable",
+ "data_prefix": "p2c/rule1_valid",
+ "regenerate": "inline generator in logs/executor_ingvild_2026-11-23_13-31.md",
+ "description": "Rule-1 validation (c): the 19 jobs of p2-c-r1v-s2a that failed at start on 2026-11-23 (numba cache index of subset_road could not be saved after 51 entries: ReferenceError in numba caching, before any classification). Same script, same manifest keys, same arguments; only NUMBA_CACHE_DIR (numba_s5, new) and the job/output names differ. Ingvild, successor of Cecilie.",
+ "expected_hours": 0.3,
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "r1v-s3-nic-08",
+   "outputs": [
+    "r1v-s3-nic-08.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nic-08 --out $QV2_OUT_DIR/r1v-s3-nic-08.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nic-10",
+   "outputs": [
+    "r1v-s3-nic-10.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nic-10 --out $QV2_OUT_DIR/r1v-s3-nic-10.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nic-12",
+   "outputs": [
+    "r1v-s3-nic-12.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nic-12 --out $QV2_OUT_DIR/r1v-s3-nic-12.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nic-14",
+   "outputs": [
+    "r1v-s3-nic-14.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nic-14 --out $QV2_OUT_DIR/r1v-s3-nic-14.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-01",
+   "outputs": [
+    "r1v-s3-nix-01.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-01 --out $QV2_OUT_DIR/r1v-s3-nix-01.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-03",
+   "outputs": [
+    "r1v-s3-nix-03.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-03 --out $QV2_OUT_DIR/r1v-s3-nix-03.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-05",
+   "outputs": [
+    "r1v-s3-nix-05.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-05 --out $QV2_OUT_DIR/r1v-s3-nix-05.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-07",
+   "outputs": [
+    "r1v-s3-nix-07.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-07 --out $QV2_OUT_DIR/r1v-s3-nix-07.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-09",
+   "outputs": [
+    "r1v-s3-nix-09.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-09 --out $QV2_OUT_DIR/r1v-s3-nix-09.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-11",
+   "outputs": [
+    "r1v-s3-nix-11.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-11 --out $QV2_OUT_DIR/r1v-s3-nix-11.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-13",
+   "outputs": [
+    "r1v-s3-nix-13.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-13 --out $QV2_OUT_DIR/r1v-s3-nix-13.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-15",
+   "outputs": [
+    "r1v-s3-nix-15.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-15 --out $QV2_OUT_DIR/r1v-s3-nix-15.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-17",
+   "outputs": [
+    "r1v-s3-nix-17.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-17 --out $QV2_OUT_DIR/r1v-s3-nix-17.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-19",
+   "outputs": [
+    "r1v-s3-nix-19.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-19 --out $QV2_OUT_DIR/r1v-s3-nix-19.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-21",
+   "outputs": [
+    "r1v-s3-nix-21.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-21 --out $QV2_OUT_DIR/r1v-s3-nix-21.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-23",
+   "outputs": [
+    "r1v-s3-nix-23.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-23 --out $QV2_OUT_DIR/r1v-s3-nix-23.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-25",
+   "outputs": [
+    "r1v-s3-nix-25.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-25 --out $QV2_OUT_DIR/r1v-s3-nix-25.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-27",
+   "outputs": [
+    "r1v-s3-nix-27.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-27 --out $QV2_OUT_DIR/r1v-s3-nix-27.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  },
+  {
+   "id": "r1v-s3-nix-29",
+   "outputs": [
+    "r1v-s3-nix-29.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s5 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && S=$QV2/phase2_exploration/src && nice -n 10 $PY $S/p2w_subset.py --id r1v-sub-nix-29 --out $QV2_OUT_DIR/r1v-s3-nix-29.npz --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p2w/p2-c-r1v-sub_files.json"
+  }
+ ]
+}

@@ -283,3 +283,9 @@ FLAG FOR HUMAN: Gate A's conversion range does not carry over as a term size (ρ
   MG "AlreadyRunning": stale RunWeb left by the 14:23 kill; no MINT work done); s2_job then wrongly stamped READY (removed).
   The approved single 2-h computation has not run; "no retry" is read as applying to a timeout. ALTERNATIVES: record
   E1500 NOT DONE now. CONFIDENCE: MEDIUM. FLAG FOR HUMAN: yes (orchestrator to confirm this reading).
+
+## 2026-11-23 15:14 -0500 — Ingvild (successor of Cecilie): rule-1 validation (a2), (c) read
+Result (outputs/RULE1_VALID_ingvild_2026-11-23.md): (c) subset-pass m_Z at R08 = 1,501 (S) / 1,474 (F), B1/HS/lowpt 0; acceptance 0 violations of 22,790; B50(R09) 63,170 (S) / 62,037 (F), R08 63,246-63,294; with = without flagged events. (a) NO POWER as planned; (a2) PASS (D2 = 0, 350 events). (d) PASS (Cecilie). "Above 300" stands. CPU 4.93 h (markers).
+FAILED ATTEMPT: 36 nic/nix jobs of p2-c-r1v-s2a/b died at start: numba cache index of subset_road cannot be saved after 51 entries (each job adds one; ReferenceError "underlying object has vanished").
+DECISION: rerun the 36 as p2-c-r1v-s3a/b, same script and arguments, new NUMBA_CACHE_DIR; summary glob s2[ab] -> s[23][ab]. ALTERNATIVES: delete the cache index and edit markers to retry in place (touches the ledger); drop cache=True (changes the script hash mid-campaign). CONFIDENCE: high (script sha256 identical in all 139 outputs; file-count and event-total guards pass).
+FLAG FOR HUMAN: p2w_subset.py is not reviewed by a second agent: under advisor ruling (ii) the finder count (253 -> 10,777) remains the stand-in lower bound until it is; the verdict "above" is the same.

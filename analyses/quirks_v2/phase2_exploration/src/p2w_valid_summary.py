@@ -183,7 +183,7 @@ def part_c(out):
     rows = {}; nev = {t: 0 for t in TERMS}; nfl = {t: 0 for t in TERMS}; seen = set()
     tot = dict(cpu_s=0.0, n_errors=0, n_pref=0, n_seeds=0, n_planes=0, n_greedy=0, max_seeds=0, max_road=0, n_jobs=0)
     zfull = 0; sha = set()
-    for f in sorted(glob.glob(f'{V}/p2-c-r1v-s2[ab]/000/*.npz')):
+    for f in sorted(glob.glob(f'{V}/p2-c-r1v-s[23][ab]/000/*.npz')):
         z = np.load(f); m = json.loads(str(z['meta'])); r = z['rows']; cols = m['row_cols']
         ix = {k: i for i, k in enumerate(cols)}
         tot['cpu_s'] += m['cpu_s']; tot['n_errors'] += m['n_errors']; tot['n_jobs'] += 1; sha.add(m['script_sha256'])
