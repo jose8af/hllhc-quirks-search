@@ -66,4 +66,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | done (ruling adopted) |
 | 2026-11-23 15:32 -0500 | Peder | opus | EXPLORATION.md consolidation (placeholders for running items) | done (4babc51) |
 | 2026-11-23 15:44 -0500 | Runa | fable | advisor: D8 Z(νν) top-up on present counts; the 10 number disagreements of EXPLORATION §12 | done (ruling adopted) |
-| 2026-11-23 16:18 -0500 | Siri | fable | advisor: S2-c FxFx E1500 read, band/κ, notice | running |
+| 2026-11-23 16:18 -0500 | Siri | fable | advisor: S2-c FxFx E1500 read, band/κ, notice | done (ruling adopted) |

@@ -39,7 +39,7 @@ worded by the rulings (i)–(iii) of LOG l.975 (Åsa). Frozen criteria are quote
 | C2-c (T_seed) | "\|z\| < 2.73 for the pass fraction of every rung family at ρ = 1 and 2" (COM l.175) | **PASS, no power** (every family pass fraction 1 or 0) | flag: proposed reporting form, not applied | C2V l.39-43, l.54-60 |
 | S2-a | three validations (COM l.231) | val. 1 PASS; val. 2 PASS with the qualifier "reference = an independent public code run by us … not a published number"; val. 3 PASS (power caveat) | — | EDG l.17; LOG l.577-583 |
 | S2-b | "table of σ_norm(m) with both PDF sets; every limit also quoted with σ_NLO × (NLO+NLL)/NLO" (COM l.232) | **met** (ratio from self-run Resummino, scalar applied to E: flagged) | — | EDG l.18, l.91-133 |
-| S2-c | "scale, PDF, merging-scale, tune and FxFx (500 and 1,500 GeV) comparisons; nuisance in T1" (COM l.233) | met except FxFx; FxFx E 500 done (inside band, band unchanged); **E 1500 PENDING (§4.3)** | — | EDG l.19; SUN l.201-204 |
+| S2-c | "scale, PDF, merging-scale, tune and FxFx (500 and 1,500 GeV) comparisons; nuisance in T1" (COM l.233) | comparisons complete (scale, PDF, merging, tune, FxFx at 500 and 1,500 GeV; both FxFx central values inside the band, band and κ unchanged); T1 propagation due at 4a (row open) | — | EDG l.19; SUN l.201-204; HAL (FXFX_E1500_halvard_2026-11-23.md) |
 | S2-d | "nominal samples showered with the QED-FSR card" (COM l.234) | met for the S2-c samples; production must pass `--qedfsr` | — | EDG l.20, l.211-214 |
 | S2-e | "cited figure and page; else … 'parametrised, not sourced' with the pre-declared wide nuisance" (COM l.235) | curve sourced, no uncertainty stated | **user decision 19 Nov:** option (b), threshold 250 GeV, −10.6 % absolute at 250 GeV, recorded as a clarification before A | COM l.366; LOG l.969 |
 | S2-f | "number per mass with its source (R-12) or the label 'not sourced'" (COM l.236) | +5.7 % (E 200) … +7.9 % (E 1500) at 1 keV; **not sourced**; one-sided band | — | EDG l.22, l.264-275 |
@@ -241,11 +241,21 @@ installed Pythia 8.313 (nothing installed or patched; commit b8f42ed before prod
 segfault (DJR histograms booked for nJetMax = 1, filled at the FxFx parton count) [V: SUN l.110-119, l.150-170].
 Frozen consequence: "If the FxFx value lies outside the band, the band is enlarged to contain it" (STR l.2021-2022).
 
-> **PENDING: Halvard, FxFx E 1500 first launch (job `grids4`, the single 7,200 s job approved by the user on 19 Nov,
-> LOG l.981) and f₂₀₀^FxFx at E 1500 (gen batches `p2-b-s2-fxfx-gen1500`).** Until it is read, the S2-c FxFx piece is
-> NOT MET at 1,500 GeV, the mass that sets the reach (SUN l.201-204). His session log records the grids step as done
-> at 15:19 and gen batches running (UNVERIFIED here, no number taken). To fill: f₂₀₀^FxFx(E 1500) ± stat against
-> 0.16755, band +6.0 / −5.9 %; band enlarged if outside; CPU at wall × 1 core.
+> **FILLED 2026-11-23 (orchestrator, advisor Siri; LOG.md 23 Nov).** FxFx at E 1,500 GeV done: the approved single job
+> `grids4` took 6,728 s of 7,200 s [VERIFIED, marker]; σ = 1.052e-5 ± 2.8e-8 pb (= Sune's step 0); 6 × 15,000 events.
+> f₂₀₀^FxFx(E 1500) = 0.16353 ± 0.00242 (55,979 matched events, N_eff 24,986, 16.6 % negative weights) against MLM
+> 0.16755: −2.40 ± 1.80 % (1.3σ), central value inside the +5.96 / −5.94 % band [VERIFIED, `s2/f200_fxfx_E1500.json`].
+> With E 500 (+1.05 ± 2.13 % [VERIFIED, SUN]) the S2-c FxFx comparisons are complete; under STR l.2021-2022 (enlarge
+> only if outside) band and κ (1.060 / 0.941) are unchanged. No difference is resolved at the ±1.8–2.1 % MC precision;
+> a shift of up to ≈ 6 % at 1,500 GeV is not excluded at 2σ (−2.40 − 2 × 1.80 reaches the −5.94 % edge); the two masses
+> have opposite signs and are not combined. CPU 2.74 CPU-h on 23 Nov [VERIFIED]; FxFx total for S2-c ≈ 7.3 CPU-h
+> [ESTIMATE, includes Sune's 4.5 estimate].
+> **Limitation (no new run, no rewording):** the frozen text calls 1,500 GeV "the mass that sets the reach"; if the
+> reach sits near the Gate A ESTIMATE of ≈ 243 GeV, FxFx is untested there, below its lowest mass (500 GeV), where f₂₀₀ is
+> smallest (≈ 0.048 at E 200 in v1). The criterion does not require a run there.
+> **Stale field:** `s2/f200.json` (Edgar) `fxfx: "not run"` is superseded by `s2/f200_fxfx.json` (E 500, sha256
+> 17b75798…5743) and `s2/f200_fxfx_E1500.json` (E 1500, sha256 e28fc947…ea16); the other species–masses have no FxFx
+> test, none being required. f200.json is left untouched; T1 will read a scripted `s2/f200_T1_inputs.json` (successor item).
 
 ### 4.4 S2-e, S2-f
 
@@ -554,7 +564,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 
 | # | who | what | section |
 |---|---|---|---|
-| 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 | §4.3 |
+| 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked | §7 |
 | 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
 | 4 | not started (Opus executor, after Kari) | reach re-estimate | §9 |
