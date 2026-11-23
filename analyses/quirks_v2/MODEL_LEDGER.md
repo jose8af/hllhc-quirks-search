@@ -63,4 +63,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 13:30 -0500 | Leif | opus | stop-rule checkpoint 1 CPU/wall/storage re-projection (overdue) | done (eb89ca2) |
 | 2026-11-23 13:30 -0500 | Maren | fable | advisor: calendar shift after the power loss | done |
 | 2026-11-23 15:16 -0500 | Nils | fable | rule 1(c) second-agent review of p2w_subset.py (ruling (ii)) | running |
-| 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | running |
+| 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | done (ruling adopted) |
