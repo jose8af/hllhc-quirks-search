@@ -56,7 +56,7 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 15:37 -0500 | Dagny | fable | advisor: v1 tag vs attribution | done |
 | 2026-11-19 15:48 -0500 | Eskil | opus | attributed vs C′_PU-linked | part 1 done; NI run approved |
 | 2026-11-19 15:55 -0500 | Sune | opus | FxFx | E500 done; E1500 awaits user |
-| 2026-11-23 13:30 -0500 | Halvard | opus | FxFx E1500 (Sune's successor; grids4 then gen + f200) | running |
+| 2026-11-23 13:30 -0500 | Halvard | opus | FxFx E1500 (Sune's successor; grids4 then gen + f200) | done (5ee6ef7) |
 | 2026-11-23 13:30 -0500 | Ingvild | fable | rule 1(c) validation (a)/(a2), (c) read (Cecilie's successor) | done 15:14 (125ad0b) |
 | 2026-11-23 13:30 -0500 | Jonas | opus | D2 find → sum → read (Ulrika's successor) | done (5541996) |
 | 2026-11-23 13:30 -0500 | Kari | opus | NI C′_PU attribution (Eskil's successor) | running |
@@ -66,3 +66,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | done (ruling adopted) |
 | 2026-11-23 15:32 -0500 | Peder | opus | EXPLORATION.md consolidation (placeholders for running items) | done (4babc51) |
 | 2026-11-23 15:44 -0500 | Runa | fable | advisor: D8 Z(νν) top-up on present counts; the 10 number disagreements of EXPLORATION §12 | done (ruling adopted) |
+| 2026-11-23 16:18 -0500 | Siri | fable | advisor: S2-c FxFx E1500 read, band/κ, notice | running |
