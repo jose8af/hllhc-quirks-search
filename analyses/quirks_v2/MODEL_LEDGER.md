@@ -68,4 +68,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 15:44 -0500 | Runa | fable | advisor: D8 Z(νν) top-up on present counts; the 10 number disagreements of EXPLORATION §12 | done (ruling adopted) |
 | 2026-11-23 16:18 -0500 | Siri | fable | advisor: S2-c FxFx E1500 read, band/κ, notice | done (ruling adopted) |
 | 2026-11-23 16:28 -0500 | Tora | opus | reach re-estimate (Gate A method, pilot backgrounds, v1 placeholder efficiencies) | done (610c107) |
-| 2026-11-23 16:36 -0500 | Ulla | fable | advisor: reach re-estimate legitimacy, outlook wording, RESULT notice | running |
+| 2026-11-23 16:36 -0500 | Ulla | fable | advisor: reach re-estimate legitimacy, outlook wording, RESULT notice | done (ruling adopted) |

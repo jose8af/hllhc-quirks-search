@@ -517,10 +517,14 @@ LOG l.977-979); items 7 onward are from the channel files.
     stated; ours 1.163 / 1.178), **B6-d** (no uncertainties for R-15–R-17), **unit costs** of S2 [EDG l.481-512].
 17. **Closure slope weights** (C1 FLAG 1) [MAT l.127-146; RAG l.50-54].
 
-> **PENDING: reach re-estimate (Tora, Opus, started 23 Nov 16:29).** Planned (STATE l.69): an Opus executor recomputes the Gate A reach
-> estimate with the pilot-based backgrounds (Z(νν) own-hit count, the attributed conversion scale including Kari's NI
-> result), same script and v1 placeholder efficiencies as Gate A, labelled ESTIMATE, with the note that the rule-1
-> B₅₀ is a ceiling, not a background estimate. No v2 signal efficiency enters it. To fill: the reach outlook line.
+> **FILLED 2026-11-23 (Tora 610c107; advisor Ulla, LOG 23 Nov; RESULT notice 16:38).** Gate A's strategy_budget.py re-run
+> unchanged (reproduces Gate A exactly [VERIFIED]), backgrounds only; all ESTIMATE on v1 placeholder efficiencies (high by
+> 1/0.87). Gate A envelope B₅₀ 6.8–10.2×10³ → reach < 243 GeV (stays the upper envelope). Attributed-only (optimistic
+> edge, lower bound on background; mixed 60 % in no term; SM after-CKF 0): B₅₀ 418–916 → reach 351–444 GeV. SM after-CKF
+> bracket 0 to ≥ 17; at 17: 277–296 GeV. Attributed UL (ρ_γ 0.22) + own-hit 11: < 243–266 GeV. ρ_γ rests on one source
+> event (0–0.12 at 68 %, UL 0.22). If ≳ 10–20 % of the mixed candidates survive, the reach is back below ≈ 250 GeV.
+> **Reach outlook vs Gate A: more promising, weakly; not established.** Sensitivity to the surviving mixed fraction:
+> Tora's erratum (pending). The day-15 rule-1 ceiling (≈ 10,800 events) is a separate quantity; the pause stays expected.
 
 > **PENDING: Phase-3 inputs, the MET model and the final pilot classification (day 12 = 28 Nov as scheduled; +4 days
 > under the pending calendar option C).** The MET-model construction choice (options A–C of §4.6, tail width set
@@ -574,7 +578,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 | 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked — FILLED 23 Nov | §7 |
 | 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
-| 4 | not started (Opus executor, after Kari) | reach re-estimate | §9 |
+| 4 | Tora (Opus) | reach re-estimate — FILLED 23 Nov (erratum + mixed-fraction table pending) | §9 |
 | 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
 | 6 | Phase 3 | MET model and final pilot classification | §9 |
 
