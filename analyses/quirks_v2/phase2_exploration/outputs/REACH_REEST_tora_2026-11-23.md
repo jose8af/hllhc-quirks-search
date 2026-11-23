@@ -94,3 +94,58 @@ N_trig 4.0848×10⁷.
 One run on schrodinger (nice 15, 1 slot; SLOTS.md 16:33 / 16:35): 97.7 CPU-s (user + sys), max RSS 45 MB, 1 min 47 s
 wall (`/usr/bin/time -v`) [VERIFIED] = **0.03 CPU-h**. Unchanged script stdout: `logs/reach_reest_script_stdout_tora_2026-11-23.txt`.
 Rerun (from `analyses/quirks_v2`, any worker): `.pixi/envs/default/bin/python -I phase2_exploration/src/reach_reest_tora.py <json> <stdout.txt>`.
+
+---
+
+## ERRATUM, 2026-11-23 16:44 -05 (advisor Ulla, LOG 23 Nov 16:39; the text above is left as written)
+
+All numbers in this section are ESTIMATE on v1 placeholder efficiencies. No signal file was opened.
+
+**E1. Row labels and wording.** Read the text above with these replacements:
+- "CENTRAL" → **"attributed-only (optimistic edge, lower bound on background)"**. It is not a central value: the 60 %
+  of v1's γ candidates that the frozen rule makes "mixed" (≈ 3.8–5.7×10³ events of Gate A's envelope) enter no term
+  there.
+- "HIGH / UL" → **"attributed UL + pilot own-hit 11 (not an upper limit; excludes mixed)"**.
+- "LOW" (790 [712]) → **"floor"**.
+- "Gate A" (< 243) → **"envelope"**. Gate A stays the upper envelope (attributed + mixed + pure pile-up; LOG 19 Nov 15:37).
+- "ρ_γ = 0.057–0.091" is **one source event read twice** (at R05 and at R06), not a range. The measured statement is
+  **ρ_γ = 0 to 0.12 (68 %), UL 0.22** (Eskil l.42-43). Its use at R09 is an extrapolation from R05/R06.
+- The conversion term is **"reclassified"** by the frozen rule, not "cut". In §1, "cuts the conversion-led term by
+  ×11–17" should read "reclassifies all but 1/11–1/17 of the conversion-led term as mixed or pure pile-up".
+- **SM term: a bracket.** The after-CKF count runs from 0 to ≥ 17 (17 is a lower bound, Tove l.57-58), and neither end
+  is central. At 17 the attributed-only reach is 277–296 [< 243] (§2).
+- The v1 placeholder efficiencies are high by 1/0.87 (GATE_A.md l.17), so **every reach here is slightly optimistic**.
+- The outlook is therefore "more promising, weakly, not established" (Ulla).
+
+**E2. Sensitivity: reach vs the mixed fraction f that survives into the conversion term.** Conversion term = v1 (α1′)
+conversions 9,527 × photon-rate factor × (ρ_γ + f · μ), where μ = 105/174 = 0.603 is the mixed share of v1's γ
+candidates at R05 (Eskil l.65-67). DIF is at its floor. SM via the pilot count (0 or 17, 41.96 events per count). The
+method, the width w = 0.17 and everything else are as in §3. Script `src/reach_reest_mixed_tora.py` (it runs Gate A's
+script unchanged and checks that the stdout is identical); output `outputs/reach_reest_mixed_tora_2026-11-23.json`.
+Each cell gives the median reach [84 % edge] in GeV; "<" means below 243. The photon rate is 0.379 (Gate A's max rate).
+
+| SM count | ρ_γ | f = 0 | f = 0.1 | f = 0.2 | f = 0.3 | f = 1 | **f where the median falls below 243** |
+|---|---|---|---|---|---|---|---|
+| 0 | 0 | 638 [510] | 397 [338] | 318 [260] | 268 [<] | < [<] | **0.37** |
+| 0 | 0.074 | 374 [316] | 305 [247] | 259 [<] | < [<] | < [<] | **0.24** |
+| 0 | 0.12 | 318 [261] | 269 [<] | < [<] | < [<] | < [<] | **0.17** |
+| 0 | 0.22 | 244 [<] | < [<] | < [<] | < [<] | < [<] | **≈ 0 (0.002)** |
+| 17 | 0 | 323 [258] | 295 [<] | 261 [<] | < [<] | < [<] | **0.26** |
+| 17 | 0.074 | 287 [<] | 254 [<] | < [<] | < [<] | < [<] | **0.14** |
+| 17 | 0.12 | 261 [<] | < [<] | < [<] | < [<] | < [<] | **0.06** |
+| 17 | 0.22 | < [<] | < [<] | < [<] | < [<] | < [<] | **already below at f = 0** |
+
+The crossing f comes from bisection to 0.005. At the N_trig-weighted photon rate 0.255 the crossing f values are
+0.55 / 0.42 / 0.35 / 0.18 (SM 0) and 0.39 / 0.26 / 0.19 / 0.02 (SM 17), and the full grid is in the json.
+
+Reading:
+- At every crossing the conversion-led term is ≈ 2.1×10³ events with SM 0, or ≈ 1.5×10³ with SM 17, whatever ρ_γ is.
+  The reach falls below 243 GeV once the conversion term holds about 2×10³ events.
+- At the measured central-to-68 % ρ_γ (0.074–0.12), a mixed survival of **6–24 %** brings the median reach back below
+  243 GeV. At the 84 % edge it takes even less.
+- How much of the mixed part survives is not measured. It is bounded only by the completeness test (STR l.751-752).
+- The floor-row cell (SM 0, ρ_γ 0, f 0) is 638, not 790, because the SM floor here is the pilot's (41.96 × Γ(1)), not
+  the final pool's.
+
+Compute: one run on schrodinger (nice 15, 1 slot; SLOTS.md 16:39 / 16:43), 230.5 CPU-s, max RSS 39 MB [VERIFIED,
+`/usr/bin/time -v`] = 0.06 CPU-h. Total for this task: 0.10 CPU-h.

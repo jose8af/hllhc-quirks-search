@@ -96,3 +96,5 @@
 - 2026-11-23 16:27 -0500 | landau | RELEASED | Kari: cpu_attrib.py done (1 run, 78 CPU-s); nothing of mine runs
 - 2026-11-23 16:33 -0500 | schrodinger | 1 slot, ≤ 15 min, nice 15 | Tora (Opus, reach re-estimate): phase2_exploration/src/reach_reest_tora.py (pure Python, runs strategy_budget.py unchanged + Gate A [9b] functions); no signal files; node count before 1 (Nils), load 1.1
 - 2026-11-23 16:35 -0500 | schrodinger | RELEASED | Tora: reach_reest_tora.py done (1 run, 98 CPU-s, max RSS 45 MB); nothing of mine runs
+- 2026-11-23 16:39 -0500 | schrodinger | 1 slot, ≤ 20 min, nice 15 | Tora (Opus, reach erratum / mixed-fraction sensitivity, advisor Ulla): phase2_exploration/src/reach_reest_mixed_tora.py (pure Python); no signal files; node count before 1 job, load 1.2
+- 2026-11-23 16:43 -0500 | schrodinger | RELEASED | Tora: reach_reest_mixed_tora.py done; nothing of mine runs
