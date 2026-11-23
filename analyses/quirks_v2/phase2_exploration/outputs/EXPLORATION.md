@@ -429,11 +429,18 @@ C′_PU samples."
   (correction of an earlier statement; §12). Eskil's ESTIMATE: attributed conversion term × 0.06–0.09 → ≈ 5–9×10²
   (UL ≈ 2×10³) instead of 0.7–1.0×10⁴; the Gate A range is an upper envelope only [E: ESK l.83-95; LOG l.979].
 
-> **PENDING: Kari, NI C′_PU attributed vs C′_PU-linked (campaigns `p2-a-c1-cppuni-a/-b`, ≈ 7 CPU-h approved, limit 9;
-> STR l.753-754 commitment).** NI is not measured (no C′_PU NI sample in C1); Eskil's analogy ρ_NI ≈ 0–0.05 is an
-> ESTIMATE only [ESK l.50, l.104-108]. γ from more source events: no run defined (all 500 eligible sources used), open.
-> To fill: N_v1, N_j (j ≥ 4) and ρ at R04–R06 for NI 22, with the clustered intervals; effect on the STR §4.4 NI test
-> counts 92 / 120 / 378.
+> **FILLED 2026-11-23 (Kari, 121f78e; `CPU_ATTRIB_NI_kari_2026-11-23.md`).** NI 22 run 25/25 + 25/25, 0 failures, 7.06 CPU-h
+> (+ ≤ 0.16 killed by the power loss; stop 9) [VERIFIED]; cpu_attrib.py unchanged, Eskil's DIF/γ/V⁰/PV-pair counts reproduced
+> identically, 415,996 hit records, 0 mismatches. Frozen rule vs v1 rule per 1,000 slots: R05 2 / 82, ρ = 0.024
+> (16/50/84 % 0 / 0.022 / 0.047; 95 % UL 0.13, ESTIMATE), both passes from one source event; R04 2 / 309, bracket [2, 229]
+> only (most R04 candidates lack a hit record); R06 0 / 0 [VERIFIED counts]. v1 rule reproduces v1 (6,918 / 309 / 82 vs
+> 7,830 / 254 / 92 at R02 / R04 / R05, within statistics). v1's NI candidates at R05: 85 % pure pile-up, 12 % mixed,
+> 2 % attributed. Attributed conversion-led total ≈ 4–9×10² events (UL ≈ 2.2×10³) vs Gate A 0.7–1.0×10⁴ [ESTIMATE];
+> NI does not move it; γ (ratio 0.057–0.091, one source event) dominates; Gate A's range is an upper envelope.
+> **Strategy-revision input:** the STR §4.4 NI R05 test (sized for 92 / 120 / 378) would hold ≈ 2 at 22 mm (measured),
+> ≈ 3 / ≈ 9 at 30 / 61.5 mm (analogy) under the frozen rule: almost no power [ESTIMATE] → re-size in Phase 3 / pause
+> package. v1 link rule: g1b_tt.py l.354-355 (v1 commit d724a1c; l.356-357 is a comment) [VERIFIED] (closes §12 item 6).
+> Open: more γ source events (no run defined; new plan + approval needed); no NI 30 / 61.5 mm sample.
 
 ## 8. Compute, storage and calendar (stop-rule checkpoint 1)
 
@@ -510,7 +517,7 @@ LOG l.977-979); items 7 onward are from the channel files.
     stated; ours 1.163 / 1.178), **B6-d** (no uncertainties for R-15–R-17), **unit costs** of S2 [EDG l.481-512].
 17. **Closure slope weights** (C1 FLAG 1) [MAT l.127-146; RAG l.50-54].
 
-> **PENDING: reach re-estimate (not started).** Planned (STATE l.69): an Opus executor recomputes the Gate A reach
+> **PENDING: reach re-estimate (Tora, Opus, started 23 Nov 16:29).** Planned (STATE l.69): an Opus executor recomputes the Gate A reach
 > estimate with the pilot-based backgrounds (Z(νν) own-hit count, the attributed conversion scale including Kari's NI
 > result), same script and v1 placeholder efficiencies as Gate A, labelled ESTIMATE, with the note that the rule-1
 > B₅₀ is a ceiling, not a background estimate. No v2 signal efficiency enters it. To fill: the reach outlook line.
@@ -565,7 +572,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 | # | who | what | section |
 |---|---|---|---|
 | 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
-| 2 | Kari | NI C′_PU attributed vs C′_PU-linked | §7 |
+| 2 | Kari | NI C′_PU attributed vs C′_PU-linked — FILLED 23 Nov | §7 |
 | 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
 | 4 | not started (Opus executor, after Kari) | reach re-estimate | §9 |
 | 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
