@@ -523,8 +523,9 @@ LOG l.977-979); items 7 onward are from the channel files.
 > edge, lower bound on background; mixed 60 % in no term; SM after-CKF 0): B₅₀ 418–916 → reach 351–444 GeV. SM after-CKF
 > bracket 0 to ≥ 17; at 17: 277–296 GeV. Attributed UL (ρ_γ 0.22) + own-hit 11: < 243–266 GeV. ρ_γ rests on one source
 > event (0–0.12 at 68 %, UL 0.22). If ≳ 10–20 % of the mixed candidates survive, the reach is back below ≈ 250 GeV.
-> **Reach outlook vs Gate A: more promising, weakly; not established.** Sensitivity to the surviving mixed fraction:
-> Tora's erratum (pending). The day-15 rule-1 ceiling (≈ 10,800 events) is a separate quantity; the pause stays expected.
+> **Reach outlook vs Gate A: more promising, weakly; not established.** Sensitivity (Tora erratum, 1e918e0): the median
+> reach falls below 243 GeV once the surviving mixed fraction exceeds f ≈ 0.14–0.24 at ρ_γ 0.074 (SM 17 / SM 0), 0–0.37 over
+> ρ_γ 0–0.22; i.e. once the conversion term reaches ≈ 1.5–2.1×10³ events [ESTIMATE]. The day-15 rule-1 ceiling (≈ 10,800 events) is a separate quantity; the pause stays expected.
 
 > **PENDING: Phase-3 inputs, the MET model and the final pilot classification (day 12 = 28 Nov as scheduled; +4 days
 > under the pending calendar option C).** The MET-model construction choice (options A–C of §4.6, tail width set
@@ -578,7 +579,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 | 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked — FILLED 23 Nov | §7 |
 | 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
-| 4 | Tora (Opus) | reach re-estimate — FILLED 23 Nov (erratum + mixed-fraction table pending) | §9 |
+| 4 | Tora (Opus) | reach re-estimate — FILLED 23 Nov (erratum + mixed-fraction table 1e918e0) | §9 |
 | 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
 | 6 | Phase 3 | MET model and final pilot classification | §9 |
 
