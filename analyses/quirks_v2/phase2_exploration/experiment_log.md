@@ -319,3 +319,8 @@ disagreements listed in EXPLORATION.md §12, not resolved. PDF build test not ru
   ALTERNATIVES: resize the batches after gen-01. CONFIDENCE: HIGH (gen-01 559 s ≪ 1,800 s; 1.5 % reached).
   FLAG FOR HUMAN: no.
 - Details: outputs/FXFX_E1500_halvard_2026-11-23.md; outputs/s2/f200_fxfx_E1500.json.
+
+## 2026-11-23 16:27 -0500 — Kari (Eskil's successor): NI 22 mm C′_PU attribution, v1 link rule vs frozen j ≥ n/2 (plan addendum, unchanged)
+Result (outputs/CPU_ATTRIB_NI_kari_2026-11-23.md, json cpu_attrib_ni_kari_2026-11-23.json): p2-a-c1-cppuni-a/-b 25/25 done, 7.06 CPU-h (+ ≤ 0.16 h killed by the power loss) < 9 stop [V, markers]. NI R05: frozen/v1 = 2/82, ρ = 0.024 (bootstrap 16/50/84 % 0/0.022/0.047; one slot of 1,000; event-level 95 % UL 0.13); R04 bracket [2, 229] of 309; R06 0/0. v1-rule counts 6,918/309/82 at R02/R04/R05 vs v1 7,830/254/92 per 1,000 (within clustered errors). DIF/γ/V⁰/PV-pair counts identical to Eskil's run; checks clean (415,996 crossings, 0 bad).
+DECISION: none beyond the frozen plan (same script, rules, rungs, statistic). ALTERNATIVES: none considered after data. CONFIDENCE: high for counts; ρ_NI rests on one source event.
+FLAG FOR HUMAN: NI R05 test sized at 92/120/378 (STR l.1054-1059) expects ≈ 2 (22 mm, measured) and ≈ 3 / ≈ 9 (30 / 61.5 mm, analogy) under the frozen rule → almost no power; strategy-revision input. Attributed conversion-led term ≈ 4–9×10² (UL ≈ 2.2×10³) vs Gate A 0.7–1.0×10⁴, unchanged by NI. More γ source events: no run defined (plan l.70-73), open. v1 link rule verified at g1b_tt.py l.354-355 (v1 d724a1c), not l.356-357.

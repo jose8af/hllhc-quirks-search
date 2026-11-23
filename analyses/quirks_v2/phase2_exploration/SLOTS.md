@@ -92,3 +92,5 @@
 - 2026-11-23 15:25 -0500 | maxwell | 1 slot, ≈ 10 min | D2 executor Jonas (successor of Ulrika): p2-c-d2-find finished 15:25 (60/60); now p2-c-d2-sum (1 job, ≤ 4 GB RSS), driver on maxwell, --max-per-node 1; node count before: 1 (Sune FxFx gen), load 2.0
 - 2026-11-23 15:31 -0500 | maxwell | D2 slots RELEASED | orchestrator for Jonas: p2-c-d2-find 60/60 and p2-c-d2-sum done; nothing of D2 runs (Jonas's 15:25 line committed by me)
 - 2026-11-23 16:17 -0500 | maxwell | slot RELEASED | channel (ii) Halvard: p2-b-s2-fxfx-gen1500 6/6 done (16:15); nothing of mine runs
+- 2026-11-23 16:21 -0500 | landau | 1 slot, ≤ 15 min, nice 19 | Kari (Opus, Eskil's successor): src/cpu_attrib.py read-only over p2-a-c1-cppua/cppub/cppuni-a/-b npz (150 files); no signal files; node count before 1 (r1v), load 1.3
+- 2026-11-23 16:27 -0500 | landau | RELEASED | Kari: cpu_attrib.py done (1 run, 78 CPU-s); nothing of mine runs
