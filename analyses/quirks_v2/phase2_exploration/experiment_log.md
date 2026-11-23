@@ -289,3 +289,15 @@ Result (outputs/RULE1_VALID_ingvild_2026-11-23.md): (c) subset-pass m_Z at R08 =
 FAILED ATTEMPT: 36 nic/nix jobs of p2-c-r1v-s2a/b died at start: numba cache index of subset_road cannot be saved after 51 entries (each job adds one; ReferenceError "underlying object has vanished").
 DECISION: rerun the 36 as p2-c-r1v-s3a/b, same script and arguments, new NUMBA_CACHE_DIR; summary glob s2[ab] -> s[23][ab]. ALTERNATIVES: delete the cache index and edit markers to retry in place (touches the ledger); drop cache=True (changes the script hash mid-campaign). CONFIDENCE: high (script sha256 identical in all 139 outputs; file-count and event-total guards pass).
 FLAG FOR HUMAN: p2w_subset.py is not reviewed by a second agent: under advisor ruling (ii) the finder count (253 -> 10,777) remains the stand-in lower bound until it is; the verdict "above" is the same.
+
+## 2026-11-23 15:29 -0500 — Jonas (successor of Ulrika): D2 "later arcs restored" read
+Result (outputs/D2_RESULT_jonas_2026-11-23.md; p2-c-d2-sum.json) [VERIFIED, re-derived independently]: 600 events, 2,400 paired
+trials; r(R04) = 0.766, r(R05) = 0.759, r(R06) = 0.720; ln r = −0.266 ± 0.003, −0.276 ± 0.004, −0.328 ± 0.061 (paired event
+bootstrap); trend R06−R04 −0.062 ± 0.061. Evaluated at R06 (σ < 0.1). Pre-declared reading: "effect, robust" (not "no effect":
+|ln r| > 0.1; not "not robust": |ln r| < ln 2, trend z −1.0); r(R06) < 1 → no B6-d correction, [L15] stated with the measured size.
+Checks: control bit for bit on all counted columns (dz_nearest_pu differs by ≤ 3e-6 mm, diagnostic); pairing 0/2,400 mismatched;
+nominal-part mismatch in 9 events (±1 hit; Ulrika's log said 8); V4-1 ok in all. CPU 15.83 CPU-h measured (+ ≤ 0.06 lost, ESTIMATE).
+DECISION: verdict applied as written, including plan §7 item 6 (significant negative effect → "effect, robust"). ALTERNATIVES: none
+under the frozen text. CONFIDENCE: high for the numbers; the mechanism (v1 top-up = same-(φ,z) radial doublets vs bent looper arcs)
+is a hypothesis. FLAG FOR HUMAN: the v1 top-up gives 1.39× the R06 candidates of restored arcs (r = 0.72) at equal raw density; no credit
+taken by rule; 3,133 time-only crossings per event not injected (plan §7 item 1), effect unmeasured.
