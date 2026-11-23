@@ -64,4 +64,5 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 13:30 -0500 | Maren | fable | advisor: calendar shift after the power loss | done |
 | 2026-11-23 15:16 -0500 | Nils | fable | rule 1(c) second-agent review of p2w_subset.py (ruling (ii)) | running |
 | 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | done (ruling adopted) |
-| 2026-11-23 15:32 -0500 | Peder | opus | EXPLORATION.md consolidation (placeholders for running items) | running |
+| 2026-11-23 15:32 -0500 | Peder | opus | EXPLORATION.md consolidation (placeholders for running items) | done (4babc51) |
+| 2026-11-23 15:44 -0500 | Runa | fable | advisor: D8 Z(νν) top-up on present counts; the 10 number disagreements of EXPLORATION §12 | running |

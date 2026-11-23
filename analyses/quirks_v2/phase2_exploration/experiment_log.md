@@ -301,3 +301,11 @@ DECISION: verdict applied as written, including plan §7 item 6 (significant neg
 under the frozen text. CONFIDENCE: high for the numbers; the mechanism (v1 top-up = same-(φ,z) radial doublets vs bent looper arcs)
 is a hypothesis. FLAG FOR HUMAN: the v1 top-up gives 1.39× the R06 candidates of restored arcs (r = 0.72) at equal raw density; no credit
 taken by rule; 3,133 time-only crossings per event not injected (plan §7 item 1), effect unmeasured.
+
+## 2026-11-23 15:43 -0500 — Peder: EXPLORATION.md consolidation (documentation only, no compute)
+Wrote `outputs/EXPLORATION.md` from the channel files, LOG 16-23 Nov, COMMITMENTS and the 23 Nov notices; six PENDING blocks
+(Halvard FxFx E1500 + f200; Kari NI C'_PU; Nils p2w_subset.py review; reach re-estimate; D8 top-up; MET model / final
+classification). D2 worded by LOG l.991 (Olav); rule 1 by LOG l.975 (i)-(iii), stand-in 253 -> 10,777.
+DECISION: tag each number with the status its source gives it, plus file:line; values re-read from JSON marked "re-read".
+ALTERNATIVES: tag every transcribed number UNVERIFIED. CONFIDENCE: medium. FLAG FOR HUMAN: none; twelve document
+disagreements listed in EXPLORATION.md §12, not resolved. PDF build test not run (einstein-only session).
