@@ -324,3 +324,13 @@ disagreements listed in EXPLORATION.md §12, not resolved. PDF build test not ru
 Result (outputs/CPU_ATTRIB_NI_kari_2026-11-23.md, json cpu_attrib_ni_kari_2026-11-23.json): p2-a-c1-cppuni-a/-b 25/25 done, 7.06 CPU-h (+ ≤ 0.16 h killed by the power loss) < 9 stop [V, markers]. NI R05: frozen/v1 = 2/82, ρ = 0.024 (bootstrap 16/50/84 % 0/0.022/0.047; one slot of 1,000; event-level 95 % UL 0.13); R04 bracket [2, 229] of 309; R06 0/0. v1-rule counts 6,918/309/82 at R02/R04/R05 vs v1 7,830/254/92 per 1,000 (within clustered errors). DIF/γ/V⁰/PV-pair counts identical to Eskil's run; checks clean (415,996 crossings, 0 bad).
 DECISION: none beyond the frozen plan (same script, rules, rungs, statistic). ALTERNATIVES: none considered after data. CONFIDENCE: high for counts; ρ_NI rests on one source event.
 FLAG FOR HUMAN: NI R05 test sized at 92/120/378 (STR l.1054-1059) expects ≈ 2 (22 mm, measured) and ≈ 3 / ≈ 9 (30 / 61.5 mm, analogy) under the frozen rule → almost no power; strategy-revision input. Attributed conversion-led term ≈ 4–9×10² (UL ≈ 2.2×10³) vs Gate A 0.7–1.0×10⁴, unchanged by NI. More γ source events: no run defined (plan l.70-73), open. v1 link rule verified at g1b_tt.py l.354-355 (v1 d724a1c), not l.356-357.
+
+## 2026-11-23 16:36 -0500 Tora (Opus): reach re-estimate, Gate A method, pilot-based backgrounds (ESTIMATE)
+Result in outputs/REACH_REEST_tora_2026-11-23.md (plan 30afbac). Reach median [84 % edge]: Gate A < 243 [< 243];
+LOW 790 [712]; CENTRAL 351–444 [293–382]; HIGH/UL < 243–266 [< 243]. v1 placeholder efficiencies only; no signal file.
+- DECISION: the SM/Z(νν) term enters through the pilot's pass counts (after CKF 0 central, own-hit 11 high), not the
+  rule-1 near-pass / subset-pass counts, which are ceilings (advisor rulings LOG 19 Nov 15:24, 15:37); the latter shown
+  as information only (reach < 243). ALTERNATIVES: Gate A's pool floors (kept as LOW); after-CKF near-pass 17 (row in §2).
+  CONFIDENCE: medium (the after-CKF count is a lower bound; ρ_γ rests on one source event). FLAG FOR HUMAN: none new.
+- DECISION: DIF scaled by ρ_DIF with the conversions (Kari's "conversion-led" total includes DIF); DIF kept at v1 size
+  as a §2 row (≤ 30 GeV effect). CONFIDENCE: high that it does not change the outlook.

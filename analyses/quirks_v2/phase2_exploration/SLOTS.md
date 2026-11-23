@@ -94,3 +94,5 @@
 - 2026-11-23 16:17 -0500 | maxwell | slot RELEASED | channel (ii) Halvard: p2-b-s2-fxfx-gen1500 6/6 done (16:15); nothing of mine runs
 - 2026-11-23 16:21 -0500 | landau | 1 slot, ≤ 15 min, nice 19 | Kari (Opus, Eskil's successor): src/cpu_attrib.py read-only over p2-a-c1-cppua/cppub/cppuni-a/-b npz (150 files); no signal files; node count before 1 (r1v), load 1.3
 - 2026-11-23 16:27 -0500 | landau | RELEASED | Kari: cpu_attrib.py done (1 run, 78 CPU-s); nothing of mine runs
+- 2026-11-23 16:33 -0500 | schrodinger | 1 slot, ≤ 15 min, nice 15 | Tora (Opus, reach re-estimate): phase2_exploration/src/reach_reest_tora.py (pure Python, runs strategy_budget.py unchanged + Gate A [9b] functions); no signal files; node count before 1 (Nils), load 1.1
+- 2026-11-23 16:35 -0500 | schrodinger | RELEASED | Tora: reach_reest_tora.py done (1 run, 98 CPU-s, max RSS 45 MB); nothing of mine runs
