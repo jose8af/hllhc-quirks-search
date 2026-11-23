@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-18 18:58 -05 (measured; Opus orchestrator session of day 2; daily report 18 Nov done) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 1 (day 0 = 2026-11-16)
+**Updated:** 2026-11-23 13:30 -0500 (Opus orchestrator, session of 23 Nov, after the power loss) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 7 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -9,6 +9,9 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 > `QUIRKS_V2_ORCHESTRATOR_PROMPT.md` (the brief), then `analyses/quirks_v2/ORCHESTRATOR_STATE.md` in full, and follow
 > the state file: it says what is running, what is waiting on me, and the rules that changed since the brief. Do not
 > start Phase 1 again. Begin with the section "First actions of a new session".
+
+
+**RESUME 23 Nov (read first).** Power loss 19 Nov 17:54 – 23 Nov ≈ 13:00 (LOG 23 Nov 13:30; PROBLEM notice pushed). Nothing ran in between; the agents of 19 Nov (Sune, Cecilie, Eskil, Ulrika) are dead and replaced. Running now (relaunched 13:25-13:28): p2-b-s2-fxfx-e1500 job **grids4** (maxwell, ≤ 7,200 s) → Halvard; p2-c-d2-find (maxwell 2 slots, **driver on einstein**, log /var/tmp/jdochoa/drivers/resume_d2_find.log) → Jonas; p2-c-r1v-s2a→zb1 (landau 2) and p2-c-r1v-s2b (schrodinger 2), queues tools/runner/examples/p2w/queue_*.sh → Ingvild (Fable); p2-a-c1-cppuni-a (schrodinger 1) / -b (landau 1) → Kari. Driver logs on the nodes: /home/scratch/jdochoa/drivers/resume_*.log. Also running: Leif (checkpoint 1, overdue), Maren (Fable advisor: calendar shift → DECISION notice to the user). **Cluster:** workers cannot resolve each other's hostnames (reported to the user, not repaired): a driver that must check jobs on another node runs on einstein (nice 19). Crons re-created 23 Nov (daily 18:47 → fires ≈ 19:17; heartbeat :13 every 3 h). The user is back from 23 Nov (away rules of 20–22 Nov no longer apply); user 23 Nov: "keep me informed with the daily and notices commits".
 
 ---
 

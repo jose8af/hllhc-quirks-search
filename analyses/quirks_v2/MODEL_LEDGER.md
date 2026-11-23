@@ -56,3 +56,9 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-19 15:37 -0500 | Dagny | fable | advisor: v1 tag vs attribution | done |
 | 2026-11-19 15:48 -0500 | Eskil | opus | attributed vs C′_PU-linked | part 1 done; NI run approved |
 | 2026-11-19 15:55 -0500 | Sune | opus | FxFx | E500 done; E1500 awaits user |
+| 2026-11-23 13:30 -0500 | Halvard | opus | FxFx E1500 (Sune's successor; grids4 then gen + f200) | running |
+| 2026-11-23 13:30 -0500 | Ingvild | fable | rule 1(c) validation (a)/(a2), (c) read (Cecilie's successor) | running |
+| 2026-11-23 13:30 -0500 | Jonas | opus | D2 find → sum → read (Ulrika's successor) | running |
+| 2026-11-23 13:30 -0500 | Kari | opus | NI C′_PU attribution (Eskil's successor) | running |
+| 2026-11-23 13:30 -0500 | Leif | opus | stop-rule checkpoint 1 CPU/wall/storage re-projection (overdue) | running |
+| 2026-11-23 13:30 -0500 | Maren | fable | advisor: calendar shift after the power loss | running |
