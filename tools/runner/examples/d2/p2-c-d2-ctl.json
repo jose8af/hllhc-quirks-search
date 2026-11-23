@@ -1,0 +1,29 @@
+{
+ "campaign": "p2-c-d2-ctl",
+ "tier": "regenerable",
+ "data_prefix": "p2c/d2",
+ "regenerate": "inline in the log of Ulrika 2026-11-19 (phase2_exploration/logs/executor_ulrika_2026-11-19_11-16.md)",
+ "description": "D2 control: my finder job with injection off on the 20 events of c1pu1-0000 (must reproduce its trials)",
+ "expected_hours": 0.3,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-d2-ctl-a",
+   "outputs": [
+    "p2-c-d2-ctl-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-ctl-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --lo 0 --hi 10 --no-inject --check-prepare"
+  },
+  {
+   "id": "p2-c-d2-ctl-b",
+   "outputs": [
+    "p2-c-d2-ctl-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-ctl-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --lo 10 --hi 20 --no-inject --check-prepare"
+  }
+ ]
+}

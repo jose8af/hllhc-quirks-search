@@ -1,0 +1,22 @@
+{
+ "campaign": "p2-c-d2s-chain",
+ "tier": "test",
+ "data_prefix": "p2c/d2",
+ "regenerate": "python3 tools/runner/examples/d2 (inline, log of Ulrika 2026-11-19)",
+ "description": "D2 smoke: varied chain (Geant4 arcs injected) on 2 events of c1pu1-0000",
+ "expected_hours": 0.05,
+ "defaults": {
+  "max_rss_mb": 3000,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p2-c-d2s-chain",
+   "outputs": [
+    "p2-c-d2s-chain.npz"
+   ],
+   "command": "export CONDA_PREFIX=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8_DIR=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default PYTHIA8DATA=/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/share/Pythia8/xmldoc PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/scratch/jdochoa/cache/pyc QV2_PYTHIA_INIT_DIR=/home/scratch/jdochoa/cache/pythia_init OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/acts/.pixi/envs/default/bin/python /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/p2u_d2_chain.py $QV2_OUT_DIR/p2-c-d2s-chain.npz /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz 2"
+  }
+ ]
+}

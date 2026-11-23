@@ -56,7 +56,8 @@ def main(d, surf, outp):
         for k, p in enumerate(LAYERS):
             if s['name'] == p or s['name'].startswith(p + '_'):
                 lc_of[i] = k; side_of[i] = 1 if s['name'].endswith('_in') else (2 if s['name'].endswith('_out') else 0)
-    files = sorted(glob.glob(f'{d}/p2-a-c1-cppua/000/c1cppu-*.npz')) + sorted(glob.glob(f'{d}/p2-a-c1-cppub/000/c1cppu-*.npz'))
+    files = sorted(glob.glob(f'{d}/p2-a-c1-cppua/000/c1cppu-*.npz')) + sorted(glob.glob(f'{d}/p2-a-c1-cppub/000/c1cppu-*.npz')) + \
+        sorted(glob.glob(f'{d}/p2-a-c1-cppuni-[ab]/000/c1cppu-*.npz'))     # NI 22 mm (addendum, 2026-11-19)
     rows = {}      # topo -> list of per-candidate tuples and per-slot clusters
     chk = dict(n=0, bad=0, rung_mismatch=0, v1_R04_not_in_cand=0)
     for f in files:

@@ -1,0 +1,118 @@
+{
+ "campaign": "p2-a-c1-cppuni-a",
+ "tier": "final",
+ "data_prefix": "phase2",
+ "description": "C'_PU attribution (Eskil, approved 2026-11-19): NI 22 mm C'_PU, PU 200 overlays of preselected C'_0 ni22 events of p2-a-c1-cp0 (v1 run_g1b cppu unchanged), 1,000 slots in 25 jobs of 40; stream c1.cpu",
+ "expected_hours": 4.0,
+ "regenerate": "python3 -I phase2_exploration/src/cpu_attrib_campaigns.py",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "c1cppu-ni22-000",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-000.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-000 --kind cppu --topo ni22 --chunk 0 --start 0 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-001",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-001.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-001 --kind cppu --topo ni22 --chunk 1 --start 40 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-002",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-002.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-002 --kind cppu --topo ni22 --chunk 2 --start 80 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-003",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-003.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-003 --kind cppu --topo ni22 --chunk 3 --start 120 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-004",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-004.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-004 --kind cppu --topo ni22 --chunk 4 --start 160 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-005",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-005.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-005 --kind cppu --topo ni22 --chunk 5 --start 200 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-006",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-006.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-006 --kind cppu --topo ni22 --chunk 6 --start 240 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-007",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-007.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-007 --kind cppu --topo ni22 --chunk 7 --start 280 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-008",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-008.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-008 --kind cppu --topo ni22 --chunk 8 --start 320 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-009",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-009.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-009 --kind cppu --topo ni22 --chunk 9 --start 360 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-010",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-010.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-010 --kind cppu --topo ni22 --chunk 10 --start 400 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-011",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-011.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-011 --kind cppu --topo ni22 --chunk 11 --start 440 --n 40 --sources auto"
+  },
+  {
+   "id": "c1cppu-ni22-012",
+   "shard": 0,
+   "outputs": [
+    "c1cppu-ni22-012.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc QV2_PYTHIA_INIT_DIR=$QV2_SCRATCH/cache/pythia_init PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/c1_cp_job.py --id c1cppu-ni22-012 --kind cppu --topo ni22 --chunk 12 --start 480 --n 40 --sources auto"
+  }
+ ]
+}

@@ -4,3 +4,5 @@
 - 15:46 diagnostic: own-INT hits ≈ v1 core links (merging hides ≤ 2 %); DIF v1-attributed all max_cross = 1
 - 15:47 run 2 with link-based bounds (73 s); landau released
 - 2026-11-19 15:48 -0500 artifact outputs/CPU_ATTRIB_eskil_2026-11-19.md written
+- 15:54 NI queue started on schrodinger (cppuni-a then -b, 1 slot); 16:12 first job done: 1,025 CPU-s → projection 25 × 0.285 h = 7.1 CPU-h (< 9); watcher will start -b on landau (1 slot) when landau has ≤ 2 jobs
+- 17:04 landau count 2 → driver for cppuni-b started on landau (1 slot, node total 3)

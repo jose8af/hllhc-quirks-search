@@ -249,3 +249,37 @@ ALTERNATIVES: pull 2198e4c6 from Docker Hub (rate-limit rule); Argo pod with run
 CONFIDENCE: medium. FLAG FOR HUMAN: yes — base-image deviation; docker build refused by the permission system
 (11:17), not worked around; frozen "identical hash" criterion unattainable (timestamps/hostname in meta_json).
 C1-c NOT TESTED. Artifact outputs/C1C_CONTAINER_vidar_2026-11-19.md; recipe commit 26f4abe.
+
+## 2026-11-19 11:26 -0500 — Ulrika (D2 "later arcs restored"): construction decisions
+DECISION: finder input of the varied arm = the nominal job's own pre-top-up hits (S6 dumps of c1pu1-0000..0029) +
+the injected measurements of the varied chain; top-up drawn as nominal on nominal hits, last n_inj(layer) crossings
+dropped. Nominal partner = the existing c1pu1 outputs if a control job (injection off) reproduces them bit for bit.
+ALTERNATIVES: use the varied chain's own (re-smeared) hits for the nominal part (breaks the pairing: one digitisation
+stream per event, every later hit re-smeared); re-run a nominal arm on the same chain (+ ≈ 9 CPU-h, same problem).
+CONFIDENCE: high for the pairing; the CKF flags of nominal hits changed by the injected hits (smoke: 224 of 48,807
+per event, 0.46 %) are not propagated (measured, reported).
+FLAG FOR HUMAN: the injection rule (turn > 0.5 AND later than the last Fatras SimHit + 0.005 ns) combines the frozen
+wording and the validated option-(a) seam; Geant4 crossings before half a turn later than the last Fatras SimHit
+(smoke: ≈ 3,090 per event, all surfaces) are not injected (plan §7 item 1).
+Smoke p2-c-d2s-chain [V]: 2 events, 17,880 injected written measurements per event (= injected SimHits on written
+surfaces), nominal part identical to the dumps (truth positions, order), V4-1 ok, 85 s for 2 events incl. geometry.
+
+## 2026-11-19 14:26 -0500 — Sune (channel (ii) successor): FxFx first launch
+- Runner: per-job timeout_exception (SSH only, cap 7200 s, recorded in the started marker), commit 7c31c9e, tests 23/23 on maxwell.
+- p2-b-s2-fxfx on maxwell, one at a time: fxfx-e500-grids done (5,383 s wall, 5,347 CPU-s; sigma 4.695e-3 +- 1.2e-5 pb;
+  procdir published). fxfx-e1500-grids FAILED: timeout at 6,000 s in MINT step 1 (35/56 channels by 13:59, one channel
+  > 24 min). S2-c FxFx piece NOT MET; f200^FxFx not computed at either mass. Details and options:
+  outputs/FXFX_sune_2026-11-19.md.
+- 2026-11-19 14:30 -0500 Sune follow-up: E 500 FxFx shower blocked. MG5aMC_PY8_interface segfaults in its DJR histograms
+  (njetNow > JetMatching:nJetMax = 1). n_lhe counting bug fixed in s2_job.py. E1500: 48/56 step-1 channels done at the
+  kill, ≈ 6,900 s needed (ESTIMATE). Details: outputs/FXFX_sune_2026-11-19.md §6.
+
+## 2026-11-19 15:48 -0500 — Eskil: C′_PU attribution, v1 link rule vs frozen j ≥ n/2 (STR l.753-754)
+Result (outputs/CPU_ATTRIB_eskil_2026-11-19.md): at R05, frozen/v1 = DIF 0/141, γ 10/174 (one source event), V⁰ 26/612; at R06 γ 1/11, V⁰ 1/11; PV pair 0/4 at R04. No candidate passes j ≥ 4 without v1's rule.
+DECISION: j uses the stored merged-hit INT (largest-dE member), as Björn did for the SM. ALTERNATIVES: pre-merge membership (not stored). CONFIDENCE: high (own-INT hits ≈ v1 core links within 2 %; DIF max_cross = 1 makes it label-independent).
+FLAG FOR HUMAN: Gate A's conversion range does not carry over as a term size (ρ_γ ≈ 0.06, 95 % UL ≈ 0.22; most v1 candidates become mixed or pure pile-up); DIF R06 test count 31 and H(R06) ≥ 0.004 void; NI 92/120/378 not measured (NI C′_PU run ≈ 7 CPU-h needs approval).
+- 2026-11-19 15:54 -0500 Sune: E500 FxFx f200 = 0.10519 ± 0.00169 (nominal 0.10410, band +2.9/-2.5 %): inside, band unchanged. E1500 not run (user decision). outputs/FXFX_sune_2026-11-19.md §7.
+- 2026-11-19 17:19 -0500 Sune DECISION: rerun the user-approved E1500 grid job once as fxfx-e1500-grids3. grids2 failed at start (92 s wall,
+  MG "AlreadyRunning": stale RunWeb left by the 14:23 kill; no MINT work done); s2_job then wrongly stamped READY (removed).
+  The approved single 2-h computation has not run; "no retry" is read as applying to a timeout. ALTERNATIVES: record
+  E1500 NOT DONE now. CONFIDENCE: MEDIUM. FLAG FOR HUMAN: yes (orchestrator to confirm this reading).

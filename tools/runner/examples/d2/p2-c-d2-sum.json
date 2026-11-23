@@ -1,0 +1,24 @@
+{
+ "campaign": "p2-c-d2-sum",
+ "tier": "regenerable",
+ "data_prefix": "p2c/d2",
+ "regenerate": "inline in the log of Ulrika 2026-11-19 (phase2_exploration/logs/executor_ulrika_2026-11-19_11-16.md)",
+ "description": "D2 reading: r(R04-R06) with the paired event bootstrap, readings (a), (b)",
+ "expected_hours": 0.1,
+ "defaults": {
+  "max_rss_mb": 4000,
+  "timeout_s": 1800
+ },
+ "after": [
+  "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/d2/p2-c-d2-find.json"
+ ],
+ "jobs": [
+  {
+   "id": "p2-c-d2-sum",
+   "outputs": [
+    "p2-c-d2-sum.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_sum.py $QV2_OUT_DIR/p2-c-d2-sum.json"
+  }
+ ]
+}

@@ -1,0 +1,437 @@
+{
+ "campaign": "p2-c-d2-find",
+ "tier": "regenerable",
+ "data_prefix": "p2c/d2",
+ "regenerate": "inline in the log of Ulrika 2026-11-19 (phase2_exploration/logs/executor_ulrika_2026-11-19_11-16.md)",
+ "description": "D2 later arcs restored: frozen v1 finder on nominal dumps + injected arcs, top-up exchanged (600 events, 2400 trials)",
+ "expected_hours": 9.0,
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "after": [
+  "/home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/d2/p2-c-d2-chain.json"
+ ],
+ "jobs": [
+  {
+   "id": "p2-c-d2-find-0000-a",
+   "outputs": [
+    "p2-c-d2-find-0000-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0000-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0000.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0000-b",
+   "outputs": [
+    "p2-c-d2-find-0000-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0000-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0000.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0000.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0001-a",
+   "outputs": [
+    "p2-c-d2-find-0001-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0001-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0001.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0001-b",
+   "outputs": [
+    "p2-c-d2-find-0001-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0001-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0001.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0001.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0002-a",
+   "outputs": [
+    "p2-c-d2-find-0002-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0002-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0002.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0002-b",
+   "outputs": [
+    "p2-c-d2-find-0002-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0002-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0002.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0002.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0003-a",
+   "outputs": [
+    "p2-c-d2-find-0003-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0003-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0003.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0003.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0003-b",
+   "outputs": [
+    "p2-c-d2-find-0003-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0003-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0003.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0003.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0004-a",
+   "outputs": [
+    "p2-c-d2-find-0004-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0004-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0004.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0004.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0004-b",
+   "outputs": [
+    "p2-c-d2-find-0004-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0004-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0004.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0004.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0005-a",
+   "outputs": [
+    "p2-c-d2-find-0005-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0005-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0005.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0005.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0005-b",
+   "outputs": [
+    "p2-c-d2-find-0005-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0005-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0005.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0005.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0006-a",
+   "outputs": [
+    "p2-c-d2-find-0006-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0006-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0006.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0006.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0006-b",
+   "outputs": [
+    "p2-c-d2-find-0006-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0006-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0006.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0006.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0007-a",
+   "outputs": [
+    "p2-c-d2-find-0007-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0007-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0007.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0007.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0007-b",
+   "outputs": [
+    "p2-c-d2-find-0007-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0007-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0007.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0007.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0008-a",
+   "outputs": [
+    "p2-c-d2-find-0008-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0008-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0008.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0008.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0008-b",
+   "outputs": [
+    "p2-c-d2-find-0008-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0008-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0008.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0008.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0009-a",
+   "outputs": [
+    "p2-c-d2-find-0009-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0009-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0009.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0009.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0009-b",
+   "outputs": [
+    "p2-c-d2-find-0009-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0009-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0009.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0009.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0010-a",
+   "outputs": [
+    "p2-c-d2-find-0010-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0010-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0010.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0010.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0010-b",
+   "outputs": [
+    "p2-c-d2-find-0010-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0010-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0010.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0010.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0011-a",
+   "outputs": [
+    "p2-c-d2-find-0011-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0011-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0011.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0011.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0011-b",
+   "outputs": [
+    "p2-c-d2-find-0011-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0011-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0011.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0011.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0012-a",
+   "outputs": [
+    "p2-c-d2-find-0012-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0012-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0012.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0012.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0012-b",
+   "outputs": [
+    "p2-c-d2-find-0012-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0012-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0012.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0012.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0013-a",
+   "outputs": [
+    "p2-c-d2-find-0013-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0013-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0013.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0013.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0013-b",
+   "outputs": [
+    "p2-c-d2-find-0013-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0013-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0013.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0013.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0014-a",
+   "outputs": [
+    "p2-c-d2-find-0014-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0014-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0014.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0014.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0014-b",
+   "outputs": [
+    "p2-c-d2-find-0014-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0014-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0014.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0014.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0015-a",
+   "outputs": [
+    "p2-c-d2-find-0015-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0015-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0015.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0015.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0015-b",
+   "outputs": [
+    "p2-c-d2-find-0015-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0015-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0015.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0015.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0016-a",
+   "outputs": [
+    "p2-c-d2-find-0016-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0016-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0016.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0016.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0016-b",
+   "outputs": [
+    "p2-c-d2-find-0016-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0016-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0016.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0016.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0017-a",
+   "outputs": [
+    "p2-c-d2-find-0017-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0017-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0017.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0017.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0017-b",
+   "outputs": [
+    "p2-c-d2-find-0017-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0017-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0017.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0017.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0018-a",
+   "outputs": [
+    "p2-c-d2-find-0018-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0018-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0018.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0018.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0018-b",
+   "outputs": [
+    "p2-c-d2-find-0018-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0018-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0018.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0018.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0019-a",
+   "outputs": [
+    "p2-c-d2-find-0019-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0019-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0019.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0019.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0019-b",
+   "outputs": [
+    "p2-c-d2-find-0019-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0019-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0019.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0019.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0020-a",
+   "outputs": [
+    "p2-c-d2-find-0020-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0020-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0020.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0020.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0020-b",
+   "outputs": [
+    "p2-c-d2-find-0020-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0020-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0020.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0020.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0021-a",
+   "outputs": [
+    "p2-c-d2-find-0021-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0021-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0021.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0021.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0021-b",
+   "outputs": [
+    "p2-c-d2-find-0021-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0021-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0021.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0021.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0022-a",
+   "outputs": [
+    "p2-c-d2-find-0022-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0022-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0022.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0022.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0022-b",
+   "outputs": [
+    "p2-c-d2-find-0022-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0022-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0022.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0022.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0023-a",
+   "outputs": [
+    "p2-c-d2-find-0023-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0023-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0023.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0023.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0023-b",
+   "outputs": [
+    "p2-c-d2-find-0023-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0023-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0023.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0023.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0024-a",
+   "outputs": [
+    "p2-c-d2-find-0024-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0024-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0024.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0024.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0024-b",
+   "outputs": [
+    "p2-c-d2-find-0024-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0024-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0024.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0024.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0025-a",
+   "outputs": [
+    "p2-c-d2-find-0025-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0025-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0025.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0025.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0025-b",
+   "outputs": [
+    "p2-c-d2-find-0025-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0025-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0025.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0025.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0026-a",
+   "outputs": [
+    "p2-c-d2-find-0026-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0026-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0026.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0026.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0026-b",
+   "outputs": [
+    "p2-c-d2-find-0026-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0026-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0026.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0026.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0027-a",
+   "outputs": [
+    "p2-c-d2-find-0027-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0027-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0027.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0027.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0027-b",
+   "outputs": [
+    "p2-c-d2-find-0027-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0027-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0027.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0027.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0028-a",
+   "outputs": [
+    "p2-c-d2-find-0028-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0028-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0028.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0028.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0028-b",
+   "outputs": [
+    "p2-c-d2-find-0028-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0028-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0028.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0028.npz --lo 10 --hi 20"
+  },
+  {
+   "id": "p2-c-d2-find-0029-a",
+   "outputs": [
+    "p2-c-d2-find-0029-a.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0029-a --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0029.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0029.npz --lo 0 --hi 10"
+  },
+  {
+   "id": "p2-c-d2-find-0029-b",
+   "outputs": [
+    "p2-c-d2-find-0029-b.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH/cache/numba_s4 PYTHONPYCACHEPREFIX=$QV2_SCRATCH/cache/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase2_exploration/src/p2u_d2_find.py --id p2-c-d2-find-0029-b --nom /nfs/cajuela/jdochoa/quirks_v2/data/phase2/p2-a-c1-pu1/000/c1pu1-0029.npz --var /nfs/cajuela/jdochoa/quirks_v2/data/p2c/d2/p2-c-d2-chain/000/p2-c-d2-chain-0029.npz --lo 10 --hi 20"
+  }
+ ]
+}
