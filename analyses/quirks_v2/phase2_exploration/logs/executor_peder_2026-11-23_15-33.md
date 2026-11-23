@@ -1,0 +1,10 @@
+# Session log — Peder (Opus), executor: EXPLORATION.md consolidation
+
+Task: consolidate `phase2_exploration/outputs/EXPLORATION.md` from the channel files (documentation only, einstein, no compute, no new numbers).
+
+- 2026-11-23 15:33 -0500 — start. Read AGENT_RULES.md, CLAUDE.md (study overrides + JFC template), ORCHESTRATOR_STATE.md. LOG.md entries 19-23 Nov at l.957-992.
+- 2026-11-23 15:38 -0500 — sources read: LOG l.346-992 (16-23 Nov), state §0/§3, channel files (Rosalie, Mattias, Ignatius x4, Lisbet, Petra, Vidar, Ragnar, Sebastian, Edgar, Sune, Tatiana x3, Xavier x5, Albert, Hedda, Flora, Viktor, Tove, Ingvild, Cecilie plan S1-S5, Bjorn, Jonas, Leif, Eskil), 23 Nov notices, COMMITMENTS rows, STR l.747-761, l.2730-2757, ADD1 v5 l.305-321. JFC Phase-2 rules: methodology/03-phases.md l.268-354, 06-review.md l.164-169, phase2 CLAUDE.md, tools/jfc/src/agents/plot_validator.md.
+- Spot re-checks on einstein (python3 -I, nice 19, read-only JSON): rule1_valid_c Z R08 (S) 1501; B50 63,169.7; rule1_prelim N R09 10,776.8 / P 619.6; c1_compare_mattias global sums 16.11 / 25.75 / 43.91; f200_fxfx E500 0.10519 ± 0.00169; f200 E1500 band +5.96/-5.94 %; D2 sum r 0.766/0.759/0.720, ln r(R06) -0.328 +- 0.061. All agree with the channel files.
+- Plot linter: conventions/lint_plots.py on phase2_exploration -> "No plotting scripts found"; outputs/figures/ empty. No figure is referenced.
+- DECISION: tag convention in EXPLORATION.md = the status the source document gives the number (its author measured it -> VERIFIED), with source file:line; numbers re-read by me from the JSON marked "re-read". ALTERNATIVES: tag everything UNVERIFIED (transcribed). CONFIDENCE: medium; stated in the document header.
+- 2026-11-23 15:43 -0500 — EXPLORATION.md written (614 lines, §0-§13, 6 PENDING blocks, 12 disagreement items). experiment_log.md entry appended (not committed by me: shared file). Self-review in §13: no figure; lint run; PDF build test not run (einstein-only). Next: commit EXPLORATION.md + this log.
