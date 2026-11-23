@@ -2,14 +2,14 @@
  "campaign": "p2-b-s2-fxfx-gen1500",
  "tier": "final",
  "expected_hours": 1.2,
- "description": "channel (ii) Sune 2026-11-19: FxFx E 1500 event batches from the saved grids of p2-b-s2-fxfx-e1500 (--restore), 6 x 15,000 LHE events, MG -o + fxfx_shower.cc (b8f42ed); f200^FxFx for S2-c. Each job <= 30 min, no exception. Launch only after fxfx-e1500-grids3 is done.",
+ "description": "channel (ii) Sune 2026-11-19: FxFx E 1500 event batches from the saved grids of p2-b-s2-fxfx-e1500 (--restore), 6 x 15,000 LHE events, MG -o + fxfx_shower.cc (b8f42ed); f200^FxFx for S2-c. Each job <= 30 min, no exception. Launch only after fxfx-e1500-grids4 is done (Halvard 2026-11-23: restore path grids3 -> grids4; grids3 never produced a procdir).",
  "jobs": [
   {
    "id": "fxfx-e1500-gen-01",
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-01 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-01 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-01.timing.json",
     "fxfx-e1500-gen-01.lhe.gz",
@@ -22,7 +22,7 @@
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-02 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-02 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-02.timing.json",
     "fxfx-e1500-gen-02.lhe.gz",
@@ -35,7 +35,7 @@
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-03 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-03 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-03.timing.json",
     "fxfx-e1500-gen-03.lhe.gz",
@@ -48,7 +48,7 @@
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-04 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-04 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-04.timing.json",
     "fxfx-e1500-gen-04.lhe.gz",
@@ -61,7 +61,7 @@
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-05 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-05 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-05.timing.json",
     "fxfx-e1500-gen-05.lhe.gz",
@@ -74,7 +74,7 @@
    "shard": 0,
    "max_rss_mb": 2500,
    "timeout_s": 1800,
-   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-06 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids3.procdir.tar.gz",
+   "command": "export QV2_LOCAL_ENV=1 QV2_SAMPLE=1; python3 -I /home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase2_exploration/src/s2/s2_job.py fxfx fxfx-e1500-gen-06 E 1500 15000 --stage gen --shower --restore /nfs/cajuela/jdochoa/quirks_v2/data/p2-b-s2-fxfx-e1500/000/fxfx-e1500-grids4.procdir.tar.gz",
    "outputs": [
     "fxfx-e1500-gen-06.timing.json",
     "fxfx-e1500-gen-06.lhe.gz",
