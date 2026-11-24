@@ -62,10 +62,11 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 13:30 -0500 | Kari | opus | NI C′_PU attribution (Eskil's successor) | done (121f78e) |
 | 2026-11-23 13:30 -0500 | Leif | opus | stop-rule checkpoint 1 CPU/wall/storage re-projection (overdue) | done (eb89ca2) |
 | 2026-11-23 13:30 -0500 | Maren | fable | advisor: calendar shift after the power loss | done |
-| 2026-11-23 15:16 -0500 | Nils | fable | rule 1(c) second-agent review of p2w_subset.py (ruling (ii)) | running |
+| 2026-11-23 15:16 -0500 | Nils | fable | rule 1(c) second-agent review of p2w_subset.py (ruling (ii)) | done (98aac41) |
 | 2026-11-23 15:31 -0500 | Olav | fable | advisor: D2 verdict reading, §7 item 1, notice | done (ruling adopted) |
 | 2026-11-23 15:32 -0500 | Peder | opus | EXPLORATION.md consolidation (placeholders for running items) | done (4babc51) |
 | 2026-11-23 15:44 -0500 | Runa | fable | advisor: D8 Z(νν) top-up on present counts; the 10 number disagreements of EXPLORATION §12 | done (ruling adopted) |
 | 2026-11-23 16:18 -0500 | Siri | fable | advisor: S2-c FxFx E1500 read, band/κ, notice | done (ruling adopted) |
 | 2026-11-23 16:28 -0500 | Tora | opus | reach re-estimate (Gate A method, pilot backgrounds, v1 placeholder efficiencies) | done (610c107) |
 | 2026-11-23 16:36 -0500 | Ulla | fable | advisor: reach re-estimate legitimacy, outlook wording, RESULT notice | done (ruling adopted) |
+| 2026-11-23 19:43 -0500 | Vigdis | fable | advisor: binding m after the subset review (ruling (ii)), conditions, notice | running |
