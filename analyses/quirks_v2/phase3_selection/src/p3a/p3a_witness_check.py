@@ -13,8 +13,9 @@ fails with this re-fitted normal is reported as 'failed' although it may hold wi
 an upper count of problems, 'verified' a lower count of confirmed witnesses.  (First version: unweighted normal; on
 real hits it failed the 3 sigma membership for most witnesses, 43 of 62 in two files: the fit, not the witnesses.)  This extends
 his check "her witness passes my verifier in 136 / 136" (R08, s = 0) to R04-R07 and to s = 3 (N_2S2 of the verified
-witness counted here).  A witness that is the full set under the finder's axis only (c0 below every own-axis category)
-is counted apart: the own-axis verifier is not the convention it was counted under.
+witness counted here).  The stored witness is either an own-axis subset (categories c1-c4) or the plane's full set
+judged with the FINDER's axis (c0).  For a full-set witness the own-axis verifier is not the convention it was counted
+under: it is reported apart (passes the own-axis verifier as well / holds under the finder's axis only).
 """
 import argparse
 import hashlib
@@ -35,15 +36,23 @@ NR = IND.NR
 B = A.B
 
 
-def fit_normal(u, cx, cy, s0, s1, ttol, iters=6):
+def fit_normal(u, cx, cy, s0, s1, ttol, iters=6, extra=40):
     """PV-constrained plane through the hits u (n, 3): smallest eigenvector of sum w u u^T, w = 1 / sigma_tot^2 with
-    the sigma model of review_nils_subset.verify (l.343-345), iterated."""
+    the sigma model of review_nils_subset.verify (l.343-345), iterated.  If a hit is then outside 3 sigma_tot, up to
+    `extra` re-weighted iterations raise the weight of the hits beyond 3 sigma (w x (d^2 / 9 sigma^2)^2, cumulative):
+    a search for A normal under which every witness hit is a member, which is what the witness claims exists."""
     _, _, vt = np.linalg.svd(u / np.linalg.norm(u, axis=1)[:, None])
     n = vt[-1] / np.linalg.norm(vt[-1])
-    for _ in range(iters):
+    boost = np.ones(len(u))
+    for it in range(iters + extra):
         aa = -n[0] * cy + n[1] * cx
         sg2 = np.maximum(aa ** 2 * s0 ** 2 + n[2] ** 2 * s1 ** 2, 1e-8) + ttol ** 2
-        M = (u * (1.0 / sg2)[:, None]).T @ u
+        if it >= iters:
+            pull2 = (u @ n) ** 2 / (9.0 * sg2)
+            if not (pull2 >= 1.0).any():
+                break
+            boost = boost * np.maximum(1.0, pull2) ** 2
+        M = (u * (boost / sg2)[:, None]).T @ u
         ev, evec = np.linalg.eigh(M)
         v = evec[:, 0]
         n = v if v @ n > 0 else -v
@@ -66,8 +75,9 @@ def main():
     zsel = z['term'] == 'Z'
     zp = sorted({paths[i] for i in z['path_idx'][zsel]})
     todo = zp[a.offset::a.stride]
-    T = {wn: dict(counted_s0=0, verified_s0=0, finder_axis_only_s0=0, failed_s0=0, counted_s3=0, verified_s3=0,
-                  s3_not_from_this_witness=0, why={}) for wn in wl}
+    T = {wn: dict(counted_s0=0, subset_witness=0, subset_verified=0, subset_failed=0, fullset_witness=0,
+                  fullset_also_own_axis_verified=0, fullset_finder_axis_only=0, no_witness_at_kmax=0,
+                  counted_s3=0, verified_s3=0, s3_not_from_this_witness=0, why={}) for wn in wl}
     fails = []
     for path in todo:
         pi = paths.index(path)
@@ -105,24 +115,34 @@ def main():
                     nrm = fit_normal(U[mask], CX[mask], CY[mask], S0[mask], S1[mask], NR.CFG['t_tol'])
                     v = NR.verify(U, CX, CY, S0, S1, LC, SD, mask, nrm, phim, W=W)
                     ok = v['ok']
-                own = int(KC[r, 1:, wi, 0, 0].min())             # best own-axis category at s = 0
+                # the stored witness is the plane's full set under the FINDER's axis iff c0 has the witness's k (c0 is
+                # recorded first and replaced only by a strictly smaller k); otherwise it is an own-axis subset
+                is_full = int(KC[r, cats.index('c0'), wi, 0, 0]) == int(res['wk'])
                 if c0:
                     t['counted_s0'] += 1
-                    if ok and v['k'] <= 3:
-                        t['verified_s0'] += 1
-                    elif int(KC[r, cats.index('c0'), wi, 0, 0]) < own or own > 3:
-                        t['finder_axis_only_s0'] += 1
+                    if res['wk'] > 3:
+                        t['no_witness_at_kmax'] += 1          # counted in UNION through BASE only (its own search)
+                    elif is_full:
+                        t['fullset_witness'] += 1
+                        if ok and v['k'] <= 3:
+                            t['fullset_also_own_axis_verified'] += 1
+                        else:
+                            t['fullset_finder_axis_only'] += 1
                     else:
-                        t['failed_s0'] += 1
-                        t['why'][v['why']] = t['why'].get(v['why'], 0) + 1
-                        fails.append([path, i, wn, v['why'], int(v['k']), int(res['wk'])])
+                        t['subset_witness'] += 1
+                        if ok and v['k'] <= 3:
+                            t['subset_verified'] += 1
+                        else:
+                            t['subset_failed'] += 1
+                            t['why'][v['why']] = t['why'].get(v['why'], 0) + 1
+                            fails.append([path, i, wn, v['why'], int(v['k']), int(res['wk'])])
                 if c3:
                     t['counted_s3'] += 1
                     if ok and v['k'] + max(0, 3 - IND.n2s2_of(LC, SD, mask)) <= 5:
                         t['verified_s3'] += 1
                     else:
                         t['s3_not_from_this_witness'] += 1
-    out = dict(rows=a.rows, stride=a.stride, offset=a.offset, n_files=len(todo), files=todo, tables=T, fails=fails[:200],
+    out = dict(rows=a.rows, stride=a.stride, offset=a.offset, n_files=len(todo), files=todo, tables=T, fails=fails,
                n_fails=len(fails), cpu_s=time.process_time() - t0,
                nils_sha256=hashlib.sha256(Path(NR.__file__).read_bytes()).hexdigest(),
                p3a_subset_sha256=hashlib.sha256(Path(A.__file__).read_bytes()).hexdigest())

@@ -1,0 +1,1280 @@
+{
+ "campaign": "p3-a-clsxz",
+ "tier": "regenerable",
+ "data_prefix": "p3a",
+ "regenerate": "phase3_selection/src/p3a/p3a_campaigns.py xz 4",
+ "description": "FINAL pilot classification of the 460 Z(nunu) files, ONE read per file (p3a_multi.py): m (merged pool, PV draw, w_v1 > 0 = Phase-2 configuration), u (pool not merged), pv0 (PV = true vertex), pv2 (other PV seed, every 4th file), ind (Nils's search on the counted events, every 2nd file). Read-only on pilot files; no signal file.",
+ "expected_hours": 4.0,
+ "defaults": {
+  "max_rss_mb": 3000,
+  "timeout_s": 1800
+ },
+ "after": [],
+ "jobs": [
+  {
+   "id": "p3a-xz-000",
+   "outputs": [
+    "p3a-xz-000.m.npz",
+    "p3a-xz-000.u.npz",
+    "p3a-xz-000.pv0.npz",
+    "p3a-xz-000.pv2.npz",
+    "p3a-xz-000.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-000 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-001",
+   "outputs": [
+    "p3a-xz-001.m.npz",
+    "p3a-xz-001.u.npz",
+    "p3a-xz-001.pv0.npz",
+    "p3a-xz-001.pv2.npz",
+    "p3a-xz-001.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-001 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-002",
+   "outputs": [
+    "p3a-xz-002.m.npz",
+    "p3a-xz-002.u.npz",
+    "p3a-xz-002.pv0.npz",
+    "p3a-xz-002.pv2.npz",
+    "p3a-xz-002.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-002 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-003",
+   "outputs": [
+    "p3a-xz-003.m.npz",
+    "p3a-xz-003.u.npz",
+    "p3a-xz-003.pv0.npz",
+    "p3a-xz-003.pv2.npz",
+    "p3a-xz-003.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-003 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-004",
+   "outputs": [
+    "p3a-xz-004.m.npz",
+    "p3a-xz-004.u.npz",
+    "p3a-xz-004.pv0.npz",
+    "p3a-xz-004.pv2.npz",
+    "p3a-xz-004.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-004 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-005",
+   "outputs": [
+    "p3a-xz-005.m.npz",
+    "p3a-xz-005.u.npz",
+    "p3a-xz-005.pv0.npz",
+    "p3a-xz-005.pv2.npz",
+    "p3a-xz-005.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-005 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-006",
+   "outputs": [
+    "p3a-xz-006.m.npz",
+    "p3a-xz-006.u.npz",
+    "p3a-xz-006.pv0.npz",
+    "p3a-xz-006.pv2.npz",
+    "p3a-xz-006.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-006 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-007",
+   "outputs": [
+    "p3a-xz-007.m.npz",
+    "p3a-xz-007.u.npz",
+    "p3a-xz-007.pv0.npz",
+    "p3a-xz-007.pv2.npz",
+    "p3a-xz-007.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-007 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-008",
+   "outputs": [
+    "p3a-xz-008.m.npz",
+    "p3a-xz-008.u.npz",
+    "p3a-xz-008.pv0.npz",
+    "p3a-xz-008.pv2.npz",
+    "p3a-xz-008.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-008 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-009",
+   "outputs": [
+    "p3a-xz-009.m.npz",
+    "p3a-xz-009.u.npz",
+    "p3a-xz-009.pv0.npz",
+    "p3a-xz-009.pv2.npz",
+    "p3a-xz-009.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-009 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-010",
+   "outputs": [
+    "p3a-xz-010.m.npz",
+    "p3a-xz-010.u.npz",
+    "p3a-xz-010.pv0.npz",
+    "p3a-xz-010.pv2.npz",
+    "p3a-xz-010.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-010 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-011",
+   "outputs": [
+    "p3a-xz-011.m.npz",
+    "p3a-xz-011.u.npz",
+    "p3a-xz-011.pv0.npz",
+    "p3a-xz-011.pv2.npz",
+    "p3a-xz-011.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-011 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-012",
+   "outputs": [
+    "p3a-xz-012.m.npz",
+    "p3a-xz-012.u.npz",
+    "p3a-xz-012.pv0.npz",
+    "p3a-xz-012.pv2.npz",
+    "p3a-xz-012.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-012 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-013",
+   "outputs": [
+    "p3a-xz-013.m.npz",
+    "p3a-xz-013.u.npz",
+    "p3a-xz-013.pv0.npz",
+    "p3a-xz-013.pv2.npz",
+    "p3a-xz-013.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-013 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-014",
+   "outputs": [
+    "p3a-xz-014.m.npz",
+    "p3a-xz-014.u.npz",
+    "p3a-xz-014.pv0.npz",
+    "p3a-xz-014.pv2.npz",
+    "p3a-xz-014.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-014 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-015",
+   "outputs": [
+    "p3a-xz-015.m.npz",
+    "p3a-xz-015.u.npz",
+    "p3a-xz-015.pv0.npz",
+    "p3a-xz-015.pv2.npz",
+    "p3a-xz-015.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-015 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-016",
+   "outputs": [
+    "p3a-xz-016.m.npz",
+    "p3a-xz-016.u.npz",
+    "p3a-xz-016.pv0.npz",
+    "p3a-xz-016.pv2.npz",
+    "p3a-xz-016.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-016 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-017",
+   "outputs": [
+    "p3a-xz-017.m.npz",
+    "p3a-xz-017.u.npz",
+    "p3a-xz-017.pv0.npz",
+    "p3a-xz-017.pv2.npz",
+    "p3a-xz-017.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-017 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-018",
+   "outputs": [
+    "p3a-xz-018.m.npz",
+    "p3a-xz-018.u.npz",
+    "p3a-xz-018.pv0.npz",
+    "p3a-xz-018.pv2.npz",
+    "p3a-xz-018.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-018 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-019",
+   "outputs": [
+    "p3a-xz-019.m.npz",
+    "p3a-xz-019.u.npz",
+    "p3a-xz-019.pv0.npz",
+    "p3a-xz-019.pv2.npz",
+    "p3a-xz-019.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-019 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-020",
+   "outputs": [
+    "p3a-xz-020.m.npz",
+    "p3a-xz-020.u.npz",
+    "p3a-xz-020.pv0.npz",
+    "p3a-xz-020.pv2.npz",
+    "p3a-xz-020.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-020 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-021",
+   "outputs": [
+    "p3a-xz-021.m.npz",
+    "p3a-xz-021.u.npz",
+    "p3a-xz-021.pv0.npz",
+    "p3a-xz-021.pv2.npz",
+    "p3a-xz-021.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-021 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-022",
+   "outputs": [
+    "p3a-xz-022.m.npz",
+    "p3a-xz-022.u.npz",
+    "p3a-xz-022.pv0.npz",
+    "p3a-xz-022.pv2.npz",
+    "p3a-xz-022.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-022 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-023",
+   "outputs": [
+    "p3a-xz-023.m.npz",
+    "p3a-xz-023.u.npz",
+    "p3a-xz-023.pv0.npz",
+    "p3a-xz-023.pv2.npz",
+    "p3a-xz-023.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-023 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-024",
+   "outputs": [
+    "p3a-xz-024.m.npz",
+    "p3a-xz-024.u.npz",
+    "p3a-xz-024.pv0.npz",
+    "p3a-xz-024.pv2.npz",
+    "p3a-xz-024.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-024 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-025",
+   "outputs": [
+    "p3a-xz-025.m.npz",
+    "p3a-xz-025.u.npz",
+    "p3a-xz-025.pv0.npz",
+    "p3a-xz-025.pv2.npz",
+    "p3a-xz-025.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-025 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-026",
+   "outputs": [
+    "p3a-xz-026.m.npz",
+    "p3a-xz-026.u.npz",
+    "p3a-xz-026.pv0.npz",
+    "p3a-xz-026.pv2.npz",
+    "p3a-xz-026.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-026 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-027",
+   "outputs": [
+    "p3a-xz-027.m.npz",
+    "p3a-xz-027.u.npz",
+    "p3a-xz-027.pv0.npz",
+    "p3a-xz-027.pv2.npz",
+    "p3a-xz-027.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-027 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-028",
+   "outputs": [
+    "p3a-xz-028.m.npz",
+    "p3a-xz-028.u.npz",
+    "p3a-xz-028.pv0.npz",
+    "p3a-xz-028.pv2.npz",
+    "p3a-xz-028.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-028 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-029",
+   "outputs": [
+    "p3a-xz-029.m.npz",
+    "p3a-xz-029.u.npz",
+    "p3a-xz-029.pv0.npz",
+    "p3a-xz-029.pv2.npz",
+    "p3a-xz-029.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-029 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-030",
+   "outputs": [
+    "p3a-xz-030.m.npz",
+    "p3a-xz-030.u.npz",
+    "p3a-xz-030.pv0.npz",
+    "p3a-xz-030.pv2.npz",
+    "p3a-xz-030.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-030 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-031",
+   "outputs": [
+    "p3a-xz-031.m.npz",
+    "p3a-xz-031.u.npz",
+    "p3a-xz-031.pv0.npz",
+    "p3a-xz-031.pv2.npz",
+    "p3a-xz-031.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-031 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-032",
+   "outputs": [
+    "p3a-xz-032.m.npz",
+    "p3a-xz-032.u.npz",
+    "p3a-xz-032.pv0.npz",
+    "p3a-xz-032.pv2.npz",
+    "p3a-xz-032.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-032 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-033",
+   "outputs": [
+    "p3a-xz-033.m.npz",
+    "p3a-xz-033.u.npz",
+    "p3a-xz-033.pv0.npz",
+    "p3a-xz-033.pv2.npz",
+    "p3a-xz-033.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-033 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-034",
+   "outputs": [
+    "p3a-xz-034.m.npz",
+    "p3a-xz-034.u.npz",
+    "p3a-xz-034.pv0.npz",
+    "p3a-xz-034.pv2.npz",
+    "p3a-xz-034.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-034 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-035",
+   "outputs": [
+    "p3a-xz-035.m.npz",
+    "p3a-xz-035.u.npz",
+    "p3a-xz-035.pv0.npz",
+    "p3a-xz-035.pv2.npz",
+    "p3a-xz-035.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-035 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-036",
+   "outputs": [
+    "p3a-xz-036.m.npz",
+    "p3a-xz-036.u.npz",
+    "p3a-xz-036.pv0.npz",
+    "p3a-xz-036.pv2.npz",
+    "p3a-xz-036.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-036 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-037",
+   "outputs": [
+    "p3a-xz-037.m.npz",
+    "p3a-xz-037.u.npz",
+    "p3a-xz-037.pv0.npz",
+    "p3a-xz-037.pv2.npz",
+    "p3a-xz-037.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-037 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-038",
+   "outputs": [
+    "p3a-xz-038.m.npz",
+    "p3a-xz-038.u.npz",
+    "p3a-xz-038.pv0.npz",
+    "p3a-xz-038.pv2.npz",
+    "p3a-xz-038.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-038 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-039",
+   "outputs": [
+    "p3a-xz-039.m.npz",
+    "p3a-xz-039.u.npz",
+    "p3a-xz-039.pv0.npz",
+    "p3a-xz-039.pv2.npz",
+    "p3a-xz-039.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-039 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-040",
+   "outputs": [
+    "p3a-xz-040.m.npz",
+    "p3a-xz-040.u.npz",
+    "p3a-xz-040.pv0.npz",
+    "p3a-xz-040.pv2.npz",
+    "p3a-xz-040.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-040 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-041",
+   "outputs": [
+    "p3a-xz-041.m.npz",
+    "p3a-xz-041.u.npz",
+    "p3a-xz-041.pv0.npz",
+    "p3a-xz-041.pv2.npz",
+    "p3a-xz-041.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-041 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-042",
+   "outputs": [
+    "p3a-xz-042.m.npz",
+    "p3a-xz-042.u.npz",
+    "p3a-xz-042.pv0.npz",
+    "p3a-xz-042.pv2.npz",
+    "p3a-xz-042.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-042 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-043",
+   "outputs": [
+    "p3a-xz-043.m.npz",
+    "p3a-xz-043.u.npz",
+    "p3a-xz-043.pv0.npz",
+    "p3a-xz-043.pv2.npz",
+    "p3a-xz-043.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-043 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-044",
+   "outputs": [
+    "p3a-xz-044.m.npz",
+    "p3a-xz-044.u.npz",
+    "p3a-xz-044.pv0.npz",
+    "p3a-xz-044.pv2.npz",
+    "p3a-xz-044.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-044 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-045",
+   "outputs": [
+    "p3a-xz-045.m.npz",
+    "p3a-xz-045.u.npz",
+    "p3a-xz-045.pv0.npz",
+    "p3a-xz-045.pv2.npz",
+    "p3a-xz-045.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-045 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-046",
+   "outputs": [
+    "p3a-xz-046.m.npz",
+    "p3a-xz-046.u.npz",
+    "p3a-xz-046.pv0.npz",
+    "p3a-xz-046.pv2.npz",
+    "p3a-xz-046.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-046 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-047",
+   "outputs": [
+    "p3a-xz-047.m.npz",
+    "p3a-xz-047.u.npz",
+    "p3a-xz-047.pv0.npz",
+    "p3a-xz-047.pv2.npz",
+    "p3a-xz-047.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-047 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-048",
+   "outputs": [
+    "p3a-xz-048.m.npz",
+    "p3a-xz-048.u.npz",
+    "p3a-xz-048.pv0.npz",
+    "p3a-xz-048.pv2.npz",
+    "p3a-xz-048.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-048 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-049",
+   "outputs": [
+    "p3a-xz-049.m.npz",
+    "p3a-xz-049.u.npz",
+    "p3a-xz-049.pv0.npz",
+    "p3a-xz-049.pv2.npz",
+    "p3a-xz-049.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-049 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-050",
+   "outputs": [
+    "p3a-xz-050.m.npz",
+    "p3a-xz-050.u.npz",
+    "p3a-xz-050.pv0.npz",
+    "p3a-xz-050.pv2.npz",
+    "p3a-xz-050.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-050 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-051",
+   "outputs": [
+    "p3a-xz-051.m.npz",
+    "p3a-xz-051.u.npz",
+    "p3a-xz-051.pv0.npz",
+    "p3a-xz-051.pv2.npz",
+    "p3a-xz-051.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-051 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-052",
+   "outputs": [
+    "p3a-xz-052.m.npz",
+    "p3a-xz-052.u.npz",
+    "p3a-xz-052.pv0.npz",
+    "p3a-xz-052.pv2.npz",
+    "p3a-xz-052.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-052 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-053",
+   "outputs": [
+    "p3a-xz-053.m.npz",
+    "p3a-xz-053.u.npz",
+    "p3a-xz-053.pv0.npz",
+    "p3a-xz-053.pv2.npz",
+    "p3a-xz-053.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-053 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-054",
+   "outputs": [
+    "p3a-xz-054.m.npz",
+    "p3a-xz-054.u.npz",
+    "p3a-xz-054.pv0.npz",
+    "p3a-xz-054.pv2.npz",
+    "p3a-xz-054.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-054 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-055",
+   "outputs": [
+    "p3a-xz-055.m.npz",
+    "p3a-xz-055.u.npz",
+    "p3a-xz-055.pv0.npz",
+    "p3a-xz-055.pv2.npz",
+    "p3a-xz-055.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-055 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-056",
+   "outputs": [
+    "p3a-xz-056.m.npz",
+    "p3a-xz-056.u.npz",
+    "p3a-xz-056.pv0.npz",
+    "p3a-xz-056.pv2.npz",
+    "p3a-xz-056.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-056 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-057",
+   "outputs": [
+    "p3a-xz-057.m.npz",
+    "p3a-xz-057.u.npz",
+    "p3a-xz-057.pv0.npz",
+    "p3a-xz-057.pv2.npz",
+    "p3a-xz-057.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-057 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-058",
+   "outputs": [
+    "p3a-xz-058.m.npz",
+    "p3a-xz-058.u.npz",
+    "p3a-xz-058.pv0.npz",
+    "p3a-xz-058.pv2.npz",
+    "p3a-xz-058.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-058 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-059",
+   "outputs": [
+    "p3a-xz-059.m.npz",
+    "p3a-xz-059.u.npz",
+    "p3a-xz-059.pv0.npz",
+    "p3a-xz-059.pv2.npz",
+    "p3a-xz-059.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-059 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-060",
+   "outputs": [
+    "p3a-xz-060.m.npz",
+    "p3a-xz-060.u.npz",
+    "p3a-xz-060.pv0.npz",
+    "p3a-xz-060.pv2.npz",
+    "p3a-xz-060.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-060 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-061",
+   "outputs": [
+    "p3a-xz-061.m.npz",
+    "p3a-xz-061.u.npz",
+    "p3a-xz-061.pv0.npz",
+    "p3a-xz-061.pv2.npz",
+    "p3a-xz-061.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-061 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-062",
+   "outputs": [
+    "p3a-xz-062.m.npz",
+    "p3a-xz-062.u.npz",
+    "p3a-xz-062.pv0.npz",
+    "p3a-xz-062.pv2.npz",
+    "p3a-xz-062.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-062 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-063",
+   "outputs": [
+    "p3a-xz-063.m.npz",
+    "p3a-xz-063.u.npz",
+    "p3a-xz-063.pv0.npz",
+    "p3a-xz-063.pv2.npz",
+    "p3a-xz-063.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-063 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-064",
+   "outputs": [
+    "p3a-xz-064.m.npz",
+    "p3a-xz-064.u.npz",
+    "p3a-xz-064.pv0.npz",
+    "p3a-xz-064.pv2.npz",
+    "p3a-xz-064.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-064 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-065",
+   "outputs": [
+    "p3a-xz-065.m.npz",
+    "p3a-xz-065.u.npz",
+    "p3a-xz-065.pv0.npz",
+    "p3a-xz-065.pv2.npz",
+    "p3a-xz-065.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-065 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-066",
+   "outputs": [
+    "p3a-xz-066.m.npz",
+    "p3a-xz-066.u.npz",
+    "p3a-xz-066.pv0.npz",
+    "p3a-xz-066.pv2.npz",
+    "p3a-xz-066.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-066 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-067",
+   "outputs": [
+    "p3a-xz-067.m.npz",
+    "p3a-xz-067.u.npz",
+    "p3a-xz-067.pv0.npz",
+    "p3a-xz-067.pv2.npz",
+    "p3a-xz-067.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-067 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-068",
+   "outputs": [
+    "p3a-xz-068.m.npz",
+    "p3a-xz-068.u.npz",
+    "p3a-xz-068.pv0.npz",
+    "p3a-xz-068.pv2.npz",
+    "p3a-xz-068.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-068 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-069",
+   "outputs": [
+    "p3a-xz-069.m.npz",
+    "p3a-xz-069.u.npz",
+    "p3a-xz-069.pv0.npz",
+    "p3a-xz-069.pv2.npz",
+    "p3a-xz-069.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-069 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-070",
+   "outputs": [
+    "p3a-xz-070.m.npz",
+    "p3a-xz-070.u.npz",
+    "p3a-xz-070.pv0.npz",
+    "p3a-xz-070.pv2.npz",
+    "p3a-xz-070.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-070 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-071",
+   "outputs": [
+    "p3a-xz-071.m.npz",
+    "p3a-xz-071.u.npz",
+    "p3a-xz-071.pv0.npz",
+    "p3a-xz-071.pv2.npz",
+    "p3a-xz-071.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-071 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-072",
+   "outputs": [
+    "p3a-xz-072.m.npz",
+    "p3a-xz-072.u.npz",
+    "p3a-xz-072.pv0.npz",
+    "p3a-xz-072.pv2.npz",
+    "p3a-xz-072.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-072 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-073",
+   "outputs": [
+    "p3a-xz-073.m.npz",
+    "p3a-xz-073.u.npz",
+    "p3a-xz-073.pv0.npz",
+    "p3a-xz-073.pv2.npz",
+    "p3a-xz-073.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-073 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-074",
+   "outputs": [
+    "p3a-xz-074.m.npz",
+    "p3a-xz-074.u.npz",
+    "p3a-xz-074.pv0.npz",
+    "p3a-xz-074.pv2.npz",
+    "p3a-xz-074.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-074 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-075",
+   "outputs": [
+    "p3a-xz-075.m.npz",
+    "p3a-xz-075.u.npz",
+    "p3a-xz-075.pv0.npz",
+    "p3a-xz-075.pv2.npz",
+    "p3a-xz-075.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-075 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-076",
+   "outputs": [
+    "p3a-xz-076.m.npz",
+    "p3a-xz-076.u.npz",
+    "p3a-xz-076.pv0.npz",
+    "p3a-xz-076.pv2.npz",
+    "p3a-xz-076.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-076 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-077",
+   "outputs": [
+    "p3a-xz-077.m.npz",
+    "p3a-xz-077.u.npz",
+    "p3a-xz-077.pv0.npz",
+    "p3a-xz-077.pv2.npz",
+    "p3a-xz-077.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-077 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-078",
+   "outputs": [
+    "p3a-xz-078.m.npz",
+    "p3a-xz-078.u.npz",
+    "p3a-xz-078.pv0.npz",
+    "p3a-xz-078.pv2.npz",
+    "p3a-xz-078.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-078 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-079",
+   "outputs": [
+    "p3a-xz-079.m.npz",
+    "p3a-xz-079.u.npz",
+    "p3a-xz-079.pv0.npz",
+    "p3a-xz-079.pv2.npz",
+    "p3a-xz-079.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-079 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-080",
+   "outputs": [
+    "p3a-xz-080.m.npz",
+    "p3a-xz-080.u.npz",
+    "p3a-xz-080.pv0.npz",
+    "p3a-xz-080.pv2.npz",
+    "p3a-xz-080.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-080 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-081",
+   "outputs": [
+    "p3a-xz-081.m.npz",
+    "p3a-xz-081.u.npz",
+    "p3a-xz-081.pv0.npz",
+    "p3a-xz-081.pv2.npz",
+    "p3a-xz-081.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-081 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-082",
+   "outputs": [
+    "p3a-xz-082.m.npz",
+    "p3a-xz-082.u.npz",
+    "p3a-xz-082.pv0.npz",
+    "p3a-xz-082.pv2.npz",
+    "p3a-xz-082.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-082 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-083",
+   "outputs": [
+    "p3a-xz-083.m.npz",
+    "p3a-xz-083.u.npz",
+    "p3a-xz-083.pv0.npz",
+    "p3a-xz-083.pv2.npz",
+    "p3a-xz-083.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-083 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-084",
+   "outputs": [
+    "p3a-xz-084.m.npz",
+    "p3a-xz-084.u.npz",
+    "p3a-xz-084.pv0.npz",
+    "p3a-xz-084.pv2.npz",
+    "p3a-xz-084.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-084 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-085",
+   "outputs": [
+    "p3a-xz-085.m.npz",
+    "p3a-xz-085.u.npz",
+    "p3a-xz-085.pv0.npz",
+    "p3a-xz-085.pv2.npz",
+    "p3a-xz-085.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-085 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-086",
+   "outputs": [
+    "p3a-xz-086.m.npz",
+    "p3a-xz-086.u.npz",
+    "p3a-xz-086.pv0.npz",
+    "p3a-xz-086.pv2.npz",
+    "p3a-xz-086.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-086 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-087",
+   "outputs": [
+    "p3a-xz-087.m.npz",
+    "p3a-xz-087.u.npz",
+    "p3a-xz-087.pv0.npz",
+    "p3a-xz-087.pv2.npz",
+    "p3a-xz-087.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-087 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-088",
+   "outputs": [
+    "p3a-xz-088.m.npz",
+    "p3a-xz-088.u.npz",
+    "p3a-xz-088.pv0.npz",
+    "p3a-xz-088.pv2.npz",
+    "p3a-xz-088.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-088 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-089",
+   "outputs": [
+    "p3a-xz-089.m.npz",
+    "p3a-xz-089.u.npz",
+    "p3a-xz-089.pv0.npz",
+    "p3a-xz-089.pv2.npz",
+    "p3a-xz-089.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-089 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-090",
+   "outputs": [
+    "p3a-xz-090.m.npz",
+    "p3a-xz-090.u.npz",
+    "p3a-xz-090.pv0.npz",
+    "p3a-xz-090.pv2.npz",
+    "p3a-xz-090.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-090 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-091",
+   "outputs": [
+    "p3a-xz-091.m.npz",
+    "p3a-xz-091.u.npz",
+    "p3a-xz-091.pv0.npz",
+    "p3a-xz-091.pv2.npz",
+    "p3a-xz-091.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-091 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-092",
+   "outputs": [
+    "p3a-xz-092.m.npz",
+    "p3a-xz-092.u.npz",
+    "p3a-xz-092.pv0.npz",
+    "p3a-xz-092.pv2.npz",
+    "p3a-xz-092.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-092 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-093",
+   "outputs": [
+    "p3a-xz-093.m.npz",
+    "p3a-xz-093.u.npz",
+    "p3a-xz-093.pv0.npz",
+    "p3a-xz-093.pv2.npz",
+    "p3a-xz-093.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-093 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-094",
+   "outputs": [
+    "p3a-xz-094.m.npz",
+    "p3a-xz-094.u.npz",
+    "p3a-xz-094.pv0.npz",
+    "p3a-xz-094.pv2.npz",
+    "p3a-xz-094.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-094 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-095",
+   "outputs": [
+    "p3a-xz-095.m.npz",
+    "p3a-xz-095.u.npz",
+    "p3a-xz-095.pv0.npz",
+    "p3a-xz-095.pv2.npz",
+    "p3a-xz-095.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-095 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-096",
+   "outputs": [
+    "p3a-xz-096.m.npz",
+    "p3a-xz-096.u.npz",
+    "p3a-xz-096.pv0.npz",
+    "p3a-xz-096.pv2.npz",
+    "p3a-xz-096.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-096 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-097",
+   "outputs": [
+    "p3a-xz-097.m.npz",
+    "p3a-xz-097.u.npz",
+    "p3a-xz-097.pv0.npz",
+    "p3a-xz-097.pv2.npz",
+    "p3a-xz-097.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-097 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-098",
+   "outputs": [
+    "p3a-xz-098.m.npz",
+    "p3a-xz-098.u.npz",
+    "p3a-xz-098.pv0.npz",
+    "p3a-xz-098.pv2.npz",
+    "p3a-xz-098.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-098 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-099",
+   "outputs": [
+    "p3a-xz-099.m.npz",
+    "p3a-xz-099.u.npz",
+    "p3a-xz-099.pv0.npz",
+    "p3a-xz-099.pv2.npz",
+    "p3a-xz-099.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-099 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-100",
+   "outputs": [
+    "p3a-xz-100.m.npz",
+    "p3a-xz-100.u.npz",
+    "p3a-xz-100.pv0.npz",
+    "p3a-xz-100.pv2.npz",
+    "p3a-xz-100.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-100 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-101",
+   "outputs": [
+    "p3a-xz-101.m.npz",
+    "p3a-xz-101.u.npz",
+    "p3a-xz-101.pv0.npz",
+    "p3a-xz-101.pv2.npz",
+    "p3a-xz-101.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-101 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-102",
+   "outputs": [
+    "p3a-xz-102.m.npz",
+    "p3a-xz-102.u.npz",
+    "p3a-xz-102.pv0.npz",
+    "p3a-xz-102.pv2.npz",
+    "p3a-xz-102.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-102 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-103",
+   "outputs": [
+    "p3a-xz-103.m.npz",
+    "p3a-xz-103.u.npz",
+    "p3a-xz-103.pv0.npz",
+    "p3a-xz-103.pv2.npz",
+    "p3a-xz-103.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-103 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-104",
+   "outputs": [
+    "p3a-xz-104.m.npz",
+    "p3a-xz-104.u.npz",
+    "p3a-xz-104.pv0.npz",
+    "p3a-xz-104.pv2.npz",
+    "p3a-xz-104.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-104 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-105",
+   "outputs": [
+    "p3a-xz-105.m.npz",
+    "p3a-xz-105.u.npz",
+    "p3a-xz-105.pv0.npz",
+    "p3a-xz-105.pv2.npz",
+    "p3a-xz-105.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-105 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-106",
+   "outputs": [
+    "p3a-xz-106.m.npz",
+    "p3a-xz-106.u.npz",
+    "p3a-xz-106.pv0.npz",
+    "p3a-xz-106.pv2.npz",
+    "p3a-xz-106.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-106 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-107",
+   "outputs": [
+    "p3a-xz-107.m.npz",
+    "p3a-xz-107.u.npz",
+    "p3a-xz-107.pv0.npz",
+    "p3a-xz-107.pv2.npz",
+    "p3a-xz-107.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-107 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-108",
+   "outputs": [
+    "p3a-xz-108.m.npz",
+    "p3a-xz-108.u.npz",
+    "p3a-xz-108.pv0.npz",
+    "p3a-xz-108.pv2.npz",
+    "p3a-xz-108.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-108 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-109",
+   "outputs": [
+    "p3a-xz-109.m.npz",
+    "p3a-xz-109.u.npz",
+    "p3a-xz-109.pv0.npz",
+    "p3a-xz-109.pv2.npz",
+    "p3a-xz-109.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-109 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-110",
+   "outputs": [
+    "p3a-xz-110.m.npz",
+    "p3a-xz-110.u.npz",
+    "p3a-xz-110.pv0.npz",
+    "p3a-xz-110.pv2.npz",
+    "p3a-xz-110.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-110 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-111",
+   "outputs": [
+    "p3a-xz-111.m.npz",
+    "p3a-xz-111.u.npz",
+    "p3a-xz-111.pv0.npz",
+    "p3a-xz-111.pv2.npz",
+    "p3a-xz-111.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-111 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-112",
+   "outputs": [
+    "p3a-xz-112.m.npz",
+    "p3a-xz-112.u.npz",
+    "p3a-xz-112.pv0.npz",
+    "p3a-xz-112.pv2.npz",
+    "p3a-xz-112.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-112 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-113",
+   "outputs": [
+    "p3a-xz-113.m.npz",
+    "p3a-xz-113.u.npz",
+    "p3a-xz-113.pv0.npz",
+    "p3a-xz-113.pv2.npz",
+    "p3a-xz-113.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-113 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  },
+  {
+   "id": "p3a-xz-114",
+   "outputs": [
+    "p3a-xz-114.m.npz",
+    "p3a-xz-114.u.npz",
+    "p3a-xz-114.pv0.npz",
+    "p3a-xz-114.pv2.npz",
+    "p3a-xz-114.ind.json"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$PWD/numba PYTHONPYCACHEPREFIX=$PWD/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 && (cp -r $QV2_SCRATCH/p3a_cache_seed/numba $PWD/numba 2>/dev/null || mkdir -p $PWD/numba) && PY=$QV2/envs/tt/.pixi/envs/default/bin/python && nice -n 10 $PY $QV2/phase3_selection/src/p3a/p3a_multi.py --id p3a-xz-114 --outdir $QV2_OUT_DIR --manifest /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-clsxz_files.json --all-z /home/users/jdochoa/hllhc-quirks-search/tools/runner/examples/p3a/p3-a-z_all.json --variants m,u,pv0,pv2,ind"
+  }
+ ]
+}

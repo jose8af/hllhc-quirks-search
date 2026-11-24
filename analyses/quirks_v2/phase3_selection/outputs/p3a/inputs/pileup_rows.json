@@ -1,0 +1,63 @@
+{
+ "status": "v1-based EST rows; NOT the development occupancy model (p3-b delivers its replacement)",
+ "source": "phase1_strategy/src/strategy_budget.py l.669-685 via p2c_rule1.NS; R09 and R08@x are the rows of p2z_addendum1.PUS (approved addendum).  R11_*: PU_R11 ends with W_PU[R11] (no row in the approved script: reading of STR l.1015-1018 by Aurora).  R14_*: \"R14 is at most the R11 value\" (STR l.1016) with W_PU[R14].  R07_direct: \"35 in 48,000 trials\" (STR l.1013) read as a counted term, N_trig / 48,000 x Gamma(36).  none: no pile-up term (a lower bound of B, valid for \"above\" only).",
+ "rows": {
+  "R09": {
+   "type": "lognormal_capped",
+   "median": 6.739844736462109,
+   "s_tot": 0.59,
+   "cap_mean": 425.5
+  },
+  "none": {
+   "type": "none"
+  },
+  "R08@88": {
+   "type": "lognormal_capped",
+   "median": 87.9,
+   "s_tot": 0.43,
+   "cap_mean": 425.5
+  },
+  "R08@118": {
+   "type": "lognormal_capped",
+   "median": 117.9,
+   "s_tot": 0.43,
+   "cap_mean": 425.5
+  },
+  "R08@148": {
+   "type": "lognormal_capped",
+   "median": 148.0,
+   "s_tot": 0.43,
+   "cap_mean": 425.5
+  },
+  "R11_lo": {
+   "type": "lognormal_capped",
+   "median": 0.47852001799370214,
+   "s_tot": 1.29,
+   "cap_mean": 425.5
+  },
+  "R14_lo": {
+   "type": "lognormal_capped",
+   "median": 0.47852001799370214,
+   "s_tot": 2.47,
+   "cap_mean": 425.5
+  },
+  "R11_hi": {
+   "type": "lognormal_capped",
+   "median": 0.8052599318086042,
+   "s_tot": 1.29,
+   "cap_mean": 425.5
+  },
+  "R14_hi": {
+   "type": "lognormal_capped",
+   "median": 0.8052599318086042,
+   "s_tot": 2.47,
+   "cap_mean": 425.5
+  },
+  "R07_direct": {
+   "type": "counted",
+   "count": 35,
+   "trials": 48000,
+   "n_trig": 40848000.0
+  }
+ }
+}

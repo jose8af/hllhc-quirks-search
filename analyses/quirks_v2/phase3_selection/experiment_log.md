@@ -250,3 +250,47 @@ Artifact v2: `outputs/P3B_PILEUP_v2_ivar_2026-11-24.md` (v1 unchanged). Session 
   with lower-bound errors. C-4: `mc_rel_error_c2` added to the reading (ii) records (key diff 4 added, 0 changed);
   2S transfer tagged [E]; no MC term in the frozen s_tot stated. C-5: pileup_term.py not rerun, stated. C-6: §11 numbering.
 - No number, flag or route changed beyond these. FLAG FOR HUMAN: NO.
+- 16:01 Reading R1' declared before any R1' toy (advisor Tuva 15:57; outputs/p3d/R1prime_DECLARATION.md,
+  sha256 1f7593e8…, committed 846d7e8 as DEVIATIONS V17).
+- 16:30 Feasibility probes (A) R1' and (B) rescaled parametrisation on R1 and R1': all three fail the declared
+  criterion (three-start agreement on 20 toys; R1 rescaled also > 2 % dropped); unit cost 3,700-5,100 s, projection
+  ~300 CPU-h for T1-c (iii)+(v) against the 45 CPU-h cap. Stop rule: (iii)-(v) not launched; DECISION to the user.
+  DECISION: none taken by me (stop and report).
+  ALTERNATIVES (for the user/advisor): Phase-4a-only test on the v2 workspace (COM amendment); a smaller test design.
+  CONFIDENCE: HIGH on the measurement. FLAG FOR HUMAN: YES.
+- 16:10 Builder fix (advisor point 8): credited pile-up = static fit bound 485 + drawn bound in generation (95 %
+  variant 1,275 recorded); no-credit pile-up = counted 0 of 96,000; checked (p3-d-ph2).
+
+### p3-a (Aurora), continued — 2026-11-24 16:44 -0500
+
+- Did not work: one campaign per variant (NFS: 1.8 MB/s per reader). Worked: all variants from one read per file
+  (p3a_multi.py); 231 jobs, 9.9 CPU-h, 5 h of wall.
+- Did not work: witness verification with a plane normal re-fitted without weights (43 of 62 "failures" on a smoke
+  test, all plane membership), then with the verifier's weights (17 of 432). Worked: the classifier's own plane
+  normal recovered by repeating its seed loop (17 of 17 accepted).
+- Not attempted: classification of the w_v1 = 0 events on v1's road axis (9.4 CPU-h for an input the binding run would
+  not use); an independent search for s = 3 rows with k_IP >= 4.
+
+DECISION: the open readings are separate columns (BASE as produced, OWN, PLANS4, HARD, UNION); BASE is never altered.
+ALTERNATIVES: replace the Phase-2 number by the union (largest lower bound, 1,526); adopt the own-axis count.
+CONFIDENCE: HIGH (the 23 Nov ruling says "quoted as produced" and "not fixed now")
+FLAG FOR HUMAN: NO
+
+DECISION: in the NOT BINDING dry run the R07 pile-up term is read as a counted term, N_trig/48,000 x Gamma(36) (STR l.1013
+  "35 in 48,000 trials"); R11 and R14-type rows use the ends of PU_R11 with W_PU of strategy_budget.py; FB(k < 4) has
+  no pile-up term (lower bound).
+ALTERNATIVES: a lognormal row for R07 with an invented width; the R07 or R08 rows as upper proxies for FB(k).
+CONFIDENCE: MEDIUM (no approved row exists for these candidates; the Z term is 85-100 % of every reading)
+FLAG FOR HUMAN: YES (the binding run needs p3-b's rows for every T2 candidate, FB(k) included)
+
+DECISION: the DIF-C row (parent-only witness) is reported as m = 1 (own-hit count) and m = 0 (attributed to the term's
+  class); not chosen.
+ALTERNATIVES: either alone.
+CONFIDENCE: MEDIUM (STR l.2731 and l.752 read differently for a witness made of the parent's hits)
+FLAG FOR HUMAN: YES (PREREG_v2: does a looping parent count for a B1 term)
+
+DECISION: stop-and-report, not repaired: the binding run needs the v2 MET model's per-event weight and MET azimuth for
+  the classification itself (ADD l.360-361, l.607); interface built (variant v2), campaign defined, not launched.
+ALTERNATIVES: declare the rule-1 count to be read on v1's preselection and axis (an orchestrator / advisor matter).
+CONFIDENCE: HIGH that the dependence exists; the choice is not mine
+FLAG FOR HUMAN: YES

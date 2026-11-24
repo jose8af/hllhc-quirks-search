@@ -134,3 +134,26 @@ outputs/P3A_PILOT_FINAL_aurora_2026-11-24.md (date of completion), outputs/p3a/*
   result quoted): runs; dry-run checks 1 and 2 pass (empty pilot 160.8 / 238.3 / 262.3 / 283.8; Ingvild's S and F
   readings reproduced bit for bit). One ssh slice (witness check on 2 files, nice 19) ran beside the 3 jobs for a few
   minutes at 12:00: a fourth process, against my cap; not repeated.
+- 2026-11-24 15:32 -0500 p3-a-clsxz complete: 115/115, 0 errors, 9.02 CPU-h in the markers. p3-a-clsxb started; its
+  driver first took a cap of 2 (load 1.85 from the jobs just finished); stopped by PID and relaunched at 15:33 with 3
+  slots (my third self-killing ssh command happened here too; no job affected).
+- 2026-11-24 15:34 -0500 Z-only preliminary counts: regression 14,756 of 14,757 rows equal, the missing one being the DIF-C
+  row (B1 not yet run). m_Z(R08) 1,501 / 1,474 reproduced.
+- 2026-11-24 16:13 -0500 p3-a-clsxb complete: 116/116, 0.91 CPU-h. Final counts written to outputs/p3a/: C1 regression PASS
+  (14,757 / 14,757); cross-check of the two drivers PASS (1,987 / 1,987 rows, 60 files); dry-run checks PASS.
+  Bug found and fixed in my dry run before any number was quoted: the 115-file PV-seed label was projected with the
+  full-sample M (B50 15,311); it now uses its own M (60,921).
+- 2026-11-24 16:14 -0500 Attribution of the one B1 row: all 11 witness hits are the parent's (pi+, 0.525 GeV, decay at
+  r = 633 mm), j_parent = 4, j_product = 0: a looping parent with Geant4-injected later arc, not a decay-product
+  configuration. Reported under both readings of "own-hit count" (1 / 0 at R04-R06), not chosen.
+- 2026-11-24 16:27 -0500 Witness check, first full run (stride 24, offset 12 finished, offset 0 killed): with the first
+  weighted re-fit, 4 of 49 R08 witnesses "failed" and I could not tell full-set witnesses (finder axis) from own-axis
+  subsets. Script refined (witness type from the stored categories; a normal search that re-weights hits beyond
+  3 sigma) and rerun on the same 39 files: subset witnesses 415 of 432 accepted, 17 rejected for plane membership.
+- 2026-11-24 16:43 -0500 p3a_witness_resolve.py: the 17 re-checked with the classifier's own plane normal (seed loop
+  repeated in Python with kernels.refit_packed): 17 of 17 accepted. So 432 of 432 subset witnesses pass Nils's verifier.
+- 2026-11-24 16:44 -0500 Artifact written: outputs/P3A_PILOT_FINAL_aurora_2026-11-24.md (897 lines with the generated tables).
+  Numbers in the dry-run table of section 6 that I had first typed from memory of the log output were replaced by the
+  values read from p3a_rule1_dryrun.json before the artifact was finished (10 cells differed, by up to 19 events).
+  CPU: 10.30 CPU-h in the markers + about 1.0 outside (tests, slices, killed jobs, witness checks) = about 11.3 of 20.
+  Nothing of mine is running on landau; slot released.

@@ -171,7 +171,9 @@ def main(argv):
         if lab == 'm' and abs(Mz_meas - zw['M_single']) > 0.1 and not partial:
             raise SystemExit(f'M of the Z term measured {Mz_meas:.2f} differs from the single value {zw["M_single"]}')
         Mz = Mz_meas if partial else zw['M_single']
-        out = dict(M_Z_measured_here=Mz_meas, M_Z_used=Mz, events_per_count={}, readings={})
+        if L['n_files']['Z'] != 460:                  # a label on a subset of the Z files (pv2): its own M, same definition
+            Mz = Mz_meas
+        out = dict(M_Z_measured_here=Mz_meas, M_Z_used=Mz, n_Z_files=L['n_files']['Z'], events_per_count={}, readings={})
         full = L['n_files'].get('DIF', 0) > 0                     # label with all streams
         base = C['labels']['m']
         for rd in C['readings']:

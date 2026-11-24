@@ -30,6 +30,15 @@ counts towards the tail if q̃ ≥ q_obs − 10⁻⁵ (ties within 10⁻⁵, abs
 *Alternative reported beside it at the best point:* `numpy.median` of the background-only q̃ (the Phase-2 T1-b
 choice) for p = 0.5.
 
+*Quantile on a discrete edge (advisor ruling 2026-11-24, point 7; to the 4-bot PREREG review).* With discrete counts,
+the background-only ECDF can sit exactly at p: one bin, m = 0, κ = 1 has P(n = 0 | b) = 1/(1 + κ) = 0.5, and the
+median is then a coin flip between the n = 0 and n = 1 branches (3.0 and 5.7, STR l.1681). Rule: if, at the evaluated
+points near the crossing, the background-only ECDF at q_obs(p), i.e. k_b/N_b, lies within its binomial error
+√(p(1 − p)/N_b) of p, the limit is flagged **"quantile on a discrete edge"**. Both branch limits are then reported:
+q_obs set to the distinct q̃ level on either side of the edge. The **weaker (larger) one is quoted**. The test
+criterion of T1-c (i) is not reworded. There the κ = 1 median is judged "within the toy error" by a bootstrap that
+spans both branches, together with the background-only fraction of n = 0 against 0.5.
+
 **4. Bracket.** The grid is μ_a × {0.4, 0.55, 0.75, 1, 1.35, 1.8, 2.5, 3.5}, with μ_a the Asimov limit of STR l.1636.
 μ₉₅ is bracketed by the **first crossing from low μ** over all resolved points evaluated so far: the lowest pair of
 neighbouring points (μ_lo, μ_hi) with CLs(μ_lo) > 0.05 ≥ CLs(μ_hi). If no pair exists, the grid is extended by
@@ -46,6 +55,13 @@ ln 0.05. If the upper end of the final bracket has an **empty signal-plus-backgr
 only an upper bound and the logarithm is not defined. In that case **μ₉₅ = μ_hi**. This is conservative and lies
 within 2 % of any interpolated value. For the bracketing of steps 4 and 5, an empty tail counts as excluded
 (CLs = 0). *Diagnostics reported beside it:* k_sb := 1.139 (the Phase-2 rule) and k_sb := 0.5.
+
+**6a. Pile-up bound (advisor ruling, point 8).** A credited pile-up estimator: the fit bound on its closure θ is at the
+68 % value of its no-credit bound (485 events = 1.139 × N_trig/96,000, STR l.1587), and the generation draws the bound
+per pseudo-experiment, θ ≤ ln(N_trig λ/96,000/φ₀)/s with λ ~ Gamma(1) (STR l.1586-1588, l.953-954). The best-point
+limit is also reported with the fit bound at the 95 % value (2.996 × 425.5 = 1,275 events). A pile-up term with no
+credit is a counted factor with m = 0 of M = 96,000 and a free λ (STR l.1565), with no fixed bound. Implementation:
+`p3d_model.v2_placeholder(pu_credit=…)`, `Explicit.clip_draw`.
 
 **7. Bands.** Steps 4–6 apply to each quantile separately. Every evaluated point serves all quantiles. The limit is
 quoted as the median with the 16–84 % and 2.5–97.5 % bands (STR l.1632, l.1694).

@@ -43,6 +43,16 @@ def main(out, name):
             res['asimov'] = dict(n=list(map(float, n)), t_fix_mu1=float(tf), t_free=float(tu),
                                  muhat=float(pu[model.config.poi_index]), q_mu1=float(max(tf - tu, 0.0)))
     res['predictive'] = pm.predictive(spec, nmc=200000, seed=20261124)
+    res['predictive_no_drawn_bound'] = None
+    pu = spec['nuis'].get('closure_PU')
+    if pu and pu.get('bound_draw'):
+        b = pu['bound_draw']
+        res['pu_bound'] = dict(fit_bound_theta=pu['bound'], fit_bound_events=b['phi0'] * float(np.exp(pu['bound'] * b['s'])),
+                               bound_95_theta=pu['bound_95'],
+                               bound_95_events=b['phi0'] * float(np.exp(pu['bound_95'] * b['s'])), drawn=b)
+        sp = json.loads(json.dumps(spec)); sp['nuis']['closure_PU'].pop('bound_draw')
+        res['predictive_no_drawn_bound'] = pm.predictive(sp, nmc=200000, seed=20261124)['terms']['PU']
+        res['predictive_pu_drawn'] = res['predictive']['terms']['PU']
     res['leading_zero_term'] = pm.leading_zero_term(spec, res['predictive'])
     res['terms'] = pm.term_table(spec); res['signal_label'] = spec['signal']['label']
     res['n_counted'] = len(spec['counted']); res['n_samples'] = len(spec['samples'])

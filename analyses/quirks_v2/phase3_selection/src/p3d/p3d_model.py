@@ -73,13 +73,14 @@ def build(spec, censor=True):
     obs = [{'name': 'SR', 'data': [0.0] * len(cats)}]
     if fids:
         channels.append({'name': 'aux', 'samples': [
-            {'name': 'aux_' + f, 'data': [1.0 if j == i else 0.0 for j in range(len(fids))], 'modifiers': [lam(f)]}
+            {'name': 'aux_' + f, 'data': [float(spec['counted'][f].get('aux_coeff', 1.0)) if j == i else 0.0
+                                          for j in range(len(fids))], 'modifiers': [lam(f)]}
             for i, f in enumerate(fids)]})
         obs.append({'name': 'aux', 'data': [float(spec['counted'][f]['m']) for f in fids]})
     pars = [{'name': 'mu', 'bounds': [[0.0, float(spec.get('mu_max', 1e5))]], 'inits': [1.0]}]
     for f in fids:
-        d = spec['counted'][f]; m = float(d['m'])
-        p = {'name': 'lam_' + f, 'bounds': [[1e-9, 10.0 * (m + 5.0)]], 'inits': [m + 1.0]}
+        d = spec['counted'][f]; m = float(d['m']); cf = float(d.get('aux_coeff', 1.0))
+        p = {'name': 'lam_' + f, 'bounds': [[1e-9 / cf, 10.0 * (m + 5.0) / cf]], 'inits': [(m + 1.0) / cf]}
         if d.get('fixed') is not None:
             p.update(inits=[float(d['fixed'])], fixed=True,
                      bounds=[[min(1e-9, float(d['fixed'])), max(10.0 * (m + 5.0), 2.0 * float(d['fixed']))]])
@@ -126,9 +127,10 @@ class Explicit:
             if n in self.nk:
                 self.Wls[self.nk.index(n)], self.Whs[self.nk.index(n)] = _w(w)
         self.m = np.array([float(spec['counted'][f]['m']) for f in self.fids])
+        self.cf = np.array([float(spec['counted'][f].get('aux_coeff', 1.0)) for f in self.fids])   # lambda_par = count / cf
         self.fixed = np.array([spec['counted'][f].get('fixed') is not None for f in self.fids], bool)
         self.fixval = np.array([float(spec['counted'][f]['fixed']) if spec['counted'][f].get('fixed') is not None
-                                else np.nan for f in self.fids])
+                                else np.nan for f in self.fids]) / self.cf
         self.bound = np.array([(spec['nuis'].get(n, {}).get('bound') if censor else None) or np.inf for n in self.nk],
                               float)
         self.bound_draw = {k: spec['nuis'][n]['bound_draw'] for k, n in enumerate(self.nk)
@@ -174,13 +176,13 @@ def consistency(spec, model, rng, censor=True, ntry=5):
     nmain = len(spec['cats'])
     for _ in range(ntry):
         mu = float(rng.uniform(0, 2)) * float(spec.get('mu_scale', 1.0))
-        lam = np.where(ex.fixed, ex.fixval, rng.gamma(ex.m + 1.0))
+        lam = np.where(ex.fixed, ex.fixval, rng.gamma(ex.m + 1.0) / ex.cf)
         th = np.minimum(rng.standard_normal(len(ex.nk)), ex.bound)
         p = ex.par_vector(model, mu, lam, th)
         e_p = np.asarray(tl.tolist(model.expected_actualdata(tl.astensor(p))), float)
         e_t = ex.expected(np.array([mu]), lam[None, :], th[None, :])[0]
         worst = max(worst, float(np.max(np.abs(e_p[:nmain] / e_t - 1.0))),
-                    float(np.max(np.abs(e_p[nmain:] - lam) / np.maximum(lam, 1e-300))) if len(lam) else 0.0)
+                    float(np.max(np.abs(e_p[nmain:] - ex.cf * lam) / np.maximum(ex.cf * lam, 1e-300))) if len(lam) else 0.0)
     return worst
 
 
@@ -446,7 +448,7 @@ def predictive(spec, nmc=200000, seed=1, censor=True, terms=None):
     categories and per category, and f0 (STR l.1661)."""
     ex = Explicit(spec, censor)
     rng = np.random.default_rng(seed)
-    lam = np.where(ex.fixed[None, :], ex.fixval[None, :], rng.gamma(ex.m[None, :] + 1.0, size=(nmc, len(ex.m))))
+    lam = np.where(ex.fixed[None, :], ex.fixval[None, :], rng.gamma(ex.m[None, :] + 1.0, size=(nmc, len(ex.m))) / ex.cf)
     th = ex.clip_draw(np.minimum(rng.standard_normal((nmc, len(ex.nk))), ex.bound_gen[None, :]), rng)
     tp, tm = np.maximum(th, 0.0), np.minimum(th, 0.0)
     lb = np.log(lam) @ ex.A.T + tp @ ex.Wh.T + tm @ ex.Wl.T
@@ -596,3 +598,26 @@ def v2_placeholder(point='A2|F|500|2|BM', fT_bkg=0.5, counts=None, pu_credit=Tru
 def n_parameters(spec):
     nk = {n for s in [spec['signal']] + spec['samples'] for n, w in s.get('nuis', {}).items() if max(_w(w)) > 0}
     return 1 + len(spec['counted']) + len(nk)
+
+
+def rescale(spec):
+    """Approach (B) of the advisor ruling (point 3): the same likelihood with every free counted rate in units of its
+    posterior mean, lambda' = lambda / (m + 1) (auxiliary expected count (m + 1) lambda', yields x (m + 1)), and mu in
+    units of spec['mu_scale'] (signal yields x mu_scale).  A reparametrisation only: q~ is unchanged, limits are
+    multiplied back by meta['mu_unit']."""
+    sp = copy.deepcopy(spec)
+    cf = {f: (d['m'] + 1.0 if d.get('fixed') is None else 1.0) for f, d in sp['counted'].items()}
+    for f, d in sp['counted'].items():
+        d['aux_coeff'] = cf[f]
+    for s in [sp['signal']] + sp['samples']:
+        k = 1.0
+        for f in s.get('counted', []):
+            k *= cf[f]
+        s['yield'] = {c: v * k for c, v in s['yield'].items()}
+    u = float(sp.get('mu_scale', 1.0))
+    sp['signal']['yield'] = {c: v * u for c, v in sp['signal']['yield'].items()}
+    sp['mu_max'] = float(sp.get('mu_max', 1e5)) / u
+    sp['mu_scale'] = 1.0
+    sp.setdefault('meta', {})['mu_unit'] = u
+    sp['name'] = spec['name'] + '_rescaled'
+    return sp

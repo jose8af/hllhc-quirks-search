@@ -1,0 +1,98 @@
+{
+ "criterion": "R1prime_DECLARATION.md \u00a74: <= 2 % dropped at both mu and three starts agree within 1e-3 in twice-NLL on 20 toys; launch only if projection <= 45 CPU-h",
+ "probes": [
+  {
+   "spec": "v1countp_p1",
+   "n_par": 47,
+   "feasible": false,
+   "mu_unit": 1.0,
+   "points": [
+    {
+     "mu": 4.0478,
+     "dropped_frac": 0.0,
+     "s_per_unit": 4111.121630874999
+    },
+    {
+     "mu": 8.09559,
+     "dropped_frac": 0.0,
+     "s_per_unit": 3672.731804975
+    }
+   ],
+   "starts": [
+    {
+     "mu": 4.0478,
+     "n": 20,
+     "n_agree_strict": 6
+    },
+    {
+     "mu": 8.09559,
+     "n": 20,
+     "n_agree_strict": 11
+    }
+   ]
+  },
+  {
+   "spec": "v1count_p1+rescaled",
+   "n_par": 51,
+   "feasible": false,
+   "mu_unit": 800.0,
+   "points": [
+    {
+     "mu": 0.00505975,
+     "dropped_frac": 0.1,
+     "s_per_unit": 4427.227082275001
+    },
+    {
+     "mu": 0.0101195,
+     "dropped_frac": 0.05,
+     "s_per_unit": 5062.447569825001
+    }
+   ],
+   "starts": [
+    {
+     "mu": 0.00505975,
+     "n": 20,
+     "n_agree_strict": 1
+    },
+    {
+     "mu": 0.0101195,
+     "n": 20,
+     "n_agree_strict": 1
+    }
+   ]
+  },
+  {
+   "spec": "v1countp_p1+rescaled",
+   "n_par": 47,
+   "feasible": false,
+   "mu_unit": 800.0,
+   "points": [
+    {
+     "mu": 0.00505975,
+     "dropped_frac": 0.0125,
+     "s_per_unit": 3654.9818729999997
+    },
+    {
+     "mu": 0.0101195,
+     "dropped_frac": 0.0125,
+     "s_per_unit": 3973.79507955
+    }
+   ],
+   "starts": [
+    {
+     "mu": 0.00505975,
+     "n": 20,
+     "n_agree_strict": 6
+    },
+    {
+     "mu": 0.0101195,
+     "n": 20,
+     "n_agree_strict": 5
+    }
+   ]
+  }
+ ],
+ "mu_a_R1prime": 8.095593554007706,
+ "leading_zero_term_R1prime": "CP_pvpair",
+ "projection_cpu_h": 303.3333333333333
+}

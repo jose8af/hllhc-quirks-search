@@ -71,11 +71,27 @@ def main(a):
                  'command': ENV + f'{PY_NP} -I {SRC}/p3d_check_np.py $QV2_OUT_DIR/p3-d-ph-check-{n}.json {n}'}
                 for n in ('v2ph', 'v1count_p1', 'v1count_p2')]
         write('p3-d-ph', jobs, 'T1-a: schema, consistency, predictive of the v2 placeholder and v1-count workspaces', 0.1)
+    elif a[0] == 'ph2':
+        jobs = [{'id': f'p3-d-ph2-check-{n}', 'shard': 0, 'outputs': [f'p3-d-ph2-check-{n}.json'],
+                 'command': ENV + f'{PY_NP} -I {SRC}/p3d_check_np.py $QV2_OUT_DIR/p3-d-ph2-check-{n}.json {n}'}
+                for n in ('v2ph', 'v2ph_nc', 'v1countp_p1')]
+        write('p3-d-ph2', jobs, 'builder fix (drawn pile-up bound; no-credit pile-up) and R1-prime: T1-a checks', 0.1)
     elif a[0] == 'phcost':
         jobs = [job(f'p3-d-phcost-{n}', PY_JAX, ['p3d_toys.py', 'cost', n, '-', '200', mu])
                 for n, mu in (('v2ph', '0.03'),)]
         jobs += [job('p3-d-phcost-v2ph-check', PY_JAX, ['p3d_toys.py', 'check', 'v2ph', '-'])]
         write('p3-d-phcost', jobs, 'toy cost probe and jax check on the v2 placeholder workspace', 0.3)
+    elif a[0] == 'pchk':
+        tag = a[1] if len(a) > 1 else ''
+        write(f'p3-d-pchk{tag}', [job(f'p3-d-pchk{tag}-v1countp_p1', PY_JAX, ['p3d_toys.py', 'check', 'v1countp_p1', '-'])],
+              "R1' workspace: schema, consistency, Asimov limit (before the probes)", 0.1)
+    elif a[0] == 'probe':
+        mu1, mu2 = float(a[1]), float(a[2]); u = 800.0
+        specs = [('v1countp_p1', mu1, mu2), ('v1count_p1+rescaled', mu1 / u, mu2 / u),
+                 ('v1countp_p1+rescaled', mu1 / u, mu2 / u)]
+        jobs = [job(f'p3-d-probe-{i}', PY_JAX, ['p3d_toys.py', 'probe', q(n), '-', f'{m1:.6g},{m2:.6g}', '40'])
+                for i, (n, m1, m2) in enumerate(specs)]
+        write('p3-d-probe', jobs, "feasibility probes (A) R1' and (B) rescaled on R1 and R1' (advisor point 3)", 1.5)
     elif a[0] == 'lim':
         spec, settings, tag, seed, ntoys, qs = a[1:7]
         priors = [str(DATA / c / '000' / f'{j}.json') for c, j in (x.split(':') for x in a[7:])]

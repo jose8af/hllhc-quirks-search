@@ -185,7 +185,7 @@ class Engine:
         p = np.array(self.cfg.suggested_init(), float)
         for j, f in enumerate(self.ex.fids):
             if not self.ex.fixed[j]:
-                p[self.fid_idx[f]] = aux[j] + 1.0
+                p[self.fid_idx[f]] = (aux[j] + 1.0) / self.ex.cf[j]
         p[self.i_mu] = mu
         return p
 
@@ -336,6 +336,7 @@ class Engine:
             lam = rng.gamma(m[None, :] + a, size=(ntoys, len(m))) if len(m) else np.zeros((ntoys, 0))
         else:
             lam = np.broadcast_to(np.asarray(lam_true, float), (ntoys, len(m))).copy()
+        lam = lam / ex.cf[None, :]                # expected counts -> rate parameters (cf = 1 unless rescaled)
         lam[:, ex.fixed] = ex.fixval[ex.fixed]
         if th_mode == 'zero':
             th = np.zeros((ntoys, len(ex.nk)))
@@ -377,7 +378,7 @@ class Engine:
 
     def asimov_q(self, mu):
         ex = self.ex
-        lam = np.where(ex.fixed, ex.fixval, ex.m + 1.0)
+        lam = np.where(ex.fixed, ex.fixval, (ex.m + 1.0) / ex.cf)
         n = ex.expected(np.array([0.0]), lam[None, :], np.zeros((1, len(ex.nk))))[0]
         aux = np.where(ex.fixed, ex.m, ex.m + 1.0)
         self.prev = None
@@ -387,12 +388,24 @@ class Engine:
     def mu_asym(self, mu0):
         from scipy.optimize import brentq
         from scipy.special import ndtr
-        f = lambda m: 2.0 * (1.0 - float(ndtr(math.sqrt(max(self.asimov_q(m), 0.0))))) - 0.05      # noqa: E731
-        lo, hi = mu0, mu0
-        while f(lo) < 0 and lo > 1e-8:
-            lo /= 2
-        while f(hi) > 0 and hi < 1e12:
-            hi *= 2
+        def f(m):
+            q = self.asimov_q(m)
+            if not np.isfinite(q):
+                raise FloatingPointError(f'Asimov fit failed at mu = {m:.6g}')
+            return 2.0 * (1.0 - float(ndtr(math.sqrt(max(q, 0.0))))) - 0.05
+        # scan upward from mu0/100 in steps of 1.5 (a fit far in the deficit region may fail; the root is bracketed
+        # by the first step whose expected CLs falls below 0.05)
+        lo = mu0 / 100.0
+        while f(lo) < 0 and lo > 1e-9:
+            lo /= 10
+        hi = lo
+        while True:
+            hi = lo * 1.5
+            if f(hi) < 0:
+                break
+            lo = hi
+            if hi > 1e12:
+                raise FloatingPointError('no root below 1e12')
         return float(brentq(f, lo, hi, rtol=1e-6))
 
 
@@ -618,6 +631,63 @@ def mode_cost(out, specname, settings, ntoys, mu):
     dump(out, res)
 
 
+def mode_probe(out, specname, settings, mus, ntoys, nstart_toys=20, budget=1600.0):
+    """Feasibility probe (advisor ruling point 3; R1prime_DECLARATION §4): ntoys + ntoys at each mu with the fit guard
+    (dropped and retried fractions, s per unit), and on the first nstart_toys b-only toys of each mu the twice-NLL of
+    the fixed and the free fit from three starts (generated values, default, previous toy): feasible if <= 2 %
+    dropped at every mu and the three starts agree within 1e-3 on every one of those toys.  specname suffix
+    '+rescaled' applies approach (B)."""
+    import p3d_specs
+    st = parse_settings(settings); set_backend(st['tol'])
+    resc = specname.endswith('+rescaled')
+    spec = p3d_specs.get(specname.replace('+rescaled', ''))
+    if resc:
+        spec = pm.rescale(spec)
+    eng = Engine(spec, st)
+    t0 = time.time()
+    res = dict(versions(), mode='probe', spec=specname, settings=st, n_par=eng.nparams(), mu_unit=spec.get('meta', {})
+               .get('mu_unit', 1.0), points=[], starts=[])
+    for mu in mus:
+        if time.time() - t0 > budget:
+            res['budget_exceeded'] = True; break
+        rec = eng.point(mu, ntoys, 20261124, st['a'])
+        rec.pop('qb'); rec.pop('qsb')
+        rec['dropped_frac'] = (rec['b']['dropped'] + rec['sb']['dropped']) / (2.0 * ntoys)
+        res['points'].append(rec)
+        rng = np.random.default_rng(np.random.SeedSequence([20261124, 0, mu_key(mu)]))
+        n, lam, th = eng.draw(0.0, nstart_toys, rng, st['a'])
+        prev = None; rows = []
+        for i in range(nstart_toys):
+            if time.time() - t0 > budget:
+                break
+            d = eng.tl.astensor(eng.data(n[i], eng.ex.m))
+            gen = eng.gen_pars(0.0, lam[i], th[i])
+            starts = {'gen': gen, 'default': eng.default_init(eng.ex.m, mu)}
+            if prev is not None:
+                starts['prev'] = prev
+            row = dict(toy=i)
+            for kind, m_ in (('fixed', mu), ('free', None)):
+                ts = {}
+                for lab, s0 in starts.items():
+                    r = eng.best_fit(d, m_, [s0.copy()], first_ok=True)
+                    ts[lab] = None if r is None else r[1]
+                    if kind == 'free' and lab == 'gen' and r is not None:
+                        prev = r[0]
+                ok = [v for v in ts.values() if v is not None]
+                row[kind] = dict(t=ts, n_accepted=len(ok), spread=(max(ok) - min(ok)) if len(ok) > 1 else None)
+            row['agree'] = all(row[k]['n_accepted'] == len(starts) and (row[k]['spread'] or 0.0) <= 1e-3
+                               for k in ('fixed', 'free'))
+            rows.append(row)
+        res['starts'].append(dict(mu=mu, rows=rows, n=len(rows), n_agree=int(sum(r['agree'] for r in rows))))
+    res['feasible'] = bool(res['points'] and all(p['dropped_frac'] <= 0.02 for p in res['points'])
+                           and len(res['points']) == len(mus)
+                           and all(s['n'] == nstart_toys and s['n_agree'] == s['n'] for s in res['starts']))
+    res['fit_cpu_s'] = eng.cpu_fit; res['guard_cpu_s'] = eng.cpu_guard
+    dump(out, res)
+    log.info('probe %s: feasible %s; %s', specname, res['feasible'],
+             [(p['mu'], p['dropped_frac'], round(p['cpu_s_per_unit'])) for p in res['points']])
+
+
 def main(argv):
     md = argv[0]
     if md == 'check':
@@ -633,6 +703,8 @@ def main(argv):
                           [float(x) for x in argv[7].split(',')], int(argv[8]),
                           [a for a in argv[9:] if not a.startswith('--')],
                           extra='bonly' if '--bonly' in argv else None)
+    if md == 'probe':
+        return mode_probe(argv[1], argv[2], argv[3], [float(x) for x in argv[4].split(',')], int(argv[5]))
     if md == 'cost':
         return mode_cost(argv[1], argv[2], argv[3], int(argv[4]), float(argv[5]))
     raise SystemExit(f'unknown mode {md}')
