@@ -131,6 +131,19 @@ class Explicit:
                                 else np.nan for f in self.fids])
         self.bound = np.array([(spec['nuis'].get(n, {}).get('bound') if censor else None) or np.inf for n in self.nk],
                               float)
+        self.bound_draw = {k: spec['nuis'][n]['bound_draw'] for k, n in enumerate(self.nk)
+                           if censor and spec['nuis'].get(n, {}).get('bound_draw')}
+        self.bound_gen = self.bound.copy()          # generation: a drawn bound replaces the static fit bound
+        for k in self.bound_draw:
+            self.bound_gen[k] = np.inf
+
+    def clip_draw(self, th, rng):
+        """Generation of a censored estimator whose no-credit bound is itself a zero-count term (STR l.1586-1588):
+        theta <= ln(kappa lambda / phi0) / s with lambda ~ Gamma(m + 1) drawn per pseudo-experiment."""
+        for k, b in self.bound_draw.items():
+            lam = rng.gamma(b['m'] + 1.0, size=th.shape[0])
+            th[:, k] = np.minimum(th[:, k], np.log(b['kappa'] * lam / b['phi0']) / b['s'])
+        return th
 
     def expected(self, mu, lam, th):
         """mu (N,), lam (N, nf), th (N, nk) -> main expected counts (N, ncat).  log phi = th+ w_hi + th- w_lo."""
@@ -271,7 +284,7 @@ def _add_term(spec, r, base, cats_yield, nuis, kind):
                             'yield': {c: base * r.coeff * w for c, w in cats_yield.items()}})
 
 
-def v1count(point='A2|F|200|1.5|BM', column='FB2', f1_name='h>5&o>5'):
+def v1count(point='A2|F|200|1.5|BM', column='FB2', f1_name='h>5&o>5', reading='R1'):
     """The v1-count workspace at v1's selection `column`&`f1_name` (default: v1's best-point selection
     FB2&h>5&o>5) with the v2 treatment (readings R1).  Returns the spec; spec['meta'] holds the conversion notes
     and, per term, the v1 central value for comparison."""
@@ -299,8 +312,60 @@ def v1count(point='A2|F|200|1.5|BM', column='FB2', f1_name='h>5&o>5'):
     both = {'SR_T': 1.0, 'SR_G': 1.0}
     for name in SHARED:
         spec['nuis'][name] = {'bound': None, 'kind': 'shared (v2arith.SHARED)'}
-    # pile-up, SR-G: estimator output (v1 end state), log-normal components; 'stat' shared by the source column
     esA, esT = bg['end_state'][col], bg['end_state_T'][col]
+    if reading == 'R1p':
+        _pileup_nocredit(spec, bg, srt, col, column, n_trig, f1x, notes)
+    else:
+        _pileup_estimator(spec, bg, srt, col, column, n_trig, f1x, notes, esA, esT)
+    _v1count_rest(spec, bg, col, f1x, notes, both)
+    used = {n for s in spec['samples'] for n in s['nuis']}
+    spec['nuis'] = {n: d for n, d in spec['nuis'].items() if n in used}
+    spec['name'] += '' if reading == 'R1' else '_R1p'
+    spec['meta']['reading'] = reading
+    return spec
+
+
+def _pileup_nocredit(spec, bg, srt, col, column, n_trig, f1x, notes):
+    """R1' (advisor ruling Tuva 2026-11-24 point 2; session log P0 R1'): v1's pile-up estimator (thinning, r.m.s. 0.61
+    above the cap 0.135, STR l.432-434, l.1165) is not submitted -> no credit: the term enters at its no-credit value,
+    the direct bound treated as counted (STR l.1565, l.1585-1588): N_trig x lambda / M_direct with the v1 direct count
+    of the rho = 1 sample (background.json samples.B1_trials = 48,000; columns[FB2].B1_groups = 9 in SR-G,
+    columns_T[FB2].B1_groups = 0 in SR-T).  No v1 pile-up estimator width enters (stat, model spread, closure, trend,
+    density, T3); the N_trig normalisation width (ln 1.3) and the time-tag widths srt_pv, srt_sigt stay."""
+    M = float(bg['samples']['B1_trials'])
+    cA = next(c for c in bg['columns'] if c['column'] == column)
+    cT = next(c for c in bg['columns_T'] if c['column'] == column)
+    spec['counted']['PU_direct_G'] = {'m': float(cA['B1_groups']), 'M': M,
+                                      'label': f'v1 direct pile-up count, SR-G, {column} (rho = 1, {M:g} trials)'}
+    spec['counted']['PU_direct_T'] = {'m': float(cT['B1_groups']), 'M': M,
+                                      'label': f'v1 direct pile-up count, SR-T (BTL present), {column}'}
+    k = n_trig / M
+    spec['samples'].append({'name': 'PU_G', 'term': 'PU_G', 'kind': 'no credit: direct bound (counted)',
+                            'counted': ['PU_direct_G'], 'nuis': {'normalisation': SIGMA_NORM}, 'yield': {'SR_G': k}})
+    spec['meta']['v1_value']['PU_G_nocredit_nominal'] = k * cA['B1_groups']
+    sc = srt.get(column)
+    if sc is None:
+        return
+    # SR-T: present x P(late) and not present x P_oot, each with its direct count replacing the estimator
+    for nm, fid, fac in (('PU_T_late', 'PU_direct_T', sc.get('P_late')), ('PU_T_oot', 'PU_direct_G', sc.get('P_oot'))):
+        r = _Route(nm, spec, notes)
+        r.has_zero = spec['counted'][fid]['m'] == 0
+        if fac is not None and fac['M'] >= 10:
+            if fac['N'] == 0 and r.has_zero:
+                notes.append(f'{nm}: time-tag fraction 0/{fac["M"]} enters at 1 (the direct count already holds the zero)')
+            else:
+                r.counted_factor(fac['N'], fac['M'], 'time-tag fraction ' + nm)
+        r.done()
+        if nm == 'PU_T_late' and sc.get('c_time', 1.0) > 1:
+            r.coeff *= sc['c_time']
+        nz = {'normalisation': SIGMA_NORM, 'srt_pv': sc.get('sigma_ln_PV', 1.0), 'srt_sigt': sc.get('sigma_ln_sigma_t', 1.0)}
+        spec['samples'].append({'name': nm, 'term': nm, 'kind': 'no credit: direct bound x time tag',
+                                'counted': [fid] + r.counted, 'nuis': nz, 'yield': {'SR_T': k * r.coeff}})
+
+
+def _pileup_estimator(spec, bg, srt, col, column, n_trig, f1x, notes, esA, esT):
+    """R1: v1's pile-up estimator output with its v1 log-normal components (session log P0 R1)."""
+    # pile-up, SR-G: estimator output (v1 end state), log-normal components; 'stat' shared by the source column
     r = _route_of_chain('PU_G', [], spec, notes, f1x)
     comps = {k: v for k, v in esA['sigma_ln_components'].items() if v}
     nz = {('stat_PU_A' if k == 'stat' else k): v for k, v in comps.items()}
@@ -327,6 +392,11 @@ def v1count(point='A2|F|200|1.5|BM', column='FB2', f1_name='h>5&o>5'):
             nz['srt_pv'] = sc.get('sigma_ln_PV', 1.0); nz['srt_sigt'] = sc.get('sigma_ln_sigma_t', 1.0)
             spec['nuis'][sk] = {'bound': None, 'kind': 'v1 pile-up estimator statistics'}
             _add_term(spec, r, n_trig * base, {'SR_T': 1.0}, nz, 'estimator (v1 pile-up, time tag)')
+
+
+def _v1count_rest(spec, bg, col, f1x, notes, both):
+    """SM and single-interaction (C') terms of the v1-count workspace (same in R1 and R1')."""
+    n_trig = json.loads((AN1 / 'bsum_wp.json').read_text())['n_trig']['value']
     # SM processes
     spec['nuis']['normalisation']['kind'] = 'shared: v1 sigma_norm = ln 1.3'
     for proc, sv in bg['sm'].items():
@@ -358,10 +428,6 @@ def v1count(point='A2|F|200|1.5|BM', column='FB2', f1_name='h>5&o>5'):
         if rate.get('sigma_ln'):
             nz['rate_' + t] = rate['sigma_ln']; spec['nuis']['rate_' + t] = {'bound': None, 'kind': 'rate'}
         _add_term(spec, r, n_trig * rate['value'] * (0.22 if t.startswith('ni') else 1.0), both, nz, "counted (C')")
-    # drop shared names that no sample uses
-    used = {n for s in spec['samples'] for n in s['nuis']}
-    spec['nuis'] = {n: d for n, d in spec['nuis'].items() if n in used}
-    return spec
 
 
 def term_table(spec):
@@ -381,7 +447,7 @@ def predictive(spec, nmc=200000, seed=1, censor=True, terms=None):
     ex = Explicit(spec, censor)
     rng = np.random.default_rng(seed)
     lam = np.where(ex.fixed[None, :], ex.fixval[None, :], rng.gamma(ex.m[None, :] + 1.0, size=(nmc, len(ex.m))))
-    th = np.minimum(rng.standard_normal((nmc, len(ex.nk))), ex.bound[None, :])
+    th = ex.clip_draw(np.minimum(rng.standard_normal((nmc, len(ex.nk))), ex.bound_gen[None, :]), rng)
     tp, tm = np.maximum(th, 0.0), np.minimum(th, 0.0)
     lb = np.log(lam) @ ex.A.T + tp @ ex.Wh.T + tm @ ex.Wl.T
     per = np.exp(lb)                         # (nmc, nsamp) x coeff per category
@@ -446,7 +512,11 @@ KAPPA_PH = {'DIF': 25.9, 'DIFC': 23.9, 'NI22': 4.8, 'NI30': 6.5, 'NI61': 6.5, 'N
             'SM_full': 41.2, 'SM_low': 2.1, 'MJ': 41.2}
 
 
-def v2_placeholder(point='A2|F|500|2|BM', fT_bkg=0.5, counts=None):
+N_TRIG_V1 = 40848447.93138061      # v1 bsum_wp.json n_trig.value (placeholder for the v2 N_trig)
+M_DIRECT_V2 = 96000.0               # the v2 direct trials (STR l.1586)
+
+
+def v2_placeholder(point='A2|F|500|2|BM', fT_bkg=0.5, counts=None, pu_credit=True):
     """The v2 term structure of one T2 candidate (STR l.1559-1595, COM l.208 + l.355), every number a PLACEHOLDER:
     seven B1 classes (counted ceiling/geometry factor on the no-pile-up sample x survival S, an estimator output
     censored at 1) + the hard-scatter share (one term, ADD D5 H1); fourteen SM processes x two weight classes (one
@@ -500,11 +570,26 @@ def v2_placeholder(point='A2|F|500|2|BM', fT_bkg=0.5, counts=None):
                             'yield': {c: KAPPA_PH['MJ'] * w[c] for c in cats}, 'nuis': {'met': 0.3, 'lumi': 0.01}})
     # pile-up: estimator output (placeholder 5 events at R09, width 0.59, STR §4.0 table), bounded by its no-credit
     # value N_trig x 1.139 / 96,000 = 485 events (STR l.1586-1588) -- fit bound at the 68 % value (open point)
+    # pile-up (STR l.1565, l.1585-1588, l.953-954; advisor ruling 2026-11-24 point 8):
+    #  credited estimator: nominal x exp(s theta); fit bound at the 68 % value of its no-credit bound (485 events),
+    #    generation draws the bound: theta clipped at ln(N_trig lambda / 96,000 / nominal) / s, lambda ~ Gamma(1)
+    #    (key 'bound_draw'); PREREG variant: fit bound at the 95 % value (2.996 x 425.5 = 1,275 events).
+    #  no credit: a counted factor, m = 0 of M = 96,000 direct trials, free lambda (no fixed bound).
     pu0, spu = 5.0, 0.59
-    nz['closure_PU'] = {'bound': math.log(485.0 / pu0) / spu, 'kind': 'pile-up closure, bounded at no-credit 485'}
-    spec['samples'].append({'name': 'PU', 'term': 'PU', 'kind': 'estimator', 'counted': [],
-                            'yield': {c: pu0 * w[c] for c in cats},
-                            'nuis': {'closure_PU': spu, 'pu_density': 0.1, 'hit_res': 0.05, 'hit_ineff': 0.05}})
+    k_nc = N_TRIG_V1 / M_DIRECT_V2
+    if pu_credit:
+        nz['closure_PU'] = {'bound': math.log(U68 * k_nc / pu0) / spu, 'kind': 'pile-up closure, bounded at no-credit',
+                            'bound_draw': {'kappa': k_nc, 'm': 0.0, 'phi0': pu0, 's': spu},
+                            'bound_95': math.log(-math.log(0.05) * k_nc / pu0) / spu}
+        spec['samples'].append({'name': 'PU', 'term': 'PU', 'kind': 'estimator', 'counted': [],
+                                'yield': {c: pu0 * w[c] for c in cats},
+                                'nuis': {'closure_PU': spu, 'pu_density': 0.1, 'hit_res': 0.05, 'hit_ineff': 0.05}})
+    else:
+        spec['counted']['PU_nc'] = {'m': 0.0, 'M': M_DIRECT_V2, 'label': 'pile-up no credit: direct trials, 0 of 96,000'}
+        spec['samples'].append({'name': 'PU', 'term': 'PU', 'kind': 'no credit: direct bound (counted)',
+                                'counted': ['PU_nc'], 'yield': {c: k_nc * w[c] for c in cats},
+                                'nuis': {'pu_density': 0.1}})
+        spec['name'] = 'v2_placeholder_pu_nocredit'
     return spec
 
 

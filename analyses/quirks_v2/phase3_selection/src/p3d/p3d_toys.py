@@ -173,7 +173,7 @@ class Engine:
         self.cpu_fit = 0.0; self.nfit = 0; self.cpu_guard = 0.0
         self.prev = None
         self.th_lo = np.full(len(self.ex.nk), pm.TH_LO)
-        self.th_hi = np.minimum(self.ex.bound, pm.TH_HI)
+        self.th_hi = np.minimum(self.ex.bound_gen, pm.TH_HI)       # generation clip (fit bounds are in the model)
 
     def nparams(self):
         return int(self.cfg.npars)
@@ -342,6 +342,7 @@ class Engine:
         else:
             th = rng.standard_normal((ntoys, len(ex.nk)))
             th = np.clip(th, self.th_lo[None, :], (self.th_hi if self.censor else np.full(len(ex.nk), pm.TH_HI))[None, :])
+            th = ex.clip_draw(th, rng)       # a no-credit bound drawn per pseudo-experiment (STR l.1586-1588)
         e = ex.expected(np.full(ntoys, mu), lam, th)
         n = rng.poisson(e).astype(float)
         return n, lam, th
