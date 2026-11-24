@@ -24,3 +24,4 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | 1 job, nice 19, read-only IS re-analysis (review/critical/liv_ischeck.py), < 2 min
 2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | RELEASED
 2026-11-24 15:32 -0500 | p3-f (Jorunn) | maxwell | 1 job (weekday cap) | p3-f-occx (100 jobs, ~15 CPU-h ESTIMATE); raise to 4 - running qv2run jobs after 19:00 | ~24-25 Nov
+2026-11-24 15:43 -0500 | p3-d (Gorm) | orchestrator note acknowledged (schrodinger at 4). Checked now: schrodinger runs 1 p3-d job (p3-d-one-c1-k35, driver --max-per-node 1) beside 2 p3-c; p3-d-pyhf runs on maxwell only (1 job). The 4th process seen earlier was probably one of my development probes run by ssh (14:40-15:03, now ended). From now on: schrodinger <= 1 p3-d job, no ssh probes there beside it; numpy jobs on maxwell only after checking that qv2run job count <= 3 (cap 4 shared with Jorunn)

@@ -35,7 +35,7 @@ cut p > 10⁻³). Per record:
 | `direct_dev` | development direct count (C1 ρ = 1, 16,000 trials), rate, events |
 
 The term enters the projection as a log-normal with median `occupancy_day15.events` (rescaled to p3-a's N_trig) and
-width `width_s_tot[<convention>]`, censored at the no-credit value as the frozen script does.
+width `width_s_tot[<convention>]`, censored as the frozen script does: in every pseudo-experiment min(term, (N_trig/96,000)·Exp(1)), a fresh draw with mean 426 and 68 % value 485 (`strategy_budget.py` l.585-587, l.678; STR l.1586-1588) — there is no fixed threshold at 485 (corrected in cycle 3, P3B v4). The frozen s_tot has no MC term; the model MC error is `occupancy_day15.mc_rel_error_c2` (see the cycle-2/3 sections).
 
 ## `b2_dev_closure.json`
 Development closure numbers behind the artifact: `direct` (counts and rates per column), `thinning` (rates, union
@@ -69,3 +69,9 @@ and R08, with the plain pass counts. Diagnostic only: neither file is an input o
 | `occupancy_day15.mc_rel_error_b3` (cycle 1) | **superseded** by `mc_rel_error_c2`; kept unchanged (0.149 = the precision of the plain check only, which understated R08 and omitted the fit-probability error at R09) |
 | `is_check_c2.json` | `src/p3b/is_check_c2.py` (standard library): toy-level errors of the stored and fresh IS at R07/R08, their per-toy variance ratio, the corrected stored error, plain/IS ratios at R06-R08, the IS toy ESS at R08 per seed and in total, the fit-probability fraction and its error, `mc_rel_error_c2` |
 | `is_check_inputs/ischeck-{0,1,2}.npz` | the per-configuration outputs of the B3 paired check (keys `plain` (n, 4) plain pass fractions R05-R08 with 10⁵ toys; `isr` (n, 2, 3) fresh IS (m1, m2, npass) at R07/R08 with 2,000 toys; `stored_m1_R08`; `sel` (occmod file index, stage-B index)), copied from maxwell `/home/scratch/jdochoa/ivar-ischeck-{0,1,2}/`. sha256: ischeck-0 `e704319522eab9dee82de1c04a898f6c33b59d504faea5e305df2a467c981b60`, ischeck-1 `b929491b56e1c0d232a02c915d8b95c7d80f3f5c320c780240377a16c6e09f87`, ischeck-2 `5a124e5a63742bdb29073c87216528893ce6c35183fa5c1c9201763f0dc8a02b`. Regeneration (worker, ≈ 0.3 CPU-h each; numba RNG seeded per job, so bit-identical only up to numba's RNG implementation): `$QV2/envs/tt/.pixi/envs/default/bin/python phase3_selection/src/p3b/is_check.py --mode strat --all --id ischeck-K --first $((K*2134)) --ntop 2134 --nplain 100000 --nis 2000 --seed $((777100+K))` for K = 0, 1, 2, with `QV2_OUT_DIR`, `NUMBA_CACHE_DIR` in the job scratch; then `--mode combine` on the three files |
+
+## Review cycle 3 additions (fixer Ivar, 2026-11-24; P3B v4; Oddvar B-new-2, C-4) — no existing key changed
+| key | meaning |
+|---|---|
+| `candidates.{R08,R08x2S>=3,R09,R09x2S>=3}.occupancy_B2b_model.mc_rel_error_c2` | the same value as `occupancy_day15.mc_rel_error_c2` on the reading (ii) record (both readings use the same E_model). The x2S>=3 values are the R08 value transferred (the paired check had no 2S requirement) [E]. The only unbiased constraint on the stored IS value at R08 is the plain check, truth/stored = 1.135 ± 0.169 (`is_check_c2.json` → `rungs.R08.plain_over_stored`, `plain_rel_err` × ratio); 0.217 is a lower bound |
+Line 37-38 above (censoring) was corrected in place in cycle 3: the frozen script censors per pseudo-experiment against a fresh draw, not at 485. `pileup_term.py` (edited in cycles 2–3) has not been rerun; the keys were written by `is_check_c2.py --patch`.

@@ -238,3 +238,15 @@ Artifact v2: `outputs/P3B_PILEUP_v2_ivar_2026-11-24.md` (v1 unchanged). Session 
 - C-1 (rule-2 quote completed, Q3 granted at Gate A), C-2 (reading (iii) listed, not chosen), C-3 (dev.pu1 seed
   qualifier), C-4 (B3 inputs copied to outputs/p3b/is_check_inputs/, sha256 identical), C-5 (mixed route stated and
   flagged), C-7 (toy ESS 11–43 per seed, 195 total) applied. C-6 (figure style) NOT applied: needs a plot job.
+
+## 2026-11-24 15:43 -0500 p3-b review cycle 3 (fixer Ivar): Oddvar B-new-2 and text/JSON C items (artifact v4; no jobs)
+- B-new-2: v3's "the frozen script censors the term at 485" / "every R08+ candidate carries ≥ 485 events" was wrong
+  (and is corrected here, append-only, for the cycle-2 entry above): the frozen projection takes min(term,
+  (N_trig/96,000)·Exp(1)) in every pseudo-experiment (mean 426, 68 % value 485; strategy_budget.py l.585-587, l.678;
+  STR l.953-954, l.1586-1588) [V: read]. Oddvar's toy [E]: censoring binds in 56.5–67.0 % of pseudo-experiments for
+  R08 medians 347–503; mean contribution 241–286 events vs 425.5 without credit.
+- C-1: truth/stored = 1.13 ± 0.17 (not ± 0.15), interval [0.97, 1.30]. C-2: 22 % is a firm lower bound (fresh IS also
+  misses the tail). C-3: R07 pull 1.4σ with the 5.7 % error (1.9σ with 4.1 %), R06 2.4σ / 1.5σ, flagged as computed
+  with lower-bound errors. C-4: `mc_rel_error_c2` added to the reading (ii) records (key diff 4 added, 0 changed);
+  2S transfer tagged [E]; no MC term in the frozen s_tot stated. C-5: pileup_term.py not rerun, stated. C-6: §11 numbering.
+- No number, flag or route changed beyond these. FLAG FOR HUMAN: NO.
