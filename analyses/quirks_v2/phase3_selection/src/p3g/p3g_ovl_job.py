@@ -224,6 +224,16 @@ def main():
         evcols = sm['ev_cols']
         E = S['ev']
         idx = list(range(a.first, min(a.first + a.n, len(E))))
+        if not idx:                                  # a job beyond the end of its source part: empty output, no chain
+            outd.mkdir(parents=True, exist_ok=True)
+            fn = outd / f'{a.id}.npz'
+            np.savez_compressed(fn.with_name(fn.name + '.tmp.npz'), meta=np.array(json.dumps(dict(
+                id=a.id, mode=a.mode, n_events=0, src=a.src, first=a.first, cand_cols=G.CAND_COLS, evs_cols=EVS_COLS,
+                ev_cols=EV_COLS))), cand=np.zeros((0, len(G.CAND_COLS)), np.float32),
+                evs=np.zeros((0, len(EVS_COLS)), np.int64), ev=np.zeros((0, len(EV_COLS))))
+            os.replace(fn.with_name(fn.name + '.tmp.npz'), fn)
+            log.info('%s: no event at first = %d (source has %d)', a.id, a.first, len(E))
+            return
         job_seed = G.qv2_seed(a.stream, a.chunk, mod=2 ** 31)
         cpf = work / f'{a.id}.cp.npz'; evf = work / f'{a.id}.ev.json'
         toys = {}; own_rows = {}; info = []

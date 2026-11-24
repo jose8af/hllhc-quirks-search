@@ -72,7 +72,7 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 19:43 -0500 | Vigdis | fable | advisor: binding m after the subset review (ruling (ii)), conditions, notice | done (ruling adopted) |
 | 2026-11-23 19:44 -0500 | Ylva | fable | rule 1(c): independent B₅₀ re-derivation from m + single M (Vigdis 3(a)) | done (c3b2e70) |
 | 2026-11-24 10:08 -0500 | Aurora | fable | Phase 3 WP p3-a: final pilot classification and the rule-1 counts per term (feeds the binding day-15 reading, rule 1(c)) | done (957275c) |
-| 2026-11-24 10:08 -0500 | Birgit | fable | Phase 3 WP p3-c: MET model (B4-b), validation, trigger threshold, N_trig of the three additions (feeds the day-15 projection; hard physics construction with an unsourced tail; brief §4 "go up") | running |
+| 2026-11-24 10:08 -0500 | Birgit | fable | Phase 3 WP p3-c: MET model (B4-b), validation, trigger threshold, N_trig of the three additions (feeds the day-15 projection; hard physics construction with an unsourced tail; brief §4 "go up") | done (263d4ff): B4-b FAIL |
 | 2026-11-24 10:08 -0500 | Casper | opus | Phase 3 WP p3-b: B2 repaired thinning + occupancy model, pile-up term R04–R07 for decision point 2 | running |
 | 2026-11-24 14:20 -0500 | Casper | opus | (outcome) p3-b B2 development | done (f881aa3): both estimators above cap |
 | 2026-11-24 14:22 -0500 | Dorte | opus | Phase-3 1-bot critical review of p3-b | done: headline confirmed; 1 A, 9 B, 6 C |
@@ -94,3 +94,6 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 16:46 -0500 | Tormod | opus | Phase 3 WP p3-g: B1 + B3 development tests and DP2 inputs (channel (i) after the pilot classification) | running |
 | 2026-11-24 16:52 -0500 | Ulf | opus | p3-a fixer round 1 (text: B-1…B-4, A-1 statement) → P3A v2 | done (P3A v2) |
 | 2026-11-24 16:58 -0500 | Vilde | fable | p3-a critical review round 2 (fresh; last round) + Sindre C-4 independent search second half | running |
+| 2026-11-24 17:20 -0500 | Wenche | fable | advisor: B4-b FAIL branch, multijet N_trig tail, step-4 freeze, notice; Aurora item 9 (v1 vs v2 preselection/axis) | running |
+| 2026-11-24 17:20 -0500 | Yngve | fable | p3-c 1-bot critical review (rule 1(c)) | running |
+| 2026-11-24 17:20 -0500 | Zakarias | sonnet | p3-c plot validation (format check) | running |

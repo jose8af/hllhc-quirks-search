@@ -97,3 +97,26 @@ overlay, a 1-event g4pu. 3. When schrodinger is assigned (≤ 3 jobs): prep, the
 ### What I deliver
 Artifact with each test's verdict against its frozen criterion (PASS / FAIL / NOT TESTED / NOT EVALUABLE as STR §4.0
 point 5), the decision-point-2 numbers in one table, every open reading reported under each reading, CPU table.
+
+## 17:25 Code written, smoke tests on maxwell (1 job, each < 10 min; qv2run count 1-2 at every check)
+- `p3g_common.py`, `p3g_prep.py`, `p3g_ovl_job.py` (modes npo, dif, zhl, g4pu), `p3g_g4pu_chain.py`; tests in `src/p3g/tests/`.
+- **C1 PASS** (no-pile-up injection): DIF 4/4 events and Z near-pass 5/5 events, every stored own row matched
+  one-to-one after the chain (n_matched = n_own_written, 0 unmatched either way).
+- First pile-up run failed: `finder.build_index` asserts one resolution per surface; the pilot files store float32 s0/s1.
+  Fix: the own rows keep the chain's s0/s1 (my `replace_own` = v1's replace_toy_rows + that one change). Rerun OK.
+- **C2 PASS** (zhl, 2 events of c1sm-0000): PV, MET axis and trial seed identical to the stored sample-5 trials;
+  N(R04) = 253 / 697 and N(R05) = 55 / 149 identical to the stored n_pass.
+- npo prep: P3A's BASE (S) k at R04w and R05 recomputed identically for 5/5 events of one file (the job stops otherwise).
+- Mu = 0 check on Z near-pass events: with own CKF removal (T1) no candidate; without (T2) the k = 0 events give an
+  R04/R05 finder pass in 1 of 2 cases (finder vs own-hit subset: the finder does not always find the witness).
+- g4pu (1 event, 2 roads): 13,118 hadrons fired, 1,997 B1-class vertices, 4,565 products handed over, Geant4 12.4 s
+  per event; chain incl. G4 ≈ 31 s/event + start-up ≈ 60 s per job.
+- **Unit costs measured [V, smoke logs]:** finder trial ≈ 20 s (not 11.3 s: the pools here are 170k hits), PU chain
+  ≈ 20 s/event; so an overlay event with 2 trials costs ≈ 60 s, a g4pu event ≈ 31 s + 20 s per road.
+- **Re-projection:** npo 1,000 × (chain + T1 + T2) 16.7; dif 1,000 × (chain + T1 + T0) 16.7; g4pu 1,000 × 3 roads 25.2;
+  zhl 500 × (chain + T1 + T0) 8.3; prep 2; = **≈ 69 CPU-h of 73**.
+  DECISION: dev.g4pu with 3 road orientations per event (3,000 trials) instead of the 4,000 trials of STR l.271
+  (expected counts there are per 4,000 trials); zhl with 500 events (the first 20 of each of the 25 c1.sm jobs: the
+  chain numbers events from 0, so only a job's leading events regenerate exactly). ALTERNATIVES: 4 roads (+5.6 CPU-h,
+  total ≈ 75, 3 % over budget); zhl 1,000 events needs 25 more 40-event jobs of > 30 min. CONFIDENCE: MEDIUM (cost
+  driven; the B1-g test is an alarm at loose rungs with weak resolving power either way, COM l.350). FLAG FOR HUMAN: NO.
