@@ -294,3 +294,23 @@ DECISION: stop-and-report, not repaired: the binding run needs the v2 MET model'
 ALTERNATIVES: declare the rule-1 count to be read on v1's preselection and axis (an orchestrator / advisor matter).
 CONFIDENCE: HIGH that the dependence exists; the choice is not mine
 FLAG FOR HUMAN: YES
+
+### p3-a fix round 1 (Ulf, fixer) — 2026-11-24 16:57 -0500
+
+- Text-only v2 of the p3-a artifact (`outputs/P3A_PILOT_FINAL_v2_ulf_2026-11-24.md`) answering Sindre's review
+  (A-1, B-1…B-4, C-1…C-8). No job, no count recomputed; v1, code, JSON unchanged.
+
+DECISION (recorded by the fixer for Aurora's plan reversal, review C-6): the 1,297,459 Z(νν) events with w_v1 = 0 were
+  NOT classified, although the plan (executor_aurora_2026-11-24_10-16.md, fact 5) said every Z(νν) event would be
+  (decided 11:08 by Aurora). Reason: classification on v1's road axis is not the input a v2 MET-model weight needs
+  (the axis moves too; §8 item 1); not cost (11.3 + 9.4 = 20.7 CPU-h was inside the 26 CPU-h stop limit).
+ALTERNATIVES: classify them on v1's axis (9.4 CPU-h [ESTIMATE]) as the plan said.
+CONFIDENCE: HIGH that the reason is sound (Sindre C-6 agrees); the binding route is the orchestrator's item 9.
+FLAG FOR HUMAN: NO (part of the item-9 ruling)
+
+DECISION (fixer): §4.1 pointer on reading S3 lowered from "w_core, MEDIUM-HIGH" to "no clear pointer"; the DIF-C row's
+  attribution stated as open in §0 (both readings, m = 0 / 1, with ADD l.603-605, l.257-258 and STR l.748-749 quoted);
+  coverage labels on every s = 3 row in §0, §3.1, §6, §7.
+ALTERNATIVES: keep v1's pointers (rejected: review B-1, B-2 show the frozen text does not support them alone).
+CONFIDENCE: HIGH (text corrections; no count moves)
+FLAG FOR HUMAN: NO (S3 and the DIF-C attribution stay FLAG FOR HUMAN in the artifact)
