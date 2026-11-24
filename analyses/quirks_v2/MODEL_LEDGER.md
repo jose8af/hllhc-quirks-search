@@ -71,7 +71,7 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 16:36 -0500 | Ulla | fable | advisor: reach re-estimate legitimacy, outlook wording, RESULT notice | done (ruling adopted) |
 | 2026-11-23 19:43 -0500 | Vigdis | fable | advisor: binding m after the subset review (ruling (ii)), conditions, notice | done (ruling adopted) |
 | 2026-11-23 19:44 -0500 | Ylva | fable | rule 1(c): independent B₅₀ re-derivation from m + single M (Vigdis 3(a)) | done (c3b2e70) |
-| 2026-11-24 10:08 -0500 | Aurora | fable | Phase 3 WP p3-a: final pilot classification and the rule-1 counts per term (feeds the binding day-15 reading, rule 1(c)) | running |
+| 2026-11-24 10:08 -0500 | Aurora | fable | Phase 3 WP p3-a: final pilot classification and the rule-1 counts per term (feeds the binding day-15 reading, rule 1(c)) | done (957275c) |
 | 2026-11-24 10:08 -0500 | Birgit | fable | Phase 3 WP p3-c: MET model (B4-b), validation, trigger threshold, N_trig of the three additions (feeds the day-15 projection; hard physics construction with an unsourced tail; brief §4 "go up") | running |
 | 2026-11-24 10:08 -0500 | Casper | opus | Phase 3 WP p3-b: B2 repaired thinning + occupancy model, pile-up term R04–R07 for decision point 2 | running |
 | 2026-11-24 14:20 -0500 | Casper | opus | (outcome) p3-b B2 development | done (f881aa3): both estimators above cap |
@@ -90,3 +90,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 15:32 -0500 | Oddvar | opus | p3-b 1-bot cycle 3 critical re-review (fresh; last cycle before escalation) | done: ITERATE (0 A, 1 B text-only, 6 C) → escalation |
 | 2026-11-24 15:44 -0500 | Sigrun | fable | advisor: check the p3-b review-escalation DECISION notice | done (7 corrections applied) |
 | 2026-11-24 15:55 -0500 | Tuva | fable | advisor: T1-c (iii)–(v) not evaluable as specified; κ=1 edge; no-credit bound fit vs generation | done (ruling adopted) |
+| 2026-11-24 16:46 -0500 | Sindre | fable | p3-a 1-bot critical review (rule 1(c): feeds the binding reading) | running |
