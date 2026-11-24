@@ -31,3 +31,13 @@
 - devpu1-0000 dispatched on maxwell 14:28:08 via `qv2-job --mechanism ssh` (nice 10, memory limit 1054 MB).
   Note: my ssh call backgrounded a `&&` list, so the ssh channel stays open until the job ends (harmless; the job is
   setsid/nohup). The ssh driver itself dispatches each command separately and does not have this.
+
+## 14:47 Test job done; checks
+- devpu1-0000 done (maxwell, attempt 1): CPU 1077.9 s, wall 1144.4 s, max RSS 685.7 MB, 52.5 MB, sha256 5e0958c0…
+  (sha256sum on maxwell equals the marker; qv2run verify 0 corrupt).
+- reader_check.json ok: same 329 keys (job_id <U11 vs <U10 only), seeds equal the formula, direct_job.job_counts identity
+  checks pass, occ_replay PV/phimet equal for events 0 and 19; code_sha256 (16 files) and configs equal to c1pu1-0000.
+- Driver dry run: 297 would-dispatch, devpu1-0000 skipped. Output kept as part of the campaign.
+- Per-job Pythia MPI init ≈ +70 s (t_chain 331 vs c1.pu1 262 ± 17). Concurrency factors from jobs.tsv.
+- Projection ≈ 98–100 CPU-h (budget 100). Slot RELEASED 14:48.
+## 14:55 Hand-over written: outputs/P3E_hilde_2026-11-24.md, outputs/p3e/{seed_disjoint,reader_check,launch_plan}.json

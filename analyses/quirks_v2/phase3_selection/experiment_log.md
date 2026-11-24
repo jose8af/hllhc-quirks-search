@@ -100,3 +100,13 @@ FLAG FOR HUMAN: NO
   ALTERNATIVES: full ρ = 1 re-find of each thinned subset (≈ 1,200 CPU-h at K = 64 for 3,000 events); a measured
   configuration-to-group map for the occupancy model (R06 no longer held out); a larger declared s_model (cap still binds).
   CONFIDENCE: HIGH on the measurement, MEDIUM on the cause attribution for the occupancy model. FLAG FOR HUMAN: YES.
+
+## 2026-11-24 14:55 p3-e (Hilde): campaign p3-e-devpu1 (dev.pu1, STR §4.17 row 12) defined and tested
+- 298 jobs × 20 events = 5,960 events, the c1.pu1 command with stream dev.pu1. Per-job caches in the job scratch.
+  Memory limit 1,054 MB. Test job devpu1-0000 on maxwell: done; CPU, RSS and schema as c1.pu1; p3-b readers load it.
+  Kept as part of the campaign. Seeds disjoint from c1.pu1, c1.pu2, prod.pu1, prod.pu2 and reserve.pu1. Not launched.
+- DECISION: 20 events/job (as c1.pu1) rather than fewer. ALTERNATIVES: 15/job (397 jobs) for more timeout margin.
+  CONFIDENCE: high (worst-job ESTIMATE ≈ 1,540 s wall at 4/node vs 1,800 s cap). FLAG FOR HUMAN: no.
+- DECISION: per-job Pythia MPI init (as Casper's prod campaigns), +≈ 70 CPU-s/job (≈ 5.8 CPU-h). ALTERNATIVES: per-node
+  shared init file as c1.pu1. CONFIDENCE: medium. FLAG FOR HUMAN: no (orchestrator's call; see P3E §6).
+- Open: interaction-level Pythia seeds (mod 9×10⁸) repeat at ≈ 0.5 % between dev.pu1 and prod.pu1 (ESTIMATE; P3E §6).

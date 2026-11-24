@@ -1,0 +1,70 @@
+{
+ "campaign": "p3-e-devpu1",
+ "jobs": 298,
+ "events": 5960,
+ "trials": 23840,
+ "per_job": 20,
+ "done_before_launch": [
+  "devpu1-0000"
+ ],
+ "measured": {
+  "c1pu1": {
+   "jobs": 200,
+   "cpu_mean": 1115,
+   "cpu_max": 1318.15,
+   "wall_max": 1329.17,
+   "rss_max_mb": 702.6,
+   "rss_median_mb": 574.4,
+   "bytes_mean": 55300000.0,
+   "source": "ledger/markers/p2-a-c1-pu1/000/*.marker"
+  },
+  "test": {
+   "job": "devpu1-0000",
+   "node": "maxwell",
+   "cpu_s": 1077.931,
+   "wall_s": 1144.368,
+   "max_rss_mb": 685.7,
+   "bytes": 52520873,
+   "sha256": "5e0958c03ded57b5875ca441aa05c17f4b2af70d95400ca7c212192100265755",
+   "t_chain_s": 331.4,
+   "source": "ledger/markers/p3-e-devpu1/000/devpu1-0000.marker"
+  }
+ },
+ "memory": {
+  "max_rss_mb_used": 703,
+  "limit_mb": 1054,
+  "rule": "1.5 x max(702.6 c1.pu1, 685.7 test)"
+ },
+ "worst_job_cpu_s_estimate": 1480,
+ "worst_job_wall_s_estimate": 1540,
+ "timeout_s": 1800,
+ "storage_gb_estimate": 16.5,
+ "projection": {
+  "4": {
+   "layout": "2 nodes x 2 (maxwell 4 only if load1 < 0.5)",
+   "cpu_s_per_job": 1183,
+   "cpu_h_total": 97.9,
+   "wall_s_per_job": 1230,
+   "waves": 75,
+   "wall_h": 25.6
+  },
+  "6": {
+   "layout": "2 nodes x 3",
+   "cpu_s_per_job": 1209,
+   "cpu_h_total": 100.1,
+   "wall_s_per_job": 1257,
+   "waves": 50,
+   "wall_h": 17.5
+  },
+  "9": {
+   "layout": "3 nodes x 3",
+   "cpu_s_per_job": 1209,
+   "cpu_h_total": 100.1,
+   "wall_s_per_job": 1257,
+   "waves": 34,
+   "wall_h": 11.9
+  }
+ },
+ "tags": "ESTIMATE (from VERIFIED c1.pu1 and test-job measurements)",
+ "budget_cpu_h": 100
+}
