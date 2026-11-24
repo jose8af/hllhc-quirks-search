@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-24 10:40 -0500 (Opus orchestrator, PHASE-3 session) · **Branch:** `v2-jfc` · **Phase:** **3 RUNNING** (started 24 Nov 10:04); day 8 (day 0 = 2026-11-16)
+**Updated:** 2026-11-24 10:09 -0500 (Opus orchestrator, PHASE-3 session) · **Branch:** `v2-jfc` · **Phase:** **3 RUNNING** (started 24 Nov 10:04); day 8 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -17,7 +17,7 @@ The BINDING day-15 reading is NOT made: it needs the user's calendar answer (rid
 Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE them in the new session.
 ---
 
-**PHASE 3 SESSION (24 Nov, read first).** Session started 10:04; all nodes had rebooted 09:53 (no shutdown record; nothing was running; LOG 24 Nov). Crons re-created (daily 47 18, heartbeat 13 */3). Brief for every Phase-3 agent: `phase3_selection/PHASE3_BRIEF.md`; slots `phase3_selection/SLOTS.md`; notes `phase3_selection/DAILY_NOTES.md`. Wave 1 running (see §1). Wave 2 queue in LOG 24 Nov 10:3x. If this session dies: the three agents die with it; read their session logs `phase3_selection/logs/executor_{aurora,birgit,casper}_*.md` and respawn successors from them.
+**PHASE 3 SESSION (24 Nov, read first).** Session started 10:04; all nodes had rebooted 09:53 (no shutdown record; nothing was running; LOG 24 Nov). Crons re-created (daily 47 18, heartbeat 13 */3). Brief for every Phase-3 agent: `phase3_selection/PHASE3_BRIEF.md`; slots `phase3_selection/SLOTS.md`; notes `phase3_selection/DAILY_NOTES.md`. Wave 1 running (see §1). Wave 2 queue in LOG 24 Nov (wave-1 entry). If this session dies: the three agents die with it; read their session logs `phase3_selection/logs/executor_{aurora,birgit,casper}_*.md` and respawn successors from them.
 
 ## 0. Rules that changed since the brief (binding; details in `DEVIATIONS.md` V11–V16 and `LOG.md`)
 
@@ -76,7 +76,7 @@ Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE 
 
 ## 1. What is running unattended (check, do not disturb)
 
-Agents (24 Nov 10:38): **Aurora** (Fable, p3-a final pilot classification, landau ≤ 3), **Birgit** (Fable, p3-c MET model, schrodinger ≤ 2), **Casper** (Opus, p3-b B2 pile-up, maxwell ≤ 3). Campaigns p3-a-*, p3-b-*, p3-c-* are theirs (development only). Phase 2: nothing (23 Nov 19:52). The history of the
+Agents (24 Nov 10:08): **Aurora** (Fable, p3-a final pilot classification, landau ≤ 3), **Birgit** (Fable, p3-c MET model, schrodinger ≤ 2), **Casper** (Opus, p3-b B2 pile-up, maxwell ≤ 3). Campaigns p3-a-*, p3-b-*, p3-c-* are theirs (development only). Phase 2: nothing (23 Nov 19:52). The history of the
 Phase-2 campaigns is in LOG.md and the markers (failed-marker check: the LAST line of each marker; known failed
 last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e1500 grids3 (replaced by grids4)).
 
