@@ -82,7 +82,7 @@ last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e150
 
 ## 2. Waiting on the user
 
-1. **Calendar shift** (DECISION notice 2026-11-23 13:41): default C on **Wed 25 Nov 12:00** ("default, user absent")
+1. **Calendar shift** (DECISION notice 2026-11-23 13:41): default C on **Wed 25 Nov 12:00** ("default, no answer by the deadline")
    if no answer: every later date +4 calendar days (day 15 → Sat 5 Dec, freeze 7–9 Dec, Gate B ≈ 8–10 Jan, Gate C
    ≈ 17–19 Jan), riders (1) user says weekend of 5 Dec or Mon 7 Dec for the pause, (2) binding reading as soon as its
    inputs exist, no later than 5 Dec; also: holiday availability (production ≈ 11–25 Dec). Then record it in
