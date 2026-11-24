@@ -98,3 +98,4 @@
 - 2026-11-23 16:35 -0500 | schrodinger | RELEASED | Tora: reach_reest_tora.py done (1 run, 98 CPU-s, max RSS 45 MB); nothing of mine runs
 - 2026-11-23 16:39 -0500 | schrodinger | 1 slot, ≤ 20 min, nice 15 | Tora (Opus, reach erratum / mixed-fraction sensitivity, advisor Ulla): phase2_exploration/src/reach_reest_mixed_tora.py (pure Python); no signal files; node count before 1 job, load 1.2
 - 2026-11-23 16:43 -0500 | schrodinger | RELEASED | Tora: reach_reest_mixed_tora.py done; nothing of mine runs
+- 2026-11-23 19:42 -0500 | schrodinger | slot RELEASED | Nils: review jobs done (1.45 CPU-h, 15 jobs incl. 3 killed by my wall limit); nothing of mine runs

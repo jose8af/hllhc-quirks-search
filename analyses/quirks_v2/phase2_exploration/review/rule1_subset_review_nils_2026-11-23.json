@@ -1,0 +1,6218 @@
+{
+ "reviewer": "Nils (Fable 5.2)",
+ "date": "2026-11-23",
+ "reviewed": "phase2_exploration/src/p2w_subset.py sha256 c68b7b69050106e6fcf21dd776b7861b571f7f692f400c59b16f5f02dd55fcd9",
+ "verdict": "REVIEWED-PASS WITH CONDITIONS",
+ "independent_rederivation": {
+  "script_sha256": "5f29574da2c210444eb24aa2ab445beafd7f5bc7726f78114241aa44f20a078e",
+  "cpu_s": 2740.455278392,
+  "n_files": 460,
+  "n_full_files": 23,
+  "n_events_checked": 64005,
+  "n_bad_witness_k_le3": 0,
+  "bad": [],
+  "Z": {
+   "her_S": 1501,
+   "her_F": 1474,
+   "her_S_confirmed_by_my_S": 1419,
+   "her_S_confirmed_same_or_lower_k": 1384,
+   "her_S_my_k_higher_but_le3": 35,
+   "her_S_my_k_lower": 30,
+   "her_S_not_confirmed": 82,
+   "her_F_confirmed_by_my_F": 1390,
+   "her_F_not_confirmed": 84,
+   "her_S_with_hard_window_witness": 137,
+   "row_events_her_gt3_my_S_le3": 109,
+   "row_events_her_gt3_my_F_le3": 107,
+   "my_S_by_k_on_her_S": {
+    "0": 24,
+    "1": 74,
+    "2": 317,
+    "3": 1004
+   },
+   "her_S_by_k": {
+    "0": 26,
+    "1": 80,
+    "2": 318,
+    "3": 1077
+   },
+   "full_files": {
+    "n_files": 23,
+    "her_S": 77,
+    "my_S": 80,
+    "both": 76,
+    "only_her": 1,
+    "only_mine": 4,
+    "only_mine_without_her_row": 0,
+    "her_F": 75,
+    "my_F": 77,
+    "both_F": 73,
+    "my_H": 6,
+    "union_S": 81
+   }
+  },
+  "Zlow": {
+   "her_S": 13,
+   "her_F": 13,
+   "her_S_confirmed_by_my_S": 12,
+   "her_S_confirmed_same_or_lower_k": 12,
+   "her_S_my_k_higher_but_le3": 0,
+   "her_S_my_k_lower": 0,
+   "her_S_not_confirmed": 1,
+   "her_F_confirmed_by_my_F": 12,
+   "her_F_not_confirmed": 1,
+   "her_S_with_hard_window_witness": 0,
+   "row_events_her_gt3_my_S_le3": 0,
+   "row_events_her_gt3_my_F_le3": 0,
+   "my_S_by_k_on_her_S": {
+    "0": 0,
+    "1": 0,
+    "2": 5,
+    "3": 7
+   },
+   "her_S_by_k": {
+    "0": 0,
+    "1": 0,
+    "2": 5,
+    "3": 8
+   },
+   "full_files": {
+    "n_files": 23,
+    "her_S": 0,
+    "my_S": 0,
+    "both": 0,
+    "only_her": 0,
+    "only_mine": 0,
+    "only_mine_without_her_row": 0,
+    "her_F": 0,
+    "my_F": 0,
+    "both_F": 0,
+    "my_H": 0,
+    "union_S": 0
+   }
+  },
+  "unconfirmed_S": [
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00160.npz",
+    4067,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00170.npz",
+    2552,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz",
+    1690,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00230.npz",
+    3956,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00270.npz",
+    2338,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00295.npz",
+    2916,
+    1,
+    1,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00325.npz",
+    899,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00330.npz",
+    4675,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00345.npz",
+    430,
+    3,
+    99,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    203,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    3777,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00370.npz",
+    4086,
+    2,
+    2,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00420.npz",
+    911,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00445.npz",
+    3119,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00009.npz",
+    2988,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00094.npz",
+    1210,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00109.npz",
+    4316,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00124.npz",
+    2864,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    1911,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    2457,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00169.npz",
+    3261,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    3242,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    4283,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00229.npz",
+    2166,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00259.npz",
+    598,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00314.npz",
+    560,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    1778,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    4451,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00374.npz",
+    304,
+    2,
+    2,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00434.npz",
+    2174,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00031.npz",
+    682,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    2022,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    4101,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00131.npz",
+    4135,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00161.npz",
+    3446,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00171.npz",
+    2402,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00231.npz",
+    200,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00271.npz",
+    1050,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00321.npz",
+    4619,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00351.npz",
+    3382,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00381.npz",
+    4125,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00391.npz",
+    1515,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00032.npz",
+    3299,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00122.npz",
+    1690,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00142.npz",
+    1349,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00232.npz",
+    4928,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    3560,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    4486,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00342.npz",
+    3649,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00402.npz",
+    515,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00003.npz",
+    777,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00173.npz",
+    3906,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00283.npz",
+    1701,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00303.npz",
+    1247,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00333.npz",
+    2725,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00343.npz",
+    148,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00363.npz",
+    2236,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00383.npz",
+    1929,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    796,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    4938,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00036.npz",
+    3358,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00116.npz",
+    1349,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00256.npz",
+    3833,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz",
+    2421,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00426.npz",
+    696,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00456.npz",
+    1142,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00047.npz",
+    1459,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00097.npz",
+    1378,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00127.npz",
+    1408,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00367.npz",
+    3124,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00377.npz",
+    3024,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00407.npz",
+    653,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00437.npz",
+    1878,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    2274,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    3248,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00208.npz",
+    2057,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    1451,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    1469,
+    3,
+    3,
+    7,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00228.npz",
+    1698,
+    2,
+    2,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00348.npz",
+    4807,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00418.npz",
+    3310,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00428.npz",
+    2539,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00458.npz",
+    948,
+    3,
+    3,
+    5,
+    99
+   ]
+  ],
+  "unconfirmed_F": [
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00000.npz",
+    4926,
+    2,
+    2,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00160.npz",
+    4067,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00170.npz",
+    2552,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz",
+    1690,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00230.npz",
+    222,
+    3,
+    3,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00230.npz",
+    3956,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00270.npz",
+    2338,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00295.npz",
+    2916,
+    1,
+    1,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00325.npz",
+    899,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00330.npz",
+    4675,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    203,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    3777,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00370.npz",
+    4086,
+    2,
+    2,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00420.npz",
+    911,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00445.npz",
+    3119,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00009.npz",
+    2988,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00094.npz",
+    1210,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00109.npz",
+    4316,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00124.npz",
+    2864,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00134.npz",
+    4024,
+    3,
+    3,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    1911,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    2457,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00169.npz",
+    3261,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    3242,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    4283,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00229.npz",
+    2166,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00259.npz",
+    598,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00314.npz",
+    560,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    1778,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    4451,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00374.npz",
+    304,
+    2,
+    2,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00434.npz",
+    2174,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00031.npz",
+    682,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    2022,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    4101,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00131.npz",
+    4135,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00161.npz",
+    3446,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00171.npz",
+    2402,
+    3,
+    3,
+    6,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00231.npz",
+    200,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00271.npz",
+    1050,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00321.npz",
+    4619,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00351.npz",
+    3382,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00381.npz",
+    4125,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00391.npz",
+    1515,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00032.npz",
+    3299,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00122.npz",
+    1690,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00142.npz",
+    1349,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00232.npz",
+    4928,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    3560,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    4486,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00342.npz",
+    3649,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00402.npz",
+    515,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00003.npz",
+    777,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00173.npz",
+    3906,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00283.npz",
+    1701,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00303.npz",
+    1247,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00333.npz",
+    2725,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00343.npz",
+    148,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00363.npz",
+    2236,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00383.npz",
+    1929,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    796,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    4938,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00036.npz",
+    3358,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00116.npz",
+    1349,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00256.npz",
+    3833,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz",
+    2421,
+    2,
+    2,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00426.npz",
+    696,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00456.npz",
+    1142,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00047.npz",
+    1459,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00097.npz",
+    1378,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00127.npz",
+    1408,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00367.npz",
+    3124,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00377.npz",
+    3024,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00407.npz",
+    653,
+    3,
+    3,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00437.npz",
+    1878,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    2274,
+    2,
+    2,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    3248,
+    3,
+    3,
+    4,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00208.npz",
+    2057,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    1451,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    1469,
+    3,
+    3,
+    7,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00228.npz",
+    1698,
+    2,
+    2,
+    99,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00348.npz",
+    4807,
+    3,
+    3,
+    5,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00418.npz",
+    3310,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00428.npz",
+    2539,
+    3,
+    3,
+    4,
+    4
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00458.npz",
+    948,
+    3,
+    3,
+    5,
+    99
+   ]
+  ],
+  "k_higher": [
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00000.npz",
+    4926,
+    2,
+    2,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00010.npz",
+    4918,
+    2,
+    3,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-02/000/p2-c-pilot-znn-00075.npz",
+    2661,
+    2,
+    99,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00115.npz",
+    214,
+    1,
+    1,
+    2,
+    2
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00170.npz",
+    1174,
+    1,
+    1,
+    2,
+    2
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz",
+    480,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00210.npz",
+    589,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00225.npz",
+    4583,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00430.npz",
+    3116,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00029.npz",
+    2184,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00309.npz",
+    1929,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00319.npz",
+    1582,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00319.npz",
+    2126,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00414.npz",
+    4916,
+    1,
+    1,
+    2,
+    2
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00251.npz",
+    3494,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00301.npz",
+    3931,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00322.npz",
+    4435,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-02/000/p2-c-pilot-znn-00073.npz",
+    4936,
+    1,
+    1,
+    2,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00123.npz",
+    1078,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00153.npz",
+    2216,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00403.npz",
+    251,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00126.npz",
+    4250,
+    0,
+    0,
+    1,
+    1
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz",
+    4804,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00027.npz",
+    1002,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00027.npz",
+    2387,
+    1,
+    1,
+    2,
+    2
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00117.npz",
+    2185,
+    0,
+    0,
+    1,
+    1
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00127.npz",
+    4052,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00177.npz",
+    4751,
+    1,
+    1,
+    2,
+    2
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00207.npz",
+    3949,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00327.npz",
+    1495,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00377.npz",
+    1147,
+    1,
+    1,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00447.npz",
+    3352,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00258.npz",
+    4498,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00328.npz",
+    664,
+    2,
+    2,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00458.npz",
+    3422,
+    1,
+    1,
+    2,
+    2
+   ]
+  ],
+  "only_mine_full": [
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-02/000/p2-c-pilot-znn-00080.npz",
+    3816,
+    6,
+    99,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00240.npz",
+    830,
+    4,
+    99,
+    3,
+    99
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00280.npz",
+    1751,
+    4,
+    4,
+    3,
+    3
+   ],
+   [
+    "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00184.npz",
+    1714,
+    4,
+    4,
+    3,
+    3
+   ]
+  ]
+ },
+ "her_own_witnesses": {
+  "n_done": 136,
+  "n_todo": 160,
+  "table": {
+   "unconfirmed_by_my_search": {
+    "n_events": 86,
+    "rerun_equals_stored": 86,
+    "S_n": 86,
+    "S_verified": 86,
+    "S_full_set": 78,
+    "S_subset": 8,
+    "S_own_axis_ok": 12,
+    "F_n": 85,
+    "F_verified": 85,
+    "F_full_set": 79,
+    "F_own_axis_ok": 10
+   },
+   "my_k_higher": {
+    "n_events": 34,
+    "rerun_equals_stored": 34,
+    "S_n": 34,
+    "S_verified": 34,
+    "S_full_set": 33,
+    "S_subset": 1,
+    "S_own_axis_ok": 3,
+    "F_n": 33,
+    "F_verified": 33,
+    "F_full_set": 31,
+    "F_own_axis_ok": 4
+   },
+   "confirmed_sample": {
+    "n_events": 16,
+    "rerun_equals_stored": 16,
+    "S_n": 16,
+    "S_verified": 16,
+    "S_full_set": 3,
+    "S_subset": 13,
+    "S_own_axis_ok": 15,
+    "F_n": 15,
+    "F_verified": 15,
+    "F_full_set": 3,
+    "F_own_axis_ok": 14
+   }
+  },
+  "records": [
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00160.npz",
+    "event": 4067,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.1326329718506365,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.1326329718506365,
+     "own_axis_ok": false
+    },
+    "n_planes": 94
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00170.npz",
+    "event": 2552,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.616846365619325,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.616846365619325,
+     "own_axis_ok": false
+    },
+    "n_planes": 47
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz",
+    "event": 1690,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.079132641621341,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.079132641621341,
+     "own_axis_ok": false
+    },
+    "n_planes": 5
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00230.npz",
+    "event": 3956,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.6479871441253127,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.6479871441253127,
+     "own_axis_ok": false
+    },
+    "n_planes": 178
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00270.npz",
+    "event": 2338,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.3635815840634185,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.3635815840634185,
+     "own_axis_ok": false
+    },
+    "n_planes": 93
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00295.npz",
+    "event": 2916,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.7347339126421395,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.7347339126421395,
+     "own_axis_ok": false
+    },
+    "n_planes": 34
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00325.npz",
+    "event": 899,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.625107738309479,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.625107738309479,
+     "own_axis_ok": false
+    },
+    "n_planes": 134
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00330.npz",
+    "event": 4675,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.8592727815672427,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.8592727815672427,
+     "own_axis_ok": false
+    },
+    "n_planes": 41
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00345.npz",
+    "event": 430,
+    "stored": [
+     3,
+     99
+    ],
+    "rerun": [
+     3,
+     99
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.96135733743411,
+     "own_axis_ok": false
+    },
+    "F": null,
+    "n_planes": 326
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    "event": 203,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.1678542638551597,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.1678542638551597,
+     "own_axis_ok": false
+    },
+    "n_planes": 46
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    "event": 3777,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.351662279286373,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.351662279286373,
+     "own_axis_ok": false
+    },
+    "n_planes": 205
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00370.npz",
+    "event": 4086,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.4465086173027535,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.4465086173027535,
+     "own_axis_ok": true
+    },
+    "n_planes": 3
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00420.npz",
+    "event": 911,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.864339454387735,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.864339454387735,
+     "own_axis_ok": false
+    },
+    "n_planes": 5
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00445.npz",
+    "event": 3119,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.562720425675987,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.562720425675987,
+     "own_axis_ok": false
+    },
+    "n_planes": 15
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00009.npz",
+    "event": 2988,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.416073991619119,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.416073991619119,
+     "own_axis_ok": true
+    },
+    "n_planes": 97
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00094.npz",
+    "event": 1210,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.281068631601451,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.281068631601451,
+     "own_axis_ok": false
+    },
+    "n_planes": 28
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00109.npz",
+    "event": 4316,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.99875361269334,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.99875361269334,
+     "own_axis_ok": false
+    },
+    "n_planes": 353
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00124.npz",
+    "event": 2864,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.483318573068292,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.483318573068292,
+     "own_axis_ok": false
+    },
+    "n_planes": 428
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    "event": 1911,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.0562128848430055,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.0562128848430055,
+     "own_axis_ok": false
+    },
+    "n_planes": 4
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00159.npz",
+    "event": 2457,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.313044707510166,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.313044707510166,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00169.npz",
+    "event": 3261,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.9607379491150714,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.9607379491150714,
+     "own_axis_ok": false
+    },
+    "n_planes": 3
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    "event": 3242,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.080754985757462,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.080754985757462,
+     "own_axis_ok": false
+    },
+    "n_planes": 166
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00214.npz",
+    "event": 4283,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.38698810607099,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.38698810607099,
+     "own_axis_ok": false
+    },
+    "n_planes": 15
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00229.npz",
+    "event": 2166,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.458236478916379,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.458236478916379,
+     "own_axis_ok": false
+    },
+    "n_planes": 57
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00259.npz",
+    "event": 598,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.077245314108628,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.077245314108628,
+     "own_axis_ok": false
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00314.npz",
+    "event": 560,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.7498156021980553,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.7498156021980553,
+     "own_axis_ok": false
+    },
+    "n_planes": 18
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    "event": 1778,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.4451613321199503,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.4451613321199503,
+     "own_axis_ok": false
+    },
+    "n_planes": 69
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00349.npz",
+    "event": 4451,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.9506771018107836,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.9506771018107836,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00374.npz",
+    "event": 304,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.178030838226871,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.178030838226871,
+     "own_axis_ok": false
+    },
+    "n_planes": 111
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00434.npz",
+    "event": 2174,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.51357530188206,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.51357530188206,
+     "own_axis_ok": false
+    },
+    "n_planes": 15
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00031.npz",
+    "event": 682,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.0479374070638015,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.0479374070638015,
+     "own_axis_ok": false
+    },
+    "n_planes": 14
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    "event": 2022,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.1544588877935413,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.1544588877935413,
+     "own_axis_ok": false
+    },
+    "n_planes": 7
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00111.npz",
+    "event": 4101,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.560911561196815,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.560911561196815,
+     "own_axis_ok": false
+    },
+    "n_planes": 226
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00131.npz",
+    "event": 4135,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.3625211595723408,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.3625211595723408,
+     "own_axis_ok": false
+    },
+    "n_planes": 62
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00161.npz",
+    "event": 3446,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.0673401156355533,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.0673401156355533,
+     "own_axis_ok": false
+    },
+    "n_planes": 144
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00171.npz",
+    "event": 2402,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.418845725384457,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.418845725384457,
+     "own_axis_ok": false
+    },
+    "n_planes": 70
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00231.npz",
+    "event": 200,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.951656229562334,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.951656229562334,
+     "own_axis_ok": false
+    },
+    "n_planes": 38
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00271.npz",
+    "event": 1050,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.668450865053384,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.668450865053384,
+     "own_axis_ok": true
+    },
+    "n_planes": 5
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00321.npz",
+    "event": 4619,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.007030864033886,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.007030864033886,
+     "own_axis_ok": false
+    },
+    "n_planes": 3
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00351.npz",
+    "event": 3382,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.558269908197859,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.558269908197859,
+     "own_axis_ok": false
+    },
+    "n_planes": 200
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00381.npz",
+    "event": 4125,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.67534859336156,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.67534859336156,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00391.npz",
+    "event": 1515,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.508154487786946,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.508154487786946,
+     "own_axis_ok": false
+    },
+    "n_planes": 4
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00032.npz",
+    "event": 3299,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.473354793437216,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.473354793437216,
+     "own_axis_ok": false
+    },
+    "n_planes": 31
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00122.npz",
+    "event": 1690,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.479527302047589,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.479527302047589,
+     "own_axis_ok": false
+    },
+    "n_planes": 24
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00142.npz",
+    "event": 1349,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.515470647682381,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.515470647682381,
+     "own_axis_ok": false
+    },
+    "n_planes": 16
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00232.npz",
+    "event": 4928,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.6237402715717,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.6237402715717,
+     "own_axis_ok": false
+    },
+    "n_planes": 194
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    "event": 3560,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.8463458218515518,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.8463458218515518,
+     "own_axis_ok": false
+    },
+    "n_planes": 13
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00242.npz",
+    "event": 4486,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.562474096216889,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.562474096216889,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00342.npz",
+    "event": 3649,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.301696834647515,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.301696834647515,
+     "own_axis_ok": true
+    },
+    "n_planes": 143
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00402.npz",
+    "event": 515,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.678291330578298,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.678291330578298,
+     "own_axis_ok": true
+    },
+    "n_planes": 60
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00003.npz",
+    "event": 777,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.538431964171223,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.538431964171223,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00173.npz",
+    "event": 3906,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.3094811817851757,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.3094811817851757,
+     "own_axis_ok": false
+    },
+    "n_planes": 10
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00283.npz",
+    "event": 1701,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.5608399940250655,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.5608399940250655,
+     "own_axis_ok": false
+    },
+    "n_planes": 38
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00303.npz",
+    "event": 1247,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.051981299280686,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.051981299280686,
+     "own_axis_ok": true
+    },
+    "n_planes": 141
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00333.npz",
+    "event": 2725,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.7738033637858501,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.7738033637858501,
+     "own_axis_ok": false
+    },
+    "n_planes": 173
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00343.npz",
+    "event": 148,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.517198161812819,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.517198161812819,
+     "own_axis_ok": false
+    },
+    "n_planes": 197
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00363.npz",
+    "event": 2236,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.209222641345623,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.209222641345623,
+     "own_axis_ok": false
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00383.npz",
+    "event": 1929,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.563878373028222,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.563878373028222,
+     "own_axis_ok": false
+    },
+    "n_planes": 115
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    "event": 796,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.476247009674184,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.476247009674184,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00016.npz",
+    "event": 4938,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.055666242752403,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.055666242752403,
+     "own_axis_ok": true
+    },
+    "n_planes": 303
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00036.npz",
+    "event": 3358,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.045026198374082,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.045026198374082,
+     "own_axis_ok": false
+    },
+    "n_planes": 56
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00116.npz",
+    "event": 1349,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.605839120591716,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.605839120591716,
+     "own_axis_ok": false
+    },
+    "n_planes": 26
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00256.npz",
+    "event": 3833,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.9619758973831347,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.9619758973831347,
+     "own_axis_ok": false
+    },
+    "n_planes": 131
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz",
+    "event": 2421,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.616799464617845,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.616799464617845,
+     "own_axis_ok": false
+    },
+    "n_planes": 283
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00426.npz",
+    "event": 696,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.5191386803029143,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.5191386803029143,
+     "own_axis_ok": false
+    },
+    "n_planes": 8
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00456.npz",
+    "event": 1142,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.360054815536954,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.360054815536954,
+     "own_axis_ok": true
+    },
+    "n_planes": 106
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00047.npz",
+    "event": 1459,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.3908794302991705,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.3908794302991705,
+     "own_axis_ok": false
+    },
+    "n_planes": 47
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00097.npz",
+    "event": 1378,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.88209971508603,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.88209971508603,
+     "own_axis_ok": false
+    },
+    "n_planes": 141
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00127.npz",
+    "event": 1408,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.22340456320936,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.22340456320936,
+     "own_axis_ok": false
+    },
+    "n_planes": 187
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00367.npz",
+    "event": 3124,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.69135358226796,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.69135358226796,
+     "own_axis_ok": false
+    },
+    "n_planes": 7
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00377.npz",
+    "event": 3024,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.508637983889391,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.508637983889391,
+     "own_axis_ok": false
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00407.npz",
+    "event": 653,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.7324154114458645,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.7324154114458645,
+     "own_axis_ok": false
+    },
+    "n_planes": 15
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00437.npz",
+    "event": 1878,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.9718245163659653,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.9718245163659653,
+     "own_axis_ok": true
+    },
+    "n_planes": 205
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    "event": 2274,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.3907228877138325,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.3907228877138325,
+     "own_axis_ok": false
+    },
+    "n_planes": 32
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00178.npz",
+    "event": 3248,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.6483296603782374,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.6483296603782374,
+     "own_axis_ok": false
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00208.npz",
+    "event": 2057,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.5343089103762946,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.5343089103762946,
+     "own_axis_ok": false
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    "event": 1451,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.2504491422160826,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.2504491422160826,
+     "own_axis_ok": false
+    },
+    "n_planes": 171
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00218.npz",
+    "event": 1469,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.4946974219617797,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.4946974219617797,
+     "own_axis_ok": false
+    },
+    "n_planes": 5
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00228.npz",
+    "event": 1698,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.2624299270607207,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.2624299270607207,
+     "own_axis_ok": true
+    },
+    "n_planes": 2
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00348.npz",
+    "event": 4807,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.1723421229294155,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.1723421229294155,
+     "own_axis_ok": false
+    },
+    "n_planes": 200
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00418.npz",
+    "event": 3310,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.4730220110253085,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.4730220110253085,
+     "own_axis_ok": false
+    },
+    "n_planes": 95
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00428.npz",
+    "event": 2539,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.1106145576659854,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.1106145576659854,
+     "own_axis_ok": false
+    },
+    "n_planes": 73
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00458.npz",
+    "event": 948,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.612669237858615,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.612669237858615,
+     "own_axis_ok": false
+    },
+    "n_planes": 72
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00000.npz",
+    "event": 4926,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.8456981570200495,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.8456981570200495,
+     "own_axis_ok": false
+    },
+    "n_planes": 59
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00230.npz",
+    "event": 222,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.9157519965465286,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.704515786792483,
+     "own_axis_ok": false
+    },
+    "n_planes": 75
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00134.npz",
+    "event": 4024,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.5987146154612453,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.401596532736786,
+     "own_axis_ok": false
+    },
+    "n_planes": 200
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00430.npz",
+    "event": 3116,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.640421480132536,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.640421480132536,
+     "own_axis_ok": false
+    },
+    "n_planes": 27
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-02/000/p2-c-pilot-znn-00073.npz",
+    "event": 4936,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.431168099487021,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.431168099487021,
+     "own_axis_ok": false
+    },
+    "n_planes": 324
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00403.npz",
+    "event": 251,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.6044420927359306,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.6044420927359306,
+     "own_axis_ok": false
+    },
+    "n_planes": 162
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-14/000/p2-c-pilot-znn-00414.npz",
+    "event": 4916,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.509375809395013,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.509375809395013,
+     "own_axis_ok": false
+    },
+    "n_planes": 101
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00319.npz",
+    "event": 1582,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.691725154127595,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.691725154127595,
+     "own_axis_ok": false
+    },
+    "n_planes": 66
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00117.npz",
+    "event": 2185,
+    "stored": [
+     0,
+     0
+    ],
+    "rerun": [
+     0,
+     0
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 0,
+     "ok": true,
+     "why": "",
+     "my_k": 0,
+     "w_core": 3.8581933615036834,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 0,
+     "ok": true,
+     "why": "",
+     "my_k": 0,
+     "w_core": 3.8581933615036834,
+     "own_axis_ok": false
+    },
+    "n_planes": 468
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00319.npz",
+    "event": 2126,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 1.7942930905542334,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 1.7942930905542334,
+     "own_axis_ok": false
+    },
+    "n_planes": 1
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00153.npz",
+    "event": 2216,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.254619575654139,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.254619575654139,
+     "own_axis_ok": false
+    },
+    "n_planes": 104
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00029.npz",
+    "event": 2184,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.446135810045839,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.446135810045839,
+     "own_axis_ok": false
+    },
+    "n_planes": 88
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00177.npz",
+    "event": 4751,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.905073033107198,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.905073033107198,
+     "own_axis_ok": false
+    },
+    "n_planes": 1399
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-03/000/p2-c-pilot-znn-00115.npz",
+    "event": 214,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.8782350335828806,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 3.8782350335828806,
+     "own_axis_ok": false
+    },
+    "n_planes": 172
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00127.npz",
+    "event": 4052,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.504077320815894,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.504077320815894,
+     "own_axis_ok": false
+    },
+    "n_planes": 254
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00027.npz",
+    "event": 1002,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.4443682956429575,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.4443682956429575,
+     "own_axis_ok": false
+    },
+    "n_planes": 198
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00027.npz",
+    "event": 2387,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.212104458905409,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.212104458905409,
+     "own_axis_ok": false
+    },
+    "n_planes": 265
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00301.npz",
+    "event": 3931,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.78984870659402,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.78984870659402,
+     "own_axis_ok": false
+    },
+    "n_planes": 31
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-06/000/p2-c-pilot-znn-00195.npz",
+    "event": 480,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.7738132799688535,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.7738132799688535,
+     "own_axis_ok": true
+    },
+    "n_planes": 223
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00258.npz",
+    "event": 4498,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.134733718277277,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.134733718277277,
+     "own_axis_ok": false
+    },
+    "n_planes": 111
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00447.npz",
+    "event": 3352,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.5847315501968264,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.5847315501968264,
+     "own_axis_ok": false
+    },
+    "n_planes": 160
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00123.npz",
+    "event": 1078,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.623693708847696,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.623693708847696,
+     "own_axis_ok": false
+    },
+    "n_planes": 20
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00207.npz",
+    "event": 3949,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.523522579396198,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.523522579396198,
+     "own_axis_ok": false
+    },
+    "n_planes": 166
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00126.npz",
+    "event": 4250,
+    "stored": [
+     0,
+     0
+    ],
+    "rerun": [
+     0,
+     0
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 0,
+     "ok": true,
+     "why": "",
+     "my_k": 0,
+     "w_core": 4.593427687972122,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 0,
+     "ok": true,
+     "why": "",
+     "my_k": 0,
+     "w_core": 4.593427687972122,
+     "own_axis_ok": false
+    },
+    "n_planes": 565
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00210.npz",
+    "event": 589,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.052687297820704,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.052687297820704,
+     "own_axis_ok": false
+    },
+    "n_planes": 131
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00322.npz",
+    "event": 4435,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.472131136169516,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.472131136169516,
+     "own_axis_ok": false
+    },
+    "n_planes": 148
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00366.npz",
+    "event": 4804,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 1.7555934037600833,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 1.7555934037600833,
+     "own_axis_ok": false
+    },
+    "n_planes": 114
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-10/000/p2-c-pilot-znn-00309.npz",
+    "event": 1929,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.607461257645547,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.607461257645547,
+     "own_axis_ok": true
+    },
+    "n_planes": 119
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-07/000/p2-c-pilot-znn-00225.npz",
+    "event": 4583,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.129188267828881,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.129188267828881,
+     "own_axis_ok": false
+    },
+    "n_planes": 42
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00377.npz",
+    "event": 1147,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.355302503032102,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.355302503032102,
+     "own_axis_ok": false
+    },
+    "n_planes": 175
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-08/000/p2-c-pilot-znn-00251.npz",
+    "event": 3494,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.237934447470301,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.237934447470301,
+     "own_axis_ok": false
+    },
+    "n_planes": 178
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00170.npz",
+    "event": 1174,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.4024765948155125,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.4024765948155125,
+     "own_axis_ok": true
+    },
+    "n_planes": 444
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00328.npz",
+    "event": 664,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.754953964713307,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.754953964713307,
+     "own_axis_ok": false
+    },
+    "n_planes": 132
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00327.npz",
+    "event": 1495,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.402149949965149,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.402149949965149,
+     "own_axis_ok": false
+    },
+    "n_planes": 57
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-00/000/p2-c-pilot-znn-00010.npz",
+    "event": 4918,
+    "stored": [
+     2,
+     3
+    ],
+    "rerun": [
+     2,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 3.382559481279274,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.948957587417313,
+     "own_axis_ok": true
+    },
+    "n_planes": 204
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00458.npz",
+    "event": 3422,
+    "stored": [
+     1,
+     1
+    ],
+    "rerun": [
+     1,
+     1
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.014382074077934,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 1,
+     "ok": true,
+     "why": "",
+     "my_k": 1,
+     "w_core": 4.014382074077934,
+     "own_axis_ok": false
+    },
+    "n_planes": 169
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-02/000/p2-c-pilot-znn-00075.npz",
+    "event": 2661,
+    "stored": [
+     2,
+     99
+    ],
+    "rerun": [
+     2,
+     99
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.531906159874863,
+     "own_axis_ok": false
+    },
+    "F": null,
+    "n_planes": 16
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00040.npz",
+    "event": 2859,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.570383478523809,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.570383478523809,
+     "own_axis_ok": true
+    },
+    "n_planes": 126
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00124.npz",
+    "event": 4887,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.512547667894396,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.512547667894396,
+     "own_axis_ok": true
+    },
+    "n_planes": 41
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00385.npz",
+    "event": 3535,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.7330962852026794,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 2.7330962852026794,
+     "own_axis_ok": true
+    },
+    "n_planes": 257
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00370.npz",
+    "event": 1009,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.5944241574124325,
+     "own_axis_ok": false
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.5944241574124325,
+     "own_axis_ok": false
+    },
+    "n_planes": 26
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00154.npz",
+    "event": 2119,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.641942995985983,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.641942995985983,
+     "own_axis_ok": true
+    },
+    "n_planes": 92
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00286.npz",
+    "event": 1829,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.748720040691183,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.748720040691183,
+     "own_axis_ok": true
+    },
+    "n_planes": 22
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00034.npz",
+    "event": 1189,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.6767514005124124,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 2.6767514005124124,
+     "own_axis_ok": true
+    },
+    "n_planes": 73
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-09/000/p2-c-pilot-znn-00268.npz",
+    "event": 4576,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.8821806932761842,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 1.8821806932761842,
+     "own_axis_ok": true
+    },
+    "n_planes": 44
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00355.npz",
+    "event": 4139,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.093205903343583,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.093205903343583,
+     "own_axis_ok": true
+    },
+    "n_planes": 48
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-13/000/p2-c-pilot-znn-00381.npz",
+    "event": 4068,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.549384566841929,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.549384566841929,
+     "own_axis_ok": true
+    },
+    "n_planes": 9
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-01/000/p2-c-pilot-znn-00031.npz",
+    "event": 4866,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.974212811025942,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.974212811025942,
+     "own_axis_ok": true
+    },
+    "n_planes": 103
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-15/000/p2-c-pilot-znn-00459.npz",
+    "event": 2243,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.394689979019437,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.394689979019437,
+     "own_axis_ok": true
+    },
+    "n_planes": 6
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-12/000/p2-c-pilot-znn-00370.npz",
+    "event": 4260,
+    "stored": [
+     3,
+     99
+    ],
+    "rerun": [
+     3,
+     99
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.463197182945366,
+     "own_axis_ok": true
+    },
+    "F": null,
+    "n_planes": 26
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-05/000/p2-c-pilot-znn-00161.npz",
+    "event": 4327,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.954761615078469,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "full",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 3.954761615078469,
+     "own_axis_ok": true
+    },
+    "n_planes": 8
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-04/000/p2-c-pilot-znn-00140.npz",
+    "event": 3663,
+    "stored": [
+     2,
+     2
+    ],
+    "rerun": [
+     2,
+     2
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.676282110002029,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 2,
+     "ok": true,
+     "why": "",
+     "my_k": 2,
+     "w_core": 4.676282110002029,
+     "own_axis_ok": true
+    },
+    "n_planes": 40
+   },
+   {
+    "path": "/nfs/cajuela/jdochoa/quirks_v2/data/pilot/p2-c-pilot-znn-11/000/p2-c-pilot-znn-00325.npz",
+    "event": 468,
+    "stored": [
+     3,
+     3
+    ],
+    "rerun": [
+     3,
+     3
+    ],
+    "S": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.261767129809694,
+     "own_axis_ok": true
+    },
+    "F": {
+     "kind": "subset",
+     "her_k": 3,
+     "ok": true,
+     "why": "",
+     "my_k": 3,
+     "w_core": 4.261767129809694,
+     "own_axis_ok": true
+    },
+    "n_planes": 38
+   }
+  ]
+ },
+ "t7": [
+  {
+   "trial": 21,
+   "n_hits": [
+    28,
+    52
+   ],
+   "entry": [
+    4,
+    0,
+    0
+   ],
+   "k0": 0,
+   "k1": 1,
+   "wit0": {
+    "kind": "full",
+    "her_k": 0,
+    "ok": true,
+    "why": "",
+    "my_k": 0,
+    "w_core": 3.1773393407942314,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 1,
+    "ok": true,
+    "why": "",
+    "my_k": 1,
+    "w_core": 4.681592891891419,
+    "own_axis_ok": true
+   },
+   "mine_on_H2": [
+    0,
+    true,
+    0
+   ]
+  },
+  {
+   "trial": 21,
+   "n_hits": [
+    28,
+    52
+   ],
+   "entry": [
+    4,
+    0,
+    1
+   ],
+   "k0": 0,
+   "k1": 1,
+   "wit0": {
+    "kind": "full",
+    "her_k": 0,
+    "ok": true,
+    "why": "",
+    "my_k": 0,
+    "w_core": 3.1773393407942314,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 1,
+    "ok": true,
+    "why": "",
+    "my_k": 1,
+    "w_core": 4.681592891891419,
+    "own_axis_ok": true
+   },
+   "mine_on_H2": [
+    0,
+    true,
+    0
+   ]
+  },
+  {
+   "trial": 21,
+   "n_hits": [
+    28,
+    52
+   ],
+   "entry": [
+    4,
+    1,
+    0
+   ],
+   "k0": 1,
+   "k1": 2,
+   "wit0": {
+    "kind": "full",
+    "her_k": 1,
+    "ok": true,
+    "why": "",
+    "my_k": 1,
+    "w_core": 3.1773393407942314,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 2,
+    "ok": true,
+    "why": "",
+    "my_k": 2,
+    "w_core": 4.681592891891419,
+    "own_axis_ok": true
+   }
+  },
+  {
+   "trial": 21,
+   "n_hits": [
+    28,
+    52
+   ],
+   "entry": [
+    4,
+    1,
+    1
+   ],
+   "k0": 1,
+   "k1": 2,
+   "wit0": {
+    "kind": "full",
+    "her_k": 1,
+    "ok": true,
+    "why": "",
+    "my_k": 1,
+    "w_core": 3.1773393407942314,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 2,
+    "ok": true,
+    "why": "",
+    "my_k": 2,
+    "w_core": 4.681592891891419,
+    "own_axis_ok": true
+   }
+  },
+  {
+   "trial": 140,
+   "n_hits": [
+    24,
+    38
+   ],
+   "entry": [
+    4,
+    0,
+    0
+   ],
+   "k0": 2,
+   "k1": 3,
+   "wit0": {
+    "kind": "full",
+    "her_k": 2,
+    "ok": true,
+    "why": "",
+    "my_k": 2,
+    "w_core": 4.355505969946298,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 3,
+    "ok": true,
+    "why": "",
+    "my_k": 3,
+    "w_core": 4.263350825796282,
+    "own_axis_ok": true
+   },
+   "mine_on_H2": [
+    2,
+    true,
+    2
+   ]
+  },
+  {
+   "trial": 140,
+   "n_hits": [
+    24,
+    38
+   ],
+   "entry": [
+    4,
+    1,
+    0
+   ],
+   "k0": 3,
+   "k1": 4,
+   "wit0": {
+    "kind": "full",
+    "her_k": 3,
+    "ok": true,
+    "why": "",
+    "my_k": 3,
+    "w_core": 4.355505969946298,
+    "own_axis_ok": true
+   },
+   "wit1": {
+    "kind": "subset",
+    "her_k": 4,
+    "ok": true,
+    "why": "",
+    "my_k": 4,
+    "w_core": 4.263350825796282,
+    "own_axis_ok": true
+   }
+  }
+ ],
+ "cpu": {
+  "test_full_1_file": 28.0,
+  "chain1_parts0_4_done": 1252.8000000000002,
+  "chain1_parts1_3_killed_no_output": 1954.3999999999999,
+  "chain2_six_rows_only_jobs": 1495.4,
+  "witness_events_killed_at_wall_limit_log_used": 412.4,
+  "t7_first_attempt_failed": 7.5,
+  "t7": 56.1,
+  "total_s": 5206.6,
+  "total_cpu_h": 1.446
+ }
+}
