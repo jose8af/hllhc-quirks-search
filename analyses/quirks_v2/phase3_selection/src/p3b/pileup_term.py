@@ -1,0 +1,119 @@
+"""Day-15 pile-up term per T2 candidate (STR §11.7 rule 1; B2-f widths) from b2_dev_closure.json (p3-b, Casper).
+
+  python pileup_term.py   -> outputs/p3b/pileup_term.json   (schema: outputs/p3b/SCHEMA.md)
+Pure arithmetic on the closure JSON (no data access).  Every width is STR §4.0 point 7:
+    s_tot² = s_model² + Σ s_f² + (b̂² + σ_b²) d_in² + b0² d_out²,   b0 = ln 1.5,
+evaluated under two bookkeepings that the frozen text leaves open at day 15 (both reported, none chosen here):
+  'planning_cap'  : the frozen projection's planning rows (STR l.516-519, script [12]): s_model at the cap 0.135, the
+                    width family tested at R06-R07 (n = 2, b̂ := 0 before the test, σ_b = b0), 2S crossing credited
+                    with s_f at the cap when 'with_2S_credit', fit-probability family untested (d_out);
+  'measured_dev'  : s_model as measured on the development sample, the evaluable development test rungs only
+                    (width family: R06 alone -> n = 1, b̂ := 0, σ_b := b0), s_f = r.m.s. of ln r over the evaluable
+                    development 2S crossing rungs when every one of them is within ln 1.5.
+"""
+import hashlib
+import json
+import logging
+from pathlib import Path
+
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE.parents[1] / 'outputs' / 'p3b'
+LN15 = np.log(1.5)
+CAP = LN15 / 3
+B0 = LN15
+NTRIG = 4.0848e7     # phase1_strategy/src/strategy_budget.py l.68 ("bsum_wp.json -> n_trig.value"), the value the
+                     # frozen projection script uses; p3-a substitutes the MET-model N_trig (rate × N_trig)
+log = logging.getLogger('pileup_term')
+CANDS = [('R04', 's0'), ('R05', 's0'), ('R06', 's0'), ('R07', 's0'), ('R08', 's0'), ('R09', 's0'),
+         ('R04x2S>=3', 's3'), ('R05x2S>=3', 's3'), ('R06x2S>=3', 's3'), ('R07x2S>=3', 's3'), ('R08x2S>=3', 's3'),
+         ('R09x2S>=3', 's3')]
+WIDX = {'R04': 4, 'R05': 5, 'R06': 6, 'R07': 7, 'R08': 8, 'R09': 9}
+
+
+def s_tot(smodel, sf, bhat, sigb, d_in, d_out):
+    return float(np.sqrt(smodel ** 2 + sf ** 2 + (bhat ** 2 + sigb ** 2) * d_in ** 2 + B0 ** 2 * d_out ** 2))
+
+
+def distances(c, last_width):
+    """(d_in, d_out_fit, d_out_2S) for candidate c given the last evaluable cumulative width test rung."""
+    base = c[:3]
+    k = min(WIDX[base], 8)
+    d_in = max(0, k - WIDX[last_width])
+    d_fit = 1 if base == 'R09' else 0
+    d_2s = 3 if 'x2S' in c else 0
+    return d_in, d_fit, d_2s
+
+
+def main():
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+    src = OUT / 'b2_dev_closure.json'
+    R = json.loads(src.read_text())
+    occ = R['occupancy']; thin = R.get('thinning'); dr = R['direct']
+    sm_occ = occ['s_model']
+    # 2S crossing credit on the development sample (occupancy model, 2S family only)
+    xr = [occ['predictions'][c]['const'] for c in occ['predictions'] if 'x2S' in c and c[:3] in ('R04', 'R05', 'R06')]
+    xe = [x for x in xr if x['evaluable'] and x['ln_r'] is not None]
+    sf_meas = float(np.sqrt(np.mean([x['ln_r'] ** 2 for x in xe]))) if xe else None
+    cross_ok = bool(xe) and all(abs(x['ln_r']) <= LN15 for x in xe)
+    f09 = occ['fitprob_fraction_from_R06_candidates']['0.001']
+    lnA = occ['day15_scale']['lnA']
+    out = dict(schema='p3b.pileup_term.v1', source=str(src),
+               source_sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
+               N_trig_used=NTRIG, N_trig_source='phase1_strategy/src/strategy_budget.py l.68 (v1 bsum_wp n_trig)',
+               no_credit_value=dict(events_mean=NTRIG / 96000, events_zero_count_68=NTRIG * 1.14 / 96000,
+                                    note='STR l.1177 (485 events at v1 N_trig) and the frozen script draws '
+                                         'N_trig/96,000 x Exp(1) as the cap of the pile-up term (strategy_budget.py '
+                                         'l.678); unchanged by this work package'),
+               estimators=dict(
+                   occupancy=dict(s_model=sm_occ, cap=CAP, above_cap=occ['above_cap'],
+                                  s_model_trend_variant=occ['s_model_trend_variant'],
+                                  crossing_2S_dev=dict(evaluable=len(xe), all_within_ln15=cross_ok, s_f=sf_meas)),
+                   thinning=None if thin is None else dict(
+                       s_model_cumulative=thin['s_model_cumulative'], s_model_with_crossing=thin['s_model_with_crossing'],
+                       cap=CAP, above_cap=thin['above_cap_cumulative'],
+                       above_cap_with_crossing=thin['above_cap_with_crossing'])),
+               candidates={})
+    ab = [occ['above_cap']] + ([thin['above_cap_cumulative']] if thin else [True])
+    out['both_estimators_above_cap'] = bool(all(ab))
+    for c, fam in CANDS:
+        base = c if c in occ['E_model'] else None
+        if c.startswith('R09'):
+            src_c = 'R08x2S>=3' if 'x2S' in c else 'R08'
+            em = occ['E_model'][src_c] * f09
+            mc = occ['E_model_relMC'][src_c]
+        else:
+            em = occ['E_model'][base]; mc = occ['E_model_relMC'][base]
+        rate15 = float(np.exp(lnA) * em)
+        rec = dict(family=fam,
+                   occupancy_day15=dict(rate_per_trial=rate15, events=rate15 * NTRIG, mc_rel_error=mc,
+                                        fitprob_fraction=f09 if c.startswith('R09') else None),
+                   occupancy_B2b_model=None)
+        if c in occ['predictions']:
+            p = occ['predictions'][c]['const']
+            rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'], events=p['rate'] * NTRIG, ln_r_dev=p['ln_r'],
+                                              sigma_tot_dev=p['sigma_tot'])
+        d_in_p, d_fit, d_2s = distances(c, 'R07')
+        d_in_m, _, _ = distances(c, 'R06')
+        sf_cap = CAP if 'x2S' in c else 0.0
+        w = dict(planning_cap_with_2S_credit=s_tot(CAP, sf_cap, 0.0, B0, d_in_p, d_fit),
+                 planning_cap_no_2S_credit=s_tot(CAP, 0.0, 0.0, B0, d_in_p, d_fit + d_2s),
+                 measured_dev=s_tot(sm_occ, (sf_meas if (cross_ok and 'x2S' in c) else 0.0), 0.0, B0, d_in_m,
+                                    d_fit + (0 if (cross_ok or 'x2S' not in c) else d_2s)))
+        rec['width_s_tot'] = w
+        rec['distances'] = dict(planning=dict(d_in=d_in_p, d_out=d_fit + d_2s),
+                                measured_dev=dict(d_in=d_in_m, d_out=d_fit + (0 if cross_ok else d_2s)))
+        if thin is not None and c in thin['rate']:
+            rec['thinning'] = dict(rate_per_trial=thin['rate'][c], events=thin['rate'][c] * NTRIG,
+                                   s_boot=thin['s_boot'][c], N_eff=thin['N_eff'][c])
+        if c in dr['rate']:
+            rec['direct_dev'] = dict(count=dr['counts'][c], trials=dr['trials'], rate_per_trial=dr['rate'][c],
+                                     events=dr['rate'][c] * NTRIG)
+        out['candidates'][c] = rec
+    (OUT / 'pileup_term.json').write_text(json.dumps(out, indent=1))
+    log.info('written %s', OUT / 'pileup_term.json')
+
+
+if __name__ == '__main__':
+    main()

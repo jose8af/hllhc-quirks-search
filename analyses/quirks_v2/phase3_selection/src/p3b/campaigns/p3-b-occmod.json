@@ -1,0 +1,81 @@
+{
+ "campaign": "p3-b-occmod",
+ "tier": "final",
+ "data_prefix": "p3b",
+ "description": "B2-b occupancy model evaluated on the configuration ensemble with the development densities of p3-b-occin (8 independent seeds)",
+ "expected_hours": 3.5,
+ "regenerate": "python3 -I phase3_selection/src/p3b/make_campaigns.py",
+ "defaults": {
+  "max_rss_mb": 2000,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "occmod-000",
+   "shard": 0,
+   "outputs": [
+    "occmod-000.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-000 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1000 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-001",
+   "shard": 0,
+   "outputs": [
+    "occmod-001.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-001 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1001 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-002",
+   "shard": 0,
+   "outputs": [
+    "occmod-002.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-002 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1002 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-003",
+   "shard": 0,
+   "outputs": [
+    "occmod-003.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-003 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1003 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-004",
+   "shard": 0,
+   "outputs": [
+    "occmod-004.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-004 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1004 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-005",
+   "shard": 0,
+   "outputs": [
+    "occmod-005.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-005 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1005 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-006",
+   "shard": 0,
+   "outputs": [
+    "occmod-006.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-006 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1006 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  },
+  {
+   "id": "occmod-007",
+   "shard": 0,
+   "outputs": [
+    "occmod-007.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/occmod_job.py --id occmod-007 --inputs $QV2_DATA/p3b/p3-b-occin --seed 1007 --nA 50000 --nB 800 --nplain 200 --nis 200 --beta 0.5"
+  }
+ ],
+ "after": [
+  "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase3_selection/src/p3b/campaigns/p3-b-occin.json"
+ ]
+}

@@ -1,0 +1,414 @@
+{
+ "campaign": "p3-b-thin",
+ "tier": "final",
+ "data_prefix": "p3b",
+ "description": "B2-a repaired thinning (STR \u00a74.5 (a), [SD4]) of the C1 rho = 2 development sample (p2-a-c1-pu2, 1,000 events, 2,000 trials), K = 64, q = 1/2, grouping at rho = 1",
+ "expected_hours": 1.5,
+ "regenerate": "python3 -I phase3_selection/src/p3b/make_campaigns.py",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "thin-000",
+   "shard": 0,
+   "outputs": [
+    "thin-000.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-000 --jobs c1pu2-0000,c1pu2-0001,c1pu2-0002,c1pu2-0003 --K 64"
+  },
+  {
+   "id": "thin-001",
+   "shard": 0,
+   "outputs": [
+    "thin-001.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-001 --jobs c1pu2-0004,c1pu2-0005,c1pu2-0006,c1pu2-0007 --K 64"
+  },
+  {
+   "id": "thin-002",
+   "shard": 0,
+   "outputs": [
+    "thin-002.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-002 --jobs c1pu2-0008,c1pu2-0009,c1pu2-0010,c1pu2-0011 --K 64"
+  },
+  {
+   "id": "thin-003",
+   "shard": 0,
+   "outputs": [
+    "thin-003.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-003 --jobs c1pu2-0012,c1pu2-0013,c1pu2-0014,c1pu2-0015 --K 64"
+  },
+  {
+   "id": "thin-004",
+   "shard": 0,
+   "outputs": [
+    "thin-004.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-004 --jobs c1pu2-0016,c1pu2-0017,c1pu2-0018,c1pu2-0019 --K 64"
+  },
+  {
+   "id": "thin-005",
+   "shard": 0,
+   "outputs": [
+    "thin-005.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-005 --jobs c1pu2-0020,c1pu2-0021,c1pu2-0022,c1pu2-0023 --K 64"
+  },
+  {
+   "id": "thin-006",
+   "shard": 0,
+   "outputs": [
+    "thin-006.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-006 --jobs c1pu2-0024,c1pu2-0025,c1pu2-0026,c1pu2-0027 --K 64"
+  },
+  {
+   "id": "thin-007",
+   "shard": 0,
+   "outputs": [
+    "thin-007.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-007 --jobs c1pu2-0028,c1pu2-0029,c1pu2-0030,c1pu2-0031 --K 64"
+  },
+  {
+   "id": "thin-008",
+   "shard": 0,
+   "outputs": [
+    "thin-008.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-008 --jobs c1pu2-0032,c1pu2-0033,c1pu2-0034,c1pu2-0035 --K 64"
+  },
+  {
+   "id": "thin-009",
+   "shard": 0,
+   "outputs": [
+    "thin-009.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-009 --jobs c1pu2-0036,c1pu2-0037,c1pu2-0038,c1pu2-0039 --K 64"
+  },
+  {
+   "id": "thin-010",
+   "shard": 0,
+   "outputs": [
+    "thin-010.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-010 --jobs c1pu2-0040,c1pu2-0041,c1pu2-0042,c1pu2-0043 --K 64"
+  },
+  {
+   "id": "thin-011",
+   "shard": 0,
+   "outputs": [
+    "thin-011.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-011 --jobs c1pu2-0044,c1pu2-0045,c1pu2-0046,c1pu2-0047 --K 64"
+  },
+  {
+   "id": "thin-012",
+   "shard": 0,
+   "outputs": [
+    "thin-012.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-012 --jobs c1pu2-0048,c1pu2-0049,c1pu2-0050,c1pu2-0051 --K 64"
+  },
+  {
+   "id": "thin-013",
+   "shard": 0,
+   "outputs": [
+    "thin-013.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-013 --jobs c1pu2-0052,c1pu2-0053,c1pu2-0054,c1pu2-0055 --K 64"
+  },
+  {
+   "id": "thin-014",
+   "shard": 0,
+   "outputs": [
+    "thin-014.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-014 --jobs c1pu2-0056,c1pu2-0057,c1pu2-0058,c1pu2-0059 --K 64"
+  },
+  {
+   "id": "thin-015",
+   "shard": 0,
+   "outputs": [
+    "thin-015.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-015 --jobs c1pu2-0060,c1pu2-0061,c1pu2-0062,c1pu2-0063 --K 64"
+  },
+  {
+   "id": "thin-016",
+   "shard": 0,
+   "outputs": [
+    "thin-016.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-016 --jobs c1pu2-0064,c1pu2-0065,c1pu2-0066,c1pu2-0067 --K 64"
+  },
+  {
+   "id": "thin-017",
+   "shard": 0,
+   "outputs": [
+    "thin-017.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-017 --jobs c1pu2-0068,c1pu2-0069,c1pu2-0070,c1pu2-0071 --K 64"
+  },
+  {
+   "id": "thin-018",
+   "shard": 0,
+   "outputs": [
+    "thin-018.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-018 --jobs c1pu2-0072,c1pu2-0073,c1pu2-0074,c1pu2-0075 --K 64"
+  },
+  {
+   "id": "thin-019",
+   "shard": 0,
+   "outputs": [
+    "thin-019.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-019 --jobs c1pu2-0076,c1pu2-0077,c1pu2-0078,c1pu2-0079 --K 64"
+  },
+  {
+   "id": "thin-020",
+   "shard": 0,
+   "outputs": [
+    "thin-020.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-020 --jobs c1pu2-0080,c1pu2-0081,c1pu2-0082,c1pu2-0083 --K 64"
+  },
+  {
+   "id": "thin-021",
+   "shard": 0,
+   "outputs": [
+    "thin-021.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-021 --jobs c1pu2-0084,c1pu2-0085,c1pu2-0086,c1pu2-0087 --K 64"
+  },
+  {
+   "id": "thin-022",
+   "shard": 0,
+   "outputs": [
+    "thin-022.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-022 --jobs c1pu2-0088,c1pu2-0089,c1pu2-0090,c1pu2-0091 --K 64"
+  },
+  {
+   "id": "thin-023",
+   "shard": 0,
+   "outputs": [
+    "thin-023.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-023 --jobs c1pu2-0092,c1pu2-0093,c1pu2-0094,c1pu2-0095 --K 64"
+  },
+  {
+   "id": "thin-024",
+   "shard": 0,
+   "outputs": [
+    "thin-024.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-024 --jobs c1pu2-0096,c1pu2-0097,c1pu2-0098,c1pu2-0099 --K 64"
+  },
+  {
+   "id": "thin-025",
+   "shard": 0,
+   "outputs": [
+    "thin-025.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-025 --jobs c1pu2-0100,c1pu2-0101,c1pu2-0102,c1pu2-0103 --K 64"
+  },
+  {
+   "id": "thin-026",
+   "shard": 0,
+   "outputs": [
+    "thin-026.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-026 --jobs c1pu2-0104,c1pu2-0105,c1pu2-0106,c1pu2-0107 --K 64"
+  },
+  {
+   "id": "thin-027",
+   "shard": 0,
+   "outputs": [
+    "thin-027.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-027 --jobs c1pu2-0108,c1pu2-0109,c1pu2-0110,c1pu2-0111 --K 64"
+  },
+  {
+   "id": "thin-028",
+   "shard": 0,
+   "outputs": [
+    "thin-028.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-028 --jobs c1pu2-0112,c1pu2-0113,c1pu2-0114,c1pu2-0115 --K 64"
+  },
+  {
+   "id": "thin-029",
+   "shard": 0,
+   "outputs": [
+    "thin-029.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-029 --jobs c1pu2-0116,c1pu2-0117,c1pu2-0118,c1pu2-0119 --K 64"
+  },
+  {
+   "id": "thin-030",
+   "shard": 0,
+   "outputs": [
+    "thin-030.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-030 --jobs c1pu2-0120,c1pu2-0121,c1pu2-0122,c1pu2-0123 --K 64"
+  },
+  {
+   "id": "thin-031",
+   "shard": 0,
+   "outputs": [
+    "thin-031.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-031 --jobs c1pu2-0124,c1pu2-0125,c1pu2-0126,c1pu2-0127 --K 64"
+  },
+  {
+   "id": "thin-032",
+   "shard": 0,
+   "outputs": [
+    "thin-032.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-032 --jobs c1pu2-0128,c1pu2-0129,c1pu2-0130,c1pu2-0131 --K 64"
+  },
+  {
+   "id": "thin-033",
+   "shard": 0,
+   "outputs": [
+    "thin-033.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-033 --jobs c1pu2-0132,c1pu2-0133,c1pu2-0134,c1pu2-0135 --K 64"
+  },
+  {
+   "id": "thin-034",
+   "shard": 0,
+   "outputs": [
+    "thin-034.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-034 --jobs c1pu2-0136,c1pu2-0137,c1pu2-0138,c1pu2-0139 --K 64"
+  },
+  {
+   "id": "thin-035",
+   "shard": 0,
+   "outputs": [
+    "thin-035.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-035 --jobs c1pu2-0140,c1pu2-0141,c1pu2-0142,c1pu2-0143 --K 64"
+  },
+  {
+   "id": "thin-036",
+   "shard": 0,
+   "outputs": [
+    "thin-036.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-036 --jobs c1pu2-0144,c1pu2-0145,c1pu2-0146,c1pu2-0147 --K 64"
+  },
+  {
+   "id": "thin-037",
+   "shard": 0,
+   "outputs": [
+    "thin-037.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-037 --jobs c1pu2-0148,c1pu2-0149,c1pu2-0150,c1pu2-0151 --K 64"
+  },
+  {
+   "id": "thin-038",
+   "shard": 0,
+   "outputs": [
+    "thin-038.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-038 --jobs c1pu2-0152,c1pu2-0153,c1pu2-0154,c1pu2-0155 --K 64"
+  },
+  {
+   "id": "thin-039",
+   "shard": 0,
+   "outputs": [
+    "thin-039.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-039 --jobs c1pu2-0156,c1pu2-0157,c1pu2-0158,c1pu2-0159 --K 64"
+  },
+  {
+   "id": "thin-040",
+   "shard": 0,
+   "outputs": [
+    "thin-040.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-040 --jobs c1pu2-0160,c1pu2-0161,c1pu2-0162,c1pu2-0163 --K 64"
+  },
+  {
+   "id": "thin-041",
+   "shard": 0,
+   "outputs": [
+    "thin-041.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-041 --jobs c1pu2-0164,c1pu2-0165,c1pu2-0166,c1pu2-0167 --K 64"
+  },
+  {
+   "id": "thin-042",
+   "shard": 0,
+   "outputs": [
+    "thin-042.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-042 --jobs c1pu2-0168,c1pu2-0169,c1pu2-0170,c1pu2-0171 --K 64"
+  },
+  {
+   "id": "thin-043",
+   "shard": 0,
+   "outputs": [
+    "thin-043.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-043 --jobs c1pu2-0172,c1pu2-0173,c1pu2-0174,c1pu2-0175 --K 64"
+  },
+  {
+   "id": "thin-044",
+   "shard": 0,
+   "outputs": [
+    "thin-044.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-044 --jobs c1pu2-0176,c1pu2-0177,c1pu2-0178,c1pu2-0179 --K 64"
+  },
+  {
+   "id": "thin-045",
+   "shard": 0,
+   "outputs": [
+    "thin-045.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-045 --jobs c1pu2-0180,c1pu2-0181,c1pu2-0182,c1pu2-0183 --K 64"
+  },
+  {
+   "id": "thin-046",
+   "shard": 0,
+   "outputs": [
+    "thin-046.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-046 --jobs c1pu2-0184,c1pu2-0185,c1pu2-0186,c1pu2-0187 --K 64"
+  },
+  {
+   "id": "thin-047",
+   "shard": 0,
+   "outputs": [
+    "thin-047.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-047 --jobs c1pu2-0188,c1pu2-0189,c1pu2-0190,c1pu2-0191 --K 64"
+  },
+  {
+   "id": "thin-048",
+   "shard": 0,
+   "outputs": [
+    "thin-048.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-048 --jobs c1pu2-0192,c1pu2-0193,c1pu2-0194,c1pu2-0195 --K 64"
+  },
+  {
+   "id": "thin-049",
+   "shard": 0,
+   "outputs": [
+    "thin-049.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/thin_job.py --id thin-049 --jobs c1pu2-0196,c1pu2-0197,c1pu2-0198,c1pu2-0199 --K 64"
+  }
+ ]
+}

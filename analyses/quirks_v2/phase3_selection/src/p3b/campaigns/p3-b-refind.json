@@ -1,0 +1,174 @@
+{
+ "campaign": "p3-b-refind",
+ "tier": "final",
+ "data_prefix": "p3b",
+ "description": "B2-a remediation 1 (control): rho = 2 development events with dumps (C1 pu2 jobs 0000-0039, 200 events, 400 trials) thinned at hit level, frozen rho = 1 finder re-run",
+ "expected_hours": 1.7,
+ "regenerate": "python3 -I phase3_selection/src/p3b/make_campaigns.py",
+ "defaults": {
+  "max_rss_mb": 2500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "refind-000",
+   "shard": 0,
+   "outputs": [
+    "refind-000.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-000 --jobs c1pu2-0000,c1pu2-0001 --draws 1"
+  },
+  {
+   "id": "refind-001",
+   "shard": 0,
+   "outputs": [
+    "refind-001.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-001 --jobs c1pu2-0002,c1pu2-0003 --draws 1"
+  },
+  {
+   "id": "refind-002",
+   "shard": 0,
+   "outputs": [
+    "refind-002.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-002 --jobs c1pu2-0004,c1pu2-0005 --draws 1"
+  },
+  {
+   "id": "refind-003",
+   "shard": 0,
+   "outputs": [
+    "refind-003.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-003 --jobs c1pu2-0006,c1pu2-0007 --draws 1"
+  },
+  {
+   "id": "refind-004",
+   "shard": 0,
+   "outputs": [
+    "refind-004.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-004 --jobs c1pu2-0008,c1pu2-0009 --draws 1"
+  },
+  {
+   "id": "refind-005",
+   "shard": 0,
+   "outputs": [
+    "refind-005.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-005 --jobs c1pu2-0010,c1pu2-0011 --draws 1"
+  },
+  {
+   "id": "refind-006",
+   "shard": 0,
+   "outputs": [
+    "refind-006.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-006 --jobs c1pu2-0012,c1pu2-0013 --draws 1"
+  },
+  {
+   "id": "refind-007",
+   "shard": 0,
+   "outputs": [
+    "refind-007.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-007 --jobs c1pu2-0014,c1pu2-0015 --draws 1"
+  },
+  {
+   "id": "refind-008",
+   "shard": 0,
+   "outputs": [
+    "refind-008.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-008 --jobs c1pu2-0016,c1pu2-0017 --draws 1"
+  },
+  {
+   "id": "refind-009",
+   "shard": 0,
+   "outputs": [
+    "refind-009.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-009 --jobs c1pu2-0018,c1pu2-0019 --draws 1"
+  },
+  {
+   "id": "refind-010",
+   "shard": 0,
+   "outputs": [
+    "refind-010.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-010 --jobs c1pu2-0020,c1pu2-0021 --draws 1"
+  },
+  {
+   "id": "refind-011",
+   "shard": 0,
+   "outputs": [
+    "refind-011.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-011 --jobs c1pu2-0022,c1pu2-0023 --draws 1"
+  },
+  {
+   "id": "refind-012",
+   "shard": 0,
+   "outputs": [
+    "refind-012.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-012 --jobs c1pu2-0024,c1pu2-0025 --draws 1"
+  },
+  {
+   "id": "refind-013",
+   "shard": 0,
+   "outputs": [
+    "refind-013.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-013 --jobs c1pu2-0026,c1pu2-0027 --draws 1"
+  },
+  {
+   "id": "refind-014",
+   "shard": 0,
+   "outputs": [
+    "refind-014.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-014 --jobs c1pu2-0028,c1pu2-0029 --draws 1"
+  },
+  {
+   "id": "refind-015",
+   "shard": 0,
+   "outputs": [
+    "refind-015.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-015 --jobs c1pu2-0030,c1pu2-0031 --draws 1"
+  },
+  {
+   "id": "refind-016",
+   "shard": 0,
+   "outputs": [
+    "refind-016.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-016 --jobs c1pu2-0032,c1pu2-0033 --draws 1"
+  },
+  {
+   "id": "refind-017",
+   "shard": 0,
+   "outputs": [
+    "refind-017.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-017 --jobs c1pu2-0034,c1pu2-0035 --draws 1"
+  },
+  {
+   "id": "refind-018",
+   "shard": 0,
+   "outputs": [
+    "refind-018.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-018 --jobs c1pu2-0036,c1pu2-0037 --draws 1"
+  },
+  {
+   "id": "refind-019",
+   "shard": 0,
+   "outputs": [
+    "refind-019.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/refind_job.py --id refind-019 --jobs c1pu2-0038,c1pu2-0039 --draws 1"
+  }
+ ]
+}

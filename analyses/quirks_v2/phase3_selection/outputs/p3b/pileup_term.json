@@ -1,0 +1,529 @@
+{
+ "schema": "p3b.pileup_term.v1",
+ "source": "/home/users/jdochoa/hllhc-quirks-search/analyses/quirks_v2/phase3_selection/outputs/p3b/b2_dev_closure.json",
+ "source_sha256": "6c807d92a8ebc9ff135e46a0489ba5a55b1d1adc6a1f6816e1a8730ae1d3343f",
+ "N_trig_used": 40848000.0,
+ "N_trig_source": "phase1_strategy/src/strategy_budget.py l.68 (v1 bsum_wp n_trig)",
+ "no_credit_value": {
+  "events_mean": 425.5,
+  "events_zero_count_68": 485.06999999999994,
+  "note": "STR l.1177 (485 events at v1 N_trig) and the frozen script draws N_trig/96,000 x Exp(1) as the cap of the pile-up term (strategy_budget.py l.678); unchanged by this work package"
+ },
+ "estimators": {
+  "occupancy": {
+   "s_model": 0.354807743664093,
+   "cap": 0.1351550360360548,
+   "above_cap": true,
+   "s_model_trend_variant": 0.3740273129622272,
+   "crossing_2S_dev": {
+    "evaluable": 9,
+    "all_within_ln15": true,
+    "s_f": 0.22363091405752025
+   }
+  },
+  "thinning": {
+   "s_model_cumulative": 0.5057887466256799,
+   "s_model_with_crossing": 0.5356861148491597,
+   "cap": 0.1351550360360548,
+   "above_cap": true,
+   "above_cap_with_crossing": true
+  }
+ },
+ "candidates": {
+  "R04": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 137.17337400690425,
+    "events": 5603257981.434025,
+    "mc_rel_error": 0.0019429459139765999,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 171.93348756873664,
+    "events": 7023139100.207754,
+    "ln_r_dev": 0.00628404474163258,
+    "sigma_tot_dev": 0.010347219206966813
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1351550360360548,
+    "planning_cap_no_2S_credit": 0.1351550360360548,
+    "measured_dev": 0.354807743664093
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 0
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 221.4187734375,
+    "events": 9044514057.375,
+    "s_boot": 0.013945717794141912,
+    "N_eff": 5141.836405636329
+   },
+   "direct_dev": {
+    "count": 2733703.0,
+    "trials": 16000,
+    "rate_per_trial": 170.8564375,
+    "events": 6979143759.0
+   }
+  },
+  "R05": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 32.77135241421749,
+    "events": 1338644203.415956,
+    "mc_rel_error": 0.008986421707567383,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 41.87279673324577,
+    "events": 1710420000.9596233,
+    "ln_r_dev": -0.16644069318629764,
+    "sigma_tot_dev": 0.019255312936134496
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1351550360360548,
+    "planning_cap_no_2S_credit": 0.1351550360360548,
+    "measured_dev": 0.354807743664093
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 0
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 68.063453125,
+    "events": 2780255933.25,
+    "s_boot": 0.015702343694972393,
+    "N_eff": 4055.7487401967546
+   },
+   "direct_dev": {
+    "count": 791291.0,
+    "trials": 16000,
+    "rate_per_trial": 49.4556875,
+    "events": 2020165923.0000002
+   }
+  },
+  "R06": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 0.2766216502143781,
+    "events": 11299441.167956918,
+    "mc_rel_error": 0.024172155899579016,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 0.3534465708048272,
+    "events": 14437585.524235582,
+    "ln_r_dev": 0.354807743664093,
+    "sigma_tot_dev": 0.03354376069796394
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1351550360360548,
+    "planning_cap_no_2S_credit": 0.1351550360360548,
+    "measured_dev": 0.354807743664093
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 0
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.53721875,
+    "events": 21944311.5,
+    "s_boot": 0.012073177499101967,
+    "N_eff": 6860.516745205929
+   },
+   "direct_dev": {
+    "count": 3966.0,
+    "trials": 16000,
+    "rate_per_trial": 0.247875,
+    "events": 10125198.0
+   }
+  },
+  "R07": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 0.0013383486413281285,
+    "events": 54668.86530097139,
+    "mc_rel_error": 0.03157060282460041,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 0.0017100423537063385,
+    "events": 69851.81006419651,
+    "ln_r_dev": 1.3631967116416293,
+    "sigma_tot_dev": 0.3796611559844288
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1351550360360548,
+    "planning_cap_no_2S_credit": 0.1351550360360548,
+    "measured_dev": 0.5387861253384038
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 0
+    },
+    "measured_dev": {
+     "d_in": 1,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.0018984375,
+    "events": 77547.375,
+    "s_boot": 0.06628041077787458,
+    "N_eff": 227.63006234743295
+   },
+   "direct_dev": {
+    "count": 7.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0004375,
+    "events": 17871.0
+   }
+  },
+  "R08": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 8.493798527457878e-06,
+    "events": 346.9546822495994,
+    "mc_rel_error": 0.07224340719793633,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 1.0852744028930806e-05,
+    "events": 443.31288809376554,
+    "ln_r_dev": null,
+    "sigma_tot_dev": null
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.4273977511160683,
+    "planning_cap_no_2S_credit": 0.4273977511160683,
+    "measured_dev": 0.8851532921119745
+   },
+   "distances": {
+    "planning": {
+     "d_in": 1,
+     "d_out": 0
+    },
+    "measured_dev": {
+     "d_in": 2,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 3.125e-05,
+    "events": 1276.5,
+    "s_boot": 0.4933347483828591,
+    "N_eff": 4.1088149972775465
+   },
+   "direct_dev": {
+    "count": 0.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0,
+    "events": 0.0
+   }
+  },
+  "R09": {
+   "family": "s0",
+   "occupancy_day15": {
+    "rate_per_trial": 1.0065772334607168e-07,
+    "events": 4.111666683240336,
+    "mc_rel_error": 0.07224340719793633,
+    "fitprob_fraction": 0.011850731215330307
+   },
+   "occupancy_B2b_model": null,
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.5891271437917609,
+    "planning_cap_no_2S_credit": 0.5891271437917609,
+    "measured_dev": 0.9736006904423558
+   },
+   "distances": {
+    "planning": {
+     "d_in": 1,
+     "d_out": 1
+    },
+    "measured_dev": {
+     "d_in": 2,
+     "d_out": 1
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.0,
+    "events": 0.0,
+    "s_boot": NaN,
+    "N_eff": 0.0
+   },
+   "direct_dev": {
+    "count": 0.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0,
+    "events": 0.0
+   }
+  },
+  "R04x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 115.68523424180769,
+    "events": 4725510448.3093605,
+    "mc_rel_error": 0.0023727513713817875,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 145.00019356817097,
+    "events": 5922967906.872648,
+    "ln_r_dev": -0.01091941939117581,
+    "sigma_tot_dev": 0.010439368000409859
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1911380849852131,
+    "planning_cap_no_2S_credit": 1.2238809046653174,
+    "measured_dev": 0.4194035296539679
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 3
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 185.1942265625,
+    "events": 7564813766.625,
+    "s_boot": 0.015078432405146908,
+    "N_eff": 4398.327998900491
+   },
+   "direct_dev": {
+    "count": 2345475.0,
+    "trials": 16000,
+    "rate_per_trial": 146.5921875,
+    "events": 5987997675.0
+   }
+  },
+  "R05x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 27.862855393549623,
+    "events": 1138141917.115715,
+    "mc_rel_error": 0.010018043256129096,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 35.601084311545414,
+    "events": 1454233091.958007,
+    "ln_r_dev": -0.19662779363330465,
+    "sigma_tot_dev": 0.019762361298285232
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1911380849852131,
+    "planning_cap_no_2S_credit": 1.2238809046653174,
+    "measured_dev": 0.4194035296539679
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 3
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 57.8275703125,
+    "events": 2362140592.125,
+    "s_boot": 0.016905330774270005,
+    "N_eff": 3499.070191881327
+   },
+   "direct_dev": {
+    "count": 693390.0,
+    "trials": 16000,
+    "rate_per_trial": 43.336875,
+    "events": 1770224670.0
+   }
+  },
+  "R06x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 0.2369451558342334,
+    "events": 9678735.725516766,
+    "mc_rel_error": 0.025154545587648326,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 0.3027508972400462,
+    "events": 12366768.650461407,
+    "ln_r_dev": 0.3224126927188897,
+    "sigma_tot_dev": 0.034734423609819536
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1911380849852131,
+    "planning_cap_no_2S_credit": 1.2238809046653174,
+    "measured_dev": 0.4194035296539679
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 3
+    },
+    "measured_dev": {
+     "d_in": 0,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.4594375,
+    "events": 18767103.0,
+    "s_boot": 0.013376636540949186,
+    "N_eff": 5588.640145360584
+   },
+   "direct_dev": {
+    "count": 3509.0,
+    "trials": 16000,
+    "rate_per_trial": 0.2193125,
+    "events": 8958477.0
+   }
+  },
+  "R07x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 0.0011492083368709878,
+    "events": 46942.86214450611,
+    "mc_rel_error": 0.0334130264601318,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 0.00146837294005217,
+    "events": 59980.097855251035,
+    "ln_r_dev": 1.5473057540907573,
+    "sigma_tot_dev": 0.4487818823000843
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.1911380849852131,
+    "planning_cap_no_2S_credit": 1.2238809046653174,
+    "measured_dev": 0.5833534731013197
+   },
+   "distances": {
+    "planning": {
+     "d_in": 0,
+     "d_out": 3
+    },
+    "measured_dev": {
+     "d_in": 1,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.0016328125,
+    "events": 66697.125,
+    "s_boot": 0.0727208588561407,
+    "N_eff": 189.09585153092857
+   },
+   "direct_dev": {
+    "count": 5.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0003125,
+    "events": 12765.0
+   }
+  },
+  "R08x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 7.359105400288482e-06,
+    "events": 300.6047373909839,
+    "mc_rel_error": 0.07326262134497569,
+    "fitprob_fraction": null
+   },
+   "occupancy_B2b_model": {
+    "rate_per_trial": 9.402917544261158e-06,
+    "events": 384.0903758479798,
+    "ln_r_dev": null,
+    "sigma_tot_dev": null
+   },
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.4482585430585567,
+    "planning_cap_no_2S_credit": 1.289296871437126,
+    "measured_dev": 0.9129661199950787
+   },
+   "distances": {
+    "planning": {
+     "d_in": 1,
+     "d_out": 3
+    },
+    "measured_dev": {
+     "d_in": 2,
+     "d_out": 0
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 3.125e-05,
+    "events": 1276.5,
+    "s_boot": 0.4933347483828591,
+    "N_eff": 4.1088149972775465
+   },
+   "direct_dev": {
+    "count": 0.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0,
+    "events": 0.0
+   }
+  },
+  "R09x2S>=3": {
+   "family": "s3",
+   "occupancy_day15": {
+    "rate_per_trial": 8.721078008410456e-08,
+    "events": 3.562385944875503,
+    "mc_rel_error": 0.07326262134497569,
+    "fitprob_fraction": 0.011850731215330307
+   },
+   "occupancy_B2b_model": null,
+   "width_s_tot": {
+    "planning_cap_with_2S_credit": 0.6044316961561045,
+    "planning_cap_no_2S_credit": 1.6772298888195738,
+    "measured_dev": 0.9989539980159415
+   },
+   "distances": {
+    "planning": {
+     "d_in": 1,
+     "d_out": 4
+    },
+    "measured_dev": {
+     "d_in": 2,
+     "d_out": 1
+    }
+   },
+   "thinning": {
+    "rate_per_trial": 0.0,
+    "events": 0.0,
+    "s_boot": NaN,
+    "N_eff": 0.0
+   },
+   "direct_dev": {
+    "count": 0.0,
+    "trials": 16000,
+    "rate_per_trial": 0.0,
+    "events": 0.0
+   }
+  }
+ },
+ "both_estimators_above_cap": true
+}

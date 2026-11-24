@@ -1,0 +1,46 @@
+{
+ "campaign": "p3-b-direct",
+ "tier": "final",
+ "data_prefix": "p3b",
+ "description": "B2 direct rho = 1 development counts per trial and column (p2-a-c1-pu1, 4,000 events, 16,000 trials), same column flags as the thinning",
+ "expected_hours": 0.1,
+ "regenerate": "python3 -I phase3_selection/src/p3b/make_campaigns.py",
+ "defaults": {
+  "max_rss_mb": 1500,
+  "timeout_s": 1800
+ },
+ "jobs": [
+  {
+   "id": "direct-000",
+   "shard": 0,
+   "outputs": [
+    "direct-000.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/direct_job.py --id direct-000 --jobs c1pu1-0000,c1pu1-0001,c1pu1-0002,c1pu1-0003,c1pu1-0004,c1pu1-0005,c1pu1-0006,c1pu1-0007,c1pu1-0008,c1pu1-0009,c1pu1-0010,c1pu1-0011,c1pu1-0012,c1pu1-0013,c1pu1-0014,c1pu1-0015,c1pu1-0016,c1pu1-0017,c1pu1-0018,c1pu1-0019,c1pu1-0020,c1pu1-0021,c1pu1-0022,c1pu1-0023,c1pu1-0024,c1pu1-0025,c1pu1-0026,c1pu1-0027,c1pu1-0028,c1pu1-0029,c1pu1-0030,c1pu1-0031,c1pu1-0032,c1pu1-0033,c1pu1-0034,c1pu1-0035,c1pu1-0036,c1pu1-0037,c1pu1-0038,c1pu1-0039,c1pu1-0040,c1pu1-0041,c1pu1-0042,c1pu1-0043,c1pu1-0044,c1pu1-0045,c1pu1-0046,c1pu1-0047,c1pu1-0048,c1pu1-0049"
+  },
+  {
+   "id": "direct-001",
+   "shard": 0,
+   "outputs": [
+    "direct-001.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/direct_job.py --id direct-001 --jobs c1pu1-0050,c1pu1-0051,c1pu1-0052,c1pu1-0053,c1pu1-0054,c1pu1-0055,c1pu1-0056,c1pu1-0057,c1pu1-0058,c1pu1-0059,c1pu1-0060,c1pu1-0061,c1pu1-0062,c1pu1-0063,c1pu1-0064,c1pu1-0065,c1pu1-0066,c1pu1-0067,c1pu1-0068,c1pu1-0069,c1pu1-0070,c1pu1-0071,c1pu1-0072,c1pu1-0073,c1pu1-0074,c1pu1-0075,c1pu1-0076,c1pu1-0077,c1pu1-0078,c1pu1-0079,c1pu1-0080,c1pu1-0081,c1pu1-0082,c1pu1-0083,c1pu1-0084,c1pu1-0085,c1pu1-0086,c1pu1-0087,c1pu1-0088,c1pu1-0089,c1pu1-0090,c1pu1-0091,c1pu1-0092,c1pu1-0093,c1pu1-0094,c1pu1-0095,c1pu1-0096,c1pu1-0097,c1pu1-0098,c1pu1-0099"
+  },
+  {
+   "id": "direct-002",
+   "shard": 0,
+   "outputs": [
+    "direct-002.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/direct_job.py --id direct-002 --jobs c1pu1-0100,c1pu1-0101,c1pu1-0102,c1pu1-0103,c1pu1-0104,c1pu1-0105,c1pu1-0106,c1pu1-0107,c1pu1-0108,c1pu1-0109,c1pu1-0110,c1pu1-0111,c1pu1-0112,c1pu1-0113,c1pu1-0114,c1pu1-0115,c1pu1-0116,c1pu1-0117,c1pu1-0118,c1pu1-0119,c1pu1-0120,c1pu1-0121,c1pu1-0122,c1pu1-0123,c1pu1-0124,c1pu1-0125,c1pu1-0126,c1pu1-0127,c1pu1-0128,c1pu1-0129,c1pu1-0130,c1pu1-0131,c1pu1-0132,c1pu1-0133,c1pu1-0134,c1pu1-0135,c1pu1-0136,c1pu1-0137,c1pu1-0138,c1pu1-0139,c1pu1-0140,c1pu1-0141,c1pu1-0142,c1pu1-0143,c1pu1-0144,c1pu1-0145,c1pu1-0146,c1pu1-0147,c1pu1-0148,c1pu1-0149"
+  },
+  {
+   "id": "direct-003",
+   "shard": 0,
+   "outputs": [
+    "direct-003.npz"
+   ],
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3b/direct_job.py --id direct-003 --jobs c1pu1-0150,c1pu1-0151,c1pu1-0152,c1pu1-0153,c1pu1-0154,c1pu1-0155,c1pu1-0156,c1pu1-0157,c1pu1-0158,c1pu1-0159,c1pu1-0160,c1pu1-0161,c1pu1-0162,c1pu1-0163,c1pu1-0164,c1pu1-0165,c1pu1-0166,c1pu1-0167,c1pu1-0168,c1pu1-0169,c1pu1-0170,c1pu1-0171,c1pu1-0172,c1pu1-0173,c1pu1-0174,c1pu1-0175,c1pu1-0176,c1pu1-0177,c1pu1-0178,c1pu1-0179,c1pu1-0180,c1pu1-0181,c1pu1-0182,c1pu1-0183,c1pu1-0184,c1pu1-0185,c1pu1-0186,c1pu1-0187,c1pu1-0188,c1pu1-0189,c1pu1-0190,c1pu1-0191,c1pu1-0192,c1pu1-0193,c1pu1-0194,c1pu1-0195,c1pu1-0196,c1pu1-0197,c1pu1-0198,c1pu1-0199"
+  }
+ ]
+}
