@@ -4,3 +4,5 @@
   Day-15 pile-up term (occupancy, R04–R07 inputs) in outputs/p3b/pileup_term.json: R08 347, R09 4.1 events at N_trig 4.08e7; artifact outputs/P3B_PILEUP_casper_2026-11-24.md; 4.9 of 15 CPU-h.
 - 2026-11-24 14:51 p3-e (Hilde): p3-e-devpu1 (dev.pu1, 298 × 20 = 5,960 events) defined and tested (devpu1-0000 done on maxwell, matches c1.pu1). Seeds disjoint. Launch command and pre-flight in outputs/P3E_hilde_2026-11-24.md; ≈ 98–100 CPU-h; not launched.
 - 2026-11-24 15:00 -0500 p3-b fix (Ivar): correction to the 14:20 line — no cause is demonstrated for the occupancy model (cause investigation to 30 Nov); thinning excess localised (re-find), mechanism not isolated; rule-1 pause NOT met now (P3B v2).
+- 2026-11-24 15:54 p3-d (Gorm), INTERIM: pyhf 0.7.6 kills zero-count terms (confirmed); T1-c (i) at ~3 % of the analytic limits (toy errors pending); T1-c (iii)-(v)/(iv) NOT EVALUABLE on the v1-count workspace (fits fail, ~430 CPU-h) -> decision needed.
+  Builder (v2 structure) schema-valid, 61 parameters; recipe implemented (draft PREREG text); artifact outputs/P3D_T1_gorm_2026-11-24.md; 1.7 CPU-h so far.
