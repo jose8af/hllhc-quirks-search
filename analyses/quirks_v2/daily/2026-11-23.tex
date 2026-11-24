@@ -1,0 +1,186 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array,amsmath,enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=1pt,topsep=3pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\est}{\textsc{est}}
+\newcommand{\ver}{\textsc{ver}}
+\title{HL-LHC electroweak quirks, study v2\\[2pt]\large Daily report, day 7}
+\author{Private work (simulation). Public information only.}
+\date{23 November 2026, 19:20 (day 7 of the approved calendar; first report since 18 November)}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Tags.} \ver{} = measured or read in this study, with the campaign or file in the repository.
+\est{} = estimate. All reach and background numbers are \est{} on v1 placeholder efficiencies. No v2 signal
+efficiency has been computed; the sealed v1 signal counts of the reproduction test stay sealed.
+
+\section{Summary}
+\begin{itemize}
+\item \textbf{Waiting for you:} the calendar shift after the power loss (DECISION notice 13:41; default C on
+      Wed 25 November 12:00), and the C1-c container permission (DECISION notice of 19 November; no default,
+      needed by Phase 5). You may also object to D8 below.
+\item \textbf{Power loss} from Thu 19 November 17:54 to today about 13:00: 3.8 calendar days without work. Nine jobs
+      died mid-run; all were retried and finished. No data were lost (PROBLEM notice 13:29).
+\item \textbf{Decision point 1 passed} (RESULT notice 13:32): C1 41 of 41 with amendments E1--E4, sealed comparison
+      6 of 6 PASS; C2 as amended. Checkpoint 1: no stop rule near.
+\item \textbf{All Phase-2 exploration items are now in}, except one review that runs tonight. The consolidated
+      document \texttt{EXPLORATION.md} is written.
+\item \textbf{Reach outlook vs last report: more promising, weakly; not established} (RESULT notice 16:38, \est).
+\end{itemize}
+
+\section{Since the last report (19 November, before the power loss)}
+\begin{itemize}
+\item C1 reproduction complete: 41 of 41 comparisons pass with E1--E4; sealed C1-d 6 of 6 PASS (\ver).
+\item Preliminary day-15 reading from the pilot: about 10{,}800 events against the limit of 300; a pause is
+      expected (RESULT notice of 19 November).
+\item You decided S2-e (option (b), $-10.6\,\%$ at 250~GeV) and the P1 record as recommended.
+\item FxFx at 500~GeV done (inside the band). A reviewer found that v1's ``hard-scatter'' Z($\nu\nu$) rate counted
+      tagged pile-up; this removes the optimistic rows of the strategy's reach table, not the Gate A range.
+\end{itemize}
+
+\section{What finished today}
+\begin{enumerate}
+\item \textbf{Rule-1 validation} (Fable executor). With the subset-pass classifier the Z($\nu\nu$) count at R08 is
+      $m_Z=1{,}501$ (\ver), i.e. $B_{50}(\mathrm{R09})\approx63{,}170$ events (arithmetic \ver, physics \est);
+      all four candidate settings agree within 0.2\,\%. The required check against the track finder had
+      0 violations in 22{,}790 comparisons; the injection control passes. The classifier has not yet had its
+      independent review (running tonight); until then the lower count, 253 ($\approx10{,}800$ events), stands in.
+      Both are far above 300: \textbf{the pause at day 15 is still expected}.
+\item \textbf{Robustness test D2} (later looper arcs restored; you accepted it on 16 November). Done; it
+      \textbf{changes nothing in the day-15 reading}. Replacing v1 top-up crossings one for one by the Geant4
+      crossings beyond half a turn lowers the pile-up candidate count: $r=0.766/0.759/0.720$ at R04/R05/R06,
+      $\ln r(\mathrm{R06})=-0.328\pm0.061$ (\ver; 600 events, 2{,}400 paired trials). This is below the
+      pre-declared factor-2 threshold and $r<1$, so by the frozen rule no correction is applied and no credit is
+      taken. It holds at R04--R06 at fixed hit density only; 3{,}133 crossings per event before half a turn were
+      not restored (effect not measured; judged unable to bring $r$ above 1, \est). Cost 15.8 CPU-h (plan
+      12.4--14.5, stop at 28).
+\item \textbf{FxFx at 1{,}500~GeV} (the single 7{,}200~s job you approved took 6{,}728~s, \ver):
+      $f_{200}^{\mathrm{FxFx}}=0.16353\pm0.00242$ against MLM 0.16755, $-2.4\pm1.8\,\%$ ($1.3\sigma$), inside the
+      $+5.96/-5.94\,\%$ band (\ver). With 500~GeV ($+1.05\pm2.13\,\%$) the S2-c FxFx comparisons are complete;
+      band and $\kappa$ (1.060/0.941) unchanged. A shift up to about 6\,\% at 1{,}500~GeV is not excluded at
+      $2\sigma$. FxFx was not tested below 500~GeV, where the reach estimate now sits (a stated limitation; the
+      criterion does not require it).
+\item \textbf{Attributed vs linked conversion background} (nuclear interactions, the last species). Under the
+      frozen attribution rule 2 of v1's 82 candidates pass at R05 ($\rho=0.024$, \ver{} counts). With the earlier
+      species, the attributed conversion-led term is about $4$--$9\times10^{2}$ events against Gate A's
+      $0.7$--$1.0\times10^{4}$ (\est). The planned nuclear-interaction closure test would hold only about 2--9
+      events where it was sized for 92--378: it has almost no power and is re-sized in Phase 3 (\est).
+\item \textbf{Reach re-estimate} (Gate A's script unchanged, backgrounds replaced; RESULT notice 16:38). See
+      section~7.
+\item \textbf{D8, the Z($\nu\nu$) top-up due today: not drawn.} The first counts at R08 are 253 (finder, lower
+      bound) to 1{,}501 (subset pass, under review), i.e. 10{,}777--63{,}170 events against a pause level of 300;
+      a larger sample cannot change that reading. 0 CPU-h spent; \textbf{tell me if you want it drawn anyway}
+      ($+45$ / $+109$ CPU-h).
+\item \textbf{Checkpoint 1} (overdue from day 5): no stop rule near (section~5).
+\end{enumerate}
+
+\section{Decisions for you}
+\begin{center}
+\begin{tabular}{L{4.0cm}L{10.2cm}}
+\toprule
+Calendar shift & Shift every later date by the 4 days lost (recommended C, with two riders: say whether you
+                 answer the day-15 pause on the weekend of 5 December or on Monday 7 December; the reading is
+                 made as soon as its inputs exist). Default C on Wed 25 November 12:00. Also: are you away over
+                 the holidays (production would run about 11--25 December)? \\
+C1-c container test & Docker build permission (notice of 19 November). No default; needed by Phase 5 \\
+D8 (optional) & Object if you want the Z($\nu\nu$) top-up drawn anyway \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Budget and storage}
+\begin{center}
+\begin{tabular}{L{7.6cm}L{6.4cm}}
+\toprule
+CPU used (markers, every attempt, 3{,}348 jobs) & 445.7 CPU-h of 4{,}609 approved (\ver), plus about 3--5 not
+                 held by any marker (\est) \\
+\quad of which today & 13.6 CPU-h (\ver) \\
+Projected total (checkpoint 1) & about 4{,}600 CPU-h, range 4{,}070--5{,}050 (\est); threshold 5{,}992 \\
+Calendar & about 64 days against 60 if the dates shift (68 at the Phase-2 node utilisation of 0.58) (\est) \\
+Storage, this study & 248 GiB (266 GB) (\ver); about 0.68 TB projected (\est) \\
+Shared volume free & 3.7 TB of 4.5 TB (\ver) \\
+\bottomrule
+\end{tabular}
+\end{center}
+For your pause decision: an evaluable SM closure test B4-c on attributed counts would cost about 4{,}800 CPU-h
+(\est, rough) and would cross 5{,}992 alone.
+
+\section{Problems}
+\begin{itemize}
+\item \textbf{Power loss} (above). The FxFx grid job killed by it could not restart under its old name; it ran
+      as a new job under the same approval.
+\item \textbf{Worker name resolution} was never configured on the workers (not an outage effect, as the PROBLEM
+      notice first left open); fixed by the admin today.
+\item \textbf{Shared numba cache:} 36 rule-1 jobs failed at start because the cache index could not be saved; rerun
+      with a fresh cache, 36 of 36 done. Before production each job gets its own cache directory.
+\item \textbf{Failed jobs since day 0:} 76 failed, 7 timed out, 6 killed (last state of each job, \ver), all in
+      development and reproduction campaigns; all failures today were rerun.
+\end{itemize}
+
+\section{Reach: where it stands (\est)}
+Gate A's reach calculation was re-run unchanged (it reproduces Gate A exactly, \ver), with only the backgrounds
+replaced by what Phase 2 measured:
+\begin{center}
+\begin{tabular}{L{9.0cm}L{5.0cm}}
+\toprule
+Background reading & Reach (median) \\
+\midrule
+Gate A (upper envelope) & below 243~GeV \\
+Only conversion candidates the frozen rule attributes to the conversion; no SM event after track removal
+  (optimistic edge, not a central value) & 350--445~GeV \\
+Same, with 17 near-complete SM pilot patterns & about 277--296~GeV \\
+Attributed fraction at its upper limit (22\,\%) & below 243--266~GeV \\
+\bottomrule
+\end{tabular}
+\end{center}
+Not firmer because the attributed fraction rests on one simulated source event (0--22\,\% compatible), and the
+60\,\% ``mixed'' conversion candidates enter no term: the reach falls below 243~GeV once more than about 14--24\,\%
+of them survive the selection (full range 0--37\,\%), i.e. once the conversion term reaches about
+$1.5$--$2.1\times10^{3}$ events. The frozen completeness test is where this is measured.
+
+\noindent\textbf{Reach outlook vs last report: more promising, because} the part of the conversion background that
+is really made by conversions is measured 11--17 times smaller than Gate A assumed; \textbf{but not established},
+because the mixed candidates and the one-event statistics leave ``below 243~GeV'' fully possible (\est). The day-15
+reading above is a different, deliberately high ceiling; the pause is still expected.
+
+\section{Running now}
+Only the independent review of the subset-pass classifier (one slot on schrodinger, within 1.5 CPU-h). All other
+campaigns are finished; landau and maxwell are idle because no planned Phase-2 compute remains.
+
+\section{Plan for 24--25 November}
+\begin{itemize}
+\item Read the classifier review; then close Phase 2 (closing state file). Phase 3 (selection, MET model, final pilot
+      classification) starts in a new session.
+\item Pre-registration to-dos collected today: one value of the Z-term normalisation, the v1 attribution-rule
+      line (confirmed: \texttt{g1b\_tt.py} l.354--355), the flagged-event variant, the D2 limitation text.
+\item Wed 25 November 12:00: the calendar default applies if you have not answered.
+\end{itemize}
+
+\section{Your next interventions}
+\begin{center}
+\begin{tabular}{L{4.2cm}L{10.0cm}}
+\toprule
+by 25 November 12:00 & Calendar shift (default C) \\
+5 December (shifted day 15) & Binding background projection; a pause is expected \\
+7--9 December & Freeze of the pre-registration (if the dates shift) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Files}
+\begin{itemize}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/EXPLORATION.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/RULE1_VALID_ingvild_2026-11-23.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/D2_RESULT_jonas_2026-11-23.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/FXFX_E1500_halvard_2026-11-23.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/CPU_ATTRIB_NI_kari_2026-11-23.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/REACH_REEST_tora_2026-11-23.md}
+\item \path{analyses/quirks_v2/phase2_exploration/outputs/CHECKPOINT1_leif_2026-11-23.md}
+\item \path{analyses/quirks_v2/notices/} (four notices today)
+\end{itemize}
+\end{document}
