@@ -75,7 +75,7 @@ def main():
     volD = XC.vol_D()
     cap = max(1000, a.planes // 20)
     t0 = time.time()
-    R = dict(cnt=[], nelig=[], nip5=[], job=[], ev=[], road=[], tsec=[])
+    R = dict(cnt=[], cnt5=[], nelig=[], nip5=[], job=[], ev=[], road=[], tsec=[])
     S = dict(trial=[], map=[], flags=[], s=[], V=[], ndbl=[], edge=[], nmem=[], h=[], aux=[], nloc=[])
     VAL = []
     itrial = 0
@@ -90,11 +90,14 @@ def main():
                 ph = float(tph[t])
                 base = args_of(H, pv, ph, ix, A, prej)
                 sd = seed_of(f'qv2|p3f.occx|{jid}|{t}|{a.mode}')
-                cnt, nelig, rec, recf, aux, nip5 = XC.scan_trial(a.planes, sd, *base, TC.CHI2_ISF, a.nip_elig,
+                cnt, nelig, rec, recf, aux, nip5, cnt5 = XC.scan_trial(a.planes, sd, *base, TC.CHI2_ISF, a.nip_elig,
                                                                  TC.NCOL, cap)
                 rng = np.random.default_rng(sd + 1)
                 f = recf
-                if a.mode == 'campaign':
+                if a.mode == 'counts':
+                    sw = np.ones(len(rec))
+                    take = np.zeros(0, np.int64)
+                elif a.mode == 'campaign':
                     u = rng.random(len(rec))
                     sw = np.where(f[:, 2], 1.0, np.where(f[:, 1], 1 / P_R05_ONLY, 1 / P_R04_ONLY))
                     take = np.where(f[:, 2] | (f[:, 1] & ~f[:, 2] & (u < P_R05_ONLY)) |
@@ -106,19 +109,19 @@ def main():
                 seeds = np.array([seed_of(f'qv2|p3f.occx.V|{jid}|{t}|{k}|{a.mode}') for k in take], np.int64)
                 V, ND, ED, NM, HB, off, hits = XC.volumes(rec, recf, take.astype(np.int64), nloc, seeds, MAXDBL,
                                                           *base, TC.CHI2_ISF, a.nip_elig, volD, TC.NCOL,
-                                                          a.mode != 'campaign')
-                R['cnt'].append(cnt); R['nelig'].append(nelig); R['nip5'].append(nip5); R['job'].append(jid)
+                                                          a.mode == 'validate')
+                R['cnt'].append(cnt); R['cnt5'].append(cnt5); R['nelig'].append(nelig); R['nip5'].append(nip5); R['job'].append(jid)
                 R['ev'].append(int(tev[t])); R['road'].append(int(trd[t])); R['tsec'].append(time.time() - ts)
                 S['trial'].append(np.full(len(take), itrial)); S['map'].append(rec[take, 0].astype(np.int8))
                 S['flags'].append(recf[take][:, XC.RL]); S['s'].append(sw[take]); S['V'].append(V)
                 S['ndbl'].append(ND); S['edge'].append(ED); S['nmem'].append(NM); S['h'].append(HB)
                 S['aux'].append(aux[take]); S['nloc'].append(nloc)
-                if a.mode != 'campaign':
+                if a.mode == 'validate':
                     VAL.append(dict(trial=itrial, rec=rec, recf=recf, aux=aux, off=off, hits=hits, V=V, nroad=len(H)))
                 log.info('%s ev %d trial %d: %.1f s; R04 fixed/refit %d/%d, eligible %d, V for %d (dbl %d, edge %d)',
                          jid, ie, t, time.time() - ts, cnt[0, 0], cnt[1, 0], nelig, len(take), ND.sum(), ED.sum())
                 itrial += 1
-                if a.mode != 'campaign' and itrial >= a.trials:
+                if a.mode == 'validate' and itrial >= a.trials:
                     done = True
                     break
             if done:
@@ -138,7 +141,7 @@ def main():
         for k, d in enumerate(VAL):
             for kk, vv in d.items():
                 extra[f'val{k}_{kk}'] = np.asarray(vv)
-    np.savez_compressed(out / f'{a.id}.npz', cnt=np.array(R['cnt'], np.int64), nelig=np.array(R['nelig']),
+    np.savez_compressed(out / f'{a.id}.npz', cnt=np.array(R['cnt'], np.int64), cnt5=np.array(R['cnt5'], np.int64), nelig=np.array(R['nelig']),
                         nip5=np.array(R['nip5']), job=np.array(R['job']), ev=np.array(R['ev']),
                         road=np.array(R['road']), tsec=np.array(R['tsec']),
                         **{'v_' + k: v for k, v in cat.items()}, **extra, meta_json=np.array(json.dumps(meta)))

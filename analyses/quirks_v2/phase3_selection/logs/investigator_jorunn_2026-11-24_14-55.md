@@ -39,3 +39,20 @@ Seal: dev.pu1 is NOT opened by this session (no read of p3-e-devpu1 outputs).
   10^6), maxwell 1 process nice 10, outputs in scratch. First V1 trial: 89 s, R04 fixed/refit 191/158, 3,239 eligible.
 - 15:13 campaigns written (`src/p3f/campaigns/p3-f-occx.json` 100 jobs x 2 files; `p3-f-refind.json` 20 jobs x 2
   files, 3 draws); occx dry-run loads (100 jobs). Analysis scripts occx_ana.py, val_ana.py, refind3_ana.py written.
+
+## 15:16-15:27 validation V1/V2 (R04 only) — V1 FAILED
+- V1 (4 trials, 2x10^5 configurations) + V2 (2 trials, 10^6): recapture/expected 2350/2855 = 0.82 (fixed), 2376/1661
+  = 1.43 (refit); per (trial, map) 0.33-6.9; single configurations carry up to 75 % of an expected sum (heavy-tailed
+  V-hat). Greedy distinct classes of R04 configurations 27/73/159 and 25/71/173 (fixed), 21/49/107 and 20/47/120
+  (refit) at 10^5/3x10^5/10^6: not saturating, far above the finder's 171 groups per trial. HT G(R04) per trial
+  5x10^3-4x10^4 (unreliable). CPU of the validation: 330 + 624 s.
+- Not a code bug fixable inside the method -> amendment A1 (verdict measurement M_T = per-configuration refit transfer;
+  criterion unchanged; C2 folded into the campaign), written before any campaign and before any R05/R06 quantity.
+- Code: occx_job.py mode 'counts' (no volumes); scan_trial stores refit counts of fixed N_IP2 = 5 configurations.
+
+## 15:30 amendment A1 hashed (before the campaign)
+- `outputs/p3f/CAUSE_METHOD_jorunn_A1.md` sha256 7f0e545a950582f347299d78d47f3cbcf9a05e92d332886e07119b20fa368b34 (2026-11-24 15:30:28 -0500)
+- 15:31 timing (counts mode, N_IP2 >= 5 eligibility, 10^4 configurations): 3.4 s per trial -> campaign ~15 CPU-h
+  ESTIMATE (16,000 trials), 100 jobs of ~9-10 min CPU.
+- 15:32 **p3-f-occx launched** (A1 hash recorded above first): `qv2run ssh launch .../src/p3f/campaigns/p3-f-occx.json
+  --nodes maxwell --max-per-node 1 --on maxwell` (driver pid 205840 on maxwell; Gorm had 1 qv2run job running).

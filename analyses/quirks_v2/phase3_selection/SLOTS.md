@@ -23,3 +23,4 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 15:17 -0500 | p3-c (Birgit) | schrodinger | still <= 2 jobs: one slot p3-c-mjw (stops after 4 jobs), one slot p3-c-mjs2 + p3-c-ap-mjs2 (second driver, max-per-node 1); p3-d has its own 1 job here | until about 18:00
 2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | 1 job, nice 19, read-only IS re-analysis (review/critical/liv_ischeck.py), < 2 min
 2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | RELEASED
+2026-11-24 15:32 -0500 | p3-f (Jorunn) | maxwell | 1 job (weekday cap) | p3-f-occx (100 jobs, ~15 CPU-h ESTIMATE); raise to 4 - running qv2run jobs after 19:00 | ~24-25 Nov

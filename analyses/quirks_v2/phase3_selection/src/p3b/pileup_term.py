@@ -19,6 +19,11 @@ Review cycle 1 (fixer Ivar, 2026-11-24; DOR B2, B4, B5) adds, without changing a
   occupancy_day15.mc_rel_error_b3 (R08, R09 and their s = 3 rows; DOR B3): the model MC error re-estimated from
                     is_check.json / is_check_stats.json = max(within-seed IS error, precision of the paired plain-toy
                     check); the v1 key mc_rel_error (8-seed spread) is kept unchanged.
+Review cycle 2 (fixer Ivar; Liv B-new-1) adds occupancy_day15.mc_rel_error_c2 (R08, R09 and their s = 3 rows), the
+                    value to use: the stored IS error with the per-toy variance of the 10x-toy fresh run (R08 0.217),
+                    and at R09 in quadrature the binomial error of the fit-probability fraction (0.145) -> 0.261.
+                    Computed by is_check_c2.c2_errors (standard library); mc_rel_error_b3 (0.149) is superseded but
+                    kept unchanged.
 """
 import hashlib
 import json
@@ -68,6 +73,12 @@ def main():
     cross_ok = bool(xe) and all(abs(x['ln_r']) <= LN15 for x in xe)
     f09 = occ['fitprob_fraction_from_R06_candidates']['0.001']
     lnA = occ['day15_scale']['lnA']
+    c2 = None
+    if (OUT / 'is_check_inputs').is_dir():
+        import sys
+        sys.path.insert(0, str(HERE))
+        from is_check_c2 import c2_errors   # noqa: E402  (standard library only; same directory)
+        c2 = c2_errors(OUT)['mc_rel_error_c2']
     b3 = None
     if (OUT / 'is_check.json').exists() and (OUT / 'is_check_stats.json').exists():
         ic = json.loads((OUT / 'is_check.json').read_text())
@@ -111,6 +122,8 @@ def main():
         if b3 is not None and c[:3] in ('R08', 'R09'):
             rec['occupancy_day15']['mc_rel_error_b3'] = b3['value']
             rec['occupancy_day15']['b3_check'] = b3
+        if c2 is not None and c in c2:
+            rec['occupancy_day15']['mc_rel_error_c2'] = c2[c]
         if c in occ['predictions']:
             p = occ['predictions'][c]['const']
             rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'], events=p['rate'] * NTRIG, ln_r_dev=p['ln_r'],

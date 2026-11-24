@@ -2,7 +2,7 @@
  "campaign": "p3-f-occx",
  "tier": "final",
  "data_prefix": "p3f",
- "description": "p3-f Task A (CAUSE_METHOD_jorunn.md): frozen p3-b configuration ensemble on the C1 rho = 1 development hits (c1.pu1, 4,000 events, 16,000 trials), 10,000 configurations per trial, fixed and refit maps, basin volumes for the Horvitz-Thompson distinct-group count",
+ "description": "p3-f Task A (CAUSE_METHOD_jorunn.md): frozen p3-b configuration ensemble on the C1 rho = 1 development hits (c1.pu1, 4,000 events, 16,000 trials), 10,000 configurations per trial, fixed and refit maps (amendment A1: per-configuration refit transfer; refit eligibility N_IP2 >= 5, N_IP2 = 5 stored separately)",
  "expected_hours": 12.0,
  "regenerate": "python3 -I phase3_selection/src/p3f/make_campaigns.py",
  "defaults": {
@@ -16,7 +16,7 @@
    "outputs": [
     "occx-000.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-000 --jobs c1pu1-0000,c1pu1-0001 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-000 --jobs c1pu1-0000,c1pu1-0001 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-001",
@@ -24,7 +24,7 @@
    "outputs": [
     "occx-001.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-001 --jobs c1pu1-0002,c1pu1-0003 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-001 --jobs c1pu1-0002,c1pu1-0003 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-002",
@@ -32,7 +32,7 @@
    "outputs": [
     "occx-002.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-002 --jobs c1pu1-0004,c1pu1-0005 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-002 --jobs c1pu1-0004,c1pu1-0005 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-003",
@@ -40,7 +40,7 @@
    "outputs": [
     "occx-003.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-003 --jobs c1pu1-0006,c1pu1-0007 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-003 --jobs c1pu1-0006,c1pu1-0007 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-004",
@@ -48,7 +48,7 @@
    "outputs": [
     "occx-004.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-004 --jobs c1pu1-0008,c1pu1-0009 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-004 --jobs c1pu1-0008,c1pu1-0009 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-005",
@@ -56,7 +56,7 @@
    "outputs": [
     "occx-005.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-005 --jobs c1pu1-0010,c1pu1-0011 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-005 --jobs c1pu1-0010,c1pu1-0011 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-006",
@@ -64,7 +64,7 @@
    "outputs": [
     "occx-006.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-006 --jobs c1pu1-0012,c1pu1-0013 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-006 --jobs c1pu1-0012,c1pu1-0013 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-007",
@@ -72,7 +72,7 @@
    "outputs": [
     "occx-007.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-007 --jobs c1pu1-0014,c1pu1-0015 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-007 --jobs c1pu1-0014,c1pu1-0015 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-008",
@@ -80,7 +80,7 @@
    "outputs": [
     "occx-008.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-008 --jobs c1pu1-0016,c1pu1-0017 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-008 --jobs c1pu1-0016,c1pu1-0017 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-009",
@@ -88,7 +88,7 @@
    "outputs": [
     "occx-009.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-009 --jobs c1pu1-0018,c1pu1-0019 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-009 --jobs c1pu1-0018,c1pu1-0019 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-010",
@@ -96,7 +96,7 @@
    "outputs": [
     "occx-010.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-010 --jobs c1pu1-0020,c1pu1-0021 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-010 --jobs c1pu1-0020,c1pu1-0021 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-011",
@@ -104,7 +104,7 @@
    "outputs": [
     "occx-011.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-011 --jobs c1pu1-0022,c1pu1-0023 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-011 --jobs c1pu1-0022,c1pu1-0023 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-012",
@@ -112,7 +112,7 @@
    "outputs": [
     "occx-012.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-012 --jobs c1pu1-0024,c1pu1-0025 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-012 --jobs c1pu1-0024,c1pu1-0025 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-013",
@@ -120,7 +120,7 @@
    "outputs": [
     "occx-013.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-013 --jobs c1pu1-0026,c1pu1-0027 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-013 --jobs c1pu1-0026,c1pu1-0027 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-014",
@@ -128,7 +128,7 @@
    "outputs": [
     "occx-014.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-014 --jobs c1pu1-0028,c1pu1-0029 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-014 --jobs c1pu1-0028,c1pu1-0029 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-015",
@@ -136,7 +136,7 @@
    "outputs": [
     "occx-015.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-015 --jobs c1pu1-0030,c1pu1-0031 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-015 --jobs c1pu1-0030,c1pu1-0031 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-016",
@@ -144,7 +144,7 @@
    "outputs": [
     "occx-016.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-016 --jobs c1pu1-0032,c1pu1-0033 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-016 --jobs c1pu1-0032,c1pu1-0033 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-017",
@@ -152,7 +152,7 @@
    "outputs": [
     "occx-017.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-017 --jobs c1pu1-0034,c1pu1-0035 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-017 --jobs c1pu1-0034,c1pu1-0035 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-018",
@@ -160,7 +160,7 @@
    "outputs": [
     "occx-018.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-018 --jobs c1pu1-0036,c1pu1-0037 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-018 --jobs c1pu1-0036,c1pu1-0037 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-019",
@@ -168,7 +168,7 @@
    "outputs": [
     "occx-019.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-019 --jobs c1pu1-0038,c1pu1-0039 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-019 --jobs c1pu1-0038,c1pu1-0039 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-020",
@@ -176,7 +176,7 @@
    "outputs": [
     "occx-020.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-020 --jobs c1pu1-0040,c1pu1-0041 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-020 --jobs c1pu1-0040,c1pu1-0041 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-021",
@@ -184,7 +184,7 @@
    "outputs": [
     "occx-021.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-021 --jobs c1pu1-0042,c1pu1-0043 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-021 --jobs c1pu1-0042,c1pu1-0043 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-022",
@@ -192,7 +192,7 @@
    "outputs": [
     "occx-022.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-022 --jobs c1pu1-0044,c1pu1-0045 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-022 --jobs c1pu1-0044,c1pu1-0045 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-023",
@@ -200,7 +200,7 @@
    "outputs": [
     "occx-023.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-023 --jobs c1pu1-0046,c1pu1-0047 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-023 --jobs c1pu1-0046,c1pu1-0047 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-024",
@@ -208,7 +208,7 @@
    "outputs": [
     "occx-024.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-024 --jobs c1pu1-0048,c1pu1-0049 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-024 --jobs c1pu1-0048,c1pu1-0049 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-025",
@@ -216,7 +216,7 @@
    "outputs": [
     "occx-025.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-025 --jobs c1pu1-0050,c1pu1-0051 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-025 --jobs c1pu1-0050,c1pu1-0051 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-026",
@@ -224,7 +224,7 @@
    "outputs": [
     "occx-026.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-026 --jobs c1pu1-0052,c1pu1-0053 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-026 --jobs c1pu1-0052,c1pu1-0053 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-027",
@@ -232,7 +232,7 @@
    "outputs": [
     "occx-027.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-027 --jobs c1pu1-0054,c1pu1-0055 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-027 --jobs c1pu1-0054,c1pu1-0055 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-028",
@@ -240,7 +240,7 @@
    "outputs": [
     "occx-028.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-028 --jobs c1pu1-0056,c1pu1-0057 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-028 --jobs c1pu1-0056,c1pu1-0057 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-029",
@@ -248,7 +248,7 @@
    "outputs": [
     "occx-029.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-029 --jobs c1pu1-0058,c1pu1-0059 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-029 --jobs c1pu1-0058,c1pu1-0059 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-030",
@@ -256,7 +256,7 @@
    "outputs": [
     "occx-030.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-030 --jobs c1pu1-0060,c1pu1-0061 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-030 --jobs c1pu1-0060,c1pu1-0061 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-031",
@@ -264,7 +264,7 @@
    "outputs": [
     "occx-031.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-031 --jobs c1pu1-0062,c1pu1-0063 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-031 --jobs c1pu1-0062,c1pu1-0063 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-032",
@@ -272,7 +272,7 @@
    "outputs": [
     "occx-032.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-032 --jobs c1pu1-0064,c1pu1-0065 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-032 --jobs c1pu1-0064,c1pu1-0065 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-033",
@@ -280,7 +280,7 @@
    "outputs": [
     "occx-033.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-033 --jobs c1pu1-0066,c1pu1-0067 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-033 --jobs c1pu1-0066,c1pu1-0067 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-034",
@@ -288,7 +288,7 @@
    "outputs": [
     "occx-034.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-034 --jobs c1pu1-0068,c1pu1-0069 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-034 --jobs c1pu1-0068,c1pu1-0069 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-035",
@@ -296,7 +296,7 @@
    "outputs": [
     "occx-035.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-035 --jobs c1pu1-0070,c1pu1-0071 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-035 --jobs c1pu1-0070,c1pu1-0071 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-036",
@@ -304,7 +304,7 @@
    "outputs": [
     "occx-036.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-036 --jobs c1pu1-0072,c1pu1-0073 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-036 --jobs c1pu1-0072,c1pu1-0073 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-037",
@@ -312,7 +312,7 @@
    "outputs": [
     "occx-037.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-037 --jobs c1pu1-0074,c1pu1-0075 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-037 --jobs c1pu1-0074,c1pu1-0075 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-038",
@@ -320,7 +320,7 @@
    "outputs": [
     "occx-038.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-038 --jobs c1pu1-0076,c1pu1-0077 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-038 --jobs c1pu1-0076,c1pu1-0077 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-039",
@@ -328,7 +328,7 @@
    "outputs": [
     "occx-039.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-039 --jobs c1pu1-0078,c1pu1-0079 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-039 --jobs c1pu1-0078,c1pu1-0079 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-040",
@@ -336,7 +336,7 @@
    "outputs": [
     "occx-040.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-040 --jobs c1pu1-0080,c1pu1-0081 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-040 --jobs c1pu1-0080,c1pu1-0081 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-041",
@@ -344,7 +344,7 @@
    "outputs": [
     "occx-041.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-041 --jobs c1pu1-0082,c1pu1-0083 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-041 --jobs c1pu1-0082,c1pu1-0083 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-042",
@@ -352,7 +352,7 @@
    "outputs": [
     "occx-042.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-042 --jobs c1pu1-0084,c1pu1-0085 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-042 --jobs c1pu1-0084,c1pu1-0085 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-043",
@@ -360,7 +360,7 @@
    "outputs": [
     "occx-043.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-043 --jobs c1pu1-0086,c1pu1-0087 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-043 --jobs c1pu1-0086,c1pu1-0087 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-044",
@@ -368,7 +368,7 @@
    "outputs": [
     "occx-044.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-044 --jobs c1pu1-0088,c1pu1-0089 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-044 --jobs c1pu1-0088,c1pu1-0089 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-045",
@@ -376,7 +376,7 @@
    "outputs": [
     "occx-045.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-045 --jobs c1pu1-0090,c1pu1-0091 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-045 --jobs c1pu1-0090,c1pu1-0091 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-046",
@@ -384,7 +384,7 @@
    "outputs": [
     "occx-046.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-046 --jobs c1pu1-0092,c1pu1-0093 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-046 --jobs c1pu1-0092,c1pu1-0093 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-047",
@@ -392,7 +392,7 @@
    "outputs": [
     "occx-047.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-047 --jobs c1pu1-0094,c1pu1-0095 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-047 --jobs c1pu1-0094,c1pu1-0095 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-048",
@@ -400,7 +400,7 @@
    "outputs": [
     "occx-048.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-048 --jobs c1pu1-0096,c1pu1-0097 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-048 --jobs c1pu1-0096,c1pu1-0097 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-049",
@@ -408,7 +408,7 @@
    "outputs": [
     "occx-049.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-049 --jobs c1pu1-0098,c1pu1-0099 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-049 --jobs c1pu1-0098,c1pu1-0099 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-050",
@@ -416,7 +416,7 @@
    "outputs": [
     "occx-050.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-050 --jobs c1pu1-0100,c1pu1-0101 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-050 --jobs c1pu1-0100,c1pu1-0101 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-051",
@@ -424,7 +424,7 @@
    "outputs": [
     "occx-051.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-051 --jobs c1pu1-0102,c1pu1-0103 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-051 --jobs c1pu1-0102,c1pu1-0103 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-052",
@@ -432,7 +432,7 @@
    "outputs": [
     "occx-052.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-052 --jobs c1pu1-0104,c1pu1-0105 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-052 --jobs c1pu1-0104,c1pu1-0105 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-053",
@@ -440,7 +440,7 @@
    "outputs": [
     "occx-053.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-053 --jobs c1pu1-0106,c1pu1-0107 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-053 --jobs c1pu1-0106,c1pu1-0107 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-054",
@@ -448,7 +448,7 @@
    "outputs": [
     "occx-054.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-054 --jobs c1pu1-0108,c1pu1-0109 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-054 --jobs c1pu1-0108,c1pu1-0109 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-055",
@@ -456,7 +456,7 @@
    "outputs": [
     "occx-055.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-055 --jobs c1pu1-0110,c1pu1-0111 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-055 --jobs c1pu1-0110,c1pu1-0111 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-056",
@@ -464,7 +464,7 @@
    "outputs": [
     "occx-056.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-056 --jobs c1pu1-0112,c1pu1-0113 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-056 --jobs c1pu1-0112,c1pu1-0113 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-057",
@@ -472,7 +472,7 @@
    "outputs": [
     "occx-057.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-057 --jobs c1pu1-0114,c1pu1-0115 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-057 --jobs c1pu1-0114,c1pu1-0115 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-058",
@@ -480,7 +480,7 @@
    "outputs": [
     "occx-058.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-058 --jobs c1pu1-0116,c1pu1-0117 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-058 --jobs c1pu1-0116,c1pu1-0117 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-059",
@@ -488,7 +488,7 @@
    "outputs": [
     "occx-059.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-059 --jobs c1pu1-0118,c1pu1-0119 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-059 --jobs c1pu1-0118,c1pu1-0119 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-060",
@@ -496,7 +496,7 @@
    "outputs": [
     "occx-060.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-060 --jobs c1pu1-0120,c1pu1-0121 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-060 --jobs c1pu1-0120,c1pu1-0121 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-061",
@@ -504,7 +504,7 @@
    "outputs": [
     "occx-061.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-061 --jobs c1pu1-0122,c1pu1-0123 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-061 --jobs c1pu1-0122,c1pu1-0123 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-062",
@@ -512,7 +512,7 @@
    "outputs": [
     "occx-062.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-062 --jobs c1pu1-0124,c1pu1-0125 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-062 --jobs c1pu1-0124,c1pu1-0125 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-063",
@@ -520,7 +520,7 @@
    "outputs": [
     "occx-063.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-063 --jobs c1pu1-0126,c1pu1-0127 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-063 --jobs c1pu1-0126,c1pu1-0127 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-064",
@@ -528,7 +528,7 @@
    "outputs": [
     "occx-064.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-064 --jobs c1pu1-0128,c1pu1-0129 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-064 --jobs c1pu1-0128,c1pu1-0129 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-065",
@@ -536,7 +536,7 @@
    "outputs": [
     "occx-065.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-065 --jobs c1pu1-0130,c1pu1-0131 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-065 --jobs c1pu1-0130,c1pu1-0131 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-066",
@@ -544,7 +544,7 @@
    "outputs": [
     "occx-066.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-066 --jobs c1pu1-0132,c1pu1-0133 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-066 --jobs c1pu1-0132,c1pu1-0133 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-067",
@@ -552,7 +552,7 @@
    "outputs": [
     "occx-067.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-067 --jobs c1pu1-0134,c1pu1-0135 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-067 --jobs c1pu1-0134,c1pu1-0135 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-068",
@@ -560,7 +560,7 @@
    "outputs": [
     "occx-068.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-068 --jobs c1pu1-0136,c1pu1-0137 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-068 --jobs c1pu1-0136,c1pu1-0137 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-069",
@@ -568,7 +568,7 @@
    "outputs": [
     "occx-069.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-069 --jobs c1pu1-0138,c1pu1-0139 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-069 --jobs c1pu1-0138,c1pu1-0139 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-070",
@@ -576,7 +576,7 @@
    "outputs": [
     "occx-070.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-070 --jobs c1pu1-0140,c1pu1-0141 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-070 --jobs c1pu1-0140,c1pu1-0141 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-071",
@@ -584,7 +584,7 @@
    "outputs": [
     "occx-071.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-071 --jobs c1pu1-0142,c1pu1-0143 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-071 --jobs c1pu1-0142,c1pu1-0143 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-072",
@@ -592,7 +592,7 @@
    "outputs": [
     "occx-072.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-072 --jobs c1pu1-0144,c1pu1-0145 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-072 --jobs c1pu1-0144,c1pu1-0145 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-073",
@@ -600,7 +600,7 @@
    "outputs": [
     "occx-073.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-073 --jobs c1pu1-0146,c1pu1-0147 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-073 --jobs c1pu1-0146,c1pu1-0147 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-074",
@@ -608,7 +608,7 @@
    "outputs": [
     "occx-074.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-074 --jobs c1pu1-0148,c1pu1-0149 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-074 --jobs c1pu1-0148,c1pu1-0149 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-075",
@@ -616,7 +616,7 @@
    "outputs": [
     "occx-075.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-075 --jobs c1pu1-0150,c1pu1-0151 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-075 --jobs c1pu1-0150,c1pu1-0151 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-076",
@@ -624,7 +624,7 @@
    "outputs": [
     "occx-076.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-076 --jobs c1pu1-0152,c1pu1-0153 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-076 --jobs c1pu1-0152,c1pu1-0153 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-077",
@@ -632,7 +632,7 @@
    "outputs": [
     "occx-077.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-077 --jobs c1pu1-0154,c1pu1-0155 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-077 --jobs c1pu1-0154,c1pu1-0155 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-078",
@@ -640,7 +640,7 @@
    "outputs": [
     "occx-078.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-078 --jobs c1pu1-0156,c1pu1-0157 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-078 --jobs c1pu1-0156,c1pu1-0157 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-079",
@@ -648,7 +648,7 @@
    "outputs": [
     "occx-079.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-079 --jobs c1pu1-0158,c1pu1-0159 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-079 --jobs c1pu1-0158,c1pu1-0159 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-080",
@@ -656,7 +656,7 @@
    "outputs": [
     "occx-080.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-080 --jobs c1pu1-0160,c1pu1-0161 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-080 --jobs c1pu1-0160,c1pu1-0161 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-081",
@@ -664,7 +664,7 @@
    "outputs": [
     "occx-081.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-081 --jobs c1pu1-0162,c1pu1-0163 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-081 --jobs c1pu1-0162,c1pu1-0163 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-082",
@@ -672,7 +672,7 @@
    "outputs": [
     "occx-082.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-082 --jobs c1pu1-0164,c1pu1-0165 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-082 --jobs c1pu1-0164,c1pu1-0165 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-083",
@@ -680,7 +680,7 @@
    "outputs": [
     "occx-083.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-083 --jobs c1pu1-0166,c1pu1-0167 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-083 --jobs c1pu1-0166,c1pu1-0167 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-084",
@@ -688,7 +688,7 @@
    "outputs": [
     "occx-084.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-084 --jobs c1pu1-0168,c1pu1-0169 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-084 --jobs c1pu1-0168,c1pu1-0169 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-085",
@@ -696,7 +696,7 @@
    "outputs": [
     "occx-085.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-085 --jobs c1pu1-0170,c1pu1-0171 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-085 --jobs c1pu1-0170,c1pu1-0171 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-086",
@@ -704,7 +704,7 @@
    "outputs": [
     "occx-086.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-086 --jobs c1pu1-0172,c1pu1-0173 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-086 --jobs c1pu1-0172,c1pu1-0173 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-087",
@@ -712,7 +712,7 @@
    "outputs": [
     "occx-087.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-087 --jobs c1pu1-0174,c1pu1-0175 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-087 --jobs c1pu1-0174,c1pu1-0175 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-088",
@@ -720,7 +720,7 @@
    "outputs": [
     "occx-088.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-088 --jobs c1pu1-0176,c1pu1-0177 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-088 --jobs c1pu1-0176,c1pu1-0177 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-089",
@@ -728,7 +728,7 @@
    "outputs": [
     "occx-089.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-089 --jobs c1pu1-0178,c1pu1-0179 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-089 --jobs c1pu1-0178,c1pu1-0179 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-090",
@@ -736,7 +736,7 @@
    "outputs": [
     "occx-090.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-090 --jobs c1pu1-0180,c1pu1-0181 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-090 --jobs c1pu1-0180,c1pu1-0181 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-091",
@@ -744,7 +744,7 @@
    "outputs": [
     "occx-091.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-091 --jobs c1pu1-0182,c1pu1-0183 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-091 --jobs c1pu1-0182,c1pu1-0183 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-092",
@@ -752,7 +752,7 @@
    "outputs": [
     "occx-092.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-092 --jobs c1pu1-0184,c1pu1-0185 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-092 --jobs c1pu1-0184,c1pu1-0185 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-093",
@@ -760,7 +760,7 @@
    "outputs": [
     "occx-093.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-093 --jobs c1pu1-0186,c1pu1-0187 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-093 --jobs c1pu1-0186,c1pu1-0187 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-094",
@@ -768,7 +768,7 @@
    "outputs": [
     "occx-094.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-094 --jobs c1pu1-0188,c1pu1-0189 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-094 --jobs c1pu1-0188,c1pu1-0189 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-095",
@@ -776,7 +776,7 @@
    "outputs": [
     "occx-095.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-095 --jobs c1pu1-0190,c1pu1-0191 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-095 --jobs c1pu1-0190,c1pu1-0191 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-096",
@@ -784,7 +784,7 @@
    "outputs": [
     "occx-096.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-096 --jobs c1pu1-0192,c1pu1-0193 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-096 --jobs c1pu1-0192,c1pu1-0193 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-097",
@@ -792,7 +792,7 @@
    "outputs": [
     "occx-097.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-097 --jobs c1pu1-0194,c1pu1-0195 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-097 --jobs c1pu1-0194,c1pu1-0195 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-098",
@@ -800,7 +800,7 @@
    "outputs": [
     "occx-098.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-098 --jobs c1pu1-0196,c1pu1-0197 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-098 --jobs c1pu1-0196,c1pu1-0197 --planes 10000 --mode counts --nip-elig 5"
   },
   {
    "id": "occx-099",
@@ -808,7 +808,7 @@
    "outputs": [
     "occx-099.npz"
    ],
-   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-099 --jobs c1pu1-0198,c1pu1-0199 --planes 10000 --mode campaign"
+   "command": ". /home/users/jdochoa/hllhc-quirks-search/tools/env.sh && export NUMBA_CACHE_DIR=$QV2_SCRATCH_DIR/numba PYTHONPYCACHEPREFIX=$QV2_SCRATCH_DIR/pyc PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 && $QV2/envs/tt/.pixi/envs/default/bin/python $QV2/phase3_selection/src/p3f/occx_job.py --id occx-099 --jobs c1pu1-0198,c1pu1-0199 --planes 10000 --mode counts --nip-elig 5"
   }
  ]
 }

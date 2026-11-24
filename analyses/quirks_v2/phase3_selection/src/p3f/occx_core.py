@@ -321,6 +321,7 @@ def scan_trial(nplanes, seed, pv, phimet, H, LC, SD, U, CX, CY, S0, S1, hid, Z, 
     aux (cap, 4) [cand N_IP2, |S|, chi2/ndf, fixed N_IP2], nip5 (count of refit R04 passers whose fixed N_IP2 == 5; 0 if nip_elig > 5)."""
     np.random.seed(seed)
     cnt = np.zeros((2, ncol), np.int64)
+    cnt5 = np.zeros(ncol, np.int64)
     rec = np.zeros((cap, 4)); recf = np.zeros((cap, ncol), np.bool_); aux = np.zeros((cap, 4))
     nrec = 0
     nelig = 0
@@ -350,6 +351,8 @@ def scan_trial(nplanes, seed, pv, phimet, H, LC, SD, U, CX, CY, S0, S1, hid, Z, 
                 for k in range(ncol):
                     if fl[k]:
                         cnt[mapk, k] += 1
+                        if mapk == 1 and nip2 == 5:
+                            cnt5[k] += 1
                 if nrec >= cap:
                     raise RuntimeError('record capacity exceeded')
                 rec[nrec, 0] = mapk; rec[nrec, 1] = phia; rec[nrec, 2] = eta; rec[nrec, 3] = psi
@@ -359,7 +362,7 @@ def scan_trial(nplanes, seed, pv, phimet, H, LC, SD, U, CX, CY, S0, S1, hid, Z, 
                 nrec += 1
                 if mapk == 1 and nip2 == 5:
                     nip5 += 1
-    return cnt, nelig, rec[:nrec], recf[:nrec], aux[:nrec], nip5
+    return cnt, nelig, rec[:nrec], recf[:nrec], aux[:nrec], nip5, cnt5
 
 
 @njit(cache=True)

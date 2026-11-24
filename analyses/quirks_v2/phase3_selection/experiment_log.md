@@ -210,3 +210,31 @@ Artifact v2: `outputs/P3B_PILEUP_v2_ivar_2026-11-24.md` (v1 unchanged). Session 
   on both occupancy readings, no-credit segment); regenerated on maxwell (1 job). Lint: 0 violations (20 files).
 - Linter glob (`*/src/*.py` misses `src/p3b/`): NOT edited — `conventions` -> `tools/jfc/src/conventions/` is
   read-only. FLAG FOR HUMAN: orchestrator to decide (study copy or tools/jfc change).
+- 15:27 **V1 recapture validation of the basin-volume estimator FAILED** (0.82 / 1.43, per-trial 0.33-6.9, heavy
+  tails); V2: distinct R04 hit-set classes of ribbons on ρ = 1 hits do not saturate at 10⁶ configurations (≥ 160-170 per
+  trial and rising), above the finder's 171 groups: the finder does not enumerate distinct sets either.
+  DECISION: amendment A1 (hashed 2026-11-24 15:30:28 -0500, sha256 7f0e545a…): verdict measurement replaced by the per-configuration refit
+  transfer M_T (former diagnostic D2); criterion unchanged; decided on R04-only validation, before any campaign.
+  ALTERNATIVES: (a) improve the volume estimator (more local draws, other proposal) — rejected: even exact volumes count
+  an object the finder does not count (V2); (b) a seed-measure emulation (sample the finder's hit-pair seeds and refit)
+  — rejected as the verdict: it recomputes the finder's candidate count (a near-restatement of the direct count, the
+  objection DOR (1b) made to O4); (c) stop with NOT FOUND now — rejected: M_T is cheap and pre-statable.
+  CONFIDENCE: MEDIUM. FLAG FOR HUMAN: YES — a pre-stated verdict measurement was replaced after a validation failure
+  (before any R05/R06 number); the reviewer should check A1 against the original hash.
+
+## 2026-11-24 15:31 -0500 p3-b review cycle 2 (fixer Ivar): Liv B-new-1 and C items (artifact v3; no jobs, no new Monte Carlo)
+- B-new-1: the cycle-1 entry above ("quote the MC error at R08 as ≈ 15 % (R09 ≈ 21 %)") is **corrected** (not
+  rewritten): the 8.7 % of the stored 200-toy runs is a lower bound; the fresh 2,000-toy IS run has a ×6.3 larger
+  per-toy variance → stored R08 error ≈ 22 % [E] (R07 5.7 %), R09 ≈ 26 % with the fit-probability fraction (0.145).
+  Configuration sampling 0–1.6 % [E, Liv]. Plain above IS with the same sign at R06/R07/R08 (+4.6/+8.0/+13.5 %):
+  stated as a possible IS bias. Reading (ii) at the plain value 503 events > no-credit 485 (reading (i) 394).
+  Derived with `src/p3b/is_check_c2.py` (standard library; einstein; reproduces liv_ischeck.json exactly).
+  DECISION: quote ≈ 22 % / ≈ 26 % and the asymmetric plain interval (+28 % / −1 %); keep IS primary (frozen 10:56).
+  ALTERNATIVES: quote the plain value as central (rejected: frozen choice; the bias is possible, not shown at > 2σ).
+  CONFIDENCE: MEDIUM (22 % is itself a lower bound if the weight tail is under-sampled at 2,000 toys). FLAG FOR HUMAN:
+  NO (orchestrator: note 503 > 485 for the day-15 reading).
+- JSON: one new key `occupancy_day15.mc_rel_error_c2` (0.217 / 0.261) on the R08/R09 records; `mc_rel_error_b3`
+  kept, documented as superseded (SCHEMA.md). Key diff: 4 added, 0 changed, 0 removed.
+- C-1 (rule-2 quote completed, Q3 granted at Gate A), C-2 (reading (iii) listed, not chosen), C-3 (dev.pu1 seed
+  qualifier), C-4 (B3 inputs copied to outputs/p3b/is_check_inputs/, sha256 identical), C-5 (mixed route stated and
+  flagged), C-7 (toy ESS 11–43 per seed, 195 total) applied. C-6 (figure style) NOT applied: needs a plot job.
