@@ -93,6 +93,8 @@ last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e150
 4. At the binding day-15 reading: the pause package (B4-c / B5 NOT EVALUABLE on SM; evaluable B4-c ≈ 4,800 CPU-h
    would cross 5,992 alone; NI R05 test has almost no power; hold the row-20 extra events (STR l.2116)).
 
+5. **p3-b review escalation** (DECISION notice 2026-11-24 15:45): (A) accept P3B v4 without a 4th cycle (recommended; default at Wed 25 Nov 12:00, "default, no answer by the deadline"; v4 marked "accepted by default, not by the user" until answered) or (B) one more fresh 1-bot review. Review loops stop after TWO rounds from now on (rule 3; overrun once on 24 Nov).
+
 ## 3. State of Phase 2, item by item
 
 | item | state | file |
