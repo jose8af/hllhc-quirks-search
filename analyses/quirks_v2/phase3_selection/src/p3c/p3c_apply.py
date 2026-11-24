@@ -91,7 +91,7 @@ def one_file(path, model, K, fprop, rng):
         x = wg * pvec(inp, dict(par, met_cut=c), rng, K)
         rec['met_cut'][f'{c:g}'] = dict(S1=float(x.sum()), S2=float((x ** 2).sum()))
     # cut flow (nominal, no trigger weight): MET only; + jet; + min dphi; + vetoes
-    cf = np.zeros(5)
+    cf = np.zeros(5); lost = np.zeros(3)
     for a in range(0, d['n'], CHUNK):
         sl = slice(a, a + CHUNK)
         o = M.apply(IO.sub(inp, sl), dict(par, trig='none'), rng, K, return_met=True)
@@ -100,6 +100,10 @@ def one_file(path, model, K, fprop, rng):
         c1 = o['met'] > par['met_cut']; c2 = c1 & o['lead']; c3 = c2 & (o['mindphi'] > par['mindphi']); c4 = c3 & ~o['veto']
         cf += [float((g * np.ones_like(c1)).sum()), float((g * c1).sum()), float((g * c2).sum()), float((g * c3).sum()),
                float((g * c4 * (par['veto_gamma_w'] ** inp['ngam'][sl, None])).sum())]
+        g4 = g * c4 * (par['veto_gamma_w'] ** inp['ngam'][sl, None])
+        lost += [float((g4 * (o['rmin'] < c)).sum()) for c in (0.1, 0.2, 0.5)]
+    rec['nominal_notrig_S1_by_min_response'] = dict(cuts=['R_min < 0.1', 'R_min < 0.2', 'R_min < 0.5'], S1=lost.tolist(),
+                                                    note='part of the last cut-flow step with a jet of response below the cut')
     rec['cutflow_nominal_notrig'] = dict(steps=['all', 'MET>250', '+jet>100', '+mindphi>0.5', '+vetoes'], S1=cf.tolist())
     x = wg * v1_weight(d, rng, max(K // 4, 4))
     rec['v1_like'] = dict(S1=float(x.sum()), S2=float((x ** 2).sum()))

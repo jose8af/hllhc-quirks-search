@@ -189,3 +189,26 @@ Campaign p3-c-val: 12/12 jobs done 11:55. `p3c_validate.py` rerun with tt-bar; `
   as width and the failure is stated. Not a stop: sources exist (LOG 2026-11-16 12:15 ruling). Generation continues.
 - Note: the validation script ran over ssh at nice 15 beside my two runner slots for about 4 minutes (a third
   process; short). The remaining analysis steps go through the runner queue.
+
+## 14:50 Z samples under the model (campaigns p3-c-zx 15/15, p3-c-pw 23/23, p3-c-ap-zx 3/3 done)
+N_trig: Z(nunu) 2.98e7 (v2 / v1-like 1.136 +- 0.004; 7.4 % of it from truth MET < 200 GeV); Z(tautau) 1.27e5 +- 1.4 %;
+lost-lepton Z(ll) 1.09e5 +- 2.1 % (0.571 of that if unidentified electrons stay in the sum). Pilot: M_v1 recomputed
+993,885.93 (frozen 993,885.9); M_v2 = 1,023,164.
+
+## 15:10 FINDING on the first multijet file (60,000 events, K = 30): the unsourced tail sets the multijet N_trig
+Nominal (f_tail 1.5 %, k = 3): N_MJ = 3.9e7 (n_eff 414), as large as the whole v1 N_trig (4.08e7). Tail down (Gaussian
+only): 6.0e5 (n_eff 28). Tail up (3 %, k = 5): 4.6e8. Planning value: 4e5 (range 4e4-4e6). The nominal comes from jets
+whose response falls so low that they drop below 30 GeV and out of the min-dphi list (cut flow, no trigger: MET > 250
+GeV 31.7, + jet 30.2, + min dphi 8.2, + vetoes 8.1 in units of the summed weights). **Nothing is tuned: the tail
+stays as declared at 10:16 and all three numbers are reported.** Phase 1 assumed N_MJ about 1 % of N_trig (0.1-10 %).
+Phase 3 finds 1.5 % to 1,100 % depending only on a parameter that has no public source. Implication: the multijet
+N_trig, and through N_SM the events per Z(nunu) pilot count, is not determined by B4-b as frozen; a decision is needed
+(final report). A diagnostic (yield by lowest jet response) was added to `p3c_apply.py` after this look; no
+variation was added or changed.
+
+## 15:12 campaign reduced, with the reason
+Because of the finding above (brief §2: report a plan-changing contradiction promptly) and because one file already
+gives n_eff 414 for the nominal, the multijet generation is cut: p3-c-mjw stops after 4 of its 20 jobs (driver
+stopped by me once 4 files exist), the sliced sample becomes p3-c-mjs2 with one 60,000-event job per slice (the
+20-job p3-c-mjs is not launched). Also seen 15:11: another work package (p3-d) runs one job on schrodinger; the
+runner then gives me one slot instead of two.

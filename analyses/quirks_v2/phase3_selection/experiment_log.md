@@ -122,3 +122,91 @@ FLAG FOR HUMAN: NO
   DECISION: the term's independent binomial widths are combined into one nuisance per term (R1).
   ALTERNATIVES: one nuisance per factor (about 11 more parameters).
   CONFIDENCE: MEDIUM (exact for the uncensored log-normal; censoring then bounds the product). FLAG FOR HUMAN: NO.
+
+## 2026-11-24 14:56 -0500 p3-b review cycle 1 (fixer Ivar): judgement calls of 24 Nov not logged by the executor (DOR B9)
+Appended by the fixer from the executor's session log and P3B v1; the times are the executor's (session log), the
+decisions are his unless marked. Nothing above is changed.
+- 10:56 (executor) **Occupancy-model definition frozen before any comparison with a direct count** (session log
+  l.111-118).
+  DECISION: ensemble NZ_MIN 0.2, φ_a ∈ φ_MET ± 0.15, η_a ∈ U(−1, 1), ψ ∈ U(0, π); densities φ-averaged, 2 mm z bins;
+  toys conditional on R04; IS (β = 0.5) primary at R05–R08, plain MC as the check; C held at R05 (trend = variant);
+  N_cfg by GLS at R04–R05; s_model = max(|ln r(R06)|, in-sample r.m.s.); day-15 = one scale A on R04–R07, weights
+  1/(σ_stat² + s_model²); fit-probability fractions from development R06 finder groups (Df-2).
+  ALTERNATIVES: C trend as primary; diagonal / R04-only / R05-only N_cfg; plain MC as primary.
+  CONFIDENCE: HIGH that it preceded the comparison (model code sha256 in the occmod outputs = files of 10:37; DOR §4).
+  FLAG FOR HUMAN: NO.
+- 10:56 (executor) **Day-15 reading of STR l.2741 "the development model's R04–R07 inputs".**
+  DECISION (executor): reading (i), one scale A fitted on the development direct counts at R04–R07 (uses the held-out
+  R06 and the 7 R07 counts). ALTERNATIVES: reading (ii), the B2-b model with its R04–R05 normalisation (STR
+  l.1145-1146) evaluated at R07–R09 (DOR B4). Both are now tabled in P3B v2 §6: R08 347 / 443, R09 4.1 / 5.25 events.
+  CONFIDENCE: LOW that the frozen text selects (i). FLAG FOR HUMAN: YES (orchestrator; not chosen by the fixer). Both
+  are the rule-1 projection input only, "no credit" (advisor B2CAP point 8 (ii)).
+- 13:30 (executor) **s_model rung set for thinning** (frozen text silent).
+  DECISION: report cumulative evaluable R04–R06 (0.506) and with crossing rungs (0.536); DOR adds R04–R05 0.291, R04
+  0.259, smallest single rung 0.234. ALTERNATIVES: as listed. CONFIDENCE: HIGH that the cap status does not depend on
+  the reading (every reading > 0.135). FLAG FOR HUMAN: NO (reported under every reading).
+- ≈ 13:40–14:15 (executor) **Thinning variants R2 (refit + dedup, modes 1/2) and R3 (re-rank, mode 3).**
+  RESULT: R2 failed its own q = 1 sanity check (2,361 / 2,644 groups vs stored 2,731 / 3,061): not a valid emulation,
+  neither supports nor excludes the refit as mechanism. R3: ≤ 1 % change. Neither adopted. FLAG FOR HUMAN: NO.
+- **[DT2] (STR l.1198-1200), logged as a [D].**
+  DECISION [D]: repaired thinning has no evaluable rung beyond R06 on the development sample (R07: 7 direct counts,
+  σ_tot 0.38; B2-g projection to 3,000 events: σ_tot(R07) 0.159 at the development direct rate) → its validated range
+  is declared **R04–R06** in PREREG_v2; R07 rests on the occupancy model and the direct count. With s_model above the
+  cap the range matters only if the re-find redesign is ordered at the day-15 pause.
+  ALTERNATIVES: R04–R07 if the 96,000-trial direct rate is at v1's 7.3×10⁻⁴ (σ_tot 0.126); not chosen, the
+  development evidence says R06. CONFIDENCE: HIGH. FLAG FOR HUMAN: YES — "user informed" duty of [DT2]; the
+  orchestrator's RESULT notice of 24 Nov (advisor Addendum 1 A5) carries it ("validated range is R04–R06 at most").
+- 14:20 (executor) **Enlarged development sample `dev.pu1` called "not requested" (P3B v1 §7).** CORRECTED: it is a
+  frozen MUST line (STR l.2105, ≈ 5,960 events, 100 CPU-h, role "decision point 2, s_model, crossing rungs"); not
+  producing it would be a deviation (DOR B8). Advisor Addendum 1 A4: produce it now (orchestrator launch, p3-e);
+  sealed per A2. FLAG FOR HUMAN: NO (ordered).
+- **Times (DOR B9).** P3B v1 header end time "14:30" was not read from the clock (file mtime 14:20:23, commit f881aa3
+  14:21:04 -0500); session-log "13:30" N_eff line does not match the final data (4 passing R08 subsets, not 1).
+  Correction note appended to the executor's session log; P3B v2 header corrected.
+- 15:05 v1-count workspace (51 parameters): three remediations of the fit failures (method ladder with L-BFGS-B;
+  free-first + mu continuation; KKT active set with projection) leave 14-19 of 80 toys dropped at 5,500 s per
+  1000 + 1000 unit; the b-only median q~ is on the jump (3.3e5 at mu = 800, 4.7e4 at mu = 300). T1-c (iii)-(v) and
+  (iv) on this workspace: infeasible as specified (~430 CPU-h and unresolved). Branch stopped; decision requested
+  in the artifact. Table in the session log 15:05.
+  DECISION: continue only the independent items (T1-c (i), (ii), pyhf demonstration, recipe, builder).
+  ALTERNATIVES: redesign the v1-count conversion (e.g. the v2 pile-up treatment applied to v1's pile-up term, or a
+  different v1 selection) — a choice for the orchestrator/advisor, not made here.
+  CONFIDENCE: HIGH that the present workspace is not fit-able within budget. FLAG FOR HUMAN: YES.
+
+## p3-f (investigator Jorunn), 24 Nov 2026 — B2 occupancy cause investigation (Task A) and re-find yield (Task B)
+- 15:00 **Method hashed before any job** (`outputs/p3f/CAUSE_METHOD_jorunn.md`, sha256 99dfcafb…0d83 in the session
+  log). Mechanism measurement M_G = Horvitz-Thompson count of distinct finder-like groups (refit map: the finder's refit
+  started from each configuration of the frozen p3-b ensemble; group identity >= 1/2 shared hits; basin volume by local
+  sampling) on the c1.pu1 hits; prediction ln r̂ = ln r(R04) + ln[B_model(r)/B_model(R04)] − ln[Ĝ(r)/Ĝ(R04)]; "cause
+  found" iff at R05 and R06 sign agrees, |ln r̂ − ln r_obs| <= 2 σ_comb and |ln r̂| >= 2 σ_G. Measurement (i) (10x
+  random planes, C(R06)) in the same campaign.
+  DECISION: refit map as the verdict measurement (the finder counts groups of refitted candidates); fixed-ribbon HT
+  count and the per-configuration refit transfer as diagnostics only. ALTERNATIVES: fixed-map HT as the verdict (the
+  model's own object; would test basin volumes without the refit); per-configuration refit transfer only (cheaper, no
+  distinct counting). CONFIDENCE: MEDIUM that the emulation is close enough to the finder to be decisive either way
+  (D4 checks its absolute faithfulness at R04). FLAG FOR HUMAN: NO.
+- 15:08 (code check, before the campaign) **Local sampler defect fixed:** uniform box + doubling gave V = 0 for some
+  configurations; replaced by an unbiased nested-box mixture in hit-geometry-aligned coordinates (session log 15:05-15:12).
+  Same estimand; only R04 volumes looked at. FLAG FOR HUMAN: NO.
+
+## 2026-11-24 15:15 -0500 p3-b review cycle 1 (fixer Ivar): what each finding was, what changed, result
+Artifact v2: `outputs/P3B_PILEUP_v2_ivar_2026-11-24.md` (v1 unchanged). Session log `logs/fixer_ivar_2026-11-24_14-48.md`.
+- A1 (closure failure, both estimators): stated plainly with the rule-2 status of the advisor ruling; resolution is
+  the orchestrator's rule-2 process (thinning: re-find variant at the pause; occupancy: cause investigation to 30 Nov).
+- B1/B6/B7: rule wording replaced by the binding wording (rule 1 not met now; thinning "redesign identified"; occupancy
+  "no cause demonstrated"); R0/R1/R2/R3 and O1-O4 relabelled; self-check corrected (no occupancy remediation, and why).
+- B2/B4/B5: `pileup_term.py` extended (no v1 key changed): no-credit 485 (dev bound 2,910 flagged), reading (ii) R09
+  5.25, planning widths with R06 as last test rung (R08 0.822, R09 0.917). FAIL vs not-submitted readings stated.
+- B3: `src/p3b/is_check.py` (new, diagnostic). IS statistical error at R08 8.7 % (DOR's 12 % not reproduced);
+  heavy-tailed weights (top 1 % of configurations = 51 % of the sum). Paired plain check, 6.4e8 toys on the 6,400
+  stored configurations (3 jobs, 0.886 CPU-h, maxwell): 45 R08 passes, plain/IS = 1.13 ± 0.15; R07 1.080 ± 0.012.
+  DECISION: quote the MC error at R08 as ≈ 15 % (R09 ≈ 21 %) [E]; keep IS as the primary estimator (frozen 10:56).
+  ALTERNATIVES: replace IS by the plain value (rejected: would change a frozen choice after seeing the check; the two
+  agree within 0.9σ). CONFIDENCE: HIGH that the v1 factor-12.6 alarm is excluded; MEDIUM on the 15 % figure (a ±5 %
+  check would need ≈ 8 CPU-h). FLAG FOR HUMAN: NO.
+- B8/B9: dev.pu1 restated as a frozen MUST sample being produced; DECISION blocks, [DT2] [D] and the time corrections
+  appended (entry above; correction note in the executor's session log).
+- Figures: plots.py fixed for every ELI A item (x labels, legends, R07 in frame with open = not evaluable, error bars
+  on both occupancy readings, no-credit segment); regenerated on maxwell (1 job). Lint: 0 violations (20 files).
+- Linter glob (`*/src/*.py` misses `src/p3b/`): NOT edited — `conventions` -> `tools/jfc/src/conventions/` is
+  read-only. FLAG FOR HUMAN: orchestrator to decide (study copy or tools/jfc change).

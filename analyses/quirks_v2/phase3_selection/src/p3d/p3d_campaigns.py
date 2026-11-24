@@ -61,9 +61,21 @@ def main(a):
                                                                     'censor=1', '2026112402', '2000', '0.16,0.5,0.84',
                                                                     '1500']))
         for i in range(10):
-            jobs.append(job(f'p3-d-one-rec-{i:02d}', PY_JAX, ['p3d_toys.py', 'limit', 'v1mode', 'censor=1',
-                                                               str(2026111701 + i), '1000', '0.5', '1500']))
+            jid = f'p3-d-one-rec-{i:02d}'
+            jobs.append({'id': jid, 'shard': 0, 'outputs': [f'{jid}.json'],
+                         'command': ENV + f'{PY_JAX} -I {SRC}/p3d_rec_v1mode.py $QV2_OUT_DIR/{jid}.json '
+                                    f'{2026111701 + i} 1000 1500'})
         write('p3-d-one', jobs, 'T1-c (i), (ii) with the convention; the refined recipe on the v1-mode workspace', 4.0)
+    elif a[0] == 'ph':
+        jobs = [{'id': f'p3-d-ph-check-{n}', 'shard': 0, 'outputs': [f'p3-d-ph-check-{n}.json'],
+                 'command': ENV + f'{PY_NP} -I {SRC}/p3d_check_np.py $QV2_OUT_DIR/p3-d-ph-check-{n}.json {n}'}
+                for n in ('v2ph', 'v1count_p1', 'v1count_p2')]
+        write('p3-d-ph', jobs, 'T1-a: schema, consistency, predictive of the v2 placeholder and v1-count workspaces', 0.1)
+    elif a[0] == 'phcost':
+        jobs = [job(f'p3-d-phcost-{n}', PY_JAX, ['p3d_toys.py', 'cost', n, '-', '200', mu])
+                for n, mu in (('v2ph', '0.03'),)]
+        jobs += [job('p3-d-phcost-v2ph-check', PY_JAX, ['p3d_toys.py', 'check', 'v2ph', '-'])]
+        write('p3-d-phcost', jobs, 'toy cost probe and jax check on the v2 placeholder workspace', 0.3)
     elif a[0] == 'lim':
         spec, settings, tag, seed, ntoys, qs = a[1:7]
         priors = [str(DATA / c / '000' / f'{j}.json') for c, j in (x.split(':') for x in a[7:])]

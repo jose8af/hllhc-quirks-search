@@ -15,7 +15,10 @@ Review cycle 1 (fixer Ivar, 2026-11-24; DOR B2, B4, B5) adds, without changing a
                     not evaluable at the development direct rate, 42 expected counts, σ_tot 0.159; it is at v1's rate);
   occupancy_B2b_model at R09 (and R09 ∧ N_2S2 ≥ 3) = the B2-b R08 value × the same fit-probability fraction;
   no_credit_value.events_zero_count_68_dev16000: the zero-count bound of the 16,000 development trials (a reading
-                    to flag, DOR B2: "the samples that exist at day 15"; not chosen here).
+                    to flag, DOR B2: "the samples that exist at day 15"; not chosen here);
+  occupancy_day15.mc_rel_error_b3 (R08, R09 and their s = 3 rows; DOR B3): the model MC error re-estimated from
+                    is_check.json / is_check_stats.json = max(within-seed IS error, precision of the paired plain-toy
+                    check); the v1 key mc_rel_error (8-seed spread) is kept unchanged.
 """
 import hashlib
 import json
@@ -65,6 +68,14 @@ def main():
     cross_ok = bool(xe) and all(abs(x['ln_r']) <= LN15 for x in xe)
     f09 = occ['fitprob_fraction_from_R06_candidates']['0.001']
     lnA = occ['day15_scale']['lnA']
+    b3 = None
+    if (OUT / 'is_check.json').exists() and (OUT / 'is_check_stats.json').exists():
+        ic = json.loads((OUT / 'is_check.json').read_text())
+        st = json.loads((OUT / 'is_check_stats.json').read_text())['combined']['R08']
+        b3 = dict(value=float(max(st['rel_within_pooled'], ic['R08']['plain_rel_err'])),
+                  rel_within_pooled=st['rel_within_pooled'], rel_seed_spread=st['rel_seed_spread'],
+                  plain_over_stored_IS=ic['R08']['plain_over_stored'], plain_pass_toys=ic['R08']['plain_pass_toys'],
+                  plain_rel_err=ic['R08']['plain_rel_err'], fresh_over_stored_IS=ic['R08']['fresh_over_stored'])
     out = dict(schema='p3b.pileup_term.v1', source=str(src),
                source_sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
                N_trig_used=NTRIG, N_trig_source='phase1_strategy/src/strategy_budget.py l.68 (v1 bsum_wp n_trig)',
@@ -97,6 +108,9 @@ def main():
                    occupancy_day15=dict(rate_per_trial=rate15, events=rate15 * NTRIG, mc_rel_error=mc,
                                         fitprob_fraction=f09 if c.startswith('R09') else None),
                    occupancy_B2b_model=None)
+        if b3 is not None and c[:3] in ('R08', 'R09'):
+            rec['occupancy_day15']['mc_rel_error_b3'] = b3['value']
+            rec['occupancy_day15']['b3_check'] = b3
         if c in occ['predictions']:
             p = occ['predictions'][c]['const']
             rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'], events=p['rate'] * NTRIG, ln_r_dev=p['ln_r'],

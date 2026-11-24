@@ -164,12 +164,12 @@ class Engine:
         import jax
         f = lambda p, d: pyhf.infer.mle.twice_nll(p, d, self.model)[0]                    # noqa: E731
         try:
-            self._g = jax.jit(jax.grad(f)); self._h = jax.jit(jax.hessian(f))
+            self._g = jax.jit(jax.grad(f)); self._h = jax.jit(jax.hessian(f)); self._f = jax.jit(f)
             self._g(self.tl.astensor(np.array(cfg.suggested_init(), float)), self.tl.astensor(self.data(
                 np.ones(len(spec['cats'])), self.ex.m)))
         except Exception as e:  # noqa: BLE001
             log.warning('jit of the guard failed (%r); using un-jitted jax', e)
-            self._g = jax.grad(f); self._h = jax.hessian(f)
+            self._g = jax.grad(f); self._h = jax.hessian(f); self._f = f
         self.cpu_fit = 0.0; self.nfit = 0; self.cpu_guard = 0.0
         self.prev = None
         self.th_lo = np.full(len(self.ex.nk), pm.TH_LO)
@@ -197,21 +197,33 @@ class Engine:
         p = self.tl.astensor(pars)
         g = np.asarray(self._g(p, d), float); H = np.asarray(self._h(p, d), float)
         b = self.bounds; span = b[:, 1] - b[:, 0]
+        # active set (KKT): at a bound, or within KKT_FRAC of the range from it with the gradient pointing outward
+        lo_act = ((pars - b[:, 0]) <= 1e-6 * span) | (((pars - b[:, 0]) <= self.KKT_FRAC * span) & (g > 0))
+        hi_act = ((b[:, 1] - pars) <= 1e-6 * span) | (((b[:, 1] - pars) <= self.KKT_FRAC * span) & (g < 0))
         free = [i for i in range(len(pars)) if i not in self.fixed_idx and not (exclude_mu and i == self.i_mu)
-                and (pars[i] - b[i, 0]) > 1e-6 * span[i] and (b[i, 1] - pars[i]) > 1e-6 * span[i]]
+                and not lo_act[i] and not hi_act[i]]
         self.cpu_guard += time.process_time() - c0
         if not free:
             return 0.0
         gs = g[free]; Hs = H[np.ix_(free, free)]
         if not np.all(np.isfinite(Hs)) or not np.all(np.isfinite(gs)):
             return float('inf')
-        try:
-            np.linalg.cholesky(Hs)
-        except np.linalg.LinAlgError:
+        if self.KKT_FRAC == 0.0:          # the Phase-2 form (Cholesky); kept for comparison
+            try:
+                np.linalg.cholesky(Hs)
+            except np.linalg.LinAlgError:
+                return float('inf')
+            return float(0.5 * gs @ np.linalg.solve(Hs, gs))
+        e, v = np.linalg.eigh(0.5 * (Hs + Hs.T))
+        emax = max(float(np.max(np.abs(e))), 1e-300)
+        if e[0] < -1e-6 * emax:           # a saddle or a maximum: not a minimum
             return float('inf')
-        return float(0.5 * gs @ np.linalg.solve(Hs, gs))
+        keep = e > 1e-12 * emax           # directions without curvature carry no Newton step
+        proj = v.T @ gs
+        return float(0.5 * np.sum(proj[keep] ** 2 / e[keep]))
 
     METHODS = ('SLSQP', 'L-BFGS-B')       # pyhf's scipy optimizer, method option (pyhf opt_scipy.py l.64)
+    KKT_FRAC = 1e-3                       # remediation 3 (session log 15:10); 0 = the Phase-2 guard
 
     def fit1(self, d, mu, start, method):
         """One pyhf fit: fixed mu (mu given) or free (mu None).  Returns (pars, twice_nll) or None on exception."""
@@ -231,6 +243,28 @@ class Engine:
         self.cpu_fit += time.process_time() - c0; self.nfit += 1
         return out
 
+    def polish(self, r, d, exclude_mu):
+        """Project parameters within KKT_FRAC of the range from a bound, gradient pointing outward, onto the bound;
+        keep the projected point if its twice-NLL is not higher (remediation 3)."""
+        if self.KKT_FRAC == 0.0:
+            return r
+        p, t = r
+        c0 = time.process_time()
+        g = np.asarray(self._g(self.tl.astensor(p), d), float)
+        b = self.bounds; span = b[:, 1] - b[:, 0]
+        q = p.copy()
+        lo = ((p - b[:, 0]) <= self.KKT_FRAC * span) & (g > 0)
+        hi = ((b[:, 1] - p) <= self.KKT_FRAC * span) & (g < 0)
+        for i in self.fixed_idx + ([self.i_mu] if exclude_mu else []):
+            lo[i] = hi[i] = False
+        if not (lo.any() or hi.any()):
+            self.cpu_guard += time.process_time() - c0
+            return r
+        q[lo] = b[lo, 0]; q[hi] = b[hi, 1]
+        t2 = float(np.asarray(self._f(self.tl.astensor(q), d)))
+        self.cpu_guard += time.process_time() - c0
+        return (q, t2) if np.isfinite(t2) and t2 <= t else r
+
     def best_fit(self, d, mu, starts, first_ok=True):
         """Attempts (start x method) in order; accepted = finite and Newton decrement < ND_MAX.  Returns
         (pars, t, newton, attempt index) of the first accepted (first_ok) or of the lowest accepted t."""
@@ -240,6 +274,7 @@ class Engine:
                 r = self.fit1(d, mu, s0, meth); k += 1
                 if r is None or not np.isfinite(r[1]):
                     continue
+                r = self.polish(r, d, mu is not None)
                 nd = self.newton(r[0], d, mu is not None)
                 if nd < ND_MAX and (best is None or r[1] < best[1]):
                     best = (r[0], r[1], nd, k - 1)
@@ -440,7 +475,7 @@ def mode_limit(out, specname, settings, seed, ntoys, quantiles, budget, priors):
             if time.time() - t0 > budget:
                 break
             rec = eng.point(m, ntoys, seed, st['a']); pts.append(rec); new.append(rec); done.add(round(m, 9))
-    status = {}
+    status = {}; tried = {}
     while time.time() - t0 < budget:
         nxt = None
         for p in quantiles:
@@ -451,7 +486,12 @@ def mode_limit(out, specname, settings, seed, ntoys, quantiles, budget, priors):
                     nxt = s['next']
         if nxt is None or len(pts) > 40:
             break
-        rec = eng.point(nxt, ntoys, seed, st['a']); pts.append(rec); new.append(rec)
+        key = round(nxt, 9)
+        if tried.get(key, 0) >= 2:                   # unresolved twice: the refinement stops (recipe step 5)
+            res['stopped_unresolved'] = nxt
+            break
+        rec = eng.point(nxt, ntoys, seed + tried.get(key, 0), st['a']); pts.append(rec); new.append(rec)
+        tried[key] = tried.get(key, 0) + 1
     for p in quantiles:
         for rule in (('ecdf', 'npmedian') if p == 0.5 else ('ecdf',)):
             cs = [(r['mu'], counts_of(r, p, rule)) for r in pts]

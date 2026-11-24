@@ -171,6 +171,7 @@ def apply(inp, par, rng, n_throw=1, return_met=False, density=None):
                      1.0 + sig * rng.standard_normal((n, K, JMAX)))
         iw = np.where(m, np.where(t2, f / fp, (1 - f) / (1 - fp)), 1.0).prod(2)
     R = np.maximum(R, 0.0) * par['jes']
+    rmin = np.where(m, R, 9.0).min(2)                  # diagnostic: lowest response among the model jets
     ptr = np.where(m, R * pt, 0.0)
     sx = (ptr * np.cos(phi)).sum(2); sy = (ptr * np.sin(phi)).sum(2)
     # leptons
@@ -207,7 +208,7 @@ def apply(inp, par, rng, n_throw=1, return_met=False, density=None):
         w = w * iw
     out = dict(w=w, iw=iw)
     if return_met:
-        out.update(hx=hx, hy=hy, met=met, jx=sx, jy=sy, nx=nx, ny=ny, lead=lead, mindphi=dp, veto=veto)
+        out.update(hx=hx, hy=hy, met=met, jx=sx, jy=sy, nx=nx, ny=ny, lead=lead, mindphi=dp, veto=veto, rmin=rmin)
     return out
 
 

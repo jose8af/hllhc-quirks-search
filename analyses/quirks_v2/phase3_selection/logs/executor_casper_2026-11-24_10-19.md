@@ -154,3 +154,14 @@ day 14 = Fri 4 Dec). Blinding: no signal file is opened; nothing here touches a 
 - Day-15 pile-up term written (outputs/p3b/pileup_term.json, SCHEMA.md): R08 347, R09 4.1 events at N_trig 4.0848e7.
 - Figures b2_dev_{lnr,rates,neff}; linter clean. Artifact outputs/P3B_PILEUP_casper_2026-11-24.md.
 - CPU: campaigns 4.742 CPU-h (markers) + ≈ 0.15 interactive [E].
+
+## Correction note appended by fixer Ivar (2026-11-24 14:56 -0500; review DOR B9; nothing above is rewritten)
+- Artifact header "10:19–14:30 -0500 (`date`)": the end time 14:30 was not read from the clock. Evidence: the artifact
+  file mtime is 14:20:23 and commit f881aa3 is 14:21:04 -0500 [V: `ls --time-style`, `git log`]. The session ended
+  **≈ 14:20** (last log heading 14:20; SLOTS RELEASED line 14:17). P3B v2 carries the corrected time.
+- Heading "13:30", N_eff line "R08 0 (one passing subset in 128,000)": does not describe the final thin outputs
+  (unchanged since the last p3-b-thin marker, 13:23), which hold **4** passing R08 subsets, N_eff 4.1, as the artifact
+  states [V: DOR §2.1]. The R04-R07 N_eff values of that line (5,142 / 4,057 / 6,859 / 225) also differ slightly from
+  the final ones (5,142 / 4,056 / 6,861 / 228); where the line came from is not established (UNVERIFIED). The artifact
+  values are the valid ones [V: DOR §2.1, `b2_dev_closure.json`].
+- The earlier self-correction (10:58/10:59 -> 10:56) stands.
