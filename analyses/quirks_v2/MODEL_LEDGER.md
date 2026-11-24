@@ -78,3 +78,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 14:22 -0500 | Dorte | opus | Phase-3 1-bot critical review of p3-b | running |
 | 2026-11-24 14:22 -0500 | Elias | sonnet | Phase-3 plot validation of p3-b (3 figures; mechanical lint + visual; brief §4 "go down" for format checks) | running |
 | 2026-11-24 14:22 -0500 | Freja | fable | advisor: both pile-up estimators above cap (STR §11.7 rules 1–2), redesign admissibility, user notice | running |
+| 2026-11-24 14:22 -0500 | Gorm | opus | Phase 3 WP p3-d: T1-c zero-count tests, toy recipe, v2 workspace builder (rule 1: Opus, not Fable as brief §4 would have it for T1) | running |
