@@ -413,8 +413,10 @@ read at the lowest-G candidate; if G is unavailable, at every T2 candidate, and 
 > 10,777; ≥ 1,419 → ≈ 59,500 ESTIMATE; 137 → ≈ 5,700 ESTIMATE). Review covers R08, s = 0; R04–R07 and s = 3 (969 / 846)
 > read, not re-derived. Deviations recorded: R04 has no width cut (STR l.761-763; R04 only); search heuristic differs from
 > PLAN S4 (lowering only). B1/HS/low-pT zeros = "none found by a non-maximal search; not an upper statement". Combined
-> lower bound 1,610 is information only. **Still owed before the binding reading:** independent re-derivation of B₅₀
-> from m and the single M (Ylva, Fable, running).
+> lower bound 1,610 is information only. **B₅₀ arithmetic CONFIRMED** independently (Ylva c3b2e70): R09 63,167 (S) /
+> 62,035 (F) vs 63,170 / 62,037; R08 candidates within 3.9 events [VERIFIED]. Single M = 993,885.9 (Björn's; Tove's value is
+> from rounded weights; effect +0.09 events). The binding day-15 reading itself is made later (calendar answer; Phase-3
+> inputs; own advisor call).
 
 ## 7. Attribution: v1's tag, v1's C′_PU link rule and the frozen rule j ≥ n/2
 
@@ -585,7 +587,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 |---|---|---|---|
 | 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked — FILLED 23 Nov | §7 |
-| 3 | Nils | review of `p2w_subset.py` (ruling (ii)) — FILLED 23 Nov; B₅₀ re-derivation (Ylva) running | §6 |
+| 3 | Nils | review of `p2w_subset.py` (ruling (ii)) — FILLED 23 Nov; B₅₀ confirmed (Ylva c3b2e70) | §6 |
 | 4 | Tora (Opus) | reach re-estimate — FILLED 23 Nov (erratum + mixed-fraction table 1e918e0) | §9 |
 | 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
 | 6 | Phase 3 | MET model and final pilot classification | §9 |

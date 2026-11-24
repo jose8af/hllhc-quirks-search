@@ -70,4 +70,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-23 16:28 -0500 | Tora | opus | reach re-estimate (Gate A method, pilot backgrounds, v1 placeholder efficiencies) | done (610c107) |
 | 2026-11-23 16:36 -0500 | Ulla | fable | advisor: reach re-estimate legitimacy, outlook wording, RESULT notice | done (ruling adopted) |
 | 2026-11-23 19:43 -0500 | Vigdis | fable | advisor: binding m after the subset review (ruling (ii)), conditions, notice | done (ruling adopted) |
-| 2026-11-23 19:44 -0500 | Ylva | fable | rule 1(c): independent B₅₀ re-derivation from m + single M (Vigdis 3(a)) | running |
+| 2026-11-23 19:44 -0500 | Ylva | fable | rule 1(c): independent B₅₀ re-derivation from m + single M (Vigdis 3(a)) | done (c3b2e70) |
