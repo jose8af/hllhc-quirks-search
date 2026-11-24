@@ -53,6 +53,23 @@ def boot(points, p, rule, nb=200, seed=7):
     return (float(np.std(vals, ddof=1)) if len(vals) > 10 else None), len(vals)
 
 
+def edge_counts(r, level):
+    """Counts with q_obs forced to the level-th largest DISTINCT b-only q (ties within 1e-5): for one bin, level 0 =
+    q(n = 0), level 1 = q(n = 1).  Used for the discrete median edge at kappa = 1 (reported both sides, none chosen)."""
+    qb = pt._a(r['qb']); qs = pt._a(r['qsb'])
+    qb = qb[np.isfinite(qb)]; qs = qs[np.isfinite(qs)]
+    lv = []
+    for v in np.sort(qb)[::-1]:
+        if not lv or lv[-1] - v > pt.TIE_TOL:
+            lv.append(v)
+        if len(lv) > level:
+            break
+    qo = lv[level]
+    ksb = int(np.sum(qs >= qo - pt.TIE_TOL)); kb = int(np.sum(qb >= qo - pt.TIE_TOL))
+    return dict(resolved=True, kb=kb, nb=len(qb), ksb=ksb, nsb=len(qs), q_obs=float(qo),
+                cls=(ksb / len(qs)) / (kb / len(qb)), frac_b_at_or_above=kb / len(qb))
+
+
 def onebin():
     res = dict(c1=[], c2=[], demo0=None)
     curves = load('p3-d-pyhf', 'p3-d-exact-curves'); table = load('p3-d-pyhf', 'p3-d-exact-table')
@@ -89,8 +106,16 @@ def onebin():
                                       within_2sigma=(abs(z) <= 2) if z is not None else None))
                 log.info('T1-c (ii) kappa %s m %s p %s: convention %s +- %s, pyhf %s +- %s, z %s', k, m, p, v, e, v0,
                          e0, z)
-    res['demo0'] = [dict(kappa=load('p3-d-pyhf', f'p3-d-pyhf-demo0-k{k}')['rows'][0][x] if False else None)
-                    for k in ()]
+    d1 = load('p3-d-one', 'p3-d-one-c1-k1')
+    if d1 is not None:
+        res['c1_k1_median_edge'] = {}
+        for lev, lab in ((0, 'side n_obs = 0 (analytic convention, CDF_b(0) = 0.5 >= 0.5)'), (1, 'side n_obs = 1')):
+            pts = [(r['mu'], edge_counts(r, lev)) for r in d1['points']]
+            st = pt.limit_status(pts, refine=1e9)
+            res['c1_k1_median_edge'][lab] = dict(mu95=st.get('mu95'), bracket=st.get('bracket'),
+                                                 analytic=[3.0, 5.7][lev],
+                                                 frac_b_n0=[c['frac_b_at_or_above'] for _, c in pts] if lev == 0 else None)
+        log.info('kappa 1 median edge: %s', {k: v['mu95'] for k, v in res['c1_k1_median_edge'].items()})
     dem = []
     for k in ('1', '10', '35'):
         d = load('p3-d-pyhf', f'p3-d-pyhf-demo0-k{k}')

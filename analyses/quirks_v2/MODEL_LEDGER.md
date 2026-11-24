@@ -89,4 +89,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 15:27 -0500 | Ivar | opus | p3-b fixer cycle 2 (resumed: B-new-1 + C items → v3) | done (P3B v3) |
 | 2026-11-24 15:32 -0500 | Oddvar | opus | p3-b 1-bot cycle 3 critical re-review (fresh; last cycle before escalation) | done: ITERATE (0 A, 1 B text-only, 6 C) → escalation |
 | 2026-11-24 15:44 -0500 | Sigrun | fable | advisor: check the p3-b review-escalation DECISION notice | done (7 corrections applied) |
-| 2026-11-24 15:55 -0500 | Tuva | fable | advisor: T1-c (iii)–(v) not evaluable as specified; κ=1 edge; no-credit bound fit vs generation | running |
+| 2026-11-24 15:55 -0500 | Tuva | fable | advisor: T1-c (iii)–(v) not evaluable as specified; κ=1 edge; no-credit bound fit vs generation | done (ruling adopted) |
