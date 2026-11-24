@@ -91,3 +91,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 15:44 -0500 | Sigrun | fable | advisor: check the p3-b review-escalation DECISION notice | done (7 corrections applied) |
 | 2026-11-24 15:55 -0500 | Tuva | fable | advisor: T1-c (iii)–(v) not evaluable as specified; κ=1 edge; no-credit bound fit vs generation | done (ruling adopted) |
 | 2026-11-24 16:46 -0500 | Sindre | fable | p3-a 1-bot critical review (rule 1(c): feeds the binding reading) | running |
+| 2026-11-24 16:46 -0500 | Tormod | opus | Phase 3 WP p3-g: B1 + B3 development tests and DP2 inputs (channel (i) after the pilot classification) | running |

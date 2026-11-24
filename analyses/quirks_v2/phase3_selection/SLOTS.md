@@ -29,3 +29,4 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 16:29 -0500 | p3-d (Gorm) | schrodinger: probes done (p3-d-pchk, -pchk2, -probe); p3-d-one relaunched (14 pending: T1-c (ii), recipe), <= 1 job
 - 2026-11-24 16:44 -0500 p3-a Aurora: RELEASED landau (campaigns p3-a-cls-m [stopped], p3-a-clsxz 115/115, p3-a-clsxb 116/116; nothing running). Left on landau scratch: /home/scratch/jdochoa/p3a_slice (slices, numba cache), /home/scratch/jdochoa/p3a_cache_seed.
 2026-11-24 16:45 -0500 | p3-e-devpu1 (orchestrator launch) | landau | 3 jobs (cap) | 297 jobs × ≈ 18 min ≈ 92 CPU-h, ≈ 31 h wall at 3; driver on landau | campaign p3-e-devpu1 (dev.pu1, sealed per Freja A2)
+2026-11-24 16:46 -0500 | p3-a review (Sindre) | maxwell | 1 light job (nice 15, read-only recount of p3a outputs, < 0.1 CPU-h) | checked: qv2run job count 1
