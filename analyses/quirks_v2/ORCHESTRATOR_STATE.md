@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-24 14:50 -0500 (Opus orchestrator, PHASE-3 session) · **Branch:** `v2-jfc` · **Phase:** **3 RUNNING** (started 24 Nov 10:04); day 8 (day 0 = 2026-11-16)
+**Updated:** 2026-11-24 14:48 -0500 (Opus orchestrator, PHASE-3 session) · **Branch:** `v2-jfc` · **Phase:** **3 RUNNING** (started 24 Nov 10:04); day 8 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -76,7 +76,7 @@ Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE 
 
 ## 1. What is running unattended (check, do not disturb)
 
-Agents (24 Nov 14:50): **Aurora** (Fable, p3-a final pilot classification, landau ≤ 3), **Birgit** (Fable, p3-c MET model, schrodinger ≤ 2), **Gorm** (Opus, p3-d T1-c + toy recipe + v2 workspace builder, schrodinger 1 + maxwell 2), **Hilde** (Opus, p3-e dev.pu1 campaign definition + 1 test job; orchestrator launches the campaign after pre-flight), **Ivar** (Opus, p3-b fixer → P3B v2; then a FRESH critical reviewer + plot validator = 1-bot cycle 2), **Jorunn** (Opus, investigator: occupancy cause by Mon 30 Nov + thinning re-find yield; maxwell 1, 3 after 19:00). Done: Casper (p3-b), Dorte (review), Elias (plots), Freja (advisor + addendum 1). **B2 status (binding wording, Freja):** both estimators above the cap on development, reviewed; rule-1 pause NOT met now (binding at day 15); thinning: redesign identified (re-find, ≈ 1,200 CPU-h, user at the pause); occupancy: cause investigation, one redesign only if a cause is found, else not submitted; dev.pu1 sealed (no agent opens its R06+ counts or crossing rungs) until a redesign is hashed or the investigation closes. RESULT notice sent 14:47. Must not: launch p4a-b2-prod-pu1/pu2; quote R08/R09 pile-up as an estimate.
+Agents (24 Nov 14:48): **Aurora** (Fable, p3-a final pilot classification, landau ≤ 3), **Birgit** (Fable, p3-c MET model, schrodinger ≤ 2), **Gorm** (Opus, p3-d T1-c + toy recipe + v2 workspace builder, schrodinger 1 + maxwell 2), **Hilde** (Opus, p3-e dev.pu1 campaign definition + 1 test job; orchestrator launches the campaign after pre-flight), **Ivar** (Opus, p3-b fixer → P3B v2; then a FRESH critical reviewer + plot validator = 1-bot cycle 2), **Jorunn** (Opus, investigator: occupancy cause by Mon 30 Nov + thinning re-find yield; maxwell 1, 3 after 19:00). Done: Casper (p3-b), Dorte (review), Elias (plots), Freja (advisor + addendum 1). **B2 status (binding wording, Freja):** both estimators above the cap on development, reviewed; rule-1 pause NOT met now (binding at day 15); thinning: redesign identified (re-find, ≈ 1,200 CPU-h, user at the pause); occupancy: cause investigation, one redesign only if a cause is found, else not submitted; dev.pu1 sealed (no agent opens its R06+ counts or crossing rungs) until a redesign is hashed or the investigation closes. RESULT notice sent 14:47. Must not: launch p4a-b2-prod-pu1/pu2; quote R08/R09 pile-up as an estimate.
 Phase-2 campaigns is in LOG.md and the markers (failed-marker check: the LAST line of each marker; known failed
 last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e1500 grids3 (replaced by grids4)).
 
