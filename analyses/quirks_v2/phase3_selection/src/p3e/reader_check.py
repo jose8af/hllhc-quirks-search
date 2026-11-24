@@ -35,7 +35,10 @@ def main():
     tn, tr = tmpl(sn), tmpl(sr)
     res = dict(new=new, ref=ref, n_keys_new=len(sn), n_keys_ref=len(sr),
                keys_only_new=sorted(set(tn) - set(tr)), keys_only_ref=sorted(set(tr) - set(tn)),
-               dtype_or_shape_diff=sorted(k for k in set(tn) & set(tr) if tn[k] != tr[k]))
+               dtype_or_shape_diff=sorted(k for k in set(tn) & set(tr) if tn[k] != tr[k] and not
+                                          (tn[k][0][:2] == tr[k][0][:2] == '<U' and tn[k][1] == tr[k][1])),
+               unicode_length_only_diff={k: [tn[k][0], tr[k][0]] for k in set(tn) & set(tr) if tn[k] != tr[k] and
+                                         tn[k][0][:2] == tr[k][0][:2] == '<U' and tn[k][1] == tr[k][1]})
     z, job = RP.open_job(new)
     res['job'] = {k: job[k] for k in ('id', 'sample', 'qv2_stream', 'chunk', 'ev0', 'n_events', 'rho', 'roads', 'seed',
                                       'dump_events')}

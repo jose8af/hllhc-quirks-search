@@ -80,3 +80,6 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 14:22 -0500 | Freja | fable | advisor: both pile-up estimators above cap (STR §11.7 rules 1–2), redesign admissibility, user notice | done (ruling adopted) |
 | 2026-11-24 14:22 -0500 | Gorm | opus | Phase 3 WP p3-d: T1-c zero-count tests, toy recipe, v2 workspace builder (rule 1: Opus, not Fable as brief §4 would have it for T1) | running |
 | 2026-11-24 14:24 -0500 | Hilde | opus | Phase 3 p3-e: define + test-job the dev.pu1 campaign (STR row 12); orchestrator launches | running |
+| 2026-11-24 14:48 -0500 | Freja | fable | advisor addendum 1: occupancy cause not confirmed → investigation; thinning path; dev.pu1 now; notice now | done (adopted) |
+| 2026-11-24 14:48 -0500 | Ivar | opus | p3-b fixer, 1-bot cycle 1 (Dorte A1/B1–B9, Elias figure A/B) → P3B v2 | running |
+| 2026-11-24 14:48 -0500 | Jorunn | opus | investigator: occupancy-model cause (pre-stated criterion; by 30 Nov) + thinning re-find yield on 400 control trials | running |

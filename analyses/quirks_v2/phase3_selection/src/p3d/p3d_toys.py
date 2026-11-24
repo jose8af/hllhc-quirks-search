@@ -211,40 +211,74 @@ class Engine:
             return float('inf')
         return float(0.5 * gs @ np.linalg.solve(Hs, gs))
 
-    def two_fits(self, d, mu, init_fix):
+    METHODS = ('SLSQP', 'L-BFGS-B')       # pyhf's scipy optimizer, method option (pyhf opt_scipy.py l.64)
+
+    def fit1(self, d, mu, start, method):
+        """One pyhf fit: fixed mu (mu given) or free (mu None).  Returns (pars, twice_nll) or None on exception."""
         c0 = time.process_time()
-        pf, t_fix = pyhf.infer.mle.fixed_poi_fit(mu, d, self.model, list(init_fix), self.bounds.tolist(),
-                                                 self.fixed, return_fitted_val=True, do_stitch=True)
-        pf = np.asarray(self.tl.tolist(pf), float)
-        pu, t_free = pyhf.infer.mle.fit(d, self.model, list(pf), self.bounds.tolist(), self.fixed,
-                                        return_fitted_val=True)
-        pu = np.asarray(self.tl.tolist(pu), float)
-        self.cpu_fit += time.process_time() - c0; self.nfit += 2
-        return pf, float(t_fix), pu, float(t_free)
+        try:
+            s0 = np.clip(start, self.bounds[:, 0], self.bounds[:, 1])
+            if mu is not None:
+                s0[self.i_mu] = mu
+                p, t = pyhf.infer.mle.fixed_poi_fit(mu, d, self.model, list(s0), self.bounds.tolist(), self.fixed,
+                                                    return_fitted_val=True, do_stitch=True, method=method)
+            else:
+                p, t = pyhf.infer.mle.fit(d, self.model, list(s0), self.bounds.tolist(), self.fixed,
+                                          return_fitted_val=True, do_stitch=True, method=method)
+            out = (np.asarray(self.tl.tolist(p), float), float(t))
+        except Exception:  # noqa: BLE001 -- a failed attempt, counted by the caller
+            out = None
+        self.cpu_fit += time.process_time() - c0; self.nfit += 1
+        return out
+
+    def best_fit(self, d, mu, starts, first_ok=True):
+        """Attempts (start x method) in order; accepted = finite and Newton decrement < ND_MAX.  Returns
+        (pars, t, newton, attempt index) of the first accepted (first_ok) or of the lowest accepted t."""
+        best = None; k = 0
+        for s0 in starts:
+            for meth in self.METHODS:
+                r = self.fit1(d, mu, s0, meth); k += 1
+                if r is None or not np.isfinite(r[1]):
+                    continue
+                nd = self.newton(r[0], d, mu is not None)
+                if nd < ND_MAX and (best is None or r[1] < best[1]):
+                    best = (r[0], r[1], nd, k - 1)
+                    if first_ok:
+                        return best
+                if best is not None and not first_ok:
+                    break
+        return best
+
+    def two_fits(self, d, mu, init_fix):
+        r1 = self.fit1(d, mu, init_fix, 'SLSQP'); r2 = self.fit1(d, None, r1[0], 'SLSQP')
+        return r1[0], r1[1], r2[0], r2[1]
 
     def q(self, n, aux, mu, gen=None):
-        """q~_mu with the guard.  Returns (q or nan, status 0 ok / 1 retried / 2 dropped, newton of the accepted)."""
+        """q~_mu with the guard.  Fixed fit: starts warm / generated values / default, each with SLSQP then L-BFGS-B,
+        first accepted.  Free fit: from the accepted fixed-fit point and from the generated values (mu at its
+        generated value), the lower accepted minimum (never above t_fix: the fixed-fit point is feasible).
+        Returns (q or nan, status 0 first attempt / 1 retried / 2 dropped, max Newton decrement)."""
         d = self.tl.astensor(self.data(n, aux))
         starts = []
         if self.prev is not None and self.st['warm']:
-            p0 = self.prev.copy(); p0[self.i_mu] = mu; starts.append(p0)
+            starts.append(self.prev.copy())
         if gen is not None:
             starts.append(gen.copy())
         starts.append(self.default_init(aux, mu))
-        for k, s0 in enumerate(starts):
-            s0 = np.clip(s0, self.bounds[:, 0], self.bounds[:, 1]); s0[self.i_mu] = mu
-            try:
-                pf, tf, pu, tu = self.two_fits(d, mu, s0)
-            except Exception:  # noqa: BLE001 -- counted as a failed attempt
-                continue
-            if not (np.isfinite(tf) and np.isfinite(tu)) or tu > tf + 1e-6 * max(1.0, abs(tf)):
-                continue
-            n1 = self.newton(pf, d, True); n2 = self.newton(pu, d, False)
-            if n1 < ND_MAX and n2 < ND_MAX:
-                self.prev = pu
-                muhat = pu[self.i_mu]
-                return (0.0 if muhat > mu else max(tf - tu, 0.0)), (0 if k == 0 else 1), max(n1, n2)
-        return float('nan'), 2, None
+        fx = self.best_fit(d, mu, starts, first_ok=True)
+        if fx is None:
+            return float('nan'), 2, None
+        pf, tf, n1, k1 = fx
+        fr_starts = [pf] + ([gen.copy()] if gen is not None else []) + ([self.prev.copy()] if self.prev is not None else [])
+        fr = self.best_fit(d, None, fr_starts, first_ok=False)
+        if fr is None:
+            return float('nan'), 2, None
+        pu, tu, n2, k2 = fr
+        if tu > tf + 1e-6 * max(1.0, abs(tf)):
+            return float('nan'), 2, None
+        self.prev = pu
+        muhat = pu[self.i_mu]
+        return (0.0 if muhat > mu else max(tf - tu, 0.0)), (0 if k1 == 0 else 1), max(n1, n2)
 
     def draw(self, mu, ntoys, rng, a, aux_m=None, lam_true=None, th_mode='draw'):
         """Hybrid draw.  aux_m: the auxiliary observations used for the Gamma(m + a) posterior (default: spec m).
