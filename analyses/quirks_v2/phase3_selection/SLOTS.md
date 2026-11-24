@@ -15,3 +15,4 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 14:45 -0500 | p3-b review (Dorte) | maxwell | RELEASED (re-derivation done, ~0.17 CPU-h, no process left)
 2026-11-24 14:48 -0500 | p3-e (Hilde) | maxwell | RELEASED (devpu1-0000 done 14:47, reader check done; no p3-e process left)
 2026-11-24 14:52 -0500 | p3-b fix (Ivar) | maxwell | 3 jobs, nice 19 | B3 check: is_check.py --mode strat --all (plain 1e5 toys + fresh IS 2000 toys on each of the 6,400 stored occmod stage-B configurations; read only, no campaign) | <= 0.9 CPU-h, ~20 min wall; then 1 plot job (<= 10 min) | uptime 0.53, who 2, no jdochoa python process
+2026-11-24 14:54 -0500 | p3-d (Gorm) | maxwell <= 2 jobs (numpy) + schrodinger 1 job (jax) | maxwell: p3-d-pyhf (11 jobs, ~2 CPU-h) now; schrodinger: dev smoke now, then p3-d-one and p3-d-lim/st/cov (jax toys), until about 26 Nov | uptime maxwell 2.77 (reviewer job present), schrodinger 1.1; no p3-d process before

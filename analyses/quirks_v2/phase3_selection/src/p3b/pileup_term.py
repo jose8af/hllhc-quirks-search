@@ -10,6 +10,12 @@ evaluated under two bookkeepings that the frozen text leaves open at day 15 (bot
   'measured_dev'  : s_model as measured on the development sample, the evaluable development test rungs only
                     (width family: R06 alone -> n = 1, b̂ := 0, σ_b := b0), s_f = r.m.s. of ln r over the evaluable
                     development 2S crossing rungs when every one of them is within ln 1.5.
+Review cycle 1 (fixer Ivar, 2026-11-24; DOR B2, B4, B5) adds, without changing any v1 key:
+  'planning_cap_lastR06_*' : the planning convention with R06 as the last evaluable width-test rung (P3B §3.4: R07 is
+                    not evaluable at the development direct rate, 42 expected counts, σ_tot 0.159; it is at v1's rate);
+  occupancy_B2b_model at R09 (and R09 ∧ N_2S2 ≥ 3) = the B2-b R08 value × the same fit-probability fraction;
+  no_credit_value.events_zero_count_68_dev16000: the zero-count bound of the 16,000 development trials (a reading
+                    to flag, DOR B2: "the samples that exist at day 15"; not chosen here).
 """
 import hashlib
 import json
@@ -63,6 +69,7 @@ def main():
                source_sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
                N_trig_used=NTRIG, N_trig_source='phase1_strategy/src/strategy_budget.py l.68 (v1 bsum_wp n_trig)',
                no_credit_value=dict(events_mean=NTRIG / 96000, events_zero_count_68=NTRIG * 1.14 / 96000,
+                                    events_zero_count_68_dev16000=NTRIG * 1.14 / 16000,
                                     note='STR l.1177 (485 events at v1 N_trig) and the frozen script draws '
                                          'N_trig/96,000 x Exp(1) as the cap of the pile-up term (strategy_budget.py '
                                          'l.678); unchanged by this work package'),
@@ -94,13 +101,19 @@ def main():
             p = occ['predictions'][c]['const']
             rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'], events=p['rate'] * NTRIG, ln_r_dev=p['ln_r'],
                                               sigma_tot_dev=p['sigma_tot'])
+        elif c.startswith('R09'):
+            p = occ['predictions']['R08x2S>=3' if 'x2S' in c else 'R08']['const']
+            rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'] * f09, events=p['rate'] * f09 * NTRIG,
+                                              ln_r_dev=None, sigma_tot_dev=None, fitprob_fraction=f09)
         d_in_p, d_fit, d_2s = distances(c, 'R07')
         d_in_m, _, _ = distances(c, 'R06')
         sf_cap = CAP if 'x2S' in c else 0.0
         w = dict(planning_cap_with_2S_credit=s_tot(CAP, sf_cap, 0.0, B0, d_in_p, d_fit),
                  planning_cap_no_2S_credit=s_tot(CAP, 0.0, 0.0, B0, d_in_p, d_fit + d_2s),
                  measured_dev=s_tot(sm_occ, (sf_meas if (cross_ok and 'x2S' in c) else 0.0), 0.0, B0, d_in_m,
-                                    d_fit + (0 if (cross_ok or 'x2S' not in c) else d_2s)))
+                                    d_fit + (0 if (cross_ok or 'x2S' not in c) else d_2s)),
+                 planning_cap_lastR06_with_2S_credit=s_tot(CAP, sf_cap, 0.0, B0, d_in_m, d_fit),
+                 planning_cap_lastR06_no_2S_credit=s_tot(CAP, 0.0, 0.0, B0, d_in_m, d_fit + d_2s))
         rec['width_s_tot'] = w
         rec['distances'] = dict(planning=dict(d_in=d_in_p, d_out=d_fit + d_2s),
                                 measured_dev=dict(d_in=d_in_m, d_out=d_fit + (0 if cross_ok else d_2s)))

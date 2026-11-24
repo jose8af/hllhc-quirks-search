@@ -110,3 +110,15 @@ FLAG FOR HUMAN: NO
 - DECISION: per-job Pythia MPI init (as Casper's prod campaigns), +≈ 70 CPU-s/job (≈ 5.8 CPU-h). ALTERNATIVES: per-node
   shared init file as c1.pu1. CONFIDENCE: medium. FLAG FOR HUMAN: no (orchestrator's call; see P3E §6).
 - Open: interaction-level Pythia seeds (mod 9×10⁸) repeat at ≈ 0.5 % between dev.pu1 and prod.pu1 (ESTIMATE; P3E §6).
+
+## p3-d (Gorm, T1 likelihood Phase-3 part) — 2026-11-24
+- 14:32 Plan in `logs/executor_gorm_2026-11-24_14-32.md` (readings R1-R9 of the frozen text declared before any run).
+- 14:50 pyhf 0.7.6 ToyCalculator generates at the conditional MLE (source, calculators.py l.93-116); on the one-bin
+  m = 0 workspace lambda_hat sits at the lower bound and no background-only toy fluctuates (smoke: 0/200, expected
+  limit 3.08 ~ the B = 0 value 2.996 against the convention's 10.8 at kappa = 10). STR l.1601 [U] confirmed in smoke.
+- 14:51 Exact one-bin sums re-derived (p3d_exact.py): STR l.1680-1686 reproduced to every printed digit.
+- 14:52 v1-count workspace (v1 factor chains at FB2&h>5&o>5, v2 treatment): pyhf fits fail in 20-40 % of toys at
+  mu ~ mu95 (deficit region; counts 3e5-1e9, pile-up log widths up to 5.2). Remediation attempts in the session log.
+  DECISION: the term's independent binomial widths are combined into one nuisance per term (R1).
+  ALTERNATIVES: one nuisance per factor (about 11 more parameters).
+  CONFIDENCE: MEDIUM (exact for the uncensored log-normal; censoring then bounds the product). FLAG FOR HUMAN: NO.

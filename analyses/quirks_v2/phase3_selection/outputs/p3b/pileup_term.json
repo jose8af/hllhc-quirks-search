@@ -7,6 +7,7 @@
  "no_credit_value": {
   "events_mean": 425.5,
   "events_zero_count_68": 485.06999999999994,
+  "events_zero_count_68_dev16000": 2910.4199999999996,
   "note": "STR l.1177 (485 events at v1 N_trig) and the frozen script draws N_trig/96,000 x Exp(1) as the cap of the pile-up term (strategy_budget.py l.678); unchanged by this work package"
  },
  "estimators": {
@@ -47,7 +48,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1351550360360548,
     "planning_cap_no_2S_credit": 0.1351550360360548,
-    "measured_dev": 0.354807743664093
+    "measured_dev": 0.354807743664093,
+    "planning_cap_lastR06_with_2S_credit": 0.1351550360360548,
+    "planning_cap_lastR06_no_2S_credit": 0.1351550360360548
    },
    "distances": {
     "planning": {
@@ -89,7 +92,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1351550360360548,
     "planning_cap_no_2S_credit": 0.1351550360360548,
-    "measured_dev": 0.354807743664093
+    "measured_dev": 0.354807743664093,
+    "planning_cap_lastR06_with_2S_credit": 0.1351550360360548,
+    "planning_cap_lastR06_no_2S_credit": 0.1351550360360548
    },
    "distances": {
     "planning": {
@@ -131,7 +136,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1351550360360548,
     "planning_cap_no_2S_credit": 0.1351550360360548,
-    "measured_dev": 0.354807743664093
+    "measured_dev": 0.354807743664093,
+    "planning_cap_lastR06_with_2S_credit": 0.1351550360360548,
+    "planning_cap_lastR06_no_2S_credit": 0.1351550360360548
    },
    "distances": {
     "planning": {
@@ -173,7 +180,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1351550360360548,
     "planning_cap_no_2S_credit": 0.1351550360360548,
-    "measured_dev": 0.5387861253384038
+    "measured_dev": 0.5387861253384038,
+    "planning_cap_lastR06_with_2S_credit": 0.4273977511160683,
+    "planning_cap_lastR06_no_2S_credit": 0.4273977511160683
    },
    "distances": {
     "planning": {
@@ -215,7 +224,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.4273977511160683,
     "planning_cap_no_2S_credit": 0.4273977511160683,
-    "measured_dev": 0.8851532921119745
+    "measured_dev": 0.8851532921119745,
+    "planning_cap_lastR06_with_2S_credit": 0.8221159889812196,
+    "planning_cap_lastR06_no_2S_credit": 0.8221159889812196
    },
    "distances": {
     "planning": {
@@ -248,11 +259,19 @@
     "mc_rel_error": 0.07224340719793633,
     "fitprob_fraction": 0.011850731215330307
    },
-   "occupancy_B2b_model": null,
+   "occupancy_B2b_model": {
+    "rate_per_trial": 1.286129524356399e-07,
+    "events": 5.253581881091018,
+    "ln_r_dev": null,
+    "sigma_tot_dev": null,
+    "fitprob_fraction": 0.011850731215330307
+   },
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.5891271437917609,
     "planning_cap_no_2S_credit": 0.5891271437917609,
-    "measured_dev": 0.9736006904423558
+    "measured_dev": 0.9736006904423558,
+    "planning_cap_lastR06_with_2S_credit": 0.9166660532777104,
+    "planning_cap_lastR06_no_2S_credit": 0.9166660532777104
    },
    "distances": {
     "planning": {
@@ -294,7 +313,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1911380849852131,
     "planning_cap_no_2S_credit": 1.2238809046653174,
-    "measured_dev": 0.4194035296539679
+    "measured_dev": 0.4194035296539679,
+    "planning_cap_lastR06_with_2S_credit": 0.1911380849852131,
+    "planning_cap_lastR06_no_2S_credit": 1.2238809046653174
    },
    "distances": {
     "planning": {
@@ -336,7 +357,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1911380849852131,
     "planning_cap_no_2S_credit": 1.2238809046653174,
-    "measured_dev": 0.4194035296539679
+    "measured_dev": 0.4194035296539679,
+    "planning_cap_lastR06_with_2S_credit": 0.1911380849852131,
+    "planning_cap_lastR06_no_2S_credit": 1.2238809046653174
    },
    "distances": {
     "planning": {
@@ -378,7 +401,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1911380849852131,
     "planning_cap_no_2S_credit": 1.2238809046653174,
-    "measured_dev": 0.4194035296539679
+    "measured_dev": 0.4194035296539679,
+    "planning_cap_lastR06_with_2S_credit": 0.1911380849852131,
+    "planning_cap_lastR06_no_2S_credit": 1.2238809046653174
    },
    "distances": {
     "planning": {
@@ -420,7 +445,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.1911380849852131,
     "planning_cap_no_2S_credit": 1.2238809046653174,
-    "measured_dev": 0.5833534731013197
+    "measured_dev": 0.5833534731013197,
+    "planning_cap_lastR06_with_2S_credit": 0.4482585430585567,
+    "planning_cap_lastR06_no_2S_credit": 1.289296871437126
    },
    "distances": {
     "planning": {
@@ -462,7 +489,9 @@
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.4482585430585567,
     "planning_cap_no_2S_credit": 1.289296871437126,
-    "measured_dev": 0.9129661199950787
+    "measured_dev": 0.9129661199950787,
+    "planning_cap_lastR06_with_2S_credit": 0.8331515967124328,
+    "planning_cap_lastR06_no_2S_credit": 1.468159488739918
    },
    "distances": {
     "planning": {
@@ -495,11 +524,19 @@
     "mc_rel_error": 0.07326262134497569,
     "fitprob_fraction": 0.011850731215330307
    },
-   "occupancy_B2b_model": null,
+   "occupancy_B2b_model": {
+    "rate_per_trial": 1.114314484569527e-07,
+    "events": 4.551751806569604,
+    "ln_r_dev": null,
+    "sigma_tot_dev": null,
+    "fitprob_fraction": 0.011850731215330307
+   },
    "width_s_tot": {
     "planning_cap_with_2S_credit": 0.6044316961561045,
     "planning_cap_no_2S_credit": 1.6772298888195738,
-    "measured_dev": 0.9989539980159415
+    "measured_dev": 0.9989539980159415,
+    "planning_cap_lastR06_with_2S_credit": 0.926576244567948,
+    "planning_cap_lastR06_no_2S_credit": 1.8183250428977806
    },
    "distances": {
     "planning": {

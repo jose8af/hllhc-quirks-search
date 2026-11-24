@@ -259,26 +259,38 @@ class Engine:
         generated value), the lower accepted minimum (never above t_fix: the fixed-fit point is feasible).
         Returns (q or nan, status 0 first attempt / 1 retried / 2 dropped, max Newton decrement)."""
         d = self.tl.astensor(self.data(n, aux))
-        starts = []
-        if self.prev is not None and self.st['warm']:
-            starts.append(self.prev.copy())
-        if gen is not None:
-            starts.append(gen.copy())
-        starts.append(self.default_init(aux, mu))
+        warm = self.st['warm'] and self.prev is not None
+        # 1. free fit: from the generated values and the previous toy's free minimum; the lower accepted minimum
+        fr_starts = ([gen.copy()] if gen is not None else []) + ([self.prev[1].copy()] if warm else [])
+        if not fr_starts:
+            fr_starts = [self.default_init(aux, 0.0)]
+        fr = self.best_fit(d, None, fr_starts, first_ok=False)
+        if fr is None:
+            fr = self.best_fit(d, None, [self.default_init(aux, 0.0)], first_ok=True)
+            if fr is None:
+                return float('nan'), 2, None
+        pu, tu, n2, k2 = fr
+        muhat = pu[self.i_mu]
+        # 2. fixed fit: from the free minimum (mu set), the previous toy's fixed minimum, the generated values
+        starts = [pu.copy()] + ([self.prev[0].copy()] if warm else []) + ([gen.copy()] if gen is not None else [])
         fx = self.best_fit(d, mu, starts, first_ok=True)
+        retried = fx is None or fx[3] > 0
+        if fx is None:          # 3. continuation in mu from mu_hat (4 steps), each step warm-started
+            p = pu.copy(); ok = True
+            for k in range(1, 5):
+                mk = muhat + (mu - muhat) * k / 4.0
+                r = self.best_fit(d, mk, [p], first_ok=True)
+                if r is None:
+                    ok = False; break
+                p = r[0]
+            fx = r if ok else None
         if fx is None:
             return float('nan'), 2, None
         pf, tf, n1, k1 = fx
-        fr_starts = [pf] + ([gen.copy()] if gen is not None else []) + ([self.prev.copy()] if self.prev is not None else [])
-        fr = self.best_fit(d, None, fr_starts, first_ok=False)
-        if fr is None:
-            return float('nan'), 2, None
-        pu, tu, n2, k2 = fr
         if tu > tf + 1e-6 * max(1.0, abs(tf)):
             return float('nan'), 2, None
-        self.prev = pu
-        muhat = pu[self.i_mu]
-        return (0.0 if muhat > mu else max(tf - tu, 0.0)), (0 if k1 == 0 else 1), max(n1, n2)
+        self.prev = (pf, pu)
+        return (0.0 if muhat > mu else max(tf - tu, 0.0)), (1 if retried else 0), max(n1, n2)
 
     def draw(self, mu, ntoys, rng, a, aux_m=None, lam_true=None, th_mode='draw'):
         """Hybrid draw.  aux_m: the auxiliary observations used for the Gamma(m + a) posterior (default: spec m).
