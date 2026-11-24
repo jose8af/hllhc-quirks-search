@@ -77,5 +77,6 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 14:20 -0500 | Casper | opus | (outcome) p3-b B2 development | done (f881aa3): both estimators above cap |
 | 2026-11-24 14:22 -0500 | Dorte | opus | Phase-3 1-bot critical review of p3-b | running |
 | 2026-11-24 14:22 -0500 | Elias | sonnet | Phase-3 plot validation of p3-b (3 figures; mechanical lint + visual; brief §4 "go down" for format checks) | done: 3/3 figures FAIL (A) |
-| 2026-11-24 14:22 -0500 | Freja | fable | advisor: both pile-up estimators above cap (STR §11.7 rules 1–2), redesign admissibility, user notice | running |
+| 2026-11-24 14:22 -0500 | Freja | fable | advisor: both pile-up estimators above cap (STR §11.7 rules 1–2), redesign admissibility, user notice | done (ruling adopted) |
 | 2026-11-24 14:22 -0500 | Gorm | opus | Phase 3 WP p3-d: T1-c zero-count tests, toy recipe, v2 workspace builder (rule 1: Opus, not Fable as brief §4 would have it for T1) | running |
+| 2026-11-24 14:24 -0500 | Hilde | opus | Phase 3 p3-e: define + test-job the dev.pu1 campaign (STR row 12); orchestrator launches | running |
