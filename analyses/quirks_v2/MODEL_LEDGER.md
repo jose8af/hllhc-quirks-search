@@ -84,5 +84,6 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 14:48 -0500 | Ivar | opus | p3-b fixer, 1-bot cycle 1 (Dorte A1/B1–B9, Elias figure A/B) → P3B v2 | done (P3B v2) |
 | 2026-11-24 14:48 -0500 | Jorunn | opus | investigator: occupancy-model cause (pre-stated criterion; by 30 Nov) + thinning re-find yield on 400 control trials | running |
 | 2026-11-24 14:52 -0500 | Ketil | fable | advisor: dev.pu1 interaction-seed overlap with prod.pu1 vs 'independent of 14'; launch | done (ruling adopted) |
-| 2026-11-24 15:16 -0500 | Liv | opus | p3-b 1-bot cycle 2 critical re-review (fresh) | running |
+| 2026-11-24 15:16 -0500 | Liv | opus | p3-b 1-bot cycle 2 critical re-review (fresh) | done: ITERATE (0 A, 1 B, 7 C) |
 | 2026-11-24 15:16 -0500 | Magne | sonnet | p3-b plot re-validation cycle 2 (format check, brief §4 go down) | done: 3/3 PASS, C only |
+| 2026-11-24 15:27 -0500 | Ivar | opus | p3-b fixer cycle 2 (resumed: B-new-1 + C items → v3) | running |

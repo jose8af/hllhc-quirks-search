@@ -20,3 +20,6 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 15:04 -0500 | p3-f (Jorunn) | maxwell | 1 job, nice 10-19 | p3-f code smoke/timing tests (interactive, <= 10 min each) then p3-f-occx validation + campaign (1 job until 19:00; after 19:00 up to 4 minus running qv2run jobs), then p3-f-refind | until ~26 Nov
 2026-11-24 15:13 -0500 | p3-b fix (Ivar) | maxwell | B3 check: 3 jobs ended 15:12 (3 × 1,063 s user = 0.886 CPU-h, max RSS 0.26 GB, exit 0); now 1 job, nice 19: plots.py regeneration (<= 10 min)
 2026-11-24 15:15 -0500 | p3-b fix (Ivar) | maxwell | RELEASED (B3 check 3 jobs 0.886 CPU-h + plot job 4.5 s CPU done; no Ivar process left)
+2026-11-24 15:17 -0500 | p3-c (Birgit) | schrodinger | still <= 2 jobs: one slot p3-c-mjw (stops after 4 jobs), one slot p3-c-mjs2 + p3-c-ap-mjs2 (second driver, max-per-node 1); p3-d has its own 1 job here | until about 18:00
+2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | 1 job, nice 19, read-only IS re-analysis (review/critical/liv_ischeck.py), < 2 min
+2026-11-24 15:19 -0500 | p3-b review cycle 2 (Liv) | maxwell | RELEASED
