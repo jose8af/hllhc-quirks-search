@@ -31,9 +31,11 @@ on the jet-response tail carries "NOT SOURCED".
 | `samples.<process>` | pooled generator sums: `sigma_gen_pb`, `var.<variation>.{sigma_pb,f_presel,n_eff}`, `cutflow`, `by_pthat`, ... |
 | `frozen` | the frozen planning inputs used (v1 N_trig of the twelve processes, planning values of the additions, M of v1) |
 
-## Per-event v2 weights of the pilot: `data/p3c/p3-c-pw/000/p3-c-pw-NN.npz`
-Array `w` (one row per pilot event, file order of `tools/runner/examples/p3c/p3-c-pw-NN.txt`), columns in `meta.cols`:
+## Per-event v2 weights of the pilot: `data/p3c/p3-c-pw2/000/p3-c-pw2-NN.npz`
+Array `w` (one row per pilot event, file order of `tools/runner/examples/p3c/p3-c-pw2-NN.txt`), columns in `meta.cols`:
 `chunk` (pilot file number), `event` (index in the file), `truth_met`, `w_v1`, `n_gamma_veto`, `met_reco_v2`,
 `p_v2_mean20` (mean weight of 20 throws), `w_v2_trig_erf_shifted`, `w_v2_<variation>` (single-throw weight, the same
-random numbers for every variation). A pilot event belongs to the v2 full-weight class if `w_v2_nominal > 0` and
+random numbers for every variation), `phimet_reco_v2` (azimuth of the nominal MET_reco of that throw: the
+road axis under the v2 model). Campaign `p3-c-pw` holds the same rows without the last column (weights identical,
+checked). A pilot event belongs to the v2 full-weight class if `w_v2_nominal > 0` and
 `n_gamma_veto == 0`; M = sum of `w_v2_nominal` over that class (w_max = 1).

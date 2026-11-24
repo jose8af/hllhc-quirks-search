@@ -212,3 +212,26 @@ gives n_eff 414 for the nominal, the multijet generation is cut: p3-c-mjw stops 
 stopped by me once 4 files exist), the sliced sample becomes p3-c-mjs2 with one 60,000-event job per slice (the
 20-job p3-c-mjs is not launched). Also seen 15:11: another work package (p3-d) runs one job on schrodinger; the
 runner then gives me one slot instead of two.
+
+## 15:56-17:05 multijet samples finished
+p3-c-mjw stopped by me at 4 files (driver killed; my first pkill pattern also matched my own remote shell, no other
+effect; job 004 killed after 17 CPU-s). For about 30 s four of my processes ran; one yield job held by SIGSTOP for 8
+minutes to stay at two. p3-c-mjs2 (second driver, one slot) 5/5 and p3-c-ap-mjs2 5/5 done 17:04; p3-c-ap-mjw4 2/2 done
+16:12.
+
+## 2026-11-24 17:10 results, artifact, hand-over
+`p3c_dp2.py` on all yield records and the pilot weights -> `outputs/p3c/p3c_results.json`. Check (b) PASS (ln ratio
+-0.004 +- 0.028; 4,054 / 1,927 effective events). Multijets 4.28e7 (tail down 7.1e5, tail up 4.83e8); 92 % of the
+nominal from throws with a jet response below 0.1. Events per pilot count: primary 81.9 (40.5 / 519 for tail down /
+up); M_v2 1,023,164; M_v1 recomputed 993,885.93. Pool: planning table reproduced (169.4), re-allocated 167.8.
+Step-4 script tested on one Z(nunu) file (A-like 0.0303 against 0.0301 from the yield script).
+Figures (4) in `outputs/figures/p3c_*.{pdf,png}`; the tt-bar figure was redrawn once (axis label overflow, log ticks).
+CPU: 11.2 CPU-h from the markers + about 0.4 CPU-h over ssh. Slot released. Artifact written:
+`outputs/P3C_MET_MODEL_birgit_2026-11-24.md`. No git commit (brief). Not done: pixi tasks (outside write scope).
+
+## 2026-11-24 17:19 p3-c-pw2
+p3-a's daily note says the v2 model changes the road axis of the pilot classification as well as the weights. The
+pilot-weight files lacked the MET_reco azimuth; `p3c_pilot_weights.py` got one more column (`phimet_reco_v2`, last)
+and campaign p3-c-pw2 (23/23 done 17:18, 0.06 CPU-h) rewrote the files; the other 20 columns are identical to
+p3-c-pw (array comparison) and M_v2 is unchanged (1,023,164.32). SCHEMA.md and the artifact point to p3-c-pw2.
+Slot released 2026-11-24 17:19.

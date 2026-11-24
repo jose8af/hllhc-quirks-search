@@ -62,7 +62,7 @@ def main(argv):
         for s in range(5):
             jobs += gen_jobs(f'p3-c-{what}', f'mjs{s}', n, 60000, c0)
         write(f'p3-c-{what}', jobs, 0.33 * 5 * n, 1500, me, 'multijets, unweighted pT-hat slices 100-200-400-800-1600-inf')
-    elif what == 'pw':
+    elif what in ('pw', 'pw2'):
         files = sorted(str(p) for p in Path(PILOT).glob('p2-c-pilot-znn-*/000/*.npz'))
         assert len(files) == 460, len(files)
         per = 20
@@ -71,10 +71,10 @@ def main(argv):
         for k in range(0, len(files), per):
             lf = lists / f'p3-c-pw-{k // per:02d}.txt'
             lf.write_text('\n'.join(files[k:k + per]) + '\n')
-            jid = f'p3-c-pw-{k // per:02d}'
+            jid = f'p3-c-{what}-{k // per:02d}'
             jobs.append(dict(id=jid, shard=0, outputs=[f'{jid}.npz'],
                              command=ENV + f'{PY} {SRC}/p3c_pilot_weights.py $QV2_OUT_DIR/{jid}.npz {lf}'))
-        write('p3-c-pw', jobs, 2.0, 1500, me, 'v2 MET-model preselection weights of the 2.3e6 Z(nunu) pilot events '
+        write(f'p3-c-{what}', jobs, 2.0, 1500, me, 'v2 MET-model preselection weights of the 2.3e6 Z(nunu) pilot events '
               '(reads evt, jets, lep, gsum; one output row per pilot event)')
     elif what == 'ap':            # ap <campaign name> <K> <f_tail_prop> <input campaign> <files per job> <proc:n_files> ...
         name, K, fprop, src, per = argv[1], int(argv[2]), argv[3], argv[4], int(argv[5])

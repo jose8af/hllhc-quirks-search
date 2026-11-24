@@ -25,7 +25,7 @@ MODEL = HERE.parents[1] / 'outputs' / 'p3c' / 'model.json'
 VARS = ['nominal', 'core_up', 'core_dn', 'jes_up', 'jes_dn', 'soft_up', 'soft_dn', 'tail_up', 'tail_dn', 'soft_mix',
         'all_up', 'all_dn']
 COLS = (['chunk', 'event', 'truth_met', 'w_v1', 'n_gamma_veto', 'met_reco_v2', 'p_v2_mean20', 'w_v2_trig_erf_shifted']
-        + [f'w_v2_{v}' for v in VARS])
+        + [f'w_v2_{v}' for v in VARS] + ['phimet_reco_v2'])
 K_MEAN = 20
 
 
@@ -44,6 +44,7 @@ def main(argv):
             a[:, 8 + j] = o['w'][:, 0]
             if v == 'nominal':
                 a[:, 5] = o['met'][:, 0]
+                a[:, 8 + len(VARS)] = np.arctan2(-o['hy'][:, 0], -o['hx'][:, 0])   # road axis of v2
         rng = np.random.default_rng([int(meta['job_seed']), 20261124])
         a[:, 7] = M.apply(d['inp'], dict(M.params('nominal', model), trig='erf_shifted'), rng, 1)['w'][:, 0]
         rng = np.random.default_rng([int(meta['job_seed']), 20261125])

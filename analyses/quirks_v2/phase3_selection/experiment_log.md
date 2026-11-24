@@ -314,3 +314,25 @@ DECISION (fixer): §4.1 pointer on reading S3 lowered from "w_core, MEDIUM-HIGH"
 ALTERNATIVES: keep v1's pointers (rejected: review B-1, B-2 show the frozen text does not support them alone).
 CONFIDENCE: HIGH (text corrections; no count moves)
 FLAG FOR HUMAN: NO (S3 and the DIF-C attribution stay FLAG FOR HUMAN in the artifact)
+
+**12:02 (p3-c) external validation FAILS under both readings** (details and four remediation attempts in the session
+log and artifact §3). What did not work: a single Gaussian soft term from Fig. 35 cannot reproduce the Fig. 34 MET
+shape (tails x1.49 / 1.13 / 0.78); a two-Gaussian soft term fitted to Fig. 34 then misses Fig. 35 (u_par 28.1 against
+31.8 +- 1.0 GeV); a density-dependent soft term changes little. Cause: Fig. 35 is response-corrected, Fig. 34 is raw.
+
+**15:10 (p3-c) the unsourced tail sets the multijet yield** (4.28e7 nominal, 7.1e5 Gaussian only, 4.8e8 upper tail).
+DECISION: the tail is left as declared at 10:16; all three numbers and the 16 Nov reading of retrieval_log #14
+  (Gaussian only, tail as a limitation) are reported; the choice is passed to the orchestrator.
+ALTERNATIVES: adopt the Gaussian-only reading myself (would be a choice made after seeing that it lands near the
+  published 1 % share: not taken); truncate the tail at a minimum response (a new parameter invented after the
+  result: not taken).
+CONFIDENCE: HIGH that not choosing is right; LOW in any of the three numbers as a physical estimate.
+FLAG FOR HUMAN: YES.
+
+DECISION (15:12): multijet generation cut from 20 + 20 jobs to 4 + 5, because one file gave 414 effective passing
+  events and the finding should be reported promptly. ALTERNATIVES: run the full 40 jobs (about 6 more hours at the
+  one to two slots available). CONFIDENCE: MEDIUM (the Gaussian-only variation has only 56-72 effective events).
+FLAG FOR HUMAN: NO.
+
+Mistake recorded: `pkill -f` with a pattern that also matched my own remote command line killed my ssh shell together
+with the driver; no data affected; the fifth multijet job was then killed by PID.

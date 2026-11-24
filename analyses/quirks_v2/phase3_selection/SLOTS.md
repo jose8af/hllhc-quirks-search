@@ -31,3 +31,8 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 16:45 -0500 | p3-e-devpu1 (orchestrator launch) | landau | 3 jobs (cap) | 297 jobs × ≈ 18 min ≈ 92 CPU-h, ≈ 31 h wall at 3; driver on landau | campaign p3-e-devpu1 (dev.pu1, sealed per Freja A2)
 2026-11-24 16:46 -0500 | p3-a review (Sindre) | maxwell | 1 light job (nice 15, read-only recount of p3a outputs, < 0.1 CPU-h) | checked: qv2run job count 1
 2026-11-24 16:52 -0500 | p3-a review (Sindre) | RELEASED maxwell (one 23 s job, done)
+2026-11-24 16:59 -0500 | p3-a review round 2 (Vilde) | maxwell | 1 job (nice 15, ionice idle; 8 sequential parts of p3a_indep.py --stride 2 --offset 1, ~0.74 CPU-h ESTIMATE, read-only on Z(nunu) pilot files, no signal) | checked: qv2run job count 2
+2026-11-24 17:02 -0500 | p3-g (Tormod) | maxwell | 1 job, nice 10 | smoke tests (p3g_prep dif slice, p3g_ovl_job 2 events), each <= 10 min | qv2run jobs 2 at check
+2026-11-24 17:10 -0500 | p3-c (Birgit) | schrodinger | RELEASED (all p3-c campaigns finished or stopped; 11.2 CPU-h in the ledger)
+2026-11-24 17:13 -0500 | p3-c (Birgit) | schrodinger | <= 2 jobs for about 10 min: p3-c-pw2 (pilot weights again with the MET_reco azimuth column) | then RELEASED
+2026-11-24 17:19 -0500 | p3-c (Birgit) | schrodinger | RELEASED (p3-c-pw2 done 17:18; 11.3 CPU-h in the ledger in total)
