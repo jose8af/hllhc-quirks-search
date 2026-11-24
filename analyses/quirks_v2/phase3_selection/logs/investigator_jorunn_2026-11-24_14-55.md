@@ -56,3 +56,6 @@ Seal: dev.pu1 is NOT opened by this session (no read of p3-e-devpu1 outputs).
   ESTIMATE (16,000 trials), 100 jobs of ~9-10 min CPU.
 - 15:32 **p3-f-occx launched** (A1 hash recorded above first): `qv2run ssh launch .../src/p3f/campaigns/p3-f-occx.json
   --nodes maxwell --max-per-node 1 --on maxwell` (driver pid 205840 on maxwell; Gorm had 1 qv2run job running).
+- 15:42 occx-000 done: 551 s CPU, 563 s wall, max RSS 522 MB -> 100 jobs ~15.3 CPU-h; serial at 1 job ~16 h.
+  Plan at 19:00: restart the driver with the allowed slots (4 - running qv2run jobs on maxwell); refind3 smoke test
+  then p3-f-refind in one slot, occx in the other(s).

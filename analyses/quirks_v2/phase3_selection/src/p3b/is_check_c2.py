@@ -15,8 +15,10 @@ Method (all toy-level, same 6,400 configurations):
   sqrt((1 − f)/n).
   mc_rel_error_c2(R08) = rel_stored_c2(R08); mc_rel_error_c2(R09) = sqrt(rel_stored_c2(R08)² + fitprob_rel²).
 Writes outputs/p3b/is_check_c2.json.  `--patch` also adds the single key `occupancy_day15.mc_rel_error_c2` to the R08,
-R09, R08x2S>=3 and R09x2S>=3 records of outputs/p3b/pileup_term.json (no other key touched); pileup_term.py imports
-`c2_errors` and writes the same key on a rerun.
+R09, R08x2S>=3 and R09x2S>=3 records of outputs/p3b/pileup_term.json, and (cycle 3) the same key to their
+`occupancy_B2b_model` (reading (ii)) records; no other key touched.  pileup_term.py imports `c2_errors` and writes the
+same keys on a rerun (edited, not yet rerun).  The x2S>=3 values are the R08 value transferred (the paired check was
+not run with the 2S requirement) [E].
 """
 import array
 import ast
@@ -115,6 +117,8 @@ def main():
         P = json.loads(p.read_text())
         for c, v in rec['mc_rel_error_c2'].items():
             P['candidates'][c]['occupancy_day15']['mc_rel_error_c2'] = v
+            if P['candidates'][c].get('occupancy_B2b_model'):          # reading (ii) record (cycle 3, ODD C-4 (a))
+                P['candidates'][c]['occupancy_B2b_model']['mc_rel_error_c2'] = v
         p.write_text(json.dumps(P, indent=1))
     sys.stdout.write(json.dumps(rec, indent=1) + '\n')
 

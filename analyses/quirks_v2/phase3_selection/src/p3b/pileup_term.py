@@ -124,6 +124,8 @@ def main():
             rec['occupancy_day15']['b3_check'] = b3
         if c2 is not None and c in c2:
             rec['occupancy_day15']['mc_rel_error_c2'] = c2[c]
+            if rec['occupancy_B2b_model']:
+                rec['occupancy_B2b_model']['mc_rel_error_c2'] = c2[c]
         if c in occ['predictions']:
             p = occ['predictions'][c]['const']
             rec['occupancy_B2b_model'] = dict(rate_per_trial=p['rate'], events=p['rate'] * NTRIG, ln_r_dev=p['ln_r'],
