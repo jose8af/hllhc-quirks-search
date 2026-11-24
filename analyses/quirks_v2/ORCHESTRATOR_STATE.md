@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-23 20:05 -0500 (Opus orchestrator, PHASE-2 CLOSING STATE) · **Branch:** `v2-jfc` · **Phase:** 2 CLOSED → **Phase 3 (Selection / processing, signal blind) starts in a NEW session**; day 7 (day 0 = 2026-11-16)
+**Updated:** 2026-11-23 19:52 -0500 (Opus orchestrator, PHASE-2 CLOSING STATE) · **Branch:** `v2-jfc` · **Phase:** 2 CLOSED → **Phase 3 (Selection / processing, signal blind) starts in a NEW session**; day 7 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -11,7 +11,7 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 > start Phase 1 or Phase 2 again. Phase 2 is closed; this session runs Phase 3. Begin with the section "First actions of a new session".
 
 
-**PHASE 2 CLOSED 23 Nov 20:05 (read first).** Artifact `phase2_exploration/outputs/EXPLORATION.md` (Peder 4babc51 + orchestrator fills; tier: self-review + plot validator, done; no figures). Every Phase-2 PENDING block is filled except "Phase-3 inputs" (MET model, final pilot classification), which ARE Phase-3 work. Nothing runs on the cluster; no agent is alive. Power loss 19 Nov 17:54 – 23 Nov ≈ 13:00 (LOG 23 Nov). Worker hostname resolution fixed 23 Nov.
+**PHASE 2 CLOSED 23 Nov 19:52 (read first).** Artifact `phase2_exploration/outputs/EXPLORATION.md` (Peder 4babc51 + orchestrator fills; tier: self-review + plot validator, done; no figures). Every Phase-2 PENDING block is filled except "Phase-3 inputs" (MET model, final pilot classification), which ARE Phase-3 work. Nothing runs on the cluster; no agent is alive. Power loss 19 Nov 17:54 – 23 Nov ≈ 13:00 (LOG 23 Nov). Worker hostname resolution fixed 23 Nov.
 Results of 23 Nov (details LOG 23 Nov, EXPLORATION): DP1 passed (C1 41/41 with E1–E4, sealed 6/6); checkpoint 1 no stop rule (Leif); rule-1 validation (Ingvild) + subset review PASS with conditions (Nils; advisor Vigdis: binding-m candidate 1,501 (S) / 1,474 (F), lower bound, "above" only; axis + S3 conventions NOT fixed, → PREREG_v2) + B₅₀ arithmetic confirmed (Ylva: 63,167 at R09; single M = 993,885.9); D2 robust r(R06) 0.72, no correction (advisor Olav wording binding); FxFx E1500 inside band, S2-c FxFx complete, row open to 4a (advisor Siri); NI C′_PU ρ 0.024 (Kari); D8 top-up not drawn (advisor Runa; user may object); reach re-estimate (Tora; advisor Ulla; RESULT notice 16:38: more promising, weakly, not established; mixed-fraction table).
 The BINDING day-15 reading is NOT made: it needs the user's calendar answer (rider 2 of option C), the Phase-3 final pilot classification and MET model, and its own advisor call; then a RESULT notice; the pause itself is the user's.
 Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE them in the new session.
@@ -74,7 +74,7 @@ Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE 
 
 ## 1. What is running unattended (check, do not disturb)
 
-Nothing (23 Nov 20:05). All campaigns finished; all slots released (SLOTS.md); no agent alive. The history of the
+Nothing (23 Nov 19:52). All campaigns finished; all slots released (SLOTS.md); no agent alive. The history of the
 Phase-2 campaigns is in LOG.md and the markers (failed-marker check: the LAST line of each marker; known failed
 last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e1500 grids3 (replaced by grids4)).
 
