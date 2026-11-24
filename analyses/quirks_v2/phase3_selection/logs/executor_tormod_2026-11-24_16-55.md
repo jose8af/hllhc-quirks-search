@@ -98,7 +98,7 @@ overlay, a 1-event g4pu. 3. When schrodinger is assigned (≤ 3 jobs): prep, the
 Artifact with each test's verdict against its frozen criterion (PASS / FAIL / NOT TESTED / NOT EVALUABLE as STR §4.0
 point 5), the decision-point-2 numbers in one table, every open reading reported under each reading, CPU table.
 
-## 17:25 Code written, smoke tests on maxwell (1 job, each < 10 min; qv2run count 1-2 at every check)
+## 17:20 Code written, smoke tests on maxwell (1 job, each < 10 min; qv2run count 1-2 at every check)
 - `p3g_common.py`, `p3g_prep.py`, `p3g_ovl_job.py` (modes npo, dif, zhl, g4pu), `p3g_g4pu_chain.py`; tests in `src/p3g/tests/`.
 - **C1 PASS** (no-pile-up injection): DIF 4/4 events and Z near-pass 5/5 events, every stored own row matched
   one-to-one after the chain (n_matched = n_own_written, 0 unmatched either way).
@@ -120,3 +120,8 @@ point 5), the decision-point-2 numbers in one table, every open reading reported
   chain numbers events from 0, so only a job's leading events regenerate exactly). ALTERNATIVES: 4 roads (+5.6 CPU-h,
   total ≈ 75, 3 % over budget); zhl 1,000 events needs 25 more 40-event jobs of > 30 min. CONFIDENCE: MEDIUM (cost
   driven; the B1-g test is an alarm at loose rungs with weak resolving power either way, COM l.350). FLAG FOR HUMAN: NO.
+
+## 17:21 schrodinger assigned (orchestrator: ≤ 2 jobs; Gorm holds 1). Note received: Birgit's v2 MET weights
+(`data/p3c/p3-c-pw2/000/`) are NOT to be used for any count (advisor ruling pending); P3A's classification as delivered
+is used. Campaign files `tools/runner/examples/p3g/` (generator `src/p3g/p3g_campaigns.py`); queue
+`examples/p3g/queue_schrodinger.sh` (cap file /home/scratch/jdochoa/drivers/MAXJ.p3g). p3-g-prep launched 17:21.

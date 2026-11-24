@@ -36,3 +36,5 @@ Assignments 2026-11-24 10:08 -0500: p3-a (Aurora) landau <=3; p3-b (Casper) maxw
 2026-11-24 17:10 -0500 | p3-c (Birgit) | schrodinger | RELEASED (all p3-c campaigns finished or stopped; 11.2 CPU-h in the ledger)
 2026-11-24 17:13 -0500 | p3-c (Birgit) | schrodinger | <= 2 jobs for about 10 min: p3-c-pw2 (pilot weights again with the MET_reco azimuth column) | then RELEASED
 2026-11-24 17:19 -0500 | p3-c (Birgit) | schrodinger | RELEASED (p3-c-pw2 done 17:18; 11.3 CPU-h in the ledger in total)
+2026-11-24 17:21 -0500 | p3-g (Tormod) | schrodinger | <= 2 jobs (orchestrator assignment; Gorm holds 1) | campaigns p3-g-prep, then p3-g-npo, p3-g-npo0, p3-g-ovldif, p3-g-g4pu, p3-g-zhl (≈ 69 CPU-h ESTIMATE), jobs <= 30 min, driver on schrodinger | uptime 1.48, who 0, 1 qv2 job (p3-d) at check
+2026-11-24 17:21 -0500 | p3-g (Tormod) | maxwell | RELEASED (smoke tests done, no p3-g process left)

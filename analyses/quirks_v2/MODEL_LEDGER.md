@@ -96,4 +96,4 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 16:58 -0500 | Vilde | fable | p3-a critical review round 2 (fresh; last round) + Sindre C-4 independent search second half | running |
 | 2026-11-24 17:20 -0500 | Wenche | fable | advisor: B4-b FAIL branch, multijet N_trig tail, step-4 freeze, notice; Aurora item 9 (v1 vs v2 preselection/axis) | running |
 | 2026-11-24 17:20 -0500 | Yngve | fable | p3-c 1-bot critical review (rule 1(c)) | running |
-| 2026-11-24 17:20 -0500 | Zakarias | sonnet | p3-c plot validation (format check) | running |
+| 2026-11-24 17:20 -0500 | Zakarias | sonnet | p3-c plot validation (format check) | done: 2 A, B warnings |
