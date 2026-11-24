@@ -404,10 +404,17 @@ read at the lowest-G candidate; if G is unavailable, at every T2 candidate, and 
   253 contain a secondary-product hit (without them 199, same verdict) [V: BJO l.62-72].
 - CPU: classification 9.3 CPU-h (Tove), validation 4.93 CPU-h (plan 2.8–7.6, stop 10) [V: TOV l.100; ING l.111].
 
-> **PENDING: Nils (Fable, reviewer), second-agent review of `p2w_subset.py` (ruling (ii)).** Until it is read, the
-> binding stand-in is the finder near-pass count as a lower bound, m_Z = 253 → B₅₀(R09) = 10,777, valid only for an
-> "above" verdict; the subset-pass count 1,501 → 63,170 is not the reading in force. To fill: review verdict, and
-> whether the subset count replaces the stand-in.
+> **FILLED 2026-11-23 (Nils 98aac41; advisor Vigdis, LOG 23 Nov 19:44).** Review verdict REVIEWED-PASS WITH CONDITIONS:
+> 0 over-counts among the 1,514 R08 (S) events; an independent classifier confirms 1,419 (S) / 1,390 (F) [VERIFIED]. Ruling (ii)
+> is satisfied for m: the finder stand-in (253) no longer applies. **Binding-m candidate: 1,501 (S) / 1,474 (F) at R08 = R09,
+> quoted as produced, exact or lower bound, valid for "above" only.** Conventions to state: reading S3 sets the size (137
+> hard-window witnesses ≈ 5,700 events, ESTIMATE); an axis convention not in S1–S5 carries ≤ 74 counts (single own-axis:
+> ≥ 1,419). Not fixed now (would be a choice after the result); verdict above 300 under every allowed reading (253 →
+> 10,777; ≥ 1,419 → ≈ 59,500 ESTIMATE; 137 → ≈ 5,700 ESTIMATE). Review covers R08, s = 0; R04–R07 and s = 3 (969 / 846)
+> read, not re-derived. Deviations recorded: R04 has no width cut (STR l.761-763; R04 only); search heuristic differs from
+> PLAN S4 (lowering only). B1/HS/low-pT zeros = "none found by a non-maximal search; not an upper statement". Combined
+> lower bound 1,610 is information only. **Still owed before the binding reading:** independent re-derivation of B₅₀
+> from m and the single M (Ylva, Fable, running).
 
 ## 7. Attribution: v1's tag, v1's C′_PU link rule and the frozen rule j ≥ n/2
 
@@ -578,7 +585,7 @@ LOG l.977-979); items 7 onward are from the channel files.
 |---|---|---|---|
 | 1 | Halvard | FxFx E 1500 first launch and f₂₀₀^FxFx at E 1500 — FILLED 23 Nov | §4.3 |
 | 2 | Kari | NI C′_PU attributed vs C′_PU-linked — FILLED 23 Nov | §7 |
-| 3 | Nils | review of `p2w_subset.py` (ruling (ii)) | §6 |
+| 3 | Nils | review of `p2w_subset.py` (ruling (ii)) — FILLED 23 Nov; B₅₀ re-derivation (Ylva) running | §6 |
 | 4 | Tora (Opus) | reach re-estimate — FILLED 23 Nov (erratum + mixed-fraction table 1e918e0) | §9 |
 | 5 | orchestrator | D8 Z(νν) top-up decision — DECIDED 23 Nov: not drawn | §8 |
 | 6 | Phase 3 | MET model and final pilot classification | §9 |
