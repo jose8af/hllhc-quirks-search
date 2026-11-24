@@ -74,3 +74,7 @@ Default: subagents run on Opus 5.5 (`model: "opus"`) at default effort. Only non
 | 2026-11-24 10:08 -0500 | Aurora | fable | Phase 3 WP p3-a: final pilot classification and the rule-1 counts per term (feeds the binding day-15 reading, rule 1(c)) | running |
 | 2026-11-24 10:08 -0500 | Birgit | fable | Phase 3 WP p3-c: MET model (B4-b), validation, trigger threshold, N_trig of the three additions (feeds the day-15 projection; hard physics construction with an unsourced tail; brief §4 "go up") | running |
 | 2026-11-24 10:08 -0500 | Casper | opus | Phase 3 WP p3-b: B2 repaired thinning + occupancy model, pile-up term R04–R07 for decision point 2 | running |
+| 2026-11-24 14:20 -0500 | Casper | opus | (outcome) p3-b B2 development | done (f881aa3): both estimators above cap |
+| 2026-11-24 14:22 -0500 | Dorte | opus | Phase-3 1-bot critical review of p3-b | running |
+| 2026-11-24 14:22 -0500 | Elias | sonnet | Phase-3 plot validation of p3-b (3 figures; mechanical lint + visual; brief §4 "go down" for format checks) | running |
+| 2026-11-24 14:22 -0500 | Freja | fable | advisor: both pile-up estimators above cap (STR §11.7 rules 1–2), redesign admissibility, user notice | running |
