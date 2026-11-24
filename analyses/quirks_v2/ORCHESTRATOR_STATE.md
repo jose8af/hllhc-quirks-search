@@ -1,6 +1,6 @@
 # Orchestrator state (resume point)
 
-**Updated:** 2026-11-23 19:20 -0500 (Opus orchestrator, session of 23 Nov, after the power loss; daily report 23 Nov pushed) · **Branch:** `v2-jfc` · **Phase:** 2 (Exploration), day 7 (day 0 = 2026-11-16)
+**Updated:** 2026-11-23 20:05 -0500 (Opus orchestrator, PHASE-2 CLOSING STATE) · **Branch:** `v2-jfc` · **Phase:** 2 CLOSED → **Phase 3 (Selection / processing, signal blind) starts in a NEW session**; day 7 (day 0 = 2026-11-16)
 
 A new session starts here. **Prompt for the user to paste into a fresh Claude Code session (model: Opus), started in
 `/home/users/jdochoa/hllhc-quirks-search`:**
@@ -8,13 +8,13 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 > You are the orchestrator of the quirks v2 study, continuing a study in progress. Read
 > `QUIRKS_V2_ORCHESTRATOR_PROMPT.md` (the brief), then `analyses/quirks_v2/ORCHESTRATOR_STATE.md` in full, and follow
 > the state file: it says what is running, what is waiting on me, and the rules that changed since the brief. Do not
-> start Phase 1 again. Begin with the section "First actions of a new session".
+> start Phase 1 or Phase 2 again. Phase 2 is closed; this session runs Phase 3. Begin with the section "First actions of a new session".
 
 
-**RESUME 23 Nov (read first).** Power loss 19 Nov 17:54 – 23 Nov ≈ 13:00 (LOG 23 Nov 13:30; PROBLEM notice pushed). Nothing ran in between; the agents of 19 Nov (Sune, Cecilie, Eskil, Ulrika) are dead and replaced. Running now (relaunched 13:25-13:28): p2-b-s2-fxfx-e1500 job **grids4** (maxwell, ≤ 7,200 s) → Halvard: DONE 16:18 (f₂₀₀^FxFx(E1500) −2.4 ± 1.8 % vs MLM, inside band; S2-c FxFx complete, row open to 4a; SUCCESSOR ITEM before the first T1 consumer: scripted outputs/s2/f200_T1_inputs.json, Siri's ruling LOG 23 Nov); p2-c-d2-find → Jonas: D2 DONE (r(R06) 0.72, robust, no correction; advisor Olav); D8 top-up not drawn (advisor Runa); EXPLORATION.md written (Peder, 4babc51; PENDING blocks for Kari, Nils, reach re-estimate, Phase-3 inputs); rule-1 validation DONE 15:14 (Ingvild, 125ad0b: subset m_Z 1,501 (S), B₅₀(R09) 63,170, above 300 stands; numba cache-index failure → per-job NUMBA_CACHE_DIR before production); Nils (Fable) reviews p2w_subset.py (ruling (ii)), then the reach re-estimate (after Kari); p2-a-c1-cppuni-a (schrodinger 1) / -b (landau 1) → Kari. Driver logs on the nodes: /home/scratch/jdochoa/drivers/resume_*.log. Leif (checkpoint 1) and Maren (calendar advisor) done; calendar DECISION notice pushed 13:41 (default C at Wed 25 Nov 12:00). **Cluster:** worker hostname resolution fixed by the admin 23 Nov (was never configured); multi-node drivers may run on workers again. Crons re-created 23 Nov (daily 18:47 → fires ≈ 19:17; heartbeat :13 every 3 h). The user is back from 23 Nov (away rules of 20–22 Nov no longer apply); user 23 Nov: "keep me informed with the daily and notices commits".
-
-
-**EVENING 23 Nov (supersedes the running list above).** Phase-2 items all in, except Nils (Fable) reviewing `p2w_subset.py` (ruling (ii); schrodinger 1 slot, ≤ 1.5 CPU-h; his final report → advisor checklist → fill EXPLORATION §6 PENDING block). Done today: rule-1 validation (Ingvild), D2 (Jonas; advisor Olav), FxFx E1500 (Halvard; advisor Siri), NI C′_PU (Kari), reach re-estimate (Tora + erratum/mixed-fraction table; advisor Ulla; RESULT notice 16:38), D8 not drawn (advisor Runa; user may object), EXPLORATION.md (Peder 4babc51, filled since: §0 S2-c, §4.3, §7, §8, §9). CPU 445.7 CPU-h (markers, every attempt; checkpoint1_ledger.py), storage 248 GiB, bundle repo-2026-11-23. **Waiting on the user:** calendar DECISION (default C at Wed 25 Nov 12:00 → then update §5 dates, COMMITMENTS, LOG), docker C1-c DECISION (19 Nov), optional D8 objection. **Next:** after Nils, close Phase 2 (closing state; the PDF build test of EXPLORATION on a worker is open), then Phase 3 in a NEW session (rule 2). PREREG_v2 to-dos collected in LOG 23 Nov 15:45 (M of the Z term, link-rule line l.354-355 at v1 d724a1c, D9 actions (2)(3), D2 [L15] text, readings S1–S5, per-job NUMBA_CACHE_DIR, f200_T1_inputs.json before the first T1 consumer).
+**PHASE 2 CLOSED 23 Nov 20:05 (read first).** Artifact `phase2_exploration/outputs/EXPLORATION.md` (Peder 4babc51 + orchestrator fills; tier: self-review + plot validator, done; no figures). Every Phase-2 PENDING block is filled except "Phase-3 inputs" (MET model, final pilot classification), which ARE Phase-3 work. Nothing runs on the cluster; no agent is alive. Power loss 19 Nov 17:54 – 23 Nov ≈ 13:00 (LOG 23 Nov). Worker hostname resolution fixed 23 Nov.
+Results of 23 Nov (details LOG 23 Nov, EXPLORATION): DP1 passed (C1 41/41 with E1–E4, sealed 6/6); checkpoint 1 no stop rule (Leif); rule-1 validation (Ingvild) + subset review PASS with conditions (Nils; advisor Vigdis: binding-m candidate 1,501 (S) / 1,474 (F), lower bound, "above" only; axis + S3 conventions NOT fixed, → PREREG_v2) + B₅₀ arithmetic confirmed (Ylva: 63,167 at R09; single M = 993,885.9); D2 robust r(R06) 0.72, no correction (advisor Olav wording binding); FxFx E1500 inside band, S2-c FxFx complete, row open to 4a (advisor Siri); NI C′_PU ρ 0.024 (Kari); D8 top-up not drawn (advisor Runa; user may object); reach re-estimate (Tora; advisor Ulla; RESULT notice 16:38: more promising, weakly, not established; mixed-fraction table).
+The BINDING day-15 reading is NOT made: it needs the user's calendar answer (rider 2 of option C), the Phase-3 final pilot classification and MET model, and its own advisor call; then a RESULT notice; the pause itself is the user's.
+Crons of the 23 Nov session (daily 18:47, heartbeat 3 h) die with it: RE-CREATE them in the new session.
 ---
 
 ## 0. Rules that changed since the brief (binding; details in `DEVIATIONS.md` V11–V16 and `LOG.md`)
@@ -62,11 +62,11 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 7. **Clock:** always run `date` before writing a time; git commit times are authoritative.
 
 
-**Waiting on the user:** nothing (19 Nov: S2-e (b) −10.6 % and P1 record decided as recommended; COMMITMENTS.md; into PREREG_v2). Running agents: Sune (FxFx), Tove (Fable, preliminary rule-1 B₅₀), Ulrika (D2), Vidar (C1-c). C1 complete 41/41 with E1–E4 (sealed 6/6 PASS, file sha256 ae4de9ec…). Next: CPU re-projection for checkpoint 1 (advisor), DP1 RESULT notice on 21 Nov.
+**[HISTORY 19 Nov; superseded by §2]** Waiting on the user: nothing (19 Nov: S2-e (b) −10.6 % and P1 record decided as recommended; COMMITMENTS.md; into PREREG_v2). Running agents: Sune (FxFx), Tove (Fable, preliminary rule-1 B₅₀), Ulrika (D2), Vidar (C1-c). C1 complete 41/41 with E1–E4 (sealed 6/6 PASS, file sha256 ae4de9ec…). Next: CPU re-projection for checkpoint 1 (advisor), DP1 RESULT notice on 21 Nov.
 
 **Strategy-revision inputs (19 Nov, advisor Dagny; for EXPLORATION.md and the pause package):** v1 SM counts are one-hit tags, not attributed (STR l.753 wrong); void: STR l.791-797, Table 4.4c m_H, B5 share l.1420; B4-c and B5 closures NOT EVALUABLE on SM → user question in the day-15 pause package; hold row-20 extra events (STR l.2116) until answered; attributed vs C′_PU-linked measurement (STR l.753-754) running. Rule-1 reading frozen-text clarifications (i)-(iii) in LOG 19 Nov (Åsa).
 
-**User away 20–22 Nov (decided 19 Nov 17:20):** reversible new decisions → advisor-checked default labelled "default, user absent"; irreversible/outward (installs, new permissions, unsealing, deleting data, budget beyond approved, the day-15 pause) wait with a DECISION notice. Continue into Phase 3 in this session after closing Phase 2 (write the Phase-2 closing state first). Heartbeat cron every 3 h + daily-report cron 18:47 (both session-only).
+**[HISTORY; expired 23 Nov]** User away 20–22 Nov (decided 19 Nov 17:20): reversible new decisions → advisor-checked default labelled "default, user absent"; irreversible/outward (installs, new permissions, unsealing, deleting data, budget beyond approved, the day-15 pause) wait with a DECISION notice. Continue into Phase 3 in this session after closing Phase 2 (write the Phase-2 closing state first). Heartbeat cron every 3 h + daily-report cron 18:47 (both session-only).
 
 **User request (19 Nov 17:25): reach outlook at every step.** Every daily report and every RESULT notice carries a line "Reach outlook vs last report: more / less / equally promising, because …" (ESTIMATE, v1 placeholder efficiencies only; no v2 signal efficiency). Planned item: once Cecilie's rule-1 validation is in, an Opus executor recomputes the Gate A reach estimate with the pilot-based backgrounds (Z(νν) own-hit count, Eskil's attributed conversion scale), same script and placeholder efficiencies as Gate A, labelled ESTIMATE; note that the rule-1 B₅₀ is a ceiling, not a background estimate.
 
@@ -74,61 +74,22 @@ A new session starts here. **Prompt for the user to paste into a fresh Claude Co
 
 ## 1. What is running unattended (check, do not disturb)
 
-**Active subagents (18 Nov 11:05):** Ignatius (Opus, channel (i) successor: c1-gen fix/rerun, E2(ii) restricted
-V4-5 scan, C2-b, C2-c, 100k stitch ratio, smregen, then the 41 C1 comparisons; holds landau slot B) · Hedda (Fable,
-per-stream B1 pilot validation jobs: prepares `p2-c-pilot-val-*`, the orchestrator launches, then she reads the
-verdicts). **c1-gen** (12 jobs) failed 17 Nov 09:12 at Pythia init, unseen (queue logged exit 0): Ignatius reruns it.
-Failed-marker check: use the LAST line of each marker (earlier attempt lines match the grep below).
-
-| what | where | status / end (ESTIMATE) | commands |
-|---|---|---|---|
-| Pilot part 1: `p2-c-pilot-mb` + `p2-c-pilot-znn-00…15` (2.3×10⁶ Z(νν) events) | schrodinger, 2 lanes | 242/500 at 17:38 on 17 Nov, 0 failed; about 18 Nov 20:00 | status `bash tools/runner/examples/p2x/pilot/STATUS_p2-c-pilot_mb-znn.sh`; resume `bash tools/runner/examples/p2x/pilot/LAUNCH_p2-c-pilot_mb-znn_2slots.sh` |
-| Pilot part 2 (B1 streams): `p2-c-pilot_b1`, 762 jobs | schrodinger + landau + maxwell, 1 lane each | launched 17 Nov 10:10; 128/762 at 17:38 on 17 Nov, 0 failed; class blocks about 16 h; the hard-scatter block starts after the last Z(νν) file | status `bash tools/runner/examples/p2x/b1/STATUS_p2-c-pilot_b1.sh schrodinger landau maxwell`; resume `NODECAPS="3 3 4" bash tools/runner/examples/p2x/b1/LAUNCH_p2-c-pilot_b1_3slots.sh schrodinger landau maxwell` (a lane stops after 4 h of retries: then run this line again) |
-| Channel (i) reproduction campaigns `p2-a-*` (c1-pu1, c1-pu2, signal, rates, SM, C′_PU, T_seed, V4-4) | landau 2 slots, maxwell 2 slots, detached queues | all by about Thu 19 Nov midday | queue logs `ssh -x landau "tail /home/scratch/jdochoa/drivers/queue_landau_B.log"`; successor section at the end of `phase2_exploration/logs/executor_rosalie_2026-11-16_11-55.md` |
-| Channel (ii) FxFx compile jobs `p2-b-s2-fxfx-c` (under 30 min; re-showers finished 16:47) | maxwell, 1 slot | started 17 Nov 17:37, about 20 min | `ssh -x maxwell tail -2 /home/scratch/jdochoa/drivers/queue_maxwell_fxfx.log` |
-
-Do not edit files listed under `frozen_from_launch` in the two PLAN files while the pilot runs. Failed markers:
-`grep -lsE '"(failed|timeout|oom|killed|lost|corrupt|verify_failed)"' ledger/markers/p2-c-pilot-*/*/*.marker`.
-After each B1 stream's first chain campaign one validation job is due (read with `hard_except_early_product_hits`;
-see `phase2_exploration/outputs/B1_READY_albert_2026-11-16_20-24.md` §9).
+Nothing (23 Nov 20:05). All campaigns finished; all slots released (SLOTS.md); no agent alive. The history of the
+Phase-2 campaigns is in LOG.md and the markers (failed-marker check: the LAST line of each marker; known failed
+last lines: p2-c-r1v-s2a 19 + s2b 17 (rerun as s3a/s3b, done), p2-b-s2-fxfx-e1500 grids3 (replaced by grids4)).
 
 ## 2. Waiting on the user
 
-**DECISION E4: APPROVED by the user 18 Nov 12:44 (recommended answers; COMMITMENTS "Amendment E4"). Was:** SM-family width correction (Q1 E4 approve /
-bug; Q2 v1 width = v2's; Q3 no rerun; Q4 remediation 1 of 3 + PREREG_v2). No silent default on Q1: without an
-answer the SM family stays "FAIL (frozen) / corrected PASS pending E4" and decision point 1 stays blocked.
-Fixer Lisbet (Opus): stage A code → orchestrator COMMITS before any C′_PU number (hash pre-registers the rule) →
-stage B SM rerun only — DONE 18 Nov: code 54610b6, SM PASS 3/3 coherent (pending E4). The channel (i) successor runs
-C′_PU with 54610b6 (disclose Ignatius's 12:17 partial C′_PU file, 1/√N, pre-rule, superseded) and first fixes the
-joint-replica coherence of pu1/pu2/closure (nested rungs treated as independent).
-
-Nothing urgent at 2026-11-17 17:50. Two open choices from Edgar's final report, to bring to the user with a recommendation before the selection freeze (advisor first): (1) S2-e trigger turn-on uncertainty: nuisance from the curve's statistical bars, the wide nuisance (−10.6 % at 250 GeV), or a threshold of 275–300 GeV; (2) P1: record the round-to-nearest diagnostic (v1's "44 bits" is 512u; at 64u the floor pattern reappears, KS p 0.53 / 0.47) beside "not the floor pattern" (orchestrator's recommendation given to the user in the day-1 report: record it). Decided on 17 Nov ("use your recommended answers"): **E1–E3 amended as recommended**
-(`COMMITMENTS.md`, section "Amendments E1–E3"; frozen FAIL verdicts stay on record) and the **FxFx exception to the
-30-minute rule** (two single-core jobs of about 1.5 h). Follow-ups for the orchestrator:
-- **E2 part (ii): the restricted V4-5 scan is NOT yet run** (about 1.5 CPU-h; code `phase2_exploration/src/v45_bruteforce.py`
-  needs the restriction to F0's inliers + hits within 3σ of the plane; channel (i) successor). If it fails, part (i)
-  alone is the accuracy test and the scan is reported as failed. Until it is read, C2-a under the amendment is
-  "(i) PASS, (ii) pending": decision point 1 (day 5) needs it.
-- FxFx: prepared by Edgar, NOT submitted. The runner hard-codes the 30-minute limit (`tools/runner/qv2run/paths.py:24`
-  MAX_JOB_SECONDS = 1800; `campaign.py:109-110`). After BOTH pilot parts and the channel (i) campaigns are complete
-  (never while campaigns run: the node-side runner cache is keyed on its code), the orchestrator adds a per-job
-  `timeout_exception` for the SSH mechanism only (cap 7200 s, recorded in the marker; Edgar's proposal, about 6 lines,
-  plus a unit test in `tools/runner/tests`), then submits `p2-b-s2-fxfx` (commands in Edgar's final file).
-
-Already decided earlier (all in `COMMITMENTS.md` and `LOG.md`): Gate A (all defaults; 4,609 CPU-h, stop-and-ask
-5,992, about 60 days); pool at fixed CPU; option B on the half-turn limit; **addendum 1 D1–D9 as recommended
-(17 Nov; in force; `phase1_strategy/outputs/STRATEGY_ADDENDUM_1_v5_clara_2026-11-16_18-21.md`)**.
-
-**18 Nov 12:30: Ignatius finished** (results in LOG). **SM family (v) FAILS as frozen** (R04 +2.6 %, z +3.64):
-regression investigator Jorund (Fable) writes `phase2_exploration/REGRESSION_TICKET_SM.md`; blocks decision point 1.
-Channel (i) still needs a successor for the 41-comparison run once c1-pu1 (≈ 19 Nov 04:30) and c1-cppub finish
-(commands in Ignatius's log, STATE FOR A SUCCESSOR). C2-a: (ii) FAILED → (i) alone per E2. C2-c: PASS, no power (flag).
-
-**PREREG_v2 to-do (advisor ruling 18 Nov, LOG):** fix the early-product flag (n_early_prod > 0 at β_min 0.1), the
-binding variant per B1 term and day-15 reading (recommended WITH flagged events; WITHOUT as cross-check), what a
-with/without difference triggers (user sets the size), per-stream rates (Hedda §6) and the hs count. Before the
-freeze: check frozen criteria and the day-15 text for dependence on these events (DECISION notice only if one depends).
-`p2-c-pilot-val-s2` (hs stream, 3 jobs) queued on maxwell, waits for c0-hs: someone reads its verdict (Hedda's file §5).
+1. **Calendar shift** (DECISION notice 2026-11-23 13:41): default C on **Wed 25 Nov 12:00** ("default, user absent")
+   if no answer: every later date +4 calendar days (day 15 → Sat 5 Dec, freeze 7–9 Dec, Gate B ≈ 8–10 Jan, Gate C
+   ≈ 17–19 Jan), riders (1) user says weekend of 5 Dec or Mon 7 Dec for the pause, (2) binding reading as soon as its
+   inputs exist, no later than 5 Dec; also: holiday availability (production ≈ 11–25 Dec). Then record it in
+   COMMITMENTS + LOG and update §5.
+2. **C1-c container test: docker build permission** (DECISION notice 2026-11-19 11:19): no default; needed by Phase 5.
+   C1-c stays NOT TESTED until answered.
+3. Optional: the user may ask for the D8 Z(νν) top-up anyway (+45 / +109 CPU-h).
+4. At the binding day-15 reading: the pause package (B4-c / B5 NOT EVALUABLE on SM; evaluable B4-c ≈ 4,800 CPU-h
+   would cross 5,992 alone; NI R05 test has almost no power; hold the row-20 extra events (STR l.2116)).
 
 ## 3. State of Phase 2, item by item
 
@@ -155,35 +116,36 @@ freeze: check frozen criteria and the day-15 text for dependence on these events
 CPU used: 383 CPU-h at 18:55 on 18 Nov (ledger, 2,768 jobs: reproduction 195, theory 39, pilot channel 13, pilot 136). **Ledger pitfall:** `tools/runner/bin/qv2run rebuild-ledger` writes one row per output FILE in `ledger/jobs.tsv`; de-duplicate on (campaign, job_id, attempts) before summing cpu_s, or the total doubles. Projection 4,663–4,844 CPU-h (ESTIMATE) + 22–28 for D2. Storage
 236 GB for this study (du, 18 Nov); 633 GB used on the pool in total, 3.7 TB free. Last bundle `repo-2026-11-18.bundle`. Pilot at 18:55: Z(νν) 457/460, B1 664/762 (hs block 98 pending), no failure; c1-pu1 173/200, c1-cppub 49/75.
 
-## 4. First actions of a new session
+## 4. First actions of a new session (Phase 3)
 
-1. `date`; read this file; skim the last 15 entries of `LOG.md`; check `git status` and `git log --oneline -5`.
-2. Check §1 (both pilot parts, failed markers, lanes alive; relaunch a dead lane with its LAUNCH line).
-3. Re-create the daily-report cron (rule 4). Check for the user's answers to §2.
-4. Edgar's final report is in (17 Nov 17:38). Channel (ii) needs a successor only for FxFx (after the runner change, §2).
-5. When channel (i)'s campaigns finish (about Thu 19 Nov): spawn an Opus successor for the 41 C1 comparisons,
-   V4-4, T_seed and the channel (i) EXPLORATION file; then the sealed C1 comparison session (advisor first).
-6. Pilot validation jobs per stream (§1); when both pilot parts are complete, record sizes and CPU-h from the ledger.
-7. Day 5 (21 Nov): decision point 1 (C1, C2: needs the user's E1–E3 answer) and stop-rule checkpoint 1 (re-project
-   CPU with the measured unit costs and the measured utilisation; advisor trigger). Day 7 (23 Nov): preliminary
-   rule-1 projection from the pilot (Fable executor). Consolidate `phase2_exploration/outputs/EXPLORATION.md` from
-   the channel files (Rosalie + successor, Sebastian/Edgar, Tatiana, Xavier, Albert, Flora, Viktor), self-review +
-   plot validator (JFC Phase-2 tier), commit. **Then close the session**: Phase 3 starts in a new one, which first
-   reads the JFC files deferred in `DEVIATIONS.md` V11 (03-phases Phase 3, 07, 11, agent definitions).
+1. `date`; read this file; the last 25 entries of `LOG.md`; `git status`, `git log --oneline -5`; check `notices/` and
+   chat for the user's answers to §2 (calendar default C applies Wed 25 Nov 12:00).
+2. Re-create the crons (rule 4: daily `47 18 * * *`; heartbeat every 3 h).
+3. Read the JFC files deferred in `DEVIATIONS.md` V11 (methodology/03-phases.md Phase 3, 07, 11, agent definitions
+   `agents/`), the strategy's Phase-3 sections (channels B1–B7, T1, T2) and `EXPLORATION.md` §9–§11.
+4. Phase-3 plan (executors start in plan mode; 1-bot review per channel): MET model (R-2, R-3 sourced; jet-response
+   tail NOT sourced; construction choice) and the final pilot classification (by shifted day 12 ≈ 2 Dec); then the
+   binding day-15 reading (advisor first; RESULT notice; pause for the user). PREREG_v2 to-dos (LOG 23 Nov 15:45,
+   19:44, 19:50): single M = 993,885.9; v1 link rule g1b_tt.py l.354-355 (v1 d724a1c); D9 actions (2)(3); D2 [L15]
+   text (Olav); readings S1–S5 + axis + S3 conventions (own advisor call, "fixed after the pilot count was seen");
+   R04 subset width-cut deviation; NI test re-sizing; per-job NUMBA_CACHE_DIR in the runner pre-flight;
+   `outputs/s2/f200_T1_inputs.json` before the first T1 consumer; tectonic in the pixi env before 4a; chain unit
+   cost of Geant4 injection is 2.0× plan (D2) for any projection.
+5. Forced tt̄ decays in `s4pu.py`: the file edit waited for the C1 campaigns (complete now): do it before production.
 
 ## 5. Key dates (day 0 = 16 Nov 2026)
 
-Day 5 = 21 Nov (decision point 1, checkpoint 1) · day 7 = 23 Nov (preliminary projection; Z(νν) top-up decision,
-D8) · day 12 = 28 Nov (MET model, final pilot classification) · **day 15 = 1 Dec (binding rule 1; a pause is
-expected, Q2 (a))** · freeze days 17–19 = 3–5 Dec (PREREG_v2, 4-bot review, hash, user notified) · Gate B about
-4–6 Jan 2027 · Gate C about 13–15 Jan 2027.
+Calendar shift pending (§2.1). Under default C (+4 days): MET model and final pilot classification ≈ 2 Dec;
+**binding rule-1 reading ≤ Sat 5 Dec (a pause is expected, Q2 (a))**; freeze 7–9 Dec (PREREG_v2, 4-bot review, hash,
+user notified); Gate B ≈ 8–10 Jan 2027; Gate C ≈ 17–19 Jan 2027. Unshifted (option B): 28 Nov / 1 Dec / 3–5 Dec /
+4–6 Jan / 13–15 Jan.
 
 ## 6. Phase tracker
 
 - [x] Preflight; scaffold
 - [x] Phase 1: Strategy — review PASS cycle 10; Gate A passed 2026-11-16; addendum 1 approved 2026-11-17
-- [ ] **Phase 2: Exploration — in progress** (decision point 1 at day 5)
-- [ ] Phase 3: Processing, signal blind — channels B1–B7, T1, T2, each 1-bot; PREREG_v2 (4-bot, hash, notify user)
+- [x] Phase 2: Exploration — CLOSED 2026-11-23 (DP1 passed 23 Nov; EXPLORATION.md; self-review)
+- [ ] **Phase 3: Processing, signal blind — next, new session** — channels B1–B7, T1, T2, each 1-bot; PREREG_v2 (4-bot, hash, notify user)
 - [ ] Phase 4a: Expected — production, closure verdicts; 4-bot+bib
 - [ ] Phase 4b: selection rule on the optimisation half; 4-bot+bib → GATE B (human)
 - [ ] Phase 4c: evaluation half; 1-bot
@@ -197,4 +159,4 @@ expected, Q2 (a))** · freeze days 17–19 = 3–5 Dec (PREREG_v2, 4-bot review,
 `phase2_exploration/DAILY_NOTES.md` · `daily/` · `notices/` · `gates/GATE_A.md` · strategy
 `phase1_strategy/outputs/STRATEGY_oscar_2026-11-16_10-41.md` (333 kB: read by section) · agent definitions
 `agents/` · runner `tools/runner/` (repo root) · notify script `tools/notify/notify.sh`.
-Session names already used (do not reuse; see `MODEL_LEDGER.md` and `LOG.md`): Ada … Flora. Pick new ones.
+Session names already used (do not reuse; see `MODEL_LEDGER.md` and `LOG.md`): Ada … Ylva (23 Nov: Halvard, Ingvild, Jonas, Kari, Leif, Maren, Nils, Olav, Peder, Runa, Siri, Tora, Ulla, Vigdis, Ylva). Pick new ones.
