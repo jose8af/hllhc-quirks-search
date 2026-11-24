@@ -1,0 +1,106 @@
+{
+ "formula": "blake2b(\"qv2|<stream>|<chunk>\", digest_size=8) little-endian & 0x7FFFFFFFFFFF (acts/stage4/run_stage4.py hash_seed)",
+ "streams": {
+  "c1.pu1": {
+   "source": "tools/runner/campaigns/p2-a-c1-pu1.json",
+   "n_chunks": 200,
+   "first_chunk": 0,
+   "last_chunk": 199,
+   "seed_first": 76519628951165,
+   "seed_last": 139050708025658,
+   "unique_within": true
+  },
+  "c1.pu2": {
+   "source": "tools/runner/campaigns/p2-a-c1-pu2.json",
+   "n_chunks": 200,
+   "first_chunk": 0,
+   "last_chunk": 199,
+   "seed_first": 40878210527552,
+   "seed_last": 39071649455330,
+   "unique_within": true
+  },
+  "prod.pu1": {
+   "source": "analyses/quirks_v2/phase3_selection/src/p3b/campaigns/prod/p4a-b2-prod-pu1.json",
+   "n_chunks": 1200,
+   "first_chunk": 0,
+   "last_chunk": 1199,
+   "seed_first": 45247824406398,
+   "seed_last": 89591802709553,
+   "unique_within": true
+  },
+  "prod.pu2": {
+   "source": "analyses/quirks_v2/phase3_selection/src/p3b/campaigns/prod/p4a-b2-prod-pu2.json",
+   "n_chunks": 600,
+   "first_chunk": 0,
+   "last_chunk": 599,
+   "seed_first": 115899461551291,
+   "seed_last": 72253825209376,
+   "unique_within": true
+  },
+  "dev.pu1": {
+   "source": "analyses/quirks_v2/phase3_selection/src/p3e/campaigns/p3-e-devpu1.json",
+   "n_chunks": 298,
+   "first_chunk": 0,
+   "last_chunk": 297,
+   "seed_first": 105210550855563,
+   "seed_last": 77693177683528,
+   "unique_within": true
+  },
+  "reserve.pu1": {
+   "source": "ESTIMATE: STR \u00a74.17 row 16, 24,000 events, 20/job",
+   "n_chunks": 1200,
+   "first_chunk": 0,
+   "last_chunk": 1199,
+   "seed_first": 70167072891405,
+   "seed_last": 51293099293787,
+   "unique_within": true
+  }
+ },
+ "pairs": {
+  "c1.pu1 vs c1.pu2": 0,
+  "c1.pu1 vs dev.pu1": 0,
+  "c1.pu1 vs prod.pu1": 0,
+  "c1.pu1 vs prod.pu2": 0,
+  "c1.pu1 vs reserve.pu1": 0,
+  "c1.pu2 vs dev.pu1": 0,
+  "c1.pu2 vs prod.pu1": 0,
+  "c1.pu2 vs prod.pu2": 0,
+  "c1.pu2 vs reserve.pu1": 0,
+  "dev.pu1 vs prod.pu1": 0,
+  "dev.pu1 vs prod.pu2": 0,
+  "dev.pu1 vs reserve.pu1": 0,
+  "prod.pu1 vs prod.pu2": 0,
+  "prod.pu1 vs reserve.pu1": 0,
+  "prod.pu2 vs reserve.pu1": 0
+ },
+ "wide_range": {
+  "chunks": "0..99999 for every stream",
+  "unique_within": {
+   "c1.pu1": true,
+   "c1.pu2": true,
+   "prod.pu1": true,
+   "prod.pu2": true,
+   "dev.pu1": true,
+   "reserve.pu1": true
+  },
+  "overlaps": {
+   "c1.pu1 vs c1.pu2": 0,
+   "c1.pu1 vs dev.pu1": 0,
+   "c1.pu1 vs prod.pu1": 0,
+   "c1.pu1 vs prod.pu2": 0,
+   "c1.pu1 vs reserve.pu1": 0,
+   "c1.pu2 vs dev.pu1": 0,
+   "c1.pu2 vs prod.pu1": 0,
+   "c1.pu2 vs prod.pu2": 0,
+   "c1.pu2 vs reserve.pu1": 0,
+   "dev.pu1 vs prod.pu1": 0,
+   "dev.pu1 vs prod.pu2": 0,
+   "dev.pu1 vs reserve.pu1": 0,
+   "prod.pu1 vs prod.pu2": 0,
+   "prod.pu1 vs reserve.pu1": 0,
+   "prod.pu2 vs reserve.pu1": 0
+  }
+ },
+ "verdict_dev_pu1": "DISJOINT",
+ "verdict_all_pairs": "DISJOINT"
+}
